@@ -1,0 +1,38 @@
+{
+    "name": "ryangjchandler/phiki",
+    "description": "Syntax highlighting using TextMate grammars in PHP.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ryan Chandler",
+            "email": "support@ryangjchandler.co.uk",
+            "role": "Developer",
+            "homepage": "https://ryangjchandler.co.uk"
+        }
+    ],
+    "require": {
+        "php": "^8.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Phiki\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Phiki\\Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require-dev": {
+        "symfony/var-dumper": "^7.1",
+        "pestphp/pest": "^3.0",
+        "laravel/pint": "^1.17"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}

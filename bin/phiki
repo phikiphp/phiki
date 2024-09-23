@@ -1,0 +1,74 @@
+#!/usr/bin/env php
+<?php
+
+use Phiki\Tokenizer;
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+$tokenizer = new Tokenizer([
+    'scopeName' => 'source.test',
+    "patterns" => [
+        [
+            "include" => "#variable-name"
+        ]
+    ],
+    'repository' => [
+        "variable-name" => [
+            "patterns" => [
+                [
+                    "captures" => [
+                        "1" => [
+                            "name" => "variable.other.php"
+                        ],
+                        "10" => [
+                            "name" => "string.unquoted.index.php"
+                        ],
+                        "11" => [
+                            "name" => "punctuation.section.array.end.php"
+                        ],
+                        "2" => [
+                            "name" => "punctuation.definition.variable.php"
+                        ],
+                        "4" => [
+                            "name" => "keyword.operator.class.php"
+                        ],
+                        "5" => [
+                            "name" => "variable.other.property.php"
+                        ],
+                        "6" => [
+                            "name" => "punctuation.section.array.begin.php"
+                        ],
+                        "7" => [
+                            "name" => "constant.numeric.index.php"
+                        ],
+                        "8" => [
+                            "name" => "variable.other.index.php"
+                        ],
+                        "9" => [
+                            "name" => "punctuation.definition.variable.php"
+                        ]
+                    ],
+                    "match" => "(?i)((\\\$)(?<name>[a-z_\\x{7f}-\\x{10ffff}][a-z0-9_\\x{7f}-\\x{10ffff}]*))\\s*(?:(\\??->)\\s*(\\g<name>)|(\\[)(?:(\\d+)|((\\$)\\g<name>)|([a-z_\\x{7f}-\\x{10ffff}][a-z0-9_\\x{7f}-\\x{10ffff}]*))(\\]))?"
+                ],
+                [
+                    "captures" => [
+                        "1" => [
+                            "name" => "variable.other.php"
+                        ],
+                        "2" => [
+                            "name" => "punctuation.definition.variable.php"
+                        ],
+                        "4" => [
+                            "name" => "punctuation.definition.variable.php"
+                        ]
+                    ],
+                    "match" => "(?i)((\\\${)(?<name>[a-z_\\x{7f}-\\x{10ffff}][a-z0-9_\\x{7f}-\\x{10ffff}]*)(}))"
+                ]
+            ]
+        ]
+    ]
+]);
+
+$tokens = $tokenizer->tokenize('$hello');
+
+dd($tokens);
