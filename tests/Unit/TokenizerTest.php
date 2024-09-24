@@ -201,7 +201,7 @@ describe('subpattern includes', function () {
         expect($tokens)->toEqualCanonicalizing([
             [
                 new Token(['source.test', 'variable.other.php'], '$hello', 0, 6),
-                new Token(['source.test'], "\n", 6, 6),
+                new Token(['source.test'], "\n", 6, 7),
             ],
         ]);
     });
@@ -388,6 +388,110 @@ describe('begin/end', function () {
                 new Token(['source.test', 'meta.block.test'], ' ', 5, 6),
                 new Token(['source.test', 'meta.block.test', 'keyword.control.test', 'keyword.control.end.test'], 'end', 6, 9),
                 new Token(['source.test'], "\n", 9, 9),
+            ]
+        ]);
+    });
+
+    it('can tokenize a begin/end pattern with subpatterns between begin and end', function () {
+        $tokens = tokenize('begin foo end', [
+            'scopeName' => 'source.test',
+            'patterns' => [
+                [
+                    'name' => 'meta.block.test',
+                    'begin' => '\\b(begin)\\b',
+                    'end' => '\\b(end)\\b',
+                    'patterns' => [
+                        [
+                            'name' => 'entity.name.test',
+                            'match' => '\\b(foo)\\b',
+                        ],
+                    ],
+                ],
+            ],
+        ]);
+
+        expect($tokens)->toEqualCanonicalizing([
+            [
+                new Token(['source.test', 'meta.block.test'], 'begin', 0, 5),
+                new Token(['source.test', 'meta.block.test'], ' ', 5, 6),
+                new Token(['source.test', 'meta.block.test', 'entity.name.test'], 'foo', 6, 9),
+                new Token(['source.test', 'meta.block.test'], ' ', 9, 10),
+                new Token(['source.test', 'meta.block.test'], 'end', 10, 13),
+                new Token(['source.test'], "\n", 13, 13),
+            ]
+        ]);
+    });
+
+    it('can tokenize a begin/end pattern with subpatterns between begin and end that have captures', function () {
+        $tokens = tokenize('begin foo end', [
+            'scopeName' => 'source.test',
+            'patterns' => [
+                [
+                    'name' => 'meta.block.test',
+                    'begin' => '\\b(begin)\\b',
+                    'end' => '\\b(end)\\b',
+                    'patterns' => [
+                        [
+                            'name' => 'entity.name.test',
+                            'match' => '\\b(foo)\\b',
+                            'captures' => [
+                                '1' => [
+                                    'name' => 'entity.name.foo.test',
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ]);
+
+        expect($tokens)->toEqualCanonicalizing([
+            [
+                new Token(['source.test', 'meta.block.test'], 'begin', 0, 5),
+                new Token(['source.test', 'meta.block.test'], ' ', 5, 6),
+                new Token(['source.test', 'meta.block.test', 'entity.name.test', 'entity.name.foo.test'], 'foo', 6, 9),
+                new Token(['source.test', 'meta.block.test'], ' ', 9, 10),
+                new Token(['source.test', 'meta.block.test'], 'end', 10, 13),
+                new Token(['source.test'], "\n", 13, 13),
+            ]
+        ]);
+    });
+
+    it('can tokenize a begin/end patterns that have subpatterns and span multiple lines', function () {
+        $tokens = tokenize(<<<'TEST'
+        begin
+            foo
+        end
+        TEST, [
+            'scopeName' => 'source.test',
+            'patterns' => [
+                [
+                    'name' => 'meta.block.test',
+                    'begin' => '\\b(begin)\\b',
+                    'end' => '\\b(end)\\b',
+                    'patterns' => [
+                        [
+                            'name' => 'entity.name.test',
+                            'match' => '\\b(foo)\\b',
+                        ],
+                    ],
+                ],
+            ],
+        ]);
+
+        expect($tokens)->toEqualCanonicalizing([
+            [
+                new Token(['source.test', 'meta.block.test'], 'begin', 0, 5),
+                new Token(['source.test', 'meta.block.test'], "\n", 5, 5),
+            ],
+            [
+                new Token(['source.test', 'meta.block.test'], '    ', 0, 4),
+                new Token(['source.test', 'meta.block.test', 'entity.name.test'], 'foo', 4, 7),
+                new Token(['source.test', 'meta.block.test'], "\n", 7, 7),
+            ],
+            [
+                new Token(['source.test', 'meta.block.test'], 'end', 0, 3),
+                new Token(['source.test'], "\n", 3, 3),
             ]
         ]);
     });

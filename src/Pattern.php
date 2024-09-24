@@ -8,22 +8,38 @@ readonly class Pattern
         protected array $pattern,
     ) {}
 
-    public function tryMatch(string $lineText, int $linePosition): MatchedPattern|false
+    public function tryMatch(Tokenizer $tokenizer, string $lineText, int $linePosition): MatchedPattern|false
     {
         if ($this->isOnlyPatterns()) {
             foreach ($this->getPatterns() as $pattern) {
-                $matchedPattern = (new static($pattern))->tryMatch($lineText, $linePosition);
+                $pattern = new static($pattern);
+
+                if ($pattern->isInclude()) {
+                    $name = $pattern->getIncludeName();
+                    $pattern = $tokenizer->resolve($name);
+
+                    if ($pattern === null) {
+                        throw new \Exception("Unknown reference [{$name}].");
+                    }
+
+                    $pattern = new Pattern($pattern);
+                }
+
+                $matchedPattern = $pattern->tryMatch($tokenizer, $lineText, $linePosition);
 
                 if ($matchedPattern !== false) {
                     return $matchedPattern;
                 }
             }
+
+            return false;
         }
 
         $regex = match (true) {
             $this->isMatch() => $this->pattern['match'],
             $this->isOnlyEnd() => $this->pattern['end'],
             $this->isBegin() => $this->pattern['begin'],
+            default => dd($this),
         };
 
         if (preg_match('/'.str_replace('/', '\/', $regex).'/u', $lineText, $matches, PREG_OFFSET_CAPTURE, $linePosition) !== 1) {
@@ -35,6 +51,10 @@ readonly class Pattern
 
     public function getIncludeName(): string
     {
+        if (! str_starts_with($this->pattern['include'], '#')) {
+            return $this->pattern['include'];
+        }
+
         return substr($this->pattern['include'], 1);
     }
 
@@ -45,7 +65,7 @@ readonly class Pattern
 
     public function isOnlyPatterns(): bool
     {
-        return $this->hasPatterns() && ! $this->isMatch() && ! $this->isBegin();
+        return $this->hasPatterns() && ! $this->isMatch() && ! $this->isBegin() && ! $this->isOnlyEnd();
     }
 
     public function hasPatterns(): bool

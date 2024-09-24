@@ -3,6 +3,7 @@
 namespace Phiki;
 
 use Exception;
+use PhpParser\Node\Expr\Cast\Array_;
 
 class Tokenizer
 {
@@ -38,14 +39,15 @@ class Tokenizer
         $this->linePosition = 0;
 
         while ($this->linePosition < strlen($lineText)) {
+            $root = new Pattern(end($this->patternStack));
             $matched = $this->match($lineText);
+            $endIsMatched = false;
 
-            // If we've not found any matches and we're looking at a set
-            // of subpatterns, we should pop those subpatterns off and try again.
-            if ($matched === false && count($this->patternStack) > 1) {
+            // We didn't find a matching subpattern and we're looking for an `end` pattern.
+            // If we find it on this line, we need to pop it off the stack and process the end pattern.
+            if ($matched === false && $root->isOnlyEnd() && $matched = $root->tryMatch($this, $lineText, $this->linePosition)) {
+                $endIsMatched = true;
                 array_pop($this->patternStack);
-
-                continue;
             }
 
             // No match found, advance to the end of the line.
@@ -62,6 +64,10 @@ class Tokenizer
 
             // Match found – process pattern rules and continue.
             $this->process($matched, $line, $lineText);
+
+            if ($endIsMatched && $root->scope()) {
+                array_pop($this->scopeStack);
+            }
         }
     }
 
@@ -101,7 +107,7 @@ class Tokenizer
             if ($pattern->isOnlyPatterns()) {
                 $matched = $this->matchUsing($lineText, $pattern->getRawPattern()['patterns']);
             } else {
-                $matched = $pattern->tryMatch($lineText, $this->linePosition);
+                $matched = $pattern->tryMatch($this, $lineText, $this->linePosition);
             }
 
             // No match found. Move on to next pattern.
@@ -134,16 +140,16 @@ class Tokenizer
         return $closest;
     }
 
-    protected function resolve(string $reference): ?array
+    public function resolve(string $reference): ?array
     {
-        if ($reference === 'self') {
+        if ($reference === '$self') {
             return $this->grammar;
         }
 
         return $this->grammar['repository'][$reference] ?? null;
     }
 
-    protected function process(MatchedPattern $matched, int $line, string $lineText): void
+    protected function process(MatchedPattern $matched, int $line, string $lineText, bool $popping = false): void
     {
         if ($matched->offset() > $this->linePosition) {
             $this->tokens[$line][] = new Token(
@@ -162,6 +168,17 @@ class Tokenizer
             }
 
             $this->captures($matched, $line, $lineText);
+
+            if ($this->linePosition < $matched->end()) {
+                $this->tokens[$line][] = new Token(
+                    $this->scopeStack,
+                    substr($lineText, $this->linePosition, $matched->end() - $this->linePosition),
+                    $this->linePosition,
+                    $matched->end(),
+                );
+
+                $this->linePosition = $matched->end();
+            }
 
             if ($matched->pattern->scope()) {
                 array_pop($this->scopeStack);
@@ -207,11 +224,13 @@ class Tokenizer
                 return;
             }
 
-            $endMatched = $endPattern->tryMatch($lineText, $this->linePosition);
+            $endMatched = $endPattern->tryMatch($this, $lineText, $this->linePosition);
 
             // If we can't see the `end` pattern, we should just return.
             if ($endMatched === false) {
-                return; 
+                $this->patternStack[] = $endPattern->getRawPattern();
+                
+                return;
             }
 
             // If we can see the `end` pattern, we should process it.
@@ -292,7 +311,7 @@ class Tokenizer
                             $capturePattern = new Pattern($capturePattern);
                         }
 
-                        $matched = $capturePattern->tryMatch($group[0], $position);
+                        $matched = $capturePattern->tryMatch($this, $group[0], $position);
 
                         // No match found. Move on to next pattern.
                         if ($matched === false) {

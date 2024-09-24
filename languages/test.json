@@ -1,0 +1,31 @@
+{
+    "scopeName": "source.test",
+    "patterns": [
+        {
+            "include": "#string-single-quoted"
+        }
+    ],
+    "repository": {
+        "string-single-quoted": {
+            "begin": "'",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.begin.php"
+                }
+            },
+            "end": "'",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.end.php"
+                }
+            },
+            "name": "string.quoted.single.php",
+            "patterns": [
+                {
+                    "match": "\\\\[\\\\']",
+                    "name": "constant.character.escape.php"
+                }
+            ]
+        }
+    }
+}
