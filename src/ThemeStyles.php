@@ -60,7 +60,12 @@ readonly class ThemeStyles
         $current = $this->tokenColors;
 
         foreach ($parts as $part) {
+            // Can't find the right part here, break.
             if (! isset($current[$part])) {
+                break;
+            }
+
+            if (! isset($current[$part]['*'])) {
                 break;
             }
 

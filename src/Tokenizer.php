@@ -41,13 +41,19 @@ class Tokenizer
         while ($this->linePosition < strlen($lineText)) {
             $root = new Pattern(end($this->patternStack));
 
+            $matched = $this->match($lineText);
+            $endIsMatched = false;
+
+            // Some patterns will include `$self`. Since we're not fixing all patterns to match at the end of the previous match
+            // we need to check if we're looking for an `end` pattern that is closer than the matched subpattern.
             // FIXME: Duplicate method call here, not great for performance.
-            if ($root->isOnlyEnd() && $root->tryMatch($this, $lineText, $this->linePosition, 'A') !== false) {
-                $matched = $root->tryMatch($this, $lineText, $this->linePosition, 'A');
-                $endIsMatched = true;
-            } else {
-                $matched = $this->match($lineText);
-                $endIsMatched = false;
+            if ($matched !== false && $root->isOnlyEnd() && $root->tryMatch($this, $lineText, $this->linePosition) !== false) {
+                $endMatched = $root->tryMatch($this, $lineText, $this->linePosition);
+
+                if ($endMatched->offset() <= $matched->offset() && $endMatched->text() !== '') {
+                    $matched = $endMatched;
+                    $endIsMatched = true;
+                }
             }
 
             // We didn't find a matching subpattern and we're looking for an `end` pattern.
@@ -75,8 +81,10 @@ class Tokenizer
                 array_pop($this->patternStack);
             }
 
-            // Match found – process pattern rules and continue.
-            $this->process($matched, $line, $lineText);
+            if ($matched->offset() !== $matched->end()) {
+                // Match found – process pattern rules and continue.
+                $this->process($matched, $line, $lineText);
+            }
 
             if ($endIsMatched && $root->scope()) {
                 array_pop($this->scopeStack);

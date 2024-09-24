@@ -46,6 +46,28 @@ describe('php', function () {
             ]
         ]);
     });
+
+    it('correctly tokenizes a class with extends', function () {
+        $tokens = php('class A extends B {}');
+
+        // dd($tokens);
+
+        expect($tokens)->toEqualCanonicalizing([
+            [
+                new Token(['source.php', 'meta.class.php', 'storage.type.class.php'], 'class', 0, 5),
+                new Token(['source.php', 'meta.class.php'], ' ', 5, 6),
+                new Token(['source.php', 'meta.class.php', 'entity.name.type.class.php'], 'A', 6, 7),
+                new Token(['source.php', 'meta.class.php'], ' ', 7, 8),
+                new Token(['source.php', 'meta.class.php', 'storage.modifier.extends.php'], 'extends', 8, 15),
+                new Token(['source.php', 'meta.class.php'], ' ', 15, 16),
+                new Token(['source.php', 'meta.class.php', 'entity.other.inherited-class.php'], 'B', 16, 17),
+                new Token(['source.php', 'meta.class.php'], ' ', 17, 18),
+                new Token(['source.php', 'meta.class.php', 'punctuation.definition.class.begin.bracket.curly.php'], '{', 18, 19),
+                new Token(['source.php', 'meta.class.php', 'punctuation.definition.class.end.bracket.curly.php'], '}', 19, 20),
+                new Token(['source.php'], "\n", 20, 20)
+            ]
+        ]);
+    });
 });
 
 function php(string $input): array
