@@ -40,14 +40,20 @@ class Tokenizer
 
         while ($this->linePosition < strlen($lineText)) {
             $root = new Pattern(end($this->patternStack));
-            $matched = $this->match($lineText);
-            $endIsMatched = false;
+
+            // FIXME: Duplicate method call here, not great for performance.
+            if ($root->isOnlyEnd() && $root->tryMatch($this, $lineText, $this->linePosition, 'A') !== false) {
+                $matched = $root->tryMatch($this, $lineText, $this->linePosition, 'A');
+                $endIsMatched = true;
+            } else {
+                $matched = $this->match($lineText);
+                $endIsMatched = false;
+            }
 
             // We didn't find a matching subpattern and we're looking for an `end` pattern.
             // If we find it on this line, we need to pop it off the stack and process the end pattern.
             if ($matched === false && $root->isOnlyEnd() && $matched = $root->tryMatch($this, $lineText, $this->linePosition)) {
                 $endIsMatched = true;
-                array_pop($this->patternStack);
             }
 
             // No match found, advance to the end of the line.
@@ -60,6 +66,13 @@ class Tokenizer
                 );
 
                 break;
+            }
+
+            // We've found a match for an `end` here. We need to remove it from the stack.
+            // It's important that we do this here since we don't want to have an effect
+            // on any capture patterns etc.
+            if ($endIsMatched) {
+                array_pop($this->patternStack);
             }
 
             // Match found – process pattern rules and continue.

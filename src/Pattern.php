@@ -8,7 +8,7 @@ readonly class Pattern
         protected array $pattern,
     ) {}
 
-    public function tryMatch(Tokenizer $tokenizer, string $lineText, int $linePosition): MatchedPattern|false
+    public function tryMatch(Tokenizer $tokenizer, string $lineText, int $linePosition, ?string $modifiers = null): MatchedPattern|false
     {
         if ($this->isOnlyPatterns()) {
             foreach ($this->getPatterns() as $pattern) {
@@ -25,7 +25,7 @@ readonly class Pattern
                     $pattern = new Pattern($pattern);
                 }
 
-                $matchedPattern = $pattern->tryMatch($tokenizer, $lineText, $linePosition);
+                $matchedPattern = $pattern->tryMatch($tokenizer, $lineText, $linePosition, $modifiers);
 
                 if ($matchedPattern !== false) {
                     return $matchedPattern;
@@ -42,7 +42,7 @@ readonly class Pattern
             default => dd($this),
         };
 
-        if (preg_match('/'.str_replace('/', '\/', $regex).'/u', $lineText, $matches, PREG_OFFSET_CAPTURE, $linePosition) !== 1) {
+        if (preg_match('/'.str_replace('/', '\/', $regex).'/u' . $modifiers, $lineText, $matches, PREG_OFFSET_CAPTURE, $linePosition) !== 1) {
             return false;
         }
 
