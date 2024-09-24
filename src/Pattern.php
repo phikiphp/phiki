@@ -10,8 +10,19 @@ readonly class Pattern
 
     public function tryMatch(string $lineText, int $linePosition): MatchedPattern|false
     {
+        if ($this->isOnlyPatterns()) {
+            foreach ($this->getPatterns() as $pattern) {
+                $matchedPattern = (new static($pattern))->tryMatch($lineText, $linePosition);
+
+                if ($matchedPattern !== false) {
+                    return $matchedPattern;
+                }
+            }
+        }
+
         $regex = match (true) {
             $this->isMatch() => $this->pattern['match'],
+            $this->isOnlyEnd() => $this->pattern['end'],
             $this->isBegin() => $this->pattern['begin'],
         };
 
@@ -34,7 +45,17 @@ readonly class Pattern
 
     public function isOnlyPatterns(): bool
     {
-        return isset($this->pattern['patterns']) && ! $this->isMatch() && ! $this->isBegin();
+        return $this->hasPatterns() && ! $this->isMatch() && ! $this->isBegin();
+    }
+
+    public function hasPatterns(): bool
+    {
+        return isset($this->pattern['patterns']) && count($this->pattern['patterns']) > 0;
+    }
+
+    public function getPatterns(): array
+    {
+        return $this->pattern['patterns'];
     }
 
     public function isMatch(): bool
@@ -52,14 +73,26 @@ readonly class Pattern
         return isset($this->pattern['end']);
     }
 
-    public function isWhile(): bool
+    public function isOnlyEnd(): bool
     {
-        return isset($this->pattern['while']);
+        return $this->isEnd() && ! $this->isMatch() && ! $this->isBegin();
     }
 
     public function hasCaptures(): bool
     {
-        return isset($this->pattern['captures']) || isset($this->pattern['beginCaptures']) || isset($this->pattern['endCaptures']);
+        return isset($this->pattern['captures']);
+    }
+
+    public function hasBeginCaptures(): bool
+    {
+        return isset($this->pattern['beginCaptures']) || ($this->isBegin() && $this->hasCaptures());
+    }
+
+    public function hasEndCaptures(): bool
+    {
+        $captures = $this->pattern['endCaptures'] ?? $this->pattern['captures'] ?? [];
+
+        return count($captures) > 0;
     }
 
     public function captures(): array
@@ -68,12 +101,30 @@ readonly class Pattern
             return $this->pattern['captures'] ?? [];
         }
 
-        // todo!();
+        if ($this->isBegin()) {
+            return $this->pattern['beginCaptures'] ?? $this->pattern['captures'] ?? [];
+        }
+
+        if ($this->isOnlyEnd()) {
+            return $this->pattern['endCaptures'] ?? $this->pattern['captures'] ?? [];
+        }
+
+        return [];
     }
 
     public function getRawPattern(): array
     {
         return $this->pattern;
+    }
+
+    public function getEnd(): string
+    {
+        return $this->pattern['end'];
+    }
+
+    public function getEndCaptures(): array
+    {
+        return $this->pattern['endCaptures'] ?? $this->pattern['captures'] ?? [];
     }
 
     public function scopes(array $scopeStack): array

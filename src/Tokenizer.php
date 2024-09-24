@@ -74,8 +74,9 @@ class Tokenizer
     {
         $closest = false;
         $offset = $this->linePosition;
+        $root = new Pattern(end($this->patternStack));
 
-        foreach (end($this->patternStack)['patterns'] as $pattern) {
+        foreach ($root->getPatterns() as $pattern) {
             $pattern = new Pattern($pattern);
 
             if ($pattern->isInclude()) {
@@ -127,6 +128,10 @@ class Tokenizer
 
     protected function resolve(string $reference): ?array
     {
+        if ($reference === 'self') {
+            return $this->grammar;
+        }
+
         return $this->grammar['repository'][$reference] ?? null;
     }
 
@@ -164,7 +169,65 @@ class Tokenizer
             $this->linePosition = $matched->end();
         }
 
-        // todo!();
+        if ($matched->pattern->isBegin()) {
+            if ($matched->pattern->scope()) {
+                $this->scopeStack[] = $matched->pattern->scope();
+            }
+
+            if ($matched->pattern->hasBeginCaptures()) {
+                $this->captures($matched, $line, $lineText);
+            } else {
+                $this->tokens[$line][] = new Token(
+                    $this->scopeStack,
+                    $matched->text(),
+                    $matched->offset(),
+                    $matched->end(),
+                );
+
+                $this->linePosition = $matched->end();
+            }
+
+            $endPattern = new Pattern([
+                'name' => $matched->pattern->scope(),
+                'end' => $matched->pattern->getEnd(),
+                'endCaptures' => $matched->pattern->getEndCaptures(),
+                'patterns' => $matched->pattern->hasPatterns() ? $matched->pattern->getPatterns() : [],
+            ]);
+
+            if ($endPattern->hasPatterns()) {
+                $this->patternStack[] = $endPattern->getRawPattern();
+                return;
+            }
+
+            $endMatched = $endPattern->tryMatch($lineText, $this->linePosition);
+
+            // If we can't see the `end` pattern, we should just return.
+            if ($endMatched === false) {
+                return; 
+            }
+
+            // If we can see the `end` pattern, we should process it.
+            $this->process($endMatched, $line, $lineText);
+
+            if ($matched->pattern->scope()) {
+                array_pop($this->scopeStack);
+            }
+        }
+
+        if ($matched->pattern->isOnlyEnd()) {
+            if ($matched->pattern->hasEndCaptures()) {
+                $this->captures($matched, $line, $lineText);
+            } else {
+                $this->tokens[$line][] = new Token(
+                    $this->scopeStack,
+                    $matched->text(),
+                    $matched->offset(),
+                    $matched->end(),
+                );
+            }
+
+            $this->linePosition = $matched->end();
+        }
     }
 
     protected function captures(MatchedPattern $pattern, int $line, string $lineText): void
@@ -287,17 +350,19 @@ class Tokenizer
                     );
                 }
 
-                continue;
+                $this->linePosition = $offset + strlen($group[0]);
             }
 
-            $this->tokens[$line][] = new Token(
-                $this->scopeStack,
-                $group[0],
-                $offset,
-                $offset + strlen($group[0]),
-            );
+            if ($this->linePosition < $offset + strlen($group[0])) {
+                $this->tokens[$line][] = new Token(
+                    $this->scopeStack,
+                    $group[0],
+                    $offset,
+                    $offset + strlen($group[0]),
+                );
 
-            $this->linePosition = $offset + strlen($group[0]);
+                $this->linePosition = $offset + strlen($group[0]);
+            }
 
             if (isset($capture['name'])) {
                 array_pop($this->scopeStack);

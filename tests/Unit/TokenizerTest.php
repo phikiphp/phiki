@@ -82,14 +82,12 @@ describe('match', function () {
             ],
         ]);
 
-        // dd($tokens);
-
         expect($tokens)->toEqualCanonicalizing([
             [
                 new Token(['source.test', 'meta.namespace.test', 'keyword.other.namespace.test'], 'namespace', 0, 9),
                 new Token(['source.test', 'meta.namespace.test'], ' ', 9, 10),
                 new Token(['source.test', 'meta.namespace.test', 'entity.name.type.namespace.test'], 'Foo', 10, 13),
-                new Token(['source.test', 'meta.namespace.test'], ";\n", 13, 14),
+                new Token(['source.test'], ";\n", 13, 14),
             ],
         ]);
     });
@@ -128,7 +126,7 @@ describe('match', function () {
                 new Token(['source.test', 'meta.namespace.test', 'entity.name.type.namespace.test'], 'Bar', 14, 17),
                 new Token(['source.test', 'meta.namespace.test', 'entity.name.type.namespace.test', 'punctuation.separator.inheritance.test'], '\\', 17, 18),
                 new Token(['source.test', 'meta.namespace.test', 'entity.name.type.namespace.test'], 'Baz', 18, 21),
-                new Token(['source.test', 'meta.namespace.test'], ";\n", 21, 22),
+                new Token(['source.test'], ";\n", 21, 22),
             ],
         ]);
     });
@@ -205,6 +203,192 @@ describe('subpattern includes', function () {
                 new Token(['source.test', 'variable.other.php'], '$hello', 0, 6),
                 new Token(['source.test'], "\n", 6, 6),
             ],
+        ]);
+    });
+});
+
+describe('begin/end', function () {
+    it('can tokenize a simple begin/end pattern without captures and subpatterns', function () {
+        $tokens = tokenize('begin end', [
+            'scopeName' => 'source.test',
+            'patterns' => [
+                [
+                    'name' => 'meta.block.test',
+                    'begin' => '\\b(begin)\\b',
+                    'end' => '\\b(end)\\b',
+                ],
+            ],
+        ]);
+
+        expect($tokens)->toEqualCanonicalizing([
+            [
+                new Token(['source.test', 'meta.block.test'], 'begin', 0, 5),
+                new Token(['source.test', 'meta.block.test'], ' ', 5, 6),
+                new Token(['source.test', 'meta.block.test'], 'end', 6, 9),
+                new Token(['source.test'], "\n", 9, 9),
+            ]
+        ]);
+    });
+
+    it('can tokenize a simple begin/end pattern with beginCaptures and endCaptures', function () {
+        $tokens = tokenize('begin end', [
+            'scopeName' => 'source.test',
+            'patterns' => [
+                [
+                    'name' => 'meta.block.test',
+                    'begin' => '\\b(begin)\\b',
+                    'beginCaptures' => [
+                        '1' => [
+                            'name' => 'keyword.control.test',
+                        ],
+                    ],
+                    'end' => '\\b(end)\\b',
+                    'endCaptures' => [
+                        '1' => [
+                            'name' => 'keyword.control.test',
+                        ],
+                    ],
+                ],
+            ],
+        ]);
+
+        expect($tokens)->toEqualCanonicalizing([
+            [
+                new Token(['source.test', 'meta.block.test', 'keyword.control.test'], 'begin', 0, 5),
+                new Token(['source.test', 'meta.block.test'], ' ', 5, 6),
+                new Token(['source.test', 'meta.block.test', 'keyword.control.test'], 'end', 6, 9),
+                new Token(['source.test'], "\n", 9, 9),
+            ]
+        ]);
+    });
+
+    it('can tokenize a simple begin/end patterns with captures', function () {
+        $tokens = tokenize('begin end', [
+            'scopeName' => 'source.test',
+            'patterns' => [
+                [
+                    'name' => 'meta.block.test',
+                    'begin' => '\\b(begin)\\b',
+                    'end' => '\\b(end)\\b',
+                    'captures' => [
+                        '1' => [
+                            'name' => 'keyword.control.test',
+                        ],
+                    ],
+                ],
+            ],
+        ]);
+
+        expect($tokens)->toEqualCanonicalizing([
+            [
+                new Token(['source.test', 'meta.block.test', 'keyword.control.test'], 'begin', 0, 5),
+                new Token(['source.test', 'meta.block.test'], ' ', 5, 6),
+                new Token(['source.test', 'meta.block.test', 'keyword.control.test'], 'end', 6, 9),
+                new Token(['source.test'], "\n", 9, 9),
+            ]
+        ]);
+    }); 
+
+    it('can tokenize a simple begin/end pattern with beginCaptures that have subpatterns', function () {
+        $tokens = tokenize('begin end', [
+            'scopeName' => 'source.test',
+            'patterns' => [
+                [
+                    'name' => 'meta.block.test',
+                    'begin' => '\\b(begin)\\b',
+                    'beginCaptures' => [
+                        '1' => [
+                            'name' => 'keyword.control.test',
+                            'patterns' => [
+                                [
+                                    'match' => 'begin',
+                                    'name' => 'keyword.control.begin.test',
+                                ],
+                            ],
+                        ],
+                    ],
+                    'end' => '\\b(end)\\b',
+                ],
+            ],
+        ]);
+
+        expect($tokens)->toEqualCanonicalizing([
+            [
+                new Token(['source.test', 'meta.block.test', 'keyword.control.test', 'keyword.control.begin.test'], 'begin', 0, 5),
+                new Token(['source.test', 'meta.block.test'], ' ', 5, 6),
+                new Token(['source.test', 'meta.block.test'], 'end', 6, 9),
+                new Token(['source.test'], "\n", 9, 9),
+            ]
+        ]);
+    });
+
+    it('can tokenize a simple begin/end pattern with endCaptures that have subpatterns', function () {
+        $tokens = tokenize('begin end', [
+            'scopeName' => 'source.test',
+            'patterns' => [
+                [
+                    'name' => 'meta.block.test',
+                    'begin' => '\\b(begin)\\b',
+                    'end' => '\\b(end)\\b',
+                    'endCaptures' => [
+                        '1' => [
+                            'name' => 'keyword.control.test',
+                            'patterns' => [
+                                [
+                                    'match' => 'end',
+                                    'name' => 'keyword.control.end.test',
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ]);
+
+        expect($tokens)->toEqualCanonicalizing([
+            [
+                new Token(['source.test', 'meta.block.test'], 'begin', 0, 5),
+                new Token(['source.test', 'meta.block.test'], ' ', 5, 6),
+                new Token(['source.test', 'meta.block.test', 'keyword.control.test', 'keyword.control.end.test'], 'end', 6, 9),
+                new Token(['source.test'], "\n", 9, 9),
+            ]
+        ]);
+    });
+
+    it('can tokenize a simple begin/end pattern that has captures with subpatterns', function () {
+        $tokens = tokenize('begin end', [
+            'scopeName' => 'source.test',
+            'patterns' => [
+                [
+                    'name' => 'meta.block.test',
+                    'begin' => '\\b(begin)\\b',
+                    'end' => '\\b(end)\\b',
+                    'captures' => [
+                        '1' => [
+                            'name' => 'keyword.control.test',
+                            'patterns' => [
+                                [
+                                    'match' => 'begin',
+                                    'name' => 'keyword.control.begin.test',
+                                ],
+                                [
+                                    'match' => 'end',
+                                    'name' => 'keyword.control.end.test',
+                                ]
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ]);
+
+        expect($tokens)->toEqualCanonicalizing([
+            [
+                new Token(['source.test', 'meta.block.test', 'keyword.control.test', 'keyword.control.begin.test'], 'begin', 0, 5),
+                new Token(['source.test', 'meta.block.test'], ' ', 5, 6),
+                new Token(['source.test', 'meta.block.test', 'keyword.control.test', 'keyword.control.end.test'], 'end', 6, 9),
+                new Token(['source.test'], "\n", 9, 9),
+            ]
         ]);
     });
 });
