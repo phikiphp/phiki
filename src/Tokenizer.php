@@ -40,6 +40,14 @@ class Tokenizer
         while ($this->linePosition < strlen($lineText)) {
             $matched = $this->match($lineText);
 
+            // If we've not found any matches and we're looking at a set
+            // of subpatterns, we should pop those subpatterns off and try again.
+            if ($matched === false && count($this->patternStack) > 1) {
+                array_pop($this->patternStack);
+
+                continue;
+            }
+
             // No match found, advance to the end of the line.
             if ($matched === false) {
                 $this->tokens[$line][] = new Token(
