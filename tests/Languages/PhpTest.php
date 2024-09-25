@@ -121,6 +121,12 @@ describe('php', function () {
             ]
         ]);
     });
+
+    it('correctly tokenizes a function statement with a qualified typed parameter', function () {
+        $tokens = php('function a(A\B $b) {}');
+
+        
+    })->todo();
 });
 
 function php(string $input): array
