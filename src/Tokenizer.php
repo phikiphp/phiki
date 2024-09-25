@@ -386,7 +386,9 @@ class Tokenizer
                     // FIXME: We need to handle `begin`/`end` patterns somewhere in the same way as we do in `process`.
                     // Currently we can't re-tokenise a captured group using the capture groups set of subpatterns, because
                     // `process` is handing control back to `match` and `tokenizeLine`.
-                    $this->process($closest, $line, $lineText);
+                    if ($closest->pattern->isMatch()) {
+                        $this->process($closest, $line, $lineText);
+                    }
                 }
 
                 $this->linePosition = $groupEnd;
