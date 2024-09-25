@@ -100,6 +100,12 @@ describe('php', function () {
             ]
         ]);
     });
+
+    it('correctly tokenizes a function statement with a typed parameter', function () {
+        $tokens = php('function a(B $b) {}');
+
+        dd($tokens);
+    })->skip();
 });
 
 function php(string $input): array

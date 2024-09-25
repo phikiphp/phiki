@@ -495,4 +495,63 @@ describe('begin/end', function () {
             ]
         ]);
     });
+
+    it('can tokenize a begin/end patterns that have captures with subpatterns that have captures', function () {
+        $tokens = tokenize(<<<'TEST'
+        begin
+            foo
+        end
+        TEST, [
+            'scopeName' => 'source.test',
+            'patterns' => [
+                [
+                    'name' => 'meta.block.test',
+                    'begin' => '\\b(begin)\\b',
+                    'end' => '\\b(end)\\b',
+                    'captures' => [
+                        '1' => [
+                            'name' => 'keyword.control.test',
+                            'patterns' => [
+                                [
+                                    'match' => 'begin',
+                                    'name' => 'keyword.control.begin.test',
+                                ],
+                                [
+                                    'match' => 'end',
+                                    'name' => 'keyword.control.end.test',
+                                ]
+                            ],
+                        ],
+                    ],
+                    'patterns' => [
+                        [
+                            'name' => 'entity.name.test',
+                            'match' => '\\b(foo)\\b',
+                            'captures' => [
+                                '1' => [
+                                    'name' => 'entity.name.foo.test',
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ]);
+
+        expect($tokens)->toEqualCanonicalizing([
+            [
+                new Token(['source.test', 'meta.block.test', 'keyword.control.test', 'keyword.control.begin.test'], 'begin', 0, 5),
+                new Token(['source.test', 'meta.block.test'], "\n", 5, 5),
+            ],
+            [
+                new Token(['source.test', 'meta.block.test'], '    ', 0, 4),
+                new Token(['source.test', 'meta.block.test', 'entity.name.test', 'entity.name.foo.test'], 'foo', 4, 7),
+                new Token(['source.test', 'meta.block.test'], "\n", 7, 7),
+            ],
+            [
+                new Token(['source.test', 'meta.block.test', 'keyword.control.test', 'keyword.control.end.test'], 'end', 0, 3),
+                new Token(['source.test'], "\n", 3, 3),
+            ]
+        ]);
+    });
 });
