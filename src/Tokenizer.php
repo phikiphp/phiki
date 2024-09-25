@@ -383,25 +383,7 @@ class Tokenizer
                         break;
                     }
 
-                    if ($closest->offset() > $this->linePosition) {
-                        $this->tokens[$line][] = new Token(
-                            $this->scopeStack,
-                            substr($lineText, $this->linePosition, $closest->offset() - $this->linePosition),
-                            $this->linePosition,
-                            $closest->offset(),
-                        );
-
-                        $this->linePosition = $closest->offset();
-                    }
-
-                    $this->tokens[$line][] = new Token(
-                        $closest->pattern->scopes($this->scopeStack),
-                        $closest->text(),
-                        $closest->offset(),
-                        $closest->end(),
-                    );
-
-                    $this->linePosition = $closest->end();
+                    $this->process($closest, $line, $lineText);
                 }
 
                 $this->linePosition = $groupEnd;
