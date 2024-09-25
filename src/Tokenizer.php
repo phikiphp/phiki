@@ -388,6 +388,94 @@ class Tokenizer
                     // `process` is handing control back to `match` and `tokenizeLine`.
                     if ($closest->pattern->isMatch()) {
                         $this->process($closest, $line, $lineText);
+                    } elseif ($closest->pattern->isBegin()) {
+                        if ($closest->pattern->scope()) {
+                            $this->scopeStack[] = $closest->pattern->scope();
+                        }
+
+                        if ($closest->pattern->hasBeginCaptures()) {
+                            $this->captures($closest, $line, $lineText);
+                        } else {
+                            if ($closest->text() !== '') {
+                                $this->tokens[$line][] = new Token(
+                                    $this->scopeStack,
+                                    $closest->text(),
+                                    $closest->offset(),
+                                    $closest->end(),
+                                );
+                            }
+
+                            $this->linePosition = $closest->end();
+                        }
+
+                        $endPattern = new Pattern([
+                            'name' => $closest->pattern->scope(),
+                            'end' => $closest->pattern->getEnd(),
+                            'endCaptures' => $closest->pattern->getEndCaptures(),
+                            'patterns' => $closest->pattern->hasPatterns() ? $closest->pattern->getPatterns() : [],
+                        ]);
+
+                        if ($endPattern->hasPatterns()) {
+                            $onlyPatternsPattern = new Pattern([
+                                'patterns' => $endPattern->getPatterns(),
+                            ]);
+
+                            while ($this->linePosition < $groupEnd) {
+                                $subPatternMatched = $onlyPatternsPattern->tryMatch($this, $lineText, $this->linePosition, $groupEnd);
+                                $endIsMatched = false;
+
+                                if ($subPatternMatched !== false && $endPattern->isOnlyEnd() && $endPattern->tryMatch($this, $lineText, $this->linePosition) !== false) {
+                                    $endMatched = $endPattern->tryMatch($this, $lineText, $this->linePosition);
+
+                                    if ($endMatched->offset() <= $subPatternMatched->offset() && $endMatched->text() !== '') {
+                                        $subPatternMatched = $endMatched;
+                                        $endIsMatched = true;
+                                    }
+                                }
+
+                                if ($subPatternMatched === false && $endPattern->isOnlyEnd() && $subPatternMatched = $endPattern->tryMatch($this, $lineText, $this->linePosition)) {
+                                    $endIsMatched = true;
+                                }
+
+                                // No subpatterns matched. End not matched, consume the line.
+                                if ($subPatternMatched === false) {
+                                    $this->tokens[$line][] = new Token(
+                                        $this->scopeStack,
+                                        substr($lineText, $this->linePosition, $groupEnd - $this->linePosition),
+                                        $this->linePosition,
+                                        $groupEnd,
+                                    );
+                                }
+
+                                $this->process($subPatternMatched, $line, $lineText);
+
+                                if ($subPatternMatched->pattern->scope()) {
+                                    array_pop($this->scopeStack);
+                                }
+
+                                if ($endIsMatched && $endPattern->scope()) {
+                                    array_pop($this->scopeStack);
+                                }
+                            }
+
+                            continue;
+                        }
+
+                        $endMatched = $endPattern->tryMatch($this, $lineText, $this->linePosition);
+
+                        // If we can't see the `end` pattern, we should just continue.
+                        if ($endMatched === false) {
+                            throw new Exception('Entered an unexpected path.');
+                            
+                            continue;
+                        }
+
+                        // If we can see the `end` pattern, we should process it.
+                        $this->process($endMatched, $line, $lineText);
+
+                        if ($matched->pattern->scope()) {
+                            array_pop($this->scopeStack);
+                        }
                     }
                 }
 

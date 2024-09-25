@@ -8,7 +8,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 $tokenizer = new Tokenizer(json_decode(file_get_contents(__DIR__ . '/../languages/php.json'), true));
 
 $tokens = $tokenizer->tokenize(<<<'PHP'
-function a(B $b) {} 
+function a(A\B $b) {} 
 PHP);
 
 dd($tokens);
