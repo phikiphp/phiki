@@ -68,6 +68,38 @@ describe('php', function () {
             ]
         ]);
     });
+
+    it('correctly tokenizes a top-level use statement without namespace separators', function () {
+        $tokens = php('use A;');
+
+        expect($tokens)->toEqualCanonicalizing([
+            [
+                new Token(['source.php', 'meta.use.php', 'keyword.other.use.php'], 'use', 0, 3),
+                new Token(['source.php', 'meta.use.php'], ' ', 3, 4),
+                new Token(['source.php', 'meta.use.php', 'support.class.php'], 'A', 4, 5),
+                new Token(['source.php', 'punctuation.terminator.expression.php'], ';', 5, 6),
+                new Token(['source.php'], "\n", 6, 6)
+            ]
+        ]);
+    });
+
+    it('correctly tokenizes a top-level use statement with namespace separators', function () {
+        $tokens = php('use A\\B\\C;');
+
+        expect($tokens)->toEqualCanonicalizing([
+            [
+                new Token(['source.php', 'meta.use.php', 'keyword.other.use.php'], 'use', 0, 3),
+                new Token(['source.php', 'meta.use.php'], ' ', 3, 4),
+                new Token(['source.php', 'meta.use.php', 'support.other.namespace.php'], 'A', 4, 5),
+                new Token(['source.php', 'meta.use.php', 'support.other.namespace.php', 'punctuation.separator.inheritance.php'], '\\', 5, 6),
+                new Token(['source.php', 'meta.use.php', 'support.other.namespace.php'], 'B', 6, 7),
+                new Token(['source.php', 'meta.use.php', 'support.other.namespace.php', 'punctuation.separator.inheritance.php'], '\\', 7, 8),
+                new Token(['source.php', 'meta.use.php', 'support.class.php'], 'C', 8, 9),
+                new Token(['source.php', 'punctuation.terminator.expression.php'], ';', 9, 10),
+                new Token(['source.php'], "\n", 10, 10)
+            ]
+        ]);
+    });
 });
 
 function php(string $input): array

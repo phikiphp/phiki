@@ -81,10 +81,8 @@ class Tokenizer
                 array_pop($this->patternStack);
             }
 
-            if ($matched->offset() !== $matched->end()) {
-                // Match found – process pattern rules and continue.
-                $this->process($matched, $line, $lineText);
-            }
+            // Match found – process pattern rules and continue.
+            $this->process($matched, $line, $lineText);
 
             if ($endIsMatched && $root->scope()) {
                 array_pop($this->scopeStack);
@@ -205,12 +203,14 @@ class Tokenizer
                 array_pop($this->scopeStack);
             }
         } elseif ($matched->pattern->isMatch()) {
-            $this->tokens[$line][] = new Token(
-                $matched->pattern->scopes($this->scopeStack),
-                $matched->text(),
-                $matched->offset(),
-                $matched->end(),
-            );
+            if ($matched->text() !== '') {
+                $this->tokens[$line][] = new Token(
+                    $matched->pattern->scopes($this->scopeStack),
+                    $matched->text(),
+                    $matched->offset(),
+                    $matched->end(),
+                );
+            }
 
             $this->linePosition = $matched->end();
         }
@@ -223,12 +223,14 @@ class Tokenizer
             if ($matched->pattern->hasBeginCaptures()) {
                 $this->captures($matched, $line, $lineText);
             } else {
-                $this->tokens[$line][] = new Token(
-                    $this->scopeStack,
-                    $matched->text(),
-                    $matched->offset(),
-                    $matched->end(),
-                );
+                if ($matched->text() !== '') {
+                    $this->tokens[$line][] = new Token(
+                        $this->scopeStack,
+                        $matched->text(),
+                        $matched->offset(),
+                        $matched->end(),
+                    );
+                }
 
                 $this->linePosition = $matched->end();
             }
@@ -266,12 +268,14 @@ class Tokenizer
             if ($matched->pattern->hasEndCaptures()) {
                 $this->captures($matched, $line, $lineText);
             } else {
-                $this->tokens[$line][] = new Token(
-                    $this->scopeStack,
-                    $matched->text(),
-                    $matched->offset(),
-                    $matched->end(),
-                );
+                if ($matched->text() !== '') {
+                    $this->tokens[$line][] = new Token(
+                        $this->scopeStack,
+                        $matched->text(),
+                        $matched->offset(),
+                        $matched->end(),
+                    );
+                }
             }
 
             $this->linePosition = $matched->end();
