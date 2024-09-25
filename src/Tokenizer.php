@@ -293,34 +293,34 @@ class Tokenizer
                 continue;
             }
 
-            $offset = $group[1];
+            $groupLength = strlen($group[0]);
+            $groupStart = $group[1];
+            $groupEnd = $group[1] + $groupLength;
 
-            if ($this->linePosition > $offset) {
+            if ($this->linePosition > $groupStart) {
                 continue;
             }
 
-            if ($offset > $this->linePosition) {
+            if ($groupStart > $this->linePosition) {
                 $this->tokens[$line][] = new Token(
                     $this->scopeStack,
-                    substr($lineText, $this->linePosition, $offset - $this->linePosition),
+                    substr($lineText, $this->linePosition, $groupStart - $this->linePosition),
                     $this->linePosition,
-                    $offset,
+                    $groupStart,
                 );
 
-                $this->linePosition = $offset;
+                $this->linePosition = $groupStart;
             }
 
             if (isset($capture['name'])) {
                 $this->scopeStack[] = $capture['name'];
             }
 
-            if (isset($capture['patterns'])) {
-                $position = 0;
-
+            if (isset($capture['patterns'])) {               
                 // Until we reach the end of the capture group.
-                while ($position < strlen($group[0])) {
+                while ($this->linePosition < $groupEnd) {
                     $closest = false;
-                    $closestOffset = $position;
+                    $closestOffset = $this->linePosition;
 
                     foreach ($capture['patterns'] as $capturePattern) {
                         $capturePattern = new Pattern($capturePattern);
@@ -336,7 +336,7 @@ class Tokenizer
                             $capturePattern = new Pattern($capturePattern);
                         }
 
-                        $matched = $capturePattern->tryMatch($this, $group[0], $position);
+                        $matched = $capturePattern->tryMatch($this, $lineText, $this->linePosition, cannotExceed: $groupEnd);
 
                         // No match found. Move on to next pattern.
                         if ($matched === false) {
@@ -368,52 +368,54 @@ class Tokenizer
                         }
                     }
 
+                    // No match found for this capture groups set of subpatterns.
+                    // Advance to the end of the capture group.
                     if ($closest === false) {
                         $this->tokens[$line][] = new Token(
                             $this->scopeStack,
-                            substr($group[0], $position),
-                            $this->linePosition + $position,
-                            $offset + strlen($group[0]),
+                            substr($lineText, $this->linePosition, $groupEnd - $this->linePosition),
+                            $this->linePosition,
+                            $groupEnd,
                         );
 
-                        $this->linePosition = $offset + strlen($group[0]);
+                        $this->linePosition = $groupEnd;
 
                         break;
                     }
 
-                    if ($closest->offset() > $position) {
+                    if ($closest->offset() > $this->linePosition) {
                         $this->tokens[$line][] = new Token(
                             $this->scopeStack,
-                            substr($group[0], $position, $closest->offset() - $position),
-                            $offset + $position,
-                            $offset + $closest->offset(),
+                            substr($lineText, $this->linePosition, $closest->offset() - $this->linePosition),
+                            $this->linePosition,
+                            $closest->offset(),
                         );
 
-                        $position = $closest->offset();
+                        $this->linePosition = $closest->offset();
                     }
-
-                    $position = $closest->end();
 
                     $this->tokens[$line][] = new Token(
                         $closest->pattern->scopes($this->scopeStack),
                         $closest->text(),
-                        $this->linePosition + $closest->offset(),
-                        $this->linePosition + $position,
+                        $closest->offset(),
+                        $closest->end(),
                     );
+
+                    $this->linePosition = $closest->end();
                 }
 
-                $this->linePosition = $offset + strlen($group[0]);
+                $this->linePosition = $groupEnd;
             }
 
-            if ($this->linePosition < $offset + strlen($group[0])) {
+            if ($this->linePosition < $groupEnd) {
                 $this->tokens[$line][] = new Token(
                     $this->scopeStack,
                     $group[0],
-                    $offset,
-                    $offset + strlen($group[0]),
+                    $groupStart,
+                    $groupEnd,
                 );
 
-                $this->linePosition = $offset + strlen($group[0]);
+                $this->linePosition = $groupEnd;
             }
 
             if (isset($capture['name'])) {
