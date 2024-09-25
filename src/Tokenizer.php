@@ -168,7 +168,7 @@ class Tokenizer
         return $this->grammar['repository'][$reference] ?? null;
     }
 
-    protected function process(MatchedPattern $matched, int $line, string $lineText, bool $popping = false): void
+    protected function process(MatchedPattern $matched, int $line, string $lineText): void
     {
         if ($matched->offset() > $this->linePosition) {
             $this->tokens[$line][] = new Token(
