@@ -14,9 +14,9 @@ use Phiki\Phiki;
 require_once __DIR__ . '/vendor/autoload.php';
 
 echo Phiki::default()->codeToHtml(
-    <<<'BLADE'
-    <h1>Hello, world!</h1>
-    BLADE,
+    <<<'HTML'
+    <h1 class="foo"></h1>
+    HTML,
     'html',
     'github-dark'
 );

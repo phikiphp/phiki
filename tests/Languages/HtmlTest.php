@@ -37,6 +37,12 @@ describe('html', function () {
             ]
         ]);
     });
+
+    it('correctly tokenizes a tag with attributes', function () {
+        $tokens = html('<h1 class="foo"></h1>');
+
+        dd($tokens);
+    })->skip();
 });
 
 function html(string $input): array

@@ -407,6 +407,8 @@ class Tokenizer
                     if ($closest->pattern instanceof MatchPattern) {
                         $this->process($closest, $line, $lineText);
                     } elseif ($closest->pattern instanceof BeginEndPattern) {
+                        $this->beginStack[] = $closest;
+
                         if ($closest->pattern->scope()) {
                             $this->scopeStack[] = $this->processScope($closest->pattern->scope(), $closest);
                         }
@@ -485,6 +487,8 @@ class Tokenizer
                         if ($closest->pattern->scope()) {
                             array_pop($this->scopeStack);
                         }
+
+                        array_pop($this->beginStack);
                     }
                 }
 
