@@ -1,3 +1,12 @@
+<style>
+    pre {
+        padding: 10px;
+    }
+
+    code {
+        font-family: 'Fira Code';
+    }
+</style>
 <?php
 
 use Phiki\Phiki;
