@@ -3,6 +3,7 @@
 namespace Phiki;
 
 use Phiki\Exceptions\MissingRequiredGrammarKeyException;
+use Phiki\Exceptions\UnreachableException;
 use Phiki\Grammar\BeginEndPattern;
 use Phiki\Grammar\Capture;
 use Phiki\Grammar\CollectionPattern;
@@ -75,6 +76,8 @@ class GrammarParser
         if (isset($pattern['patterns'])) {
             return new CollectionPattern($this->patterns($pattern['patterns']));
         }
+
+        throw new UnreachableException("Unknown pattern type: " . json_encode($pattern));
     }
 
     protected function patterns(array $patterns): array

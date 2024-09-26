@@ -7,6 +7,7 @@ use Phiki\Contracts\ContainsCapturesInterface;
 use Phiki\Contracts\GrammarRepositoryInterface;
 use Phiki\Contracts\PatternCollectionInterface;
 use Phiki\Exceptions\IndeterminateStateException;
+use Phiki\Exceptions\UnreachableException;
 use Phiki\Grammar\BeginEndPattern;
 use Phiki\Grammar\CollectionPattern;
 use Phiki\Grammar\EndPattern;
@@ -418,9 +419,7 @@ class Tokenizer
                         $endPattern = $closest->pattern->createEndPattern();
 
                         if ($endPattern->hasPatterns()) {
-                            $onlyPatternsPattern = new Pattern([
-                                'patterns' => $endPattern->getPatterns(),
-                            ]);
+                            $onlyPatternsPattern = new CollectionPattern($endPattern->getPatterns());
 
                             while ($this->linePosition < $groupEnd) {
                                 $subPatternMatched = $onlyPatternsPattern->tryMatch($this, $lineText, $this->linePosition, $groupEnd);
@@ -467,15 +466,13 @@ class Tokenizer
 
                         // If we can't see the `end` pattern, we should just continue.
                         if ($endMatched === false) {
-                            throw new Exception('Entered an unexpected path.');
-                            
-                            continue;
+                            throw new UnreachableException("End pattern cannot be found.");
                         }
 
                         // If we can see the `end` pattern, we should process it.
                         $this->process($endMatched, $line, $lineText);
 
-                        if ($matched->pattern->scope()) {
+                        if ($closest->pattern->scope()) {
                             array_pop($this->scopeStack);
                         }
                     }

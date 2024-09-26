@@ -14,12 +14,16 @@ readonly class ThemeStyles
 
     public array $tokenColors;
 
+    /**
+     * @param array{name: ?string, colors: array<string, string>, tokenColors: array<array{scope: string|array<string>, settings: array<string, string>}>|null} $theme
+     */
     public function __construct(array $theme)
     {
         $this->name = $theme['name'] ?? '';
         $this->backgroundColor = $theme['colors']['editor.background'];
         $this->foregroundColor = $theme['colors']['editor.foreground'];
 
+        /** @var array<string, array> */
         $tokenColors = [];
 
         foreach ($theme['tokenColors'] ?? [] as $tokenColor) {

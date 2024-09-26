@@ -15,14 +15,20 @@ class Phiki
         protected ThemeRepositoryInterface $themeRepository = new ThemeRepository,
     ) {}
 
-    public function codeToHtml(string $code, string $grammar, string $theme): string
+    public function codeToTokens(string $code, string $grammar): array
     {
         $grammar = $this->grammarRepository->get($grammar);
-        $theme = $this->themeRepository->get($theme);
 
         $tokenizer = new Tokenizer($grammar, $this->grammarRepository);
-        $tokens = $tokenizer->tokenize($code);
 
+        return $tokenizer->tokenize($code);
+    }
+
+    public function codeToHtml(string $code, string $grammar, string $theme): string
+    {
+        $tokens = $this->codeToTokens($code, $grammar);
+
+        $theme = $this->themeRepository->get($theme);
         $styles = new ThemeStyles($theme);
         $highlighter = new Highlighter($styles);
         $htmlGenerator = new HtmlGenerator($styles);
@@ -30,8 +36,8 @@ class Phiki
         return $htmlGenerator->generate($highlighter->highlight($tokens));
     }
 
-    public static function default(): static
+    public static function default(): self
     {
-        return new static(new GrammarRepository, new ThemeRepository);
+        return new self(new GrammarRepository, new ThemeRepository);
     }
 }

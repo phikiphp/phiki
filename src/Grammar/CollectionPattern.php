@@ -31,7 +31,7 @@ class CollectionPattern extends Pattern implements PatternCollectionInterface
         $offset = $linePosition;
 
         foreach ($this->getPatterns() as $pattern) {
-            $matched = $pattern->tryMatch($tokenizer, $lineText, $offset, $cannotExceed);
+            $matched = $pattern->tryMatch($tokenizer, $lineText, $linePosition, $cannotExceed);
 
             if ($matched === false) {
                 continue;

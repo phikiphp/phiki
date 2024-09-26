@@ -29,11 +29,14 @@
     "require-dev": {
         "symfony/var-dumper": "^7.1",
         "pestphp/pest": "^3.0",
-        "laravel/pint": "^1.17"
+        "laravel/pint": "^1.17",
+        "phpstan/phpstan": "^1.12",
+        "phpstan/extension-installer": "^1.4"
     },
     "config": {
         "allow-plugins": {
-            "pestphp/pest-plugin": true
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
         }
     },
     "scripts": {

@@ -9,7 +9,7 @@ readonly class HtmlGenerator
     ) {}
 
     /**
-     * @param array<HighlightedToken> $highlightedTokens
+     * @param array<array<int, HighlightedToken>> $highlightedTokens
      */
     public function generate(array $highlightedTokens): string
     {
