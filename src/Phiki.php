@@ -20,7 +20,7 @@ class Phiki
         $grammar = $this->grammarRepository->get($grammar);
         $theme = $this->themeRepository->get($theme);
 
-        $tokenizer = new Tokenizer($grammar);
+        $tokenizer = new Tokenizer($grammar, $this->grammarRepository);
         $tokens = $tokenizer->tokenize($code);
 
         $styles = new ThemeStyles($theme);

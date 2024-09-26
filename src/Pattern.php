@@ -76,11 +76,7 @@ readonly class Pattern
 
     public function getIncludeName(): string
     {
-        if (! str_starts_with($this->pattern['include'], '#')) {
-            return $this->pattern['include'];
-        }
-
-        return substr($this->pattern['include'], 1);
+        return $this->pattern['include'];
     }
 
     public function isInclude(): bool

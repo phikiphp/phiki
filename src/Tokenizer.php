@@ -3,7 +3,8 @@
 namespace Phiki;
 
 use Exception;
-use PhpParser\Node\Expr\Cast\Array_;
+use Phiki\Contracts\GrammarRepositoryInterface;
+use Phiki\Grammar\Grammar;
 
 class Tokenizer
 {
@@ -16,7 +17,8 @@ class Tokenizer
     protected int $linePosition = 0;
 
     public function __construct(
-        protected array $grammar,
+        protected Grammar $grammar,
+        protected GrammarRepositoryInterface $grammarRepository = new GrammarRepository,
     ) {}
 
     public function tokenize(string $input): array
@@ -165,7 +167,19 @@ class Tokenizer
             return $this->grammar;
         }
 
-        return $this->grammar['repository'][$reference] ?? null;
+        if (str_contains($reference, '#')) {
+            [$grammar, $path] = str_starts_with($reference, '#') ? [null, substr($reference, 1)] : explode('#', $reference, 2);
+
+            if ($grammar === null) {
+                return $this->grammar['repository'][$path] ?? null;
+            }
+
+            $grammar = $this->grammarRepository->getFromScope($grammar);
+
+            return $grammar['repository'][$path] ?? null;
+        }
+
+        return $this->grammarRepository->getFromScope($reference);
     }
 
     protected function process(MatchedPattern $matched, int $line, string $lineText): void
