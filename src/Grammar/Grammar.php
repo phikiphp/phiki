@@ -32,7 +32,7 @@ final class Grammar extends Pattern implements PatternCollectionInterface
 
     public function tryMatch(Tokenizer $tokenizer, string $lineText, int $linePosition, ?int $cannotExceed = null): MatchedPattern|false
     {
-        dd();
+        return $tokenizer->matchUsing($lineText, $this->getPatterns());
     }
 
     public function resolve(string $reference): ?Pattern

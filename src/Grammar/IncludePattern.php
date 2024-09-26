@@ -16,7 +16,27 @@ class IncludePattern extends Pattern
 
     public function tryMatch(Tokenizer $tokenizer, string $lineText, int $linePosition, ?int $cannotExceed = null): MatchedPattern|false
     {
-        throw new UnreachableException('Include patterns should not be matched directly.');
+        return $tokenizer->resolve($this)->tryMatch($tokenizer, $lineText, $linePosition, $cannotExceed);
+    }
+
+    public function isSelf(): bool
+    {
+        return $this->reference === '$self';
+    }
+
+    public function isBase(): bool
+    {
+        return $this->reference === '$base';
+    }
+
+    public function getReference(): ?string
+    {
+        return $this->reference;
+    }
+
+    public function getScopeName(): ?string
+    {
+        return $this->scopeName;
     }
 
     public function scope(): ?string

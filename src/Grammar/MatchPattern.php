@@ -2,10 +2,11 @@
 
 namespace Phiki\Grammar;
 
+use Phiki\Contracts\ContainsCapturesInterface;
 use Phiki\Tokenizer;
 use Phiki\MatchedPattern;
 
-class MatchPattern extends Pattern
+class MatchPattern extends Pattern implements ContainsCapturesInterface
 {
     /**
      * @param string $match

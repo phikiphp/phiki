@@ -8,8 +8,10 @@ use Phiki\Contracts\GrammarRepositoryInterface;
 use Phiki\Contracts\PatternCollectionInterface;
 use Phiki\Exceptions\IndeterminateStateException;
 use Phiki\Grammar\BeginEndPattern;
+use Phiki\Grammar\CollectionPattern;
 use Phiki\Grammar\EndPattern;
 use Phiki\Grammar\Grammar;
+use Phiki\Grammar\Pattern;
 use Phiki\Grammar\IncludePattern;
 use Phiki\Grammar\MatchPattern;
 
@@ -98,11 +100,11 @@ class Tokenizer
         }
     }
 
-    protected function matchUsing(string $lineText, array $patterns): MatchedPattern|false
+    public function matchUsing(string $lineText, array $patterns): MatchedPattern|false
     {
         $patternStack = $this->patternStack;
 
-        $this->patternStack = [['patterns' => $patterns]];
+        $this->patternStack = [new CollectionPattern($patterns)];
 
         $matched = $this->match($lineText);
 
@@ -111,7 +113,7 @@ class Tokenizer
         return $matched;
     }
 
-    protected function match(string $lineText): MatchedPattern|false
+    public function match(string $lineText): MatchedPattern|false
     {
         $closest = false;
         $offset = $this->linePosition;
@@ -122,19 +124,7 @@ class Tokenizer
         }
 
         foreach ($root->getPatterns() as $pattern) {
-            if ($pattern instanceof IncludePattern) {
-                dd('todo');
-                // $name = $pattern->getIncludeName();
-                // $pattern = $this->resolve($name);
-
-                // if ($pattern === null) {
-                //     throw new Exception("Unknown reference [{$name}].");
-                // }
-
-                // $pattern = new Pattern($pattern);
-            }
-
-            if ($pattern instanceof PatternCollectionInterface) {
+            if ($pattern instanceof CollectionPattern) {
                 $matched = $this->matchUsing($lineText, $pattern->getPatterns());
             } else {
                 $matched = $pattern->tryMatch($this, $lineText, $this->linePosition);
@@ -170,25 +160,30 @@ class Tokenizer
         return $closest;
     }
 
-    public function resolve(string $reference): ?array
+    public function resolve(IncludePattern $pattern): Pattern
     {
-        if ($reference === '$self') {
+        // "include": "$self"
+        if ($pattern->isSelf()) {
+            return $this->grammarRepository->getFromScope($pattern->getScopeName() ?? $this->grammar->scopeName);
+        }
+
+        // "include": "$base"
+        if ($pattern->isBase()) {
             return $this->grammar;
         }
 
-        if (str_contains($reference, '#')) {
-            [$grammar, $path] = str_starts_with($reference, '#') ? [null, substr($reference, 1)] : explode('#', $reference, 2);
-
-            if ($grammar === null) {
-                return $this->grammar->resolve($path) ?? null;
-            }
-
-            $grammar = $this->grammarRepository->getFromScope($grammar);
-
-            return $grammar->resolve($path) ?? null;
+        // "include": "#name"
+        if ($pattern->getReference() && $pattern->getScopeName() === $this->grammar->scopeName) {
+            return $this->grammar->resolve($pattern->getReference());
         }
 
-        return $this->grammarRepository->getFromScope($reference);
+        // "include": "scope#name"
+        if ($pattern->getReference() && $pattern->getScopeName() !== $this->grammar->scopeName) {
+            return $this->grammarRepository->getFromScope($pattern->getScopeName())->resolve($pattern->getReference());
+        }
+        
+        // "include": "scope"
+        return $this->grammarRepository->getFromScope($this->grammar->scopeName);
     }
 
     protected function process(MatchedPattern $matched, int $line, string $lineText): void
@@ -243,7 +238,7 @@ class Tokenizer
                 $this->scopeStack[] = $matched->pattern->scope();
             }
 
-            if ($matched->pattern->hasBeginCaptures()) {
+            if ($matched->pattern->hasCaptures()) {
                 $this->captures($matched, $line, $lineText);
             } else {
                 if ($matched->text() !== '') {
@@ -351,18 +346,6 @@ class Tokenizer
                     $closestOffset = $this->linePosition;
 
                     foreach ($capture->getPatterns() as $capturePattern) {
-                        if ($capturePattern instanceof IncludePattern) {
-                            dd();
-                            // $name = $capturePattern->getIncludeName();
-                            // $capturePattern = $this->resolve($name);
-
-                            // if ($capturePattern === null) {
-                            //     throw new Exception("Unknown reference [{$name}].");
-                            // }
-
-                            // $capturePattern = new Pattern($capturePattern);
-                        }
-
                         $matched = $capturePattern->tryMatch($this, $lineText, $this->linePosition, cannotExceed: $groupEnd);
 
                         // No match found. Move on to next pattern.
@@ -417,7 +400,7 @@ class Tokenizer
                             $this->scopeStack[] = $closest->pattern->scope();
                         }
 
-                        if ($closest->pattern->hasBeginCaptures()) {
+                        if ($closest->pattern->hasCaptures()) {
                             $this->captures($closest, $line, $lineText);
                         } else {
                             if ($closest->text() !== '') {

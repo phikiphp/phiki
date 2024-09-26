@@ -2,11 +2,12 @@
 
 namespace Phiki\Grammar;
 
+use Phiki\Contracts\ContainsCapturesInterface;
 use Phiki\Contracts\PatternCollectionInterface;
 use Phiki\Tokenizer;
 use Phiki\MatchedPattern;
 
-class BeginEndPattern extends Pattern implements PatternCollectionInterface
+class BeginEndPattern extends Pattern implements PatternCollectionInterface, ContainsCapturesInterface
 {
     public function __construct(
         public string $begin,
@@ -49,9 +50,14 @@ class BeginEndPattern extends Pattern implements PatternCollectionInterface
         return $this->name;
     }
 
-    public function hasBeginCaptures(): bool
+    public function hasCaptures(): bool
     {
         return count($this->beginCaptures) > 0 || count($this->captures) > 0;
+    }
+
+    public function getCaptures(): array
+    {
+        return count($this->beginCaptures) > 0 ? $this->beginCaptures : $this->captures;
     }
 
     public function createEndPattern(): EndPattern

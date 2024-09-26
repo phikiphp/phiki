@@ -1,5 +1,6 @@
 <?php
 
+use Phiki\Grammar\Grammar;
 use Phiki\Token;
 use Phiki\Tokenizer;
 
@@ -172,7 +173,7 @@ describe('php', function () {
 function php(string $input): array
 {
     $tokenizer = new Tokenizer(
-        json_decode(file_get_contents(__DIR__ . '/../../languages/php.json'), true)
+        Grammar::parse(json_decode(file_get_contents(__DIR__ . '/../../languages/php.json'), true))
     );
 
     return $tokenizer->tokenize($input);

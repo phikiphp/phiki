@@ -2,11 +2,12 @@
 
 namespace Phiki\Grammar;
 
+use Phiki\Contracts\ContainsCapturesInterface;
 use Phiki\Contracts\PatternCollectionInterface;
 use Phiki\Tokenizer;
 use Phiki\MatchedPattern;
 
-class EndPattern extends Pattern implements PatternCollectionInterface
+class EndPattern extends Pattern implements PatternCollectionInterface, ContainsCapturesInterface
 {
     public function __construct(
         public string $end,
