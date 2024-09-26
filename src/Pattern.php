@@ -11,6 +11,9 @@ readonly class Pattern
     public function tryMatch(Tokenizer $tokenizer, string $lineText, int $linePosition, ?int $cannotExceed = null): MatchedPattern|false
     {
         if ($this->isOnlyPatterns()) {
+            $closest = false;
+            $offset = $linePosition;
+
             foreach ($this->getPatterns() as $pattern) {
                 $pattern = new static($pattern);
 
@@ -27,12 +30,30 @@ readonly class Pattern
 
                 $matchedPattern = $pattern->tryMatch($tokenizer, $lineText, $linePosition, $cannotExceed);
 
-                if ($matchedPattern !== false) {
+                if ($matchedPattern === false) {
+                    continue;
+                }
+
+                if ($matchedPattern->offset() === $linePosition) {
                     return $matchedPattern;
+                }
+
+                if ($closest === false) {
+                    $closest = $matchedPattern;
+                    $offset = $matchedPattern->offset();
+
+                    continue;
+                }
+
+                if ($matchedPattern->offset() < $offset) {
+                    $closest = $matchedPattern;
+                    $offset = $matchedPattern->offset();
+
+                    continue;
                 }
             }
 
-            return false;
+            return $closest;
         }
 
         $regex = match (true) {

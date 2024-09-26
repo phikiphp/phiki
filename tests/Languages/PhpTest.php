@@ -127,6 +127,29 @@ describe('php', function () {
 
         
     })->todo();
+
+    it('correctly tokenizes a function statement with a union type parameter', function () {
+        $tokens = php('function a(int|float $b) {}');
+
+        expect($tokens)->toEqualCanonicalizing([
+            [
+                new Token(['source.php', 'meta.function.php', 'storage.type.function.php'], 'function', 0, 8),
+                new Token(['source.php', 'meta.function.php'], ' ', 8, 9),
+                new Token(['source.php', 'meta.function.php', 'entity.name.function.php'], 'a', 9, 10),
+                new Token(['source.php', 'meta.function.php', 'punctuation.definition.parameters.begin.bracket.round.php'], '(', 10, 11),
+                new Token(['source.php', 'meta.function.php', 'meta.function.parameter.typehinted.php', 'keyword.other.type.php'], 'int', 11, 14),
+                new Token(['source.php', 'meta.function.php', 'meta.function.parameter.typehinted.php', 'punctuation.separator.delimiter.php'], '|', 14, 15),
+                new Token(['source.php', 'meta.function.php', 'meta.function.parameter.typehinted.php', 'keyword.other.type.php'], 'float', 15, 20),
+                new Token(['source.php', 'meta.function.php', 'meta.function.parameter.typehinted.php'], ' ', 20, 21),
+                new Token(['source.php', 'meta.function.php', 'meta.function.parameter.typehinted.php', 'variable.other.php'], '$b', 21, 23),
+                new Token(['source.php', 'meta.function.php', 'punctuation.definition.parameters.end.bracket.round.php'], ')', 23, 24),
+                new Token(['source.php'], ' ', 24, 25),
+                new Token(['source.php', 'punctuation.definition.begin.bracket.curly.php'], '{', 25, 26),
+                new Token(['source.php', 'punctuation.definition.end.bracket.curly.php'], '}', 26, 27),
+                new Token(['source.php'], "\n", 27, 27)
+            ]
+        ]);
+    });
 });
 
 function php(string $input): array
