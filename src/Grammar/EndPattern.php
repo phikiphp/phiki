@@ -6,14 +6,12 @@ use Phiki\Contracts\PatternCollectionInterface;
 use Phiki\Tokenizer;
 use Phiki\MatchedPattern;
 
-class BeginEndPattern extends Pattern implements PatternCollectionInterface
+class EndPattern extends Pattern implements PatternCollectionInterface
 {
     public function __construct(
-        public string $begin,
         public string $end,
         public ?string $name,
         public ?string $contentName,
-        public array $beginCaptures = [],
         public array $endCaptures = [],
         public array $captures = [],
         public array $patterns = [],
@@ -37,17 +35,5 @@ class BeginEndPattern extends Pattern implements PatternCollectionInterface
     public function scope(): ?string
     {
         return $this->name;
-    }
-
-    public function createEndPattern(): EndPattern
-    {
-        return new EndPattern(
-            $this->end,
-            $this->name,
-            $this->contentName,
-            $this->endCaptures,
-            $this->captures,
-            $this->patterns,
-        );
     }
 }
