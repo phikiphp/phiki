@@ -3,8 +3,15 @@
 namespace Phiki;
 
 use Exception;
+use Phiki\Contracts\ContainsCapturesInterface;
 use Phiki\Contracts\GrammarRepositoryInterface;
+use Phiki\Contracts\PatternCollectionInterface;
+use Phiki\Exceptions\IndeterminateStateException;
+use Phiki\Grammar\BeginEndPattern;
+use Phiki\Grammar\EndPattern;
 use Phiki\Grammar\Grammar;
+use Phiki\Grammar\IncludePattern;
+use Phiki\Grammar\MatchPattern;
 
 class Tokenizer
 {
@@ -24,7 +31,7 @@ class Tokenizer
     public function tokenize(string $input): array
     {
         $this->tokens = [];
-        $this->scopeStack = preg_split('/\s+/', $this->grammar['scopeName']);
+        $this->scopeStack = preg_split('/\s+/', $this->grammar->scopeName);
         $this->patternStack = [$this->grammar];
 
         $lines = preg_split("/\R/", $input);
@@ -41,15 +48,14 @@ class Tokenizer
         $this->linePosition = 0;
 
         while ($this->linePosition < strlen($lineText)) {
-            $root = new Pattern(end($this->patternStack));
-
+            $root = end($this->patternStack);
             $matched = $this->match($lineText);
             $endIsMatched = false;
 
             // Some patterns will include `$self`. Since we're not fixing all patterns to match at the end of the previous match
             // we need to check if we're looking for an `end` pattern that is closer than the matched subpattern.
             // FIXME: Duplicate method call here, not great for performance.
-            if ($matched !== false && $root->isOnlyEnd() && $root->tryMatch($this, $lineText, $this->linePosition) !== false) {
+            if ($matched !== false && $root instanceof EndPattern && $root->tryMatch($this, $lineText, $this->linePosition) !== false) {
                 $endMatched = $root->tryMatch($this, $lineText, $this->linePosition);
 
                 if ($endMatched->offset() <= $matched->offset() && $endMatched->text() !== '') {
@@ -60,7 +66,7 @@ class Tokenizer
 
             // We didn't find a matching subpattern and we're looking for an `end` pattern.
             // If we find it on this line, we need to pop it off the stack and process the end pattern.
-            if ($matched === false && $root->isOnlyEnd() && $matched = $root->tryMatch($this, $lineText, $this->linePosition)) {
+            if ($matched === false && $root instanceof EndPattern && $matched = $root->tryMatch($this, $lineText, $this->linePosition)) {
                 $endIsMatched = true;
             }
 
@@ -109,24 +115,27 @@ class Tokenizer
     {
         $closest = false;
         $offset = $this->linePosition;
-        $root = new Pattern(end($this->patternStack));
+        $root = end($this->patternStack);
+
+        if (! $root instanceof PatternCollectionInterface) {
+            throw new IndeterminateStateException('Root patterns must contain child patterns and implement ' . PatternCollectionInterface::class);
+        }
 
         foreach ($root->getPatterns() as $pattern) {
-            $pattern = new Pattern($pattern);
+            if ($pattern instanceof IncludePattern) {
+                dd('todo');
+                // $name = $pattern->getIncludeName();
+                // $pattern = $this->resolve($name);
 
-            if ($pattern->isInclude()) {
-                $name = $pattern->getIncludeName();
-                $pattern = $this->resolve($name);
+                // if ($pattern === null) {
+                //     throw new Exception("Unknown reference [{$name}].");
+                // }
 
-                if ($pattern === null) {
-                    throw new Exception("Unknown reference [{$name}].");
-                }
-
-                $pattern = new Pattern($pattern);
+                // $pattern = new Pattern($pattern);
             }
 
-            if ($pattern->isOnlyPatterns()) {
-                $matched = $this->matchUsing($lineText, $pattern->getRawPattern()['patterns']);
+            if ($pattern instanceof PatternCollectionInterface) {
+                $matched = $this->matchUsing($lineText, $pattern->getPatterns());
             } else {
                 $matched = $pattern->tryMatch($this, $lineText, $this->linePosition);
             }
@@ -171,12 +180,12 @@ class Tokenizer
             [$grammar, $path] = str_starts_with($reference, '#') ? [null, substr($reference, 1)] : explode('#', $reference, 2);
 
             if ($grammar === null) {
-                return $this->grammar['repository'][$path] ?? null;
+                return $this->grammar->resolve($path) ?? null;
             }
 
             $grammar = $this->grammarRepository->getFromScope($grammar);
 
-            return $grammar['repository'][$path] ?? null;
+            return $grammar->resolve($path) ?? null;
         }
 
         return $this->grammarRepository->getFromScope($reference);
@@ -195,7 +204,7 @@ class Tokenizer
             $this->linePosition = $matched->offset();
         }
 
-        if ($matched->pattern->isMatch() && $matched->pattern->hasCaptures()) {
+        if ($matched->pattern instanceof MatchPattern && $matched->pattern->hasCaptures()) {
             if ($matched->pattern->scope()) {
                 $this->scopeStack[] = $matched->pattern->scope();
             }
@@ -216,10 +225,10 @@ class Tokenizer
             if ($matched->pattern->scope()) {
                 array_pop($this->scopeStack);
             }
-        } elseif ($matched->pattern->isMatch()) {
+        } elseif ($matched->pattern instanceof MatchPattern) {
             if ($matched->text() !== '') {
                 $this->tokens[$line][] = new Token(
-                    $matched->pattern->scopes($this->scopeStack),
+                    $matched->pattern->produceScopes($this->scopeStack),
                     $matched->text(),
                     $matched->offset(),
                     $matched->end(),
@@ -229,7 +238,7 @@ class Tokenizer
             $this->linePosition = $matched->end();
         }
 
-        if ($matched->pattern->isBegin()) {
+        if ($matched->pattern instanceof BeginEndPattern) {
             if ($matched->pattern->scope()) {
                 $this->scopeStack[] = $matched->pattern->scope();
             }
@@ -249,15 +258,10 @@ class Tokenizer
                 $this->linePosition = $matched->end();
             }
 
-            $endPattern = new Pattern([
-                'name' => $matched->pattern->scope(),
-                'end' => $matched->pattern->getEnd(),
-                'endCaptures' => $matched->pattern->getEndCaptures(),
-                'patterns' => $matched->pattern->hasPatterns() ? $matched->pattern->getPatterns() : [],
-            ]);
+            $endPattern = $matched->pattern->createEndPattern();
 
             if ($endPattern->hasPatterns()) {
-                $this->patternStack[] = $endPattern->getRawPattern();
+                $this->patternStack[] = $endPattern;
                 return;
             }
 
@@ -265,7 +269,7 @@ class Tokenizer
 
             // If we can't see the `end` pattern, we should just return.
             if ($endMatched === false) {
-                $this->patternStack[] = $endPattern->getRawPattern();
+                $this->patternStack[] = $endPattern;
                 
                 return;
             }
@@ -278,14 +282,14 @@ class Tokenizer
             }
         }
 
-        if ($matched->pattern->isOnlyEnd()) {
+        if ($matched->pattern instanceof EndPattern) {
             // FIXME: This is a bit of hack. There's a bug somewhere that is incorrectly popping the end scope off
             // of the stack before we're done with that specific scope. This will prevent this from happening.
             if ($matched->pattern->scope() && ! in_array($matched->pattern->scope(), $this->scopeStack)) {
                 $this->scopeStack[] = $matched->pattern->scope();
             }
 
-            if ($matched->pattern->hasEndCaptures()) {
+            if ($matched->pattern->hasCaptures()) {
                 $this->captures($matched, $line, $lineText);
             } else {
                 if ($matched->text() !== '') {
@@ -304,10 +308,14 @@ class Tokenizer
 
     protected function captures(MatchedPattern $pattern, int $line, string $lineText): void
     {
-        $captures = $pattern->pattern->captures();
+        if (! $pattern->pattern instanceof ContainsCapturesInterface) {
+            throw new IndeterminateStateException("Patterns must implement " . ContainsCapturesInterface::class . " in order to process captures.");
+        }
 
-        foreach ($captures as $index => $capture) {
-            $group = $pattern->getCaptureGroup($index);
+        $captures = $pattern->pattern->getCaptures();
+
+        foreach ($captures as $capture) {
+            $group = $pattern->getCaptureGroup($capture->index);
 
             if ($group === null) {
                 continue;
@@ -332,28 +340,27 @@ class Tokenizer
                 $this->linePosition = $groupStart;
             }
 
-            if (isset($capture['name'])) {
-                $this->scopeStack[] = $capture['name'];
+            if ($capture->scope()) {
+                $this->scopeStack[] = $capture->scope();
             }
 
-            if (isset($capture['patterns'])) {               
+            if ($capture->hasPatterns()) {            
                 // Until we reach the end of the capture group.
                 while ($this->linePosition < $groupEnd) {
                     $closest = false;
                     $closestOffset = $this->linePosition;
 
-                    foreach ($capture['patterns'] as $capturePattern) {
-                        $capturePattern = new Pattern($capturePattern);
+                    foreach ($capture->getPatterns() as $capturePattern) {
+                        if ($capturePattern instanceof IncludePattern) {
+                            dd();
+                            // $name = $capturePattern->getIncludeName();
+                            // $capturePattern = $this->resolve($name);
 
-                        if ($capturePattern->isInclude()) {
-                            $name = $capturePattern->getIncludeName();
-                            $capturePattern = $this->resolve($name);
+                            // if ($capturePattern === null) {
+                            //     throw new Exception("Unknown reference [{$name}].");
+                            // }
 
-                            if ($capturePattern === null) {
-                                throw new Exception("Unknown reference [{$name}].");
-                            }
-
-                            $capturePattern = new Pattern($capturePattern);
+                            // $capturePattern = new Pattern($capturePattern);
                         }
 
                         $matched = $capturePattern->tryMatch($this, $lineText, $this->linePosition, cannotExceed: $groupEnd);
@@ -403,9 +410,9 @@ class Tokenizer
                         break;
                     }
 
-                    if ($closest->pattern->isMatch()) {
+                    if ($closest->pattern instanceof MatchPattern) {
                         $this->process($closest, $line, $lineText);
-                    } elseif ($closest->pattern->isBegin()) {
+                    } elseif ($closest->pattern instanceof BeginEndPattern) {
                         if ($closest->pattern->scope()) {
                             $this->scopeStack[] = $closest->pattern->scope();
                         }
@@ -425,12 +432,7 @@ class Tokenizer
                             $this->linePosition = $closest->end();
                         }
 
-                        $endPattern = new Pattern([
-                            'name' => $closest->pattern->scope(),
-                            'end' => $closest->pattern->getEnd(),
-                            'endCaptures' => $closest->pattern->getEndCaptures(),
-                            'patterns' => $closest->pattern->hasPatterns() ? $closest->pattern->getPatterns() : [],
-                        ]);
+                        $endPattern = $closest->pattern->createEndPattern();
 
                         if ($endPattern->hasPatterns()) {
                             $onlyPatternsPattern = new Pattern([
@@ -441,7 +443,7 @@ class Tokenizer
                                 $subPatternMatched = $onlyPatternsPattern->tryMatch($this, $lineText, $this->linePosition, $groupEnd);
                                 $endIsMatched = false;
 
-                                if ($subPatternMatched !== false && $endPattern->isOnlyEnd() && $endPattern->tryMatch($this, $lineText, $this->linePosition) !== false) {
+                                if ($subPatternMatched !== false && $endPattern instanceof EndPattern && $endPattern->tryMatch($this, $lineText, $this->linePosition) !== false) {
                                     $endMatched = $endPattern->tryMatch($this, $lineText, $this->linePosition);
 
                                     if ($endMatched->offset() <= $subPatternMatched->offset() && $endMatched->text() !== '') {
@@ -450,7 +452,7 @@ class Tokenizer
                                     }
                                 }
 
-                                if ($subPatternMatched === false && $endPattern->isOnlyEnd() && $subPatternMatched = $endPattern->tryMatch($this, $lineText, $this->linePosition)) {
+                                if ($subPatternMatched === false && $endPattern instanceof EndPattern && $subPatternMatched = $endPattern->tryMatch($this, $lineText, $this->linePosition)) {
                                     $endIsMatched = true;
                                 }
 
@@ -510,7 +512,7 @@ class Tokenizer
                 $this->linePosition = $groupEnd;
             }
 
-            if (isset($capture['name'])) {
+            if ($capture->scope()) {
                 array_pop($this->scopeStack);
             }
         }

@@ -27,9 +27,31 @@ class EndPattern extends Pattern implements PatternCollectionInterface
         return count($this->patterns) > 0;
     }
 
+    public function getCaptures(): array
+    {
+        $captures = count($this->endCaptures) > 0 ? $this->endCaptures : $this->captures;
+
+        return $captures;
+    }
+
+    public function hasCaptures(): bool
+    {
+        return count($this->endCaptures) > 0 || count($this->captures) > 0;
+    }
+
     public function tryMatch(Tokenizer $tokenizer, string $lineText, int $linePosition, ?int $cannotExceed = null): MatchedPattern|false
     {
-        dd();
+        $regex = $this->end;
+
+        if (preg_match('/' . str_replace('/', '\/', $regex) . '/u', $lineText, $matches, PREG_OFFSET_CAPTURE, $linePosition) !== 1) {
+            return false;
+        }
+
+        if ($cannotExceed !== null && $matches[0][1] > $cannotExceed) {
+            return false;
+        }
+
+        return new MatchedPattern($this, $matches);
     }
 
     public function scope(): ?string

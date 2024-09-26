@@ -27,7 +27,40 @@ class CollectionPattern extends Pattern implements PatternCollectionInterface
 
     public function tryMatch(Tokenizer $tokenizer, string $lineText, int $linePosition, ?int $cannotExceed = null): MatchedPattern|false
     {
-        dd();
+        $closest = false;
+        $offset = $linePosition;
+
+        foreach ($this->getPatterns() as $pattern) {
+            if ($pattern instanceof IncludePattern) {
+                dd();
+            }
+
+            $matched = $pattern->tryMatch($tokenizer, $lineText, $offset, $cannotExceed);
+
+            if ($matched === false) {
+                continue;
+            }
+
+            if ($matched->offset() === $linePosition) {
+                return $matched;
+            }
+
+            if ($closest === false) {
+                $closest = $matched;
+                $offset = $matched->offset();
+
+                continue;
+            }
+
+            if ($matched->offset() < $offset) {
+                $closest = $matched;
+                $offset = $matched->offset();
+
+                continue;
+            }
+        }
+
+        return $closest;
     }
 
     public function scope(): ?string

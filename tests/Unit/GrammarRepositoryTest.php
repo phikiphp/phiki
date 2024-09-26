@@ -1,5 +1,6 @@
 <?php
 
+use Phiki\Grammar\Grammar;
 use Phiki\GrammarRepository;
 
 describe('GrammarRepository', function () {
@@ -18,8 +19,8 @@ describe('GrammarRepository', function () {
         $grammar = $grammarRepository->get('php');
 
         expect($grammar)
-            ->toBeArray()
-            ->toHaveKey('scopeName', 'source.php');
+            ->toBeInstanceOf(Grammar::class)
+            ->toHaveProperty('scopeName', 'source.php');
     });
 
     it('can register a custom grammar using a file path', function () {
@@ -29,20 +30,20 @@ describe('GrammarRepository', function () {
         $grammar = $grammarRepository->get('example');
 
         expect($grammar)
-            ->toBeArray()
-            ->toHaveKey('scopeName', 'source.example');
+            ->toBeInstanceOf(Grammar::class)
+            ->toHaveProperty('scopeName', 'source.example');
     });
 
-    it('can register a custom grammar using a grammar array', function () {
+    it('can register a custom grammar using a grammar object', function () {
         $grammarRepository = new GrammarRepository;
-        $grammarRepository->register('example', [
+        $grammarRepository->register('example', Grammar::parse([
             'scopeName' => 'source.example'
-        ]);
+        ]));
 
         $grammar = $grammarRepository->get('example');
 
         expect($grammar)
-            ->toBeArray()
-            ->toHaveKey('scopeName', 'source.example');
+            ->toBeInstanceOf(Grammar::class)
+            ->toHaveProperty('scopeName', 'source.example');
     });
 });

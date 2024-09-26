@@ -2,10 +2,12 @@
 
 namespace Phiki;
 
+use Phiki\Contracts\PatternInterface;
+
 readonly class MatchedPattern
 {
     public function __construct(
-        public Pattern $pattern,
+        public PatternInterface $pattern,
         public array $matches,
     ) {}
 

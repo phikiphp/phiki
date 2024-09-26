@@ -14,5 +14,5 @@ describe('GrammarParser', function () {
         expect($grammar->scopeName)->toBe('source.php');
         expect($grammar->patterns)->toBeArray();
         expect($grammar->repository)->toBeArray();
-    })->only();
+    });
 });

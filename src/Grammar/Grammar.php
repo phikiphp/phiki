@@ -3,6 +3,7 @@
 namespace Phiki\Grammar;
 
 use Phiki\Contracts\PatternCollectionInterface;
+use Phiki\GrammarParser;
 use Phiki\Tokenizer;
 use Phiki\MatchedPattern;
 
@@ -34,8 +35,20 @@ final class Grammar extends Pattern implements PatternCollectionInterface
         dd();
     }
 
+    public function resolve(string $reference): ?Pattern
+    {
+        return $this->repository[$reference] ?? null;
+    }
+
     public function scope(): ?string
     {
         return $this->scopeName;
+    }
+
+    public static function parse(array $grammar): static
+    {
+        $parser = new GrammarParser();
+
+        return $parser->parse($grammar);
     }
 }

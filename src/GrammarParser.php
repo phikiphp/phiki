@@ -22,9 +22,11 @@ class GrammarParser
         }
 
         $this->scopeName = $scopeName = $grammar['scopeName'];
-        $patterns = $this->patterns($grammar['patterns']);
 
-        foreach ($grammar['repository'] as $name => $pattern) {
+        $patterns = $this->patterns($grammar['patterns'] ?? []);
+        $repository = [];
+
+        foreach ($grammar['repository'] ?? [] as $name => $pattern) {
             $repository[$name] = $this->pattern($pattern);
         }
 
