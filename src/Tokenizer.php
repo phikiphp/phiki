@@ -84,7 +84,7 @@ class Tokenizer
             // Match found – process pattern rules and continue.
             $this->process($matched, $line, $lineText);
 
-            if ($endIsMatched && $root->scope()) {
+            if ($endIsMatched && $root->scope() && count($this->scopeStack) > 1) {
                 array_pop($this->scopeStack);
             }
         }
@@ -383,9 +383,6 @@ class Tokenizer
                         break;
                     }
 
-                    // FIXME: We need to handle `begin`/`end` patterns somewhere in the same way as we do in `process`.
-                    // Currently we can't re-tokenise a captured group using the capture groups set of subpatterns, because
-                    // `process` is handing control back to `match` and `tokenizeLine`.
                     if ($closest->pattern->isMatch()) {
                         $this->process($closest, $line, $lineText);
                     } elseif ($closest->pattern->isBegin()) {
