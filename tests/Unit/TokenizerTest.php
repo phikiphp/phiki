@@ -557,7 +557,7 @@ describe('begin/end', function () {
 });
 
 describe('scopes', function () {
-    it('correctly replaces capture references inside of scope names for a match pattern', function () {
+    it('correctly replaces capture references inside of scope names', function () {
         $tokens = tokenize('foo', [
             'scopeName' => 'source.test',
             'patterns' => [
