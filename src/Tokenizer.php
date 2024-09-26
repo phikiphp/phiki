@@ -337,7 +337,7 @@ class Tokenizer
             }
 
             if ($capture->scope()) {
-                $this->scopeStack[] = $capture->scope();
+                $this->scopeStack[] = $this->processScope($capture->scope(), $pattern);
             }
 
             if ($capture->hasPatterns()) {            
@@ -496,5 +496,18 @@ class Tokenizer
                 array_pop($this->scopeStack);
             }
         }
+    }
+
+    protected function processScope(string $scope, MatchedPattern $pattern): string
+    {
+        return preg_replace_callback('/\\$(\d+)/', function ($matches) use ($pattern) {
+            $group = $pattern->getCaptureGroup($matches[1]);
+
+            if ($group === null) {
+                return $matches[0];
+            }
+
+            return $group[0];
+        }, $scope);
     }
 }

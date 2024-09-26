@@ -555,3 +555,29 @@ describe('begin/end', function () {
         ]);
     });
 });
+
+describe('scopes', function () {
+    it('correctly replaces capture references inside of scope names for a match pattern', function () {
+        $tokens = tokenize('foo', [
+            'scopeName' => 'source.test',
+            'patterns' => [
+                [
+                    'name' => 'entity.name.test',
+                    'match' => '\\b(foo)\\b',
+                    'captures' => [
+                        '1' => [
+                            'name' => 'entity.name.$1.test',
+                        ],
+                    ],
+                ],
+            ],
+        ]);
+
+        expect($tokens)->toEqualCanonicalizing([
+            [
+                new Token(['source.test', 'entity.name.test', 'entity.name.foo.test'], 'foo', 0, 3),
+                new Token(['source.test'], "\n", 3, 3),
+            ]
+        ]);
+    });
+});
