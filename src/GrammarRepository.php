@@ -13,7 +13,7 @@ class GrammarRepository implements GrammarRepositoryInterface
     
     public function get(string $name): array
     {
-        if (! isset($this->grammars[$name])) {
+        if (! $this->has($name)) {
             throw UnrecognisedGrammarException::make($name);
         } 
 
