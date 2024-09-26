@@ -265,6 +265,10 @@ class Tokenizer
         }
 
         if ($matched->pattern->isOnlyEnd()) {
+            if ($matched->pattern->scope() && ! in_array($matched->pattern->scope(), $this->scopeStack)) {
+                $this->scopeStack[] = $matched->pattern->scope();
+            }
+
             if ($matched->pattern->hasEndCaptures()) {
                 $this->captures($matched, $line, $lineText);
             } else {
