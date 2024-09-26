@@ -1,14 +1,25 @@
 <?php
 
 use Phiki\Grammar\Grammar;
+use Phiki\Token;
 use Phiki\Tokenizer;
 
 describe('html', function () {
     it('correctly tokenizes a basic tag', function () {
         $tokens = html('<div></div>');
 
-        dd($tokens);
-    })->skip();
+        expect($tokens)->toEqualCanonicalizing([
+            [
+                new Token(['text.html.basic', 'meta.tag.structure.div.start.html', 'punctuation.definition.tag.begin.html'], '<', 0, 1),
+                new Token(['text.html.basic', 'meta.tag.structure.div.start.html', 'entity.name.tag.html'], 'div', 1, 4),
+                new Token(['text.html.basic', 'meta.tag.structure.div.start.html', 'punctuation.definition.tag.end.html'], '>', 4, 5),
+                new Token(['text.html.basic', 'meta.tag.structure.div.end.html', 'punctuation.definition.tag.begin.html'], '</', 5, 7),
+                new Token(['text.html.basic', 'meta.tag.structure.div.end.html', 'entity.name.tag.html'], 'div', 7, 10),
+                new Token(['text.html.basic', 'meta.tag.structure.div.end.html', 'punctuation.definition.tag.end.html'], '>', 10, 11),
+                new Token(['text.html.basic'], "\n", 11, 11)
+            ]
+        ]);
+    });
 });
 
 function html(string $input): array

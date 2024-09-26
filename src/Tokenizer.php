@@ -22,6 +22,8 @@ class Tokenizer
 
     protected array $scopeStack = [];
 
+    protected array $beginStack = [];
+
     protected array $tokens = [];
 
     protected int $linePosition = 0;
@@ -97,6 +99,10 @@ class Tokenizer
 
             if ($endIsMatched && $root->scope() && count($this->scopeStack) > 1) {
                 array_pop($this->scopeStack);
+            }
+
+            if ($endIsMatched) {
+                array_pop($this->beginStack);
             }
         }
     }
@@ -202,7 +208,7 @@ class Tokenizer
 
         if ($matched->pattern instanceof MatchPattern && $matched->pattern->hasCaptures()) {
             if ($matched->pattern->scope()) {
-                $this->scopeStack[] = $matched->pattern->scope();
+                $this->scopeStack[] = $this->processScope($matched->pattern->scope(), $matched);
             }
 
             $this->captures($matched, $line, $lineText);
@@ -235,8 +241,10 @@ class Tokenizer
         }
 
         if ($matched->pattern instanceof BeginEndPattern) {
+            $this->beginStack[] = $matched;
+
             if ($matched->pattern->scope()) {
-                $this->scopeStack[] = $matched->pattern->scope();
+                $this->scopeStack[] = $this->processScope($matched->pattern->scope(), $matched);
             }
 
             if ($matched->pattern->hasCaptures()) {
@@ -276,13 +284,15 @@ class Tokenizer
             if ($matched->pattern->scope()) {
                 array_pop($this->scopeStack);
             }
+
+            array_pop($this->beginStack);
         }
 
         if ($matched->pattern instanceof EndPattern) {
             // FIXME: This is a bit of hack. There's a bug somewhere that is incorrectly popping the end scope off
             // of the stack before we're done with that specific scope. This will prevent this from happening.
-            if ($matched->pattern->scope() && ! in_array($matched->pattern->scope(), $this->scopeStack)) {
-                $this->scopeStack[] = $matched->pattern->scope();
+            if ($matched->pattern->scope() && ! in_array($this->processScope($matched->pattern->scope(), end($this->beginStack)), $this->scopeStack)) {
+                $this->scopeStack[] = $this->processScope($matched->pattern->scope(), end($this->beginStack));
             }
 
             if ($matched->pattern->hasCaptures()) {
@@ -398,7 +408,7 @@ class Tokenizer
                         $this->process($closest, $line, $lineText);
                     } elseif ($closest->pattern instanceof BeginEndPattern) {
                         if ($closest->pattern->scope()) {
-                            $this->scopeStack[] = $closest->pattern->scope();
+                            $this->scopeStack[] = $this->processScope($closest->pattern->scope(), $closest);
                         }
 
                         if ($closest->pattern->hasCaptures()) {
