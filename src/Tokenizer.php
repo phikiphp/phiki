@@ -265,6 +265,8 @@ class Tokenizer
         }
 
         if ($matched->pattern->isOnlyEnd()) {
+            // FIXME: This is a bit of hack. There's a bug somewhere that is incorrectly popping the end scope off
+            // of the stack before we're done with that specific scope. This will prevent this from happening.
             if ($matched->pattern->scope() && ! in_array($matched->pattern->scope(), $this->scopeStack)) {
                 $this->scopeStack[] = $matched->pattern->scope();
             }
