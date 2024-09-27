@@ -8,7 +8,7 @@ use Phiki\Exceptions\UnrecognisedThemeException;
 class ThemeRepository implements ThemeRepositoryInterface
 {
     protected array $themes = [
-        'github-dark' => __DIR__ . '/../themes/github-dark.json',
+        'github-dark' => __DIR__.'/../themes/github-dark.json',
     ];
 
     public function get(string $name): array

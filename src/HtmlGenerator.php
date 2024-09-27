@@ -9,7 +9,7 @@ readonly class HtmlGenerator
     ) {}
 
     /**
-     * @param array<array<int, HighlightedToken>> $highlightedTokens
+     * @param  array<array<int, HighlightedToken>>  $highlightedTokens
      */
     public function generate(array $highlightedTokens): string
     {
@@ -26,9 +26,9 @@ readonly class HtmlGenerator
                 $html .= sprintf('<span class="token" style="%s">%s</span>', $token->settings?->toStyleString(), htmlspecialchars($token->token->text));
             }
 
-            $html .= "</span>";
+            $html .= '</span>';
         }
 
-        return $html . '</code></pre>';
+        return $html.'</code></pre>';
     }
 }

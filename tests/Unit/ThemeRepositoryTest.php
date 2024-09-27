@@ -1,6 +1,5 @@
 <?php
 
-use Phiki\GrammarRepository;
 use Phiki\ThemeRepository;
 
 describe('ThemeRepository', function () {
@@ -24,7 +23,7 @@ describe('ThemeRepository', function () {
 
     it('can register a custom grammar using a file path', function () {
         $themeRepository = new ThemeRepository;
-        $themeRepository->register('example', __DIR__ . '/../Fixtures/theme.json');
+        $themeRepository->register('example', __DIR__.'/../Fixtures/theme.json');
 
         $grammar = $themeRepository->get('example');
 
@@ -38,7 +37,7 @@ describe('ThemeRepository', function () {
             'colors' => [
                 'editor.background' => '#000000',
                 'editor.foreground' => '#ffffff',
-            ]
+            ],
         ]);
 
         $grammar = $themeRepository->get('example');

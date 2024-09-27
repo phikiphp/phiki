@@ -16,8 +16,8 @@ describe('html', function () {
                 new Token(['text.html.basic', 'meta.tag.structure.div.end.html', 'punctuation.definition.tag.begin.html'], '</', 5, 7),
                 new Token(['text.html.basic', 'meta.tag.structure.div.end.html', 'entity.name.tag.html'], 'div', 7, 10),
                 new Token(['text.html.basic', 'meta.tag.structure.div.end.html', 'punctuation.definition.tag.end.html'], '>', 10, 11),
-                new Token(['text.html.basic'], "\n", 11, 11)
-            ]
+                new Token(['text.html.basic'], "\n", 11, 11),
+            ],
         ]);
     });
 
@@ -33,8 +33,8 @@ describe('html', function () {
                 new Token(['text.html.basic', 'meta.tag.structure.h1.end.html', 'punctuation.definition.tag.begin.html'], '</', 17, 19),
                 new Token(['text.html.basic', 'meta.tag.structure.h1.end.html', 'entity.name.tag.html'], 'h1', 19, 21),
                 new Token(['text.html.basic', 'meta.tag.structure.h1.end.html', 'punctuation.definition.tag.end.html'], '>', 21, 22),
-                new Token(['text.html.basic'], "\n", 22, 22)
-            ]
+                new Token(['text.html.basic'], "\n", 22, 22),
+            ],
         ]);
     });
 
@@ -51,8 +51,8 @@ describe('html', function () {
                 new Token(['text.html.basic', 'meta.tag.structure.h1.end.html', 'punctuation.definition.tag.begin.html'], '</', 11, 13),
                 new Token(['text.html.basic', 'meta.tag.structure.h1.end.html', 'entity.name.tag.html'], 'h1', 13, 15),
                 new Token(['text.html.basic', 'meta.tag.structure.h1.end.html', 'punctuation.definition.tag.end.html'], '>', 15, 16),
-                new Token(['text.html.basic'], "\n", 16, 16)
-            ]
+                new Token(['text.html.basic'], "\n", 16, 16),
+            ],
         ]);
     });
 
@@ -73,8 +73,8 @@ describe('html', function () {
                 new Token(['text.html.basic', 'meta.tag.structure.h1.end.html', 'punctuation.definition.tag.begin.html'], '</', 16, 18),
                 new Token(['text.html.basic', 'meta.tag.structure.h1.end.html', 'entity.name.tag.html'], 'h1', 18, 20),
                 new Token(['text.html.basic', 'meta.tag.structure.h1.end.html', 'punctuation.definition.tag.end.html'], '>', 20, 21),
-                new Token(['text.html.basic'], "\n", 21, 21)
-            ]
+                new Token(['text.html.basic'], "\n", 21, 21),
+            ],
         ]);
     });
 });
@@ -82,7 +82,7 @@ describe('html', function () {
 function html(string $input): array
 {
     $tokenizer = new Tokenizer(
-        Grammar::parse(json_decode(file_get_contents(__DIR__ . '/../../languages/html.json'), true))
+        Grammar::parse(json_decode(file_get_contents(__DIR__.'/../../languages/html.json'), true))
     );
 
     return $tokenizer->tokenize($input);

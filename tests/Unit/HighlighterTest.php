@@ -9,7 +9,7 @@ describe('Highlighter', function () {
             'colors' => [
                 'editor.background' => '#000',
                 'editor.foreground' => '#fff',
-            ]
+            ],
         ]);
 
         expect(new Highlighter($styles))->toBeInstanceOf(Highlighter::class);

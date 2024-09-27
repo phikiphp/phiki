@@ -4,15 +4,14 @@ namespace Phiki\Grammar;
 
 use Phiki\Contracts\PatternCollectionInterface;
 use Phiki\GrammarParser;
-use Phiki\Tokenizer;
 use Phiki\MatchedPattern;
+use Phiki\Tokenizer;
 
 final class Grammar extends Pattern implements PatternCollectionInterface
 {
     /**
-     * @param string $scopeName
-     * @param Pattern[] $patterns
-     * @param array<string, Pattern> $repository
+     * @param  Pattern[]  $patterns
+     * @param  array<string, Pattern>  $repository
      */
     public function __construct(
         public string $scopeName,
@@ -47,7 +46,7 @@ final class Grammar extends Pattern implements PatternCollectionInterface
 
     public static function parse(array $grammar): static
     {
-        $parser = new GrammarParser();
+        $parser = new GrammarParser;
 
         return $parser->parse($grammar);
     }

@@ -4,7 +4,7 @@ use Phiki\Phiki;
 
 describe('Phiki', function () {
     it('can be constructed', function () {
-        expect(new Phiki())->toBeInstanceOf(Phiki::class);
+        expect(new Phiki)->toBeInstanceOf(Phiki::class);
     });
 
     it('can generate html from code', function () {

@@ -3,15 +3,13 @@
 namespace Phiki\Grammar;
 
 use Phiki\Contracts\ContainsCapturesInterface;
-use Phiki\Tokenizer;
 use Phiki\MatchedPattern;
+use Phiki\Tokenizer;
 
 class MatchPattern extends Pattern implements ContainsCapturesInterface
 {
     /**
-     * @param string $match
-     * @param string|null $name
-     * @param Capture[] $captures
+     * @param  Capture[]  $captures
      */
     public function __construct(
         public string $match,
@@ -23,7 +21,7 @@ class MatchPattern extends Pattern implements ContainsCapturesInterface
     {
         $regex = $this->match;
 
-        if (preg_match('/' . str_replace('/', '\/', $regex) . '/u', $lineText, $matches, PREG_OFFSET_CAPTURE, $linePosition) !== 1) {
+        if (preg_match('/'.str_replace('/', '\/', $regex).'/u', $lineText, $matches, PREG_OFFSET_CAPTURE, $linePosition) !== 1) {
             return false;
         }
 

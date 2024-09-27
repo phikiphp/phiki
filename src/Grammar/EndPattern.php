@@ -4,10 +4,10 @@ namespace Phiki\Grammar;
 
 use Phiki\Contracts\ContainsCapturesInterface;
 use Phiki\Contracts\PatternCollectionInterface;
-use Phiki\Tokenizer;
 use Phiki\MatchedPattern;
+use Phiki\Tokenizer;
 
-class EndPattern extends Pattern implements PatternCollectionInterface, ContainsCapturesInterface
+class EndPattern extends Pattern implements ContainsCapturesInterface, PatternCollectionInterface
 {
     public function __construct(
         public MatchedPattern $begin,
@@ -47,7 +47,7 @@ class EndPattern extends Pattern implements PatternCollectionInterface, Contains
             return $this->begin->matches[$matches[1]][0] ?? $matches[0];
         }, $this->end);
 
-        if (preg_match('/' . str_replace('/', '\/', $regex) . '/u', $lineText, $matches, PREG_OFFSET_CAPTURE, $linePosition) !== 1) {
+        if (preg_match('/'.str_replace('/', '\/', $regex).'/u', $lineText, $matches, PREG_OFFSET_CAPTURE, $linePosition) !== 1) {
             return false;
         }
 

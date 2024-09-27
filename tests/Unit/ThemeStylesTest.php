@@ -27,16 +27,16 @@ describe('ThemeStyles', function () {
                     'settings' => [
                         'fontStyle' => 'italic',
                         'foreground' => '#888',
-                    ]
+                    ],
                 ],
                 [
                     'scope' => [
                         'keyword',
                     ],
                     'settings' => [
-                        'foreground' => '#f97583'
-                    ]
-                ]
+                        'foreground' => '#f97583',
+                    ],
+                ],
             ],
         ]);
 

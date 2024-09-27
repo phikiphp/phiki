@@ -77,7 +77,7 @@ class GrammarParser
             return new CollectionPattern($this->patterns($pattern['patterns']));
         }
 
-        throw new UnreachableException("Unknown pattern type: " . json_encode($pattern));
+        throw new UnreachableException('Unknown pattern type: '.json_encode($pattern));
     }
 
     protected function patterns(array $patterns): array

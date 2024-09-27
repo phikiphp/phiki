@@ -226,7 +226,7 @@ describe('begin/end', function () {
                 new Token(['source.test', 'meta.block.test'], ' ', 5, 6),
                 new Token(['source.test', 'meta.block.test'], 'end', 6, 9),
                 new Token(['source.test'], "\n", 9, 9),
-            ]
+            ],
         ]);
     });
 
@@ -258,7 +258,7 @@ describe('begin/end', function () {
                 new Token(['source.test', 'meta.block.test'], ' ', 5, 6),
                 new Token(['source.test', 'meta.block.test', 'keyword.control.test'], 'end', 6, 9),
                 new Token(['source.test'], "\n", 9, 9),
-            ]
+            ],
         ]);
     });
 
@@ -285,9 +285,9 @@ describe('begin/end', function () {
                 new Token(['source.test', 'meta.block.test'], ' ', 5, 6),
                 new Token(['source.test', 'meta.block.test', 'keyword.control.test'], 'end', 6, 9),
                 new Token(['source.test'], "\n", 9, 9),
-            ]
+            ],
         ]);
-    }); 
+    });
 
     it('can tokenize a simple begin/end pattern with beginCaptures that have subpatterns', function () {
         $tokens = tokenize('begin end', [
@@ -318,7 +318,7 @@ describe('begin/end', function () {
                 new Token(['source.test', 'meta.block.test'], ' ', 5, 6),
                 new Token(['source.test', 'meta.block.test'], 'end', 6, 9),
                 new Token(['source.test'], "\n", 9, 9),
-            ]
+            ],
         ]);
     });
 
@@ -351,7 +351,7 @@ describe('begin/end', function () {
                 new Token(['source.test', 'meta.block.test'], ' ', 5, 6),
                 new Token(['source.test', 'meta.block.test', 'keyword.control.test', 'keyword.control.end.test'], 'end', 6, 9),
                 new Token(['source.test'], "\n", 9, 9),
-            ]
+            ],
         ]);
     });
 
@@ -374,7 +374,7 @@ describe('begin/end', function () {
                                 [
                                     'match' => 'end',
                                     'name' => 'keyword.control.end.test',
-                                ]
+                                ],
                             ],
                         ],
                     ],
@@ -388,7 +388,7 @@ describe('begin/end', function () {
                 new Token(['source.test', 'meta.block.test'], ' ', 5, 6),
                 new Token(['source.test', 'meta.block.test', 'keyword.control.test', 'keyword.control.end.test'], 'end', 6, 9),
                 new Token(['source.test'], "\n", 9, 9),
-            ]
+            ],
         ]);
     });
 
@@ -418,7 +418,7 @@ describe('begin/end', function () {
                 new Token(['source.test', 'meta.block.test'], ' ', 9, 10),
                 new Token(['source.test', 'meta.block.test'], 'end', 10, 13),
                 new Token(['source.test'], "\n", 13, 13),
-            ]
+            ],
         ]);
     });
 
@@ -453,7 +453,7 @@ describe('begin/end', function () {
                 new Token(['source.test', 'meta.block.test'], ' ', 9, 10),
                 new Token(['source.test', 'meta.block.test'], 'end', 10, 13),
                 new Token(['source.test'], "\n", 13, 13),
-            ]
+            ],
         ]);
     });
 
@@ -492,7 +492,7 @@ describe('begin/end', function () {
             [
                 new Token(['source.test', 'meta.block.test'], 'end', 0, 3),
                 new Token(['source.test'], "\n", 3, 3),
-            ]
+            ],
         ]);
     });
 
@@ -519,7 +519,7 @@ describe('begin/end', function () {
                                 [
                                     'match' => 'end',
                                     'name' => 'keyword.control.end.test',
-                                ]
+                                ],
                             ],
                         ],
                     ],
@@ -551,7 +551,7 @@ describe('begin/end', function () {
             [
                 new Token(['source.test', 'meta.block.test', 'keyword.control.test', 'keyword.control.end.test'], 'end', 0, 3),
                 new Token(['source.test'], "\n", 3, 3),
-            ]
+            ],
         ]);
     });
 });
@@ -577,7 +577,7 @@ describe('scopes', function () {
             [
                 new Token(['source.test', 'entity.name.test', 'entity.name.foo.test'], 'foo', 0, 3),
                 new Token(['source.test'], "\n", 3, 3),
-            ]
+            ],
         ]);
     });
 });

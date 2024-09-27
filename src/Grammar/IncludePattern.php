@@ -2,10 +2,8 @@
 
 namespace Phiki\Grammar;
 
-use Phiki\Exceptions\IndeterminateStateException;
-use Phiki\Exceptions\UnreachableException;
-use Phiki\Tokenizer;
 use Phiki\MatchedPattern;
+use Phiki\Tokenizer;
 
 class IncludePattern extends Pattern
 {

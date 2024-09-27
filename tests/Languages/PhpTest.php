@@ -13,8 +13,8 @@ describe('php', function () {
                 new Token(['source.php', 'string.quoted.double.php', 'punctuation.definition.string.begin.php'], '"', 0, 1),
                 new Token(['source.php', 'string.quoted.double.php'], 'Hello, world!', 1, 14),
                 new Token(['source.php', 'string.quoted.double.php', 'punctuation.definition.string.end.php'], '"', 14, 15),
-                new Token(['source.php'], "\n", 15, 15)
-            ]
+                new Token(['source.php'], "\n", 15, 15),
+            ],
         ]);
     });
 
@@ -25,8 +25,8 @@ describe('php', function () {
             [
                 new Token(['source.php', 'variable.other.php', 'punctuation.definition.variable.php'], '$', 0, 1),
                 new Token(['source.php', 'variable.other.php'], 'name', 1, 5),
-                new Token(['source.php'], "\n", 5, 5)
-            ]
+                new Token(['source.php'], "\n", 5, 5),
+            ],
         ]);
     });
 
@@ -43,8 +43,8 @@ describe('php', function () {
                 new Token(['source.php', 'string.quoted.double.php', 'punctuation.definition.variable.php'], '}', 14, 15),
                 new Token(['source.php', 'string.quoted.double.php'], '!', 15, 16),
                 new Token(['source.php', 'string.quoted.double.php', 'punctuation.definition.string.end.php'], '"', 16, 17),
-                new Token(['source.php'], "\n", 17, 17)
-            ]
+                new Token(['source.php'], "\n", 17, 17),
+            ],
         ]);
     });
 
@@ -63,8 +63,8 @@ describe('php', function () {
                 new Token(['source.php', 'meta.class.php'], ' ', 17, 18),
                 new Token(['source.php', 'meta.class.php', 'punctuation.definition.class.begin.bracket.curly.php'], '{', 18, 19),
                 new Token(['source.php', 'meta.class.php', 'punctuation.definition.class.end.bracket.curly.php'], '}', 19, 20),
-                new Token(['source.php'], "\n", 20, 20)
-            ]
+                new Token(['source.php'], "\n", 20, 20),
+            ],
         ]);
     });
 
@@ -77,8 +77,8 @@ describe('php', function () {
                 new Token(['source.php', 'meta.use.php'], ' ', 3, 4),
                 new Token(['source.php', 'meta.use.php', 'support.class.php'], 'A', 4, 5),
                 new Token(['source.php', 'punctuation.terminator.expression.php'], ';', 5, 6),
-                new Token(['source.php'], "\n", 6, 6)
-            ]
+                new Token(['source.php'], "\n", 6, 6),
+            ],
         ]);
     });
 
@@ -95,8 +95,8 @@ describe('php', function () {
                 new Token(['source.php', 'meta.use.php', 'support.other.namespace.php', 'punctuation.separator.inheritance.php'], '\\', 7, 8),
                 new Token(['source.php', 'meta.use.php', 'support.class.php'], 'C', 8, 9),
                 new Token(['source.php', 'punctuation.terminator.expression.php'], ';', 9, 10),
-                new Token(['source.php'], "\n", 10, 10)
-            ]
+                new Token(['source.php'], "\n", 10, 10),
+            ],
         ]);
     });
 
@@ -116,8 +116,8 @@ describe('php', function () {
                 new Token(['source.php'], ' ', 16, 17),
                 new Token(['source.php', 'punctuation.definition.begin.bracket.curly.php'], '{', 17, 18),
                 new Token(['source.php', 'punctuation.definition.end.bracket.curly.php'], '}', 18, 19),
-                new Token(['source.php'], "\n", 19, 19)
-            ]
+                new Token(['source.php'], "\n", 19, 19),
+            ],
         ]);
     });
 
@@ -139,8 +139,8 @@ describe('php', function () {
                 new Token(['source.php'], ' ', 18, 19),
                 new Token(['source.php', 'punctuation.definition.begin.bracket.curly.php'], '{', 19, 20),
                 new Token(['source.php', 'punctuation.definition.end.bracket.curly.php'], '}', 20, 21),
-                new Token(['source.php'], "\n", 21, 21)
-            ]
+                new Token(['source.php'], "\n", 21, 21),
+            ],
         ]);
     });
 
@@ -162,8 +162,8 @@ describe('php', function () {
                 new Token(['source.php'], ' ', 24, 25),
                 new Token(['source.php', 'punctuation.definition.begin.bracket.curly.php'], '{', 25, 26),
                 new Token(['source.php', 'punctuation.definition.end.bracket.curly.php'], '}', 26, 27),
-                new Token(['source.php'], "\n", 27, 27)
-            ]
+                new Token(['source.php'], "\n", 27, 27),
+            ],
         ]);
     });
 });
@@ -171,7 +171,7 @@ describe('php', function () {
 function php(string $input): array
 {
     $tokenizer = new Tokenizer(
-        Grammar::parse(json_decode(file_get_contents(__DIR__ . '/../../languages/php.json'), true))
+        Grammar::parse(json_decode(file_get_contents(__DIR__.'/../../languages/php.json'), true))
     );
 
     return $tokenizer->tokenize($input);

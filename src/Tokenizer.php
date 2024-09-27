@@ -2,7 +2,6 @@
 
 namespace Phiki;
 
-use Exception;
 use Phiki\Contracts\ContainsCapturesInterface;
 use Phiki\Contracts\GrammarRepositoryInterface;
 use Phiki\Contracts\PatternCollectionInterface;
@@ -12,9 +11,9 @@ use Phiki\Grammar\BeginEndPattern;
 use Phiki\Grammar\CollectionPattern;
 use Phiki\Grammar\EndPattern;
 use Phiki\Grammar\Grammar;
-use Phiki\Grammar\Pattern;
 use Phiki\Grammar\IncludePattern;
 use Phiki\Grammar\MatchPattern;
+use Phiki\Grammar\Pattern;
 
 class Tokenizer
 {
@@ -122,7 +121,7 @@ class Tokenizer
         $root = end($this->patternStack);
 
         if (! $root instanceof PatternCollectionInterface) {
-            throw new IndeterminateStateException('Root patterns must contain child patterns and implement ' . PatternCollectionInterface::class);
+            throw new IndeterminateStateException('Root patterns must contain child patterns and implement '.PatternCollectionInterface::class);
         }
 
         foreach ($root->getPatterns() as $pattern) {
@@ -183,7 +182,7 @@ class Tokenizer
         if ($pattern->getReference() && $pattern->getScopeName() !== $this->grammar->scopeName) {
             return $this->grammarRepository->getFromScope($pattern->getScopeName())->resolve($pattern->getReference());
         }
-        
+
         // "include": "scope"
         return $this->grammarRepository->getFromScope($pattern->getScopeName());
     }
@@ -259,6 +258,7 @@ class Tokenizer
 
             if ($endPattern->hasPatterns()) {
                 $this->patternStack[] = $endPattern;
+
                 return;
             }
 
@@ -267,7 +267,7 @@ class Tokenizer
             // If we can't see the `end` pattern, we should just return.
             if ($endMatched === false) {
                 $this->patternStack[] = $endPattern;
-                
+
                 return;
             }
 
@@ -306,7 +306,7 @@ class Tokenizer
     protected function captures(MatchedPattern $pattern, int $line, string $lineText): void
     {
         if (! $pattern->pattern instanceof ContainsCapturesInterface) {
-            throw new IndeterminateStateException("Patterns must implement " . ContainsCapturesInterface::class . " in order to process captures.");
+            throw new IndeterminateStateException('Patterns must implement '.ContainsCapturesInterface::class.' in order to process captures.');
         }
 
         $captures = $pattern->pattern->getCaptures();
@@ -321,10 +321,6 @@ class Tokenizer
             $groupLength = strlen($group[0]);
             $groupStart = $group[1];
             $groupEnd = $group[1] + $groupLength;
-
-            if ($this->linePosition > $groupStart) {
-                continue;
-            }
 
             if ($groupStart > $this->linePosition) {
                 $this->tokens[$line][] = new Token(
@@ -341,7 +337,7 @@ class Tokenizer
                 $this->scopeStack[] = $this->processScope($capture->scope(), $pattern);
             }
 
-            if ($capture->hasPatterns()) {            
+            if ($capture->hasPatterns()) {
                 // Until we reach the end of the capture group.
                 while ($this->linePosition < $groupEnd) {
                     $closest = false;
@@ -469,7 +465,7 @@ class Tokenizer
 
                         // If we can't see the `end` pattern, we should just continue.
                         if ($endMatched === false) {
-                            throw new UnreachableException("End pattern cannot be found.");
+                            throw new UnreachableException('End pattern cannot be found.');
                         }
 
                         // If we can see the `end` pattern, we should process it.

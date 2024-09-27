@@ -3,13 +3,13 @@
 namespace Phiki\Grammar;
 
 use Phiki\Contracts\PatternCollectionInterface;
-use Phiki\Tokenizer;
 use Phiki\MatchedPattern;
+use Phiki\Tokenizer;
 
 class CollectionPattern extends Pattern implements PatternCollectionInterface
 {
     /**
-     * @param Pattern[] $patterns
+     * @param  Pattern[]  $patterns
      */
     public function __construct(
         public array $patterns,

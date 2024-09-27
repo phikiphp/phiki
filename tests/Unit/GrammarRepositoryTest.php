@@ -25,7 +25,7 @@ describe('GrammarRepository', function () {
 
     it('can register a custom grammar using a file path', function () {
         $grammarRepository = new GrammarRepository;
-        $grammarRepository->register('example', __DIR__ . '/../Fixtures/example.json');
+        $grammarRepository->register('example', __DIR__.'/../Fixtures/example.json');
 
         $grammar = $grammarRepository->get('example');
 
@@ -37,7 +37,7 @@ describe('GrammarRepository', function () {
     it('can register a custom grammar using a grammar object', function () {
         $grammarRepository = new GrammarRepository;
         $grammarRepository->register('example', Grammar::parse([
-            'scopeName' => 'source.example'
+            'scopeName' => 'source.example',
         ]));
 
         $grammar = $grammarRepository->get('example');
