@@ -38,11 +38,23 @@ describe('html', function () {
         ]);
     });
 
-    it('correctly tokenizes a tag with attributes', function () {
-        $tokens = html('<h1 class="foo"></h1>');
+    it('correctly tokenizes a tag with valueless attributes', function () {
+        $tokens = html('<h1 hidden></h1>');
 
-        dd($tokens);
-    })->skip();
+        expect($tokens)->toEqualCanonicalizing([
+            [
+                new Token(['text.html.basic', 'meta.tag.structure.h1.start.html', 'punctuation.definition.tag.begin.html'], '<', 0, 1),
+                new Token(['text.html.basic', 'meta.tag.structure.h1.start.html', 'entity.name.tag.html'], 'h1', 1, 3),
+                new Token(['text.html.basic', 'meta.tag.structure.h1.start.html'], ' ', 3, 4),
+                new Token(['text.html.basic', 'meta.tag.structure.h1.start.html', 'meta.attribute.hidden.html', 'entity.other.attribute-name.html'], 'hidden', 4, 10),
+                new Token(['text.html.basic', 'meta.tag.structure.h1.start.html', 'punctuation.definition.tag.end.html'], '>', 10, 11),
+                new Token(['text.html.basic', 'meta.tag.structure.h1.end.html', 'punctuation.definition.tag.begin.html'], '</', 11, 13),
+                new Token(['text.html.basic', 'meta.tag.structure.h1.end.html', 'entity.name.tag.html'], 'h1', 13, 15),
+                new Token(['text.html.basic', 'meta.tag.structure.h1.end.html', 'punctuation.definition.tag.end.html'], '>', 15, 16),
+                new Token(['text.html.basic'], "\n", 16, 16)
+            ]
+        ]);
+    });
 });
 
 function html(string $input): array
