@@ -10,6 +10,7 @@ use Phiki\MatchedPattern;
 class EndPattern extends Pattern implements PatternCollectionInterface, ContainsCapturesInterface
 {
     public function __construct(
+        public MatchedPattern $begin,
         public string $end,
         public ?string $name,
         public ?string $contentName,
@@ -42,7 +43,9 @@ class EndPattern extends Pattern implements PatternCollectionInterface, Contains
 
     public function tryMatch(Tokenizer $tokenizer, string $lineText, int $linePosition, ?int $cannotExceed = null): MatchedPattern|false
     {
-        $regex = $this->end;
+        $regex = preg_replace_callback('/\\\\(\d+)/', function ($matches) {
+            return $this->begin->matches[$matches[1]][0] ?? $matches[0];
+        }, $this->end);
 
         if (preg_match('/' . str_replace('/', '\/', $regex) . '/u', $lineText, $matches, PREG_OFFSET_CAPTURE, $linePosition) !== 1) {
             return false;

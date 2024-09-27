@@ -60,9 +60,10 @@ class BeginEndPattern extends Pattern implements PatternCollectionInterface, Con
         return count($this->beginCaptures) > 0 ? $this->beginCaptures : $this->captures;
     }
 
-    public function createEndPattern(): EndPattern
+    public function createEndPattern(MatchedPattern $self): EndPattern
     {
         return new EndPattern(
+            $self,
             $this->end,
             $this->name,
             $this->contentName,

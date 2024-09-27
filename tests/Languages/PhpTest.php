@@ -51,8 +51,6 @@ describe('php', function () {
     it('correctly tokenizes a class with extends', function () {
         $tokens = php('class A extends B {}');
 
-        // dd($tokens);
-
         expect($tokens)->toEqualCanonicalizing([
             [
                 new Token(['source.php', 'meta.class.php', 'storage.type.class.php'], 'class', 0, 5),

@@ -27,7 +27,7 @@ class Phiki
     public function codeToHtml(string $code, string $grammar, string $theme): string
     {
         $tokens = $this->codeToTokens($code, $grammar);
-
+        dd($tokens);
         $theme = $this->themeRepository->get($theme);
         $styles = new ThemeStyles($theme);
         $highlighter = new Highlighter($styles);

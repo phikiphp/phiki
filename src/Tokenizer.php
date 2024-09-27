@@ -57,13 +57,12 @@ class Tokenizer
             $matched = $this->match($lineText);
             $endIsMatched = false;
 
+            // DEBUG WHY NOWDOC ISN'T HIGHLIGHTING OPENING TAGS PROPERLY.
+
             // Some patterns will include `$self`. Since we're not fixing all patterns to match at the end of the previous match
             // we need to check if we're looking for an `end` pattern that is closer than the matched subpattern.
-            // FIXME: Duplicate method call here, not great for performance.
-            if ($matched !== false && $root instanceof EndPattern && $root->tryMatch($this, $lineText, $this->linePosition) !== false) {
-                $endMatched = $root->tryMatch($this, $lineText, $this->linePosition);
-
-                if ($endMatched->offset() <= $matched->offset() && $endMatched->text() !== '') {
+            if ($matched !== false && $root instanceof EndPattern && $endMatched = $root->tryMatch($this, $lineText, $this->linePosition)) {
+                if ($endMatched->offset() < $matched->offset()) {
                     $matched = $endMatched;
                     $endIsMatched = true;
                 }
@@ -99,10 +98,6 @@ class Tokenizer
 
             if ($endIsMatched && $root->scope() && count($this->scopeStack) > 1) {
                 array_pop($this->scopeStack);
-            }
-
-            if ($endIsMatched) {
-                array_pop($this->beginStack);
             }
         }
     }
@@ -190,7 +185,7 @@ class Tokenizer
         }
         
         // "include": "scope"
-        return $this->grammarRepository->getFromScope($this->grammar->scopeName);
+        return $this->grammarRepository->getFromScope($pattern->getScopeName());
     }
 
     protected function process(MatchedPattern $matched, int $line, string $lineText): void
@@ -241,8 +236,6 @@ class Tokenizer
         }
 
         if ($matched->pattern instanceof BeginEndPattern) {
-            $this->beginStack[] = $matched;
-
             if ($matched->pattern->scope()) {
                 $this->scopeStack[] = $this->processScope($matched->pattern->scope(), $matched);
             }
@@ -262,7 +255,7 @@ class Tokenizer
                 $this->linePosition = $matched->end();
             }
 
-            $endPattern = $matched->pattern->createEndPattern();
+            $endPattern = $matched->pattern->createEndPattern($matched);
 
             if ($endPattern->hasPatterns()) {
                 $this->patternStack[] = $endPattern;
@@ -284,15 +277,13 @@ class Tokenizer
             if ($matched->pattern->scope()) {
                 array_pop($this->scopeStack);
             }
-
-            array_pop($this->beginStack);
         }
 
         if ($matched->pattern instanceof EndPattern) {
             // FIXME: This is a bit of hack. There's a bug somewhere that is incorrectly popping the end scope off
             // of the stack before we're done with that specific scope. This will prevent this from happening.
-            if ($matched->pattern->scope() && ! in_array($this->processScope($matched->pattern->scope(), end($this->beginStack)), $this->scopeStack)) {
-                $this->scopeStack[] = $this->processScope($matched->pattern->scope(), end($this->beginStack));
+            if ($matched->pattern->scope() && ! in_array($this->processScope($matched->pattern->scope(), $matched->pattern->begin), $this->scopeStack)) {
+                $this->scopeStack[] = $this->processScope($matched->pattern->scope(), $matched->pattern->begin);
             }
 
             if ($matched->pattern->hasCaptures()) {
@@ -428,7 +419,7 @@ class Tokenizer
                             $this->linePosition = $closest->end();
                         }
 
-                        $endPattern = $closest->pattern->createEndPattern();
+                        $endPattern = $closest->pattern->createEndPattern($closest);
 
                         if ($endPattern->hasPatterns()) {
                             $onlyPatternsPattern = new CollectionPattern($endPattern->getPatterns());
@@ -509,6 +500,17 @@ class Tokenizer
             if ($capture->scope()) {
                 array_pop($this->scopeStack);
             }
+        }
+
+        if ($this->linePosition < $pattern->end()) {
+            $this->tokens[$line][] = new Token(
+                $this->scopeStack,
+                substr($lineText, $this->linePosition, $pattern->end() - $this->linePosition),
+                $this->linePosition,
+                $pattern->end(),
+            );
+
+            $this->linePosition = $pattern->end();
         }
     }
 
