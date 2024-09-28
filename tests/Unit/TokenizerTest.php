@@ -200,7 +200,8 @@ describe('subpattern includes', function () {
 
         expect($tokens)->toEqualCanonicalizing([
             [
-                new Token(['source.test', 'variable.other.php'], '$hello', 0, 6),
+                new Token(['source.test', 'variable.other.php', 'punctuation.definition.variable.php'], '$', 0, 1),
+                new Token(['source.test', 'variable.other.php'], 'hello', 1, 6),
                 new Token(['source.test'], "\n", 6, 7),
             ],
         ]);

@@ -2,7 +2,7 @@
 
 namespace Phiki;
 
-readonly class Token
+class Token
 {
     public function __construct(
         public array $scopes,

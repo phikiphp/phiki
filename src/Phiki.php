@@ -4,6 +4,7 @@ namespace Phiki;
 
 use Phiki\Contracts\GrammarRepositoryInterface;
 use Phiki\Contracts\ThemeRepositoryInterface;
+use Phiki\Grammar\Grammar;
 
 /**
  * @method static string codeToHtml(string $code, string $grammar, string $theme): string
@@ -15,16 +16,16 @@ class Phiki
         protected ThemeRepositoryInterface $themeRepository = new ThemeRepository,
     ) {}
 
-    public function codeToTokens(string $code, string $grammar): array
+    public function codeToTokens(string $code, string|Grammar $grammar): array
     {
-        $grammar = $this->grammarRepository->get($grammar);
+        $grammar = is_string($grammar) ? $this->grammarRepository->get($grammar) : $grammar;
 
         $tokenizer = new Tokenizer($grammar, $this->grammarRepository);
 
         return $tokenizer->tokenize($code);
     }
 
-    public function codeToHtml(string $code, string $grammar, string $theme): string
+    public function codeToHtml(string $code, string|Grammar $grammar, string $theme): string
     {
         $tokens = $this->codeToTokens($code, $grammar);
         // dd($tokens);

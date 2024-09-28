@@ -480,17 +480,61 @@ class Tokenizer
                 }
 
                 $this->linePosition = $groupEnd;
-            }
-
-            if ($this->linePosition < $groupEnd) {
-                $this->tokens[$line][] = new Token(
+            } elseif ($group[0] !== '') {
+                $token = new Token(
                     $this->scopeStack,
                     $group[0],
                     $groupStart,
                     $groupEnd,
                 );
 
-                $this->linePosition = $groupEnd;
+                if ($token->start < $this->linePosition) {
+                    $newTokens = [];
+                    
+                    for ($i = count($this->tokens[$line]) - 1; $i >= 0; $i--) {
+                        $previous = $this->tokens[$line][$i];
+
+                        // New token starts before this token.
+                        if ($token->start < $previous->start) {
+                            continue;
+                        }
+
+                        // New token ends after this token. This should in theory never happen since this capture group is nested
+                        // meaning it can't theoretically end after the target token.
+                        if ($token->end > $previous->end) {
+                            break;
+                        }
+
+                        $newPrevious = clone $previous;
+                        $newPrevious->text = substr($previous->text, 0, $token->start - $previous->start);
+                        $newPrevious->end = $token->start;
+
+                        if ($newPrevious->text !== '') {
+                            $newTokens[] = $newPrevious;    
+                        }
+                        
+                        $token->scopes = $this->mergeScopes($previous->scopes, $token->scopes);
+
+                        $newTokens[] = $token;
+
+                        $postText = substr($previous->text, $token->end - $previous->start);
+                        $postStart = $token->end;
+
+                        if ($postText !== '') {
+                            $newTokens[] = new Token(
+                                $previous->scopes,
+                                $postText,
+                                $postStart,
+                                $previous->end,
+                            );
+                        }
+
+                        array_splice($this->tokens[$line], $i, 1, $newTokens);
+                    }
+                } else {
+                    $this->tokens[$line][] = $token;
+                    $this->linePosition = $groupEnd;
+                }
             }
 
             if ($capture->scope()) {
@@ -508,6 +552,13 @@ class Tokenizer
 
             $this->linePosition = $pattern->end();
         }
+    }
+
+    protected function mergeScopes(array $a, array $b): array
+    {
+        $scopes = array_merge($a, $b);
+
+        return array_values(array_unique($scopes));
     }
 
     protected function processScope(string $scope, MatchedPattern $pattern): string
