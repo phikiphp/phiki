@@ -14,11 +14,9 @@ use Phiki\Phiki;
 require_once __DIR__.'/vendor/autoload.php';
 
 echo Phiki::default()->codeToHtml(
-    <<<'PHP'
-    <<<'HTML'
-    <h1>Testing</h1>
-    HTML;
-    PHP,
-    'php',
+    <<<'BLADE'
+    <h1>{{ $test }}</h1>
+    BLADE,
+    'blade',
     'github-dark'
 );

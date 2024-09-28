@@ -31,7 +31,13 @@ class GrammarParser
             $repository[$name] = $this->pattern($pattern);
         }
 
-        return new Grammar($scopeName, $patterns, $repository);
+        $injections = [];
+
+        foreach ($grammar['injections'] ?? [] as $name => $injection) {
+            $injections[$name] = $this->pattern($injection);
+        }
+
+        return new Grammar($scopeName, $patterns, $repository, $injections);
     }
 
     protected function pattern(array $pattern): Pattern
