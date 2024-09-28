@@ -56,8 +56,6 @@ class Tokenizer
             $matched = $this->match($lineText);
             $endIsMatched = false;
 
-            // DEBUG WHY NOWDOC ISN'T HIGHLIGHTING OPENING TAGS PROPERLY.
-
             // Some patterns will include `$self`. Since we're not fixing all patterns to match at the end of the previous match
             // we need to check if we're looking for an `end` pattern that is closer than the matched subpattern.
             if ($matched !== false && $root instanceof EndPattern && $endMatched = $root->tryMatch($this, $lineText, $this->linePosition)) {
@@ -90,6 +88,10 @@ class Tokenizer
             // on any capture patterns etc.
             if ($endIsMatched) {
                 array_pop($this->patternStack);
+
+                if ($root->contentName) {
+                    array_pop($this->scopeStack);
+                }
             }
 
             // Match found – process pattern rules and continue.
@@ -256,10 +258,18 @@ class Tokenizer
 
             $endPattern = $matched->pattern->createEndPattern($matched);
 
+            if ($matched->pattern->contentName) {
+                $this->scopeStack[] = $matched->pattern->contentName;
+            }
+
             if ($endPattern->hasPatterns()) {
                 $this->patternStack[] = $endPattern;
 
                 return;
+            }
+
+            if ($matched->pattern->contentName) {
+                array_pop($this->scopeStack);
             }
 
             $endMatched = $endPattern->tryMatch($this, $lineText, $this->linePosition);
@@ -490,7 +500,7 @@ class Tokenizer
 
                 if ($token->start < $this->linePosition) {
                     $newTokens = [];
-                    
+
                     for ($i = count($this->tokens[$line]) - 1; $i >= 0; $i--) {
                         $previous = $this->tokens[$line][$i];
 
@@ -510,9 +520,9 @@ class Tokenizer
                         $newPrevious->end = $token->start;
 
                         if ($newPrevious->text !== '') {
-                            $newTokens[] = $newPrevious;    
+                            $newTokens[] = $newPrevious;
                         }
-                        
+
                         $token->scopes = $this->mergeScopes($previous->scopes, $token->scopes);
 
                         $newTokens[] = $token;
