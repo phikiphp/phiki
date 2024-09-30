@@ -1,0 +1,24 @@
+<?php
+
+namespace Phiki\Grammar\Injections;
+
+use Phiki\Contracts\InjectionMatcherInterface;
+use Phiki\Contracts\PatternInterface;
+
+class Injection implements InjectionMatcherInterface
+{
+    public function __construct(
+        public Selector $selector,
+        public PatternInterface $pattern,
+    ) {}
+
+    public function getSelector(): Selector
+    {
+        return $this->selector;
+    }
+
+    public function matches(array $scopes): bool
+    {
+        dd();
+    }
+}
