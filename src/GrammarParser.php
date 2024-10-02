@@ -27,6 +27,8 @@ class GrammarParser
 {
     protected string $scopeName;
 
+    protected bool $injection = false;
+
     public function parse(array $grammar): Grammar
     {
         if (! isset($grammar['scopeName'])) {
@@ -58,6 +60,7 @@ class GrammarParser
                 $pattern['match'],
                 $pattern['name'] ?? null,
                 $this->captures($pattern['captures'] ?? []),
+                injection: $this->injection,
             );
         }
 
@@ -71,6 +74,7 @@ class GrammarParser
                 $this->captures($pattern['endCaptures'] ?? []),
                 $this->captures($pattern['captures'] ?? []),
                 $this->patterns($pattern['patterns'] ?? []),
+                injection: $this->injection,
             );
         }
 
@@ -87,11 +91,11 @@ class GrammarParser
                 [$reference, $scopeName] = [null, $pattern['include']];
             }
 
-            return new IncludePattern($reference, $scopeName);
+            return new IncludePattern($reference, $scopeName, injection: $this->injection,);
         }
 
         if (isset($pattern['patterns'])) {
-            return new CollectionPattern($this->patterns($pattern['patterns']));
+            return new CollectionPattern($this->patterns($pattern['patterns']), injection: $this->injection);
         }
 
         throw new UnreachableException('Unknown pattern type: '.json_encode($pattern));
@@ -156,7 +160,14 @@ class GrammarParser
             }
         };
 
-        return new Injection($this->selector($input), $this->pattern($injection));
+        $this->injection = true;
+
+        $selector = $this->selector($input);
+        $pattern = $this->pattern($injection);
+
+        $this->injection = false;
+
+        return new Injection($selector, $pattern);
     }
 
     protected function selector(InjectionSelectorParserInputInterface $input): Selector
