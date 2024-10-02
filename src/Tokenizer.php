@@ -62,7 +62,7 @@ class Tokenizer
             // Some patterns will include `$self`. Since we're not fixing all patterns to match at the end of the previous match
             // we need to check if we're looking for an `end` pattern that is closer than the matched subpattern.
             if ($matched !== false && $root instanceof EndPattern && $endMatched = $root->tryMatch($this, $lineText, $this->linePosition)) {
-                if ($endMatched->offset() < $matched->offset()) {
+                if ($endMatched->offset() <= $matched->offset()) {
                     $matched = $endMatched;
                     $endIsMatched = true;
                 }

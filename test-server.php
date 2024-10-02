@@ -13,11 +13,11 @@ use Phiki\Phiki;
 
 require_once __DIR__.'/vendor/autoload.php';
 
-echo Phiki::default()->codeToHtml(
+dd(Phiki::default()->codeToTokens(
     <<<'BLADE'
-    @if($foo === true)
-    @endif
+    @php
+    @endphp
     BLADE,
     'blade',
     'github-dark'
-);
+));
