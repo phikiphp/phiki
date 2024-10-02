@@ -46,4 +46,15 @@ describe('GrammarRepository', function () {
             ->toBeInstanceOf(Grammar::class)
             ->toHaveProperty('scopeName', 'source.example');
     });
+
+    it('resolves aliases', function () {
+        $grammarRepository = new GrammarRepository;
+        $grammarRepository->alias('bash', 'shellscript');
+
+        $grammar = $grammarRepository->get('bash');
+
+        expect($grammar)
+            ->toBeInstanceOf(Grammar::class)
+            ->toHaveProperty('scopeName', 'source.shell');
+    });
 });

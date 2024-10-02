@@ -12,12 +12,18 @@ class GrammarRepository implements GrammarRepositoryInterface
         'blade' => __DIR__.'/../languages/blade.json',
         'php' => __DIR__.'/../languages/php.json',
         'html' => __DIR__.'/../languages/html.json',
+        'shellscript' => __DIR__.'/../languages/shellscript.json',
     ];
 
     protected array $scopesToGrammar = [
         'text.html.basic' => 'html',
         'text.html.php.blade' => 'blade',
         'source.php' => 'php',
+        'source.shell' => 'shellscript',
+    ];
+
+    protected array $aliases = [
+        'bash' => 'shellscript',
     ];
 
     public function get(string $name): Grammar
@@ -26,6 +32,7 @@ class GrammarRepository implements GrammarRepositoryInterface
             throw UnrecognisedGrammarException::make($name);
         }
 
+        $name = $this->aliases[$name] ?? $name;
         $grammar = $this->grammars[$name];
 
         if ($grammar instanceof Grammar) {
@@ -48,7 +55,12 @@ class GrammarRepository implements GrammarRepositoryInterface
 
     public function has(string $name): bool
     {
-        return isset($this->grammars[$name]);
+        return isset($this->grammars[$name]) || isset($this->aliases[$name]);
+    }
+
+    public function alias(string $alias, string $target): void
+    {
+        $this->aliases[$alias] = $target;
     }
 
     public function register(string $name, string|Grammar $pathOrGrammar): void
