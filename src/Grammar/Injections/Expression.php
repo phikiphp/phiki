@@ -12,6 +12,15 @@ class Expression implements InjectionMatcherInterface
         public bool $negated = false,
     ) {}
 
+    public function getPrefix(array $scopes): ?Prefix
+    {
+        if (! $this->matches($scopes)) {
+            return null;
+        }
+
+        return $this->child->getPrefix($scopes);
+    }
+
     public function matches(array $scopes): bool
     {
         $result = $this->child->matches($scopes);

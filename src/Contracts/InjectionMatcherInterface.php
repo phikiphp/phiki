@@ -2,6 +2,8 @@
 
 namespace Phiki\Contracts;
 
+use Phiki\Grammar\Injections\Prefix;
+
 interface InjectionMatcherInterface
 {
     /**
@@ -10,4 +12,12 @@ interface InjectionMatcherInterface
      * @param  string[]  $scopes
      */
     public function matches(array $scopes): bool;
+
+    /**
+     * Get the prefix position for the node.
+     * 
+     * @param string[]  $scopes
+     * @return \Phiki\Grammar\Injections\Prefix|null
+     */
+    public function getPrefix(array $scopes): ?Prefix;
 }

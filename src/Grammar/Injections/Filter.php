@@ -11,6 +11,15 @@ class Filter implements InjectionMatcherInterface
         public Prefix $prefix,
     ) {}
 
+    public function getPrefix(array $scopes): ?Prefix
+    {
+        if (! $this->matches($scopes)) {
+            return null;
+        }
+
+        return $this->prefix;
+    }
+
     public function matches(array $scopes): bool
     {
         return $this->child->matches($scopes);

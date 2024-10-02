@@ -12,6 +12,7 @@ use Phiki\Grammar\CollectionPattern;
 use Phiki\Grammar\EndPattern;
 use Phiki\Grammar\Grammar;
 use Phiki\Grammar\IncludePattern;
+use Phiki\Grammar\Injections\Prefix;
 use Phiki\Grammar\MatchPattern;
 use Phiki\Grammar\Pattern;
 
@@ -24,6 +25,8 @@ class Tokenizer
     protected array $beginStack = [];
 
     protected array $tokens = [];
+
+    protected bool $hasActiveInjection = false;
 
     protected int $linePosition = 0;
 
@@ -126,7 +129,28 @@ class Tokenizer
             throw new IndeterminateStateException('Root patterns must contain child patterns and implement '.PatternCollectionInterface::class);
         }
 
-        foreach ($root->getPatterns() as $pattern) {
+        $patterns = $root->getPatterns();
+
+        if ($this->hasActiveInjection === false && $this->grammar->hasInjections()) {
+            foreach ($this->grammar->getInjections() as $injection) {
+                if (! $injection->matches($this->scopeStack)) {
+                    continue;
+                }
+
+                $prefix = $injection->getPrefix($this->scopeStack);
+
+                if ($prefix === Prefix::Left) {
+                    $patterns = [$injection->pattern, ...$patterns];
+                } elseif ($prefix === null || $prefix === Prefix::Right) {
+                    $patterns = [...$patterns, $injection->pattern];
+                }
+
+                $this->hasActiveInjection = true;
+                break;
+            }
+        }
+
+        foreach ($patterns as $pattern) {
             if ($pattern instanceof CollectionPattern) {
                 $matched = $this->matchUsing($lineText, $pattern->getPatterns());
             } else {

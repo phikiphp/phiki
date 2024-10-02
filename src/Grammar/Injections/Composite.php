@@ -13,6 +13,15 @@ class Composite implements InjectionMatcherInterface
         public array $expressions,
     ) {}
 
+    public function getPrefix(array $scopes): ?Prefix
+    {
+        if (! $this->matches($scopes)) {
+            return null;
+        }
+
+        return $this->expressions[0]->getPrefix($scopes);
+    }
+
     public function matches(array $scopes): bool
     {
         $carry = false;

@@ -10,6 +10,11 @@ class Path implements InjectionMatcherInterface
         public array $scopes,
     ) {}
 
+    public function getPrefix(array $scopes): ?Prefix
+    {
+        return null;
+    }
+
     public function matches(array $scopes): bool
     {
         $index = 0;

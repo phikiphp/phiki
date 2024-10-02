@@ -13,6 +13,17 @@ class Selector implements InjectionMatcherInterface
         public array $composites,
     ) {}
 
+    public function getPrefix(array $scopes): ?Prefix
+    {
+        foreach ($this->composites as $composite) {
+            if ($composite->matches($scopes)) {
+                return $composite->getPrefix($scopes);
+            }
+        }
+
+        return null;
+    }
+
     public function matches(array $scopes): bool
     {
         foreach ($this->composites as $composite) {

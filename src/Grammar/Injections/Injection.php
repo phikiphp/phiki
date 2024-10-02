@@ -17,6 +17,11 @@ class Injection implements InjectionMatcherInterface
         return $this->selector;
     }
 
+    public function getPrefix(array $scopes): ?Prefix
+    {
+        return $this->selector->getPrefix($scopes);
+    }
+
     public function matches(array $scopes): bool
     {
         return $this->selector->matches($scopes);
