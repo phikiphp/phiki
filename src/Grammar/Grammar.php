@@ -12,12 +12,25 @@ final class Grammar extends Pattern implements PatternCollectionInterface
     /**
      * @param  Pattern[]  $patterns
      * @param  array<string, Pattern>  $repository
+     * @param  Injections\Injection[]  $injections
      */
     public function __construct(
         public string $scopeName,
         public array $patterns,
         public array $repository,
+        public array $injections,
     ) {}
+
+    /** @return Injections\Injection[] */
+    public function getInjections(): array
+    {
+        return $this->injections;
+    }
+
+    public function hasInjections(): bool
+    {
+        return count($this->injections) > 0;
+    }
 
     public function getPatterns(): array
     {

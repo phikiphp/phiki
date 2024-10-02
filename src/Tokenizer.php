@@ -12,6 +12,7 @@ use Phiki\Grammar\CollectionPattern;
 use Phiki\Grammar\EndPattern;
 use Phiki\Grammar\Grammar;
 use Phiki\Grammar\IncludePattern;
+use Phiki\Grammar\Injections\Prefix;
 use Phiki\Grammar\MatchPattern;
 use Phiki\Grammar\Pattern;
 
@@ -24,6 +25,8 @@ class Tokenizer
     protected array $beginStack = [];
 
     protected array $tokens = [];
+
+    protected bool $hasActiveInjection = false;
 
     protected int $linePosition = 0;
 
@@ -59,7 +62,7 @@ class Tokenizer
             // Some patterns will include `$self`. Since we're not fixing all patterns to match at the end of the previous match
             // we need to check if we're looking for an `end` pattern that is closer than the matched subpattern.
             if ($matched !== false && $root instanceof EndPattern && $endMatched = $root->tryMatch($this, $lineText, $this->linePosition)) {
-                if ($endMatched->offset() < $matched->offset()) {
+                if ($endMatched->offset() <= $matched->offset()) {
                     $matched = $endMatched;
                     $endIsMatched = true;
                 }
@@ -79,6 +82,8 @@ class Tokenizer
                     $this->linePosition,
                     strlen($lineText) - 1,
                 );
+
+                $this->hasActiveInjection = false;
 
                 break;
             }
@@ -100,6 +105,8 @@ class Tokenizer
             if ($endIsMatched && $root->scope() && count($this->scopeStack) > 1) {
                 array_pop($this->scopeStack);
             }
+
+            $this->hasActiveInjection = false;
         }
     }
 
@@ -126,7 +133,28 @@ class Tokenizer
             throw new IndeterminateStateException('Root patterns must contain child patterns and implement '.PatternCollectionInterface::class);
         }
 
-        foreach ($root->getPatterns() as $pattern) {
+        $patterns = $root->getPatterns();
+
+        if ($this->hasActiveInjection === false && $this->grammar->hasInjections()) {
+            foreach ($this->grammar->getInjections() as $injection) {
+                if (! $injection->matches($this->scopeStack)) {
+                    continue;
+                }
+
+                $prefix = $injection->getPrefix($this->scopeStack);
+
+                if ($prefix === Prefix::Left) {
+                    $patterns = [$injection->pattern, ...$patterns];
+                } elseif ($prefix === null || $prefix === Prefix::Right) {
+                    $patterns = [...$patterns, $injection->pattern];
+                }
+
+                $this->hasActiveInjection = true;
+                break;
+            }
+        }
+
+        foreach ($patterns as $pattern) {
             if ($pattern instanceof CollectionPattern) {
                 $matched = $this->matchUsing($lineText, $pattern->getPatterns());
             } else {
@@ -324,7 +352,7 @@ class Tokenizer
         foreach ($captures as $capture) {
             $group = $pattern->getCaptureGroup($capture->index);
 
-            if ($group === null) {
+            if ($group === null || $group[1] === -1) {
                 continue;
             }
 

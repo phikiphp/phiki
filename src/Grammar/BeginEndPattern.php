@@ -18,6 +18,7 @@ class BeginEndPattern extends Pattern implements ContainsCapturesInterface, Patt
         public array $endCaptures = [],
         public array $captures = [],
         public array $patterns = [],
+        public bool $injection = false,
     ) {}
 
     public function getPatterns(): array

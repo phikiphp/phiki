@@ -15,6 +15,7 @@ class MatchPattern extends Pattern implements ContainsCapturesInterface
         public string $match,
         public ?string $name,
         public array $captures = [],
+        public bool $injection = false,
     ) {}
 
     public function tryMatch(Tokenizer $tokenizer, string $lineText, int $linePosition, ?int $cannotExceed = null): MatchedPattern|false

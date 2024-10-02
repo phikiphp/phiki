@@ -6,9 +6,6 @@ use Phiki\Contracts\GrammarRepositoryInterface;
 use Phiki\Contracts\ThemeRepositoryInterface;
 use Phiki\Grammar\Grammar;
 
-/**
- * @method static string codeToHtml(string $code, string $grammar, string $theme): string
- */
 class Phiki
 {
     public function __construct(

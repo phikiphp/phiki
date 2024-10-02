@@ -13,6 +13,7 @@ class CollectionPattern extends Pattern implements PatternCollectionInterface
      */
     public function __construct(
         public array $patterns,
+        public bool $injection = false,
     ) {}
 
     public function getPatterns(): array
