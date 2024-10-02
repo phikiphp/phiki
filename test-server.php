@@ -15,7 +15,8 @@ require_once __DIR__.'/vendor/autoload.php';
 
 echo Phiki::default()->codeToHtml(
     <<<'BLADE'
-    <h1>{{ $test . foo() }}</h1>
+    @if($foo === true)
+    @endif
     BLADE,
     'blade',
     'github-dark'

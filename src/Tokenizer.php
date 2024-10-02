@@ -83,6 +83,8 @@ class Tokenizer
                     strlen($lineText) - 1,
                 );
 
+                $this->hasActiveInjection = false;
+
                 break;
             }
 
