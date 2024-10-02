@@ -14,6 +14,12 @@ class Expression implements InjectionMatcherInterface
 
     public function matches(array $scopes): bool
     {
-        dd();
+        $result = $this->child->matches($scopes);
+
+        if ($this->negated) {
+            return !$result;
+        }
+
+        return $result;
     }
 }

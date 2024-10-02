@@ -19,6 +19,6 @@ class Injection implements InjectionMatcherInterface
 
     public function matches(array $scopes): bool
     {
-        dd();
+        return $this->selector->matches($scopes);
     }
 }

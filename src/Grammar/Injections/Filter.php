@@ -13,6 +13,6 @@ class Filter implements InjectionMatcherInterface
 
     public function matches(array $scopes): bool
     {
-        dd();
+        return $this->child->matches($scopes);
     }
 }

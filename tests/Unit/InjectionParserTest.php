@@ -12,13 +12,13 @@ use Phiki\Grammar\Injections\Selector;
 describe('InjectionParser', function () {
     it('can parse a simple path', function () {
         $injection = injection('text.html.blade.php');
-        
+
         $selector = $injection->getSelector();
 
         expect($selector)->toBeInstanceOf(Selector::class);
         expect($selector->composites)->toBeArray();
         expect($selector->composites)->toHaveCount(1);
-        
+
         $composite = $selector->composites[0];
 
         expect($composite->expressions)->toBeArray();
@@ -169,7 +169,7 @@ function injection(string $selector): Injection
         'injections' => [
             $selector => [
                 'patterns' => [],
-            ]
+            ],
         ],
         'patterns' => [],
     ]);

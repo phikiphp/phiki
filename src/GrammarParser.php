@@ -126,7 +126,8 @@ class GrammarParser
 
     protected function injection(string $selector, array $injection): Injection
     {
-        $input = new class($selector) implements InjectionSelectorParserInputInterface {
+        $input = new class($selector) implements InjectionSelectorParserInputInterface
+        {
             private string $selector;
 
             private int $offset = 0;
@@ -157,7 +158,7 @@ class GrammarParser
 
         return new Injection($this->selector($input), $this->pattern($injection));
     }
-    
+
     protected function selector(InjectionSelectorParserInputInterface $input): Selector
     {
         $composites = [$this->composite($input)];
@@ -179,7 +180,7 @@ class GrammarParser
                 '&' => Operator::And,
                 '|' => Operator::Or,
                 '-' => Operator::Not,
-                default => throw new UnreachableException('Unrecognised operator in selector: ' . $input->current()),
+                default => throw new UnreachableException('Unrecognised operator in selector: '.$input->current()),
             };
 
             $input->next();
@@ -215,7 +216,7 @@ class GrammarParser
         $prefix = match ($input->current()) {
             'L' => Prefix::Left,
             'R' => Prefix::Right,
-            default => throw new UnreachableException('Unrecognised prefix in filter: ' . $input->current()),
+            default => throw new UnreachableException('Unrecognised prefix in filter: '.$input->current()),
         };
 
         $input->next();

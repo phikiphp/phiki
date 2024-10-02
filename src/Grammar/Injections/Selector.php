@@ -6,12 +6,21 @@ use Phiki\Contracts\InjectionMatcherInterface;
 
 class Selector implements InjectionMatcherInterface
 {
+    /**
+     * @param  array<Composite>  $composites
+     */
     public function __construct(
         public array $composites,
     ) {}
 
     public function matches(array $scopes): bool
     {
-        dd();
+        foreach ($this->composites as $composite) {
+            if ($composite->matches($scopes)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
