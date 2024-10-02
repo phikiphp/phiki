@@ -103,6 +103,8 @@ class Tokenizer
             if ($endIsMatched && $root->scope() && count($this->scopeStack) > 1) {
                 array_pop($this->scopeStack);
             }
+
+            $this->hasActiveInjection = false;
         }
     }
 
@@ -348,7 +350,7 @@ class Tokenizer
         foreach ($captures as $capture) {
             $group = $pattern->getCaptureGroup($capture->index);
 
-            if ($group === null) {
+            if ($group === null || $group[1] === -1) {
                 continue;
             }
 
