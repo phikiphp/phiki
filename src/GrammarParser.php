@@ -218,6 +218,9 @@ class GrammarParser
             default => throw new UnreachableException('Unrecognised prefix in filter: ' . $input->current()),
         };
 
+        $input->next();
+        $input->next();
+
         if ($input->current() === '(') {
             $child = $this->group($input);
         } else {
