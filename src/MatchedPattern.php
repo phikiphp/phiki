@@ -4,7 +4,7 @@ namespace Phiki;
 
 use Phiki\Contracts\PatternInterface;
 
-readonly class MatchedPattern
+class MatchedPattern
 {
     public function __construct(
         public PatternInterface $pattern,

@@ -9,6 +9,7 @@ $grammar = $_GET['grammar'] ?? 'php';
 $repository = new GrammarRepository();
 
 $sample = file_get_contents(__DIR__ . '/' . $grammar . '.sample');
+$tokens = (new Phiki($repository))->codeToTokens($sample, $grammar);
 $html = (new Phiki($repository))->codeToHtml($sample, $grammar, 'github-dark');
 
 ?>
@@ -57,6 +58,8 @@ $html = (new Phiki($repository))->codeToHtml($sample, $grammar, 'github-dark');
         </form>
 
         <?= $html ?>
+
+        <?php dump($tokens); ?>
     </main>
 </body>
 

@@ -16,7 +16,7 @@ use Phiki\Grammar\Injections\Prefix;
 use Phiki\Grammar\MatchPattern;
 use Phiki\Grammar\Pattern;
 
-class Tokenizer
+class TokenizerOld
 {
     protected array $patternStack = [];
 
@@ -156,23 +156,15 @@ class Tokenizer
         }
 
         foreach ($patterns as $pattern) {
-            $matched = $pattern->tryMatch($this, $lineText, $this->linePosition);
+            if ($pattern instanceof CollectionPattern) {
+                $matched = $this->matchUsing($lineText, $pattern->getPatterns());
+            } else {
+                $matched = $pattern->tryMatch($this, $lineText, $this->linePosition);
+            }
 
             // No match found. Move on to next pattern.
             if ($matched === false) {
                 continue;
-            }
-
-            if ($closest !== false && $pattern instanceof BeginEndPattern && $matched->text() === '') {
-                $this->patternStack[] = $pattern->createEndPattern($matched);
-
-                $nextMatch = $this->match($lineText);
-
-                array_pop($this->patternStack);
-
-                if ($nextMatch !== false && $nextMatch->pattern instanceof EndPattern && $nextMatch->text() === '') {
-                    continue;
-                }
             }
 
             // Match found and is same as current position. Return it.
@@ -230,7 +222,7 @@ class Tokenizer
     {
         if ($matched->offset() > $this->linePosition) {
             $this->tokens[$line][] = new Token(
-                $matched->pattern instanceof EndPattern && $matched->pattern->contentName !== null ? [...$this->scopeStack, $matched->pattern->contentName] : $this->scopeStack,
+                $this->scopeStack,
                 substr($lineText, $this->linePosition, $matched->offset() - $this->linePosition),
                 $this->linePosition,
                 $matched->offset(),
@@ -398,18 +390,10 @@ class Tokenizer
                             continue;
                         }
 
-                        // FIXME: I think there's a better way to do this.
-                        // Because we're trying to match the capture groups subpattern against the entire line of text,
-                        // it will sometimes consume text beyond the capture group. This is a hack to prevent that, but
-                        // I think we need to find a better way of doing these subpattern matches.
-                        if ($matched->end() > $groupEnd) {
-                            $matched->matches[0][0] = substr($matched->matches[0][0], 0, $groupEnd - $matched->end());
-                        }
-
                         // Match found and is same as current position. Return it.
                         if ($matched->offset() === $this->linePosition) {
                             $closest = $matched;
-                            $closestOffset = $this->linePosition + $matched->offset();
+                            $closestOffset = $matched->offset();
 
                             break;
                         }

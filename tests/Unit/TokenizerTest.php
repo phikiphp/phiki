@@ -580,7 +580,7 @@ describe('begin/end', function () {
                 new Token(['source.test', 'meta.block.test'], 'begin', 0, 5),
                 new Token(['source.test', 'meta.block.test', 'meta.begin.end.block.test'], ' ', 5, 6),
                 new Token(['source.test', 'meta.block.test', 'meta.begin.end.block.test', 'entity.name.test'], 'foo', 6, 9),
-                new Token(['source.test', 'meta.block.test'], ' ', 9, 10),
+                new Token(['source.test', 'meta.block.test', 'meta.begin.end.block.test'], ' ', 9, 10),
                 new Token(['source.test', 'meta.block.test'], 'end', 10, 13),
                 new Token(['source.test'], "\n", 13, 13),
             ],
