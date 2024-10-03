@@ -31,6 +31,7 @@ class Regex
         $pattern = preg_replace('/(?<!\\\)\//', '\\/', $this->pattern);
         $pattern = $this->convertEscapeSequences($pattern);
         $pattern = $this->convertUnicodeProperties($pattern);
+        $pattern = $this->escapeInvalidLeadingRangeCharacter($pattern);
 
         return $this->lowered = $pattern;
     }
@@ -58,6 +59,14 @@ class Regex
 
             return $matches[0];
         }, $pattern);
+
+        return $pattern;
+    }
+
+    protected function escapeInvalidLeadingRangeCharacter(string $pattern): string
+    {
+        // Escape invalid leading range function characters, e.g. [-...].
+        $pattern = preg_replace('/(?<!\\\)\[(-)/', '[\\$1', $pattern);
 
         return $pattern;
     }
