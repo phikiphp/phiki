@@ -13,6 +13,15 @@ class GrammarRepository implements GrammarRepositoryInterface
         'php' => __DIR__.'/../languages/php.json',
         'html' => __DIR__.'/../languages/html.json',
         'shellscript' => __DIR__.'/../languages/shellscript.json',
+        'javascript' => __DIR__.'/../languages/javascript.json',
+        'css' => __DIR__.'/../languages/css.json',
+        'json' => __DIR__.'/../languages/json.json',
+        'c' => __DIR__.'/../languages/c.json',
+        'toml' => __DIR__.'/../languages/toml.json',
+        'rust' => __DIR__.'/../languages/rust.json',
+        'yaml' => __DIR__.'/../languages/yaml.json',
+        'go' => __DIR__.'/../languages/go.json',
+        'jsx' => __DIR__.'/../languages/jsx.json',
     ];
 
     protected array $scopesToGrammar = [
@@ -20,10 +29,22 @@ class GrammarRepository implements GrammarRepositoryInterface
         'text.html.php.blade' => 'blade',
         'source.php' => 'php',
         'source.shell' => 'shellscript',
+        'source.js' => 'javascript',
+        'source.css' => 'css',
+        'source.json' => 'json',
+        'source.c' => 'c',
+        'source.toml' => 'toml',
+        'source.rust' => 'rust',
+        'source.yaml' => 'yaml',
+        'source.go' => 'go',
+        'source.js.jsx' => 'jsx',
     ];
 
     protected array $aliases = [
         'bash' => 'shellscript',
+        'js' => 'javascript',
+        'yml' => 'yaml',
+        'golang' => 'go',
     ];
 
     public function get(string $name): Grammar
