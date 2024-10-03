@@ -5,13 +5,14 @@ namespace Phiki\Grammar;
 use Phiki\Contracts\ContainsCapturesInterface;
 use Phiki\Contracts\PatternCollectionInterface;
 use Phiki\MatchedPattern;
+use Phiki\Regex;
 use Phiki\Tokenizer;
 
 class BeginEndPattern extends Pattern implements ContainsCapturesInterface, PatternCollectionInterface
 {
     public function __construct(
-        public string $begin,
-        public string $end,
+        public Regex $begin,
+        public Regex $end,
         public ?string $name,
         public ?string $contentName,
         public array $beginCaptures = [],
@@ -33,9 +34,7 @@ class BeginEndPattern extends Pattern implements ContainsCapturesInterface, Patt
 
     public function tryMatch(Tokenizer $tokenizer, string $lineText, int $linePosition, ?int $cannotExceed = null): MatchedPattern|false
     {
-        $regex = $this->begin;
-
-        if (preg_match('/'.$this->escapeDelimiters($regex).'/u', $lineText, $matches, PREG_OFFSET_CAPTURE, $linePosition) !== 1) {
+        if (preg_match('/'.$this->begin->get().'/u', $lineText, $matches, PREG_OFFSET_CAPTURE, $linePosition) !== 1) {
             return false;
         }
 

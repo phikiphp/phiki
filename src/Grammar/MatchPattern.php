@@ -4,6 +4,7 @@ namespace Phiki\Grammar;
 
 use Phiki\Contracts\ContainsCapturesInterface;
 use Phiki\MatchedPattern;
+use Phiki\Regex;
 use Phiki\Tokenizer;
 
 class MatchPattern extends Pattern implements ContainsCapturesInterface
@@ -12,7 +13,7 @@ class MatchPattern extends Pattern implements ContainsCapturesInterface
      * @param  Capture[]  $captures
      */
     public function __construct(
-        public string $match,
+        public Regex $match,
         public ?string $name,
         public array $captures = [],
         public bool $injection = false,
@@ -20,9 +21,7 @@ class MatchPattern extends Pattern implements ContainsCapturesInterface
 
     public function tryMatch(Tokenizer $tokenizer, string $lineText, int $linePosition, ?int $cannotExceed = null): MatchedPattern|false
     {
-        $regex = $this->match;
-
-        if (preg_match('/'.$this->escapeDelimiters($regex).'/u', $lineText, $matches, PREG_OFFSET_CAPTURE, $linePosition) !== 1) {
+        if (preg_match('/'.$this->match->get().'/u', $lineText, $matches, PREG_OFFSET_CAPTURE, $linePosition) !== 1) {
             return false;
         }
 

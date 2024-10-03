@@ -57,7 +57,7 @@ class GrammarParser
     {
         if (isset($pattern['match'])) {
             return new MatchPattern(
-                $pattern['match'],
+                new Regex($pattern['match']),
                 $pattern['name'] ?? null,
                 $this->captures($pattern['captures'] ?? []),
                 injection: $this->injection,
@@ -66,8 +66,8 @@ class GrammarParser
 
         if (isset($pattern['begin'], $pattern['end'])) {
             return new BeginEndPattern(
-                $pattern['begin'],
-                $pattern['end'],
+                new Regex($pattern['begin']),
+                new Regex($pattern['end']),
                 $pattern['name'] ?? null,
                 $pattern['contentName'] ?? null,
                 $this->captures($pattern['beginCaptures'] ?? []),
