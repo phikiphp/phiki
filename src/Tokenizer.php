@@ -60,6 +60,7 @@ class Tokenizer
             $matched = $this->match($lineText);
             $endIsMatched = false;
 
+            // FIXME: Move all of this end pattern checking into the `match` method!
             // Some patterns will include `$self`. Since we're not fixing all patterns to match at the end of the previous match
             // we need to check if we're looking for an `end` pattern that is closer than the matched subpattern.
             if ($matched !== false && $root instanceof EndPattern && $endMatched = $root->tryMatch($this, $lineText, $this->linePosition)) {
