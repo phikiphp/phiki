@@ -48,7 +48,7 @@ class EndPattern extends Pattern implements ContainsCapturesInterface, PatternCo
             return $this->begin->matches[$matches[1]][0] ?? $matches[0];
         }, $this->end);
 
-        if (preg_match('/'.str_replace('/', '\/', $regex).'/u', $lineText, $matches, PREG_OFFSET_CAPTURE, $linePosition) !== 1) {
+        if (preg_match('/'.$this->escapeDelimiters($regex).'/u', $lineText, $matches, PREG_OFFSET_CAPTURE, $linePosition) !== 1) {
             return false;
         }
 

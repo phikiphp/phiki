@@ -40,6 +40,10 @@
         }
     },
     "scripts": {
+        "sample": [
+            "Composer\\Config::disableProcessTimeout",
+            "php -S 127.0.0.1:8080 ./samples/sample.php"
+        ],
         "serve": [
             "Composer\\Config::disableProcessTimeout",
             "php -S 127.0.0.1:8080 ./test-server.php"

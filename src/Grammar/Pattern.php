@@ -16,4 +16,16 @@ abstract class Pattern implements PatternInterface
 
         return array_merge($scopes, [$scope]);
     }
+
+    /**
+     * This method will return the same RegEx pattern with any unescaped
+     * PHP delimiters escaped.
+     * 
+     * @param  string  $regex
+     * @return string
+     */
+    protected function escapeDelimiters(string $regex): string
+    {
+        return preg_replace('/(?<!\\\)\//', '\\/', $regex);
+    }
 }

@@ -67,4 +67,9 @@ class GrammarRepository implements GrammarRepositoryInterface
     {
         $this->grammars[$name] = $pathOrGrammar;
     }
+
+    public function getAllGrammarNames(): array
+    {
+        return array_keys($this->grammars);
+    }
 }

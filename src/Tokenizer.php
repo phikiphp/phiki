@@ -33,6 +33,7 @@ class Tokenizer
     public function __construct(
         protected Grammar $grammar,
         protected GrammarRepositoryInterface $grammarRepository = new GrammarRepository,
+        protected bool $strictMode = false,
     ) {}
 
     public function tokenize(string $input): array
@@ -191,7 +192,7 @@ class Tokenizer
         return $closest;
     }
 
-    public function resolve(IncludePattern $pattern): Pattern
+    public function resolve(IncludePattern $pattern): ?Pattern
     {
         // "include": "$self"
         if ($pattern->isSelf()) {
@@ -610,5 +611,10 @@ class Tokenizer
 
             return $group[0];
         }, $scope);
+    }
+
+    public function isInStrictMode(): bool
+    {
+        return $this->strictMode;
     }
 }

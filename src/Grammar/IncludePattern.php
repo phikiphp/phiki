@@ -2,6 +2,7 @@
 
 namespace Phiki\Grammar;
 
+use Phiki\Exceptions\UnrecognisedReferenceException;
 use Phiki\MatchedPattern;
 use Phiki\Tokenizer;
 
@@ -15,7 +16,17 @@ class IncludePattern extends Pattern
 
     public function tryMatch(Tokenizer $tokenizer, string $lineText, int $linePosition, ?int $cannotExceed = null): MatchedPattern|false
     {
-        return $tokenizer->resolve($this)->tryMatch($tokenizer, $lineText, $linePosition, $cannotExceed);
+        $resolved = $tokenizer->resolve($this);
+
+        if ($resolved !== null) {
+            return $resolved->tryMatch($tokenizer, $lineText, $linePosition, $cannotExceed);
+        }
+
+        if ($tokenizer->isInStrictMode()) {
+            throw UnrecognisedReferenceException::make($this->reference, $this->scopeName);
+        }
+
+        return false;
     }
 
     public function isSelf(): bool

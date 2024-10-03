@@ -11,13 +11,14 @@ class Phiki
     public function __construct(
         protected GrammarRepositoryInterface $grammarRepository = new GrammarRepository,
         protected ThemeRepositoryInterface $themeRepository = new ThemeRepository,
+        protected bool $strictMode = false,
     ) {}
 
     public function codeToTokens(string $code, string|Grammar $grammar): array
     {
         $grammar = is_string($grammar) ? $this->grammarRepository->get($grammar) : $grammar;
 
-        $tokenizer = new Tokenizer($grammar, $this->grammarRepository);
+        $tokenizer = new Tokenizer($grammar, $this->grammarRepository, $this->strictMode);
 
         return $tokenizer->tokenize($code);
     }
@@ -25,7 +26,7 @@ class Phiki
     public function codeToHtml(string $code, string|Grammar $grammar, string $theme): string
     {
         $tokens = $this->codeToTokens($code, $grammar);
-        // dd($tokens);
+
         $theme = $this->themeRepository->get($theme);
         $styles = new ThemeStyles($theme);
         $highlighter = new Highlighter($styles);
