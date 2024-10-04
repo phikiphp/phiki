@@ -2,8 +2,6 @@
 
 namespace Phiki;
 
-use Illuminate\Support\Arr;
-
 readonly class ThemeStyles
 {
     public string $name;
