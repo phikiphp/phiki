@@ -22,6 +22,7 @@ class GrammarRepository implements GrammarRepositoryInterface
         'yaml' => __DIR__.'/../languages/yaml.json',
         'go' => __DIR__.'/../languages/go.json',
         'jsx' => __DIR__.'/../languages/jsx.json',
+        'txt' => __DIR__ . '/../languages/txt.json',
     ];
 
     protected array $scopesToGrammar = [
@@ -38,6 +39,7 @@ class GrammarRepository implements GrammarRepositoryInterface
         'source.yaml' => 'yaml',
         'source.go' => 'go',
         'source.js.jsx' => 'jsx',
+        'text.txt' => 'txt',
     ];
 
     protected array $aliases = [
@@ -45,6 +47,8 @@ class GrammarRepository implements GrammarRepositoryInterface
         'js' => 'javascript',
         'yml' => 'yaml',
         'golang' => 'go',
+        'text' => 'txt',
+        'plaintext' => 'txt',
     ];
 
     public function get(string $name): Grammar
