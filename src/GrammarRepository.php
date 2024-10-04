@@ -44,6 +44,8 @@ class GrammarRepository implements GrammarRepositoryInterface
 
     protected array $aliases = [
         'bash' => 'shellscript',
+        'sh' => 'shellscript',
+        'shell' => 'shellscript',
         'js' => 'javascript',
         'yml' => 'yaml',
         'golang' => 'go',
