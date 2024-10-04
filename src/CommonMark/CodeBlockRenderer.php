@@ -22,7 +22,9 @@ class CodeBlockRenderer implements NodeRendererInterface
             throw new InvalidArgumentException('Block must be instance of ' . FencedCode::class);
         }
 
-        $grammar = $node->getInfoWords()[0] ?: 'txt';
+        preg_match('/[a-zA-Z]+/', $node->getInfoWords()[0] ?? 'txt', $matches);
+
+        $grammar = $matches[0];
         $code = rtrim($node->getLiteral(), "\n");
 
         return $this->phiki->codeToHtml($code, $grammar, $this->theme);
