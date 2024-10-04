@@ -23,7 +23,8 @@ class CodeBlockRenderer implements NodeRendererInterface
         }
 
         $grammar = $node->getInfoWords()[0];
+        $code = rtrim($node->getLiteral(), "\n");
 
-        return $this->phiki->codeToHtml($node->getLiteral(), $grammar, $this->theme);
+        return $this->phiki->codeToHtml($code, $grammar, $this->theme);
     }
 }
