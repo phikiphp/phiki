@@ -22,7 +22,7 @@ class CodeBlockRenderer implements NodeRendererInterface
             throw new InvalidArgumentException('Block must be instance of ' . FencedCode::class);
         }
 
-        preg_match('/[a-zA-Z]+/', $node->getInfoWords()[0] ?? 'txt', $matches);
+        preg_match('/[a-zA-Z]+/', $node->getInfoWords()[0] ?: 'txt', $matches);
 
         $grammar = $matches[0];
         $code = rtrim($node->getLiteral(), "\n");
