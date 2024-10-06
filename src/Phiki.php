@@ -29,6 +29,7 @@ class Phiki
 
         $theme = $this->themeRepository->get($theme);
         $styles = new ThemeStyles($theme);
+
         $highlighter = new Highlighter($styles);
         $htmlGenerator = new HtmlGenerator($styles);
 

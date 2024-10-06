@@ -25,6 +25,7 @@ class GrammarRepository implements GrammarRepositoryInterface
         'jsx' => __DIR__ . '/../languages/jsx.json',
         'txt' => __DIR__ . '/../languages/txt.json',
         'markdown' => __DIR__ . '/../languages/markdown.json',
+        'python' => __DIR__ . '/../languages/python.json',
     ];
 
     protected array $scopesToGrammar = [
@@ -44,6 +45,7 @@ class GrammarRepository implements GrammarRepositoryInterface
         'text.html.markdown' => 'markdown',
         'text.txt' => 'txt',
         'text.html.derivative' => 'html-derivative',
+        'source.python' => 'python',
     ];
 
     protected array $aliases = [
@@ -56,6 +58,7 @@ class GrammarRepository implements GrammarRepositoryInterface
         'text' => 'txt',
         'plaintext' => 'txt',
         'md' => 'markdown',
+        'py' => 'python',
     ];
 
     public function get(string $name): Grammar

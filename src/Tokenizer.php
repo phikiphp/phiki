@@ -75,6 +75,10 @@ class Tokenizer
             if (! $whileMatched) {
                 array_pop($this->patternStack);
 
+                if ($root->contentName) {
+                    array_pop($this->scopeStack);
+                }
+
                 if ($root->scope()) {
                     foreach ($root->scope() as $_) {
                         array_pop($this->scopeStack);
