@@ -3,12 +3,12 @@
 use Phiki\GrammarRepository;
 use Phiki\Phiki;
 
-require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__.'/../vendor/autoload.php';
 
 $grammar = $_GET['grammar'] ?? 'php';
-$repository = new GrammarRepository();
+$repository = new GrammarRepository;
 
-$sample = file_get_contents(__DIR__ . '/' . $grammar . '.sample');
+$sample = file_get_contents(__DIR__.'/'.$grammar.'.sample');
 $tokens = (new Phiki($repository))->codeToTokens($sample, $grammar);
 $html = (new Phiki($repository))->codeToHtml($sample, $grammar, 'github-dark');
 
@@ -49,11 +49,11 @@ $html = (new Phiki($repository))->codeToHtml($sample, $grammar, 'github-dark');
             x-data
             class="flex items-center gap-x-4">
             <select name="grammar" x-on:change="$root.submit()" class="text-neutral-950">
-                <?php foreach ($repository->getAllGrammarNames() as $g): ?>
+                <?php foreach ($repository->getAllGrammarNames() as $g) { ?>
                     <option value="<?= $g ?>" <?= $grammar === $g ? 'selected' : '' ?>>
                         <?= $g ?>
                     </option>
-                <?php endforeach; ?>
+                <?php } ?>
             </select>
         </form>
 

@@ -15,9 +15,8 @@ interface InjectionMatcherInterface
 
     /**
      * Get the prefix position for the node.
-     * 
-     * @param string[]  $scopes
-     * @return \Phiki\Grammar\Injections\Prefix|null
+     *
+     * @param  string[]  $scopes
      */
     public function getPrefix(array $scopes): ?Prefix;
 }

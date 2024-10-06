@@ -7,7 +7,7 @@ use Phiki\CommonMark\PhikiExtension;
 
 describe('CommonMark > Extension', function () {
     it('registers renderers', function () {
-        $environment = new Environment();
+        $environment = new Environment;
 
         $environment
             ->addExtension(new CommonMarkCoreExtension)

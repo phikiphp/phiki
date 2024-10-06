@@ -91,7 +91,7 @@ class GrammarParser
                 [$reference, $scopeName] = [null, $pattern['include']];
             }
 
-            return new IncludePattern($reference, $scopeName, injection: $this->injection,);
+            return new IncludePattern($reference, $scopeName, injection: $this->injection);
         }
 
         if (isset($pattern['patterns'])) {

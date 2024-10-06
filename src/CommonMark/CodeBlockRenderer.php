@@ -13,13 +13,13 @@ class CodeBlockRenderer implements NodeRendererInterface
 {
     public function __construct(
         private string $theme,
-        private Phiki $phiki = new Phiki(),
+        private Phiki $phiki = new Phiki,
     ) {}
 
     public function render(Node $node, ChildNodeRendererInterface $childRenderer)
     {
         if (! $node instanceof FencedCode) {
-            throw new InvalidArgumentException('Block must be instance of ' . FencedCode::class);
+            throw new InvalidArgumentException('Block must be instance of '.FencedCode::class);
         }
 
         preg_match('/[a-zA-Z]+/', $node->getInfoWords()[0] ?: 'txt', $matches);

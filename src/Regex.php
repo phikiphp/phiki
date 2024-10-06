@@ -45,7 +45,7 @@ class Regex implements Stringable
                         $output[] = substr($pattern, $lastPushedPos, $i - $lastPushedPos);
                         $output[] = '$(?!\\n)(?<!\\n)';
                         $lastPushedPos = $i + 2;
-                    } else if ($nextChar === 'A' || $nextChar === 'G') {
+                    } elseif ($nextChar === 'A' || $nextChar === 'G') {
                         $hasAnchor = true;
                     }
 
@@ -102,7 +102,7 @@ class Regex implements Stringable
             $property = strtolower($matches[1]);
 
             if (isset(self::SLASH_P_MAP[$property])) {
-                return '[' . self::SLASH_P_MAP[$property] . ']';
+                return '['.self::SLASH_P_MAP[$property].']';
             }
 
             return $matches[0];
@@ -180,15 +180,15 @@ class Regex implements Stringable
 
     private function resolveAnchors(string $pattern, bool $allowA, bool $allowG): string
     {
-        if (! $this->hasAnchor || !$this->anchorCache) {
+        if (! $this->hasAnchor || ! $this->anchorCache) {
             return $pattern;
         }
 
         if ($allowA && $allowG) {
             return $this->anchorCache['A1_G1'];
-        } elseif ($allowA && !$allowG) {
+        } elseif ($allowA && ! $allowG) {
             return $this->anchorCache['A1_G0'];
-        } elseif (!$allowA && $allowG) {
+        } elseif (! $allowA && $allowG) {
             return $this->anchorCache['A0_G1'];
         } else {
             return $this->anchorCache['A0_G0'];

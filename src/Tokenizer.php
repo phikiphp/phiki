@@ -675,6 +675,6 @@ class Tokenizer
 
     private function debug(string $message): void
     {
-        echo $message . "\n";
+        echo $message."\n";
     }
 }

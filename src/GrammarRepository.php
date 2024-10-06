@@ -22,7 +22,7 @@ class GrammarRepository implements GrammarRepositoryInterface
         'yaml' => __DIR__.'/../languages/yaml.json',
         'go' => __DIR__.'/../languages/go.json',
         'jsx' => __DIR__.'/../languages/jsx.json',
-        'txt' => __DIR__ . '/../languages/txt.json',
+        'txt' => __DIR__.'/../languages/txt.json',
     ];
 
     protected array $scopesToGrammar = [

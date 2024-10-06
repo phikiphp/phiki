@@ -27,7 +27,7 @@ describe('GrammarParser', function () {
 
     it('marks injection patterns as injected ones', function () {
         $parser = new GrammarParser;
-        $grammar = $parser->parse(json_decode(file_get_contents(__DIR__ . '/../../languages/blade.json'), true));
+        $grammar = $parser->parse(json_decode(file_get_contents(__DIR__.'/../../languages/blade.json'), true));
 
         expect($grammar->scopeName)->toBe('text.html.php.blade');
         expect($grammar->getInjections()[0]->pattern->injection)->toBeTrue();

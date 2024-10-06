@@ -26,7 +26,7 @@ class Expression implements InjectionMatcherInterface
         $result = $this->child->matches($scopes);
 
         if ($this->negated) {
-            return !$result;
+            return ! $result;
         }
 
         return $result;

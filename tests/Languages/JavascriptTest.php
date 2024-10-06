@@ -12,7 +12,7 @@ describe('javascript', function () {
                 new Token(['source.js', 'comment.line.double-slash.js', 'punctuation.definition.comment.js'], '//', 0, 2),
                 new Token(['source.js', 'comment.line.double-slash.js'], ' This is a comment.', 2, 21),
                 new Token(['source.js'], "\n", 21, 21),
-            ]
+            ],
         ]);
     });
 });

@@ -11,7 +11,7 @@ class PhikiExtension implements ExtensionInterface
 {
     public function __construct(
         private string $theme,
-        private Phiki $phiki = new Phiki(),
+        private Phiki $phiki = new Phiki,
     ) {}
 
     public function register(EnvironmentBuilderInterface $environment): void
