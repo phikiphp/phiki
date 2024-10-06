@@ -64,4 +64,9 @@ class CollectionPattern extends Pattern implements PatternCollectionInterface
     {
         return null;
     }
+
+    public function __toString(): string
+    {
+        return sprintf('collection: count(%d)', count($this->getPatterns()));
+    }
 }

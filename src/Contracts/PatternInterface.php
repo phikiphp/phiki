@@ -4,8 +4,9 @@ namespace Phiki\Contracts;
 
 use Phiki\MatchedPattern;
 use Phiki\Tokenizer;
+use Stringable;
 
-interface PatternInterface
+interface PatternInterface extends Stringable
 {
     /**
      * Attempt to match the pattern against the current line's text, starting from the given position.

@@ -63,4 +63,9 @@ final class Grammar extends Pattern implements PatternCollectionInterface
 
         return $parser->parse($grammar);
     }
+
+    public function __toString(): string
+    {
+        return sprintf('grammar: %s', $this->scopeName);
+    }
 }

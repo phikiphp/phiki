@@ -646,4 +646,9 @@ class Tokenizer
     {
         return $this->strictMode;
     }
+
+    private function debug(string $message): void
+    {
+        echo $message . "\n";
+    }
 }

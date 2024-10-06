@@ -2,10 +2,12 @@
 
 namespace Phiki;
 
+use Stringable;
+
 /**
  * This class is responsible for converting an Oniguruma pattern into a PCRE2/PHP compatible pattern.
  */
-class Regex
+class Regex implements Stringable
 {
     const SLASH_P_MAP = [
         'alnum' => '0-9A-Za-z',
@@ -78,5 +80,10 @@ class Regex
         $pattern = preg_replace('/(?<!\\\)\]\]/', '\\]]', $pattern);
 
         return $pattern;
+    }
+
+    public function __toString(): string
+    {
+        return $this->get();
     }
 }

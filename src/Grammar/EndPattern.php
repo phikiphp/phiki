@@ -64,4 +64,9 @@ class EndPattern extends Pattern implements ContainsCapturesInterface, PatternCo
     {
         return $this->name ? explode(' ', $this->name) : null;
     }
+
+    public function __toString(): string
+    {
+        return sprintf('end: %s', $this->end);
+    }
 }

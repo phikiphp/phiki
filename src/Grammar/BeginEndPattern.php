@@ -72,4 +72,9 @@ class BeginEndPattern extends Pattern implements ContainsCapturesInterface, Patt
             $this->patterns,
         );
     }
+
+    public function __toString(): string
+    {
+        return sprintf('begin: %s', $this->begin);
+    }
 }

@@ -53,4 +53,17 @@ class IncludePattern extends Pattern
     {
         return null;
     }
+
+    public function __toString(): string
+    {
+        if (isset($this->reference, $this->scopeName)) {
+            return sprintf('include: %s@%s', $this->reference, $this->scopeName);
+        }
+
+        if (isset($this->scopeName)) {
+            return sprintf('include: %s', $this->scopeName);
+        }
+
+        return sprintf('include: %s', $this->reference);
+    }
 }
