@@ -31,6 +31,7 @@ const registry = new vsctm.Registry({
     loadGrammar: (scopeName) => {
         const map = {
             "source.yaml": "yaml.json",
+            "source.shell": "shellscript.json"
         };
 
         const file = map[scopeName];
@@ -43,7 +44,7 @@ const registry = new vsctm.Registry({
 });
 
 // Load the JavaScript grammar and any other grammars included by it async.
-registry.loadGrammar("source.yaml").then((grammar) => {
+registry.loadGrammar("source.shell").then((grammar) => {
     const text = fs.readFileSync(path.join(__dirname, "./input.txt")).toString().split("\n");
 
     let ruleStack = vsctm.INITIAL;

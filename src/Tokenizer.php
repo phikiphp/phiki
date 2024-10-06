@@ -166,18 +166,6 @@ class Tokenizer
                 continue;
             }
 
-            if ($closest !== false && $pattern instanceof BeginEndPattern && $matched->text() === '') {
-                $this->patternStack[] = $pattern->createEndPattern($matched);
-
-                $nextMatch = $this->match($lineText);
-
-                array_pop($this->patternStack);
-
-                if ($nextMatch !== false && $nextMatch->pattern instanceof EndPattern && $nextMatch->text() === '') {
-                    continue;
-                }
-            }
-
             // Match found and is same as current position. Return it.
             if ($matched->offset() === $this->linePosition) {
                 return $matched;
