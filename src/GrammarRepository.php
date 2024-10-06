@@ -9,20 +9,21 @@ use Phiki\Grammar\Grammar;
 class GrammarRepository implements GrammarRepositoryInterface
 {
     protected array $grammars = [
-        'blade' => __DIR__.'/../languages/blade.json',
-        'php' => __DIR__.'/../languages/php.json',
-        'html' => __DIR__.'/../languages/html.json',
-        'shellscript' => __DIR__.'/../languages/shellscript.json',
-        'javascript' => __DIR__.'/../languages/javascript.json',
-        'css' => __DIR__.'/../languages/css.json',
-        'json' => __DIR__.'/../languages/json.json',
-        'c' => __DIR__.'/../languages/c.json',
-        'toml' => __DIR__.'/../languages/toml.json',
-        'rust' => __DIR__.'/../languages/rust.json',
-        'yaml' => __DIR__.'/../languages/yaml.json',
-        'go' => __DIR__.'/../languages/go.json',
-        'jsx' => __DIR__.'/../languages/jsx.json',
-        'txt' => __DIR__.'/../languages/txt.json',
+        'blade' => __DIR__ . '/../languages/blade.json',
+        'php' => __DIR__ . '/../languages/php.json',
+        'html' => __DIR__ . '/../languages/html.json',
+        'shellscript' => __DIR__ . '/../languages/shellscript.json',
+        'javascript' => __DIR__ . '/../languages/javascript.json',
+        'css' => __DIR__ . '/../languages/css.json',
+        'json' => __DIR__ . '/../languages/json.json',
+        'c' => __DIR__ . '/../languages/c.json',
+        'toml' => __DIR__ . '/../languages/toml.json',
+        'rust' => __DIR__ . '/../languages/rust.json',
+        'yaml' => __DIR__ . '/../languages/yaml.json',
+        'go' => __DIR__ . '/../languages/go.json',
+        'jsx' => __DIR__ . '/../languages/jsx.json',
+        'txt' => __DIR__ . '/../languages/txt.json',
+        'markdown' => __DIR__ . '/../languages/markdown.json',
     ];
 
     protected array $scopesToGrammar = [
@@ -39,6 +40,7 @@ class GrammarRepository implements GrammarRepositoryInterface
         'source.yaml' => 'yaml',
         'source.go' => 'go',
         'source.js.jsx' => 'jsx',
+        'text.html.markdown' => 'markdown',
         'text.txt' => 'txt',
     ];
 
@@ -51,6 +53,7 @@ class GrammarRepository implements GrammarRepositoryInterface
         'golang' => 'go',
         'text' => 'txt',
         'plaintext' => 'txt',
+        'md' => 'markdown',
     ];
 
     public function get(string $name): Grammar
