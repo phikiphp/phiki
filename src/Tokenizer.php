@@ -8,6 +8,7 @@ use Phiki\Contracts\PatternCollectionInterface;
 use Phiki\Exceptions\IndeterminateStateException;
 use Phiki\Exceptions\UnreachableException;
 use Phiki\Grammar\BeginEndPattern;
+use Phiki\Grammar\BeginWhilePattern;
 use Phiki\Grammar\CollectionPattern;
 use Phiki\Grammar\EndPattern;
 use Phiki\Grammar\Grammar;
@@ -15,6 +16,7 @@ use Phiki\Grammar\IncludePattern;
 use Phiki\Grammar\Injections\Prefix;
 use Phiki\Grammar\MatchPattern;
 use Phiki\Grammar\Pattern;
+use Phiki\Grammar\WhilePattern;
 
 class Tokenizer
 {
@@ -63,6 +65,31 @@ class Tokenizer
     {
         $this->linePosition = 0;
 
+        $root = end($this->patternStack);
+
+        // If we've got a `while` pattern on the stack and it doesn't match the current line, we need to pop
+        // it off and handle it accordingly.
+        if ($root instanceof WhilePattern) {
+            $whileMatched = $root->tryMatch($this, $lineText, $this->linePosition);
+
+            if (! $whileMatched) {
+                array_pop($this->patternStack);
+
+                if ($root->scope()) {
+                    foreach ($root->scope() as $_) {
+                        array_pop($this->scopeStack);
+                    }
+                }
+
+                $this->anchorPosition = array_pop($this->anchorPositions);
+
+                goto scanNext;
+            }
+            
+            $this->process($whileMatched, $line, $lineText);
+        }
+
+        scanNext:
         while ($this->linePosition < strlen($lineText)) {
             $root = end($this->patternStack);
             $matched = $this->match($lineText);
@@ -337,6 +364,41 @@ class Tokenizer
             }
         }
 
+        if ($matched->pattern instanceof BeginWhilePattern) {
+            if ($matched->pattern->scope()) {
+                $this->scopeStack = [...$this->scopeStack, ...$this->processScope($matched->pattern->scope(), $matched)];
+            }
+
+            $this->anchorPositions[] = $this->anchorPosition;
+
+            if ($matched->pattern->hasCaptures()) {
+                $this->captures($matched, $line, $lineText);
+            } else {
+                if ($matched->text() !== '') {
+                    $this->tokens[$line][] = new Token(
+                        $this->scopeStack,
+                        $matched->text(),
+                        $matched->offset(),
+                        $matched->end(),
+                    );
+                }
+
+                $this->linePosition = $matched->end();
+            }
+
+            $this->anchorPosition = $matched->end();
+
+            $whilePattern = $matched->pattern->createWhilePattern($matched);
+
+            if ($matched->pattern->contentName) {
+                $this->scopeStack[] = $matched->pattern->contentName;
+            }
+
+            $this->patternStack[] = $whilePattern;
+
+            return;
+        }
+
         if ($matched->pattern instanceof EndPattern) {
             // FIXME: This is a bit of hack. There's a bug somewhere that is incorrectly popping the end scope off
             // of the stack before we're done with that specific scope. This will prevent this from happening.
@@ -364,6 +426,25 @@ class Tokenizer
             }
 
             $this->linePosition = $matched->end();
+        }
+
+        if ($matched->pattern instanceof WhilePattern) {
+            if ($matched->pattern->hasCaptures()) {
+                $this->captures($matched, $line, $lineText);
+            } else {
+                if ($matched->text() !== '') {
+                    $this->tokens[$line][] = new Token(
+                        $this->scopeStack,
+                        $matched->text(),
+                        $matched->offset(),
+                        $matched->end(),
+                    );
+                }
+
+                $this->linePosition = $matched->end();
+            }
+
+            $this->anchorPosition = $matched->end();
         }
     }
 

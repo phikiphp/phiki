@@ -12,6 +12,7 @@ class GrammarRepository implements GrammarRepositoryInterface
         'blade' => __DIR__ . '/../languages/blade.json',
         'php' => __DIR__ . '/../languages/php.json',
         'html' => __DIR__ . '/../languages/html.json',
+        'html-derivative' => __DIR__ . '/../languages/html-derivative.json',
         'shellscript' => __DIR__ . '/../languages/shellscript.json',
         'javascript' => __DIR__ . '/../languages/javascript.json',
         'css' => __DIR__ . '/../languages/css.json',
@@ -42,6 +43,7 @@ class GrammarRepository implements GrammarRepositoryInterface
         'source.js.jsx' => 'jsx',
         'text.html.markdown' => 'markdown',
         'text.txt' => 'txt',
+        'text.html.derivative' => 'html-derivative',
     ];
 
     protected array $aliases = [

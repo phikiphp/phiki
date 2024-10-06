@@ -31,10 +31,16 @@ const registry = new vsctm.Registry({
     loadGrammar: (scopeName) => {
         const map = {
             "source.yaml": "yaml.json",
-            "source.shell": "shellscript.json"
+            "source.shell": "shellscript.json",
+            'text.html.markdown': 'markdown.json',
         };
 
         const file = map[scopeName];
+
+        if (! file) {
+            return new Promise((resolve, ) => resolve({}))
+        }
+
         const p = path.join(__dirname, `../languages/${file}`);
 
         return readFile(p).then(data => {
@@ -44,8 +50,11 @@ const registry = new vsctm.Registry({
 });
 
 // Load the JavaScript grammar and any other grammars included by it async.
-registry.loadGrammar("source.shell").then((grammar) => {
-    const text = fs.readFileSync(path.join(__dirname, "./input.txt")).toString().split("\n");
+registry.loadGrammar("text.html.markdown").then((grammar) => {
+    const text = fs
+        .readFileSync(path.join(__dirname, "./input.txt"))
+        .toString()
+        .split("\n");
 
     let ruleStack = vsctm.INITIAL;
 
@@ -61,7 +70,7 @@ registry.loadGrammar("source.shell").then((grammar) => {
         //             `with scopes ${token.scopes.join(", ")}`
         //     );
         // }
-        
+
         ruleStack = lineTokens.ruleStack;
     }
 });
