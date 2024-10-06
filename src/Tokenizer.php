@@ -30,6 +30,10 @@ class Tokenizer
 
     protected int $linePosition = 0;
 
+    protected int $anchorPosition = -1;
+
+    protected bool $isFirstLine = true;
+
     public function __construct(
         protected Grammar $grammar,
         protected GrammarRepositoryInterface $grammarRepository = new GrammarRepository,
@@ -45,6 +49,7 @@ class Tokenizer
         $lines = preg_split("/\R/", $input);
 
         foreach ($lines as $line => $lineText) {
+            $this->isFirstLine = $line === 0;
             $this->tokenizeLine($line, $lineText."\n");
         }
 
@@ -640,6 +645,16 @@ class Tokenizer
                 return $group[0];
             }, $scope);
         }, $scopes);
+    }
+
+    public function allowA(): bool
+    {
+        return $this->isFirstLine;
+    }
+
+    public function allowG(): bool
+    {
+        return $this->linePosition === $this->anchorPosition;
     }
 
     public function isInStrictMode(): bool

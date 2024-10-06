@@ -47,7 +47,7 @@ class EndPattern extends Pattern implements ContainsCapturesInterface, PatternCo
     {
         $regex = preg_replace_callback('/\\\\(\d+)/', function ($matches) {
             return $this->begin->matches[$matches[1]][0] ?? $matches[0];
-        }, $this->end->get());
+        }, $this->end->get($tokenizer->allowA(), $tokenizer->allowG()));
 
         if (preg_match('/'.$regex.'/u', $lineText, $matches, PREG_OFFSET_CAPTURE, $linePosition) !== 1) {
             return false;
