@@ -149,14 +149,14 @@ class Regex implements Stringable
                     $nextCh = $this->pattern[$pos + 1];
 
                     if ($nextCh === 'A') {
-                        $A0_G0[$pos + 1] = '\uFFFF';
-                        $A0_G1[$pos + 1] = '\uFFFF';
+                        $A0_G0[$pos + 1] = "\u{FFFF}";
+                        $A0_G1[$pos + 1] = "\u{FFFF}";
                         $A1_G0[$pos + 1] = 'A';
                         $A1_G1[$pos + 1] = 'A';
                     } elseif ($nextCh === 'G') {
-                        $A0_G0[$pos + 1] = '\uFFFF';
+                        $A0_G0[$pos + 1] = "\u{FFFF}";
                         $A0_G1[$pos + 1] = 'G';
-                        $A1_G0[$pos + 1] = '\uFFFF';
+                        $A1_G0[$pos + 1] = "\u{FFFF}";
                         $A1_G1[$pos + 1] = 'G';
                     } else {
                         $A0_G0[$pos + 1] = $nextCh;
