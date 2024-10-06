@@ -19,24 +19,69 @@ class Regex implements Stringable
         'word' => '\\w',
     ];
 
-    public function __construct(
-        protected string $pattern,
-        protected ?string $lowered = null,
-    ) {}
+    protected bool $hasAnchor;
 
-    public function get(): string
-    {
-        if ($this->lowered !== null) {
-            return $this->lowered;
+    protected array $anchorCache = [];
+
+    protected string $pattern;
+
+    public function __construct(
+        string $pattern,
+        protected ?string $lowered = null,
+    ) {
+        $length = strlen($pattern);
+        $lastPushedPos = 0;
+        $output = [];
+        $hasAnchor = false;
+
+        for ($i = 0; $i < $length; $i++) {
+            $char = $pattern[$i];
+
+            if ($char === '\\') {
+                if ($i + 1 < $length) {
+                    $nextChar = $pattern[$i + 1];
+
+                    if ($nextChar === 'z') {
+                        $output[] = substr($pattern, $lastPushedPos, $i - $lastPushedPos);
+                        $output[] = '$(?!\\n)(?<!\\n)';
+                        $lastPushedPos = $i + 2;
+                    } else if ($nextChar === 'A' || $nextChar === 'G') {
+                        $hasAnchor = true;
+                    }
+
+                    $i++;
+                }
+            }
         }
 
-        $pattern = preg_replace('/(?<!\\\)\//', '\\/', $this->pattern);
-        $pattern = $this->convertEscapeSequences($pattern);
-        $pattern = $this->convertUnicodeProperties($pattern);
-        $pattern = $this->escapeInvalidLeadingRangeCharacter($pattern);
-        $pattern = $this->escapeUnescapedCloseSetCharacters($pattern);
+        $this->hasAnchor = $hasAnchor;
 
-        return $this->lowered = $pattern;
+        if ($lastPushedPos === 0) {
+            $this->pattern = $pattern;
+        } else {
+            $output[] = substr($pattern, $lastPushedPos);
+
+            $this->pattern = implode('', $output);
+        }
+
+        if ($this->hasAnchor) {
+            $this->anchorCache = $this->buildAnchorCache();
+        }
+    }
+
+    public function get(bool $allowA = false, bool $allowG = false): string
+    {
+        if ($this->lowered === null) {
+            $pattern = preg_replace('/(?<!\\\)\//', '\\/', $this->pattern);
+            $pattern = $this->convertEscapeSequences($pattern);
+            $pattern = $this->convertUnicodeProperties($pattern);
+            $pattern = $this->escapeInvalidLeadingRangeCharacter($pattern);
+            $pattern = $this->escapeUnescapedCloseSetCharacters($pattern);
+
+            $this->lowered = $pattern;
+        }
+
+        return $this->resolveAnchors($this->lowered, $allowA, $allowG);
     }
 
     protected function convertEscapeSequences(string $pattern): string
@@ -80,6 +125,74 @@ class Regex implements Stringable
         $pattern = preg_replace('/(?<!\\\)\]\]/', '\\]]', $pattern);
 
         return $pattern;
+    }
+
+    private function buildAnchorCache(): array
+    {
+        $A0_G0 = [];
+        $A0_G1 = [];
+        $A1_G0 = [];
+        $A1_G1 = [];
+
+        $len = strlen($this->pattern);
+
+        for ($pos = 0; $pos < $len; $pos++) {
+            $ch = $this->pattern[$pos];
+
+            $A0_G0[$pos] = $ch;
+            $A0_G1[$pos] = $ch;
+            $A1_G0[$pos] = $ch;
+            $A1_G1[$pos] = $ch;
+
+            if ($ch === '\\') {
+                if ($pos + 1 < $len) {
+                    $nextCh = $this->pattern[$pos + 1];
+
+                    if ($nextCh === 'A') {
+                        $A0_G0[$pos + 1] = '\uFFFF';
+                        $A0_G1[$pos + 1] = '\uFFFF';
+                        $A1_G0[$pos + 1] = 'A';
+                        $A1_G1[$pos + 1] = 'A';
+                    } elseif ($nextCh === 'G') {
+                        $A0_G0[$pos + 1] = '\uFFFF';
+                        $A0_G1[$pos + 1] = 'G';
+                        $A1_G0[$pos + 1] = '\uFFFF';
+                        $A1_G1[$pos + 1] = 'G';
+                    } else {
+                        $A0_G0[$pos + 1] = $nextCh;
+                        $A0_G1[$pos + 1] = $nextCh;
+                        $A1_G0[$pos + 1] = $nextCh;
+                        $A1_G1[$pos + 1] = $nextCh;
+                    }
+
+                    $pos++;
+                }
+            }
+        }
+
+        return [
+            'A0_G0' => implode('', $A0_G0),
+            'A0_G1' => implode('', $A0_G1),
+            'A1_G0' => implode('', $A1_G0),
+            'A1_G1' => implode('', $A1_G1),
+        ];
+    }
+
+    private function resolveAnchors(string $pattern, bool $allowA, bool $allowG): string
+    {
+        if (! $this->hasAnchor || !$this->anchorCache) {
+            return $pattern;
+        }
+
+        if ($allowA && $allowG) {
+            return $this->anchorCache['A1_G1'];
+        } elseif ($allowA && !$allowG) {
+            return $this->anchorCache['A1_G0'];
+        } elseif (!$allowA && $allowG) {
+            return $this->anchorCache['A0_G1'];
+        } else {
+            return $this->anchorCache['A0_G0'];
+        }
     }
 
     public function __toString(): string
