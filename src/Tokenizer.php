@@ -32,6 +32,8 @@ class Tokenizer
 
     protected int $anchorPosition = -1;
 
+    protected array $anchorPositions = [];
+
     protected bool $isFirstLine = true;
 
     public function __construct(
@@ -45,6 +47,7 @@ class Tokenizer
         $this->tokens = [];
         $this->scopeStack = preg_split('/\s+/', $this->grammar->scopeName);
         $this->patternStack = [$this->grammar];
+        $this->anchorPositions = [$this->anchorPosition];
 
         $lines = preg_split("/\R/", $input);
 
@@ -108,6 +111,10 @@ class Tokenizer
 
             // Match found – process pattern rules and continue.
             $this->process($matched, $line, $lineText);
+
+            if ($endIsMatched) {
+                $this->anchorPosition = array_pop($this->anchorPositions);
+            }
 
             if ($endIsMatched && $root->scope() && count($this->scopeStack) > 1) {
                 foreach ($root->scope() as $_) {
@@ -276,6 +283,8 @@ class Tokenizer
                 $this->scopeStack = [...$this->scopeStack, ...$this->processScope($matched->pattern->scope(), $matched)];
             }
 
+            $this->anchorPositions[] = $this->anchorPosition;
+
             if ($matched->pattern->hasCaptures()) {
                 $this->captures($matched, $line, $lineText);
             } else {
@@ -290,6 +299,8 @@ class Tokenizer
 
                 $this->linePosition = $matched->end();
             }
+
+            $this->anchorPosition = $matched->end();
 
             $endPattern = $matched->pattern->createEndPattern($matched);
 
