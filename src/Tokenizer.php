@@ -495,7 +495,7 @@ class Tokenizer
                                 if ($subPatternMatched !== false && $endPattern instanceof EndPattern && $endPattern->tryMatch($this, $lineText, $this->linePosition) !== false) {
                                     $endMatched = $endPattern->tryMatch($this, $lineText, $this->linePosition);
 
-                                    if ($endMatched->offset() <= $subPatternMatched->offset() && $endMatched->text() !== '') {
+                                    if ($endMatched->offset() <= $subPatternMatched->offset()) {
                                         $subPatternMatched = $endMatched;
                                         $endIsMatched = true;
                                     }
