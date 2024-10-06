@@ -67,10 +67,6 @@ readonly class ThemeStyles
                 break;
             }
 
-            if (! isset($current[$part]['*'])) {
-                break;
-            }
-
             $current = $current[$part];
         }
 

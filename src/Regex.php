@@ -64,6 +64,12 @@ class Regex implements Stringable
             $this->pattern = implode('', $output);
         }
 
+        $this->pattern = preg_replace('/(?<!\\\)\//', '\\/', $this->pattern);
+        $this->pattern = $this->convertEscapeSequences($this->pattern);
+        $this->pattern = $this->convertUnicodeProperties($this->pattern);
+        $this->pattern = $this->escapeInvalidLeadingRangeCharacter($this->pattern);
+        $this->pattern = $this->escapeUnescapedCloseSetCharacters($this->pattern);
+
         if ($this->hasAnchor) {
             $this->anchorCache = $this->buildAnchorCache();
         }
@@ -71,17 +77,7 @@ class Regex implements Stringable
 
     public function get(bool $allowA = false, bool $allowG = false): string
     {
-        if ($this->lowered === null) {
-            $pattern = preg_replace('/(?<!\\\)\//', '\\/', $this->pattern);
-            $pattern = $this->convertEscapeSequences($pattern);
-            $pattern = $this->convertUnicodeProperties($pattern);
-            $pattern = $this->escapeInvalidLeadingRangeCharacter($pattern);
-            $pattern = $this->escapeUnescapedCloseSetCharacters($pattern);
-
-            $this->lowered = $pattern;
-        }
-
-        return $this->resolveAnchors($this->lowered, $allowA, $allowG);
+        return $this->resolveAnchors($this->pattern, $allowA, $allowG);
     }
 
     protected function convertEscapeSequences(string $pattern): string

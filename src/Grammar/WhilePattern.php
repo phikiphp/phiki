@@ -8,14 +8,14 @@ use Phiki\MatchedPattern;
 use Phiki\Regex;
 use Phiki\Tokenizer;
 
-class EndPattern extends Pattern implements ContainsCapturesInterface, PatternCollectionInterface
+class WhilePattern extends Pattern implements ContainsCapturesInterface, PatternCollectionInterface
 {
     public function __construct(
         public MatchedPattern $begin,
-        public Regex $end,
+        public Regex $while,
         public ?string $name,
         public ?string $contentName,
-        public array $endCaptures = [],
+        public array $whileCaptures = [],
         public array $captures = [],
         public array $patterns = [],
         public bool $injection = false,
@@ -33,14 +33,14 @@ class EndPattern extends Pattern implements ContainsCapturesInterface, PatternCo
 
     public function getCaptures(): array
     {
-        $captures = count($this->endCaptures) > 0 ? $this->endCaptures : $this->captures;
+        $captures = count($this->whileCaptures) > 0 ? $this->whileCaptures : $this->captures;
 
         return $captures;
     }
 
     public function hasCaptures(): bool
     {
-        return count($this->endCaptures) > 0 || count($this->captures) > 0;
+        return count($this->whileCaptures) > 0 || count($this->captures) > 0;
     }
 
     public function tryMatch(Tokenizer $tokenizer, string $lineText, int $linePosition, ?int $cannotExceed = null): MatchedPattern|false
@@ -51,7 +51,7 @@ class EndPattern extends Pattern implements ContainsCapturesInterface, PatternCo
             }
 
             return preg_quote($this->begin->matches[$matches[1]][0], '/');
-        }, $this->end->get($tokenizer->allowA(), $tokenizer->allowG()));
+        }, $this->while->get($tokenizer->allowA(), $tokenizer->allowG()));
 
         if (preg_match('/'.$regex.'/u', $lineText, $matches, PREG_OFFSET_CAPTURE, $linePosition) !== 1) {
             return false;
@@ -71,6 +71,6 @@ class EndPattern extends Pattern implements ContainsCapturesInterface, PatternCo
 
     public function __toString(): string
     {
-        return sprintf('end: %s', $this->end);
+        return sprintf('while: %s', $this->while);
     }
 }

@@ -8,14 +8,15 @@ use Phiki\MatchedPattern;
 use Phiki\Regex;
 use Phiki\Tokenizer;
 
-class EndPattern extends Pattern implements ContainsCapturesInterface, PatternCollectionInterface
+class BeginWhilePattern extends Pattern implements ContainsCapturesInterface, PatternCollectionInterface
 {
     public function __construct(
-        public MatchedPattern $begin,
-        public Regex $end,
+        public Regex $begin,
+        public Regex $while,
         public ?string $name,
         public ?string $contentName,
-        public array $endCaptures = [],
+        public array $beginCaptures = [],
+        public array $whileCaptures = [],
         public array $captures = [],
         public array $patterns = [],
         public bool $injection = false,
@@ -31,29 +32,9 @@ class EndPattern extends Pattern implements ContainsCapturesInterface, PatternCo
         return count($this->patterns) > 0;
     }
 
-    public function getCaptures(): array
-    {
-        $captures = count($this->endCaptures) > 0 ? $this->endCaptures : $this->captures;
-
-        return $captures;
-    }
-
-    public function hasCaptures(): bool
-    {
-        return count($this->endCaptures) > 0 || count($this->captures) > 0;
-    }
-
     public function tryMatch(Tokenizer $tokenizer, string $lineText, int $linePosition, ?int $cannotExceed = null): MatchedPattern|false
     {
-        $regex = preg_replace_callback('/\\\\(\d+)/', function ($matches) {
-            if (! isset($this->begin->matches[$matches[1]][0])) {
-                return $matches[0];
-            }
-
-            return preg_quote($this->begin->matches[$matches[1]][0], '/');
-        }, $this->end->get($tokenizer->allowA(), $tokenizer->allowG()));
-
-        if (preg_match('/'.$regex.'/u', $lineText, $matches, PREG_OFFSET_CAPTURE, $linePosition) !== 1) {
+        if (preg_match('/'.$this->begin->get($tokenizer->allowA(), $tokenizer->allowG()).'/u', $lineText, $matches, PREG_OFFSET_CAPTURE, $linePosition) !== 1) {
             return false;
         }
 
@@ -69,8 +50,31 @@ class EndPattern extends Pattern implements ContainsCapturesInterface, PatternCo
         return $this->name ? explode(' ', $this->name) : null;
     }
 
+    public function hasCaptures(): bool
+    {
+        return count($this->beginCaptures) > 0 || count($this->captures) > 0;
+    }
+
+    public function getCaptures(): array
+    {
+        return count($this->beginCaptures) > 0 ? $this->beginCaptures : $this->captures;
+    }
+
+    public function createWhilePattern(MatchedPattern $self): WhilePattern
+    {
+        return new WhilePattern(
+            $self,
+            $this->while,
+            $this->name,
+            $this->contentName,
+            $this->whileCaptures,
+            $this->captures,
+            $this->patterns,
+        );
+    }
+
     public function __toString(): string
     {
-        return sprintf('end: %s', $this->end);
+        return sprintf('begin: %s', $this->begin);
     }
 }

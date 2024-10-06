@@ -6,6 +6,7 @@ use Phiki\Contracts\InjectionSelectorParserInputInterface;
 use Phiki\Exceptions\MissingRequiredGrammarKeyException;
 use Phiki\Exceptions\UnreachableException;
 use Phiki\Grammar\BeginEndPattern;
+use Phiki\Grammar\BeginWhilePattern;
 use Phiki\Grammar\Capture;
 use Phiki\Grammar\CollectionPattern;
 use Phiki\Grammar\Grammar;
@@ -72,6 +73,20 @@ class GrammarParser
                 $pattern['contentName'] ?? null,
                 $this->captures($pattern['beginCaptures'] ?? []),
                 $this->captures($pattern['endCaptures'] ?? []),
+                $this->captures($pattern['captures'] ?? []),
+                $this->patterns($pattern['patterns'] ?? []),
+                injection: $this->injection,
+            );
+        }
+
+        if (isset($pattern['begin'], $pattern['while'])) {
+            return new BeginWhilePattern(
+                new Regex($pattern['begin']),
+                new Regex($pattern['while']),
+                $pattern['name'] ?? null,
+                $pattern['contentName'] ?? null,
+                $this->captures($pattern['beginCaptures'] ?? []),
+                $this->captures($pattern['whileCaptures'] ?? []),
                 $this->captures($pattern['captures'] ?? []),
                 $this->patterns($pattern['patterns'] ?? []),
                 injection: $this->injection,
