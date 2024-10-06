@@ -65,35 +65,8 @@ class Tokenizer
     {
         $this->linePosition = 0;
 
-        $root = end($this->patternStack);
+        $this->checkWhileConditions($line, $lineText);
 
-        // If we've got a `while` pattern on the stack and it doesn't match the current line, we need to pop
-        // it off and handle it accordingly.
-        if ($root instanceof WhilePattern) {
-            $whileMatched = $root->tryMatch($this, $lineText, $this->linePosition);
-
-            if (! $whileMatched) {
-                array_pop($this->patternStack);
-
-                if ($root->contentName) {
-                    array_pop($this->scopeStack);
-                }
-
-                if ($root->scope()) {
-                    foreach ($root->scope() as $_) {
-                        array_pop($this->scopeStack);
-                    }
-                }
-
-                $this->anchorPosition = array_pop($this->anchorPositions);
-
-                goto scanNext;
-            }
-            
-            $this->process($whileMatched, $line, $lineText);
-        }
-
-        scanNext:
         while ($this->linePosition < strlen($lineText)) {
             $root = end($this->patternStack);
             $matched = $this->match($lineText);
@@ -756,6 +729,37 @@ class Tokenizer
     public function isInStrictMode(): bool
     {
         return $this->strictMode;
+    }
+
+    protected function checkWhileConditions(int $line, string $lineText): void
+    {
+        $root = end($this->patternStack);
+
+        // If we've got a `while` pattern on the stack and it doesn't match the current line, we need to pop
+        // it off and handle it accordingly.
+        if ($root instanceof WhilePattern) {
+            $whileMatched = $root->tryMatch($this, $lineText, $this->linePosition);
+
+            if (! $whileMatched) {
+                array_pop($this->patternStack);
+
+                if ($root->contentName) {
+                    array_pop($this->scopeStack);
+                }
+
+                if ($root->scope()) {
+                    foreach ($root->scope() as $_) {
+                        array_pop($this->scopeStack);
+                    }
+                }
+
+                $this->anchorPosition = array_pop($this->anchorPositions);
+
+                return;
+            }
+
+            $this->process($whileMatched, $line, $lineText);
+        }
     }
 
     private function debug(string $message): void
