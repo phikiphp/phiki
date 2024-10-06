@@ -60,14 +60,14 @@ class BeginWhilePattern extends Pattern implements ContainsCapturesInterface, Pa
         return count($this->beginCaptures) > 0 ? $this->beginCaptures : $this->captures;
     }
 
-    public function createEndPattern(MatchedPattern $self): EndPattern
+    public function createWhilePattern(MatchedPattern $self): WhilePattern
     {
-        return new EndPattern(
+        return new WhilePattern(
             $self,
-            $this->end,
+            $this->while,
             $this->name,
             $this->contentName,
-            $this->endCaptures,
+            $this->whileCaptures,
             $this->captures,
             $this->patterns,
         );
