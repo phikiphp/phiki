@@ -731,6 +731,15 @@ class Tokenizer
         return $this->strictMode;
     }
 
+    // FIXME: This should actually check all while conditions on the patternStack
+    // to see which ones need to be popped off. 
+    // 
+    // This isn't super easy to do right now since we don't have a true "stack"
+    // of Tokenizer state, but rather a single mutable set of properties.
+    //
+    // In order to make this work exactly how it's supposed to, we need to refactor
+    // so that we have a more robust stack with pushing and popping so we can easily
+    // reassign the properties of the Tokenizer to the previous state.
     protected function checkWhileConditions(int $line, string $lineText): void
     {
         $root = end($this->patternStack);
