@@ -2,6 +2,8 @@
 
 namespace Phiki\Theme;
 
+use Phiki\Contracts\ThemeRepositoryInterface;
+
 enum Theme: string
 {
     case OneDarkPro = 'one-dark-pro';
@@ -56,7 +58,7 @@ enum Theme: string
     case Houston = 'houston';
     case MaterialThemePalenight = 'material-theme-palenight';
 
-    public function toParsedTheme(ThemeRepository $repository): ParsedTheme
+    public function toParsedTheme(ThemeRepositoryInterface $repository): ParsedTheme
     {
         return $repository->get($this->value);
     }

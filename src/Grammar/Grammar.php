@@ -2,6 +2,8 @@
 
 namespace Phiki\Grammar;
 
+use Phiki\Contracts\GrammarRepositoryInterface;
+
 enum Grammar: string
 {
     case Astro = 'astro';
@@ -235,7 +237,7 @@ enum Grammar: string
     case AngularInlineStyle = 'angular-inline-style';
     case VueDirectives = 'vue-directives';
 
-    public function toParsedGrammar(GrammarRepository $repository): ParsedGrammar
+    public function toParsedGrammar(GrammarRepositoryInterface $repository): ParsedGrammar
     {
         return $repository->get($this->value);
     }

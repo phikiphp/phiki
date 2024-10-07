@@ -2,11 +2,13 @@
 
 namespace Phiki\Grammar;
 
+use Phiki\Contracts\GrammarRepositoryInterface;
+
 enum Grammar: string
 {
     %s
 
-    public function toParsedGrammar(GrammarRepository $repository): ParsedGrammar
+    public function toParsedGrammar(GrammarRepositoryInterface $repository): ParsedGrammar
     {
         return $repository->get($this->value);
     }

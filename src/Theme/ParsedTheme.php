@@ -28,7 +28,7 @@ class ParsedTheme
         return $this->styles->resolve($scope);
     }
 
-    public static function fromArray(array $theme): static
+    public static function fromArray(array $theme): ParsedTheme
     {
         $parser = new Parser;
 

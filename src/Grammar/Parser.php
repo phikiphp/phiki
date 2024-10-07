@@ -210,7 +210,6 @@ class Parser
                 '&' => Operator::And,
                 '|' => Operator::Or,
                 '-' => Operator::Not,
-                default => throw new UnreachableException('Unrecognised operator in selector: '.$input->current()),
             };
 
             $input->next();
