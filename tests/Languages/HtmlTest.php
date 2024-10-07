@@ -1,6 +1,7 @@
 <?php
 
 use Phiki\Grammar\ParsedGrammar;
+use Phiki\Phiki;
 use Phiki\Token\Token;
 use Phiki\Tokenizer;
 
@@ -81,9 +82,5 @@ describe('html', function () {
 
 function html(string $input): array
 {
-    $tokenizer = new Tokenizer(
-        ParsedGrammar::fromArray(json_decode(file_get_contents(__DIR__.'/../../resources/languages/html.json'), true))
-    );
-
-    return $tokenizer->tokenize($input);
+    return Phiki::default()->codeToTokens($input, 'html');
 }

@@ -1,6 +1,9 @@
 <?php
 
+use Phiki\Grammar\Grammar;
+use Phiki\Grammar\GrammarRepository;
 use Phiki\Grammar\ParsedGrammar;
+use Phiki\Phiki;
 use Phiki\Token\Token;
 use Phiki\Tokenizer;
 
@@ -173,9 +176,5 @@ describe('php', function () {
 
 function php(string $input): array
 {
-    $tokenizer = new Tokenizer(
-        ParsedGrammar::fromArray(json_decode(file_get_contents(__DIR__.'/../../resources/languages/php.json'), true))
-    );
-
-    return $tokenizer->tokenize($input);
+    return Phiki::default()->codeToTokens($input, 'php');
 }
