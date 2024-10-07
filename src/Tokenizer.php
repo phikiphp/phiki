@@ -11,12 +11,15 @@ use Phiki\Grammar\BeginEndPattern;
 use Phiki\Grammar\BeginWhilePattern;
 use Phiki\Grammar\CollectionPattern;
 use Phiki\Grammar\EndPattern;
-use Phiki\Grammar\Grammar;
+use Phiki\Grammar\GrammarRepository;
 use Phiki\Grammar\IncludePattern;
 use Phiki\Grammar\Injections\Prefix;
+use Phiki\Grammar\MatchedPattern;
 use Phiki\Grammar\MatchPattern;
+use Phiki\Grammar\ParsedGrammar;
 use Phiki\Grammar\Pattern;
 use Phiki\Grammar\WhilePattern;
+use Phiki\Token\Token;
 
 class Tokenizer
 {
@@ -39,7 +42,7 @@ class Tokenizer
     protected bool $isFirstLine = true;
 
     public function __construct(
-        protected Grammar $grammar,
+        protected ParsedGrammar $grammar,
         protected GrammarRepositoryInterface $grammarRepository = new GrammarRepository,
         protected bool $strictMode = false,
     ) {}
@@ -769,10 +772,5 @@ class Tokenizer
 
             $this->process($whileMatched, $line, $lineText);
         }
-    }
-
-    private function debug(string $message): void
-    {
-        echo $message."\n";
     }
 }

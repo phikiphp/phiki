@@ -1,5 +1,7 @@
 <?php
 
+use Phiki\Support\Str;
+
 require_once __DIR__.'/../vendor/autoload.php';
 
 function main()
@@ -14,7 +16,7 @@ function main()
     echo "Copying grammar files...\n";
 
     eachFile($grammarsDirectory, function (SplFileInfo $grammar) use (&$grammars) {
-        copy($grammar->getRealPath(), __DIR__.'/../languages/'.$grammar->getFilename());
+        copy($grammar->getRealPath(), __DIR__.'/../resources/languages/'.$grammar->getFilename());
 
         $json = json_decode(file_get_contents($grammar->getRealPath()), true);
 
@@ -28,7 +30,7 @@ function main()
     echo "Copying theme files...\n";
 
     eachFile($themesDirectory, function (SplFileInfo $theme) use (&$themes) {
-        copy($theme->getRealPath(), __DIR__.'/../themes/'.$theme->getFilename());
+        copy($theme->getRealPath(), __DIR__.'/../resources/themes/'.$theme->getFilename());
 
         $json = json_decode(file_get_contents($theme->getRealPath()), true);
 
@@ -45,7 +47,7 @@ function main()
     $scopesToNames = [];
 
     foreach ($grammars as $grammar) {
-        $namesToPaths[] = sprintf('"%s" => __DIR__ . "/../../languages/%s"', $grammar['name'], $grammar['path']);
+        $namesToPaths[] = sprintf('"%s" => __DIR__ . "/../../resources/languages/%s"', $grammar['name'], $grammar['path']);
         $scopesToNames[$grammar['scopeName']] = sprintf('"%s" => "%s"', $grammar['scopeName'], $grammar['name']);
     }
 
@@ -56,13 +58,27 @@ function main()
 
     file_put_contents(__DIR__.'/../src/Generated/DefaultGrammars.php', $defaultGrammarsStub);
 
+    echo "Generating Grammar enum...\n";
+
+    $grammarEnumStub = file_get_contents(__DIR__.'/stubs/Grammar.php.stub');
+    $grammarCases = [];
+
+    foreach ($grammars as $grammar) {
+        $grammarCases[] = sprintf('case %s = "%s";', Str::studly($grammar['name']), $grammar['name']);
+    }
+
+    $grammarCases = implode("\n", $grammarCases);
+    $grammarEnumStub = sprintf($grammarEnumStub, $grammarCases);
+
+    file_put_contents(__DIR__.'/../src/Grammar/Grammar.php', $grammarEnumStub);
+
     echo "Generating DefaultThemes class...\n";
 
     $defaultThemesStub = file_get_contents(__DIR__.'/stubs/DefaultThemes.php.stub');
     $namesToPaths = [];
 
     foreach ($themes as $theme) {
-        $namesToPaths[] = sprintf('"%s" => __DIR__ . "/../../themes/%s"', $theme['name'], $theme['path']);
+        $namesToPaths[] = sprintf('"%s" => __DIR__ . "/../../resources/themes/%s"', $theme['name'], $theme['path']);
     }
 
     $namesToPathsString = implode(",\n", $namesToPaths);
@@ -70,6 +86,20 @@ function main()
     $defaultThemesStub = sprintf($defaultThemesStub, $namesToPathsString);
 
     file_put_contents(__DIR__.'/../src/Generated/DefaultThemes.php', $defaultThemesStub);
+
+    echo "Generating Theme enum...\n";
+
+    $themeEnumStub = file_get_contents(__DIR__.'/stubs/Theme.php.stub');
+    $themeCases = [];
+
+    foreach ($themes as $theme) {
+        $themeCases[] = sprintf('case %s = "%s";', Str::studly($theme['name']), $theme['name']);
+    }
+
+    $themeCases = implode("\n", $themeCases);
+    $themeEnumStub = sprintf($themeEnumStub, $themeCases);
+
+    file_put_contents(__DIR__.'/../src/Theme/Theme.php', $themeEnumStub);
 
     echo "Done!\n";
 }

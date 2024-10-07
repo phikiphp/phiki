@@ -1,6 +1,8 @@
 <?php
 
-namespace Phiki;
+namespace Phiki\Token;
+
+use Phiki\Theme\TokenSettings;
 
 readonly class HighlightedToken
 {

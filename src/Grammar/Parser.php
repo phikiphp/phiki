@@ -1,16 +1,10 @@
 <?php
 
-namespace Phiki;
+namespace Phiki\Grammar;
 
 use Phiki\Contracts\InjectionSelectorParserInputInterface;
 use Phiki\Exceptions\MissingRequiredGrammarKeyException;
 use Phiki\Exceptions\UnreachableException;
-use Phiki\Grammar\BeginEndPattern;
-use Phiki\Grammar\BeginWhilePattern;
-use Phiki\Grammar\Capture;
-use Phiki\Grammar\CollectionPattern;
-use Phiki\Grammar\Grammar;
-use Phiki\Grammar\IncludePattern;
 use Phiki\Grammar\Injections\Composite;
 use Phiki\Grammar\Injections\Expression;
 use Phiki\Grammar\Injections\Filter;
@@ -21,16 +15,15 @@ use Phiki\Grammar\Injections\Path;
 use Phiki\Grammar\Injections\Prefix;
 use Phiki\Grammar\Injections\Scope;
 use Phiki\Grammar\Injections\Selector;
-use Phiki\Grammar\MatchPattern;
-use Phiki\Grammar\Pattern;
+use Phiki\Support\Regex;
 
-class GrammarParser
+class Parser
 {
     protected string $scopeName;
 
     protected bool $injection = false;
 
-    public function parse(array $grammar): Grammar
+    public function parse(array $grammar): ParsedGrammar
     {
         if (! isset($grammar['scopeName'])) {
             throw MissingRequiredGrammarKeyException::make('scopeName');
@@ -51,7 +44,7 @@ class GrammarParser
             $injections[] = $this->injection($selector, $injection);
         }
 
-        return new Grammar($scopeName, $patterns, $repository, $injections);
+        return new ParsedGrammar($scopeName, $patterns, $repository, $injections);
     }
 
     protected function pattern(array $pattern): Pattern
@@ -217,7 +210,6 @@ class GrammarParser
                 '&' => Operator::And,
                 '|' => Operator::Or,
                 '-' => Operator::Not,
-                default => throw new UnreachableException('Unrecognised operator in selector: '.$input->current()),
             };
 
             $input->next();

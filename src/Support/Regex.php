@@ -1,6 +1,6 @@
 <?php
 
-namespace Phiki;
+namespace Phiki\Support;
 
 use Stringable;
 
@@ -180,15 +180,19 @@ class Regex implements Stringable
             return $pattern;
         }
 
-        if ($allowA && $allowG) {
-            return $this->anchorCache['A1_G1'];
-        } elseif ($allowA && ! $allowG) {
-            return $this->anchorCache['A1_G0'];
-        } elseif (! $allowA && $allowG) {
-            return $this->anchorCache['A0_G1'];
-        } else {
-            return $this->anchorCache['A0_G0'];
+        if ($allowA) {
+            if ($allowG) {
+                return $this->anchorCache['A1_G1'];
+            } else {
+                return $this->anchorCache['A1_G0'];
+            }
         }
+
+        if ($allowG) {
+            return $this->anchorCache['A0_G1'];
+        }
+
+        return $this->anchorCache['A0_G0'];
     }
 
     public function __toString(): string

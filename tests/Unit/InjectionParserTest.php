@@ -1,6 +1,5 @@
 <?php
 
-use Phiki\Grammar\Grammar;
 use Phiki\Grammar\Injections\Filter;
 use Phiki\Grammar\Injections\Group;
 use Phiki\Grammar\Injections\Injection;
@@ -8,6 +7,7 @@ use Phiki\Grammar\Injections\Operator;
 use Phiki\Grammar\Injections\Path;
 use Phiki\Grammar\Injections\Prefix;
 use Phiki\Grammar\Injections\Selector;
+use Phiki\Grammar\ParsedGrammar;
 
 describe('InjectionParser', function () {
     it('can parse a simple path', function () {
@@ -164,7 +164,7 @@ describe('InjectionParser', function () {
 
 function injection(string $selector): Injection
 {
-    $grammar = Grammar::parse([
+    $grammar = ParsedGrammar::fromArray([
         'scopeName' => 'source.test',
         'injections' => [
             $selector => [

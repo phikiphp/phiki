@@ -2,7 +2,7 @@
 
 namespace Phiki\Contracts;
 
-use Phiki\MatchedPattern;
+use Phiki\Grammar\MatchedPattern;
 use Phiki\Tokenizer;
 use Stringable;
 

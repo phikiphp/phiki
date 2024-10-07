@@ -3,7 +3,6 @@
 namespace Phiki\Grammar;
 
 use Phiki\Exceptions\UnrecognisedReferenceException;
-use Phiki\MatchedPattern;
 use Phiki\Tokenizer;
 
 class IncludePattern extends Pattern

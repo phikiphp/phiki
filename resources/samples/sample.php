@@ -1,9 +1,9 @@
 <?php
 
-use Phiki\GrammarRepository;
+use Phiki\Grammar\GrammarRepository;
 use Phiki\Phiki;
 
-require_once __DIR__.'/../vendor/autoload.php';
+require_once __DIR__.'/../../vendor/autoload.php';
 
 $grammar = $_GET['grammar'] ?? 'php';
 $repository = new GrammarRepository;

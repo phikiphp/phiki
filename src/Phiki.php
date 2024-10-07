@@ -4,7 +4,13 @@ namespace Phiki;
 
 use Phiki\Contracts\GrammarRepositoryInterface;
 use Phiki\Contracts\ThemeRepositoryInterface;
+use Phiki\Generators\HtmlGenerator;
 use Phiki\Grammar\Grammar;
+use Phiki\Grammar\GrammarRepository;
+use Phiki\Grammar\ParsedGrammar;
+use Phiki\Theme\ParsedTheme;
+use Phiki\Theme\Theme;
+use Phiki\Theme\ThemeRepository;
 
 class Phiki
 {
@@ -14,24 +20,31 @@ class Phiki
         protected bool $strictMode = false,
     ) {}
 
-    public function codeToTokens(string $code, string|Grammar $grammar): array
+    public function codeToTokens(string $code, string|Grammar|ParsedGrammar $grammar): array
     {
-        $grammar = is_string($grammar) ? $this->grammarRepository->get($grammar) : $grammar;
+        $grammar = match (true) {
+            is_string($grammar) => $this->grammarRepository->get($grammar),
+            $grammar instanceof Grammar => $grammar->toParsedGrammar($this->grammarRepository),
+            default => $grammar,
+        };
 
         $tokenizer = new Tokenizer($grammar, $this->grammarRepository, $this->strictMode);
 
         return $tokenizer->tokenize($code);
     }
 
-    public function codeToHtml(string $code, string|Grammar $grammar, string $theme): string
+    public function codeToHtml(string $code, string|Grammar|ParsedGrammar $grammar, string|Theme|ParsedTheme $theme): string
     {
         $tokens = $this->codeToTokens($code, $grammar);
 
-        $theme = $this->themeRepository->get($theme);
-        $styles = new ThemeStyles($theme);
+        $theme = match (true) {
+            is_string($theme) => $this->themeRepository->get($theme),
+            $theme instanceof Theme => $theme->toParsedTheme($this->themeRepository),
+            default => $theme,
+        };
 
-        $highlighter = new Highlighter($styles);
-        $htmlGenerator = new HtmlGenerator($styles);
+        $highlighter = new Highlighter($theme);
+        $htmlGenerator = new HtmlGenerator($theme);
 
         return $htmlGenerator->generate($highlighter->highlight($tokens));
     }

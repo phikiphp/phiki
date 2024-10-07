@@ -1,6 +1,7 @@
 <?php
 
-use Phiki\ThemeRepository;
+use Phiki\Theme\ParsedTheme;
+use Phiki\Theme\ThemeRepository;
 
 describe('ThemeRepository', function () {
     it('can be constructed', function () {
@@ -18,7 +19,7 @@ describe('ThemeRepository', function () {
         $grammar = $themeRepository->get('github-dark');
 
         expect($grammar)
-            ->toBeArray();
+            ->toBeInstanceOf(ParsedTheme::class);
     });
 
     it('can register a custom grammar using a file path', function () {
@@ -28,21 +29,22 @@ describe('ThemeRepository', function () {
         $grammar = $themeRepository->get('example');
 
         expect($grammar)
-            ->toBeArray();
+            ->toBeInstanceOf(ParsedTheme::class);
     });
 
     it('can register a custom grammar using a grammar array', function () {
         $themeRepository = new ThemeRepository;
-        $themeRepository->register('example', [
+        $themeRepository->register('example', ParsedTheme::fromArray([
+            'name' => 'example',
             'colors' => [
                 'editor.background' => '#000000',
                 'editor.foreground' => '#ffffff',
             ],
-        ]);
+        ]));
 
         $grammar = $themeRepository->get('example');
 
         expect($grammar)
-            ->toBeArray();
+            ->toBeInstanceOf(ParsedTheme::class);
     });
 });

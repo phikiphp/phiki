@@ -1,34 +1,27 @@
 <?php
 
-namespace Phiki;
+namespace Phiki\Theme;
 
 readonly class ThemeStyles
 {
-    public string $name;
+    protected string $backgroundColor;
 
-    public string $backgroundColor;
+    protected string $foregroundColor;
 
-    public string $foregroundColor;
+    protected array $tokenColors;
 
-    public array $tokenColors;
-
-    /**
-     * @param  array{name: ?string, colors: array<string, string>, tokenColors: array<array{scope: string|array<string>, settings: array<string, string>}>|null}  $theme
-     */
-    public function __construct(array $theme)
+    public function __construct(ParsedTheme $theme)
     {
-        $this->name = $theme['name'] ?? '';
-        $this->backgroundColor = $theme['colors']['editor.background'];
-        $this->foregroundColor = $theme['colors']['editor.foreground'];
+        $this->backgroundColor = $theme->colors['editor.background'];
+        $this->foregroundColor = $theme->colors['editor.foreground'];
 
         /** @var array<string, array> */
         $tokenColors = [];
 
-        foreach ($theme['tokenColors'] ?? [] as $tokenColor) {
-            $settings = $tokenColor['settings'];
-            $scopes = Arr::wrap($tokenColor['scope']);
+        foreach ($theme->tokenColors as $tokenColor) {
+            $settings = $tokenColor->settings;
 
-            foreach ($scopes as $scope) {
+            foreach ($tokenColor->scopes as $scope) {
                 $parts = explode('.', $scope);
                 $current = &$tokenColors;
 
@@ -47,7 +40,7 @@ readonly class ThemeStyles
         $this->tokenColors = $tokenColors;
     }
 
-    public function baseTokenSettings(): TokenSettings
+    public function base(): TokenSettings
     {
         return new TokenSettings(
             background: $this->backgroundColor,
@@ -79,10 +72,6 @@ readonly class ThemeStyles
             return null;
         }
 
-        return new TokenSettings(
-            background: $settings['background'] ?? null,
-            foreground: $settings['foreground'] ?? null,
-            fontStyle: $settings['fontStyle'] ?? null,
-        );
+        return $settings;
     }
 }

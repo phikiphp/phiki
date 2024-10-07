@@ -2,6 +2,8 @@
 
 namespace Phiki\Contracts;
 
+use Phiki\Theme\ParsedTheme;
+
 interface ThemeRepositoryInterface
 {
     /**
@@ -13,7 +15,7 @@ interface ThemeRepositoryInterface
      *
      * @throws \Phiki\Exceptions\UnrecognisedThemeException If the theme is not registered.
      */
-    public function get(string $name): array;
+    public function get(string $name): ParsedTheme;
 
     /**
      * Check whether a theme exists in the repository.
@@ -26,7 +28,7 @@ interface ThemeRepositoryInterface
      * Register a new theme to use when highlighting.
      *
      * @param  string  $name  The name of the theme.
-     * @param  string|array  $pathOrTheme  The path to the theme file or the theme itself.
+     * @param  string|ParsedTheme  $pathOrTheme  The path to the theme file or the theme itself.
      */
-    public function register(string $name, string|array $pathOrTheme): void;
+    public function register(string $name, string|ParsedTheme $pathOrTheme): void;
 }

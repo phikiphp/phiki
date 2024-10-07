@@ -2,9 +2,12 @@
 
 namespace Phiki;
 
+use Phiki\Theme\ParsedTheme;
+use Phiki\Token\HighlightedToken;
+
 readonly class Highlighter
 {
-    public function __construct(public ThemeStyles $styles) {}
+    public function __construct(public ParsedTheme $theme) {}
 
     public function highlight(array $tokens): array
     {
@@ -16,7 +19,7 @@ readonly class Highlighter
                 $settings = null;
 
                 foreach ($scopes as $scope) {
-                    $resolved = $this->styles->resolve($scope);
+                    $resolved = $this->theme->resolve($scope);
 
                     if ($resolved !== null) {
                         $settings = $resolved;

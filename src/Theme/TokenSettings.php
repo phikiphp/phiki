@@ -1,6 +1,6 @@
 <?php
 
-namespace Phiki;
+namespace Phiki\Theme;
 
 readonly class TokenSettings
 {

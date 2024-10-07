@@ -1,22 +1,25 @@
 <?php
 
-use Phiki\ThemeStyles;
-use Phiki\TokenSettings;
+use Phiki\Theme\ParsedTheme;
+use Phiki\Theme\ThemeStyles;
+use Phiki\Theme\TokenSettings;
 
 describe('ThemeStyles', function () {
     it('can be constructed', function () {
-        $styles = new ThemeStyles([
+        $styles = new ThemeStyles(ParsedTheme::fromArray([
+            'name' => 'test',
             'colors' => [
                 'editor.background' => '#000',
                 'editor.foreground' => '#fff',
             ],
-        ]);
+        ]));
 
         expect($styles)->toBeInstanceOf(ThemeStyles::class);
     });
 
     it('can resolve style settings for the given scope', function () {
-        $styles = new ThemeStyles([
+        $styles = new ThemeStyles(ParsedTheme::fromArray([
+            'name' => 'test',
             'colors' => [
                 'editor.background' => '#000',
                 'editor.foreground' => '#fff',
@@ -38,7 +41,7 @@ describe('ThemeStyles', function () {
                     ],
                 ],
             ],
-        ]);
+        ]));
 
         $settings = $styles->resolve('comment');
 

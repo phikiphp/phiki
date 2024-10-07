@@ -1,7 +1,7 @@
 <?php
 
 use Phiki\Phiki;
-use Phiki\Token;
+use Phiki\Token\Token;
 
 describe('javascript', function () {
     it('correctly tokenizes a single-line comment', function () {

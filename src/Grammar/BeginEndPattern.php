@@ -4,8 +4,7 @@ namespace Phiki\Grammar;
 
 use Phiki\Contracts\ContainsCapturesInterface;
 use Phiki\Contracts\PatternCollectionInterface;
-use Phiki\MatchedPattern;
-use Phiki\Regex;
+use Phiki\Support\Regex;
 use Phiki\Tokenizer;
 
 class BeginEndPattern extends Pattern implements ContainsCapturesInterface, PatternCollectionInterface

@@ -1,16 +1,16 @@
 <?php
 
-namespace Phiki;
+namespace Phiki\Grammar;
 
 use Phiki\Contracts\GrammarRepositoryInterface;
 use Phiki\Exceptions\UnrecognisedGrammarException;
-use Phiki\Grammar\Grammar;
+use Phiki\Generated\DefaultGrammars;
 
 class GrammarRepository implements GrammarRepositoryInterface
 {
-    protected array $grammars = Generated\DefaultGrammars::NAMES_TO_PATHS;
+    protected array $grammars = DefaultGrammars::NAMES_TO_PATHS;
 
-    protected array $scopesToGrammar = Generated\DefaultGrammars::SCOPES_TO_NAMES;
+    protected array $scopesToGrammar = DefaultGrammars::SCOPES_TO_NAMES;
 
     protected array $aliases = [
         'bash' => 'shellscript',
@@ -25,7 +25,7 @@ class GrammarRepository implements GrammarRepositoryInterface
         'py' => 'python',
     ];
 
-    public function get(string $name): Grammar
+    public function get(string $name): ParsedGrammar
     {
         if (! $this->has($name)) {
             throw UnrecognisedGrammarException::make($name);
@@ -34,16 +34,16 @@ class GrammarRepository implements GrammarRepositoryInterface
         $name = $this->aliases[$name] ?? $name;
         $grammar = $this->grammars[$name];
 
-        if ($grammar instanceof Grammar) {
+        if ($grammar instanceof ParsedGrammar) {
             return $grammar;
         }
 
-        $parser = new GrammarParser;
+        $parser = new Parser;
 
         return $this->grammars[$name] = $parser->parse(json_decode(file_get_contents($grammar), true));
     }
 
-    public function getFromScope(string $scope): Grammar
+    public function getFromScope(string $scope): ParsedGrammar
     {
         if (! isset($this->scopesToGrammar[$scope])) {
             throw UnrecognisedGrammarException::make($scope);
@@ -62,7 +62,7 @@ class GrammarRepository implements GrammarRepositoryInterface
         $this->aliases[$alias] = $target;
     }
 
-    public function register(string $name, string|Grammar $pathOrGrammar): void
+    public function register(string $name, string|ParsedGrammar $pathOrGrammar): void
     {
         $this->grammars[$name] = $pathOrGrammar;
     }

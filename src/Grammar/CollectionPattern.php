@@ -3,7 +3,6 @@
 namespace Phiki\Grammar;
 
 use Phiki\Contracts\PatternCollectionInterface;
-use Phiki\MatchedPattern;
 use Phiki\Tokenizer;
 
 class CollectionPattern extends Pattern implements PatternCollectionInterface

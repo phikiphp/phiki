@@ -1,7 +1,7 @@
 <?php
 
 use Phiki\Phiki;
-use Phiki\Token;
+use Phiki\Token\Token;
 
 describe('toml', function () {
     it('correctly tokenizes group headers', function () {

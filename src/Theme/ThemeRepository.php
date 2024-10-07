@@ -1,15 +1,16 @@
 <?php
 
-namespace Phiki;
+namespace Phiki\Theme;
 
 use Phiki\Contracts\ThemeRepositoryInterface;
 use Phiki\Exceptions\UnrecognisedThemeException;
+use Phiki\Generated\DefaultThemes;
 
 class ThemeRepository implements ThemeRepositoryInterface
 {
-    protected array $themes = Generated\DefaultThemes::NAMES_TO_PATHS;
+    protected array $themes = DefaultThemes::NAMES_TO_PATHS;
 
-    public function get(string $name): array
+    public function get(string $name): ParsedTheme
     {
         if (! $this->has($name)) {
             throw UnrecognisedThemeException::make($name);
@@ -17,11 +18,13 @@ class ThemeRepository implements ThemeRepositoryInterface
 
         $theme = $this->themes[$name];
 
-        if (is_array($theme)) {
+        if ($theme instanceof ParsedTheme) {
             return $theme;
         }
 
-        return $this->themes[$name] = json_decode(file_get_contents($theme), true);
+        $parser = new Parser;
+
+        return $this->themes[$name] = $parser->parse(json_decode(file_get_contents($theme), true));
     }
 
     public function has(string $name): bool
@@ -29,7 +32,7 @@ class ThemeRepository implements ThemeRepositoryInterface
         return isset($this->themes[$name]);
     }
 
-    public function register(string $name, string|array $pathOrTheme): void
+    public function register(string $name, string|ParsedTheme $pathOrTheme): void
     {
         $this->themes[$name] = $pathOrTheme;
     }

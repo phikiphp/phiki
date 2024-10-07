@@ -3,8 +3,7 @@
 namespace Phiki\Grammar;
 
 use Phiki\Contracts\ContainsCapturesInterface;
-use Phiki\MatchedPattern;
-use Phiki\Regex;
+use Phiki\Support\Regex;
 use Phiki\Tokenizer;
 
 class MatchPattern extends Pattern implements ContainsCapturesInterface
