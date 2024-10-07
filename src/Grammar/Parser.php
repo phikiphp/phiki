@@ -1,6 +1,6 @@
 <?php
 
-namespace Phiki;
+namespace Phiki\Grammar;
 
 use Phiki\Contracts\InjectionSelectorParserInputInterface;
 use Phiki\Exceptions\MissingRequiredGrammarKeyException;
@@ -23,8 +23,9 @@ use Phiki\Grammar\Injections\Scope;
 use Phiki\Grammar\Injections\Selector;
 use Phiki\Grammar\MatchPattern;
 use Phiki\Grammar\Pattern;
+use Phiki\Regex;
 
-class GrammarParser
+class Parser
 {
     protected string $scopeName;
 

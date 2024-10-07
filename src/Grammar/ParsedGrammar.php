@@ -3,7 +3,7 @@
 namespace Phiki\Grammar;
 
 use Phiki\Contracts\PatternCollectionInterface;
-use Phiki\GrammarParser;
+use Phiki\Grammar\GrammarParser;
 use Phiki\MatchedPattern;
 use Phiki\Tokenizer;
 
@@ -59,7 +59,7 @@ final class ParsedGrammar extends Pattern implements PatternCollectionInterface
 
     public static function parse(array $grammar): static
     {
-        $parser = new GrammarParser;
+        $parser = new Parser;
 
         return $parser->parse($grammar);
     }

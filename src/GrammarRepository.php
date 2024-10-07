@@ -5,6 +5,7 @@ namespace Phiki;
 use Phiki\Contracts\GrammarRepositoryInterface;
 use Phiki\Exceptions\UnrecognisedGrammarException;
 use Phiki\Grammar\ParsedGrammar;
+use Phiki\Grammar\Parser;
 
 class GrammarRepository implements GrammarRepositoryInterface
 {
@@ -38,7 +39,7 @@ class GrammarRepository implements GrammarRepositoryInterface
             return $grammar;
         }
 
-        $parser = new GrammarParser;
+        $parser = new Parser;
 
         return $this->grammars[$name] = $parser->parse(json_decode(file_get_contents($grammar), true));
     }
