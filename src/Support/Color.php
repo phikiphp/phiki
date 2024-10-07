@@ -5,10 +5,13 @@ namespace Phiki\Support;
 final class Color
 {
     public const ANSI_RESET = "\033[0m";
+
     public const ANSI_BOLD = 1;
+
     public const ANSI_ITALIC = 3;
+
     public const ANSI_UNDERLINE = 4;
-    
+
     public static function hexToAnsi(string $hex): int
     {
         $hex = ltrim($hex, '#');
@@ -24,6 +27,6 @@ final class Color
 
     public static function rgbToAnsi(int $r, int $g, int $b): int
     {
-        return (16 + (36 * round($r / 255 * 5)) + (6 * round($g / 255 * 5)) + round($b / 255 * 5));
+        return 16 + (36 * round($r / 255 * 5)) + (6 * round($g / 255 * 5)) + round($b / 255 * 5);
     }
 }

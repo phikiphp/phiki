@@ -4,7 +4,6 @@ namespace Phiki\Grammar;
 
 use Phiki\Contracts\GrammarRepositoryInterface;
 use Phiki\Exceptions\UnrecognisedGrammarException;
-use Phiki\Generated\DefaultGrammars;
 
 class GrammarRepository implements GrammarRepositoryInterface
 {

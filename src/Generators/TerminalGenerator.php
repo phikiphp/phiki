@@ -14,7 +14,7 @@ class TerminalGenerator implements OutputGeneratorInterface
 
     public function generate(array $tokens): string
     {
-        $output = "";
+        $output = '';
 
         foreach ($tokens as $line) {
             foreach ($line as $token) {

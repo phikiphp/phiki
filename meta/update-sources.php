@@ -61,7 +61,7 @@ function main()
 
     $defaultGrammarsStub = sprintf($defaultGrammarsStub, $namesToPathsString, $scopesToNamesString);
 
-    file_put_contents(__DIR__.'/../src/Generated/DefaultGrammars.php', $defaultGrammarsStub);
+    file_put_contents(__DIR__.'/../src/Grammar/DefaultGrammars.php', $defaultGrammarsStub);
 
     echo "Generating Grammar enum...\n";
 
@@ -90,7 +90,7 @@ function main()
 
     $defaultThemesStub = sprintf($defaultThemesStub, $namesToPathsString);
 
-    file_put_contents(__DIR__.'/../src/Generated/DefaultThemes.php', $defaultThemesStub);
+    file_put_contents(__DIR__.'/../src/Theme/DefaultThemes.php', $defaultThemesStub);
 
     echo "Generating Theme enum...\n";
 

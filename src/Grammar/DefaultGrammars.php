@@ -1,6 +1,6 @@
 <?php
 
-namespace Phiki\Generated;
+namespace Phiki\Grammar;
 
 abstract class DefaultGrammars
 {

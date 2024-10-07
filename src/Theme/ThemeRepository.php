@@ -4,7 +4,6 @@ namespace Phiki\Theme;
 
 use Phiki\Contracts\ThemeRepositoryInterface;
 use Phiki\Exceptions\UnrecognisedThemeException;
-use Phiki\Generated\DefaultThemes;
 
 class ThemeRepository implements ThemeRepositoryInterface
 {

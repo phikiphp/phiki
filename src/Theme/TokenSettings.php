@@ -41,7 +41,7 @@ readonly class TokenSettings
             }
         }
 
-        return "\033[" . implode(';', $decorations) . ";38;5;".implode(';', $codes)."m";
+        return "\033[".implode(';', $decorations).';38;5;'.implode(';', $codes).'m';
     }
 
     public function toStyleString(): string
