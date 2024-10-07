@@ -4,7 +4,7 @@ namespace Phiki\Grammar;
 
 use Phiki\Contracts\ContainsCapturesInterface;
 use Phiki\Contracts\PatternCollectionInterface;
-use Phiki\MatchedPattern;
+use Phiki\Grammar\MatchedPattern;
 use Phiki\Support\Regex;
 use Phiki\Tokenizer;
 

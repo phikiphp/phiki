@@ -15,6 +15,7 @@ use Phiki\Grammar\GrammarRepository;
 use Phiki\Grammar\ParsedGrammar;
 use Phiki\Grammar\IncludePattern;
 use Phiki\Grammar\Injections\Prefix;
+use Phiki\Grammar\MatchedPattern;
 use Phiki\Grammar\MatchPattern;
 use Phiki\Grammar\Pattern;
 use Phiki\Grammar\WhilePattern;

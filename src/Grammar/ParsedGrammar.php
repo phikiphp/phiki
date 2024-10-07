@@ -4,7 +4,7 @@ namespace Phiki\Grammar;
 
 use Phiki\Contracts\PatternCollectionInterface;
 use Phiki\Grammar\GrammarParser;
-use Phiki\MatchedPattern;
+use Phiki\Grammar\MatchedPattern;
 use Phiki\Tokenizer;
 
 final class ParsedGrammar extends Pattern implements PatternCollectionInterface
