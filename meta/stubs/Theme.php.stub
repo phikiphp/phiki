@@ -1,0 +1,13 @@
+<?php
+
+namespace Phiki\Theme;
+
+enum Theme: string
+{
+    %s
+
+    public function toParsedTheme(ThemeRepository $repository): ParsedTheme
+    {
+        return $repository->get($this->value);
+    }
+}

@@ -82,7 +82,7 @@ describe('html', function () {
 function html(string $input): array
 {
     $tokenizer = new Tokenizer(
-        ParsedGrammar::parse(json_decode(file_get_contents(__DIR__.'/../../languages/html.json'), true))
+        ParsedGrammar::fromArray(json_decode(file_get_contents(__DIR__.'/../../languages/html.json'), true))
     );
 
     return $tokenizer->tokenize($input);

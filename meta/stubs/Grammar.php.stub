@@ -5,4 +5,9 @@ namespace Phiki\Grammar;
 enum Grammar: string
 {
     %s
+
+    public function toParsedGrammar(GrammarRepository $repository): ParsedGrammar
+    {
+        return $repository->get($this->value);
+    }
 }

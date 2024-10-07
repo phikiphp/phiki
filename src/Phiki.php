@@ -32,10 +32,9 @@ class Phiki
         $tokens = $this->codeToTokens($code, $grammar);
 
         $theme = $this->themeRepository->get($theme);
-        $styles = new ThemeStyles($theme);
 
-        $highlighter = new Highlighter($styles);
-        $htmlGenerator = new HtmlGenerator($styles);
+        $highlighter = new Highlighter($theme);
+        $htmlGenerator = new HtmlGenerator($theme);
 
         return $htmlGenerator->generate($highlighter->highlight($tokens));
     }

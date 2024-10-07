@@ -55,7 +55,7 @@ final class ParsedGrammar extends Pattern implements PatternCollectionInterface
         return $this->scopeName;
     }
 
-    public static function parse(array $grammar): static
+    public static function fromArray(array $grammar): static
     {
         $parser = new Parser;
 

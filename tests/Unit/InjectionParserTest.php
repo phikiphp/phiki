@@ -164,7 +164,7 @@ describe('InjectionParser', function () {
 
 function injection(string $selector): Injection
 {
-    $grammar = ParsedGrammar::parse([
+    $grammar = ParsedGrammar::fromArray([
         'scopeName' => 'source.test',
         'injections' => [
             $selector => [

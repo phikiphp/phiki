@@ -36,7 +36,7 @@ describe('GrammarRepository', function () {
 
     it('can register a custom grammar using a grammar object', function () {
         $grammarRepository = new GrammarRepository;
-        $grammarRepository->register('example', ParsedGrammar::parse([
+        $grammarRepository->register('example', ParsedGrammar::fromArray([
             'scopeName' => 'source.example',
         ]));
 

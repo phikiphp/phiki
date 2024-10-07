@@ -6,7 +6,7 @@ use Phiki\Tokenizer;
 function tokenize(string $input, array $grammar): array
 {
     $tokenizer = new Tokenizer(
-        ParsedGrammar::parse($grammar)
+        ParsedGrammar::fromArray($grammar)
     );
 
     return $tokenizer->tokenize($input);

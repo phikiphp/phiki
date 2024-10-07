@@ -87,6 +87,20 @@ function main()
 
     file_put_contents(__DIR__.'/../src/Generated/DefaultThemes.php', $defaultThemesStub);
 
+    echo "Generating Theme enum...\n";
+
+    $themeEnumStub = file_get_contents(__DIR__.'/stubs/Theme.php.stub');
+    $themeCases = [];
+
+    foreach ($themes as $theme) {
+        $themeCases[] = sprintf('case %s = "%s";', Str::studly($theme['name']), $theme['name']);
+    }
+
+    $themeCases = implode("\n", $themeCases);
+    $themeEnumStub = sprintf($themeEnumStub, $themeCases);
+
+    file_put_contents(__DIR__.'/../src/Theme/Theme.php', $themeEnumStub);
+
     echo "Done!\n";
 }
 
