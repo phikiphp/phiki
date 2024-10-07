@@ -174,7 +174,7 @@ describe('php', function () {
 function php(string $input): array
 {
     $tokenizer = new Tokenizer(
-        ParsedGrammar::fromArray(json_decode(file_get_contents(__DIR__.'/../../languages/php.json'), true))
+        ParsedGrammar::fromArray(json_decode(file_get_contents(__DIR__.'/../../resources/languages/php.json'), true))
     );
 
     return $tokenizer->tokenize($input);

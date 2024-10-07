@@ -16,7 +16,7 @@ function main()
     echo "Copying grammar files...\n";
 
     eachFile($grammarsDirectory, function (SplFileInfo $grammar) use (&$grammars) {
-        copy($grammar->getRealPath(), __DIR__.'/../languages/'.$grammar->getFilename());
+        copy($grammar->getRealPath(), __DIR__.'/../resources/languages/'.$grammar->getFilename());
 
         $json = json_decode(file_get_contents($grammar->getRealPath()), true);
 
@@ -30,7 +30,7 @@ function main()
     echo "Copying theme files...\n";
 
     eachFile($themesDirectory, function (SplFileInfo $theme) use (&$themes) {
-        copy($theme->getRealPath(), __DIR__.'/../themes/'.$theme->getFilename());
+        copy($theme->getRealPath(), __DIR__.'/../resources/themes/'.$theme->getFilename());
 
         $json = json_decode(file_get_contents($theme->getRealPath()), true);
 
@@ -47,7 +47,7 @@ function main()
     $scopesToNames = [];
 
     foreach ($grammars as $grammar) {
-        $namesToPaths[] = sprintf('"%s" => __DIR__ . "/../../languages/%s"', $grammar['name'], $grammar['path']);
+        $namesToPaths[] = sprintf('"%s" => __DIR__ . "/../../resources/languages/%s"', $grammar['name'], $grammar['path']);
         $scopesToNames[$grammar['scopeName']] = sprintf('"%s" => "%s"', $grammar['scopeName'], $grammar['name']);
     }
 
@@ -78,7 +78,7 @@ function main()
     $namesToPaths = [];
 
     foreach ($themes as $theme) {
-        $namesToPaths[] = sprintf('"%s" => __DIR__ . "/../../themes/%s"', $theme['name'], $theme['path']);
+        $namesToPaths[] = sprintf('"%s" => __DIR__ . "/../../resources/themes/%s"', $theme['name'], $theme['path']);
     }
 
     $namesToPathsString = implode(",\n", $namesToPaths);
