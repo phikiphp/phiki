@@ -8,45 +8,9 @@ use Phiki\Grammar\Grammar;
 
 class GrammarRepository implements GrammarRepositoryInterface
 {
-    protected array $grammars = [
-        'blade' => __DIR__ . '/../languages/blade.json',
-        'php' => __DIR__ . '/../languages/php.json',
-        'html' => __DIR__ . '/../languages/html.json',
-        'html-derivative' => __DIR__ . '/../languages/html-derivative.json',
-        'shellscript' => __DIR__ . '/../languages/shellscript.json',
-        'javascript' => __DIR__ . '/../languages/javascript.json',
-        'css' => __DIR__ . '/../languages/css.json',
-        'json' => __DIR__ . '/../languages/json.json',
-        'c' => __DIR__ . '/../languages/c.json',
-        'toml' => __DIR__ . '/../languages/toml.json',
-        'rust' => __DIR__ . '/../languages/rust.json',
-        'yaml' => __DIR__ . '/../languages/yaml.json',
-        'go' => __DIR__ . '/../languages/go.json',
-        'jsx' => __DIR__ . '/../languages/jsx.json',
-        'txt' => __DIR__ . '/../languages/txt.json',
-        'markdown' => __DIR__ . '/../languages/markdown.json',
-        'python' => __DIR__ . '/../languages/python.json',
-    ];
+    protected array $grammars = Generated\DefaultGrammars::NAMES_TO_PATHS;
 
-    protected array $scopesToGrammar = [
-        'text.html.basic' => 'html',
-        'text.html.php.blade' => 'blade',
-        'source.php' => 'php',
-        'source.shell' => 'shellscript',
-        'source.js' => 'javascript',
-        'source.css' => 'css',
-        'source.json' => 'json',
-        'source.c' => 'c',
-        'source.toml' => 'toml',
-        'source.rust' => 'rust',
-        'source.yaml' => 'yaml',
-        'source.go' => 'go',
-        'source.js.jsx' => 'jsx',
-        'text.html.markdown' => 'markdown',
-        'text.txt' => 'txt',
-        'text.html.derivative' => 'html-derivative',
-        'source.python' => 'python',
-    ];
+    protected array $scopesToGrammar = Generated\DefaultGrammars::SCOPES_TO_NAMES;
 
     protected array $aliases = [
         'bash' => 'shellscript',
