@@ -7,7 +7,7 @@ use Phiki\GrammarParser;
 use Phiki\MatchedPattern;
 use Phiki\Tokenizer;
 
-final class Grammar extends Pattern implements PatternCollectionInterface
+final class ParsedGrammar extends Pattern implements PatternCollectionInterface
 {
     /**
      * @param  Pattern[]  $patterns

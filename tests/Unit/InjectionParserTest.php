@@ -1,6 +1,6 @@
 <?php
 
-use Phiki\Grammar\Grammar;
+use Phiki\Grammar\ParsedGrammar;
 use Phiki\Grammar\Injections\Filter;
 use Phiki\Grammar\Injections\Group;
 use Phiki\Grammar\Injections\Injection;
@@ -164,7 +164,7 @@ describe('InjectionParser', function () {
 
 function injection(string $selector): Injection
 {
-    $grammar = Grammar::parse([
+    $grammar = ParsedGrammar::parse([
         'scopeName' => 'source.test',
         'injections' => [
             $selector => [

@@ -2,7 +2,7 @@
 
 namespace Phiki\Contracts;
 
-use Phiki\Grammar\Grammar;
+use Phiki\Grammar\ParsedGrammar;
 
 interface GrammarRepositoryInterface
 {
@@ -15,7 +15,7 @@ interface GrammarRepositoryInterface
      *
      * @throws \Phiki\Exceptions\UnrecognisedGrammarException If the grammar is not registered.
      */
-    public function get(string $name): Grammar;
+    public function get(string $name): ParsedGrammar;
 
     /**
      * Get a grammar from the repository by scope name.
@@ -24,7 +24,7 @@ interface GrammarRepositoryInterface
      *
      * @throws \Phiki\Exceptions\UnrecognisedGrammarException If the grammar is not registered.
      */
-    public function getFromScope(string $scope): Grammar;
+    public function getFromScope(string $scope): ParsedGrammar;
 
     /**
      * Check whether a grammar exists in the repository.
@@ -37,7 +37,7 @@ interface GrammarRepositoryInterface
      * Register a new Grammar to use when highlighting.
      *
      * @param  string  $name  The name of the grammar.
-     * @param  string|Grammar  $pathOrGrammar  The path to the grammar file or the grammar itself.
+     * @param  string|ParsedGrammar  $pathOrGrammar  The path to the grammar file or the grammar itself.
      */
-    public function register(string $name, string|Grammar $pathOrGrammar): void;
+    public function register(string $name, string|ParsedGrammar $pathOrGrammar): void;
 }

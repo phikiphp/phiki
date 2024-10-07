@@ -1,6 +1,6 @@
 <?php
 
-use Phiki\Grammar\Grammar;
+use Phiki\Grammar\ParsedGrammar;
 use Phiki\GrammarRepository;
 
 describe('GrammarRepository', function () {
@@ -19,7 +19,7 @@ describe('GrammarRepository', function () {
         $grammar = $grammarRepository->get('php');
 
         expect($grammar)
-            ->toBeInstanceOf(Grammar::class)
+            ->toBeInstanceOf(ParsedGrammar::class)
             ->toHaveProperty('scopeName', 'source.php');
     });
 
@@ -30,20 +30,20 @@ describe('GrammarRepository', function () {
         $grammar = $grammarRepository->get('example');
 
         expect($grammar)
-            ->toBeInstanceOf(Grammar::class)
+            ->toBeInstanceOf(ParsedGrammar::class)
             ->toHaveProperty('scopeName', 'source.example');
     });
 
     it('can register a custom grammar using a grammar object', function () {
         $grammarRepository = new GrammarRepository;
-        $grammarRepository->register('example', Grammar::parse([
+        $grammarRepository->register('example', ParsedGrammar::parse([
             'scopeName' => 'source.example',
         ]));
 
         $grammar = $grammarRepository->get('example');
 
         expect($grammar)
-            ->toBeInstanceOf(Grammar::class)
+            ->toBeInstanceOf(ParsedGrammar::class)
             ->toHaveProperty('scopeName', 'source.example');
     });
 
@@ -54,7 +54,7 @@ describe('GrammarRepository', function () {
         $grammar = $grammarRepository->get('bash');
 
         expect($grammar)
-            ->toBeInstanceOf(Grammar::class)
+            ->toBeInstanceOf(ParsedGrammar::class)
             ->toHaveProperty('scopeName', 'source.shell');
     });
 });

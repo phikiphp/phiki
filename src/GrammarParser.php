@@ -9,7 +9,7 @@ use Phiki\Grammar\BeginEndPattern;
 use Phiki\Grammar\BeginWhilePattern;
 use Phiki\Grammar\Capture;
 use Phiki\Grammar\CollectionPattern;
-use Phiki\Grammar\Grammar;
+use Phiki\Grammar\ParsedGrammar;
 use Phiki\Grammar\IncludePattern;
 use Phiki\Grammar\Injections\Composite;
 use Phiki\Grammar\Injections\Expression;
@@ -30,7 +30,7 @@ class GrammarParser
 
     protected bool $injection = false;
 
-    public function parse(array $grammar): Grammar
+    public function parse(array $grammar): ParsedGrammar
     {
         if (! isset($grammar['scopeName'])) {
             throw MissingRequiredGrammarKeyException::make('scopeName');
@@ -51,7 +51,7 @@ class GrammarParser
             $injections[] = $this->injection($selector, $injection);
         }
 
-        return new Grammar($scopeName, $patterns, $repository, $injections);
+        return new ParsedGrammar($scopeName, $patterns, $repository, $injections);
     }
 
     protected function pattern(array $pattern): Pattern
