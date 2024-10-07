@@ -732,8 +732,8 @@ class Tokenizer
     }
 
     // FIXME: This should actually check all while conditions on the patternStack
-    // to see which ones need to be popped off. 
-    // 
+    // to see which ones need to be popped off.
+    //
     // This isn't super easy to do right now since we don't have a true "stack"
     // of Tokenizer state, but rather a single mutable set of properties.
     //

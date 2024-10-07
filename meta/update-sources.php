@@ -1,11 +1,12 @@
 <?php
 
-require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__.'/../vendor/autoload.php';
 
-function main() {
-    $nodeModules = realpath(__DIR__ . '/../node_modules');
-    $grammarsDirectory = realpath($nodeModules . '/tm-grammars/grammars');
-    $themesDirectory = realpath($nodeModules . '/tm-themes/themes');
+function main()
+{
+    $nodeModules = realpath(__DIR__.'/../node_modules');
+    $grammarsDirectory = realpath($nodeModules.'/tm-grammars/grammars');
+    $themesDirectory = realpath($nodeModules.'/tm-themes/themes');
 
     $grammars = [];
     $themes = [];
@@ -13,7 +14,7 @@ function main() {
     echo "Copying grammar files...\n";
 
     eachFile($grammarsDirectory, function (SplFileInfo $grammar) use (&$grammars) {
-        copy($grammar->getRealPath(), __DIR__ . '/../languages/' . $grammar->getFilename());
+        copy($grammar->getRealPath(), __DIR__.'/../languages/'.$grammar->getFilename());
 
         $json = json_decode(file_get_contents($grammar->getRealPath()), true);
 
@@ -27,7 +28,7 @@ function main() {
     echo "Copying theme files...\n";
 
     eachFile($themesDirectory, function (SplFileInfo $theme) use (&$themes) {
-        copy($theme->getRealPath(), __DIR__ . '/../themes/' . $theme->getFilename());
+        copy($theme->getRealPath(), __DIR__.'/../themes/'.$theme->getFilename());
 
         $json = json_decode(file_get_contents($theme->getRealPath()), true);
 
@@ -39,10 +40,10 @@ function main() {
 
     echo "Generating DefaultGrammars class...\n";
 
-    $defaultGrammarsStub = file_get_contents(__DIR__ . '/stubs/DefaultGrammars.php.stub');
+    $defaultGrammarsStub = file_get_contents(__DIR__.'/stubs/DefaultGrammars.php.stub');
     $namesToPaths = [];
     $scopesToNames = [];
-    
+
     foreach ($grammars as $grammar) {
         $namesToPaths[] = sprintf('"%s" => __DIR__ . "/../../languages/%s"', $grammar['name'], $grammar['path']);
         $scopesToNames[$grammar['scopeName']] = sprintf('"%s" => "%s"', $grammar['scopeName'], $grammar['name']);
@@ -50,14 +51,14 @@ function main() {
 
     $namesToPathsString = implode(",\n", $namesToPaths);
     $scopesToNamesString = implode(",\n", $scopesToNames);
-    
+
     $defaultGrammarsStub = sprintf($defaultGrammarsStub, $namesToPathsString, $scopesToNamesString);
 
-    file_put_contents(__DIR__ . '/../src/Generated/DefaultGrammars.php', $defaultGrammarsStub);
+    file_put_contents(__DIR__.'/../src/Generated/DefaultGrammars.php', $defaultGrammarsStub);
 
     echo "Generating DefaultThemes class...\n";
 
-    $defaultThemesStub = file_get_contents(__DIR__ . '/stubs/DefaultThemes.php.stub');
+    $defaultThemesStub = file_get_contents(__DIR__.'/stubs/DefaultThemes.php.stub');
     $namesToPaths = [];
 
     foreach ($themes as $theme) {
@@ -68,7 +69,7 @@ function main() {
 
     $defaultThemesStub = sprintf($defaultThemesStub, $namesToPathsString);
 
-    file_put_contents(__DIR__ . '/../src/Generated/DefaultThemes.php', $defaultThemesStub);
+    file_put_contents(__DIR__.'/../src/Generated/DefaultThemes.php', $defaultThemesStub);
 
     echo "Done!\n";
 }

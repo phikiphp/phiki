@@ -95,7 +95,7 @@ class GrammarParser
 
         // This is more of a special case because it shouldn't ever happen, but we want
         // to be graceful and treat a standalone begin as a match.
-        if (isset($pattern['begin']) && !isset($pattern['end']) && ! isset($pattern['while'])) {
+        if (isset($pattern['begin']) && ! isset($pattern['end']) && ! isset($pattern['while'])) {
             return new MatchPattern(
                 new Regex($pattern['begin']),
                 $pattern['name'] ?? null,
