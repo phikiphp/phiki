@@ -5,6 +5,7 @@ namespace Phiki;
 use Phiki\Contracts\GrammarRepositoryInterface;
 use Phiki\Contracts\ThemeRepositoryInterface;
 use Phiki\Generators\HtmlGenerator;
+use Phiki\Generators\TerminalGenerator;
 use Phiki\Grammar\Grammar;
 use Phiki\Grammar\GrammarRepository;
 use Phiki\Grammar\ParsedGrammar;
@@ -31,6 +32,22 @@ class Phiki
         $tokenizer = new Tokenizer($grammar, $this->grammarRepository, $this->strictMode);
 
         return $tokenizer->tokenize($code);
+    }
+
+    public function codeToTerminal(string $code, string|Grammar|ParsedGrammar $grammar, string|Theme|ParsedTheme $theme): string
+    {
+        $tokens = $this->codeToTokens($code, $grammar);
+
+        $theme = match (true) {
+            is_string($theme) => $this->themeRepository->get($theme),
+            $theme instanceof Theme => $theme->toParsedTheme($this->themeRepository),
+            default => $theme,
+        };
+
+        $highlighter = new Highlighter($theme);
+        $terminalGenerator = new TerminalGenerator($theme);
+
+        return $terminalGenerator->generate($highlighter->highlight($tokens));
     }
 
     public function codeToHtml(string $code, string|Grammar|ParsedGrammar $grammar, string|Theme|ParsedTheme $theme): string
