@@ -60,6 +60,7 @@ readonly class ThemeStyles
     {
         $parts = explode('.', $scope);
         $current = $this->tokenColors;
+        $settings = null;
 
         foreach ($parts as $part) {
             // Can't find the right part here, break.
@@ -68,13 +69,15 @@ readonly class ThemeStyles
             }
 
             $current = $current[$part];
+
+            if (isset($current['*'])) {
+                $settings = $current['*'];
+            }
         }
 
-        if (! isset($current['*'])) {
+        if (! $settings) {
             return null;
         }
-
-        $settings = $current['*'];
 
         return new TokenSettings(
             background: $settings['background'] ?? null,

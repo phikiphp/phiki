@@ -93,6 +93,17 @@ class GrammarParser
             );
         }
 
+        // This is more of a special case because it shouldn't ever happen, but we want
+        // to be graceful and treat a standalone begin as a match.
+        if (isset($pattern['begin']) && !isset($pattern['end']) && ! isset($pattern['while'])) {
+            return new MatchPattern(
+                new Regex($pattern['begin']),
+                $pattern['name'] ?? null,
+                $this->captures($pattern['beginCaptures'] ?? $pattern['captures'] ?? []),
+                injection: $this->injection,
+            );
+        }
+
         if (isset($pattern['include'])) {
             if (str_starts_with($pattern['include'], '#')) {
                 [$reference, $scopeName] = [substr($pattern['include'], 1), $this->scopeName];
