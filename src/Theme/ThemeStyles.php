@@ -2,7 +2,7 @@
 
 namespace Phiki\Theme;
 
-use Phiki\Arr;
+use Phiki\Support\Arr;
 
 readonly class ThemeStyles
 {
