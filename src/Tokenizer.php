@@ -773,9 +773,4 @@ class Tokenizer
             $this->process($whileMatched, $line, $lineText);
         }
     }
-
-    private function debug(string $message): void
-    {
-        echo $message."\n";
-    }
 }
