@@ -8,7 +8,6 @@ use Phiki\Generators\HtmlGenerator;
 use Phiki\Grammar\GrammarRepository;
 use Phiki\Grammar\ParsedGrammar;
 use Phiki\Theme\ThemeRepository;
-use Phiki\Theme\ThemeStyles;
 
 class Phiki
 {

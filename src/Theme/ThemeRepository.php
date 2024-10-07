@@ -22,7 +22,7 @@ class ThemeRepository implements ThemeRepositoryInterface
             return $theme;
         }
 
-        $parser = new Parser();
+        $parser = new Parser;
 
         return $this->themes[$name] = $parser->parse(json_decode(file_get_contents($theme), true));
     }

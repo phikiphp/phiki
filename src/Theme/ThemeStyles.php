@@ -2,8 +2,6 @@
 
 namespace Phiki\Theme;
 
-use Phiki\Support\Arr;
-
 readonly class ThemeStyles
 {
     protected string $backgroundColor;

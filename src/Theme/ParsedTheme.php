@@ -7,8 +7,8 @@ class ParsedTheme
     protected ThemeStyles $styles;
 
     /**
-     * @param array<string, string> $colors
-     * @param array<int, TokenColor> $tokenColors
+     * @param  array<string, string>  $colors
+     * @param  array<int, TokenColor>  $tokenColors
      */
     public function __construct(
         public string $name,
@@ -30,7 +30,7 @@ class ParsedTheme
 
     public static function fromArray(array $theme): static
     {
-        $parser = new Parser();
+        $parser = new Parser;
 
         return $parser->parse($theme);
     }

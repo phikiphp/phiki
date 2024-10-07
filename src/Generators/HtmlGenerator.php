@@ -4,7 +4,6 @@ namespace Phiki\Generators;
 
 use Phiki\Contracts\OutputGeneratorInterface;
 use Phiki\Theme\ParsedTheme;
-use Phiki\Theme\ThemeStyles;
 
 readonly class HtmlGenerator implements OutputGeneratorInterface
 {

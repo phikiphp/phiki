@@ -2,7 +2,6 @@
 
 use Phiki\Highlighter;
 use Phiki\Theme\ParsedTheme;
-use Phiki\Theme\ThemeStyles;
 
 describe('Highlighter', function () {
     it('can be constructed', function () {
