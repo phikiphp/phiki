@@ -1,7 +1,7 @@
 <?php
 
 use Phiki\Phiki;
-use Phiki\Token;
+use Phiki\Token\Token;
 
 describe('yaml', function () {
     it('correctly tokenizes a simple property', function () {

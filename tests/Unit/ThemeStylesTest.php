@@ -1,7 +1,7 @@
 <?php
 
-use Phiki\ThemeStyles;
-use Phiki\TokenSettings;
+use Phiki\Theme\ThemeStyles;
+use Phiki\Theme\TokenSettings;
 
 describe('ThemeStyles', function () {
     it('can be constructed', function () {

@@ -2,6 +2,8 @@
 
 namespace Phiki;
 
+use Phiki\Theme\ThemeStyles;
+
 readonly class HtmlGenerator
 {
     public function __construct(

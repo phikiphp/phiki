@@ -18,6 +18,7 @@ use Phiki\Grammar\Injections\Prefix;
 use Phiki\Grammar\MatchPattern;
 use Phiki\Grammar\Pattern;
 use Phiki\Grammar\WhilePattern;
+use Phiki\Token\Token;
 
 class Tokenizer
 {

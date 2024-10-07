@@ -1,6 +1,8 @@
 <?php
 
-namespace Phiki;
+namespace Phiki\Theme;
+
+use Phiki\Arr;
 
 readonly class ThemeStyles
 {

@@ -1,6 +1,6 @@
 <?php
 
-use Phiki\ThemeRepository;
+use Phiki\Theme\ThemeRepository;
 
 describe('ThemeRepository', function () {
     it('can be constructed', function () {

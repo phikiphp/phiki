@@ -1,7 +1,7 @@
 <?php
 
 use Phiki\Grammar\ParsedGrammar;
-use Phiki\Token;
+use Phiki\Token\Token;
 use Phiki\Tokenizer;
 
 describe('php', function () {

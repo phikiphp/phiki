@@ -2,6 +2,9 @@
 
 namespace Phiki;
 
+use Phiki\Theme\ThemeStyles;
+use Phiki\Token\HighlightedToken;
+
 readonly class Highlighter
 {
     public function __construct(public ThemeStyles $styles) {}

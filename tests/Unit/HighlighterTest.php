@@ -1,7 +1,7 @@
 <?php
 
 use Phiki\Highlighter;
-use Phiki\ThemeStyles;
+use Phiki\Theme\ThemeStyles;
 
 describe('Highlighter', function () {
     it('can be constructed', function () {

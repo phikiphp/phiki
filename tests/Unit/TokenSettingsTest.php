@@ -1,6 +1,6 @@
 <?php
 
-use Phiki\TokenSettings;
+use Phiki\Theme\TokenSettings;
 
 describe('TokenSettings', function () {
     it('can be constructed', function () {

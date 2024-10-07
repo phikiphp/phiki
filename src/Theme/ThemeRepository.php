@@ -1,13 +1,14 @@
 <?php
 
-namespace Phiki;
+namespace Phiki\Theme;
 
 use Phiki\Contracts\ThemeRepositoryInterface;
 use Phiki\Exceptions\UnrecognisedThemeException;
+use Phiki\Generated\DefaultThemes;
 
 class ThemeRepository implements ThemeRepositoryInterface
 {
-    protected array $themes = Generated\DefaultThemes::NAMES_TO_PATHS;
+    protected array $themes = DefaultThemes::NAMES_TO_PATHS;
 
     public function get(string $name): array
     {

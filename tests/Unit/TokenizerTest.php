@@ -1,6 +1,6 @@
 <?php
 
-use Phiki\Token;
+use Phiki\Token\Token;
 
 describe('match', function () {
     it('can tokenize simple match patterns', function () {
