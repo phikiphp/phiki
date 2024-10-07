@@ -11,6 +11,7 @@ use Phiki\Grammar\BeginEndPattern;
 use Phiki\Grammar\BeginWhilePattern;
 use Phiki\Grammar\CollectionPattern;
 use Phiki\Grammar\EndPattern;
+use Phiki\Grammar\GrammarRepository;
 use Phiki\Grammar\ParsedGrammar;
 use Phiki\Grammar\IncludePattern;
 use Phiki\Grammar\Injections\Prefix;

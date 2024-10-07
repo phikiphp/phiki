@@ -1,17 +1,18 @@
 <?php
 
-namespace Phiki;
+namespace Phiki\Grammar;
 
 use Phiki\Contracts\GrammarRepositoryInterface;
 use Phiki\Exceptions\UnrecognisedGrammarException;
+use Phiki\Generated\DefaultGrammars;
 use Phiki\Grammar\ParsedGrammar;
 use Phiki\Grammar\Parser;
 
 class GrammarRepository implements GrammarRepositoryInterface
 {
-    protected array $grammars = Generated\DefaultGrammars::NAMES_TO_PATHS;
+    protected array $grammars = DefaultGrammars::NAMES_TO_PATHS;
 
-    protected array $scopesToGrammar = Generated\DefaultGrammars::SCOPES_TO_NAMES;
+    protected array $scopesToGrammar = DefaultGrammars::SCOPES_TO_NAMES;
 
     protected array $aliases = [
         'bash' => 'shellscript',
