@@ -17,7 +17,6 @@ enum Grammar: string
     case AngularHtml = 'angular-html';
     case Cmake = 'cmake';
     case Mdx = 'mdx';
-    case AngularTemplate = 'angular-template';
     case Nix = 'nix';
     case Gdresource = 'gdresource';
     case Haxe = 'haxe';
@@ -27,7 +26,6 @@ enum Grammar: string
     case ObjectiveC = 'objective-c';
     case Elixir = 'elixir';
     case Diff = 'diff';
-    case EsTagXml = 'es-tag-xml';
     case Java = 'java';
     case Glsl = 'glsl';
     case Mojo = 'mojo';
@@ -38,7 +36,6 @@ enum Grammar: string
     case SshConfig = 'ssh-config';
     case Edge = 'edge';
     case Narrat = 'narrat';
-    case AngularExpression = 'angular-expression';
     case Tasl = 'tasl';
     case Nushell = 'nushell';
     case Erb = 'erb';
@@ -81,14 +78,12 @@ enum Grammar: string
     case Solidity = 'solidity';
     case Sas = 'sas';
     case FortranFixedForm = 'fortran-fixed-form';
-    case AngularLetDeclaration = 'angular-let-declaration';
     case R = 'r';
     case Fennel = 'fennel';
     case Ruby = 'ruby';
     case Log = 'log';
     case Vala = 'vala';
     case Splunk = 'splunk';
-    case Mermaid = 'mermaid';
     case Lua = 'lua';
     case Gnuplot = 'gnuplot';
     case Regexp = 'regexp';
@@ -98,13 +93,11 @@ enum Grammar: string
     case Systemd = 'systemd';
     case Coffee = 'coffee';
     case Haml = 'haml';
-    case VueInterpolations = 'vue-interpolations';
     case Wikitext = 'wikitext';
     case Kusto = 'kusto';
     case Ocaml = 'ocaml';
     case Cue = 'cue';
     case Nextflow = 'nextflow';
-    case MarkdownVue = 'markdown-vue';
     case GitRebase = 'git-rebase';
     case Cypher = 'cypher';
     case Tsx = 'tsx';
@@ -116,13 +109,11 @@ enum Grammar: string
     case Puppet = 'puppet';
     case Http = 'http';
     case Csharp = 'csharp';
-    case EsTagGlsl = 'es-tag-glsl';
     case Jison = 'jison';
     case Purescript = 'purescript';
     case Actionscript3 = 'actionscript-3';
     case Shellsession = 'shellsession';
     case SystemVerilog = 'system-verilog';
-    case VueSfcStyleVariableInjection = 'vue-sfc-style-variable-injection';
     case Gdscript = 'gdscript';
     case Luau = 'luau';
     case Toml = 'toml';
@@ -141,7 +132,6 @@ enum Grammar: string
     case Codeql = 'codeql';
     case Crystal = 'crystal';
     case Hjson = 'hjson';
-    case EsTagCss = 'es-tag-css';
     case Awk = 'awk';
     case Docker = 'docker';
     case Dax = 'dax';
@@ -149,13 +139,11 @@ enum Grammar: string
     case Terraform = 'terraform';
     case Typespec = 'typespec';
     case Codeowners = 'codeowners';
-    case EsTagSql = 'es-tag-sql';
     case Rel = 'rel';
     case VueHtml = 'vue-html';
     case Abap = 'abap';
     case GitCommit = 'git-commit';
     case Rust = 'rust';
-    case EsTagHtml = 'es-tag-html';
     case Javascript = 'javascript';
     case Prolog = 'prolog';
     case Dart = 'dart';
@@ -201,7 +189,6 @@ enum Grammar: string
     case Matlab = 'matlab';
     case Jsonc = 'jsonc';
     case Dotenv = 'dotenv';
-    case Mdc = 'mdc';
     case Raku = 'raku';
     case Less = 'less';
     case Bat = 'bat';
@@ -212,7 +199,6 @@ enum Grammar: string
     case HtmlDerivative = 'html-derivative';
     case Powershell = 'powershell';
     case Graphql = 'graphql';
-    case AngularTemplateBlocks = 'angular-template-blocks';
     case Haskell = 'haskell';
     case Gdshader = 'gdshader';
     case Groovy = 'groovy';
@@ -231,11 +217,8 @@ enum Grammar: string
     case Smalltalk = 'smalltalk';
     case Json5 = 'json5';
     case Cadence = 'cadence';
-    case AngularInlineTemplate = 'angular-inline-template';
     case Desktop = 'desktop';
     case Asm = 'asm';
-    case AngularInlineStyle = 'angular-inline-style';
-    case VueDirectives = 'vue-directives';
 
     public function toParsedGrammar(GrammarRepositoryInterface $repository): ParsedGrammar
     {

@@ -35,7 +35,7 @@ class Tokenizer
 
     public function tokenize(string $input): array
     {
-        $this->state = new State();
+        $this->state = new State;
         $this->state->pushPattern($this->grammar);
         $this->state->pushScopes(preg_split('/\s+/', $this->grammar->scopeName));
 
@@ -128,7 +128,7 @@ class Tokenizer
         $patternStack = $this->state->getPatterns();
 
         $this->state->setPatterns([
-            new CollectionPattern($patterns)
+            new CollectionPattern($patterns),
         ]);
 
         $matched = $this->match($lineText);
@@ -150,7 +150,7 @@ class Tokenizer
 
         $patterns = $root->getPatterns();
 
-        if (!$this->state->hasActiveInjection() && $this->grammar->hasInjections()) {
+        if (! $this->state->hasActiveInjection() && $this->grammar->hasInjections()) {
             foreach ($this->grammar->getInjections() as $injection) {
                 if (! $injection->matches($this->state->getScopes())) {
                     continue;

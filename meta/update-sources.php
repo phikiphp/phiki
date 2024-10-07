@@ -16,9 +16,14 @@ function main()
     echo "Copying grammar files...\n";
 
     eachFile($grammarsDirectory, function (SplFileInfo $grammar) use (&$grammars) {
-        copy($grammar->getRealPath(), __DIR__.'/../resources/languages/'.$grammar->getFilename());
-
         $json = json_decode(file_get_contents($grammar->getRealPath()), true);
+
+        // NOTE: We don't support these grammar types yet.
+        if (isset($json['injectionSelector'])) {
+            return;
+        }
+
+        copy($grammar->getRealPath(), __DIR__.'/../resources/languages/'.$grammar->getFilename());
 
         $grammars[] = [
             'path' => $grammar->getFilename(),
