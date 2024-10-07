@@ -1,7 +1,7 @@
 <?php
 
-use Phiki\Grammar\ParsedGrammar;
 use Phiki\Grammar\GrammarRepository;
+use Phiki\Grammar\ParsedGrammar;
 
 describe('GrammarRepository', function () {
     it('can be constructed', function () {

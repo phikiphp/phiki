@@ -1,5 +1,7 @@
 <?php
 
+use Phiki\Support\Str;
+
 require_once __DIR__.'/../vendor/autoload.php';
 
 function main()
@@ -55,6 +57,20 @@ function main()
     $defaultGrammarsStub = sprintf($defaultGrammarsStub, $namesToPathsString, $scopesToNamesString);
 
     file_put_contents(__DIR__.'/../src/Generated/DefaultGrammars.php', $defaultGrammarsStub);
+
+    echo "Generating Grammar enum...\n";
+
+    $grammarEnumStub = file_get_contents(__DIR__.'/stubs/Grammar.php.stub');
+    $grammarCases = [];
+
+    foreach ($grammars as $grammar) {
+        $grammarCases[] = sprintf('case %s = "%s";', Str::studly($grammar['name']), $grammar['name']);
+    }
+
+    $grammarCases = implode("\n", $grammarCases);
+    $grammarEnumStub = sprintf($grammarEnumStub, $grammarCases);
+
+    file_put_contents(__DIR__.'/../src/Grammar/Grammar.php', $grammarEnumStub);
 
     echo "Generating DefaultThemes class...\n";
 

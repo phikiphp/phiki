@@ -5,12 +5,6 @@ namespace Phiki\Grammar;
 use Phiki\Contracts\InjectionSelectorParserInputInterface;
 use Phiki\Exceptions\MissingRequiredGrammarKeyException;
 use Phiki\Exceptions\UnreachableException;
-use Phiki\Grammar\BeginEndPattern;
-use Phiki\Grammar\BeginWhilePattern;
-use Phiki\Grammar\Capture;
-use Phiki\Grammar\CollectionPattern;
-use Phiki\Grammar\ParsedGrammar;
-use Phiki\Grammar\IncludePattern;
 use Phiki\Grammar\Injections\Composite;
 use Phiki\Grammar\Injections\Expression;
 use Phiki\Grammar\Injections\Filter;
@@ -21,8 +15,6 @@ use Phiki\Grammar\Injections\Path;
 use Phiki\Grammar\Injections\Prefix;
 use Phiki\Grammar\Injections\Scope;
 use Phiki\Grammar\Injections\Selector;
-use Phiki\Grammar\MatchPattern;
-use Phiki\Grammar\Pattern;
 use Phiki\Support\Regex;
 
 class Parser

@@ -5,8 +5,6 @@ namespace Phiki\Grammar;
 use Phiki\Contracts\GrammarRepositoryInterface;
 use Phiki\Exceptions\UnrecognisedGrammarException;
 use Phiki\Generated\DefaultGrammars;
-use Phiki\Grammar\ParsedGrammar;
-use Phiki\Grammar\Parser;
 
 class GrammarRepository implements GrammarRepositoryInterface
 {
