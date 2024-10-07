@@ -4,6 +4,7 @@ namespace Phiki;
 
 use Phiki\Contracts\GrammarRepositoryInterface;
 use Phiki\Contracts\ThemeRepositoryInterface;
+use Phiki\Generators\HtmlGenerator;
 use Phiki\Grammar\GrammarRepository;
 use Phiki\Grammar\ParsedGrammar;
 use Phiki\Theme\ThemeRepository;

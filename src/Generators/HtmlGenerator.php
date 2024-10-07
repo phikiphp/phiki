@@ -1,19 +1,17 @@
 <?php
 
-namespace Phiki;
+namespace Phiki\Generators;
 
+use Phiki\Contracts\OutputGeneratorInterface;
 use Phiki\Theme\ThemeStyles;
 
-readonly class HtmlGenerator
+readonly class HtmlGenerator implements OutputGeneratorInterface
 {
     public function __construct(
         protected ThemeStyles $styles,
     ) {}
 
-    /**
-     * @param  array<array<int, HighlightedToken>>  $highlightedTokens
-     */
-    public function generate(array $highlightedTokens): string
+    public function generate(array $tokens): string
     {
         $html = sprintf(
             '<pre class="phiki %s" style="%s"><code>',
@@ -21,7 +19,7 @@ readonly class HtmlGenerator
             $this->styles->baseTokenSettings()->toStyleString(),
         );
 
-        foreach ($highlightedTokens as $line) {
+        foreach ($tokens as $line) {
             $html .= '<span class="line">';
 
             foreach ($line as $token) {
