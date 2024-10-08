@@ -7,11 +7,11 @@ use Stringable;
 class Root implements Stringable
 {
     public function __construct(
-        public array $children = []
+        public Pre $pre,
     ) {}
 
     public function __toString(): string
     {
-        return implode('', $this->children);
+        return $this->pre->__toString();
     }
 }

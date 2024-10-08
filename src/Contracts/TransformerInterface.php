@@ -42,18 +42,22 @@ interface TransformerInterface
     public function code(Code $code): Code;
 
     /**
-     * Modify a line's `span` element.
+     * Modify a line's element.
+     * 
+     * By default, this method will receive a `Span` but if another transformer returns an `Element` then this method will receive that `Element` instead.
      * 
      * @return \Phiki\Html\Span|\Phiki\Html\Element|null Return `null` to remove the line, or return an `Element` to replace it.
      */
-    public function line(Span $span): Span | Element | null;
+    public function line(Element $element, int $line): Span | Element | null;
 
     /**
-     * Modify a token's `span` element.
+     * Modify a token's element.
+     * 
+     * * By default, this method will receive a `Span` but if another transformer returns an `Element` then this method will receive that `Element` instead.
      * 
      * @return \Phiki\Html\Span|\Phiki\Html\Element|null Return `null` to remove the token, or return an `Element` to replace it.
      */
-    public function token(Span $span): Span | Element | null;
+    public function token(Element $element): Span | Element | null;
 
     /**
      * Post-process the HTML after it has been generated.

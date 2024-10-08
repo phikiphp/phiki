@@ -29,6 +29,7 @@ class Element implements Stringable
             $this->tagName,
             $this->attributes,
             implode('', $this->children),
+            $this->tagName,
         );
     }
 }
