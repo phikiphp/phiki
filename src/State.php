@@ -16,7 +16,7 @@ final class State
 
     protected int $anchorPosition = -1;
 
-    protected array $anchorPositionStack = [0];
+    protected array $anchorPositionStack = [-1];
 
     protected bool $isFirstLine = true;
 
@@ -93,6 +93,11 @@ final class State
     public function getAnchorPosition(): int
     {
         return $this->anchorPosition;
+    }
+
+    public function resetAnchorPositions(): void
+    {
+        $this->setAnchorPosition(-1);
     }
 
     public function pushAnchorPosition(int $position): void

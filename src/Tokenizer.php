@@ -48,6 +48,9 @@ class Tokenizer
                 $this->state->setNotFirstLine();
             }
 
+            $this->state->setLinePosition(0);
+            $this->state->resetAnchorPositions();
+
             $this->tokenizeLine($line, $lineText."\n");
         }
 
@@ -56,8 +59,6 @@ class Tokenizer
 
     public function tokenizeLine(int $line, string $lineText): void
     {
-        $this->state->setLinePosition(0);
-
         $this->checkWhileConditions($line, $lineText);
 
         while ($this->state->getLinePosition() < strlen($lineText)) {
