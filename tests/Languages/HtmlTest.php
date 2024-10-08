@@ -1,9 +1,7 @@
 <?php
 
-use Phiki\Grammar\ParsedGrammar;
 use Phiki\Phiki;
 use Phiki\Token\Token;
-use Phiki\Tokenizer;
 
 describe('html', function () {
     it('correctly tokenizes a basic tag', function () {

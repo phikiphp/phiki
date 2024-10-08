@@ -4,7 +4,9 @@ namespace Phiki\Grammar;
 
 abstract class DefaultGrammars
 {
-    final const array NAMES_TO_PATHS = ['astro' => __DIR__.'/../../resources/languages/astro.json',
+    final const array NAMES_TO_PATHS = [
+        'txt' => __DIR__.'/../../resources/languages/txt.json',
+        'astro' => __DIR__.'/../../resources/languages/astro.json',
         'hy' => __DIR__.'/../../resources/languages/hy.json',
         'nim' => __DIR__.'/../../resources/languages/nim.json',
         'cpp' => __DIR__.'/../../resources/languages/cpp.json',
@@ -216,9 +218,12 @@ abstract class DefaultGrammars
         'json5' => __DIR__.'/../../resources/languages/json5.json',
         'cadence' => __DIR__.'/../../resources/languages/cadence.json',
         'desktop' => __DIR__.'/../../resources/languages/desktop.json',
-        'asm' => __DIR__.'/../../resources/languages/asm.json'];
+        'asm' => __DIR__.'/../../resources/languages/asm.json',
+    ];
 
-    final const array SCOPES_TO_NAMES = ['source.astro' => 'astro',
+    final const array SCOPES_TO_NAMES = [
+        'text.txt' => 'txt',
+        'source.astro' => 'astro',
         'source.hy' => 'hy',
         'source.nim' => 'nim',
         'source.cpp' => 'cpp',
@@ -430,5 +435,6 @@ abstract class DefaultGrammars
         'source.json5' => 'json5',
         'source.cadence' => 'cadence',
         'source.desktop' => 'desktop',
-        'source.asm.x86_64' => 'asm'];
+        'source.asm.x86_64' => 'asm',
+    ];
 }

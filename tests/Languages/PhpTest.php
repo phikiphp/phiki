@@ -1,11 +1,7 @@
 <?php
 
-use Phiki\Grammar\Grammar;
-use Phiki\Grammar\GrammarRepository;
-use Phiki\Grammar\ParsedGrammar;
 use Phiki\Phiki;
 use Phiki\Token\Token;
-use Phiki\Tokenizer;
 
 describe('php', function () {
     it('correctly tokenizes a double-quoted string', function () {

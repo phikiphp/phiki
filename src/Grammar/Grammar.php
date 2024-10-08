@@ -6,6 +6,7 @@ use Phiki\Contracts\GrammarRepositoryInterface;
 
 enum Grammar: string
 {
+    case Txt = 'txt';
     case Astro = 'astro';
     case Hy = 'hy';
     case Nim = 'nim';
