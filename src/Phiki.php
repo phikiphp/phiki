@@ -12,6 +12,7 @@ use Phiki\Grammar\ParsedGrammar;
 use Phiki\Theme\ParsedTheme;
 use Phiki\Theme\Theme;
 use Phiki\Theme\ThemeRepository;
+use Phiki\Transformers\ProxyTransformer;
 
 class Phiki
 {
@@ -21,8 +22,14 @@ class Phiki
         protected bool $strictMode = false,
     ) {}
 
-    public function codeToTokens(string $code, string|Grammar|ParsedGrammar $grammar): array
+    /**
+     * @param \Phiki\Contracts\TransformerInterface[] $transformers
+     */
+    public function codeToTokens(string $code, string|Grammar|ParsedGrammar $grammar, array $transformers = []): array
     {
+        $proxy = new ProxyTransformer($transformers);
+        $code = $proxy->preprocess($code);
+        
         $grammar = match (true) {
             is_string($grammar) => $this->grammarRepository->get($grammar),
             $grammar instanceof Grammar => $grammar->toParsedGrammar($this->grammarRepository),
@@ -30,13 +37,16 @@ class Phiki
         };
 
         $tokenizer = new Tokenizer($grammar, $this->grammarRepository, $this->strictMode);
-
+        
         return $tokenizer->tokenize($code);
     }
 
-    public function codeToTerminal(string $code, string|Grammar|ParsedGrammar $grammar, string|Theme|ParsedTheme $theme): string
+    /**
+     * @param \Phiki\Contracts\TransformerInterface[] $transformers
+     */
+    public function codeToTerminal(string $code, string|Grammar|ParsedGrammar $grammar, string|Theme|ParsedTheme $theme, array $transformers = []): string
     {
-        $tokens = $this->codeToTokens($code, $grammar);
+        $tokens = $this->codeToTokens($code, $grammar, $transformers);
 
         $theme = match (true) {
             is_string($theme) => $this->themeRepository->get($theme),
@@ -44,15 +54,18 @@ class Phiki
             default => $theme,
         };
 
-        $highlighter = new Highlighter($theme);
         $terminalGenerator = new TerminalGenerator($theme);
+        $tokens = $this->highlightTokens($tokens, $theme, $transformers);
 
-        return $terminalGenerator->generate($highlighter->highlight($tokens));
+        return $terminalGenerator->generate($tokens);
     }
 
-    public function codeToHtml(string $code, string|Grammar|ParsedGrammar $grammar, string|Theme|ParsedTheme $theme): string
+    /**
+     * @param \Phiki\Contracts\TransformerInterface[] $transformers
+     */
+    public function codeToHtml(string $code, string|Grammar|ParsedGrammar $grammar, string|Theme|ParsedTheme $theme, array $transformers = []): string
     {
-        $tokens = $this->codeToTokens($code, $grammar);
+        $tokens = $this->codeToTokens($code, $grammar, $transformers);
 
         $theme = match (true) {
             is_string($theme) => $this->themeRepository->get($theme),
@@ -60,10 +73,25 @@ class Phiki
             default => $theme,
         };
 
-        $highlighter = new Highlighter($theme);
-        $htmlGenerator = new HtmlGenerator($theme);
+        $tokens = $this->highlightTokens($tokens, $theme, $transformers);
+        $htmlGenerator = new HtmlGenerator($theme, $transformers);
 
-        return $htmlGenerator->generate($highlighter->highlight($tokens));
+        return $htmlGenerator->generate($tokens);
+    }
+
+    protected function highlightTokens(array $tokens, string|Theme|ParsedTheme $theme, array $transformers = []): array
+    {
+        $theme = match (true) {
+            is_string($theme) => $this->themeRepository->get($theme),
+            $theme instanceof Theme => $theme->toParsedTheme($this->themeRepository),
+            default => $theme,
+        };
+
+        $highlighter = new Highlighter($theme);
+        $tokens = $highlighter->highlight($tokens);
+        $proxy = new ProxyTransformer($transformers);
+
+        return $proxy->tokens($tokens);
     }
 
     public static function default(): self
