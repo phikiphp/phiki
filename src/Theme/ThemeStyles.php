@@ -4,16 +4,16 @@ namespace Phiki\Theme;
 
 readonly class ThemeStyles
 {
-    protected string $backgroundColor;
+    protected ?string $backgroundColor;
 
-    protected string $foregroundColor;
+    protected ?string $foregroundColor;
 
     protected array $tokenColors;
 
     public function __construct(ParsedTheme $theme)
     {
-        $this->backgroundColor = $theme->colors['editor.background'];
-        $this->foregroundColor = $theme->colors['editor.foreground'];
+        $this->backgroundColor = $theme->colors['editor.background'] ?? null;
+        $this->foregroundColor = $theme->colors['editor.foreground'] ?? null;
 
         /** @var array<string, array> */
         $tokenColors = [];
