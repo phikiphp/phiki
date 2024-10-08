@@ -1,16 +1,17 @@
 <?php
 
+use Phiki\Environment\Environment;
 use Phiki\Grammar\GrammarRepository;
 use Phiki\Phiki;
 
 require_once __DIR__.'/../../vendor/autoload.php';
 
 $grammar = $_GET['grammar'] ?? 'php';
-$repository = new GrammarRepository;
+$repository = Environment::default()->getGrammarRepository();
 
 $sample = file_get_contents(__DIR__.'/'.$grammar.'.sample');
-$tokens = (new Phiki($repository))->codeToTokens($sample, $grammar);
-$html = (new Phiki($repository))->codeToHtml($sample, $grammar, 'github-dark');
+$tokens = (new Phiki)->codeToTokens($sample, $grammar);
+$html = (new Phiki)->codeToHtml($sample, $grammar, 'github-dark');
 
 ?>
 

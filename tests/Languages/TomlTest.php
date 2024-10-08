@@ -35,5 +35,5 @@ describe('toml', function () {
 
 function toml(string $input): array
 {
-    return Phiki::default()->codeToTokens($input, 'toml');
+    return (new Phiki)->codeToTokens($input, 'toml');
 }

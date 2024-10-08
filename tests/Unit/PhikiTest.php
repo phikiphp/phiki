@@ -10,7 +10,7 @@ describe('Phiki', function () {
     });
 
     it('can generate html from code', function () {
-        expect(Phiki::default()->codeToHtml(<<<'PHP'
+        expect((new Phiki)->codeToHtml(<<<'PHP'
         function add(int|float $a, int|float $b): int|float {
             return $a + $b;
         }
@@ -18,10 +18,10 @@ describe('Phiki', function () {
     });
 
     it('accepts a grammar enum member', function () {
-        expect(Phiki::default()->codeToTokens('echo $a;', Grammar::Php))->toBeArray();
+        expect((new Phiki)->codeToTokens('echo $a;', Grammar::Php))->toBeArray();
     });
 
     it('accepts a theme enum member', function () {
-        expect(Phiki::default()->codeToHtml('echo $a;', Grammar::Php, Theme::GithubDark))->toBeString();
+        expect((new Phiki)->codeToHtml('echo $a;', Grammar::Php, Theme::GithubDark))->toBeString();
     });
 });

@@ -80,5 +80,5 @@ describe('html', function () {
 
 function html(string $input): array
 {
-    return Phiki::default()->codeToTokens($input, 'html');
+    return (new Phiki)->codeToTokens($input, 'html');
 }

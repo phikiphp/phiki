@@ -172,5 +172,5 @@ describe('php', function () {
 
 function php(string $input): array
 {
-    return Phiki::default()->codeToTokens($input, 'php');
+    return (new Phiki)->codeToTokens($input, 'php');
 }

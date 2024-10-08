@@ -2,25 +2,23 @@
 
 namespace Phiki;
 
-use Phiki\Contracts\GrammarRepositoryInterface;
-use Phiki\Contracts\ThemeRepositoryInterface;
+use Phiki\Environment\Environment;
 use Phiki\Generators\HtmlGenerator;
 use Phiki\Generators\TerminalGenerator;
 use Phiki\Grammar\Grammar;
-use Phiki\Grammar\GrammarRepository;
 use Phiki\Grammar\ParsedGrammar;
 use Phiki\Theme\ParsedTheme;
 use Phiki\Theme\Theme;
-use Phiki\Theme\ThemeRepository;
 use Phiki\Transformers\ProxyTransformer;
 
 class Phiki
 {
-    public function __construct(
-        protected GrammarRepositoryInterface $grammarRepository = new GrammarRepository,
-        protected ThemeRepositoryInterface $themeRepository = new ThemeRepository,
-        protected bool $strictMode = false,
-    ) {}
+    protected Environment $environment;
+
+    public function __construct(?Environment $environment = null)
+    {
+        $this->environment = $environment ?? Environment::default();
+    }
 
     /**
      * @param \Phiki\Contracts\TransformerInterface[] $transformers
@@ -31,12 +29,12 @@ class Phiki
         $code = $proxy->preprocess($code);
         
         $grammar = match (true) {
-            is_string($grammar) => $this->grammarRepository->get($grammar),
-            $grammar instanceof Grammar => $grammar->toParsedGrammar($this->grammarRepository),
+            is_string($grammar) => $this->environment->getGrammarRepository()->get($grammar),
+            $grammar instanceof Grammar => $grammar->toParsedGrammar($this->environment->getGrammarRepository()),
             default => $grammar,
         };
 
-        $tokenizer = new Tokenizer($grammar, $this->grammarRepository, $this->strictMode);
+        $tokenizer = new Tokenizer($grammar, $this->environment->getGrammarRepository(), $this->environment->isStrictModeEnabled());
         
         return $tokenizer->tokenize($code);
     }
@@ -49,8 +47,8 @@ class Phiki
         $tokens = $this->codeToTokens($code, $grammar, $transformers);
 
         $theme = match (true) {
-            is_string($theme) => $this->themeRepository->get($theme),
-            $theme instanceof Theme => $theme->toParsedTheme($this->themeRepository),
+            is_string($theme) => $this->environment->getThemeRepository()->get($theme),
+            $theme instanceof Theme => $theme->toParsedTheme($this->environment->getThemeRepository()),
             default => $theme,
         };
 
@@ -68,8 +66,8 @@ class Phiki
         $tokens = $this->codeToTokens($code, $grammar, $transformers);
 
         $theme = match (true) {
-            is_string($theme) => $this->themeRepository->get($theme),
-            $theme instanceof Theme => $theme->toParsedTheme($this->themeRepository),
+            is_string($theme) => $this->environment->getThemeRepository()->get($theme),
+            $theme instanceof Theme => $theme->toParsedTheme($this->environment->getThemeRepository()),
             default => $theme,
         };
 
@@ -82,8 +80,8 @@ class Phiki
     protected function highlightTokens(array $tokens, string|Theme|ParsedTheme $theme, array $transformers = []): array
     {
         $theme = match (true) {
-            is_string($theme) => $this->themeRepository->get($theme),
-            $theme instanceof Theme => $theme->toParsedTheme($this->themeRepository),
+            is_string($theme) => $this->environment->getThemeRepository()->get($theme),
+            $theme instanceof Theme => $theme->toParsedTheme($this->environment->getThemeRepository()),
             default => $theme,
         };
 
@@ -92,10 +90,5 @@ class Phiki
         $proxy = new ProxyTransformer($transformers);
 
         return $proxy->tokens($tokens);
-    }
-
-    public static function default(): self
-    {
-        return new self(new GrammarRepository, new ThemeRepository);
     }
 }

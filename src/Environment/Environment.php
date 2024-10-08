@@ -6,14 +6,14 @@ use Phiki\Contracts\ExtensionInterface;
 use Phiki\Contracts\GrammarRepositoryInterface;
 use Phiki\Contracts\ThemeRepositoryInterface;
 use Phiki\Contracts\TransformerInterface;
-use Phiki\Grammar\GrammarRepository;
-use Phiki\Theme\ThemeRepository;
+use Phiki\Exceptions\EnvironmentException;
+use Phiki\Extensions\DefaultExtension;
 
 class Environment
 {
-    protected GrammarRepositoryInterface $grammarRepository = new GrammarRepository;
+    protected GrammarRepositoryInterface $grammarRepository;
 
-    protected ThemeRepositoryInterface $themeRepository = new ThemeRepository;
+    protected ThemeRepositoryInterface $themeRepository;
 
     /**
      * @var TransformerInterface[]
@@ -94,5 +94,21 @@ class Environment
     public function getThemeRepository(): ThemeRepositoryInterface
     {
         return $this->themeRepository;
+    }
+
+    public function validate(): void
+    {
+        if (! isset($this->grammarRepository)) {
+            throw EnvironmentException::missingGrammarRepository();
+        }
+
+        if (! isset($this->themeRepository)) {
+            throw EnvironmentException::missingThemeRepository();
+        }
+    }
+
+    final public static function default(): static
+    {
+        return (new static)->addExtension(new DefaultExtension);
     }
 }
