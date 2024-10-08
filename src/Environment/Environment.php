@@ -2,6 +2,7 @@
 
 namespace Phiki\Environment;
 
+use Phiki\Contracts\ExtensionInterface;
 use Phiki\Contracts\GrammarRepositoryInterface;
 use Phiki\Contracts\ThemeRepositoryInterface;
 use Phiki\Contracts\TransformerInterface;
@@ -20,6 +21,13 @@ class Environment
     protected array $transformers = [];
 
     protected bool $strictMode = false;
+
+    public function addExtension(ExtensionInterface $extension): static
+    {
+        $extension->register($this);
+
+        return $this;
+    }
 
     public function enableStrictMode(): static
     {
