@@ -217,7 +217,7 @@
           "name": "constant.character.escape.gdscript"
         }
       },
-      "match": "(?<!/\\s*)(\\$\\s*|%|\\$%\\s*)(/\\s*)?([a-zA-Z_]\\w*)\\b(?!\\s*/)",
+      "match": "(?<!/\\s)(\\$\\s*|%|\\$%\\s*)(/\\s*)?([a-zA-Z_]\\w*)\\b(?!\\s*/)",
       "name": "meta.literal.nodepath.bare.gdscript"
     },
     "builtin_get_node_shorthand_bare_multi": {
