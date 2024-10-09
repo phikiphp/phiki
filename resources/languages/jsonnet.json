@@ -73,11 +73,11 @@
       "name": "string.quoted.double.jsonnet",
       "patterns": [
         {
-          "match": "\\\\([\"\\\\/bfnrt]|(u[0-9a-fA-F]{4}))",
+          "match": "\\\\([\"\\\\\\/bfnrt]|(u[0-9a-fA-F]{4}))",
           "name": "constant.character.escape.jsonnet"
         },
         {
-          "match": "\\\\[^\"\\\\/bfnrtu]",
+          "match": "\\\\[^\"\\\\\\/bfnrtu]",
           "name": "invalid.illegal.jsonnet"
         }
       ]
@@ -188,11 +188,11 @@
       "name": "string.quoted.double.jsonnet",
       "patterns": [
         {
-          "match": "\\\\(['\\\\/bfnrt]|(u[0-9a-fA-F]{4}))",
+          "match": "\\\\(['\\\\\\/bfnrt]|(u[0-9a-fA-F]{4}))",
           "name": "constant.character.escape.jsonnet"
         },
         {
-          "match": "\\\\[^'\\\\/bfnrtu]",
+          "match": "\\\\[^'\\\\\\/bfnrtu]",
           "name": "invalid.illegal.jsonnet"
         }
       ]
