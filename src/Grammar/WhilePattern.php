@@ -54,7 +54,7 @@ class WhilePattern extends Pattern implements ContainsCapturesInterface, Pattern
         }, $this->while->get($tokenizer->allowA(), $tokenizer->allowG()));
 
         try {
-            if (preg_match('/' . $regex . '/u', $lineText, $matches, PREG_OFFSET_CAPTURE, $linePosition) !== 1) {
+            if (preg_match('/'.$regex.'/u', $lineText, $matches, PREG_OFFSET_CAPTURE, $linePosition) !== 1) {
                 return false;
             }
         } catch (Exception) {
