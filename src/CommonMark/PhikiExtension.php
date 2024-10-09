@@ -6,11 +6,12 @@ use League\CommonMark\Environment\EnvironmentBuilderInterface;
 use League\CommonMark\Extension\CommonMark\Node\Block\FencedCode;
 use League\CommonMark\Extension\ExtensionInterface;
 use Phiki\Phiki;
+use Phiki\Theme\Theme;
 
 class PhikiExtension implements ExtensionInterface
 {
     public function __construct(
-        private string $theme,
+        private string|Theme $theme,
         private Phiki $phiki = new Phiki,
     ) {}
 

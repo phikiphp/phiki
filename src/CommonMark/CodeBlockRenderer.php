@@ -8,11 +8,12 @@ use League\CommonMark\Node\Node;
 use League\CommonMark\Renderer\ChildNodeRendererInterface;
 use League\CommonMark\Renderer\NodeRendererInterface;
 use Phiki\Phiki;
+use Phiki\Theme\Theme;
 
 class CodeBlockRenderer implements NodeRendererInterface
 {
     public function __construct(
-        private string $theme,
+        private string|Theme $theme,
         private Phiki $phiki = new Phiki,
     ) {}
 
