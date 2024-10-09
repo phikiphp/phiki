@@ -27,6 +27,6 @@ final class Color
 
     public static function rgbToAnsi(int $r, int $g, int $b): int
     {
-        return 16 + (36 * round($r / 255 * 5)) + (6 * round($g / 255 * 5)) + round($b / 255 * 5);
+        return intval(16 + (36 * round($r / 255 * 5)) + (6 * round($g / 255 * 5)) + round($b / 255 * 5));
     }
 }

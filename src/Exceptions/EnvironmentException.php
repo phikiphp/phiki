@@ -6,13 +6,13 @@ use Exception;
 
 class EnvironmentException extends Exception
 {
-    public static function missingGrammarRepository(): static
+    public static function missingGrammarRepository(): self
     {
-        return new static('The environment is missing a grammar repository.');
+        return new self('The environment is missing a grammar repository.');
     }
 
-    public static function missingThemeRepository(): static
+    public static function missingThemeRepository(): self
     {
-        return new static('The environment is missing a theme repository.');
+        return new self('The environment is missing a theme repository.');
     }
 }

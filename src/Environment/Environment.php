@@ -135,8 +135,8 @@ class Environment
         }
     }
 
-    final public static function default(): static
+    final public static function default(): self
     {
-        return (new static)->addExtension(new DefaultExtension);
+        return (new self)->addExtension(new DefaultExtension);
     }
 }
