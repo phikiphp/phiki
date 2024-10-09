@@ -7,11 +7,12 @@ use Phiki\Phiki;
 require_once __DIR__.'/../../vendor/autoload.php';
 
 $grammar = $_GET['grammar'] ?? 'php';
-$repository = Environment::default()->getGrammarRepository();
+$environment = Environment::default()->enableStrictMode();
+$repository = $environment->getGrammarRepository();
 
 $sample = file_get_contents(__DIR__.'/'.$grammar.'.sample');
-$tokens = (new Phiki)->codeToTokens($sample, $grammar);
-$html = (new Phiki)->codeToHtml($sample, $grammar, 'github-dark');
+$tokens = (new Phiki($environment))->codeToTokens($sample, $grammar);
+$html = (new Phiki($environment))->codeToHtml($sample, $grammar, 'github-dark');
 
 ?>
 

@@ -8,6 +8,11 @@ use Phiki\Contracts\ThemeRepositoryInterface;
 use Phiki\Contracts\TransformerInterface;
 use Phiki\Exceptions\EnvironmentException;
 use Phiki\Extensions\DefaultExtension;
+use Phiki\Grammar\Grammar;
+use Phiki\Grammar\ParsedGrammar;
+use Phiki\Theme\ParsedTheme;
+use Phiki\Theme\Theme;
+use Phiki\Transformers\ProxyTransformer;
 
 class Environment
 {
@@ -19,6 +24,8 @@ class Environment
      * @var TransformerInterface[]
      */
     protected array $transformers = [];
+
+    protected ?ProxyTransformer $proxyTransformer = null;
 
     protected bool $strictMode = false;
 
@@ -72,6 +79,11 @@ class Environment
         return $this->transformers;
     }
 
+    public function getProxyTransformer(): ProxyTransformer
+    {
+        return $this->proxyTransformer ??= new ProxyTransformer($this->transformers);
+    }
+
     public function useGrammarRepository(GrammarRepositoryInterface $grammarRepository): static
     {
         $this->grammarRepository = $grammarRepository;
@@ -91,9 +103,25 @@ class Environment
         return $this->grammarRepository;
     }
 
+    public function resolveGrammar(string|Grammar $grammar): ParsedGrammar
+    {
+        return match (true) {
+            is_string($grammar) => $this->grammarRepository->get($grammar),
+            $grammar instanceof Grammar => $grammar->toParsedGrammar($this->grammarRepository),
+        };
+    }
+
     public function getThemeRepository(): ThemeRepositoryInterface
     {
         return $this->themeRepository;
+    }
+
+    public function resolveTheme(string|Theme $theme): ParsedTheme
+    {
+        return match (true) {
+            is_string($theme) => $this->themeRepository->get($theme),
+            $theme instanceof Theme => $theme->toParsedTheme($this->themeRepository),
+        };
     }
 
     public function validate(): void

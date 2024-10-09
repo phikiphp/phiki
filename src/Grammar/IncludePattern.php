@@ -21,10 +21,6 @@ class IncludePattern extends Pattern
             return $resolved->tryMatch($tokenizer, $lineText, $linePosition, $cannotExceed);
         }
 
-        if ($tokenizer->isInStrictMode()) {
-            throw UnrecognisedReferenceException::make($this->reference, $this->scopeName);
-        }
-
         return false;
     }
 

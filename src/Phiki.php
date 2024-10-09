@@ -18,77 +18,40 @@ class Phiki
     public function __construct(?Environment $environment = null)
     {
         $this->environment = $environment ?? Environment::default();
+        $this->environment->validate();
     }
 
-    /**
-     * @param \Phiki\Contracts\TransformerInterface[] $transformers
-     */
-    public function codeToTokens(string $code, string|Grammar|ParsedGrammar $grammar, array $transformers = []): array
+    public function codeToTokens(string $code, string|Grammar $grammar): array
     {
-        $proxy = new ProxyTransformer($transformers);
-        $code = $proxy->preprocess($code);
-        
-        $grammar = match (true) {
-            is_string($grammar) => $this->environment->getGrammarRepository()->get($grammar),
-            $grammar instanceof Grammar => $grammar->toParsedGrammar($this->environment->getGrammarRepository()),
-            default => $grammar,
-        };
-
-        $tokenizer = new Tokenizer($grammar, $this->environment->getGrammarRepository(), $this->environment->isStrictModeEnabled());
+        $code = $this->environment->getProxyTransformer()->preprocess($code);
+        $grammar = $this->environment->resolveGrammar($grammar);
+        $tokenizer = new Tokenizer($grammar, $this->environment);
         
         return $tokenizer->tokenize($code);
     }
 
-    /**
-     * @param \Phiki\Contracts\TransformerInterface[] $transformers
-     */
-    public function codeToTerminal(string $code, string|Grammar|ParsedGrammar $grammar, string|Theme|ParsedTheme $theme, array $transformers = []): string
+    public function codeToHighlightedTokens(string $code, string|Grammar $grammar, string|Theme $theme): array
     {
-        $tokens = $this->codeToTokens($code, $grammar, $transformers);
-
-        $theme = match (true) {
-            is_string($theme) => $this->environment->getThemeRepository()->get($theme),
-            $theme instanceof Theme => $theme->toParsedTheme($this->environment->getThemeRepository()),
-            default => $theme,
-        };
-
-        $terminalGenerator = new TerminalGenerator($theme);
-        $tokens = $this->highlightTokens($tokens, $theme, $transformers);
-
-        return $terminalGenerator->generate($tokens);
-    }
-
-    /**
-     * @param \Phiki\Contracts\TransformerInterface[] $transformers
-     */
-    public function codeToHtml(string $code, string|Grammar|ParsedGrammar $grammar, string|Theme|ParsedTheme $theme, array $transformers = []): string
-    {
-        $tokens = $this->codeToTokens($code, $grammar, $transformers);
-
-        $theme = match (true) {
-            is_string($theme) => $this->environment->getThemeRepository()->get($theme),
-            $theme instanceof Theme => $theme->toParsedTheme($this->environment->getThemeRepository()),
-            default => $theme,
-        };
-
-        $tokens = $this->highlightTokens($tokens, $theme, $transformers);
-        $htmlGenerator = new HtmlGenerator($theme, $transformers);
-
-        return $htmlGenerator->generate($tokens);
-    }
-
-    protected function highlightTokens(array $tokens, string|Theme|ParsedTheme $theme, array $transformers = []): array
-    {
-        $theme = match (true) {
-            is_string($theme) => $this->environment->getThemeRepository()->get($theme),
-            $theme instanceof Theme => $theme->toParsedTheme($this->environment->getThemeRepository()),
-            default => $theme,
-        };
-
+        $tokens = $this->codeToTokens($code, $grammar);
+        $theme = $this->environment->resolveTheme($theme);
         $highlighter = new Highlighter($theme);
-        $tokens = $highlighter->highlight($tokens);
-        $proxy = new ProxyTransformer($transformers);
 
-        return $proxy->tokens($tokens);
+        return $highlighter->highlight($tokens);
+    }
+
+    public function codeToTerminal(string $code, string|Grammar $grammar, string|Theme $theme): string
+    {
+        $tokens = $this->codeToHighlightedTokens($code, $grammar, $theme);
+        $generator = new TerminalGenerator($this->environment->resolveTheme($theme));
+
+        return $generator->generate($tokens);
+    }
+
+    public function codeToHtml(string $code, string|Grammar $grammar, string|Theme $theme): string
+    {
+        $tokens = $this->codeToHighlightedTokens($code, $grammar, $theme);
+        $generator = new HtmlGenerator($this->environment->resolveTheme($theme), $this->environment->getProxyTransformer());
+
+        return $generator->generate($tokens);
     }
 }

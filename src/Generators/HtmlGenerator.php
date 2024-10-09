@@ -14,14 +14,10 @@ use Phiki\Transformers\ProxyTransformer;
 
 class HtmlGenerator implements OutputGeneratorInterface
 {
-    protected ProxyTransformer $proxy;
-
     public function __construct(
         protected ParsedTheme $theme,
-        array $transformers = [],
-    ) {
-        $this->proxy = new ProxyTransformer($transformers);
-    }
+        protected ProxyTransformer $proxy,
+    ) {}
 
     public function generate(array $tokens): string
     {

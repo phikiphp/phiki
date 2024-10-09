@@ -5,8 +5,10 @@ namespace Phiki;
 use Phiki\Contracts\ContainsCapturesInterface;
 use Phiki\Contracts\GrammarRepositoryInterface;
 use Phiki\Contracts\PatternCollectionInterface;
+use Phiki\Environment\Environment;
 use Phiki\Exceptions\IndeterminateStateException;
 use Phiki\Exceptions\UnreachableException;
+use Phiki\Exceptions\UnrecognisedGrammarException;
 use Phiki\Grammar\BeginEndPattern;
 use Phiki\Grammar\BeginWhilePattern;
 use Phiki\Grammar\CollectionPattern;
@@ -29,8 +31,7 @@ class Tokenizer
 
     public function __construct(
         protected ParsedGrammar $grammar,
-        protected GrammarRepositoryInterface $grammarRepository = new GrammarRepository,
-        protected bool $strictMode = false,
+        protected Environment $environment,
     ) {}
 
     public function tokenize(string $input): array
@@ -205,28 +206,28 @@ class Tokenizer
 
     public function resolve(IncludePattern $pattern): ?Pattern
     {
-        // "include": "$self"
-        if ($pattern->isSelf()) {
-            return $this->grammarRepository->getFromScope($pattern->getScopeName() ?? $this->grammar->scopeName);
-        }
+        $repository = $this->environment->getGrammarRepository();
 
-        // "include": "$base"
-        if ($pattern->isBase()) {
-            return $this->grammar;
-        }
+        try {
+            return match (true) {
+                // "include": "$self"
+                $pattern->isSelf() => $repository->getFromScope($pattern->getScopeName() ?? $this->grammar->scopeName),
+                // "include": "$base"
+                $pattern->isBase() => $this->grammar,
+                // "include": "#name"
+                $pattern->getReference() && $pattern->getScopeName() === $this->grammar->scopeName => $this->grammar->resolve($pattern->getReference()),
+                // "include": "scope#name"
+                $pattern->getReference() && $pattern->getScopeName() !== $this->grammar->scopeName => $repository->getFromScope($pattern->getScopeName())->resolve($pattern->getReference()),
+                    // "include": "scope"
+                default => $repository->getFromScope($pattern->getScopeName()),
+            };
+        } catch (UnrecognisedGrammarException $e) {
+            if ($this->environment->isStrictModeEnabled()) {
+                throw $e;
+            }
 
-        // "include": "#name"
-        if ($pattern->getReference() && $pattern->getScopeName() === $this->grammar->scopeName) {
-            return $this->grammar->resolve($pattern->getReference());
+            return null;
         }
-
-        // "include": "scope#name"
-        if ($pattern->getReference() && $pattern->getScopeName() !== $this->grammar->scopeName) {
-            return $this->grammarRepository->getFromScope($pattern->getScopeName())->resolve($pattern->getReference());
-        }
-
-        // "include": "scope"
-        return $this->grammarRepository->getFromScope($pattern->getScopeName());
     }
 
     protected function process(MatchedPattern $matched, int $line, string $lineText): void
@@ -716,11 +717,6 @@ class Tokenizer
     public function allowG(): bool
     {
         return $this->state->getLinePosition() === $this->state->getAnchorPosition();
-    }
-
-    public function isInStrictMode(): bool
-    {
-        return $this->strictMode;
     }
 
     // FIXME: This should actually check all while conditions on the patternStack
