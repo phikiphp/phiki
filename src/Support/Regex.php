@@ -10,6 +10,7 @@ use Stringable;
 class Regex implements Stringable
 {
     const SLASH_P_MAP = [
+        'number' => '0-9',
         'alnum' => '0-9A-Za-z',
         'alpha' => 'A-Za-z',
         'alphabetic' => 'A-Za-z',
@@ -69,6 +70,7 @@ class Regex implements Stringable
         $this->pattern = $this->convertUnicodeProperties($this->pattern);
         $this->pattern = $this->escapeInvalidLeadingRangeCharacter($this->pattern);
         $this->pattern = $this->escapeUnescapedCloseSetCharacters($this->pattern);
+        $this->pattern = $this->convertUnsupportedUnicodeEscapes($this->pattern);
 
         if ($this->hasAnchor) {
             $this->anchorCache = $this->buildAnchorCache();
@@ -119,6 +121,14 @@ class Regex implements Stringable
     {
         // Escape unescaped close set characters, e.g. ]] converted to \]].
         $pattern = preg_replace('/(?<!\\\)\]\]/', '\\]]', $pattern);
+
+        return $pattern;
+    }
+
+    protected function convertUnsupportedUnicodeEscapes(string $pattern): string
+    {
+        // Convert \uXXXX to \x{XXXX}.
+        $pattern = preg_replace('/\\\\u([0-9A-Fa-f]{4})/', '\\x{$1}', $pattern);
 
         return $pattern;
     }

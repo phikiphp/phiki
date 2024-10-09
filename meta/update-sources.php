@@ -16,19 +16,25 @@ function main()
     echo "Copying grammar files...\n";
 
     eachFile($grammarsDirectory, function (SplFileInfo $grammar) use (&$grammars) {
-        $json = json_decode(file_get_contents($grammar->getRealPath()), true);
+        $json = file_get_contents($grammar->getRealPath());
+        $basename = rtrim(basename($grammar->getFilename(), $grammar->getExtension()), '.');
+        $decoded = json_decode($json, true);
 
         // NOTE: We don't support these grammar types yet.
-        if (isset($json['injectionSelector'])) {
+        if (isset($decoded['injectionSelector'])) {
             return;
         }
 
-        copy($grammar->getRealPath(), __DIR__.'/../resources/languages/'.$grammar->getFilename());
+        if (hasPatch($basename)) {
+            $json = applyPatch($basename, $json);
+        }
+
+        file_put_contents(__DIR__.'/../resources/languages/'.$grammar->getFilename(), $json);
 
         $grammars[] = [
             'path' => $grammar->getFilename(),
-            'name' => $json['name'] ?? basename($grammar->getFilename(), $grammar->getExtension()),
-            'scopeName' => $json['scopeName'],
+            'name' => $decoded['name'] ?? $basename,
+            'scopeName' => $decoded['scopeName'],
         ];
     });
 
@@ -118,6 +124,24 @@ function eachFile(string $path, Closure $callback): void
             $callback($file);
         }
     }
+}
+
+function hasPatch(string $name): bool
+{
+    return file_exists(__DIR__.'/patches/'.$name.'.php');
+}
+
+function applyPatch(string $name, string $json): string
+{
+    echo "    Applying patches for {$name}...\n";
+
+    $patches = require __DIR__.'/patches/'.$name.'.php';
+
+    foreach ($patches as $search => $replace) {
+        $json = str_replace($search, $replace, $json);
+    }
+
+    return $json;
 }
 
 main();

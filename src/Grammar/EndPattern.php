@@ -46,7 +46,7 @@ class EndPattern extends Pattern implements ContainsCapturesInterface, PatternCo
     {
         $regex = preg_replace_callback('/\\\\(\d+)/', function ($matches) {
             if (! isset($this->begin->matches[$matches[1]][0])) {
-                return $matches[0];
+                return '';
             }
 
             return preg_quote($this->begin->matches[$matches[1]][0], '/');

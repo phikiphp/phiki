@@ -5,7 +5,7 @@ use Phiki\Phiki;
 
 describe('Grammars', function () {
     test('default grammars do not produce warnings or exceptions', function (string $grammar) {
-        $sample = file_get_contents(__DIR__ . '/../../resources/samples/' . $grammar . '.sample');
+        $sample = file_get_contents(__DIR__.'/../../resources/samples/'.$grammar.'.sample');
 
         (new Phiki)->codeToTokens($sample, $grammar);
     })
@@ -14,7 +14,7 @@ describe('Grammars', function () {
 });
 
 dataset('grammars', function () {
-    $repository = new GrammarRepository();
+    $repository = new GrammarRepository;
 
     // FIXME: These grammars have known issues and should be skipped.
     return array_filter($repository->getAllGrammarNames(), fn (string $grammar) => ! in_array($grammar, [
