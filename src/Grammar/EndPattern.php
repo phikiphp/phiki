@@ -2,6 +2,7 @@
 
 namespace Phiki\Grammar;
 
+use Exception;
 use Phiki\Contracts\ContainsCapturesInterface;
 use Phiki\Contracts\PatternCollectionInterface;
 use Phiki\Support\Regex;
@@ -52,7 +53,11 @@ class EndPattern extends Pattern implements ContainsCapturesInterface, PatternCo
             return preg_quote($this->begin->matches[$matches[1]][0], '/');
         }, $this->end->get($tokenizer->allowA(), $tokenizer->allowG()));
 
-        if (preg_match('/'.$regex.'/u', $lineText, $matches, PREG_OFFSET_CAPTURE, $linePosition) !== 1) {
+        try {
+            if (preg_match('/' . $regex . '/u', $lineText, $matches, PREG_OFFSET_CAPTURE, $linePosition) !== 1) {
+                return false;
+            }
+        } catch (Exception) {
             return false;
         }
 

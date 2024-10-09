@@ -2,6 +2,7 @@
 
 namespace Phiki\Grammar;
 
+use Exception;
 use Phiki\Contracts\ContainsCapturesInterface;
 use Phiki\Contracts\PatternCollectionInterface;
 use Phiki\Support\Regex;
@@ -33,7 +34,11 @@ class BeginEndPattern extends Pattern implements ContainsCapturesInterface, Patt
 
     public function tryMatch(Tokenizer $tokenizer, string $lineText, int $linePosition, ?int $cannotExceed = null): MatchedPattern|false
     {
-        if (preg_match('/'.$this->begin->get($tokenizer->allowA(), $tokenizer->allowG()).'/u', $lineText, $matches, PREG_OFFSET_CAPTURE, $linePosition) !== 1) {
+        try {
+            if (preg_match('/' . $this->begin->get($tokenizer->allowA(), $tokenizer->allowG()) . '/u', $lineText, $matches, PREG_OFFSET_CAPTURE, $linePosition) !== 1) {
+                return false;
+            }
+        } catch (Exception $e) {
             return false;
         }
 
