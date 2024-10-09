@@ -10,6 +10,22 @@ class AttributeList implements Stringable
         public array $attributes = [],
     ) {}
 
+    public function addClass(string $class): void
+    {
+        $classes = explode(' ', $this->attributes['class'] ?? '');
+        $classes[] = $class;
+
+        $this->set('class', implode(' ', array_unique($classes)));
+    }
+
+    public function removeClass(string $class): void
+    {
+        $classes = explode(' ', $this->attributes['class'] ?? '');
+        $classes = array_filter($classes, fn (string $c) => $c !== $class);
+
+        $this->set('class', implode(' ', array_unique($classes)));
+    }
+
     public function set(string $attribute, ?string $value = null): void
     {
         $this->attributes[$attribute] = $value;
