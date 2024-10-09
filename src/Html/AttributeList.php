@@ -26,6 +26,22 @@ class AttributeList implements Stringable
         $this->set('class', implode(' ', array_unique($classes)));
     }
 
+    public function setStyle(string $property, string $value): void
+    {
+        $styles = array_map(trim(...), explode(';', $this->attributes['style'] ?? ''));
+        $styles[] = sprintf('%s: %s', $property, $value);
+
+        $this->set('style', implode(';', array_unique($styles)));
+    }
+
+    public function removeStyle(string $property): void
+    {
+        $styles = array_map(trim(...), explode(';', $this->attributes['style'] ?? ''));
+        $styles = array_filter($styles, fn (string $s) => !str_starts_with($s, $property . ':'));
+
+        $this->set('style', implode(';', array_unique($styles)));
+    }
+
     public function set(string $attribute, ?string $value = null): void
     {
         $this->attributes[$attribute] = $value;
