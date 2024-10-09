@@ -42,6 +42,16 @@ class AttributeList implements Stringable
         $this->set('style', implode(';', array_unique($styles)));
     }
 
+    public function addDataAttribute(string $name, string $value): void
+    {
+        $this->set('data-' . $name, $value);
+    }
+
+    public function removeDataAttribute(string $name): void
+    {
+        $this->remove('data-' . $name);
+    }
+
     public function set(string $attribute, ?string $value = null): void
     {
         $this->attributes[$attribute] = $value;
