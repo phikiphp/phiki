@@ -1,7 +1,6 @@
 <?php
 
 use Phiki\Environment\Environment;
-use Phiki\Grammar\GrammarRepository;
 use Phiki\Phiki;
 
 require_once __DIR__.'/../../vendor/autoload.php';

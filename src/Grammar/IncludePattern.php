@@ -2,7 +2,6 @@
 
 namespace Phiki\Grammar;
 
-use Phiki\Exceptions\UnrecognisedReferenceException;
 use Phiki\Tokenizer;
 
 class IncludePattern extends Pattern

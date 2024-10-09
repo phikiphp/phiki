@@ -37,19 +37,19 @@ class AttributeList implements Stringable
     public function removeStyle(string $property): void
     {
         $styles = array_map(trim(...), explode(';', $this->attributes['style'] ?? ''));
-        $styles = array_filter($styles, fn (string $s) => !str_starts_with($s, $property . ':'));
+        $styles = array_filter($styles, fn (string $s) => ! str_starts_with($s, $property.':'));
 
         $this->set('style', implode(';', array_unique($styles)));
     }
 
     public function addDataAttribute(string $name, string $value): void
     {
-        $this->set('data-' . $name, $value);
+        $this->set('data-'.$name, $value);
     }
 
     public function removeDataAttribute(string $name): void
     {
-        $this->remove('data-' . $name);
+        $this->remove('data-'.$name);
     }
 
     public function set(string $attribute, ?string $value = null): void
@@ -69,7 +69,7 @@ class AttributeList implements Stringable
 
     public function remove(string $attribute): void
     {
-        if (!isset($this->attributes[$attribute])) {
+        if (! isset($this->attributes[$attribute])) {
             return;
         }
 

@@ -6,10 +6,7 @@ use Phiki\Environment\Environment;
 use Phiki\Generators\HtmlGenerator;
 use Phiki\Generators\TerminalGenerator;
 use Phiki\Grammar\Grammar;
-use Phiki\Grammar\ParsedGrammar;
-use Phiki\Theme\ParsedTheme;
 use Phiki\Theme\Theme;
-use Phiki\Transformers\ProxyTransformer;
 
 class Phiki
 {
@@ -26,7 +23,7 @@ class Phiki
         $code = $this->environment->getProxyTransformer()->preprocess($code);
         $grammar = $this->environment->resolveGrammar($grammar);
         $tokenizer = new Tokenizer($grammar, $this->environment);
-        
+
         return $tokenizer->tokenize($code);
     }
 

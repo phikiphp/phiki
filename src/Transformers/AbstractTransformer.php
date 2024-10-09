@@ -36,12 +36,12 @@ abstract class AbstractTransformer implements TransformerInterface
         return $code;
     }
 
-    public function line(Span $span): Span | Element | null
+    public function line(Span $span): Span|Element|null
     {
         return $span;
     }
 
-    public function token(Span $span): Span | Element | null
+    public function token(Span $span): Span|Element|null
     {
         return $span;
     }

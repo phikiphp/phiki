@@ -3,7 +3,6 @@
 namespace Phiki;
 
 use Phiki\Contracts\ContainsCapturesInterface;
-use Phiki\Contracts\GrammarRepositoryInterface;
 use Phiki\Contracts\PatternCollectionInterface;
 use Phiki\Environment\Environment;
 use Phiki\Exceptions\IndeterminateStateException;
@@ -13,7 +12,6 @@ use Phiki\Grammar\BeginEndPattern;
 use Phiki\Grammar\BeginWhilePattern;
 use Phiki\Grammar\CollectionPattern;
 use Phiki\Grammar\EndPattern;
-use Phiki\Grammar\GrammarRepository;
 use Phiki\Grammar\IncludePattern;
 use Phiki\Grammar\Injections\Prefix;
 use Phiki\Grammar\MatchedPattern;
@@ -218,7 +216,7 @@ class Tokenizer
                 $pattern->getReference() && $pattern->getScopeName() === $this->grammar->scopeName => $this->grammar->resolve($pattern->getReference()),
                 // "include": "scope#name"
                 $pattern->getReference() && $pattern->getScopeName() !== $this->grammar->scopeName => $repository->getFromScope($pattern->getScopeName())->resolve($pattern->getReference()),
-                    // "include": "scope"
+                // "include": "scope"
                 default => $repository->getFromScope($pattern->getScopeName()),
             };
         } catch (UnrecognisedGrammarException $e) {
