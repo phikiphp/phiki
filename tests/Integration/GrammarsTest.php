@@ -15,7 +15,7 @@ describe('Grammars', function () {
 
 dataset('grammars', function () {
     $repository = new GrammarRepository;
-    $grammars = array_filter($repository->getAllGrammarNames(), fn(string $grammar) => ! in_array($grammar, [
+    $grammars = array_filter($repository->getAllGrammarNames(), fn (string $grammar) => ! in_array($grammar, [
         'astro',
         'haxe',
         'fluent',
