@@ -35,9 +35,11 @@ final class State
         return $this->scopeStack;
     }
 
-    public function popScope(): string
+    public function popScope(): void
     {
-        return array_pop($this->scopeStack);
+        if (count($this->scopeStack) > 1) {
+            array_pop($this->scopeStack);
+        }
     }
 
     public function hasActiveInjection(): bool

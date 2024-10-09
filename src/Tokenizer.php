@@ -570,6 +570,10 @@ class Tokenizer
                                     );
                                 }
 
+                                if ($subPatternMatched === false) {
+                                    break;
+                                }
+
                                 $this->process($subPatternMatched, $line, $lineText);
 
                                 if ($subPatternMatched->pattern->scope()) {

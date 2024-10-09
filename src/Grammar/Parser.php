@@ -35,7 +35,9 @@ class Parser
         $repository = [];
 
         foreach ($grammar['repository'] ?? [] as $name => $pattern) {
-            $repository[$name] = $this->pattern($pattern);
+            if ($pattern = $this->pattern($pattern)) {
+                $repository[$name] = $pattern;
+            }
         }
 
         $injections = [];
@@ -47,7 +49,7 @@ class Parser
         return new ParsedGrammar($scopeName, $patterns, $repository, $injections);
     }
 
-    protected function pattern(array $pattern): Pattern
+    protected function pattern(array $pattern): Pattern|false
     {
         if (isset($pattern['match'])) {
             return new MatchPattern(
@@ -117,7 +119,11 @@ class Parser
             return new CollectionPattern($this->patterns($pattern['patterns']), injection: $this->injection);
         }
 
-        throw new UnreachableException('Unknown pattern type: '.json_encode($pattern));
+        if (array_is_list($pattern)) {
+            return new CollectionPattern($this->patterns($pattern), injection: $this->injection);
+        }
+
+        return false;
     }
 
     protected function patterns(array $patterns): array
@@ -125,7 +131,9 @@ class Parser
         $result = [];
 
         foreach ($patterns as $pattern) {
-            $result[] = $this->pattern($pattern);
+            if ($pattern = $this->pattern($pattern)) {
+                $result[] = $pattern;
+            }
         }
 
         return $result;
@@ -142,8 +150,12 @@ class Parser
         return $result;
     }
 
-    protected function capture(array $capture, string $index): Capture
+    protected function capture(array|string $capture, string $index): Capture
     {
+        if (is_string($capture)) {
+            return new Capture($index, $capture, []);
+        }
+
         return new Capture($index, $capture['name'] ?? null, $this->patterns($capture['patterns'] ?? []));
     }
 
