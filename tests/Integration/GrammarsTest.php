@@ -15,9 +15,7 @@ describe('Grammars', function () {
 
 dataset('grammars', function () {
     $repository = new GrammarRepository;
-
-    // FIXME: These grammars have known issues and should be skipped.
-    return array_filter($repository->getAllGrammarNames(), fn (string $grammar) => ! in_array($grammar, [
+    $grammars = array_filter($repository->getAllGrammarNames(), fn(string $grammar) => ! in_array($grammar, [
         'astro',
         'haxe',
         'fluent',
@@ -39,4 +37,9 @@ dataset('grammars', function () {
         // Empty.
         'txt',
     ]));
+
+    sort($grammars, SORT_NATURAL);
+
+    // FIXME: These grammars have known issues and should be skipped.
+    return array_values($grammars);
 });
