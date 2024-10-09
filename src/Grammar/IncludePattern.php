@@ -2,7 +2,6 @@
 
 namespace Phiki\Grammar;
 
-use Phiki\Exceptions\UnrecognisedReferenceException;
 use Phiki\Tokenizer;
 
 class IncludePattern extends Pattern
@@ -19,10 +18,6 @@ class IncludePattern extends Pattern
 
         if ($resolved !== null) {
             return $resolved->tryMatch($tokenizer, $lineText, $linePosition, $cannotExceed);
-        }
-
-        if ($tokenizer->isInStrictMode()) {
-            throw UnrecognisedReferenceException::make($this->reference, $this->scopeName);
         }
 
         return false;

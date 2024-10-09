@@ -7,13 +7,11 @@ use Stringable;
 class Element implements Stringable
 {
     /**
-     * @param string $tagName
-     * @param AttributeList $attributes
-     * @param array<int, Element|Text> $children
+     * @param  array<int, Element|Text>  $children
      */
     public function __construct(
         public string $tagName,
-        public AttributeList $attributes = new AttributeList(),
+        public AttributeList $attributes = new AttributeList,
         public array $children = [],
     ) {}
 

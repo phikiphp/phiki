@@ -10,6 +10,48 @@ class AttributeList implements Stringable
         public array $attributes = [],
     ) {}
 
+    public function addClass(string $class): void
+    {
+        $classes = explode(' ', $this->attributes['class'] ?? '');
+        $classes[] = $class;
+
+        $this->set('class', implode(' ', array_unique($classes)));
+    }
+
+    public function removeClass(string $class): void
+    {
+        $classes = explode(' ', $this->attributes['class'] ?? '');
+        $classes = array_filter($classes, fn (string $c) => $c !== $class);
+
+        $this->set('class', implode(' ', array_unique($classes)));
+    }
+
+    public function setStyle(string $property, string $value): void
+    {
+        $styles = array_map(trim(...), explode(';', $this->attributes['style'] ?? ''));
+        $styles[] = sprintf('%s: %s', $property, $value);
+
+        $this->set('style', implode(';', array_unique($styles)));
+    }
+
+    public function removeStyle(string $property): void
+    {
+        $styles = array_map(trim(...), explode(';', $this->attributes['style'] ?? ''));
+        $styles = array_filter($styles, fn (string $s) => ! str_starts_with($s, $property.':'));
+
+        $this->set('style', implode(';', array_unique($styles)));
+    }
+
+    public function addDataAttribute(string $name, string $value): void
+    {
+        $this->set('data-'.$name, $value);
+    }
+
+    public function removeDataAttribute(string $name): void
+    {
+        $this->remove('data-'.$name);
+    }
+
     public function set(string $attribute, ?string $value = null): void
     {
         $this->attributes[$attribute] = $value;
@@ -27,7 +69,7 @@ class AttributeList implements Stringable
 
     public function remove(string $attribute): void
     {
-        if (!isset($this->attributes[$attribute])) {
+        if (! isset($this->attributes[$attribute])) {
             return;
         }
 

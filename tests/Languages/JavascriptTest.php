@@ -19,5 +19,5 @@ describe('javascript', function () {
 
 function js(string $input): array
 {
-    return Phiki::default()->codeToTokens($input, 'javascript');
+    return (new Phiki)->codeToTokens($input, 'javascript');
 }

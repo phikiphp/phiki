@@ -3,16 +3,16 @@
 namespace Phiki\Transformers;
 
 use Phiki\Contracts\TransformerInterface;
-use Phiki\Html\Root;
-use Phiki\Html\Pre;
 use Phiki\Html\Code;
 use Phiki\Html\Element;
+use Phiki\Html\Pre;
+use Phiki\Html\Root;
 use Phiki\Html\Span;
 
 final class ProxyTransformer implements TransformerInterface
 {
     /**
-     * @param \Phiki\Contracts\TransformerInterface[] $transformers
+     * @param  \Phiki\Contracts\TransformerInterface[]  $transformers
      */
     public function __construct(
         private array $transformers = []

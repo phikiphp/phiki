@@ -25,5 +25,5 @@ describe('yaml', function () {
 
 function yaml(string $input): array
 {
-    return Phiki::default()->codeToTokens($input, 'yaml');
+    return (new Phiki)->codeToTokens($input, 'yaml');
 }
