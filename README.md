@@ -32,7 +32,7 @@ $html = $phiki->codeToHtml(
 
 This method takes in the code you want to highlight, the target language, as well as the theme you want to use. It then returns the generated HTML as a string. 
 
-> [!INFO]
+> [!NOTE]
 > All of Phiki's styling is applied using inline `style` attributes, so there's no need to add any CSS to your project.
 
 ### Supported Languages
