@@ -18,7 +18,7 @@ describe('Phiki', function () {
     });
 
     it('adds a language data property and class if grammar has a name', function () {
-        $html = (new Phiki())->codeToHtml(<<<'PHP'
+        $html = (new Phiki)->codeToHtml(<<<'PHP'
         function add(int|float $a, int|float $b): int|float {
             return $a + $b;
         }
@@ -29,7 +29,7 @@ describe('Phiki', function () {
     });
 
     it('does not add a language data property and class if grammar has no name', function () {
-        $html = (new Phiki())->codeToHtml(<<<'PHP'
+        $html = (new Phiki)->codeToHtml(<<<'PHP'
         function add(int|float $a, int|float $b): int|float {
             return $a + $b;
         }

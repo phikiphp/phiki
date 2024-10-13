@@ -49,7 +49,7 @@ class HtmlGenerator implements OutputGeneratorInterface
         $code = $this->proxy->code(new Code(children: $lines));
 
         $pre = $this->proxy->pre(new Pre($code, new AttributeList([
-            'class' => sprintf('phiki %s%s', $this->theme->name, $this->grammar->name ? ' language-' . $this->grammar->name : ''),
+            'class' => sprintf('phiki %s%s', $this->theme->name, $this->grammar->name ? ' language-'.$this->grammar->name : ''),
             'style' => $this->theme->base()->toStyleString(),
             'data-language' => $this->grammar->name,
         ])));
