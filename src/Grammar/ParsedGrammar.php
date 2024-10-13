@@ -13,6 +13,7 @@ final class ParsedGrammar extends Pattern implements PatternCollectionInterface
      * @param  Injections\Injection[]  $injections
      */
     public function __construct(
+        public ?string $name,
         public string $scopeName,
         public array $patterns,
         public array $repository,

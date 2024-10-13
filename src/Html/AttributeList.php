@@ -78,14 +78,16 @@ class AttributeList implements Stringable
 
     public function __toString(): string
     {
+        $attributes = array_filter($this->attributes);
+
         return implode(
             ' ',
             array_map(
                 fn (string $attribute, ?string $value) => $value === null
                     ? $attribute
                     : sprintf('%s="%s"', $attribute, htmlspecialchars($value)),
-                array_keys($this->attributes),
-                $this->attributes,
+                array_keys($attributes),
+                $attributes,
             ),
         );
     }

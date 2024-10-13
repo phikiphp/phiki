@@ -47,7 +47,7 @@ class Phiki
     public function codeToHtml(string $code, string|Grammar $grammar, string|Theme $theme): string
     {
         $tokens = $this->codeToHighlightedTokens($code, $grammar, $theme);
-        $generator = new HtmlGenerator($this->environment->resolveTheme($theme), $this->environment->getProxyTransformer());
+        $generator = new HtmlGenerator($this->environment->resolveGrammar($grammar), $this->environment->resolveTheme($theme), $this->environment->getProxyTransformer());
 
         return $generator->generate($tokens);
     }

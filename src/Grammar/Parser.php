@@ -46,7 +46,9 @@ class Parser
             $injections[] = $this->injection($selector, $injection);
         }
 
-        return new ParsedGrammar($scopeName, $patterns, $repository, $injections);
+        $name = $grammar['name'] ?? null;
+
+        return new ParsedGrammar($name, $scopeName, $patterns, $repository, $injections);
     }
 
     protected function pattern(array $pattern): Pattern|false

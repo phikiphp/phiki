@@ -3,6 +3,7 @@
 namespace Phiki\Generators;
 
 use Phiki\Contracts\OutputGeneratorInterface;
+use Phiki\Grammar\ParsedGrammar;
 use Phiki\Html\AttributeList;
 use Phiki\Html\Code;
 use Phiki\Html\Pre;
@@ -15,6 +16,7 @@ use Phiki\Transformers\ProxyTransformer;
 class HtmlGenerator implements OutputGeneratorInterface
 {
     public function __construct(
+        protected ParsedGrammar $grammar,
         protected ParsedTheme $theme,
         protected ProxyTransformer $proxy,
     ) {}
@@ -47,8 +49,9 @@ class HtmlGenerator implements OutputGeneratorInterface
         $code = $this->proxy->code(new Code(children: $lines));
 
         $pre = $this->proxy->pre(new Pre($code, new AttributeList([
-            'class' => sprintf('phiki %s', $this->theme->name),
+            'class' => sprintf('phiki %s%s', $this->theme->name, $this->grammar->name ? ' language-' . $this->grammar->name : ''),
             'style' => $this->theme->base()->toStyleString(),
+            'data-language' => $this->grammar->name,
         ])));
 
         $root = $this->proxy->root(new Root($pre));
