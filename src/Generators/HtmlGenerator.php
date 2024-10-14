@@ -40,9 +40,10 @@ class HtmlGenerator implements OutputGeneratorInterface
             $lines[] = $this->proxy->line(new Span(
                 new AttributeList([
                     'class' => 'line',
+                    'data-line' => $i + 1,
                 ]),
                 $children,
-            ), $i);
+            ), $i + 1);
         }
 
         $code = $this->proxy->code(new Code(children: $lines));
