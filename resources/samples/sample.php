@@ -26,14 +26,24 @@ $html = (new Phiki($environment))->codeToHtml($sample, $grammar, 'github-dark');
     <script src="//unpkg.com/alpinejs" defer></script>
     <style>
         pre {
-            padding: 20px;
-            font-size: 14px !important;
+            padding: 0.875rem;
+            padding-left: 0.5rem;
+            font-size: 0.875rem !important;
             line-height: 1.5 !important;
             border-radius: 10px;
         }
 
         code {
             font-family: 'Fira Code';
+        }
+
+        pre code span[data-line]::before {
+            content: attr(data-line);
+            display: inline-block;
+            width: 1.7rem;
+            margin-right: 1rem;
+            color: #666;
+            text-align: right;
         }
     </style>
 </head>

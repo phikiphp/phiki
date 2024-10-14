@@ -113,6 +113,23 @@ echo $phiki->codeToTerminal('echo "Hello, world"!', Grammar::Php, Theme::GithubD
 
 ![](./art/codeToTerminal.png)
 
+### Line numbers
+
+Each line has its own `<span>` element with a `data-line` attribute, so you can use CSS to display line numbers in the generated HTML. The benefit to this approach is that the text isn't selectable so you code snippets can be highlighted the same as before.
+
+```css
+pre code span[data-line]::before {
+    content: attr(data-line);
+    display: inline-block;
+    width: 1.7rem;
+    margin-right: 1rem;
+    color: #666;
+    text-align: right;
+}
+```
+
+These styles are of course just a guide. You can change the colors and sizing to your own taste.
+
 ## Known Limitations & Implementation Notes
 
 The implementation of this package is inspired by existing art, namely `vscode-textmate`. The main reason that implementing a TextMate-based syntax highlighter in PHP is a complex task is down to the fact that `vscode-textmate` (and the TextMate editor) uses the [Oniguruma](https://github.com/kkos/oniguruma) engine for handling regular expressions.
