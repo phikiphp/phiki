@@ -55,6 +55,7 @@ class HtmlGenerator implements OutputGeneratorInterface
 
         $root = $this->proxy->root(new Root($pre, new AttributeList([
             'class' => 'phiki-wrapper',
+            'style' => $this->theme->base()->toStyleString(),
             'data-language' => $this->grammarName,
         ])));
 
