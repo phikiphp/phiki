@@ -7,7 +7,7 @@ Phiki is a syntax highlighter written in PHP. It uses TextMate grammar files and
 Install Phiki via Composer:
 
 ```sh
-composer require ryangjchandler/phiki
+composer require phiki/phiki
 ```
 
 ## Getting Started
