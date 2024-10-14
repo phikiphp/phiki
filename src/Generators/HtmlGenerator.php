@@ -53,7 +53,10 @@ class HtmlGenerator implements OutputGeneratorInterface
             'data-language' => $this->grammarName,
         ])));
 
-        $root = $this->proxy->root(new Root($pre));
+        $root = $this->proxy->root(new Root($pre, new AttributeList([
+            'class' => 'phiki-wrapper',
+            'data-language' => $this->grammarName,
+        ])));
 
         return $this->proxy->postprocess($root->__toString());
     }
