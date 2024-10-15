@@ -4,7 +4,7 @@ namespace Phiki\Grammar;
 
 abstract class DefaultGrammars
 {
-    final const array NAMES_TO_PATHS = [
+    final const NAMES_TO_PATHS = [
         'txt' => __DIR__.'/../../resources/languages/txt.json',
         'astro' => __DIR__.'/../../resources/languages/astro.json',
         'hy' => __DIR__.'/../../resources/languages/hy.json',
@@ -221,7 +221,7 @@ abstract class DefaultGrammars
         'asm' => __DIR__.'/../../resources/languages/asm.json',
     ];
 
-    final const array SCOPES_TO_NAMES = [
+    final const SCOPES_TO_NAMES = [
         'text.txt' => 'txt',
         'source.astro' => 'astro',
         'source.hy' => 'hy',
