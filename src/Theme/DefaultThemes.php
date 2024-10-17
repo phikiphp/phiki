@@ -4,7 +4,7 @@ namespace Phiki\Theme;
 
 abstract class DefaultThemes
 {
-    final const array NAMES_TO_PATHS = ['one-dark-pro' => __DIR__.'/../../resources/themes/one-dark-pro.json',
+    final const NAMES_TO_PATHS = ['one-dark-pro' => __DIR__.'/../../resources/themes/one-dark-pro.json',
         'solarized-light' => __DIR__.'/../../resources/themes/solarized-light.json',
         'vitesse-black' => __DIR__.'/../../resources/themes/vitesse-black.json',
         'github-light-default' => __DIR__.'/../../resources/themes/github-light-default.json',
