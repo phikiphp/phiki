@@ -33,7 +33,7 @@ class Phiki
         $theme = $this->environment->resolveTheme($theme);
         $highlighter = new Highlighter($theme);
 
-        return $highlighter->highlight($tokens);
+        return $this->environment->getProxyTransformer()->tokens($highlighter->highlight($tokens));
     }
 
     public function codeToTerminal(string $code, string|Grammar $grammar, string|Theme $theme): string
