@@ -18,9 +18,9 @@ class Parser
             $scopes = Arr::wrap($tokenColor['scope']);
 
             return new TokenColor($scopes, new TokenSettings(
-                $tokenColors['settings']['background'] ?? null,
-                $tokenColors['settings']['foreground'] ?? null,
-                $tokenColors['settings']['fontStyle'] ?? null,
+                $tokenColor['settings']['background'] ?? null,
+                $tokenColor['settings']['foreground'] ?? null,
+                $tokenColor['settings']['fontStyle'] ?? null,
             ));
         });
 
