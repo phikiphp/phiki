@@ -35,4 +35,9 @@ class ThemeRepository implements ThemeRepositoryInterface
     {
         $this->themes[$name] = $pathOrTheme;
     }
+
+    public function getAllThemeNames(): array
+    {
+        return array_keys($this->themes);
+    }
 }
