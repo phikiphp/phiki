@@ -8,7 +8,7 @@ pest()->group('integration/themes');
 
 describe('Themes', function () {
     test('default themes do not produce warnings or exceptions', function (string $theme) {
-        $sample = file_get_contents(__DIR__ . '/../../resources/samples/sample.php');
+        $sample = file_get_contents(__DIR__.'/../../resources/samples/sample.php');
 
         (new Phiki)->codeToHighlightedTokens($sample, Grammar::Php, $theme);
     })
