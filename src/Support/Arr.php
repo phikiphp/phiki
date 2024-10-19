@@ -12,4 +12,9 @@ final class Arr
 
         return [$value];
     }
+
+    public static function filterMap(array $array, callable $callback): array
+    {
+        return array_filter(array_map($callback, $array));
+    }
 }

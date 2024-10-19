@@ -10,15 +10,19 @@ class Parser
     {
         $name = $theme['name'];
         $colors = $theme['colors'];
-        $tokenColors = array_map(function (array $tokenColors) {
-            $scopes = Arr::wrap($tokenColors['scope']);
+        $tokenColors = Arr::filterMap($theme['tokenColors'] ?? [], function (array $tokenColor) {
+            if (! isset($tokenColor['scope'])) {
+                return null;
+            }
+
+            $scopes = Arr::wrap($tokenColor['scope']);
 
             return new TokenColor($scopes, new TokenSettings(
                 $tokenColors['settings']['background'] ?? null,
                 $tokenColors['settings']['foreground'] ?? null,
                 $tokenColors['settings']['fontStyle'] ?? null,
             ));
-        }, $theme['tokenColors'] ?? []);
+        });
 
         return new ParsedTheme($name, $colors, $tokenColors);
     }
