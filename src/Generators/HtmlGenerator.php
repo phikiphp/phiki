@@ -3,14 +3,7 @@
 namespace Phiki\Generators;
 
 use Phiki\Contracts\OutputGeneratorInterface;
-use Phiki\Html\AttributeList;
-use Phiki\Html\Code;
-use Phiki\Html\Pre;
-use Phiki\Html\Root;
-use Phiki\Html\Span;
-use Phiki\Html\Text;
 use Phiki\Theme\ParsedTheme;
-use Phiki\Transformers\ProxyTransformer;
 
 class HtmlGenerator implements OutputGeneratorInterface
 {
@@ -31,7 +24,7 @@ class HtmlGenerator implements OutputGeneratorInterface
 
         $html[] = sprintf(
             '<pre class="%s" style="%s"%s>',
-            sprintf('phiki %s%s', $this->theme->name, $this->grammarName ? ' language-' . $this->grammarName : ''),
+            sprintf('phiki %s%s', $this->theme->name, $this->grammarName ? ' language-'.$this->grammarName : ''),
             $this->theme->base()->toStyleString(),
             $this->grammarName ? sprintf(' data-language="%s"', $this->grammarName) : '',
         );
