@@ -20,7 +20,6 @@ class Phiki
 
     public function codeToTokens(string $code, string|Grammar $grammar): array
     {
-        $code = $this->environment->getProxyTransformer()->preprocess($code);
         $grammar = $this->environment->resolveGrammar($grammar);
         $tokenizer = new Tokenizer($grammar, $this->environment);
 
@@ -33,7 +32,7 @@ class Phiki
         $theme = $this->environment->resolveTheme($theme);
         $highlighter = new Highlighter($theme);
 
-        return $this->environment->getProxyTransformer()->tokens($highlighter->highlight($tokens));
+        return $highlighter->highlight($tokens);
     }
 
     public function codeToTerminal(string $code, string|Grammar $grammar, string|Theme $theme): string
@@ -53,7 +52,6 @@ class Phiki
                 default => $this->environment->resolveGrammar($grammar)->name,
             },
             $this->environment->resolveTheme($theme),
-            $this->environment->getProxyTransformer()
         );
 
         return $generator->generate($tokens);

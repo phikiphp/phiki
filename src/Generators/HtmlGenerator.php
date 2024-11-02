@@ -17,49 +17,48 @@ class HtmlGenerator implements OutputGeneratorInterface
     public function __construct(
         protected ?string $grammarName,
         protected ParsedTheme $theme,
-        protected ProxyTransformer $proxy,
     ) {}
 
     public function generate(array $tokens): string
     {
-        $lines = [];
+        $html = [];
+
+        $html[] = sprintf(
+            '<div class="phiki-wrapper" style="%s"%s>',
+            $this->theme->base()->toStyleString(),
+            $this->grammarName ? sprintf(' data-language="%s"', $this->grammarName) : '',
+        );
+
+        $html[] = sprintf(
+            '<pre class="%s" style="%s"%s>',
+            sprintf('phiki %s%s', $this->theme->name, $this->grammarName ? ' language-' . $this->grammarName : ''),
+            $this->theme->base()->toStyleString(),
+            $this->grammarName ? sprintf(' data-language="%s"', $this->grammarName) : '',
+        );
+
+        $html[] = '<code>';
 
         foreach ($tokens as $i => $line) {
-            $children = [];
+            $html[] = sprintf(
+                '<span class="line" data-line="%d">',
+                $i + 1,
+            );
 
             foreach ($line as $token) {
-                $children[] = $this->proxy->token(new Span(
-                    new AttributeList([
-                        'class' => 'token',
-                        'style' => $token->settings?->toStyleString(),
-                    ]),
-                    [new Text($token->token->text)],
-                ));
+                $html[] = sprintf(
+                    '<span class="token" style="%s">%s</span>',
+                    $token->settings?->toStyleString(),
+                    htmlspecialchars($token->token->text),
+                );
             }
 
-            $lines[] = $this->proxy->line(new Span(
-                new AttributeList([
-                    'class' => 'line',
-                    'data-line' => $i + 1,
-                ]),
-                $children,
-            ), $i + 1);
+            $html[] = '</span>';
         }
 
-        $code = $this->proxy->code(new Code(children: $lines));
+        $html[] = '</code>';
+        $html[] = '</pre>';
+        $html[] = '</div>';
 
-        $pre = $this->proxy->pre(new Pre($code, new AttributeList([
-            'class' => sprintf('phiki %s%s', $this->theme->name, $this->grammarName ? ' language-'.$this->grammarName : ''),
-            'style' => $this->theme->base()->toStyleString(),
-            'data-language' => $this->grammarName,
-        ])));
-
-        $root = $this->proxy->root(new Root($pre, new AttributeList([
-            'class' => 'phiki-wrapper',
-            'style' => $this->theme->base()->toStyleString(),
-            'data-language' => $this->grammarName,
-        ])));
-
-        return $this->proxy->postprocess($root->__toString());
+        return implode('', $html);
     }
 }

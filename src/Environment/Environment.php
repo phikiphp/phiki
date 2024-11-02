@@ -5,27 +5,18 @@ namespace Phiki\Environment;
 use Phiki\Contracts\ExtensionInterface;
 use Phiki\Contracts\GrammarRepositoryInterface;
 use Phiki\Contracts\ThemeRepositoryInterface;
-use Phiki\Contracts\TransformerInterface;
 use Phiki\Exceptions\EnvironmentException;
 use Phiki\Extensions\DefaultExtension;
 use Phiki\Grammar\Grammar;
 use Phiki\Grammar\ParsedGrammar;
 use Phiki\Theme\ParsedTheme;
 use Phiki\Theme\Theme;
-use Phiki\Transformers\ProxyTransformer;
 
 class Environment
 {
     protected GrammarRepositoryInterface $grammarRepository;
 
     protected ThemeRepositoryInterface $themeRepository;
-
-    /**
-     * @var TransformerInterface[]
-     */
-    protected array $transformers = [];
-
-    protected ?ProxyTransformer $proxyTransformer = null;
 
     protected bool $strictMode = false;
 
@@ -53,35 +44,6 @@ class Environment
     public function isStrictModeEnabled(): bool
     {
         return $this->strictMode;
-    }
-
-    public function addTransformer(TransformerInterface $transformer): static
-    {
-        $this->transformers[] = $transformer;
-
-        return $this;
-    }
-
-    public function addTransformers(array $transformers): static
-    {
-        foreach ($transformers as $transformer) {
-            $this->addTransformer($transformer);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return TransformerInterface[]
-     */
-    public function getTransformers(): array
-    {
-        return $this->transformers;
-    }
-
-    public function getProxyTransformer(): ProxyTransformer
-    {
-        return $this->proxyTransformer ??= new ProxyTransformer($this->transformers);
     }
 
     public function useGrammarRepository(GrammarRepositoryInterface $grammarRepository): static
