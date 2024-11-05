@@ -6,8 +6,6 @@ interface ProvidesContentName
 {
     /**
      * Get the name to apply to nested content.
-     * 
-     * @return string|null
      */
     public function getContentName(): ?string;
 }
