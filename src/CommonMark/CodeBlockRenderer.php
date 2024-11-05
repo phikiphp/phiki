@@ -15,6 +15,7 @@ class CodeBlockRenderer implements NodeRendererInterface
     public function __construct(
         private string|Theme $theme,
         private Phiki $phiki = new Phiki,
+        private bool $withWrapper = false,
     ) {}
 
     public function render(Node $node, ChildNodeRendererInterface $childRenderer)
@@ -28,6 +29,6 @@ class CodeBlockRenderer implements NodeRendererInterface
         $grammar = $matches[0];
         $code = rtrim($node->getLiteral(), "\n");
 
-        return $this->phiki->codeToHtml($code, $grammar, $this->theme);
+        return $this->phiki->codeToHtml($code, $grammar, $this->theme, $this->withWrapper);
     }
 }

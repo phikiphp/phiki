@@ -14,6 +14,7 @@ class HtmlGenerator implements OutputGeneratorInterface
     public function __construct(
         protected ?string $grammarName,
         protected array $themes,
+        protected bool $withWrapper = false,
     ) {}
 
     public function generate(array $tokens): string
@@ -22,23 +23,25 @@ class HtmlGenerator implements OutputGeneratorInterface
         $defaultTheme = Arr::first($this->themes);
         $defaultThemeId = Arr::firstKey($this->themes);
 
-        $wrapperStyles = [
-            $defaultTheme->base()->toStyleString(),
-        ];
+        if ($this->withWrapper) {
+            $wrapperStyles = [
+                $defaultTheme->base()->toStyleString(),
+            ];
 
-        foreach ($this->themes as $id => $theme) {
-            if ($id === $defaultThemeId) {
-                continue;
+            foreach ($this->themes as $id => $theme) {
+                if ($id === $defaultThemeId) {
+                    continue;
+                }
+
+                $wrapperStyles[] = $theme->base()->toCssVarString($id);
             }
 
-            $wrapperStyles[] = $theme->base()->toCssVarString($id);
+            $html[] = sprintf(
+                '<div class="phiki-wrapper" style="%s"%s>',
+                implode(';', $wrapperStyles),
+                $this->grammarName ? sprintf(' data-language="%s"', $this->grammarName) : '',
+            );
         }
-
-        $html[] = sprintf(
-            '<div class="phiki-wrapper" style="%s"%s>',
-            implode(';', $wrapperStyles),
-            $this->grammarName ? sprintf(' data-language="%s"', $this->grammarName) : '',
-        );
 
         $preClasses = ['phiki', $this->grammarName ? 'language-'.$this->grammarName : null, $defaultTheme->name];
 
@@ -115,7 +118,10 @@ class HtmlGenerator implements OutputGeneratorInterface
 
         $html[] = '</code>';
         $html[] = '</pre>';
-        $html[] = '</div>';
+
+        if ($this->withWrapper) {
+            $html[] = '</div>';
+        }
 
         return implode('', $html);
     }
