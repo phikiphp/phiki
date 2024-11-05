@@ -2,6 +2,7 @@
 
 use Phiki\Environment\Environment;
 use Phiki\Phiki;
+use Phiki\Theme\Theme;
 
 require_once __DIR__.'/../../vendor/autoload.php';
 
@@ -11,7 +12,7 @@ $repository = $environment->getGrammarRepository();
 
 $sample = file_get_contents(__DIR__.'/'.$grammar.'.sample');
 $tokens = (new Phiki($environment))->codeToTokens($sample, $grammar);
-$html = (new Phiki($environment))->codeToHtml($sample, $grammar, 'github-dark');
+$html = (new Phiki($environment))->codeToHtml($sample, $grammar, ['light' => Theme::GithubLight, 'dark' => 'github-dark']);
 
 ?>
 
@@ -25,6 +26,17 @@ $html = (new Phiki($environment))->codeToHtml($sample, $grammar, 'github-dark');
     <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
     <script src="//unpkg.com/alpinejs" defer></script>
     <style>
+        /* @media (prefers-color-scheme: dark) { */
+            html.dark .phiki,
+            html.dark .phiki span {
+                color: var(--phiki-dark-color) !important;
+                background-color: var(--phiki-dark-background-color) !important;
+                font-style: var(--phiki-dark-font-style) !important;
+                font-weight: var(--phiki-dark-font-weight) !important;
+                text-decoration: var(--phiki-dark-text-decoration) !important;
+            }
+        /* } */
+
         pre {
             padding: 0.875rem;
             padding-left: 0.5rem;

@@ -7,7 +7,12 @@ use Phiki\Token\HighlightedToken;
 
 readonly class Highlighter
 {
-    public function __construct(public ParsedTheme $theme) {}
+    /**
+     * @param  array<string, ParsedTheme>  $themes
+     */
+    public function __construct(
+        public array $themes
+    ) {}
 
     public function highlight(array $tokens): array
     {
@@ -16,14 +21,16 @@ readonly class Highlighter
         foreach ($tokens as $i => $line) {
             foreach ($line as $token) {
                 $scopes = array_reverse($token->scopes);
-                $settings = null;
+                $settings = [];
 
-                foreach ($scopes as $scope) {
-                    $resolved = $this->theme->resolve($scope);
+                foreach ($this->themes as $id => $theme) {
+                    foreach ($scopes as $scope) {
+                        $resolved = $theme->resolve($scope);
 
-                    if ($resolved !== null) {
-                        $settings = $resolved;
-                        break;
+                        if ($resolved !== null) {
+                            $settings[$id] = $resolved;
+                            break;
+                        }
                     }
                 }
 

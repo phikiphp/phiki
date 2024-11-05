@@ -44,7 +44,19 @@ readonly class TokenSettings
         return "\033[".implode(';', $decorations).';38;5;'.implode(';', $codes).'m';
     }
 
-    public function toStyleString(): string
+    public function toCssVarString(string $prefix): string
+    {
+        $styles = $this->toStyleArray();
+        $vars = [];
+
+        foreach ($styles as $property => $value) {
+            $vars[] = "--phiki-{$prefix}-{$property}: {$value}";
+        }
+
+        return implode(';', $vars);
+    }
+
+    public function toStyleArray(): array
     {
         $styles = [];
 
@@ -76,6 +88,12 @@ readonly class TokenSettings
             }
         }
 
+        return $styles;
+    }
+
+    public function toStyleString(): string
+    {
+        $styles = $this->toStyleArray();
         $styleString = '';
 
         foreach ($styles as $property => $value) {

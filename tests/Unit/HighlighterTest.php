@@ -13,6 +13,6 @@ describe('Highlighter', function () {
             ],
         ]);
 
-        expect(new Highlighter($theme))->toBeInstanceOf(Highlighter::class);
+        expect(new Highlighter(['default' => $theme]))->toBeInstanceOf(Highlighter::class);
     });
 });

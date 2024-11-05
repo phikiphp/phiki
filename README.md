@@ -130,6 +130,51 @@ pre code span[data-line]::before {
 
 These styles are of course just a guide. You can change the colors and sizing to your own taste.
 
+### Multi-theme support
+
+Phiki has support for highlighting code with multiple themes. This is great for sites that have a color scheme switcher, allowing you to change the theme used in each mode.
+
+To take advantage of this, pass an array of themes to the `codeToHtml()` method.
+
+```php
+$phiki->codeToHtml("...", Grammar::Php, [
+    'light' => Theme::GithubLight,
+    'dark' => Theme::GithubDark,
+]);
+```
+
+The first entry in the array will be used as the default theme. Other themes in the array will add additional CSS variables to the `style` attribute on each token, as well as the surrounding `<pre>` element. This means you'll need to use some CSS on your site to switch between the different themes.
+
+**Query-based dark mode**
+
+```css
+@media (prefers-color-scheme: dark) {
+    .phiki,
+    .phiki span {
+        color: var(--phiki-dark-color) !important;
+        background-color: var(--phiki-dark-background-color) !important;
+        font-style: var(--phiki-dark-font-style) !important;
+        font-weight: var(--phiki-dark-font-weight) !important;
+        text-decoration: var(--phiki-dark-text-decoration) !important;
+    }
+}
+```
+
+**Class-based dark mode**
+
+```css
+html.dark .phiki,
+html.dark .phiki span {
+    color: var(--phiki-dark-color) !important;
+    background-color: var(--phiki-dark-background-color) !important;
+    font-style: var(--phiki-dark-font-style) !important;
+    font-weight: var(--phiki-dark-font-weight) !important;
+    text-decoration: var(--phiki-dark-text-decoration) !important;
+}
+```
+
+Phiki doesn't limit you to light and dark mode themes – you can use any key you wish in the array and CSS variables will be generated accordingly. You can then adjust the CSS on your site to apply those styles accordingly.
+
 ## Known Limitations & Implementation Notes
 
 The implementation of this package is inspired by existing art, namely `vscode-textmate`. The main reason that implementing a TextMate-based syntax highlighter in PHP is a complex task is down to the fact that `vscode-textmate` (and the TextMate editor) uses the [Oniguruma](https://github.com/kkos/oniguruma) engine for handling regular expressions.

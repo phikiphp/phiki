@@ -51,6 +51,16 @@ describe('Phiki', function () {
         expect($html)->toContain('data-line="3"');
     });
 
+    it('can generate code with multiple themes', function () {
+        $code = (new Phiki)->codeToHtml(<<<'PHP'
+        echo "Hello, world";
+        PHP, Grammar::Php, ['light' => Theme::GithubLight, 'dark' => Theme::GithubDark]);
+
+        expect($code)->toContain('github-light')->toContain('github-dark');
+        expect($code)->toContain('--phiki-dark-color');
+        expect($code)->toContain('--phiki-dark-background-color');
+    });
+
     it('accepts a grammar enum member', function () {
         expect((new Phiki)->codeToTokens('echo $a;', Grammar::Php))->toBeArray();
     });
