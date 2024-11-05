@@ -5,10 +5,11 @@ namespace Phiki\Grammar;
 use Exception;
 use Phiki\Contracts\ContainsCapturesInterface;
 use Phiki\Contracts\PatternCollectionInterface;
+use Phiki\Contracts\ProvidesContentName;
 use Phiki\Support\Regex;
 use Phiki\Tokenizer;
 
-class EndPattern extends Pattern implements ContainsCapturesInterface, PatternCollectionInterface
+class EndPattern extends Pattern implements ContainsCapturesInterface, PatternCollectionInterface, ProvidesContentName
 {
     public function __construct(
         public MatchedPattern $begin,
@@ -20,6 +21,11 @@ class EndPattern extends Pattern implements ContainsCapturesInterface, PatternCo
         public array $patterns = [],
         public bool $injection = false,
     ) {}
+
+    public function getContentName(): ?string
+    {
+        return $this->contentName;
+    }
 
     public function getPatterns(): array
     {

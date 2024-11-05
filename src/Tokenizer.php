@@ -4,6 +4,7 @@ namespace Phiki;
 
 use Phiki\Contracts\ContainsCapturesInterface;
 use Phiki\Contracts\PatternCollectionInterface;
+use Phiki\Contracts\ProvidesContentName;
 use Phiki\Environment\Environment;
 use Phiki\Exceptions\IndeterminateStateException;
 use Phiki\Exceptions\UnreachableException;
@@ -101,7 +102,7 @@ class Tokenizer
             if ($endIsMatched) {
                 $this->state->popPattern();
 
-                if ($root->contentName) {
+                if ($root instanceof ProvidesContentName && $root->getContentName() !== null) {
                     $this->state->popScope();
                 }
             }
@@ -303,8 +304,8 @@ class Tokenizer
 
             $endPattern = $matched->pattern->createEndPattern($matched);
 
-            if ($matched->pattern->contentName) {
-                $this->state->pushScope($matched->pattern->contentName);
+            if ($matched->pattern instanceof ProvidesContentName && $matched->pattern->getContentName() !== null) {
+                $this->state->pushScope($matched->pattern->getContentName());
             }
 
             if ($endPattern->hasPatterns()) {
@@ -313,7 +314,7 @@ class Tokenizer
                 return;
             }
 
-            if ($matched->pattern->contentName) {
+            if ($matched->pattern instanceof ProvidesContentName && $matched->pattern->getContentName() !== null) {
                 $this->state->popScope();
             }
 
@@ -362,8 +363,8 @@ class Tokenizer
 
             $whilePattern = $matched->pattern->createWhilePattern($matched);
 
-            if ($matched->pattern->contentName) {
-                $this->state->pushScope($matched->pattern->contentName);
+            if ($matched->pattern instanceof ProvidesContentName && $matched->pattern->getContentName() !== null) {
+                $this->state->pushScope($matched->pattern->getContentName());
             }
 
             $this->state->pushPattern($whilePattern);
