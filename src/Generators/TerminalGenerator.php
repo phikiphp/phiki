@@ -18,7 +18,7 @@ class TerminalGenerator implements OutputGeneratorInterface
 
         foreach ($tokens as $line) {
             foreach ($line as $token) {
-                if ($token->settings !== null) {
+                if ($token->settings !== []) {
                     $output .= $token->settings['default']->toAnsiEscape();
                 }
 
