@@ -12,7 +12,7 @@ $repository = $environment->getGrammarRepository();
 
 $sample = file_get_contents(__DIR__.'/'.$grammar.'.sample');
 $tokens = (new Phiki($environment))->codeToTokens($sample, $grammar);
-$html = (new Phiki($environment))->codeToHtml($sample, $grammar, ['light' => Theme::GithubLight, 'dark' => 'github-dark']);
+$html = (new Phiki($environment))->codeToHtml($sample, $grammar, ['light' => Theme::OneLight, 'dark' => 'github-dark']);
 
 ?>
 

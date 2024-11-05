@@ -95,11 +95,11 @@ class HtmlGenerator implements OutputGeneratorInterface
                 }
 
                 $tokenStyles = [
-                    $token->settings[$defaultThemeId]->toStyleString(),
+                    ($token->settings[$defaultThemeId] ?? null)?->toStyleString(),
                 ];
 
                 foreach ($token->settings as $id => $settings) {
-                    if ($settings === $token->settings[$defaultThemeId]) {
+                    if ($id === $defaultThemeId) {
                         continue;
                     }
 
@@ -108,7 +108,7 @@ class HtmlGenerator implements OutputGeneratorInterface
 
                 $html[] = sprintf(
                     '<span class="token" style="%s">%s</span>',
-                    implode(';', $tokenStyles),
+                    implode(';', array_filter($tokenStyles)),
                     htmlspecialchars($token->token->text),
                 );
             }
