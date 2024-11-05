@@ -13,7 +13,7 @@ use Phiki\Theme\Theme;
 class CodeBlockRenderer implements NodeRendererInterface
 {
     public function __construct(
-        private string|Theme $theme,
+        private string|array|Theme $theme,
         private Phiki $phiki = new Phiki,
         private bool $withWrapper = false,
     ) {}
