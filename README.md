@@ -183,6 +183,19 @@ html.dark .phiki span {
 
 Phiki doesn't limit you to light and dark mode themes – you can use any key you wish in the array and CSS variables will be generated accordingly. You can then adjust the CSS on your site to apply those styles accordingly.
 
+#### Usage with CommonMark extension
+
+Multiple themes can also be used with the [CommonMark extension](#commonmark-integration) by passing an array to the extension object.
+
+```php
+$environment
+    ->addExtension(new CommonMarkCoreExtension)
+    ->addExtension(new PhikiExtension([
+        'light' => Theme::GithubLight,
+        'dark' => Theme::GithubDark,
+    ]));
+```
+
 ## Known Limitations & Implementation Notes
 
 The implementation of this package is inspired by existing art, namely `vscode-textmate`. The main reason that implementing a TextMate-based syntax highlighter in PHP is a complex task is down to the fact that `vscode-textmate` (and the TextMate editor) uses the [Oniguruma](https://github.com/kkos/oniguruma) engine for handling regular expressions.
