@@ -79,8 +79,10 @@ class HtmlGenerator implements OutputGeneratorInterface
         $html[] = '<code>';
 
         foreach ($tokens as $i => $line) {
+            $html[] = '<span class="line">';
+
             $html[] = sprintf(
-                '<span class="line" data-line="%d">',
+                '<span class="line-number" style="-webkit-user-select: none; user-select: none;">%2d</span>',
                 $i + 1,
             );
 
