@@ -86,12 +86,23 @@ class HtmlGenerator implements OutputGeneratorInterface
             );
 
             if ($this->withGutter) {
+                $lineNumberStyle = [];
+
+                if ($lineNumberColor = $theme->colors['editorLineNumber.foreground'] ?? null) {
+                    $lineNumberStyle[] = "color: $lineNumberColor";
+                }
+
+                $lineNumberStyle[] = '-webkit-user-select: none';
+                $lineNumberStyle[] = 'user-select: none';
+            
+                $lineNumberStyles = implode('; ', $lineNumberStyle) . ';';
+            
                 $html[] = sprintf(
-                    '<span class="line-number" style="color: %s; -webkit-user-select: none; user-select: none;">%2d</span>',
-                    $defaultTheme->colors['editorLineNumber.foreground'],
-                    $i + 1,
+                    '<span class="line-number" style="%s">%2d</span>',
+                    $lineNumberStyles,
+                    $i + 1
                 );
-            }
+            }  
 
             foreach ($line as $token) {
                 if ($token->settings === []) {
