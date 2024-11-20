@@ -14,6 +14,7 @@ class HtmlGenerator implements OutputGeneratorInterface
     public function __construct(
         protected ?string $grammarName,
         protected array $themes,
+        protected bool $withGutter = false,
         protected bool $withWrapper = false,
     ) {}
 
@@ -79,12 +80,18 @@ class HtmlGenerator implements OutputGeneratorInterface
         $html[] = '<code>';
 
         foreach ($tokens as $i => $line) {
-            $html[] = '<span class="line">';
-
             $html[] = sprintf(
-                '<span class="line-number" style="-webkit-user-select: none; user-select: none;">%2d</span>',
+                '<span class="line" data-line="%d">',
                 $i + 1,
             );
+
+            if ($this->withGutter) {
+                $html[] = sprintf(
+                    '<span class="line-number" style="color: %s; -webkit-user-select: none; user-select: none;">%2d</span>',
+                    $defaultTheme->colors['editorLineNumber.foreground'],
+                    $i + 1,
+                );
+            }
 
             foreach ($line as $token) {
                 if ($token->settings === []) {
