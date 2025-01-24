@@ -3,7 +3,10 @@
 namespace Phiki\Grammar;
 
 use Phiki\Contracts\GrammarRepositoryInterface;
+use Phiki\Contracts\GrammarDetectionInterface;
 use Phiki\Exceptions\UnrecognisedGrammarException;
+use Phiki\Grammar\Detections\JavaScript;
+use Phiki\Grammar\Detections\Php;
 
 class GrammarRepository implements GrammarRepositoryInterface
 {
@@ -23,6 +26,16 @@ class GrammarRepository implements GrammarRepositoryInterface
         'md' => 'markdown',
         'py' => 'python',
     ];
+
+    protected array $detections = [];
+
+    public function __construct()
+    {
+        $this->detections = [
+            new JavaScript,
+            new Php,
+        ];
+    }
 
     public function get(string $name): ParsedGrammar
     {
@@ -69,5 +82,15 @@ class GrammarRepository implements GrammarRepositoryInterface
     public function getAllGrammarNames(): array
     {
         return array_keys($this->grammars);
+    }
+
+    public function addDetection(GrammarDetectionInterface $detection): void
+    {
+        $this->detections[] = $detection;
+    }
+
+    public function detections(): array
+    {
+        return $this->detections;
     }
 }

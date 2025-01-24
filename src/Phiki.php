@@ -7,6 +7,7 @@ use Phiki\Generators\HtmlGenerator;
 use Phiki\Generators\TerminalGenerator;
 use Phiki\Grammar\Grammar;
 use Phiki\Support\Arr;
+use Phiki\Support\Str;
 use Phiki\Theme\ParsedTheme;
 use Phiki\Theme\Theme;
 
@@ -18,6 +19,23 @@ class Phiki
     {
         $this->environment = $environment ?? Environment::default();
         $this->environment->validate();
+    }
+
+    public function detectGrammar(string $code): Grammar|string|null
+    {
+        $detectors = $this->environment->getGrammarRepository()->detections();
+
+        foreach ($detectors as $detector) {
+            $pattern = '/'.implode('|', array_map(fn (string $pattern) => Str::trimOnce($pattern, '/'), $detector->getPatterns())).'/';
+
+            if (preg_match_all($pattern, $code, $_) !== 1) {
+                continue;
+            }
+
+            return $detector->getGrammar();
+        }
+
+        return null;
     }
 
     public function codeToTokens(string $code, string|Grammar $grammar): array

@@ -24,7 +24,7 @@ class TerminalGenerator implements OutputGeneratorInterface
 
                 $output .= $token->token->text;
 
-                if ($token->settings !== null) {
+                if ($token->settings !== []) {
                     $output .= Color::ANSI_RESET;
                 }
             }

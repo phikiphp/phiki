@@ -30,7 +30,7 @@
         "symfony/var-dumper": "^7.1.6",
         "pestphp/pest": "^3.5.1",
         "laravel/pint": "^1.18.1",
-        "phpstan/phpstan": "^1.12.7",
+        "phpstan/phpstan": "^2.0",
         "phpstan/extension-installer": "^1.4.3",
         "illuminate/support": "^11.30"
     },
@@ -52,6 +52,9 @@
         "update-sources": [
             "Composer\\Config::disableProcessTimeout",
             "php ./meta/update-sources.php"
+        ],
+        "test": [
+            "vendor/bin/pest"
         ]
     }
 }

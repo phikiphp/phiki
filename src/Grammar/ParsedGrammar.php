@@ -51,7 +51,7 @@ final class ParsedGrammar extends Pattern implements PatternCollectionInterface
         return $this->repository[$reference] ?? null;
     }
 
-    public function scope(): ?string
+    public function scope(): string
     {
         return $this->scopeName;
     }

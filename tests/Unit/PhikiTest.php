@@ -68,4 +68,9 @@ describe('Phiki', function () {
     it('accepts a theme enum member', function () {
         expect((new Phiki)->codeToHtml('echo $a;', Grammar::Php, Theme::GithubDark))->toBeString();
     });
+
+    it('can detect the grammar of code', function () {
+        expect((new Phiki)->detectGrammar('<?php echo "Hello, world";'))->toBe(Grammar::Php);
+        expect((new Phiki)->detectGrammar('console.log("Hello, world");'))->toBe(Grammar::Javascript);
+    });
 });
