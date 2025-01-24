@@ -52,6 +52,9 @@
         "update-sources": [
             "Composer\\Config::disableProcessTimeout",
             "php ./meta/update-sources.php"
+        ],
+        "test": [
+            "vendor/bin/pest"
         ]
     }
 }
