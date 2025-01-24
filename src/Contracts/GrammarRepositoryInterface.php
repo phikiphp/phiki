@@ -48,6 +48,8 @@ interface GrammarRepositoryInterface
 
     /**
      * Return a list of all auto-detection patterns.
+     * 
+     * @return LanguageDetectionInterface[]
      */
     public function detections(): array;
 }

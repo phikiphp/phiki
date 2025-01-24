@@ -27,10 +27,15 @@ class GrammarRepository implements GrammarRepositoryInterface
         'py' => 'python',
     ];
 
-    protected array $detections = [
-        JavaScript::class,
-        Php::class,
-    ];
+    protected array $detections = [];
+
+    public function __construct()
+    {
+        $this->detections = [
+            new JavaScript,
+            new Php,
+        ];
+    }
 
     public function get(string $name): ParsedGrammar
     {
