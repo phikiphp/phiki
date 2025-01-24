@@ -1,11 +1,11 @@
 <?php
 
-namespace Phiki\Languages\Detections;
+namespace Phiki\Grammar\Detections;
 
-use Phiki\Contracts\LanguageDetectionInterface;
+use Phiki\Contracts\GrammarDetectionInterface;
 use Phiki\Grammar\Grammar;
 
-class Php implements LanguageDetectionInterface
+class Php implements GrammarDetectionInterface
 {
     public function getPatterns(): array
     {

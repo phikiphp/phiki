@@ -4,7 +4,7 @@ namespace Phiki\Contracts;
 
 use Phiki\Grammar\Grammar;
 
-interface LanguageDetectionInterface
+interface GrammarDetectionInterface
 {
     /**
      * Return an array of patterns that should be used during language auto-detection.

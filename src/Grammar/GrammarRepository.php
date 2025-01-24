@@ -3,10 +3,10 @@
 namespace Phiki\Grammar;
 
 use Phiki\Contracts\GrammarRepositoryInterface;
-use Phiki\Contracts\LanguageDetectionInterface;
+use Phiki\Contracts\GrammarDetectionInterface;
 use Phiki\Exceptions\UnrecognisedGrammarException;
-use Phiki\Languages\Detections\JavaScript;
-use Phiki\Languages\Detections\Php;
+use Phiki\Grammar\Detections\JavaScript;
+use Phiki\Grammar\Detections\Php;
 
 class GrammarRepository implements GrammarRepositoryInterface
 {
@@ -84,7 +84,7 @@ class GrammarRepository implements GrammarRepositoryInterface
         return array_keys($this->grammars);
     }
 
-    public function addDetection(LanguageDetectionInterface $detection): void
+    public function addDetection(GrammarDetectionInterface $detection): void
     {
         $this->detections[] = $detection;
     }

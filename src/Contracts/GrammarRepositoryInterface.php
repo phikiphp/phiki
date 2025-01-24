@@ -44,12 +44,12 @@ interface GrammarRepositoryInterface
     /**
      * Add a new auto-detection class to the repository.
      */
-    public function addDetection(LanguageDetectionInterface $detection): void;
+    public function addDetection(GrammarDetectionInterface $detection): void;
 
     /**
      * Return a list of all auto-detection patterns.
      * 
-     * @return LanguageDetectionInterface[]
+     * @return GrammarDetectionInterface[]
      */
     public function detections(): array;
 }

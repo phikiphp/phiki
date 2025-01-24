@@ -161,7 +161,7 @@ class Tokenizer
 
                 if ($prefix === Prefix::Left) {
                     $patterns = [$injection->pattern, ...$patterns];
-                } elseif ($prefix === null || $prefix === Prefix::Right) {
+                } else {
                     $patterns = [...$patterns, $injection->pattern];
                 }
 
@@ -302,6 +302,7 @@ class Tokenizer
 
             $this->state->setAnchorPosition($matched->end());
 
+            /** @phpstan-ignore-next-line method.notFound */
             $endPattern = $matched->pattern->createEndPattern($matched);
 
             if ($matched->pattern instanceof ProvidesContentName && $matched->pattern->getContentName() !== null) {
@@ -361,6 +362,7 @@ class Tokenizer
 
             $this->state->setAnchorPosition($matched->end());
 
+            /** @phpstan-ignore-next-line method.notFound */
             $whilePattern = $matched->pattern->createWhilePattern($matched);
 
             if ($matched->pattern instanceof ProvidesContentName && $matched->pattern->getContentName() !== null) {
@@ -539,6 +541,7 @@ class Tokenizer
                             $this->state->setLinePosition($closest->end());
                         }
 
+                        /** @phpstan-ignore-next-line method.notFound */
                         $endPattern = $closest->pattern->createEndPattern($closest);
 
                         if ($endPattern->hasPatterns()) {
