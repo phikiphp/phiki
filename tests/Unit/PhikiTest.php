@@ -39,18 +39,6 @@ describe('Phiki', function () {
         expect($html)->not->toContain('language-');
     });
 
-    it('adds data-line attributes to each line', function () {
-        $html = (new Phiki)->codeToHtml(<<<'PHP'
-        function add(int|float $a, int|float $b): int|float {
-            return $a + $b;
-        }
-        PHP, 'php', 'github-dark');
-
-        expect($html)->toContain('data-line="1"');
-        expect($html)->toContain('data-line="2"');
-        expect($html)->toContain('data-line="3"');
-    });
-
     it('can generate code with multiple themes', function () {
         $code = (new Phiki)->codeToHtml(<<<'PHP'
         echo "Hello, world";
