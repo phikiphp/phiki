@@ -40,4 +40,14 @@ interface GrammarRepositoryInterface
      * @param  string|ParsedGrammar  $pathOrGrammar  The path to the grammar file or the grammar itself.
      */
     public function register(string $name, string|ParsedGrammar $pathOrGrammar): void;
+
+    /**
+     * Add a new auto-detection class to the repository.
+     */
+    public function addDetection(LanguageDetectionInterface $detection): void;
+
+    /**
+     * Return a list of all auto-detection patterns.
+     */
+    public function detections(): array;
 }
