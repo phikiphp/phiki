@@ -7,12 +7,13 @@ use Phiki\Theme\Theme;
 require_once __DIR__.'/../../vendor/autoload.php';
 
 $grammar = $_GET['grammar'] ?? 'php';
+$withGutter = ($_GET['gutter'] ?? false) === 'on';
 $environment = Environment::default()->enableStrictMode();
 $repository = $environment->getGrammarRepository();
 
 $sample = file_get_contents(__DIR__.'/'.$grammar.'.sample');
 $tokens = (new Phiki($environment))->codeToTokens($sample, $grammar);
-$html = (new Phiki($environment))->codeToHtml($sample, $grammar, ['light' => Theme::OneLight, 'dark' => 'github-dark']);
+$html = (new Phiki($environment))->codeToHtml($sample, $grammar, ['light' => Theme::GithubLight, 'dark' => Theme::GithubDark], $withGutter);
 
 ?>
 
@@ -26,7 +27,7 @@ $html = (new Phiki($environment))->codeToHtml($sample, $grammar, ['light' => The
     <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
     <script src="//unpkg.com/alpinejs" defer></script>
     <style>
-        /* @media (prefers-color-scheme: dark) { */
+        @media (prefers-color-scheme: dark) {
             html.dark .phiki,
             html.dark .phiki span {
                 color: var(--phiki-dark-color) !important;
@@ -35,7 +36,7 @@ $html = (new Phiki($environment))->codeToHtml($sample, $grammar, ['light' => The
                 font-weight: var(--phiki-dark-font-weight) !important;
                 text-decoration: var(--phiki-dark-text-decoration) !important;
             }
-        /* } */
+        }
 
         pre {
             padding: 0.875rem;
@@ -56,6 +57,10 @@ $html = (new Phiki($environment))->codeToHtml($sample, $grammar, ['light' => The
             margin-right: 1rem;
             color: #666;
             text-align: right;
+        }
+
+        pre code span.line-number {
+            padding-right: 10px;
         }
     </style>
 </head>
@@ -78,6 +83,11 @@ $html = (new Phiki($environment))->codeToHtml($sample, $grammar, ['light' => The
                     </option>
                 <?php } ?>
             </select>
+
+            <div class="flex items-center gap-x-2.5">
+                <input type="checkbox" name="gutter" id="gutter" x-on:change="$root.submit()" <?= $withGutter ? 'checked': '' ?>>
+                <label for="gutter">With gutter?</label>
+            </div>
         </form>
 
         <?= $html ?>
