@@ -2,6 +2,8 @@
 
 Phiki is a syntax highlighter written in PHP. It uses TextMate grammar files and Visual Studio Code themes to generate syntax highlighted code for the web and terminal.
 
+The name and public API of Phiki is heavily inspired by [Shiki](https://shiki.style/), a package that does more or less the same thing in the JavaScript ecosystem. The actual implementation of the highlighter is inspired by the [`vscode-textmate`](https://github.com/microsoft/vscode-textmate) package which Shiki uses internally, but isn't a 1-1 translation since the internal APIs of Phiki differ to `vscode-textmate`.
+
 ## Installation
 
 Install Phiki via Composer:
@@ -222,3 +224,5 @@ preg_match(): Compilation failed: length of lookbehind assertion is not limited 
 ## Credits
 
 * [Ryan Chandler](https://github.com/ryangjchandler)
+* [Shiki](https://shiki.style/) for API inspiration and TextMate grammar files via [`tm-grammars` and `tm-themes`](https://github.com/shikijs/textmate-grammars-themes).
+* [`vscode-textmate`](https://github.com/microsoft/vscode-textmate) for guiding the implementation of the internal tokenizer.
