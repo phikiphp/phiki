@@ -35,7 +35,7 @@ class CodeBlockRenderer implements NodeRendererInterface
     protected function detectGrammar(FencedCode $node, string $code): Grammar|string
     {
         if (! isset($node->getInfoWords()[0]) || $node->getInfoWords()[0] === '') {
-            return $this->phiki->detectGrammar($code);
+            return $this->phiki->detectGrammar($code) ?? 'txt';
         }
 
         preg_match('/[a-zA-Z]+/', $node->getInfoWords()[0], $matches);
