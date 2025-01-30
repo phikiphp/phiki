@@ -50,8 +50,7 @@
             "Composer\\Config::disableProcessTimeout",
             "php ./meta/update-sources.php"
         ],
-        "test": [
-            "vendor/bin/pest"
-        ]
+        "test": "vendor/bin/pest",
+        "lint": "vendor/bin/phpstan"
     }
 }

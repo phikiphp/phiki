@@ -75,6 +75,8 @@ class HtmlGenerator implements OutputGeneratorInterface
 
     private function buildCode(array $tokens): string
     {
+        $output = [];
+        
         foreach ($tokens as $i => $line) {
             $output[] = $this->buildLine($line, $i);
         }
