@@ -64,6 +64,7 @@ class WhilePattern extends Pattern implements ContainsCapturesInterface, Pattern
                 return false;
             }
         } catch (Exception) {
+            dd($regex, $this);
             return false;
         }
 

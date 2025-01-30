@@ -14,7 +14,7 @@
       "name": "comment log.verbose"
     },
     {
-      "match": "(?<=^[\\s\\d\\p]*)\\bV\\b",
+      "match": "(?<=^[\\s\\d\\p]{0,254})\\bV\\b",
       "name": "comment log.verbose"
     },
     {
@@ -26,7 +26,7 @@
       "name": "markup.changed log.debug"
     },
     {
-      "match": "(?<=^[\\s\\d\\p]*)\\bD\\b",
+      "match": "(?<=^[\\s\\d\\p]{0,254})\\bD\\b",
       "name": "markup.changed log.debug"
     },
     {
@@ -38,7 +38,7 @@
       "name": "markup.inserted log.info"
     },
     {
-      "match": "(?<=^[\\s\\d\\p]*)\\bI\\b",
+      "match": "(?<=^[\\s\\d\\p]{0,254})\\bI\\b",
       "name": "markup.inserted log.info"
     },
     {
@@ -50,7 +50,7 @@
       "name": "markup.deleted log.warning"
     },
     {
-      "match": "(?<=^[\\s\\d\\p]*)\\bW\\b",
+      "match": "(?<=^[\\s\\d\\p]{0,254})\\bW\\b",
       "name": "markup.deleted log.warning"
     },
     {
@@ -62,7 +62,7 @@
       "name": "string.regexp, strong log.error"
     },
     {
-      "match": "(?<=^[\\s\\d\\p]*)\\bE\\b",
+      "match": "(?<=^[\\s\\d\\p]{0,254})\\bE\\b",
       "name": "string.regexp, strong log.error"
     },
     {
