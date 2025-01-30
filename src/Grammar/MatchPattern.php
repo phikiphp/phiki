@@ -26,7 +26,6 @@ class MatchPattern extends Pattern implements ContainsCapturesInterface
                 return false;
             }
         } catch (Exception) {
-            dd($this->match->get($tokenizer->allowA(), $tokenizer->allowG()), $this);
             return false;
         }
 

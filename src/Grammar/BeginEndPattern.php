@@ -45,7 +45,6 @@ class BeginEndPattern extends Pattern implements ContainsCapturesInterface, Patt
                 return false;
             }
         } catch (Exception) {
-            dd($this->begin->get($tokenizer->allowA(), $tokenizer->allowG()), $this);
             return false;
         }
 
