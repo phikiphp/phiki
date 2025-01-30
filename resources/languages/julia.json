@@ -300,7 +300,7 @@
           "name": "keyword.control.using.julia"
         },
         {
-          "match": "(?<=\\S\\s+)\\b(as)\\b(?=\\s+\\S)",
+          "match": "(?<=\\S\\s{1,254})\\b(as)\\b(?=\\s+\\S)",
           "name": "keyword.control.as.julia"
         },
         {

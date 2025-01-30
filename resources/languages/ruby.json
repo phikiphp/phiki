@@ -499,7 +499,7 @@
       ]
     },
     {
-      "begin": "(?<![\\w)])((/))(?![?*+])(?=(?:\\\\/|[^/])*+/[eimnosux]*\\s*(?:[)\\]}#.,?:]|\\|\\||&&|<=>|=>|==|=~|!~|!=|;|$|if|else|elsif|then|do|end|unless|while|until|or|and)|$)",
+      "begin": "(?<![\\w)])((/))(?![?*+])(?=(?:\\\\\\/|[^/])*+/[eimnosux]*\\s*(?:[)\\]}#.,?:]|\\|\\||&&|<=>|=>|==|=~|!~|!=|;|$|if|else|elsif|then|do|end|unless|while|until|or|and)|$)",
       "captures": {
         "1": {
           "name": "string.regexp.interpolated.ruby"

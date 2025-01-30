@@ -6,11 +6,17 @@ use Phiki\Theme\Theme;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
+set_error_handler(function ($severity, $message, $file, $line) {
+    throw new ErrorException($message, 0, $severity, $file, $line);
+});
+
 $grammar = $_GET['grammar'] ?? 'php';
 $withGutter = ($_GET['gutter'] ?? false) === 'on';
 $environment = Environment::default()->enableStrictMode();
 /** @var \Phiki\Grammar\GrammarRepository $repository */
 $repository = $environment->getGrammarRepository();
+$grammars = $repository->getAllGrammarNames();
+natsort($grammars);
 
 $sample = file_get_contents(__DIR__ . '/../resources/samples/' . $grammar . '.sample');
 $tokens = (new Phiki($environment))->codeToTokens($sample, $grammar);
@@ -79,7 +85,7 @@ $html = (new Phiki($environment))->codeToHtml($sample, $grammar, ['light' => The
             x-data
             class="flex items-center gap-x-4">
             <select name="grammar" x-on:change="$root.submit()" class="text-neutral-950">
-                <?php foreach ($repository->getAllGrammarNames() as $g) { ?>
+                <?php foreach ($grammars as $g) { ?>
                     <option value="<?= $g ?>" <?= $grammar === $g ? 'selected' : '' ?>>
                         <?= $g ?>
                     </option>

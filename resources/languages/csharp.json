@@ -472,11 +472,11 @@
       ]
     },
     "await-expression": {
-      "match": "(?<!\\.\\s*)\\b(await)\\b",
+      "match": "(?<!\\.\\s{0,254})\\b(await)\\b",
       "name": "keyword.operator.expression.await.cs"
     },
     "await-statement": {
-      "begin": "(?<!\\.\\s*)\\b(await)\\b",
+      "begin": "(?<!\\.\\s{0,254})\\b(await)\\b",
       "beginCaptures": {
         "1": {
           "name": "keyword.operator.expression.await.cs"

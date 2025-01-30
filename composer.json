@@ -44,13 +44,13 @@
     "scripts": {
         "sample": [
             "Composer\\Config::disableProcessTimeout",
-            "php -S 127.0.0.1:8080 ./meta/sample.php"
+            "@php -S 127.0.0.1:8080 ./meta/sample.php"
         ],
         "update-sources": [
             "Composer\\Config::disableProcessTimeout",
-            "php ./meta/update-sources.php"
+            "@php ./meta/update-sources.php"
         ],
-        "test": "vendor/bin/pest",
+        "test": "@php vendor/bin/pest",
         "lint": "vendor/bin/phpstan"
     }
 }

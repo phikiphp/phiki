@@ -90,6 +90,12 @@ class Regex implements Stringable
         // Convert \H to [^0-9A-Fa-f].
         $pattern = preg_replace('/\\\\H/', '[^0-9A-Fa-f]', $pattern);
 
+        // Remove \R as it is not supported in PCRE.
+        $pattern = preg_replace('/\\\\R/', '', $pattern);
+
+        // Remove dangling \p without braces.
+        $pattern = preg_replace('/\\\\p(?![{])/', '', $pattern);
+
         return $pattern;
     }
 
@@ -129,6 +135,11 @@ class Regex implements Stringable
     {
         // Convert \uXXXX to \x{XXXX}.
         $pattern = preg_replace('/\\\\u([0-9A-Fa-f]{4})/', '\\x{$1}', $pattern);
+
+        // Convert 5+ digit \x{AXXXX} to 4 digit \x{XXXX}.
+        $pattern = preg_replace_callback('/\\\\x\{([0-9A-Fa-f]{5,})\}/', function (array $matches) {
+            return '\\x{'.substr($matches[1], -4).'}';
+        }, $pattern);
 
         return $pattern;
     }
