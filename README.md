@@ -123,6 +123,16 @@ echo $phiki->codeToTerminal('echo "Hello, world"!', Grammar::Php, Theme::GithubD
 
 ![](./art/codeToTerminal.png)
 
+### Binary
+
+If you want to use Phiki to highlight a file in the terminal without writing any PHP code, you can use the `phiki` binary.
+
+```sh
+vendor/bin/phiki ./path/to/file --grammar php --theme github-dark
+```
+
+This will output the highlighted code from that file using the grammar and theme provided.
+
 ### Line numbers
 
 Each line has its own `<span>` element with a `data-line` attribute, so you can use CSS to display line numbers in the generated HTML. The benefit to this approach is that the text isn't selectable so you code snippets can be highlighted the same as before.
