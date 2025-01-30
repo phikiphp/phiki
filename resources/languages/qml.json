@@ -39,7 +39,7 @@
     "attributes-value": {
       "patterns": [
         {
-          "begin": "(?<=\\w)\\s*:\\s*(?=[A-Z]\\w*\\s*\\{)",
+          "begin": "(?<=\\w)\\s*\\:\\s*(?=[A-Z]\\w*\\s*\\{)",
           "description": "A QML object as value.",
           "end": "(?<=\\})",
           "patterns": [
@@ -49,7 +49,7 @@
           ]
         },
         {
-          "begin": "(?<=\\w)\\s*:\\s*\\[",
+          "begin": "(?<=\\w)\\s*\\:\\s*\\[",
           "description": "A list as value.",
           "end": "\\](.*)$",
           "endCaptures": {
@@ -71,7 +71,7 @@
           ]
         },
         {
-          "begin": "(?<=\\w)\\s*:(?=\\s*\\{?\\s*$)",
+          "begin": "(?<=\\w)\\s*\\:(?=\\s*\\{?\\s*$)",
           "description": "A block of JavaScript code as value.",
           "end": "(?<=\\})",
           "patterns": [
@@ -88,7 +88,7 @@
           ]
         },
         {
-          "begin": "(?<=\\w)\\s*:",
+          "begin": "(?<=\\w)\\s*\\:",
           "contentName": "meta.embedded.line.js",
           "description": "A JavaScript expression as value.",
           "end": ";|$|(?=\\})",

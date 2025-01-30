@@ -225,11 +225,11 @@
           "name": "constant.numeric.imaginary.hexadecimal.r"
         },
         {
-          "match": "\\b\\d+\\.?\\d*(?:(e|E)(\\+|-)?\\d+)?i\\b",
+          "match": "\\b[0-9]+\\.?[0-9]*(?:(e|E)(\\+|-)?[0-9]+)?i\\b",
           "name": "constant.numeric.imaginary.decimal.r"
         },
         {
-          "match": "\\.\\d+(?:(e|E)(\\+|-)?\\d+)?i\\b",
+          "match": "\\.[0-9]+(?:(e|E)(\\+|-)?[0-9]+)?i\\b",
           "name": "constant.numeric.imaginary.decimal.r"
         },
         {
@@ -237,7 +237,7 @@
           "name": "constant.numeric.integer.hexadecimal.r"
         },
         {
-          "match": "\\b(?:\\d+\\.?\\d*)(?:(e|E)(\\+|-)?\\d+)?L\\b",
+          "match": "\\b(?:[0-9]+\\.?[0-9]*)(?:(e|E)(\\+|-)?[0-9]+)?L\\b",
           "name": "constant.numeric.integer.decimal.r"
         },
         {
@@ -245,11 +245,11 @@
           "name": "constant.numeric.float.hexadecimal.r"
         },
         {
-          "match": "\\b\\d+\\.?\\d*(?:(e|E)(\\+|-)?\\d+)?\\b",
+          "match": "\\b[0-9]+\\.?[0-9]*(?:(e|E)(\\+|-)?[0-9]+)?\\b",
           "name": "constant.numeric.float.decimal.r"
         },
         {
-          "match": "\\.\\d+(?:(e|E)(\\+|-)?\\d+)?\\b",
+          "match": "\\.[0-9]+(?:(e|E)(\\+|-)?[0-9]+)?\\b",
           "name": "constant.numeric.float.decimal.r"
         }
       ]
@@ -292,7 +292,7 @@
               "name": "keyword.control.r"
             }
           },
-          "match": "((?:`[^`\\\\]*(?:\\\\.[^`\\\\]*)*`)|(?:[A-Za-z.][0-9A-Za-z._]*))\\s*(<?<-|=(?!=))\\s*(function|\\\\)(?!\\w)",
+          "match": "((?:`[^`\\\\]*(?:\\\\.[^`\\\\]*)*`)|(?:[[:alpha:].][[:alnum:]._]*))\\s*(<?<-|=(?!=))\\s*(function|\\\\)(?!\\w)",
           "name": "meta.function.r",
           "patterns": [
             {
@@ -341,7 +341,7 @@
               "name": "keyword.operator.assignment.r"
             }
           },
-          "match": "([A-Za-z.][0-9A-Za-z._]*)\\s*(=)(?=[^=])"
+          "match": "([[:alpha:].][[:alnum:]._]*)\\s*(=)(?=[^=])"
         },
         {
           "captures": {
@@ -355,11 +355,11 @@
           "match": "(`[^`]+`)\\s*(=)(?=[^=])"
         },
         {
-          "match": "\\b([\\d_][0-9A-Za-z._]+)\\b",
+          "match": "\\b([\\d_][[:alnum:]._]+)\\b",
           "name": "invalid.illegal.variable.other.r"
         },
         {
-          "match": "\\b([0-9A-Za-z_]+)(?=::)",
+          "match": "\\b([[:alnum:]_]+)(?=::)",
           "name": "entity.namespace.r"
         }
       ]
@@ -375,7 +375,7 @@
           "name": "keyword.control.r"
         },
         {
-          "match": "(-|\\+|\\*|\\/|%\\/%|%%|%\\*%|%o%|%x%|\\^)",
+          "match": "(\\-|\\+|\\*|\\/|%\\/%|%%|%\\*%|%o%|%x%|\\^)",
           "name": "keyword.operator.arithmetic.r"
         },
         {

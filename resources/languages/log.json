@@ -18,7 +18,7 @@
       "name": "comment log.verbose"
     },
     {
-      "match": "\\b(DEBUG|Debug)\\b|(?i)\\b(debug):",
+      "match": "\\b(DEBUG|Debug)\\b|(?i)\\b(debug)\\:",
       "name": "markup.changed log.debug"
     },
     {
@@ -30,7 +30,7 @@
       "name": "markup.changed log.debug"
     },
     {
-      "match": "\\b(HINT|INFO|INFORMATION|Info|NOTICE|II)\\b|(?i)\\b(info|information):",
+      "match": "\\b(HINT|INFO|INFORMATION|Info|NOTICE|II)\\b|(?i)\\b(info|information)\\:",
       "name": "markup.inserted log.info"
     },
     {
@@ -42,7 +42,7 @@
       "name": "markup.inserted log.info"
     },
     {
-      "match": "\\b(WARNING|WARN|Warn|WW)\\b|(?i)\\b(warning):",
+      "match": "\\b(WARNING|WARN|Warn|WW)\\b|(?i)\\b(warning)\\:",
       "name": "markup.deleted log.warning"
     },
     {
@@ -54,7 +54,7 @@
       "name": "markup.deleted log.warning"
     },
     {
-      "match": "\\b(ALERT|CRITICAL|EMERGENCY|ERROR|FAILURE|FAIL|Fatal|FATAL|Error|EE)\\b|(?i)\\b(error):",
+      "match": "\\b(ALERT|CRITICAL|EMERGENCY|ERROR|FAILURE|FAIL|Fatal|FATAL|Error|EE)\\b|(?i)\\b(error)\\:",
       "name": "string.regexp, strong log.error"
     },
     {
@@ -66,7 +66,7 @@
       "name": "string.regexp, strong log.error"
     },
     {
-      "match": "\\b\\d{4}-\\d{2}-\\d{2}(T|\\b)",
+      "match": "\\b\\d{4}-\\d{2}-\\d{2}(?=T|\\b)",
       "name": "comment log.date"
     },
     {
@@ -74,7 +74,11 @@
       "name": "comment log.date"
     },
     {
-      "match": "\\d{1,2}:\\d{2}(:\\d{2}([.,]\\d{1,})?)?(Z| ?[+-]\\d{1,2}:\\d{2})?\\b",
+      "match": "T?\\d{1,2}:\\d{2}(:\\d{2}([.,]\\d{1,})?)?(Z| ?[+-]\\d{1,2}:\\d{2})?\\b",
+      "name": "comment log.date"
+    },
+    {
+      "match": "T\\d{2}\\d{2}(\\d{2}([.,]\\d{1,})?)?(Z| ?[+-]\\d{1,2}\\d{2})?\\b",
       "name": "comment log.date"
     },
     {
@@ -90,7 +94,7 @@
       "name": "constant.language log.constant"
     },
     {
-      "match": "\\b(\\d+|true|false|null)\\b",
+      "match": "\\b([0-9]+|true|false|null)\\b",
       "name": "constant.language log.constant"
     },
     {

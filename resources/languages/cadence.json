@@ -533,22 +533,22 @@
           "repository": {
             "binary": {
               "comment": "",
-              "match": "(\\B-|\\b)0b[01]([_01]*[01])?\\b",
+              "match": "(\\B\\-|\\b)0b[01]([_01]*[01])?\\b",
               "name": "constant.numeric.integer.binary.cadence"
             },
             "decimal": {
               "comment": "",
-              "match": "(\\B-|\\b)\\d([_0-9]*\\d)?\\b",
+              "match": "(\\B\\-|\\b)[0-9]([_0-9]*[0-9])?\\b",
               "name": "constant.numeric.integer.decimal.cadence"
             },
             "hexadecimal": {
               "comment": "",
-              "match": "(\\B-|\\b)0x[0-9A-Fa-f]([_0-9A-Fa-f]*[0-9A-Fa-f])?\\b",
+              "match": "(\\B\\-|\\b)0x[0-9A-Fa-f]([_0-9A-Fa-f]*[0-9A-Fa-f])?\\b",
               "name": "constant.numeric.integer.hexadecimal.cadence"
             },
             "octal": {
               "comment": "",
-              "match": "(\\B-|\\b)0o[0-7]([_0-7]*[0-7])?\\b",
+              "match": "(\\B\\-|\\b)0o[0-7]([_0-7]*[0-7])?\\b",
               "name": "constant.numeric.integer.octal.cadence"
             }
           }
@@ -600,7 +600,7 @@
     "operators": {
       "patterns": [
         {
-          "match": "-",
+          "match": "\\-",
           "name": "keyword.operator.arithmetic.unary.cadence"
         },
         {
@@ -620,7 +620,7 @@
           "name": "keyword.operator.force-move.cadence"
         },
         {
-          "match": "\\+|-|\\*|/",
+          "match": "\\+|\\-|\\*|/",
           "name": "keyword.operator.arithmetic.cadence"
         },
         {

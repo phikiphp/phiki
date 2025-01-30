@@ -146,7 +146,7 @@
       "name": "meta.entry.braces.bibtex",
       "patterns": [
         {
-          "begin": "([a-zA-Z!$&*+\\-./:;<>?@\\[\\\\\\]^_`|~][a-zA-Z0-9!$&*+\\-./:;<>?@\\[\\\\\\]^_`|~]*)\\s*(=)",
+          "begin": "([a-zA-Z!$&*+\\-./:;<>?@\\[\\\\\\]^_`|~][a-zA-Z0-9!$&*+\\-./:;<>?@\\[\\\\\\]^_`|~]*)\\s*(\\=)",
           "beginCaptures": {
             "1": {
               "name": "support.function.key.bibtex"
@@ -190,7 +190,7 @@
       "name": "meta.entry.parenthesis.bibtex",
       "patterns": [
         {
-          "begin": "([a-zA-Z!$&*+\\-./:;<>?@\\[\\\\\\]^_`|~][a-zA-Z0-9!$&*+\\-./:;<>?@\\[\\\\\\]^_`|~]*)\\s*(=)",
+          "begin": "([a-zA-Z!$&*+\\-./:;<>?@\\[\\\\\\]^_`|~][a-zA-Z0-9!$&*+\\-./:;<>?@\\[\\\\\\]^_`|~]*)\\s*(\\=)",
           "beginCaptures": {
             "1": {
               "name": "support.function.key.bibtex"

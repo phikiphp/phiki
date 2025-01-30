@@ -76,7 +76,7 @@
       "name": "meta.proc.nim",
       "patterns": [
         {
-          "begin": "\\b(proc|method|template|macro|iterator|converter|func)\\s+\\`?([^:{\\s\\`\\*(]*)\\`?(\\s*\\*)?\\s*(?=\\(|=|:|\\[|\\n|\\{)",
+          "begin": "\\b(proc|method|template|macro|iterator|converter|func)\\s+\\`?([^\\:\\{\\s\\`\\*\\(]*)\\`?(\\s*\\*)?\\s*(?=\\(|\\=|:|\\[|\\n|\\{)",
           "captures": {
             "1": {
               "name": "keyword.other"
@@ -271,7 +271,7 @@
       },
       "patterns": [
         {
-          "begin": "\\b([A-Za-z]\\w*)(?:\\s|\\s*:)",
+          "begin": "\\b([[:alpha:]]\\w*)(?:\\s|\\s*:)",
           "beginCaptures": {
             "1": {
               "name": "meta.preprocessor.pragma.nim"
@@ -285,7 +285,7 @@
           ]
         },
         {
-          "begin": "\\b([A-Za-z]\\w*)\\(",
+          "begin": "\\b([[:alpha:]]\\w*)\\(",
           "beginCaptures": {
             "1": {
               "name": "meta.preprocessor.pragma.nim"
@@ -304,10 +304,10 @@
               "name": "meta.preprocessor.pragma.nim"
             }
           },
-          "match": "\\b([A-Za-z]\\w*)(?=\\.?\\}|,)"
+          "match": "\\b([[:alpha:]]\\w*)(?=\\.?\\}|,)"
         },
         {
-          "begin": "\\b([A-Za-z]\\w*)(\"\"\")",
+          "begin": "\\b([[:alpha:]]\\w*)(\"\"\")",
           "beginCaptures": {
             "1": {
               "name": "meta.preprocessor.pragma.nim"
@@ -325,7 +325,7 @@
           "name": "string.quoted.triple.raw.nim"
         },
         {
-          "begin": "\\b([A-Za-z]\\w*)(\")",
+          "begin": "\\b([[:alpha:]]\\w*)(\")",
           "beginCaptures": {
             "1": {
               "name": "meta.preprocessor.pragma.nim"
@@ -1055,7 +1055,7 @@
           "name": "constant.character.escape.single-quote.nim"
         },
         {
-          "match": "\\\\\\d+",
+          "match": "\\\\[0-9]+",
           "name": "constant.character.escape.chardecimalvalue.nim"
         },
         {
@@ -1124,7 +1124,7 @@
     "float_literal": {
       "patterns": [
         {
-          "match": "\\b\\d[_\\d]*((\\.\\d[_\\d]*([eE][+\\-]?\\d[_\\d]*)?)|([eE][+\\-]?\\d[_\\d]*))('([fF](32|64|128)|[fFdD]))?",
+          "match": "\\b\\d[_\\d]*((\\.\\d[_\\d]*([eE][\\+\\-]?\\d[_\\d]*)?)|([eE][\\+\\-]?\\d[_\\d]*))('([fF](32|64|128)|[fFdD]))?",
           "name": "constant.numeric.float.decimal.nim"
         },
         {

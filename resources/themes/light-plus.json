@@ -3,12 +3,13 @@
     "actionBar.toggledBackground": "#dddddd",
     "activityBarBadge.background": "#007ACC",
     "checkbox.border": "#919191",
+    "diffEditor.unchangedRegionBackground": "#f8f8f8",
     "editor.background": "#FFFFFF",
     "editor.foreground": "#000000",
     "editor.inactiveSelectionBackground": "#E5EBF1",
     "editor.selectionHighlightBackground": "#ADD6FF80",
-    "editorIndentGuide.activeBackground": "#939393",
-    "editorIndentGuide.background": "#D3D3D3",
+    "editorIndentGuide.activeBackground1": "#939393",
+    "editorIndentGuide.background1": "#D3D3D3",
     "editorSuggestWidget.background": "#F3F3F3",
     "input.placeholderForeground": "#767676",
     "list.activeSelectionIconForeground": "#FFF",
@@ -28,6 +29,8 @@
     "statusBarItem.remoteBackground": "#16825D",
     "statusBarItem.remoteForeground": "#FFF",
     "tab.lastPinnedBorder": "#61616130",
+    "tab.selectedBackground": "#ffffffa5",
+    "tab.selectedForeground": "#333333b3",
     "terminal.inactiveSelectionBackground": "#E5EBF1",
     "widget.border": "#d4d4d4"
   },
@@ -120,10 +123,11 @@
     {
       "scope": [
         "entity.other.attribute-name.class.css",
-        "entity.other.attribute-name.class.mixin.css",
+        "source.css entity.other.attribute-name.class",
         "entity.other.attribute-name.id.css",
         "entity.other.attribute-name.parent-selector.css",
-        "entity.other.attribute-name.pseudo-class.css",
+        "entity.other.attribute-name.parent.less",
+        "source.css entity.other.attribute-name.pseudo-class",
         "entity.other.attribute-name.pseudo-element.css",
         "source.css.less entity.other.attribute-name.id",
         "entity.other.attribute-name.scss"
@@ -330,9 +334,7 @@
       "scope": [
         "support.type.vendored.property-name",
         "support.type.property-name",
-        "variable.css",
-        "variable.scss",
-        "variable.other.less",
+        "source.css variable",
         "source.coffee.embedded"
       ],
       "settings": {
@@ -483,7 +485,8 @@
         "support.constant.math",
         "support.constant.dom",
         "support.constant.json",
-        "entity.other.inherited-class"
+        "entity.other.inherited-class",
+        "punctuation.separator.namespace.ruby"
       ],
       "settings": {
         "foreground": "#267f99"

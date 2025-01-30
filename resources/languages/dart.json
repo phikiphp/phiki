@@ -134,13 +134,13 @@
       "patterns": [
         {
           "begin": "///",
+          "end": "^(?!\\s*///)",
           "name": "comment.block.documentation.dart",
           "patterns": [
             {
               "include": "#dartdoc"
             }
-          ],
-          "while": "^\\s*///"
+          ]
         }
       ]
     },
@@ -190,7 +190,7 @@
           "name": "variable.language.dart"
         },
         {
-          "match": "(?<!\\$)\\b((0(x|X)[0-9a-fA-F][0-9a-fA-F_]*)|((\\d[0-9_]*\\.?[0-9_]*)|(\\.\\d[0-9_]*))((e|E)(\\+|-)?\\d[0-9_]*)?)\\b(?!\\$)",
+          "match": "(?<!\\$)\\b((0(x|X)[0-9a-fA-F][0-9a-fA-F_]*)|(([0-9][0-9_]*\\.?[0-9_]*)|(\\.[0-9][0-9_]*))((e|E)(\\+|-)?[0-9][0-9_]*)?)\\b(?!\\$)",
           "name": "constant.numeric.dart"
         },
         {
@@ -212,35 +212,46 @@
           "match": "(\\[.*?\\])"
         },
         {
-          "captures": {
-            "0": {
-              "name": "variable.name.source.dart"
+          "begin": "^\\s*///\\s*(```)",
+          "end": "^\\s*///\\s*(```)|^(?!\\s*///)",
+          "patterns": [
+            {
+              "include": "#dartdoc-codeblock-triple"
             }
-          },
-          "match": "^ {4,}(?![ \\*]).*"
+          ]
         },
         {
-          "begin": "```.*?$",
-          "contentName": "variable.other.source.dart",
-          "end": "```"
+          "begin": "^\\s*\\*\\s*(```)",
+          "end": "^\\s*\\*\\s*(```)|^(?=\\s*\\*/)",
+          "patterns": [
+            {
+              "include": "#dartdoc-codeblock-block"
+            }
+          ]
+        },
+        {
+          "match": "`[^`\n]+`",
+          "name": "variable.other.source.dart"
         },
         {
           "captures": {
-            "0": {
+            "1": {
               "name": "variable.other.source.dart"
             }
           },
-          "match": "(`[^`]+?`)"
-        },
-        {
-          "captures": {
-            "2": {
-              "name": "variable.other.source.dart"
-            }
-          },
-          "match": "(\\* ((    ).*))$"
+          "match": "(?:\\*|\\/\\/)\\s{4,}(.*?)(?=($|\\*\\/))"
         }
       ]
+    },
+    "dartdoc-codeblock-block": {
+      "begin": "^\\s*\\*\\s*(?!(\\s*```|/))",
+      "contentName": "variable.other.source.dart",
+      "end": "\n"
+    },
+    "dartdoc-codeblock-triple": {
+      "begin": "^\\s*///\\s*(?!\\s*```)",
+      "contentName": "variable.other.source.dart",
+      "end": "\n"
     },
     "expression": {
       "patterns": [
@@ -251,7 +262,7 @@
           "include": "#strings"
         },
         {
-          "match": "\\w+",
+          "match": "[a-zA-Z0-9_]+",
           "name": "variable.parameter.dart"
         },
         {
@@ -331,7 +342,7 @@
     "operators": {
       "patterns": [
         {
-          "match": "(?<!\\$)\\b(is!?)\\b(?!\\$)",
+          "match": "(?<!\\$)\\b(is\\!?)\\b(?!\\$)",
           "name": "keyword.operator.dart"
         },
         {
@@ -363,11 +374,11 @@
           "name": "keyword.operator.assignment.dart"
         },
         {
-          "match": "(--|\\+\\+)",
+          "match": "(\\-\\-|\\+\\+)",
           "name": "keyword.operator.increment-decrement.dart"
         },
         {
-          "match": "(-|\\+|\\*|\\/|\\~\\/|%)",
+          "match": "(\\-|\\+|\\*|\\/|\\~\\/|%)",
           "name": "keyword.operator.arithmetic.dart"
         },
         {
@@ -400,7 +411,7 @@
               "name": "variable.parameter.dart"
             }
           },
-          "match": "\\$(\\w+)",
+          "match": "\\$([a-zA-Z0-9_]+)",
           "name": "meta.embedded.expression.dart"
         },
         {

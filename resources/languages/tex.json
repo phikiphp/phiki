@@ -236,7 +236,7 @@
           "name": "punctuation.math.bracket.pair.tex"
         },
         {
-          "match": "\\\\(left|right|((big|bigg|Big|Bigg)[lr]?))([(\\[<>\\])\\.\\|]|\\\\[{}|]|\\\\[lr]?[Vv]ert|\\\\[lr]angle)",
+          "match": "\\\\(left|right|((big|bigg|Big|Bigg)[lr]?))([\\(\\[\\<\\>\\]\\)\\.\\|]|\\\\[{}|]|\\\\[lr]?[Vv]ert|\\\\[lr]angle)",
           "name": "punctuation.math.bracket.pair.big.tex"
         },
         {
@@ -332,11 +332,11 @@
           "name": "punctuation.math.end.bracket.round.tex"
         },
         {
-          "match": "((\\d*[\\.]\\d+)|\\d+)",
+          "match": "(([0-9]*[\\.][0-9]+)|[0-9]+)",
           "name": "constant.numeric.math.tex"
         },
         {
-          "match": "[+\\*/_\\^-]",
+          "match": "[\\+\\*/_\\^-]",
           "name": "punctuation.math.operator.tex"
         }
       ]

@@ -46,11 +46,11 @@
     "commands": {
       "patterns": [
         {
-          "match": "\\bcom(\\s|!)",
+          "match": "\\bcom(\\s|\\!)",
           "name": "storage.other.command.viml"
         },
         {
-          "match": "\\bau(\\s|!)",
+          "match": "\\bau(\\s|\\!)",
           "name": "storage.other.command.viml"
         },
         {
@@ -122,7 +122,7 @@
           "name": "constant.language.boolean.viml"
         },
         {
-          "match": "\\b(\\d+)\\b",
+          "match": "\\b([0-9]+)\\b",
           "name": "constant.numeric.viml"
         }
       ]
@@ -130,7 +130,7 @@
     "entity": {
       "patterns": [
         {
-          "match": "(([absg]:)?[a-zA-Z0-9_#.]{2,})\\b(?=\\()",
+          "match": "(([absg]\\:)?[a-zA-Z0-9_#.]{2,})\\b(?=\\()",
           "name": "entity.name.function.viml"
         }
       ]
@@ -165,13 +165,13 @@
     "map": {
       "patterns": [
         {
-          "begin": "(<)",
+          "begin": "(\\<)",
           "beginCaptures": {
             "1": {
               "name": "punctuation.definition.map.viml"
             }
           },
-          "end": "(>|\\s)",
+          "end": "(\\>|\\s)",
           "endCaptures": {
             "1": {
               "name": "punctuation.definition.map.viml"
@@ -191,7 +191,7 @@
               "name": "constant.character.map.key.viml"
             },
             {
-              "match": "(?i:(F\\d+))",
+              "match": "(?i:(F[0-9]+))",
               "name": "constant.character.map.key.fn.viml"
             },
             {
@@ -323,7 +323,7 @@
           "name": "support.function.viml"
         },
         {
-          "match": "(v:(beval_col|beval_bufnr|beval_lnum|beval_text|beval_winnr|char|charconvert_from|charconvert_to|cmdarg|cmdbang|count|count1|ctype|dying|errmsg|exception|fcs_reason|fcs_choice|fname_in|fname_out|fname_new|fname_diff|folddashes|foldlevel|foldend|foldstart|insertmode|key|lang|lc_time|lnum|mouse_win|mouse_lnum|mouse_col|oldfiles|operator|prevcount|profiling|progname|register|scrollstart|servername|searchforward|shell_error|statusmsg|swapname|swapchoice|swapcommand|termresponse|this_session|throwpoint|val|version|warningmsg|windowid))",
+          "match": "(v\\:(beval_col|beval_bufnr|beval_lnum|beval_text|beval_winnr|char|charconvert_from|charconvert_to|cmdarg|cmdbang|count|count1|ctype|dying|errmsg|exception|fcs_reason|fcs_choice|fname_in|fname_out|fname_new|fname_diff|folddashes|foldlevel|foldend|foldstart|insertmode|key|lang|lc_time|lnum|mouse_win|mouse_lnum|mouse_col|oldfiles|operator|prevcount|profiling|progname|register|scrollstart|servername|searchforward|shell_error|statusmsg|swapname|swapchoice|swapcommand|termresponse|this_session|throwpoint|val|version|warningmsg|windowid))",
           "name": "support.type.builtin.vim-variable.viml"
         },
         {
@@ -335,7 +335,7 @@
           "name": "support.type.builtin.viml"
         },
         {
-          "match": "<args>",
+          "match": "\\<args\\>",
           "name": "support.variable.args.viml"
         },
         {
@@ -367,7 +367,7 @@
           "name": "keyword.other.syntax.viml"
         },
         {
-          "match": "\\b(add|containedin|contains|matchgroup|nextgroup)=",
+          "match": "\\b(add|containedin|contains|matchgroup|nextgroup)\\=",
           "name": "keyword.other.syntax.viml"
         },
         {
@@ -379,7 +379,7 @@
               "name": "string.regexp.viml"
             }
           },
-          "match": "((start|skip|end)=)(\\+\\S+\\+\\s)?"
+          "match": "((start|skip|end)\\=)(\\+\\S+\\+\\s)?"
         },
         {
           "captures": {

@@ -7,12 +7,12 @@
   "patterns": [
     {
       "comment": "numbers",
-      "match": "\\b((0(x|X)[0-9a-fA-F]*)|((\\d+\\.?\\d*)|(\\.\\d+))((e|E)(\\+|-)?\\d+)?)([LlFfUuDd]|UL|ul)?\\b",
+      "match": "\\b((0(x|X)[0-9a-fA-F]*)|(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))((e|E)(\\+|-)?[0-9]+)?)([LlFfUuDd]|UL|ul)?\\b",
       "name": "constant.numeric.zenscript"
     },
     {
       "comment": "prefixedNumbers",
-      "match": "\\b-?(0b|0x|0o|0B|0X|0O)(0|[1-9a-fA-F][0-9a-fA-F_]*)[a-zA-Z_]*\\b",
+      "match": "\\b\\-?(0b|0x|0o|0B|0X|0O)(0|[1-9a-fA-F][0-9a-fA-F_]*)[a-zA-Z_]*\\b",
       "name": "constant.numeric.zenscript"
     },
     {

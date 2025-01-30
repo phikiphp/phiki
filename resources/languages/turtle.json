@@ -42,7 +42,7 @@
       "name": "comment.line.number-sign.turtle"
     },
     "integer": {
-      "match": "[+-]?(?:\\d+|\\d+\\.\\d*|\\.\\d+(?:[eE][+-]?\\d+)?)",
+      "match": "[+-]?(?:\\d+|[0-9]+\\.[0-9]*|\\.[0-9]+(?:[eE][+-]?\\d+)?)",
       "name": "constant.numeric.turtle"
     },
     "iriref": {

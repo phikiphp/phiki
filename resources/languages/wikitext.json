@@ -73,7 +73,7 @@
                   "name": "keyword.operator.wikitext"
                 }
               },
-              "match": "(?:^|\\G)([^#:\\|\\[\\]{}\\|]*)(\\|)"
+              "match": "(?:^|\\G)([^#:\\|\\[\\]\\{\\}\\|]*)(\\|)"
             },
             {
               "include": "$self"
@@ -206,7 +206,7 @@
                   "name": "punctuation.definition.tag.link.external.wikitext"
                 }
               },
-              "match": "(\\[)((?:(?:(?:http(?:s)?)|(?:ftp(?:s)?)):\\/\\/)[\\w.-]+(?:\\.[\\w\\.-]+)+[\\w\\-\\.~:\\/?#%@!$&'()\\*+,;=.]+)\\s*?([^\\]]*)(\\])",
+              "match": "(\\[)((?:(?:(?:http(?:s)?)|(?:ftp(?:s)?)):\\/\\/)[\\w.-]+(?:\\.[\\w\\.-]+)+[\\w\\-\\.~:\\/?#%@!\\$&'\\(\\)\\*\\+,;=.]+)\\s*?([^\\]]*)(\\])",
               "name": "meta.link.external.wikitext"
             },
             {
@@ -229,7 +229,7 @@
                   "name": "punctuation.definition.tag.link.external.wikitext"
                 }
               },
-              "match": "(\\[)([\\w.-]+(?:\\.[\\w\\.-]+)+[\\w\\-\\.~:\\/?#%@!$&'()\\*+,;=.]+)\\s*?([^\\]]*)(\\])",
+              "match": "(\\[)([\\w.-]+(?:\\.[\\w\\.-]+)+[\\w\\-\\.~:\\/?#%@!\\$&'\\(\\)\\*\\+,;=.]+)\\s*?([^\\]]*)(\\])",
               "name": "invalid.illegal.bad-link.wikitext"
             }
           ]
@@ -288,7 +288,7 @@
         },
         "internal-link": {
           "TODO": "SINGLE LINE",
-          "begin": "(\\[\\[)(([^#:\\|\\[\\]{}]*:)*)?([^\\|\\[\\]]*)?",
+          "begin": "(\\[\\[)(([^#:\\|\\[\\]\\{\\}]*:)*)?([^\\|\\[\\]]*)?",
           "captures": {
             "1": {
               "name": "punctuation.definition.tag.link.internal.wikitext"
@@ -364,15 +364,15 @@
                   "name": "constant.language.variables.metadata.wikitext"
                 },
                 {
-                  "match": "ISBN\\s+((9[\\-\\s]?7[\\-\\s]?[89][\\-\\s]?)?(\\d[\\-\\s]?){10})",
+                  "match": "ISBN\\s+((9[\\-\\s]?7[\\-\\s]?[89][\\-\\s]?)?([0-9][\\-\\s]?){10})",
                   "name": "constant.language.variables.isbn.wikitext"
                 },
                 {
-                  "match": "RFC\\s+\\d+",
+                  "match": "RFC\\s+[0-9]+",
                   "name": "constant.language.variables.rfc.wikitext"
                 },
                 {
-                  "match": "PMID\\s+\\d+",
+                  "match": "PMID\\s+[0-9]+",
                   "name": "constant.language.variables.pmid.wikitext"
                 }
               ]
@@ -403,7 +403,7 @@
                   "name": "punctuation.definition.tag.link.internal.end.wikitext"
                 }
               },
-              "match": "(?i)(^\\s*?#REDIRECT)\\s*(\\[\\[)(([^#:\\|\\[\\]{}]*?:)*)?([^\\|\\[\\]]*)?(\\|[^\\[\\]]*?)?(\\]\\])"
+              "match": "(?i)(^\\s*?#REDIRECT)\\s*(\\[\\[)(([^#:\\|\\[\\]\\{\\}]*?:)*)?([^\\|\\[\\]]*)?(\\|[^\\[\\]]*?)?(\\]\\])"
             }
           ]
         },
@@ -438,26 +438,27 @@
                   "include": "$self"
                 },
                 {
-                  "begin": "^\\s*(\\|-)\\s*",
-                  "beginCaptures": {
+                  "captures": {
                     "1": {
                       "name": "punctuation.definition.tag.begin.wikitext"
+                    },
+                    "2": {
+                      "patterns": [
+                        {
+                          "include": "$self"
+                        },
+                        {
+                          "match": "\\|.*",
+                          "name": "invalid.illegal.bad-table-context.wikitext"
+                        },
+                        {
+                          "include": "text.html.basic#attribute"
+                        }
+                      ]
                     }
                   },
-                  "end": "$",
-                  "name": "meta.tag.block.table-row.wikitext",
-                  "patterns": [
-                    {
-                      "include": "$self"
-                    },
-                    {
-                      "include": "text.html.basic#attribute"
-                    },
-                    {
-                      "match": "\\|.*",
-                      "name": "invalid.illegal.bad-table-context.wikitext"
-                    }
-                  ]
+                  "match": "^\\s*(\\|-)\\s*(.*)$",
+                  "name": "meta.tag.block.table-row.wikitext"
                 },
                 {
                   "begin": "^\\s*(!)(([^\\[]*?)(\\|))?(.*?)(?=(!!)|$)",
@@ -494,10 +495,10 @@
                         "3": {
                           "patterns": [
                             {
-                              "include": "text.html.basic#attribute"
+                              "include": "$self"
                             },
                             {
-                              "include": "$self"
+                              "include": "text.html.basic#attribute"
                             }
                           ]
                         },
@@ -535,9 +536,22 @@
                   ]
                 },
                 {
-                  "begin": "^\\s*(\\|)",
+                  "begin": "^\\s*(\\|)(([^\\[]*?)((?<!\\|)\\|(?!\\|)))?",
                   "beginCaptures": {
                     "1": {
+                      "name": "punctuation.definition.tag.wikitext"
+                    },
+                    "3": {
+                      "patterns": [
+                        {
+                          "include": "$self"
+                        },
+                        {
+                          "include": "text.html.basic#attribute"
+                        }
+                      ]
+                    },
+                    "4": {
                       "name": "punctuation.definition.tag.wikitext"
                     }
                   },
@@ -557,7 +571,7 @@
           ]
         },
         "template": {
-          "begin": "(\\{\\{)\\s*(([^#:\\|\\[\\]{}]*(:))*)\\s*((#[^#:\\|\\[\\]{}]+(:))*)([^#:\\|\\[\\]{}]*)",
+          "begin": "(\\{\\{)\\s*(([^#:\\|\\[\\]\\{\\}]*(:))*)\\s*((#[^#:\\|\\[\\]\\{\\}]+(:))*)([^#:\\|\\[\\]\\{\\}]*)",
           "captures": {
             "1": {
               "name": "punctuation.definition.tag.template.wikitext"

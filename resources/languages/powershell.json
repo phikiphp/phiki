@@ -188,7 +188,7 @@
       "name": "keyword.control.powershell"
     },
     {
-      "match": "(?<!\\w|-|[^)]\\.)((?i:(foreach|where)(?!-object))|%|\\?)(?!\\w)",
+      "match": "(?<!\\w|-|[^\\)]\\.)((?i:(foreach|where)(?!-object))|%|\\?)(?!\\w)",
       "name": "keyword.control.powershell"
     },
     {
@@ -262,7 +262,7 @@
     },
     {
       "comment": "This is very imprecise, is there a syntax for 'must come after...' ",
-      "match": "(?<!\\s|^)\\.\\.(?=-?\\d|\\(|\\$)",
+      "match": "(?<!\\s|^)\\.\\.(?=\\-?\\d|\\(|\\$)",
       "name": "keyword.operator.range.powershell"
     }
   ],
@@ -278,7 +278,7 @@
       "name": "meta.requires.powershell",
       "patterns": [
         {
-          "match": "-(?i:Modules|PSSnapin|RunAsAdministrator|ShellId|Version|Assembly|PSEdition)",
+          "match": "\\-(?i:Modules|PSSnapin|RunAsAdministrator|ShellId|Version|Assembly|PSEdition)",
           "name": "keyword.other.powershell"
         },
         {
@@ -358,7 +358,7 @@
       "patterns": [
         {
           "comment": "Verb-Noun pattern:",
-          "match": "(?:(\\p{L}|\\d|_|-|\\\\|:)*\\\\)?\\b(?i:Add|Approve|Assert|Backup|Block|Build|Checkpoint|Clear|Close|Compare|Complete|Compress|Confirm|Connect|Convert|ConvertFrom|ConvertTo|Copy|Debug|Deny|Deploy|Disable|Disconnect|Dismount|Edit|Enable|Enter|Exit|Expand|Export|Find|Format|Get|Grant|Group|Hide|Import|Initialize|Install|Invoke|Join|Limit|Lock|Measure|Merge|Mount|Move|New|Open|Optimize|Out|Ping|Pop|Protect|Publish|Push|Read|Receive|Redo|Register|Remove|Rename|Repair|Request|Reset|Resize|Resolve|Restart|Restore|Resume|Revoke|Save|Search|Select|Send|Set|Show|Skip|Split|Start|Step|Stop|Submit|Suspend|Switch|Sync|Test|Trace|Unblock|Undo|Uninstall|Unlock|Unprotect|Unpublish|Unregister|Update|Use|Wait|Watch|Write)-.+?(?:\\.(?i:exe|cmd|bat|ps1))?\\b",
+          "match": "(?:(\\p{L}|\\d|_|-|\\\\|\\:)*\\\\)?\\b(?i:Add|Approve|Assert|Backup|Block|Build|Checkpoint|Clear|Close|Compare|Complete|Compress|Confirm|Connect|Convert|ConvertFrom|ConvertTo|Copy|Debug|Deny|Deploy|Disable|Disconnect|Dismount|Edit|Enable|Enter|Exit|Expand|Export|Find|Format|Get|Grant|Group|Hide|Import|Initialize|Install|Invoke|Join|Limit|Lock|Measure|Merge|Mount|Move|New|Open|Optimize|Out|Ping|Pop|Protect|Publish|Push|Read|Receive|Redo|Register|Remove|Rename|Repair|Request|Reset|Resize|Resolve|Restart|Restore|Resume|Revoke|Save|Search|Select|Send|Set|Show|Skip|Split|Start|Step|Stop|Submit|Suspend|Switch|Sync|Test|Trace|Unblock|Undo|Uninstall|Unlock|Unprotect|Unpublish|Unregister|Update|Use|Wait|Watch|Write)\\-.+?(?:\\.(?i:exe|cmd|bat|ps1))?\\b",
           "name": "support.function.powershell"
         },
         {
@@ -608,7 +608,7 @@
               "name": "keyword.other.powershell"
             }
           },
-          "match": "(?<!\\w)([-+]?(?:[0-9_]+)?\\.[0-9_]+(?:(?:e|E)\\d+)?(?:F|f|D|d|M|m)?)((?i:[kmgtp]b)?)\\b"
+          "match": "(?<!\\w)([-+]?(?:[0-9_]+)?\\.[0-9_]+(?:(?:e|E)[0-9]+)?(?:F|f|D|d|M|m)?)((?i:[kmgtp]b)?)\\b"
         },
         {
           "captures": {

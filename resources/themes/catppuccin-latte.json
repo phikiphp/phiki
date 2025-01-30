@@ -114,6 +114,7 @@
     "editor.selectionHighlightBorder": "#7c7f9333",
     "editor.stackFrameHighlightBackground": "#df8e1d26",
     "editor.wordHighlightBackground": "#7c7f9333",
+    "editor.wordHighlightStrongBackground": "#1e66f526",
     "editorBracketHighlight.foreground1": "#d20f39",
     "editorBracketHighlight.foreground2": "#fe640b",
     "editorBracketHighlight.foreground3": "#df8e1d",
@@ -480,17 +481,17 @@
     "tab.unfocusedInactiveBackground": "#d6dbe5",
     "table.headerBackground": "#ccd0da",
     "table.headerForeground": "#4c4f69",
-    "terminal.ansiBlack": "#bcc0cc",
+    "terminal.ansiBlack": "#5c5f77",
     "terminal.ansiBlue": "#1e66f5",
     "terminal.ansiBrightBlack": "#6c6f85",
-    "terminal.ansiBrightBlue": "#1e66f5",
-    "terminal.ansiBrightCyan": "#04a5e5",
-    "terminal.ansiBrightGreen": "#40a02b",
-    "terminal.ansiBrightMagenta": "#ea76cb",
-    "terminal.ansiBrightRed": "#d20f39",
-    "terminal.ansiBrightWhite": "#5c5f77",
-    "terminal.ansiBrightYellow": "#df8e1d",
-    "terminal.ansiCyan": "#04a5e5",
+    "terminal.ansiBrightBlue": "#456eff",
+    "terminal.ansiBrightCyan": "#2d9fa8",
+    "terminal.ansiBrightGreen": "#49af3d",
+    "terminal.ansiBrightMagenta": "#fe85d8",
+    "terminal.ansiBrightRed": "#de293e",
+    "terminal.ansiBrightWhite": "#bcc0cc",
+    "terminal.ansiBrightYellow": "#eea02d",
+    "terminal.ansiCyan": "#179299",
     "terminal.ansiGreen": "#40a02b",
     "terminal.ansiMagenta": "#ea76cb",
     "terminal.ansiRed": "#d20f39",
@@ -1381,6 +1382,12 @@
       "scope": "constant.other.general.math.tex",
       "settings": {
         "foreground": "#dd7878"
+      }
+    },
+    {
+      "scope": "variable.language.liquid",
+      "settings": {
+        "foreground": "#ea76cb"
       }
     },
     {

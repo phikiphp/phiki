@@ -79,7 +79,7 @@
           "name": "keyword.operator.logical.dax"
         },
         {
-          "match": "\\+|-|\\*|\\/",
+          "match": "\\+|\\-|\\*|\\/",
           "name": "keyword.arithmetic.operator.dax"
         },
         {
@@ -164,7 +164,7 @@
           ]
         },
         {
-          "match": "[_$A-Za-z][_$0-9A-Za-z]*",
+          "match": "[_$[:alpha:]][_$[:alnum:]]*",
           "name": "variable.other.constant.dax"
         }
       ]

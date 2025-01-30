@@ -124,7 +124,7 @@
           "name": "string.other.http"
         }
       },
-      "match": "^([\\w\\-]+)\\s*(:)\\s*([^/].*?)\\s*$",
+      "match": "^([\\w\\-]+)\\s*(\\:)\\s*([^/].*?)\\s*$",
       "name": "http.headers"
     },
     {
@@ -273,7 +273,7 @@
           ]
         }
       },
-      "match": "(?i)^(?:(get|post|put|delete|patch|head|options|connect|trace|lock|unlock|propfind|proppatch|copy|move|mkcol|mkcalendar|acl|search)\\s+)?\\s*(.+?)(?:\\s+(HTTP\\/\\S+))?$",
+      "match": "(?i)^(?:(get|post|put|delete|patch|head|options|connect|trace|lock|unlock|propfind|proppatch|copy|move|mkcol|mkcalendar|acl|search)\\s+)\\s*(.+?)(?:\\s+(HTTP\\/\\S+))?$",
       "name": "http.requestline"
     },
     "response-line": {
@@ -292,7 +292,7 @@
           "name": "string.other.http"
         }
       },
-      "match": "(?i)^\\s*(HTTP\\/\\S+)\\s([1-5]\\d\\d)\\s(.*)$",
+      "match": "(?i)^\\s*(HTTP\\/\\S+)\\s([1-5][0-9][0-9])\\s(.*)$",
       "name": "http.responseLine"
     }
   },

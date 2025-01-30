@@ -71,7 +71,7 @@
           "name": "constant.language.boolean.scheme"
         },
         {
-          "match": "(?<=[(\\s])((#e|#i)?\\d+(\\.\\d+)?|(#x)[0-9a-fA-F]+|(#o)[0-7]+|(#b)[01]+)(?=[\\s;()'\",\\[\\]])",
+          "match": "(?<=[\\(\\s])((#e|#i)?[0-9]+(\\.[0-9]+)?|(#x)[0-9a-fA-F]+|(#o)[0-7]+|(#b)[01]+)(?=[\\s;()'\",\\[\\]])",
           "name": "constant.numeric.scheme"
         }
       ]
@@ -121,7 +121,7 @@
               "name": "punctuation.section.quoted.symbol.scheme"
             }
           },
-          "match": "(')\\s*([0-9A-Za-z][0-9A-Za-z!$%&*+-./:<=>?@^_~]*)",
+          "match": "(')\\s*([[:alnum:]][[:alnum:]!$%&*+-./:<=>?@^_~]*)",
           "name": "constant.other.symbol.scheme"
         },
         {
@@ -231,7 +231,7 @@
           "include": "#comment"
         },
         {
-          "begin": "(?<=\\()(define)\\s+(\\()([0-9A-Za-z][0-9A-Za-z!$%&*+-./:<=>?@^_~]*)((\\s+([0-9A-Za-z][0-9A-Za-z!$%&*+-./:<=>?@^_~]*|[._]))*)\\s*(\\))",
+          "begin": "(?<=\\()(define)\\s+(\\()([[:alnum:]][[:alnum:]!$%&*+-./:<=>?@^_~]*)((\\s+([[:alnum:]][[:alnum:]!$%&*+-./:<=>?@^_~]*|[._]))*)\\s*(\\))",
           "captures": {
             "1": {
               "name": "keyword.control.scheme"
@@ -264,7 +264,7 @@
           ]
         },
         {
-          "begin": "(?<=\\()(lambda)\\s+(\\()((?:([0-9A-Za-z][0-9A-Za-z!$%&*+-./:<=>?@^_~]*|[._])\\s+)*(?:([0-9A-Za-z][0-9A-Za-z!$%&*+-./:<=>?@^_~]*|[._]))?)(\\))",
+          "begin": "(?<=\\()(lambda)\\s+(\\()((?:([[:alnum:]][[:alnum:]!$%&*+-./:<=>?@^_~]*|[._])\\s+)*(?:([[:alnum:]][[:alnum:]!$%&*+-./:<=>?@^_~]*|[._]))?)(\\))",
           "captures": {
             "1": {
               "name": "keyword.control.scheme"
@@ -295,7 +295,7 @@
           ]
         },
         {
-          "begin": "(?<=\\()(define)\\s([0-9A-Za-z][0-9A-Za-z!$%&*+-./:<=>?@^_~]*)\\s*.*?",
+          "begin": "(?<=\\()(define)\\s([[:alnum:]][[:alnum:]!$%&*+-./:<=>?@^_~]*)\\s*.*?",
           "captures": {
             "1": {
               "name": "keyword.control.scheme"
@@ -334,15 +334,15 @@
           "include": "#constants"
         },
         {
-          "match": "(?<=[(\\s])(#\\\\)(space|newline|tab)(?=[\\s)])",
+          "match": "(?<=[\\(\\s])(#\\\\)(space|newline|tab)(?=[\\s\\)])",
           "name": "constant.character.named.scheme"
         },
         {
-          "match": "(?<=[(\\s])(#\\\\)x[0-9A-F]{2,4}(?=[\\s)])",
+          "match": "(?<=[\\(\\s])(#\\\\)x[0-9A-F]{2,4}(?=[\\s\\)])",
           "name": "constant.character.hex-literal.scheme"
         },
         {
-          "match": "(?<=[(\\s])(#\\\\).(?=[\\s)])",
+          "match": "(?<=[\\(\\s])(#\\\\).(?=[\\s\\)])",
           "name": "constant.character.escape.scheme"
         },
         {

@@ -12,7 +12,7 @@
   "repository": {
     "ampersand": {
       "comment": "Markdown will convert this for us. We match it so that the HTML grammar will not mark it up as invalid.",
-      "match": "&(?!([a-zA-Z0-9]+|#\\d+|#x[0-9a-fA-F]+);)",
+      "match": "&(?!([a-zA-Z0-9]+|#[0-9]+|#x[0-9a-fA-F]+);)",
       "name": "meta.other.valid-ampersand.markdown"
     },
     "block": {
@@ -133,7 +133,7 @@
     },
     "bracket": {
       "comment": "Markdown will convert this for us. We match it so that the HTML grammar will not mark it up as invalid.",
-      "match": "<(?![a-zA-Z/?$!])",
+      "match": "<(?![a-zA-Z/?\\$!])",
       "name": "meta.other.valid-bracket.markdown"
     },
     "escape": {
@@ -2502,7 +2502,7 @@
           "name": "punctuation.definition.link.markdown"
         }
       },
-      "match": "(!\\[)((?<square>[^\\[\\]\\\\]|\\\\.|\\[\\g<square>*+\\])*+)(\\])(\\()[ \\t]*((<)((?:\\\\[<>]|[^<>\\n])*)(>)|((?<url>(?>[^\\s()]+)|\\(\\g<url>*\\))*))[ \\t]*(?:((\\().+?(\\)))|((\").+?(\"))|((').+?(')))?\\s*(\\))",
+      "match": "(\\!\\[)((?<square>[^\\[\\]\\\\]|\\\\.|\\[\\g<square>*+\\])*+)(\\])(\\()[ \\t]*((<)((?:\\\\[<>]|[^<>\\n])*)(>)|((?<url>(?>[^\\s()]+)|\\(\\g<url>*\\))*))[ \\t]*(?:((\\().+?(\\)))|((\").+?(\"))|((').+?(')))?\\s*(\\))",
       "name": "meta.image.inline.markdown"
     },
     "image-ref": {
@@ -2526,7 +2526,7 @@
           "name": "punctuation.definition.constant.markdown"
         }
       },
-      "match": "(!\\[)((?<square>[^\\[\\]\\\\]|\\\\.|\\[\\g<square>*+\\])*+)(\\])[ ]?(\\[)(.*?)(\\])",
+      "match": "(\\!\\[)((?<square>[^\\[\\]\\\\]|\\\\.|\\[\\g<square>*+\\])*+)(\\])[ ]?(\\[)(.*?)(\\])",
       "name": "meta.image.reference.markdown"
     },
     "inline": {
@@ -2884,7 +2884,7 @@
       "name": "meta.link.reference.markdown"
     },
     "list_paragraph": {
-      "begin": "(^|\\G)(?=\\S)(?![*+->]\\s|\\d+\\.\\s)",
+      "begin": "(^|\\G)(?=\\S)(?![*+->]\\s|[0-9]+\\.\\s)",
       "name": "meta.paragraph.markdown",
       "patterns": [
         {
@@ -2897,7 +2897,7 @@
           "include": "#heading-setext"
         }
       ],
-      "while": "(^|\\G)(?!\\s*$|#|[ ]{0,3}([-*_>][ ]{2,}){3,}[ \\t]*$\\n?|[ ]{0,3}[*+->]|[ ]{0,3}\\d+\\.)"
+      "while": "(^|\\G)(?!\\s*$|#|[ ]{0,3}([-*_>][ ]{2,}){3,}[ \\t]*$\\n?|[ ]{0,3}[*+->]|[ ]{0,3}[0-9]+\\.)"
     },
     "lists": {
       "patterns": [
@@ -2921,7 +2921,7 @@
           "while": "((^|\\G)([ ]{2,4}|\\t))|(^[ \\t]*$)"
         },
         {
-          "begin": "(^|\\G)([ ]{0,3})(\\d+[\\.)])([ \\t])",
+          "begin": "(^|\\G)([ ]{0,3})([0-9]+[\\.\\)])([ \\t])",
           "beginCaptures": {
             "3": {
               "name": "punctuation.definition.list.begin.markdown"
@@ -2974,7 +2974,7 @@
       "while": "(^|\\G)([ ]{4}|\\t)"
     },
     "separator": {
-      "match": "(^|\\G)[ ]{0,3}([\\*\\-_])([ ]{0,2}\\2){2,}[ \\t]*$\\n?",
+      "match": "(^|\\G)[ ]{0,3}([\\*\\-\\_])([ ]{0,2}\\2){2,}[ \\t]*$\\n?",
       "name": "meta.separator.markdown"
     },
     "strikethrough": {

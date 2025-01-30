@@ -19,7 +19,7 @@
     "architecture_pattern": {
       "patterns": [
         {
-          "begin": "\\b((?i:architecture))\\s+(([a-zA-z][a-zA-z0-9_]*)|(.+))(?=\\s)\\s+((?i:of))\\s+(([a-zA-Z]\\w*)|(.+?))(?=\\s*(?i:is))\\b",
+          "begin": "\\b((?i:architecture))\\s+(([a-zA-z][a-zA-z0-9_]*)|(.+))(?=\\s)\\s+((?i:of))\\s+(([a-zA-Z][a-zA-Z0-9_]*)|(.+?))(?=\\s*(?i:is))\\b",
           "beginCaptures": {
             "1": {
               "name": "keyword.language.vhdl"
@@ -126,7 +126,7 @@
     "block_pattern": {
       "patterns": [
         {
-          "begin": "^\\s*(([a-zA-Z]\\w*)\\s*(:)\\s*)?(\\s*(?i:block))",
+          "begin": "^\\s*(([a-zA-Z][a-zA-Z0-9_]*)\\s*(:)\\s*)?(\\s*(?i:block))",
           "beginCaptures": {
             "2": {
               "name": "meta.block.block.name"
@@ -181,7 +181,7 @@
     "case_pattern": {
       "patterns": [
         {
-          "begin": "^\\s*((([a-zA-Z]\\w*)|(.+?))\\s*:\\s*)?\\b((?i:case))\\b",
+          "begin": "^\\s*((([a-zA-Z][a-zA-Z0-9_]*)|(.+?))\\s*:\\s*)?\\b((?i:case))\\b",
           "beginCaptures": {
             "3": {
               "name": "entity.name.tag.case.begin.vhdl"
@@ -252,7 +252,7 @@
     "component_instantiation_pattern": {
       "patterns": [
         {
-          "begin": "^\\s*([a-zA-Z]\\w*)\\s*(:)\\s*([a-zA-Z]\\w*)\\b(?=\\s*($|generic|port))",
+          "begin": "^\\s*([a-zA-Z][a-zA-Z0-9_]*)\\s*(:)\\s*([a-zA-Z][a-zA-Z0-9_]*)\\b(?=\\s*($|generic|port))",
           "beginCaptures": {
             "1": {
               "name": "entity.name.section.component_instantiation.vhdl"
@@ -284,7 +284,7 @@
     "component_pattern": {
       "patterns": [
         {
-          "begin": "^\\s*\\b((?i:component))\\s+(([a-zA-Z_]\\w*)\\s*|(.+?))(?=\\b(?i:is|port)\\b|$|--)(\\b((?i:is\\b)))?",
+          "begin": "^\\s*\\b((?i:component))\\s+(([a-zA-Z_][a-zA-Z0-9_]*)\\s*|(.+?))(?=\\b(?i:is|port)\\b|$|--)(\\b((?i:is\\b)))?",
           "beginCaptures": {
             "1": {
               "name": "keyword.language.vhdl"
@@ -391,7 +391,7 @@
     "entity_instantiation_pattern": {
       "patterns": [
         {
-          "begin": "^\\s*([a-zA-Z]\\w*)\\s*(:)\\s*(((?i:use))\\s+)?((?i:entity))\\s+((([a-zA-Z]\\w*)|(.+?))(\\.))?(([a-zA-Z]\\w*)|(.+?))(?=\\s*(\\(|$|(?i:port|generic)))(\\s*(\\()\\s*(([a-zA-Z]\\w*)|(.+?))(?=\\s*\\))\\s*(\\)))?",
+          "begin": "^\\s*([a-zA-Z][a-zA-Z0-9_]*)\\s*(:)\\s*(((?i:use))\\s+)?((?i:entity))\\s+((([a-zA-Z][a-zA-Z0-9_]*)|(.+?))(\\.))?(([a-zA-Z][a-zA-Z0-9_]*)|(.+?))(?=\\s*(\\(|$|(?i:port|generic)))(\\s*(\\()\\s*(([a-zA-Z][a-zA-Z0-9_]*)|(.+?))(?=\\s*\\))\\s*(\\)))?",
           "beginCaptures": {
             "1": {
               "name": "entity.name.section.entity_instantiation.vhdl"
@@ -500,7 +500,7 @@
     "for_pattern": {
       "patterns": [
         {
-          "begin": "^\\s*(([a-zA-Z]\\w*)\\s*(:)\\s*)?(?!(?i:wait\\s*))\\b((?i:for))\\b(?!\\s*(?i:all))",
+          "begin": "^\\s*(([a-zA-Z][a-zA-Z0-9_]*)\\s*(:)\\s*)?(?!(?i:wait\\s*))\\b((?i:for))\\b(?!\\s*(?i:all))",
           "beginCaptures": {
             "2": {
               "name": "entity.name.tag.for.generate.begin.vhdl"
@@ -690,7 +690,7 @@
     "if_pattern": {
       "patterns": [
         {
-          "begin": "(([a-zA-Z]\\w*)\\s*(:)\\s*)?\\b((?i:if))\\b",
+          "begin": "(([a-zA-Z][a-zA-Z0-9_]*)\\s*(:)\\s*)?\\b((?i:if))\\b",
           "beginCaptures": {
             "2": {
               "name": "entity.name.tag.if.generate.begin.vhdl"
@@ -758,7 +758,7 @@
           "name": "standard.library.language.vhdl"
         },
         {
-          "match": "(\\+|-|<=|=|=>|:=|>=|>|<|/|\\||&|(\\*{1,2}))",
+          "match": "(\\+|\\-|<=|=|=>|:=|>=|>|<|/|\\||&|(\\*{1,2}))",
           "name": "keyword.operator.vhdl"
         }
       ]
@@ -1038,7 +1038,7 @@
     "procedure_prototype_pattern": {
       "patterns": [
         {
-          "begin": "\\b((?i:procedure))\\s+(([a-zA-Z]\\w*)|(.+?))(?=\\s*(\\(|;))",
+          "begin": "\\b((?i:procedure))\\s+(([a-zA-Z][a-zA-Z0-9_]*)|(.+?))(?=\\s*(\\(|;))",
           "beginCaptures": {
             "1": {
               "name": "keyword.language.vhdl"
@@ -1067,7 +1067,7 @@
     "process_pattern": {
       "patterns": [
         {
-          "begin": "^\\s*(([a-zA-Z]\\w*)\\s*(:)\\s*)?((?:postponed\\s+)?(?i:process\\b))",
+          "begin": "^\\s*(([a-zA-Z][a-zA-Z0-9_]*)\\s*(:)\\s*)?((?:postponed\\s+)?(?i:process\\b))",
           "beginCaptures": {
             "2": {
               "name": "entity.name.section.process.begin.vhdl"
@@ -1284,7 +1284,7 @@
     "subtype_pattern": {
       "patterns": [
         {
-          "begin": "\\b((?i:subtype))\\s+(([a-zA-Z]\\w*)|(.+?))\\s+((?i:is))\\b",
+          "begin": "\\b((?i:subtype))\\s+(([a-zA-Z][a-zA-Z0-9_]*)|(.+?))\\s+((?i:is))\\b",
           "beginCaptures": {
             "1": {
               "name": "keyword.language.vhdl"
@@ -1403,7 +1403,7 @@
     "type_pattern": {
       "patterns": [
         {
-          "begin": "\\b((?i:type))\\s+(([a-zA-Z]\\w*)|(.+?))((?=\\s*;)|(\\s+((?i:is))))\\b",
+          "begin": "\\b((?i:type))\\s+(([a-zA-Z][a-zA-Z0-9_]*)|(.+?))((?=\\s*;)|(\\s+((?i:is))))\\b",
           "beginCaptures": {
             "1": {
               "name": "keyword.language.vhdl"
@@ -1438,7 +1438,7 @@
     "while_pattern": {
       "patterns": [
         {
-          "begin": "^\\s*(([a-zA-Z]\\w*)\\s*(:)\\s*)?\\b((?i:while))\\b",
+          "begin": "^\\s*(([a-zA-Z][a-zA-Z0-9_]*)\\s*(:)\\s*)?\\b((?i:while))\\b",
           "beginCaptures": {
             "2": {
               "name": ""

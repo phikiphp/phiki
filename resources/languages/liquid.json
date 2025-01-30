@@ -68,6 +68,9 @@
           "include": "#raw_tag"
         },
         {
+          "include": "#doc_tag"
+        },
+        {
           "include": "#comment_block"
         },
         {
@@ -93,13 +96,46 @@
         }
       ]
     },
+    "doc_tag": {
+      "begin": "{%-?\\s*(doc)\\s*-?%}",
+      "beginCaptures": {
+        "0": {
+          "name": "meta.tag.liquid"
+        },
+        "1": {
+          "name": "entity.name.tag.doc.liquid"
+        }
+      },
+      "contentName": "comment.block.documentation.liquid",
+      "end": "{%-?\\s*(enddoc)\\s*-?%}",
+      "endCaptures": {
+        "0": {
+          "name": "meta.tag.liquid"
+        },
+        "1": {
+          "name": "entity.name.tag.doc.liquid"
+        }
+      },
+      "name": "meta.block.doc.liquid",
+      "patterns": [
+        {
+          "include": "#liquid_doc_param_tag"
+        },
+        {
+          "include": "#liquid_doc_example_tag"
+        },
+        {
+          "include": "#liquid_doc_fallback_tag"
+        }
+      ]
+    },
     "filter": {
       "captures": {
         "1": {
           "name": "support.function.liquid"
         }
       },
-      "match": "\\|\\s*((?![\\.0-9])[a-zA-Z0-9_-]+:?)\\s*"
+      "match": "\\|\\s*((?![\\.0-9])[a-zA-Z0-9_-]+\\:?)\\s*"
     },
     "injection": {
       "patterns": [
@@ -203,8 +239,38 @@
       "match": "\\b(false|true|nil|blank)\\b|empty(?!\\?)",
       "name": "constant.language.liquid"
     },
+    "liquid_doc_example_tag": {
+      "captures": {
+        "1": {
+          "name": "storage.type.class.liquid"
+        }
+      },
+      "match": "(@example)\\b"
+    },
+    "liquid_doc_fallback_tag": {
+      "captures": {
+        "1": {
+          "name": "storage.type.class.liquid"
+        }
+      },
+      "match": "(@\\w+)\\b"
+    },
+    "liquid_doc_param_tag": {
+      "captures": {
+        "1": {
+          "name": "storage.type.class.liquid"
+        },
+        "2": {
+          "name": "entity.name.type.instance.liquid"
+        },
+        "3": {
+          "name": "variable.other.liquid"
+        }
+      },
+      "match": "(@param)\\s+(?:({[^}]*}?)\\s+)?([a-zA-Z_]\\w*)?"
+    },
     "number": {
-      "match": "((-|\\+)\\s*)?\\d+(\\.\\d+)?",
+      "match": "((-|\\+)\\s*)?[0-9]+(\\.[0-9]+)?",
       "name": "constant.numeric.liquid"
     },
     "object": {
@@ -239,7 +305,7 @@
           "name": "keyword.operator.expression.liquid"
         }
       },
-      "match": "(?:(?<=\\s)|\\b)(==|!=|>|<|>=|<=|or|and|contains)(?:(?=\\s)|\\b)"
+      "match": "(?:(?<=\\s)|\\b)(\\=\\=|!\\=|\\>|\\<|\\>\\=|\\<\\=|or|and|contains)(?:(?=\\s)|\\b)"
     },
     "range": {
       "begin": "\\(",
@@ -915,7 +981,7 @@
           "match": "(\\[)(\\|)(?=[^\\]]*)(?=\\])"
         },
         {
-          "match": "(?<=\\s)(\\+|-|\\/|\\*)(?=\\s)",
+          "match": "(?<=\\s)(\\+|\\-|\\/|\\*)(?=\\s)",
           "name": "invalid.illegal.filter.liquid"
         },
         {
@@ -948,7 +1014,7 @@
           "name": "variable.language.liquid"
         },
         {
-          "match": "((?<=\\w:\\s)\\w+)",
+          "match": "((?<=\\w\\:\\s)\\w+)",
           "name": "variable.parameter.liquid"
         },
         {

@@ -1079,7 +1079,7 @@
             }
           },
           "comment": "io:fwrite format control sequence",
-          "match": "(~)((-)?\\d++|(\\*))?((\\.)(\\d++|(\\*))?((\\.)((\\*)|.))?)?[tlkK]*[~cfegswpWPBX#bx+ni]",
+          "match": "(~)((\\-)?\\d++|(\\*))?((\\.)(\\d++|(\\*))?((\\.)((\\*)|.))?)?[tlkK]*[~cfegswpWPBX#bx\\+ni]",
           "name": "constant.character.format.placeholder.other.erlang"
         },
         {
@@ -1292,7 +1292,7 @@
               "name": "punctuation.separator.float-exponent.erlang"
             }
           },
-          "match": "\\d++(\\.)\\d++([eE][+\\-]?\\d++)?",
+          "match": "\\d++(\\.)\\d++([eE][\\+\\-]?\\d++)?",
           "name": "constant.numeric.float.erlang"
         },
         {

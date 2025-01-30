@@ -101,7 +101,7 @@
           ]
         },
         {
-          "begin": "^(NOTE|TIP|IMPORTANT|WARNING|CAUTION):\\p{Blank}+",
+          "begin": "^(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\\:\\p{Blank}+",
           "captures": {
             "1": {
               "name": "entity.name.function.asciidoc"
@@ -315,7 +315,7 @@
               ]
             }
           },
-          "match": "^\\[(|\\p{Blank}*[\\p{Word}{,.#\"'%].*)\\]$",
+          "match": "^\\[(|\\p{Blank}*[\\p{Word}\\{,.#\"'%].*)\\]$",
           "name": "markup.heading.block-attribute.asciidoc"
         }
       ]
@@ -925,7 +925,7 @@
               "name": "string.unquoted.asciidoc"
             }
           },
-          "match": "(?:^|<|[\\s>()\\[\\];])((?<!\\\\)(?:https?|file|ftp|irc)://[^\\s\\[\\]<]*[^\\s.,\\[\\]<)])(?:\\[((?:\\\\\\]|[^\\]])*?)\\])?",
+          "match": "(?:^|<|[\\s>\\(\\)\\[\\];])((?<!\\\\)(?:https?|file|ftp|irc)://[^\\s\\[\\]<]*[^\\s.,\\[\\]<\\)])(?:\\[((?:\\\\\\]|[^\\]])*?)\\])?",
           "name": "markup.other.url.asciidoc"
         },
         {
@@ -937,7 +937,7 @@
               "name": "string.unquoted.asciidoc"
             }
           },
-          "match": "(?:^|<|[\\p{Blank}>()\\[\\];])((?<!\\\\)\\{uri-\\w+(?:[\\-]\\w+)*(?<!\\\\)\\})(?:\\[((?:\\\\\\]|[^\\]])*?)\\])",
+          "match": "(?:^|<|[\\p{Blank}>\\(\\)\\[\\];])((?<!\\\\)\\{uri-\\w+(?:[\\-]\\w+)*(?<!\\\\)\\})(?:\\[((?:\\\\\\]|[^\\]])*?)\\])",
           "name": "markup.other.url.asciidoc"
         },
         {

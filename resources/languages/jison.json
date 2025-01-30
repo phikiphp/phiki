@@ -292,7 +292,7 @@
               "include": "#quoted_strings"
             },
             {
-              "match": "\\b[A-Za-z_](?:[\\w-]*\\w)?\\b",
+              "match": "\\b[[:alpha:]_](?:[\\w-]*\\w)?\\b",
               "name": "string.unquoted.jison"
             }
           ]
@@ -314,7 +314,7 @@
               "include": "#quoted_strings"
             },
             {
-              "match": "\\b[A-Za-z_](?:[\\w-]*\\w)?\\b",
+              "match": "\\b[[:alpha:]_](?:[\\w-]*\\w)?\\b",
               "name": "string.unquoted.jison"
             }
           ]
@@ -344,7 +344,7 @@
               "include": "#quoted_strings"
             },
             {
-              "match": "<[A-Za-z_](?:[\\w-]*\\w)?>",
+              "match": "<[[:alpha:]_](?:[\\w-]*\\w)?>",
               "name": "invalid.unimplemented.jison"
             },
             {
@@ -362,7 +362,7 @@
           "name": "invalid.illegal.jison"
         },
         {
-          "match": "%[A-Za-z_](?:[\\w-]*\\w)?\\b",
+          "match": "%[[:alpha:]_](?:[\\w-]*\\w)?\\b",
           "name": "invalid.unimplemented.jison"
         },
         {
@@ -454,7 +454,7 @@
               "include": "#comments"
             },
             {
-              "match": "\\b[A-Za-z_](?:[\\w-]*\\w)?\\b",
+              "match": "\\b[[:alpha:]_](?:[\\w-]*\\w)?\\b",
               "name": "entity.name.constant.jison"
             },
             {
@@ -575,7 +575,7 @@
           "include": "#include_declarations"
         },
         {
-          "begin": "\\b[A-Za-z_](?:[\\w-]*\\w)?\\b",
+          "begin": "\\b[[:alpha:]_](?:[\\w-]*\\w)?\\b",
           "beginCaptures": {
             "0": {
               "name": "entity.name.constant.rule-result.jison"
@@ -620,7 +620,7 @@
                       "name": "punctuation.definition.named-reference.end.jison"
                     }
                   },
-                  "match": "(\\[)([A-Za-z_](?:[\\w-]*\\w)?)(\\])"
+                  "match": "(\\[)([[:alpha:]_](?:[\\w-]*\\w)?)(\\])"
                 },
                 {
                   "begin": "(%(prec))\\s*",

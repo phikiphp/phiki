@@ -90,7 +90,7 @@
           "name": "comment.line.cobol.fixed"
         }
       },
-      "match": "(^[0-9a-zA-Z\\s$#%\\.@\\- ][0-9a-zA-Z\\s$#%\\.@\\- ][0-9a-zA-Z\\s$#%\\.@\\- ][0-9a-zA-Z\\s$#%\\.@\\- ][0-9a-zA-Z\\s$#%\\.@\\- ][0-9a-zA-Z\\s$#%\\.@\\- ])(\\*.*$)"
+      "match": "(^[0-9a-zA-Z\\s\\$#%\\.@\\- ][0-9a-zA-Z\\s\\$#%\\.@\\- ][0-9a-zA-Z\\s\\$#%\\.@\\- ][0-9a-zA-Z\\s\\$#%\\.@\\- ][0-9a-zA-Z\\s\\$#%\\.@\\- ][0-9a-zA-Z\\s\\$#%\\.@\\- ])(\\*.*$)"
     },
     {
       "captures": {
@@ -115,7 +115,7 @@
           "name": "keyword.identifers.cobol"
         }
       },
-      "match": "^\\s+(\\d+)\\s+([0-9a-zA-Z][a-zA-Z\\-0-9_]+)\\s+((?i:constant))"
+      "match": "^\\s+([0-9]+)\\s+([0-9a-zA-Z][a-zA-Z\\-0-9_]+)\\s+((?i:constant))"
     },
     {
       "captures": {
@@ -126,7 +126,7 @@
           "name": "comment.line.cobol.newpage"
         }
       },
-      "match": "(^[0-9a-zA-Z\\s$#%\\.@][0-9a-zA-Z\\s$#%\\.@][0-9a-zA-Z\\s$#%\\.@][0-9a-zA-Z\\s$#%\\.@][0-9a-zA-Z\\s$#%\\.@][0-9a-zA-Z\\s$#%\\.@])(\\/.*$)"
+      "match": "(^[0-9a-zA-Z\\s\\$#%\\.@][0-9a-zA-Z\\s\\$#%\\.@][0-9a-zA-Z\\s\\$#%\\.@][0-9a-zA-Z\\s\\$#%\\.@][0-9a-zA-Z\\s\\$#%\\.@][0-9a-zA-Z\\s\\$#%\\.@])(\\/.*$)"
     },
     {
       "match": "^\\*.*$",
@@ -351,7 +351,7 @@
     },
     {
       "match": "(#)([0-9a-zA-Z][a-zA-Z\\-0-9]+)",
-      "name": "meta.symbol.cobol.forced"
+      "name": "meta.symbol.forced.cobol"
     },
     {
       "begin": "((?<![-_a-zA-Z0-9()-])(?i:installation|author|source-computer|object-computer|date-written|security|date-compiled)(\\.|$))",
@@ -366,10 +366,6 @@
         {
           "match": "(^[0-9 ][0-9 ][0-9 ][0-9 ][0-9 ][0-9 ])",
           "name": "constant.numeric.cobol"
-        },
-        {
-          "match": "(?i:with|debugging|mode)",
-          "name": "keyword.identifiers.cobol"
         }
       ]
     },
@@ -386,7 +382,7 @@
         }
       },
       "comment": "simple numerics in () and []",
-      "match": "(?<=(\\(|\\[))((-\\+)*\\s*[0-9 ,\\.+\\-\\*\\/]+)(?=(\\)|\\]))",
+      "match": "(?<=(\\(|\\[))((\\-\\+)*\\s*[0-9 ,\\.\\+\\-\\*\\/]+)(?=(\\)|\\]))",
       "name": "constant.numeric.cobol"
     },
     {
@@ -406,7 +402,7 @@
     {
       "begin": "(?i:exec\\s+sqlims|exec\\s+sql)",
       "contentName": "meta.embedded.block.openesql",
-      "end": "(?i:end-exec)",
+      "end": "(?i:end\\-exec)",
       "name": "keyword.verb.cobol",
       "patterns": [
         {
@@ -422,7 +418,7 @@
           "name": "comment.line.modern"
         },
         {
-          "match": "(:([0-9a-zA-Z\\-_])*)",
+          "match": "(\\:([0-9a-zA-Z\\-_])*)",
           "name": "variable.cobol"
         },
         {
@@ -433,7 +429,7 @@
     {
       "begin": "(?i:exec\\s+cics)",
       "contentName": "meta.embedded.block.cics",
-      "end": "(?i:end-exec)",
+      "end": "(?i:end\\-exec)",
       "name": "keyword.verb.cobol",
       "patterns": [
         {
@@ -464,7 +460,7 @@
     {
       "begin": "(?i:exec\\s+dli)",
       "contentName": "meta.embedded.block.dli",
-      "end": "(?i:end-exec)",
+      "end": "(?i:end\\-exec)",
       "name": "keyword.verb.cobol",
       "patterns": [
         {
@@ -498,7 +494,7 @@
     {
       "begin": "(?i:exec\\s+sqlims)",
       "contentName": "meta.embedded.block.openesql",
-      "end": "(?i:end-exec)",
+      "end": "(?i:end\\-exec)",
       "name": "keyword.verb.cobol",
       "patterns": [
         {
@@ -506,7 +502,7 @@
           "name": "comment.line.modern"
         },
         {
-          "match": "(:([a-zA-Z\\-])*)",
+          "match": "(\\:([a-zA-Z\\-])*)",
           "name": "variable.cobol"
         },
         {
@@ -517,7 +513,7 @@
     {
       "begin": "(?i:exec\\s+ado)",
       "contentName": "meta.embedded.block.openesql",
-      "end": "(?i:end-exec)",
+      "end": "(?i:end\\-exec)",
       "name": "keyword.verb.cobol",
       "patterns": [
         {
@@ -529,7 +525,7 @@
           "name": "comment.line.modern"
         },
         {
-          "match": "(:([a-zA-Z\\-])*)",
+          "match": "(\\:([a-zA-Z\\-])*)",
           "name": "variable.cobol"
         },
         {
@@ -540,7 +536,7 @@
     {
       "begin": "(?i:exec\\s+html)",
       "contentName": "meta.embedded.block.html",
-      "end": "(?i:end-exec)",
+      "end": "(?i:end\\-exec)",
       "name": "keyword.verb.cobol",
       "patterns": [
         {
@@ -551,7 +547,7 @@
     {
       "begin": "(?i:exec\\s+java)",
       "contentName": "meta.embedded.block.java",
-      "end": "(?i:end-exec)",
+      "end": "(?i:end\\-exec)",
       "name": "keyword.verb.cobol",
       "patterns": [
         {
@@ -829,7 +825,7 @@
         }
       },
       "comment": "type ssss ",
-      "match": "(?<![-_])(?i:type|new)\\s+([a-zA-Z][a-zA-Z0-9$\\-\\._]*|[a-zA-Z])(?=\\.$)"
+      "match": "(?<![-_])(?i:type|new)\\s+([a-zA-Z][a-zA-Z0-9\\$\\-\\._]*|[a-zA-Z])(?=\\.$)"
     },
     {
       "match": "(?<![-_])(?i:string)(?=\\s+value|\\.)",
@@ -862,7 +858,7 @@
         }
       },
       "comment": " ::.. ",
-      "match": "(?i:self)(::)([0-9a-zA-Z_\\-\\.]*)(?=\\.$)"
+      "match": "(?i:self)(\\:\\:)([0-9a-zA-Z_\\-\\.]*)(?=\\.$)"
     },
     {
       "captures": {
@@ -874,7 +870,7 @@
         }
       },
       "comment": " ::.. ",
-      "match": "(::)([0-9a-zA-Z_\\-\\.]*)"
+      "match": "(\\:\\:)([0-9a-zA-Z_\\-\\.]*)"
     },
     {
       "captures": {
@@ -906,7 +902,7 @@
           "name": "constant.numeric.cobol"
         }
       },
-      "match": "(?<![-_])((?i:picture\\s+is|picture|pic\\s+is|pic)\\s+[-+sS\\*$09aAbBxXuUpPnNzZ/,.]*)\\((\\d*)\\)([vV][-+sS\\*$09aAbBxXuUpPnNzZ/,\\.]*)\\((\\d*)\\)[-|+]"
+      "match": "(?<![-_])((?i:picture\\s+is|picture|pic\\s+is|pic)\\s+[-+sS\\*$09aAbBxXuUpPnNzZ/,.]*)\\(([0-9]*)\\)([vV][-+sS\\*$09aAbBxXuUpPnNzZ/,\\.]*)\\(([0-9]*)\\)[-|+]"
     },
     {
       "captures": {
@@ -923,7 +919,7 @@
           "name": "constant.numeric.cobol"
         }
       },
-      "match": "(?<![-_])((?i:picture\\s+is|picture|pic\\s+is|pic)\\s+[-+sS\\*$09aAbBxXuUpPnNzZ/,.]*)\\((\\d*)\\)([vV][-+sS\\*$09aAbBxXuUpPnNzZ/,\\.]*)\\((\\d*)\\)"
+      "match": "(?<![-_])((?i:picture\\s+is|picture|pic\\s+is|pic)\\s+[-+sS\\*$09aAbBxXuUpPnNzZ/,.]*)\\(([0-9]*)\\)([vV][-+sS\\*$09aAbBxXuUpPnNzZ/,\\.]*)\\(([0-9]*)\\)"
     },
     {
       "captures": {
@@ -937,14 +933,14 @@
           "name": "storage.type.picture8.cobol"
         }
       },
-      "match": "(?<![-_])((?i:picture\\s+is|picture|pic\\s+is|pic)\\s+[-+sS\\*$09aAbBxXuUpPnNzZ/,.]*)\\((\\d*)\\)([vV\\.][-+s\\*$09aAbBsSnNxXuUzZ/,]*[0-9\\.()])*"
+      "match": "(?<![-_])((?i:picture\\s+is|picture|pic\\s+is|pic)\\s+[-+sS\\*$09aAbBxXuUpPnNzZ/,.]*)\\(([0-9]*)\\)([vV\\.][-+s\\*$09aAbBsSnNxXuUzZ/,]*[0-9\\.()])*"
     },
     {
-      "match": "(?<![-_])(?i:picture\\s+is|picture|pic\\s+is|pic)\\s+[-+sS\\*$09aAbBsSnpPNxXuUzZ/,.]*\\(\\d*\\)[Vv\\.][-+s\\*0$9aAbBsSnNxpPxXuUzZ/,]*",
+      "match": "(?<![-_])(?i:picture\\s+is|picture|pic\\s+is|pic)\\s+[-+sS\\*$09aAbBsSnpPNxXuUzZ/,.]*\\([0-9]*\\)[Vv\\.][-+s\\*0$9aAbBsSnNxpPxXuUzZ/,]*",
       "name": "storage.type.picture7.cobol"
     },
     {
-      "match": "(?<![-_])(?i:picture\\s+is|picture|pic\\s+is|pic)\\s+[-+sS\\*$09aAbBsSnpPNxXuUzZ/,.]*\\(\\d*\\)[-+s\\*0$9aAbBsSnNxpPxXuUzZ/,]*[Vv\\.][-+s\\*0$9aAbBsSnNxpPxXuUzZ/,]*",
+      "match": "(?<![-_])(?i:picture\\s+is|picture|pic\\s+is|pic)\\s+[-+sS\\*$09aAbBsSnpPNxXuUzZ/,.]*\\([0-9]*\\)[-+s\\*0$9aAbBsSnNxpPxXuUzZ/,]*[Vv\\.][-+s\\*0$9aAbBsSnNxpPxXuUzZ/,]*",
       "name": "storage.type.picture6.cobol"
     },
     {
@@ -956,14 +952,14 @@
           "name": "constant.numeric.cobol"
         }
       },
-      "match": "(?<![-_])((?i:picture\\s+is|picture|pic\\s+is|pic)\\s+[-+sS\\*$09aAbBsSnpPNxuUXzZ/,.]*)\\((\\d*)\\)[-+s\\*0$9aAbBsSnNxpPxXuUzZ/,]*"
+      "match": "(?<![-_])((?i:picture\\s+is|picture|pic\\s+is|pic)\\s+[-+sS\\*$09aAbBsSnpPNxuUXzZ/,.]*)\\(([0-9]*)\\)[-+s\\*0$9aAbBsSnNxpPxXuUzZ/,]*"
     },
     {
-      "match": "(?<![-_])(?i:picture\\s+is|picture|pic\\s+is|pic)\\s+[-+sS\\*$09aAbBsSnpNNxXuUzZ/,.]*\\(\\d*\\)",
+      "match": "(?<![-_])(?i:picture\\s+is|picture|pic\\s+is|pic)\\s+[-+sS\\*$09aAbBsSnpNNxXuUzZ/,.]*\\([0-9]*\\)",
       "name": "storage.type.picture4.cobol"
     },
     {
-      "match": "(?<![-_])(?i:picture\\s+is|picture|pic\\s+is|pic)\\s+[sS]?[9aAbBsSnNxXuUzZ]*[Vv][9aAxbXuUzZ]*\\(\\d*\\)",
+      "match": "(?<![-_])(?i:picture\\s+is|picture|pic\\s+is|pic)\\s+[sS]?[9aAbBsSnNxXuUzZ]*[Vv][9aAxbXuUzZ]*\\([0-9]*\\)",
       "name": "storage.type.picture3.cobol"
     },
     {
@@ -983,7 +979,7 @@
           "name": "invalid.illegal.constant.numeric.integer"
         }
       },
-      "match": "((?<![-_])(?i:binary|computational-4|comp-4|computational-5|comp-5))\\((\\d*)\\)"
+      "match": "((?<![-_])(?i:binary|computational-4|comp-4|computational-5|comp-5))\\(([0-9]*)\\)"
     },
     {
       "match": "(?i:cblt-x1-compx-const|cblt-x2-compx-const|cblt-x4-compx-const|cblt-alphanum-const|cblt-x9-compx|cblt-x8-compx|cblt-x8-comp5|cblt-x4-compx|cblt-x4-comp5|cblt-x2-compx|cblt-x2-comp5|cblt-x1-compx|cblt-x1-comp5|cblt-x1|cblt-vfile-status|cblt-vfile-handle|cblt-sx8-comp5|cblt-sx4-comp5|cblt-sx2-comp5|cblt-sx1-comp5|cblt-subsys-params|cblt-splitjoin-buf|cblt-screen-position|cblt-rtncode|cblt-request-context|cblt-reqhand-service-info|cblt-reqhand-service-funcs|cblt-reqhand-response|cblt-reqhand-funcs|cblt-prog-info-params|cblt-prog-info-arg-info|cblt-printer-properties|cblt-printer-name|cblt-printer-info|cblt-printer-default|cblt-ppointer|cblt-pointer|cblt-os-ssize|cblt-os-size|cblt-os-offset|cblt-os-info-params|cblt-os-flags|cblt-node-name|cblt-nls-msg-params|cblt-nls-msg-number-pair|cblt-nls-msg-ins-struct|cblt-nls-msg-buffer|cblt-mouse-shape|cblt-mouse-rect|cblt-mouse-pos|cblt-mouse-event|cblt-mem-validate-param|cblt-idp-exit-service-funcs|cblt-idp-exit-info|cblt-HWND|cblt-HINSTANCE|cblt-get-scr-line-draw-buffer|cblt-get-scr-graphics-buffer|cblt-generic-attr-value|cblt-generic-attr-rgb-values|cblt-generic-attr-information|cblt-file-status|cblt-fileexist-buf|cblt-exit-params|cblt-exit-info-params|cblt-cancel-proc-params|cblt-bytestream-handle|cblt-alphanum)",
@@ -994,7 +990,7 @@
       "name": "storage.type.picture.cobol"
     },
     {
-      "match": "(?i:byte-length)\\s+\\d+",
+      "match": "(?i:byte-length)\\s+[0-9]+",
       "name": "storage.type.length.cobol"
     },
     {
@@ -1018,7 +1014,7 @@
       "name": "storage.modifier.cobol"
     },
     {
-      "match": "=|<|>|<=|>=|<>|\\+|-|\\*|\\/|(?<![-_])(?i:b-and|b-or|b-xor|b-exor|b-not|b-left|b-right|and|or|equals|equal|greater\\s+than|less\\s+than|greater)(?![0-9A-Za-z_-])",
+      "match": "=|<|>|<=|>=|<>|\\+|\\-|\\*|\\/|(?<![-_])(?i:b-and|b-or|b-xor|b-exor|b-not|b-left|b-right|and|or|equals|equal|greater\\s+than|less\\s+than|greater)(?![0-9A-Za-z_-])",
       "name": "keyword.operator.cobol"
     },
     {
@@ -1086,7 +1082,7 @@
       "name": "keyword.other.super.cobol"
     },
     {
-      "match": "(^\\d\\d\\d\\d\\d\\d)",
+      "match": "(^[0-9][0-9][0-9][0-9][0-9][0-9])",
       "name": "constant.numeric.cobol"
     },
     {
@@ -1107,10 +1103,10 @@
           "name": "meta.symbol.cobol"
         }
       },
-      "match": "(\\()(\\d*)(:)(\\d*)(\\))"
+      "match": "(\\()([0-9]*)(:)([0-9]*)(\\))"
     },
     {
-      "match": "([a-zA-Z-0-9_]*[a-zA-Z0-9]|([#]?[0-9a-zA-Z]+[a-zA-Z-0-9_]*[a-zA-Z0-9]))",
+      "match": "([a-zA-Z-0-9-_]*[a-zA-Z0-9]|([#]?[0-9a-zA-Z]+[a-zA-Z-0-9_-]*[a-zA-Z0-9]))",
       "name": "meta.symbol.cobol"
     }
   ],
@@ -1124,15 +1120,15 @@
       "name": "keyword.verb.dli"
     },
     "dli-options": {
-      "match": "(?<![\\-\\w])(?i:statusgroup|checkpoint|chkp|id|lockclass|segment|info|where|from|using|keyfeedback|feedbacklen|variable|first|last|current|seglength|offset|locked|movenext|getfirst|set|setcond|setzero|setparent|fieldlength|keys|maxlength|length\\d*|area\\d*|psc|pcs|pcb|sysserve|into)(?![\\-\\w])",
+      "match": "(?<![\\-\\w])(?i:statusgroup|checkpoint|chkp|id|lockclass|segment|info|where|from|using|keyfeedback|feedbacklen|variable|first|last|current|seglength|offset|locked|movenext|getfirst|set|setcond|setzero|setparent|fieldlength|keys|maxlength|length[0-9]*|area[0-9]*|psc|pcs|pcb|sysserve|into)(?![\\-\\w])",
       "name": "keyword.other.dli"
     },
     "number-complex-constant": {
-      "match": "(-|\\+)?(((\\d+(\\.\\d+))|(\\.\\d+))((e|E)(\\+|-)?\\d+)?)([LlFfUuDd]|UL|ul)?(?=\\s|\\.$|,|\\))",
+      "match": "(\\-|\\+)?((([0-9]+(\\.[0-9]+))|(\\.[0-9]+))((e|E)(\\+|-)?[0-9]+)?)([LlFfUuDd]|UL|ul)?(?=\\s|\\.$|,|\\))",
       "name": "constant.numeric.cobol"
     },
     "number-simple-constant": {
-      "match": "(-|\\+)?(\\d+)(?=\\s|\\.$|,|\\))",
+      "match": "(\\-|\\+)?([0-9]+)(?=\\s|\\.$|,|\\))",
       "name": "constant.numeric.cobol"
     },
     "string-double-quoted-constant": {

@@ -33,7 +33,7 @@
     },
     {
       "comment": "Escape Characters",
-      "match": "(\\\\\\\\|\\\\\\||\\\\\\*|\\\\=)",
+      "match": "(\\\\\\\\|\\\\\\||\\\\\\*|\\\\\\=)",
       "name": "contant.character.escape.splunk_search"
     },
     {
@@ -48,12 +48,12 @@
     },
     {
       "comment": "Splunk Macro Parameters",
-      "match": "(?<=\\(|,|[^=]\\s{300})([^()\\\",=]+)(?=\\)|,)",
+      "match": "(?<=\\(|,|[^=]\\s{300})([^\\(\\)\\\",=]+)(?=\\)|,)",
       "name": "variable.parameter.splunk_search"
     },
     {
       "comment": "Splunk Variables",
-      "match": "([\\w\\.]+)(\\[\\]|\\{\\})?([\\s]*)(?==)",
+      "match": "([\\w\\.]+)(\\[\\]|\\{\\})?([\\s]*)(?=\\=)",
       "name": "variable.splunk_search"
     },
     {

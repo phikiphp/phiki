@@ -44,7 +44,7 @@
       ]
     },
     {
-      "begin": "^\\s*([a-z]\\w*)(\\(?)(?=.*:-.*)",
+      "begin": "^\\s*([a-z][a-zA-Z0-9_]*)(\\(?)(?=.*:-.*)",
       "beginCaptures": {
         "1": {
           "name": "entity.name.function.clause.prolog"
@@ -76,7 +76,7 @@
       ]
     },
     {
-      "begin": "^\\s*([a-z]\\w*)(\\(?)(?=.*-->.*)",
+      "begin": "^\\s*([a-z][a-zA-Z0-9_]*)(\\(?)(?=.*-->.*)",
       "beginCaptures": {
         "1": {
           "name": "entity.name.function.dcg.prolog"
@@ -139,7 +139,7 @@
       ]
     },
     {
-      "begin": "^\\s*([a-zA-Z]\\w*)(\\(?)(?!.*(:-|-->).*)",
+      "begin": "^\\s*([a-zA-Z][a-zA-Z0-9_]*)(\\(?)(?!.*(:-|-->).*)",
       "beginCaptures": {
         "1": {
           "name": "entity.name.function.fact.prolog"
@@ -178,7 +178,7 @@
     "atom": {
       "patterns": [
         {
-          "match": "(?<!\\w)[a-z]\\w*(?!\\s*\\(|\\w)",
+          "match": "(?<![a-zA-Z0-9_])[a-z][a-zA-Z0-9_]*(?!\\s*\\(|[a-zA-Z0-9_])",
           "name": "constant.other.atom.simple.prolog"
         },
         {
@@ -276,7 +276,7 @@
           "name": "keyword.control.cut.prolog"
         },
         {
-          "match": "(\\s(is)\\s)|=:=|=\\.\\.|=?\\\\?=|\\\\\\+|@?>|@?=?<|\\+|\\*|-",
+          "match": "(\\s(is)\\s)|=:=|=\\.\\.|=?\\\\?=|\\\\\\+|@?>|@?=?<|\\+|\\*|\\-",
           "name": "keyword.operator.prolog"
         }
       ]
@@ -284,7 +284,7 @@
     "variable": {
       "patterns": [
         {
-          "match": "(?<!\\w)[A-Z]\\w*",
+          "match": "(?<![a-zA-Z0-9_])[A-Z][a-zA-Z0-9_]*",
           "name": "variable.parameter.uppercase.prolog"
         },
         {

@@ -99,7 +99,7 @@
               "name": "variable.other.jinja.block"
             }
           },
-          "match": "\\s*\\b(block)\\s+([a-zA-Z_]\\w*)\\b"
+          "match": "\\s*\\b(block)\\s+([a-zA-Z_][a-zA-Z0-9_]*)\\b"
         },
         {
           "captures": {
@@ -110,7 +110,7 @@
               "name": "variable.other.jinja.filter"
             }
           },
-          "match": "\\s*\\b(filter)\\s+([a-zA-Z_]\\w*)\\b"
+          "match": "\\s*\\b(filter)\\s+([a-zA-Z_][a-zA-Z0-9_]*)\\b"
         },
         {
           "captures": {
@@ -121,7 +121,7 @@
               "name": "variable.other.jinja.test"
             }
           },
-          "match": "\\s*\\b(is)\\s+([a-zA-Z_]\\w*)\\b"
+          "match": "\\s*\\b(is)\\s+([a-zA-Z_][a-zA-Z0-9_]*)\\b"
         },
         {
           "captures": {
@@ -129,7 +129,7 @@
               "name": "keyword.control.jinja"
             }
           },
-          "match": "(?<=\\{\\%-|\\{\\%)\\s*\\b([a-zA-Z_]\\w*)\\b(?!\\s*[,=])"
+          "match": "(?<=\\{\\%-|\\{\\%)\\s*\\b([a-zA-Z_][a-zA-Z0-9_]*)\\b(?!\\s*[,=])"
         },
         {
           "match": "\\b(and|else|if|in|import|not|or|recursive|with(out)?\\s+context)\\b",
@@ -144,11 +144,11 @@
           "name": "variable.language.jinja"
         },
         {
-          "match": "[a-zA-Z_]\\w*",
+          "match": "[a-zA-Z_][a-zA-Z0-9_]*",
           "name": "variable.other.jinja"
         },
         {
-          "match": "(\\+|-|\\*\\*|\\*|//|/|%)",
+          "match": "(\\+|\\-|\\*\\*|\\*|//|/|%)",
           "name": "keyword.operator.arithmetic.jinja"
         },
         {
@@ -160,7 +160,7 @@
               "name": "variable.other.jinja.filter"
             }
           },
-          "match": "(\\|)([a-zA-Z_]\\w*)"
+          "match": "(\\|)([a-zA-Z_][a-zA-Z0-9_]*)"
         },
         {
           "captures": {
@@ -171,7 +171,7 @@
               "name": "variable.other.jinja.attribute"
             }
           },
-          "match": "(\\.)([a-zA-Z_]\\w*)"
+          "match": "(\\.)([a-zA-Z_][a-zA-Z0-9_]*)"
         },
         {
           "begin": "\\[",

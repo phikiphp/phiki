@@ -385,7 +385,7 @@
       ]
     },
     "attributes-keyvalue": {
-      "begin": "([_@$A-Za-z][:._\\-$0-9A-Za-z]*)",
+      "begin": "([_@$[:alpha:]][:._\\-$[:alnum:]]*)",
       "beginCaptures": {
         "0": {
           "patterns": [
@@ -483,7 +483,7 @@
               "name": "punctuation.definition.entity.astro"
             }
           },
-          "match": "(&)#\\d+(;)",
+          "match": "(&)#[0-9]+(;)",
           "name": "constant.character.entity.numeric.decimal.astro"
         },
         {
@@ -737,7 +737,7 @@
     "tags-name": {
       "patterns": [
         {
-          "match": "[A-Z]\\w*",
+          "match": "[A-Z][a-zA-Z0-9_]*",
           "name": "support.class.component.astro"
         },
         {

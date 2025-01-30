@@ -402,7 +402,7 @@
           "name": "constant.numeric.float.graphql"
         }
       },
-      "match": "\\s*(-?(0|[1-9]\\d*)(\\.\\d+)?((e|E)(\\+|-)?\\d+)?)"
+      "match": "\\s*(-?(0|[1-9][0-9]*)(\\.[0-9]+)?((e|E)(\\+|-)?[0-9]+)?)"
     },
     "graphql-fragment-definition": {
       "begin": "\\s*(?:(\\bfragment\\b)\\s*([_A-Za-z][_0-9A-Za-z]*)?\\s*(?:(\\bon\\b)\\s*([_A-Za-z][_0-9A-Za-z]*)))",

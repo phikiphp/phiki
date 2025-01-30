@@ -83,7 +83,7 @@
           "match": "(#|\\h{4}|\\h{8}|cr|lf|tab)(?:,(#|\\h{4}|\\h{8}|cr|lf|tab))*"
         },
         {
-          "match": "[^)]",
+          "match": "[^\\)]",
           "name": "invalid.illegal.escapesequence.powerquery"
         }
       ]

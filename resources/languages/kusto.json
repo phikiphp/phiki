@@ -226,7 +226,7 @@
     },
     {
       "comment": "User-defined functions: https://docs.microsoft.com/en-us/azure/kusto/query/functions/user-defined-functions",
-      "match": "(?<=let ).+(?=\\W*=)",
+      "match": "(?<=let )[^\\n]+(?=\\W*=)",
       "name": "entity.function.name.lambda.kusto"
     },
     {
@@ -622,7 +622,7 @@
     "Numeric": {
       "patterns": [
         {
-          "match": "\\b((0(x|X)[0-9a-fA-F]*)|((\\d+\\.?\\d*+)|(\\.\\d+))((e|E)(\\+|-)?\\d+)?)(L|l|UL|ul|u|U|F|f|ll|LL|ull|ULL)?(?=\\b|\\w)",
+          "match": "\\b((0(x|X)[0-9a-fA-F]*)|(([0-9]+\\.?[0-9]*+)|(\\.[0-9]+))((e|E)(\\+|-)?[0-9]+)?)(L|l|UL|ul|u|U|F|f|ll|LL|ull|ULL)?(?=\\b|\\w)",
           "name": "constant.numeric.kusto"
         }
       ]

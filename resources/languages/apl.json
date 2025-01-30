@@ -914,7 +914,7 @@
     "number": {
       "patterns": [
         {
-          "match": "¯?\\d[¯0-9A-Za-z]*(?:\\.[¯0-9Ee][¯0-9A-Za-z]*)*|¯?\\.[0-9Ee][¯0-9A-Za-z]*",
+          "match": "¯?[0-9][¯0-9A-Za-z]*(?:\\.[¯0-9Ee][¯0-9A-Za-z]*)*|¯?\\.[0-9Ee][¯0-9A-Za-z]*",
           "name": "constant.numeric.apl"
         }
       ]

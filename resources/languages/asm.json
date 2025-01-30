@@ -47,8 +47,8 @@
           "name": "comment.block"
         },
         {
-          "begin": "^\\s*[#%]\\s*if\\s+0\\b",
-          "end": "^\\s*[#%]\\s*endif\\b",
+          "begin": "^\\s*[\\#%]\\s*if\\s+0\\b",
+          "end": "^\\s*[\\#%]\\s*endif\\b",
           "name": "comment.preprocessor"
         }
       ]
@@ -56,47 +56,47 @@
     "constants": {
       "patterns": [
         {
-          "match": "(?i)\\b0[by](?:[01][01_]*)\\.(?:(?:[01][01_]*)?(?:p[+-]?(?:\\d[0-9_]*))?\\b)?",
+          "match": "(?i)\\b0[by](?:[01][01_]*)\\.(?:(?:[01][01_]*)?(?:p[+-]?(?:[0-9][0-9_]*))?\\b)?",
           "name": "constant.numeric.binary.floating-point.asm.x86_64"
         },
         {
-          "match": "(?i)\\b0[by](?:[01][01_]*)(?:p[+-]?(?:\\d[0-9_]*))\\b",
+          "match": "(?i)\\b0[by](?:[01][01_]*)(?:p[+-]?(?:[0-9][0-9_]*))\\b",
           "name": "constant.numeric.binary.floating-point.asm.x86_64"
         },
         {
-          "match": "(?i)\\b0[oq](?:[0-7][0-7_]*)\\.(?:(?:[0-7][0-7_]*)?(?:p[+-]?(?:\\d[0-9_]*))?\\b)?",
+          "match": "(?i)\\b0[oq](?:[0-7][0-7_]*)\\.(?:(?:[0-7][0-7_]*)?(?:p[+-]?(?:[0-9][0-9_]*))?\\b)?",
           "name": "constant.numeric.octal.floating-point.asm.x86_64"
         },
         {
-          "match": "(?i)\\b0[oq](?:[0-7][0-7_]*)(?:p[+-]?(?:\\d[0-9_]*))\\b",
+          "match": "(?i)\\b0[oq](?:[0-7][0-7_]*)(?:p[+-]?(?:[0-9][0-9_]*))\\b",
           "name": "constant.numeric.octal.floating-point.asm.x86_64"
         },
         {
-          "match": "(?i)\\b(?:0[dt])?(?:\\d[0-9_]*)\\.(?:(?:\\d[0-9_]*)?(?:e[+-]?(?:\\d[0-9_]*))?\\b)?",
+          "match": "(?i)\\b(?:0[dt])?(?:[0-9][0-9_]*)\\.(?:(?:[0-9][0-9_]*)?(?:e[+-]?(?:[0-9][0-9_]*))?\\b)?",
           "name": "constant.numeric.decimal.floating-point.asm.x86_64"
         },
         {
-          "match": "(?i)\\b(?:\\d[0-9_]*)(?:e[+-]?(?:\\d[0-9_]*))\\b",
+          "match": "(?i)\\b(?:[0-9][0-9_]*)(?:e[+-]?(?:[0-9][0-9_]*))\\b",
           "name": "constant.numeric.decimal.floating-point.asm.x86_64"
         },
         {
-          "match": "(?i)\\b(?:\\d[0-9_]*)p(?:\\d[0-9_]*)?\\b",
+          "match": "(?i)\\b(?:[0-9][0-9_]*)p(?:[0-9][0-9_]*)?\\b",
           "name": "constant.numeric.decimal.packed-bcd.asm.x86_64"
         },
         {
-          "match": "(?i)\\b0[xh](?:[0-9A-Fa-f][0-9A-Fa-f_]*)\\.(?:(?:[0-9A-Fa-f][0-9A-Fa-f_]*)?(?:p[+-]?(?:\\d[0-9_]*))?\\b)?",
+          "match": "(?i)\\b0[xh](?:[[:xdigit:]][[:xdigit:]_]*)\\.(?:(?:[[:xdigit:]][[:xdigit:]_]*)?(?:p[+-]?(?:[0-9][0-9_]*))?\\b)?",
           "name": "constant.numeric.hex.floating-point.asm.x86_64"
         },
         {
-          "match": "(?i)\\b0[xh](?:[0-9A-Fa-f][0-9A-Fa-f_]*)(?:p[+-]?(?:\\d[0-9_]*))\\b",
+          "match": "(?i)\\b0[xh](?:[[:xdigit:]][[:xdigit:]_]*)(?:p[+-]?(?:[0-9][0-9_]*))\\b",
           "name": "constant.numeric.hex.floating-point.asm.x86_64"
         },
         {
-          "match": "(?i)\\$\\d_?(?:[0-9A-Fa-f][0-9A-Fa-f_]*)?\\.(?:(?:[0-9A-Fa-f][0-9A-Fa-f_]*)?(?:p[+-]?(?:\\d[0-9_]*))?\\b)?",
+          "match": "(?i)\\$[0-9]\\_?(?:[[:xdigit:]][[:xdigit:]_]*)?\\.(?:(?:[[:xdigit:]][[:xdigit:]_]*)?(?:p[+-]?(?:[0-9][0-9_]*))?\\b)?",
           "name": "constant.numeric.hex.floating-point.asm.x86_64"
         },
         {
-          "match": "(?i)\\$\\d_?(?:[0-9A-Fa-f][0-9A-Fa-f_]*)(?:p[+-]?(?:\\d[0-9_]*))\\b",
+          "match": "(?i)\\$[0-9]\\_?(?:[[:xdigit:]][[:xdigit:]_]*)(?:p[+-]?(?:[0-9][0-9_]*))\\b",
           "name": "constant.numeric.hex.floating-point.asm.x86_64"
         },
         {
@@ -108,15 +108,15 @@
           "name": "constant.numeric.octal.asm.x86_64"
         },
         {
-          "match": "(?i)\\b(?:(?:0[dt](?:\\d[0-9_]*))|(?:(?:\\d[0-9_]*)[dt]?))\\b",
+          "match": "(?i)\\b(?:(?:0[dt](?:[0-9][0-9_]*))|(?:(?:[0-9][0-9_]*)[dt]?))\\b",
           "name": "constant.numeric.decimal.asm.x86_64"
         },
         {
-          "match": "(?i)(?:\\$\\d_?(?:[0-9A-Fa-f][0-9A-Fa-f_]*)?)\\b",
+          "match": "(?i)(?:\\$[0-9]\\_?(?:[[:xdigit:]][[:xdigit:]_]*)?)\\b",
           "name": "constant.numeric.hex.asm.x86_64"
         },
         {
-          "match": "(?i)\\b(?:(?:0[xh](?:[0-9A-Fa-f][0-9A-Fa-f_]*))|(?:(?:[0-9A-Fa-f][0-9A-Fa-f_]*)[hxHX]))\\b",
+          "match": "(?i)\\b(?:(?:0[xh](?:[[:xdigit:]][[:xdigit:]_]*))|(?:(?:[[:xdigit:]][[:xdigit:]_]*)[hxHX]))\\b",
           "name": "constant.numeric.hex.asm.x86_64"
         }
       ]
@@ -147,7 +147,7 @@
               "name": "punctuation.separator.asm.x86_64"
             }
           },
-          "match": "(\\.\\.@)((?:[A-Za-z_?](?:[0-9A-Za-z_$#@~.?]*)))(?:(:)?|\\b)",
+          "match": "(\\.\\.@)((?:[[:alpha:]_?](?:[[:alnum:]_$#@~.?]*)))(?:(\\:)?|\\b)",
           "name": "entity.name.function.asm.x86_64"
         },
         {
@@ -162,7 +162,7 @@
               "name": "punctuation.separator.asm.x86_64"
             }
           },
-          "match": "(?:(\\.)?|\\b)((?:[A-Za-z_?](?:[0-9A-Za-z_$#@~.?]*)))(?:(:))",
+          "match": "(?:(\\.)?|\\b)((?:[[:alpha:]_?](?:[[:alnum:]_$#@~.?]*)))(?:(\\:))",
           "name": "entity.name.function.asm.x86_64"
         },
         {
@@ -177,7 +177,7 @@
               "name": "punctuation.separator.asm.x86_64"
             }
           },
-          "match": "(\\.)(\\d+(?:[0-9A-Za-z_$#@~.?]*))(?:(:)?|\\b)",
+          "match": "(\\.)([0-9]+(?:[[:alnum:]_$#@~.?]*))(?:(\\:)?|\\b)",
           "name": "entity.name.function.asm.x86_64"
         },
         {
@@ -192,7 +192,7 @@
               "name": "punctuation.separator.asm.x86_64"
             }
           },
-          "match": "(?:(\\.)?|\\b)([0-9$@~](?:[0-9A-Za-z_$#@~.?]*))(?:(:))",
+          "match": "(?:(\\.)?|\\b)([0-9$@~](?:[[:alnum:]_$#@~.?]*))(?:(\\:))",
           "name": "invalid.illegal.entity.name.function.asm.x86_64"
         }
       ]
@@ -1486,11 +1486,11 @@
           "name": "constant.language.register.mmx.asm.x86_64"
         },
         {
-          "match": "(?i)\\b(?:[xy]mm(?:\\d|1[0-5])|mxcsr)\\b",
+          "match": "(?i)\\b(?:[xy]mm(?:[0-9]|1[0-5])|mxcsr)\\b",
           "name": "constant.language.register.sse_avx.asm.x86_64"
         },
         {
-          "match": "(?i)\\b(?:zmm(?:[12]?\\d|30|31))\\b",
+          "match": "(?i)\\b(?:zmm(?:[12]?[0-9]|30|31))\\b",
           "name": "constant.language.register.avx512.asm.x86_64"
         },
         {
@@ -1514,7 +1514,7 @@
           "name": "invalid.deprecated.constant.language.register.asm.x86_64"
         },
         {
-          "match": "(?i)\\b[xy]mm(?:1[6-9]|2\\d|3[01])\\b",
+          "match": "(?i)\\b[xy]mm(?:1[6-9]|2[0-9]|3[01])\\b",
           "name": "constant.language.register.general-purpose.alias.asm.x86_64"
         }
       ]

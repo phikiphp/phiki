@@ -922,7 +922,7 @@
           },
           "comment": "Variable for a tag",
           "contentName": "source.js",
-          "end": "(?=:?=|\\s|>|$|\\||\\(|/)",
+          "end": "(?=:?\\=|\\s|>|$|\\||\\(|/)",
           "name": "meta.embedded.js",
           "patterns": [
             {
@@ -1025,7 +1025,7 @@
             }
           },
           "comment": "HTML style tag with less",
-          "end": "/>|(?<=>)",
+          "end": "/>|(?<=\\>)",
           "endCaptures": {
             "0": {
               "name": "punctuation.definition.tag.end.marko"
@@ -1076,7 +1076,7 @@
             }
           },
           "comment": "HTML style tag with scss",
-          "end": "/>|(?<=>)",
+          "end": "/>|(?<=\\>)",
           "endCaptures": {
             "0": {
               "name": "punctuation.definition.tag.end.marko"
@@ -1127,7 +1127,7 @@
             }
           },
           "comment": "HTML style tag",
-          "end": "/>|(?<=>)",
+          "end": "/>|(?<=\\>)",
           "endCaptures": {
             "0": {
               "name": "punctuation.definition.tag.end.marko"
@@ -1178,7 +1178,7 @@
             }
           },
           "comment": "HTML script tag",
-          "end": "/>|(?<=>)",
+          "end": "/>|(?<=\\>)",
           "endCaptures": {
             "0": {
               "name": "punctuation.definition.tag.end.marko"
@@ -1229,7 +1229,7 @@
             }
           },
           "comment": "HTML normal tag",
-          "end": "/>|(?<=>)",
+          "end": "/>|(?<=\\>)",
           "endCaptures": {
             "0": {
               "name": "punctuation.definition.tag.end.marko"

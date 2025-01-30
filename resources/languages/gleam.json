@@ -54,25 +54,25 @@
           "include": "#boolean"
         },
         {
-          "match": "[A-Z][0-9A-Za-z]*",
+          "match": "[[:upper:]][[:alnum:]]*",
           "name": "entity.name.type.gleam"
         }
       ]
     },
     "decimal_number": {
-      "match": "\\b(0*[1-9][0-9_]*|0)(\\.(0*[1-9][0-9_]*|0)?(e-?0*[1-9]\\d*)?)?\\b",
+      "match": "\\b(0*[1-9][0-9_]*|0)(\\.(0*[1-9][0-9_]*|0)?(e-?0*[1-9][0-9]*)?)?\\b",
       "name": "constant.numeric.decimal.gleam",
       "patterns": [
       ]
     },
     "discards": {
-      "match": "\\b_(?:[\\w]+)?\\b",
+      "match": "\\b_(?:[[:word:]]+)?\\b",
       "name": "comment.unused.gleam"
     },
     "entity": {
       "patterns": [
         {
-          "begin": "\\b([a-z][\\w]*)\\b[\\s]*\\(",
+          "begin": "\\b([[:lower:]][[:word:]]*)\\b[[:space:]]*\\(",
           "captures": {
             "1": {
               "name": "entity.name.function.gleam"
@@ -86,11 +86,11 @@
           ]
         },
         {
-          "match": "\\b([a-z][\\w]*):\\s",
+          "match": "\\b([[:lower:]][[:word:]]*):\\s",
           "name": "variable.parameter.gleam"
         },
         {
-          "match": "\\b([a-z][\\w]*):",
+          "match": "\\b([[:lower:]][[:word:]]*):",
           "name": "entity.name.namespace.gleam"
         }
       ]
@@ -108,7 +108,7 @@
           "name": "keyword.control.gleam"
         },
         {
-          "match": "(<-|->)",
+          "match": "(<\\-|\\->)",
           "name": "keyword.operator.arrow.gleam"
         },
         {
@@ -144,11 +144,11 @@
           "name": "keyword.operator.other.gleam"
         },
         {
-          "match": "(\\+\\.|-\\.|/\\.|\\*\\.)",
+          "match": "(\\+\\.|\\-\\.|/\\.|\\*\\.)",
           "name": "keyword.operator.arithmetic.float.gleam"
         },
         {
-          "match": "(\\+|-|/|\\*|%)",
+          "match": "(\\+|\\-|/|\\*|%)",
           "name": "keyword.operator.arithmetic.int.gleam"
         },
         {

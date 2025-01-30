@@ -368,7 +368,7 @@
           "include": "#printed_expression"
         },
         {
-          "begin": "\\G(?=(#[^{\\w-])|[^\\w.#])",
+          "begin": "\\G(?=(#[^\\{\\w-])|[^\\w.#])",
           "comment": "Line starting with characters incompatible with tag name/id/class is standalone text.",
           "end": "$",
           "patterns": [
@@ -619,7 +619,7 @@
     "html_entity": {
       "patterns": [
         {
-          "match": "(&)([a-zA-Z0-9]+|#\\d+|#x[0-9a-fA-F]+)(;)",
+          "match": "(&)([a-zA-Z0-9]+|#[0-9]+|#x[0-9a-fA-F]+)(;)",
           "name": "constant.character.entity.html.text.pug"
         },
         {
@@ -834,7 +834,7 @@
       "match": "(mixin\\s+)([\\w-]+)(?:(\\()\\s*((?:[a-zA-Z_]\\w*\\s*)(?:,\\s*[a-zA-Z_]\\w*\\s*)*)(\\)))?$"
     },
     "printed_expression": {
-      "begin": "(!?=)\\s*",
+      "begin": "(!?\\=)\\s*",
       "captures": {
         "1": {
           "name": "constant"
@@ -1007,7 +1007,7 @@
       ]
     },
     "unbuffered_code": {
-      "begin": "(-|((\\w+)\\s+=))",
+      "begin": "(-|(([a-zA-Z0-9_]+)\\s+=))",
       "beginCaptures": {
         "3": {
           "name": "variable.parameter.javascript.embedded.pug"

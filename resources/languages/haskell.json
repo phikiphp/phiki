@@ -571,7 +571,7 @@
               "name": "keyword.operator.pipe.haskell"
             }
           },
-          "end": "(?:\\G|^)\\s*(?:(?:(?<!')\\b((?:[\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}'\\.])+)|('?(?<paren>\\((?:[^()]*|\\g<paren>)*\\)))|('?(?<brac>\\((?:[^\\[\\]]*|\\g<brac>)*\\])))\\s*(?:(?<![\\p{S}\\p{P}&&[^(),;\\[\\]`{}_\"']])(:[\\p{S}\\p{P}&&[^(),;\\[\\]`{}_\"']]*)|(`)([\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)(`)))|(?:(?<!')\\b([\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*))|(\\()\\s*(:[\\p{S}\\p{P}&&[^(),;\\[\\]`{}_\"']]*)\\s*(\\))",
+          "end": "(?:\\G|^)\\s*(?:(?:(?<!')\\b((?:[\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}'\\.])+)|('?(?<paren>\\((?:[^\\(\\)]*|\\g<paren>)*\\)))|('?(?<brac>\\((?:[^\\[\\]]*|\\g<brac>)*\\])))\\s*(?:(?<![\\p{S}\\p{P}&&[^(),;\\[\\]`{}_\"']])(:[\\p{S}\\p{P}&&[^(),;\\[\\]`{}_\"']]*)|(`)([\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)(`)))|(?:(?<!')\\b([\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*))|(\\()\\s*(:[\\p{S}\\p{P}&&[^(),;\\[\\]`{}_\"']]*)\\s*(\\))",
           "endCaptures": {
             "1": {
               "patterns": [
@@ -676,7 +676,7 @@
           "name": "punctuation.definition.string.end.haskell"
         }
       },
-      "match": "(?<![\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}'])(')(?:[ -\\[\\]-~]|(\\\\(?:NUL|SOH|STX|ETX|EOT|ENQ|ACK|BEL|BS|HT|LF|VT|FF|CR|SO|SI|DLE|DC1|DC2|DC3|DC4|NAK|SYN|ETB|CAN|EM|SUB|ESC|FS|GS|RS|US|SP|DEL|[abfnrtv\\\\\\\"'\\\\&]))|(\\\\o[0-7]+)|(\\\\x[0-9A-Fa-f]+)|(\\\\\\^[A-Z@\\[\\]\\\\\\^_]))(')",
+      "match": "(?<![\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}'])(')(?:[\\ -\\[\\]-~]|(\\\\(?:NUL|SOH|STX|ETX|EOT|ENQ|ACK|BEL|BS|HT|LF|VT|FF|CR|SO|SI|DLE|DC1|DC2|DC3|DC4|NAK|SYN|ETB|CAN|EM|SUB|ESC|FS|GS|RS|US|SP|DEL|[abfnrtv\\\\\\\"'\\\\&]))|(\\\\o[0-7]+)|(\\\\x[0-9A-Fa-f]+)|(\\\\\\^[A-Z@\\[\\]\\\\\\^_]))(')",
       "name": "string.quoted.single.haskell"
     },
     "comma": {
@@ -699,7 +699,7 @@
     "comments": {
       "patterns": [
         {
-          "begin": "^(\\s*)(--\\s[\\|$])",
+          "begin": "^(\\s*)(--\\s[\\|\\$])",
           "beginCaptures": {
             "2": {
               "name": "punctuation.whitespace.comment.leading.haskell"
@@ -720,7 +720,7 @@
         },
         {
           "applyEndPatternLast": 1,
-          "begin": "\\{-\\s?[\\|$\\*\\^]",
+          "begin": "\\{-\\s?[\\|\\$\\*\\^]",
           "captures": {
             "0": {
               "name": "punctuation.definition.comment.haskell"
@@ -1096,7 +1096,7 @@
         }
       },
       "comment": "Floats are decimal or hexadecimal",
-      "match": "\\b(?<!')(?:(\\d[_0-9]*\\.\\d[_0-9]*(?:[eE][-+]?\\d[_0-9]*)?|\\d[_0-9]*[eE][-+]?\\d[_0-9]*)|(0[xX]_*[0-9a-fA-F][_0-9a-fA-F]*\\.[0-9a-fA-F][_0-9a-fA-F]*(?:[pP][-+]?\\d[_0-9]*)?|0[xX]_*[0-9a-fA-F][_0-9a-fA-F]*[pP][-+]?\\d[_0-9]*))\\b(?!')"
+      "match": "\\b(?<!')(?:([0-9][_0-9]*\\.[0-9][_0-9]*(?:[eE][-+]?[0-9][_0-9]*)?|[0-9][_0-9]*[eE][-+]?[0-9][_0-9]*)|(0[xX]_*[0-9a-fA-F][_0-9a-fA-F]*\\.[0-9a-fA-F][_0-9a-fA-F]*(?:[pP][-+]?[0-9][_0-9]*)?|0[xX]_*[0-9a-fA-F][_0-9a-fA-F]*[pP][-+]?[0-9][_0-9]*))\\b(?!')"
     },
     "forall": {
       "begin": "\\b(?<!')(forall|∀)\\b(?!')",
@@ -1127,7 +1127,7 @@
       ]
     },
     "fun_decl": {
-      "begin": "^(\\s*)(?<fn>(?:[\\p{Ll}_][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*\\#*|\\(\\s*(?!--+\\))[\\p{S}\\p{P}&&[^(),:;\\[\\]`{}_\"']][\\p{S}\\p{P}&&[^(),;\\[\\]`{}_\"']]*\\s*\\))(?:\\s*,\\s*\\g<fn>)?)\\s*(?<![\\p{S}\\p{P}&&[^),;\\]`}_\"']])(::|∷)(?![\\p{S}\\p{P}&&[^(,;\\[`{_\"']])",
+      "begin": "^(\\s*)(?<fn>(?:[\\p{Ll}_][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*\\#*|\\(\\s*(?!--+\\))[\\p{S}\\p{P}&&[^(),:;\\[\\]`{}_\"']][\\p{S}\\p{P}&&[^(),;\\[\\]`{}_\"']]*\\s*\\))(?:\\s*,\\s*\\g<fn>)?)\\s*(?<![\\p{S}\\p{P}&&[^\\),;\\]`}_\"']])(::|∷)(?![\\p{S}\\p{P}&&[^\\(,;\\[`{_\"']])",
       "beginCaptures": {
         "2": {
           "name": "entity.name.function.haskell",
@@ -1311,7 +1311,7 @@
           "name": "constant.numeric.integral.binary.haskell"
         }
       },
-      "match": "\\b(?<!')(?:(\\d[_0-9]*)|(0[xX]_*[0-9a-fA-F][_0-9a-fA-F]*)|(0[oO]_*[0-7][_0-7]*)|(0[bB]_*[01][_01]*))\\b(?!')"
+      "match": "\\b(?<!')(?:([0-9][_0-9]*)|(0[xX]_*[0-9a-fA-F][_0-9a-fA-F]*)|(0[oO]_*[0-7][_0-7]*)|(0[bB]_*[01][_01]*))\\b(?!')"
     },
     "keyword": {
       "captures": {
@@ -1466,7 +1466,7 @@
       "name": "meta.preprocessor.haskell",
       "patterns": [
         {
-          "begin": "(?i)\\b(?<!')(LANGUAGE)\\b(?!')",
+          "begin": "(?xi) \\b(?<!')(LANGUAGE)\\b(?!')",
           "beginCaptures": {
             "1": {
               "name": "keyword.other.preprocessor.pragma.haskell"
@@ -1492,7 +1492,7 @@
           ]
         },
         {
-          "begin": "(?i)\\b(?<!')(SPECIALI(?:S|Z)E)(?:\\s*(\\[[^\\[\\]]*\\])?\\s*|\\s+)(instance)\\b(?!')",
+          "begin": "(?xi)\n  \\b(?<!')(SPECIALI(?:S|Z)E)\n  (?:\n  \\s*( \\[ [^\\[\\]]* \\])?\\s*\n  |\\s+\n  )\n  (instance)\\b(?!')",
           "beginCaptures": {
             "1": {
               "name": "keyword.other.preprocessor.pragma.haskell"
@@ -1516,7 +1516,7 @@
           ]
         },
         {
-          "begin": "(?i)\\b(?<!')(SPECIALI(?:S|Z)E)\\b(?!')(?:\\s+(INLINE)\\b(?!'))?(?:\\s*(\\[[^\\[\\]]*\\])?)\\s*",
+          "begin": "(?xi)\n  \\b(?<!')(SPECIALI(?:S|Z)E)\\b(?!')\n  (?:\\s+(INLINE)\\b(?!'))?\n  (?:\\s*(\\[ [^\\[\\]]* \\])?)\n  \\s*",
           "beginCaptures": {
             "1": {
               "name": "keyword.other.preprocessor.pragma.haskell"
@@ -1540,7 +1540,7 @@
           ]
         },
         {
-          "match": "(?i)\\b(?<!')(LANGUAGE|OPTIONS_GHC|INCLUDE|MINIMAL|UNPACK|OVERLAPS|INCOHERENT|NOUNPACK|SOURCE|OVERLAPPING|OVERLAPPABLE|INLINE|NOINLINE|INLINE?ABLE|CONLIKE|LINE|COLUMN|RULES|COMPLETE)\\b(?!')",
+          "match": "(?xi) \\b(?<!')\n  (LANGUAGE|OPTIONS_GHC|INCLUDE\n  |MINIMAL|UNPACK|OVERLAPS|INCOHERENT\n  |NOUNPACK|SOURCE|OVERLAPPING|OVERLAPPABLE|INLINE\n  |NOINLINE|INLINE?ABLE|CONLIKE|LINE|COLUMN|RULES\n  |COMPLETE)\\b(?!')",
           "name": "keyword.other.preprocessor.haskell"
         },
         {
@@ -1859,7 +1859,7 @@
               "name": "keyword.operator.postfix.hash.haskell"
             }
           },
-          "match": "(?<=[\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}\\p{S}\\p{P}&&[^#,;\\[`{]])(\\#+)(?![\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}\\p{S}\\p{P}&&[^),;\\]`}]])"
+          "match": "(?<=[\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}\\p{S}\\p{P}&&[^\\#,;\\[`{]])(\\#+)(?![\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}\\p{S}\\p{P}&&[^),;\\]`}]])"
         },
         {
           "captures": {
@@ -1867,7 +1867,7 @@
               "name": "keyword.operator.infix.tight.at.haskell"
             }
           },
-          "match": "(?<=[\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd})}\\]])(@)(?=[\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}(\\[{])"
+          "match": "(?<=[\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}\\)\\}\\]])(@)(?=[\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}\\(\\[\\{])"
         },
         {
           "captures": {
@@ -1887,7 +1887,7 @@
               "name": "keyword.operator.prefix.double-dollar.haskell"
             }
           },
-          "match": "(?<![\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}\\p{S}\\p{P}&&[^(,;\\[`{]])(?:(~)|(!)|(-)|(\\$)|(\\$\\$))(?=[\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}({\\[])"
+          "match": "(?<![\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}\\p{S}\\p{P}&&[^(,;\\[`{]])(?:(~)|(!)|(-)|(\\$)|(\\$\\$))(?=[\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}\\(\\{\\[])"
         }
       ]
     },
@@ -1927,7 +1927,7 @@
     "start_type_signature": {
       "patterns": [
         {
-          "begin": "^(\\s*)(::|∷)(?![\\p{S}\\p{P}&&[^(,;\\[`{_\"']])\\s*",
+          "begin": "^(\\s*)(::|∷)(?![\\p{S}\\p{P}&&[^\\(,;\\[`{_\"']])\\s*",
           "beginCaptures": {
             "2": {
               "name": "keyword.operator.double-colon.haskell"
@@ -1942,7 +1942,7 @@
           ]
         },
         {
-          "begin": "(?<![\\p{S}\\p{P}&&[^(,;\\[`{_\"']])(::|∷)(?![\\p{S}\\p{P}&&[^(,;\\[`{_\"']])",
+          "begin": "(?<![\\p{S}\\p{P}&&[^\\(,;\\[`{_\"']])(::|∷)(?![\\p{S}\\p{P}&&[^\\(,;\\[`{_\"']])",
           "beginCaptures": {
             "1": {
               "name": "keyword.operator.double-colon.haskell"
@@ -1977,7 +1977,7 @@
           "name": "constant.character.escape.haskell"
         },
         {
-          "match": "\\\\o[0-7]+|\\\\x[0-9A-Fa-f]+|\\\\\\d+",
+          "match": "\\\\o[0-7]+|\\\\x[0-9A-Fa-f]+|\\\\[0-9]+",
           "name": "constant.character.escape.octal.haskell"
         },
         {

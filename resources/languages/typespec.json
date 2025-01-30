@@ -26,7 +26,7 @@
       ]
     },
     "alias-statement": {
-      "begin": "\\b(alias)\\b\\s+(\\b[_$A-Za-z][_$0-9A-Za-z]*\\b|`(?:[^`\\\\]|\\\\.)*`)\\s*",
+      "begin": "\\b(alias)\\b\\s+(\\b[_$[:alpha:]][_$[:alnum:]]*\\b|`(?:[^`\\\\]|\\\\.)*`)\\s*",
       "beginCaptures": {
         "1": {
           "name": "keyword.other.tsp"
@@ -47,7 +47,7 @@
       ]
     },
     "augment-decorator-statement": {
-      "begin": "((@@)\\b[_$A-Za-z](?:[_$0-9A-Za-z]|\\.[_$A-Za-z])*\\b)",
+      "begin": "((@@)\\b[_$[:alpha:]](?:[_$[:alnum:]]|\\.[_$[:alpha:]])*\\b)",
       "beginCaptures": {
         "1": {
           "name": "entity.name.tag.tsp"
@@ -56,7 +56,7 @@
           "name": "entity.name.tag.tsp"
         }
       },
-      "end": "(?=[_$A-Za-z])|(?=,|;|@|\\)|\\}|\\b(?:extern)\\b|\\b(?:namespace|model|op|using|import|enum|alias|union|interface|dec|fn)\\b)",
+      "end": "(?=[_$[:alpha:]])|(?=,|;|@|\\)|\\}|\\b(?:extern)\\b|\\b(?:namespace|model|op|using|import|enum|alias|union|interface|dec|fn)\\b)",
       "name": "meta.augment-decorator-statement.typespec",
       "patterns": [
         {
@@ -77,7 +77,7 @@
       "name": "constant.language.tsp"
     },
     "callExpression": {
-      "begin": "(\\b[_$A-Za-z](?:[_$0-9A-Za-z]|\\.[_$A-Za-z])*\\b)\\s*(\\()",
+      "begin": "(\\b[_$[:alpha:]](?:[_$[:alnum:]]|\\.[_$[:alpha:]])*\\b)\\s*(\\()",
       "beginCaptures": {
         "1": {
           "name": "entity.name.function.tsp"
@@ -106,7 +106,7 @@
       ]
     },
     "const-statement": {
-      "begin": "\\b(const)\\b\\s+(\\b[_$A-Za-z][_$0-9A-Za-z]*\\b|`(?:[^`\\\\]|\\\\.)*`)",
+      "begin": "\\b(const)\\b\\s+(\\b[_$[:alpha:]][_$[:alnum:]]*\\b|`(?:[^`\\\\]|\\\\.)*`)",
       "beginCaptures": {
         "1": {
           "name": "keyword.other.tsp"
@@ -130,7 +130,7 @@
       ]
     },
     "decorator": {
-      "begin": "((@)\\b[_$A-Za-z](?:[_$0-9A-Za-z]|\\.[_$A-Za-z])*\\b)",
+      "begin": "((@)\\b[_$[:alpha:]](?:[_$[:alnum:]]|\\.[_$[:alpha:]])*\\b)",
       "beginCaptures": {
         "1": {
           "name": "entity.name.tag.tsp"
@@ -139,7 +139,7 @@
           "name": "entity.name.tag.tsp"
         }
       },
-      "end": "(?=[_$A-Za-z])|(?=,|;|@|\\)|\\}|\\b(?:extern)\\b|\\b(?:namespace|model|op|using|import|enum|alias|union|interface|dec|fn)\\b)",
+      "end": "(?=[_$[:alpha:]])|(?=,|;|@|\\)|\\}|\\b(?:extern)\\b|\\b(?:namespace|model|op|using|import|enum|alias|union|interface|dec|fn)\\b)",
       "name": "meta.decorator.typespec",
       "patterns": [
         {
@@ -151,7 +151,7 @@
       ]
     },
     "decorator-declaration-statement": {
-      "begin": "(?:(extern)\\s+)?\\b(dec)\\b\\s+(\\b[_$A-Za-z][_$0-9A-Za-z]*\\b|`(?:[^`\\\\]|\\\\.)*`)",
+      "begin": "(?:(extern)\\s+)?\\b(dec)\\b\\s+(\\b[_$[:alpha:]][_$[:alnum:]]*\\b|`(?:[^`\\\\]|\\\\.)*`)",
       "beginCaptures": {
         "1": {
           "name": "keyword.other.tsp"
@@ -175,7 +175,7 @@
       ]
     },
     "directive": {
-      "begin": "\\s*(#\\b[_$A-Za-z][_$0-9A-Za-z]*\\b)",
+      "begin": "\\s*(#\\b[_$[:alpha:]][_$[:alnum:]]*\\b)",
       "beginCaptures": {
         "1": {
           "name": "keyword.directive.name.tsp"
@@ -237,7 +237,7 @@
           "name": "variable.name.tsp"
         }
       },
-      "match": "((@)(?:param|template|prop))\\s+(\\b[_$A-Za-z][_$0-9A-Za-z]*\\b|`(?:[^`\\\\]|\\\\.)*`)\\b",
+      "match": "((@)(?:param|template|prop))\\s+(\\b[_$[:alpha:]][_$[:alnum:]]*\\b|`(?:[^`\\\\]|\\\\.)*`)\\b",
       "name": "comment.block.tsp"
     },
     "doc-comment-return-tag": {
@@ -261,7 +261,7 @@
           "name": "entity.name.tag.tsp"
         }
       },
-      "match": "((@)(?:\\b[_$A-Za-z][_$0-9A-Za-z]*\\b|`(?:[^`\\\\]|\\\\.)*`))\\b",
+      "match": "((@)(?:\\b[_$[:alpha:]][_$[:alnum:]]*\\b|`(?:[^`\\\\]|\\\\.)*`))\\b",
       "name": "comment.block.tsp"
     },
     "else-expression": {
@@ -336,7 +336,7 @@
       ]
     },
     "enum-member": {
-      "begin": "(?:(\\b[_$A-Za-z][_$0-9A-Za-z]*\\b|`(?:[^`\\\\]|\\\\.)*`)\\s*(:?))",
+      "begin": "(?:(\\b[_$[:alpha:]][_$[:alnum:]]*\\b|`(?:[^`\\\\]|\\\\.)*`)\\s*(:?))",
       "beginCaptures": {
         "1": {
           "name": "variable.name.tsp"
@@ -357,7 +357,7 @@
       ]
     },
     "enum-statement": {
-      "begin": "\\b(enum)\\b\\s+(\\b[_$A-Za-z][_$0-9A-Za-z]*\\b|`(?:[^`\\\\]|\\\\.)*`)",
+      "begin": "\\b(enum)\\b\\s+(\\b[_$[:alpha:]][_$[:alnum:]]*\\b|`(?:[^`\\\\]|\\\\.)*`)",
       "beginCaptures": {
         "1": {
           "name": "keyword.other.tsp"
@@ -422,7 +422,7 @@
       ]
     },
     "function-call": {
-      "begin": "(\\b[_$A-Za-z][_$0-9A-Za-z]*\\b|`(?:[^`\\\\]|\\\\.)*`)\\s*(\\()",
+      "begin": "(\\b[_$[:alpha:]][_$[:alnum:]]*\\b|`(?:[^`\\\\]|\\\\.)*`)\\s*(\\()",
       "beginCaptures": {
         "1": {
           "name": "entity.name.function.tsp"
@@ -445,7 +445,7 @@
       ]
     },
     "function-declaration-statement": {
-      "begin": "(?:(extern)\\s+)?\\b(fn)\\b\\s+(\\b[_$A-Za-z][_$0-9A-Za-z]*\\b|`(?:[^`\\\\]|\\\\.)*`)",
+      "begin": "(?:(extern)\\s+)?\\b(fn)\\b\\s+(\\b[_$[:alpha:]][_$[:alnum:]]*\\b|`(?:[^`\\\\]|\\\\.)*`)",
       "beginCaptures": {
         "1": {
           "name": "keyword.other.tsp"
@@ -472,7 +472,7 @@
       ]
     },
     "identifier-expression": {
-      "match": "\\b[_$A-Za-z][_$0-9A-Za-z]*\\b|`(?:[^`\\\\]|\\\\.)*`",
+      "match": "\\b[_$[:alpha:]][_$[:alnum:]]*\\b|`(?:[^`\\\\]|\\\\.)*`",
       "name": "entity.name.type.tsp"
     },
     "if-expression": {
@@ -559,7 +559,7 @@
       ]
     },
     "interface-member": {
-      "begin": "(?:\\b(op)\\b\\s+)?(\\b[_$A-Za-z][_$0-9A-Za-z]*\\b|`(?:[^`\\\\]|\\\\.)*`)",
+      "begin": "(?:\\b(op)\\b\\s+)?(\\b[_$[:alpha:]][_$[:alnum:]]*\\b|`(?:[^`\\\\]|\\\\.)*`)",
       "beginCaptures": {
         "1": {
           "name": "keyword.other.tsp"
@@ -664,7 +664,7 @@
       ]
     },
     "model-property": {
-      "begin": "(?:(\\b[_$A-Za-z][_$0-9A-Za-z]*\\b|`(?:[^`\\\\]|\\\\.)*`)|(\\\"(?:[^\\\"\\\\]|\\\\.)*\\\"))",
+      "begin": "(?:(\\b[_$[:alpha:]][_$[:alnum:]]*\\b|`(?:[^`\\\\]|\\\\.)*`)|(\\\"(?:[^\\\"\\\\]|\\\\.)*\\\"))",
       "beginCaptures": {
         "1": {
           "name": "variable.name.tsp"
@@ -735,7 +735,7 @@
       ]
     },
     "namespace-name": {
-      "begin": "(?=[_$A-Za-z])",
+      "begin": "(?=[_$[:alpha:]])",
       "end": "((?=\\{)|(?=,|;|@|\\)|\\}|\\b(?:extern)\\b|\\b(?:namespace|model|op|using|import|enum|alias|union|interface|dec|fn)\\b))",
       "name": "meta.namespace-name.typespec",
       "patterns": [
@@ -769,7 +769,7 @@
       ]
     },
     "numeric-literal": {
-      "match": "(?:\\b(?<!\\$)0(?:x|X)[0-9a-fA-F][0-9a-fA-F_]*(n)?\\b(?!\\$)|\\b(?<!\\$)0(?:b|B)[01][01_]*(n)?\\b(?!\\$)|(?<!\\$)(?:(?:\\b\\d[0-9_]*(\\.)\\d[0-9_]*[eE][+-]?\\d[0-9_]*(n)?\\b)|(?:\\b\\d[0-9_]*(\\.)[eE][+-]?\\d[0-9_]*(n)?\\b)|(?:\\B(\\.)\\d[0-9_]*[eE][+-]?\\d[0-9_]*(n)?\\b)|(?:\\b\\d[0-9_]*[eE][+-]?\\d[0-9_]*(n)?\\b)|(?:\\b\\d[0-9_]*(\\.)\\d[0-9_]*(n)?\\b)|(?:\\b\\d[0-9_]*(\\.)(n)?\\B)|(?:\\B(\\.)\\d[0-9_]*(n)?\\b)|(?:\\b\\d[0-9_]*(n)?\\b(?!\\.)))(?!\\$))",
+      "match": "(?:\\b(?<!\\$)0(?:x|X)[0-9a-fA-F][0-9a-fA-F_]*(n)?\\b(?!\\$)|\\b(?<!\\$)0(?:b|B)[01][01_]*(n)?\\b(?!\\$)|(?<!\\$)(?:(?:\\b[0-9][0-9_]*(\\.)[0-9][0-9_]*[eE][+-]?[0-9][0-9_]*(n)?\\b)|(?:\\b[0-9][0-9_]*(\\.)[eE][+-]?[0-9][0-9_]*(n)?\\b)|(?:\\B(\\.)[0-9][0-9_]*[eE][+-]?[0-9][0-9_]*(n)?\\b)|(?:\\b[0-9][0-9_]*[eE][+-]?[0-9][0-9_]*(n)?\\b)|(?:\\b[0-9][0-9_]*(\\.)[0-9][0-9_]*(n)?\\b)|(?:\\b[0-9][0-9_]*(\\.)(n)?\\B)|(?:\\B(\\.)[0-9][0-9_]*(n)?\\b)|(?:\\b[0-9][0-9_]*(n)?\\b(?!\\.)))(?!\\$))",
       "name": "constant.numeric.tsp"
     },
     "object-literal": {
@@ -805,7 +805,7 @@
       ]
     },
     "object-literal-property": {
-      "begin": "(?:(\\b[_$A-Za-z][_$0-9A-Za-z]*\\b|`(?:[^`\\\\]|\\\\.)*`)\\s*(:))",
+      "begin": "(?:(\\b[_$[:alpha:]][_$[:alnum:]]*\\b|`(?:[^`\\\\]|\\\\.)*`)\\s*(:))",
       "beginCaptures": {
         "1": {
           "name": "variable.name.tsp"
@@ -889,7 +889,7 @@
       ]
     },
     "operation-statement": {
-      "begin": "\\b(op)\\b\\s+(\\b[_$A-Za-z][_$0-9A-Za-z]*\\b|`(?:[^`\\\\]|\\\\.)*`)",
+      "begin": "\\b(op)\\b\\s+(\\b[_$[:alpha:]][_$[:alnum:]]*\\b|`(?:[^`\\\\]|\\\\.)*`)",
       "beginCaptures": {
         "1": {
           "name": "keyword.other.tsp"
@@ -994,7 +994,7 @@
       ]
     },
     "projection-parameter": {
-      "begin": "(\\b[_$A-Za-z][_$0-9A-Za-z]*\\b|`(?:[^`\\\\]|\\\\.)*`)",
+      "begin": "(\\b[_$[:alpha:]][_$[:alnum:]]*\\b|`(?:[^`\\\\]|\\\\.)*`)",
       "beginCaptures": {
         "1": {
           "name": "variable.name.tsp"
@@ -1029,7 +1029,7 @@
       ]
     },
     "projection-statement": {
-      "begin": "\\b(projection)\\b\\s+(\\b[_$A-Za-z][_$0-9A-Za-z]*\\b|`(?:[^`\\\\]|\\\\.)*`)(#)(\\b[_$A-Za-z][_$0-9A-Za-z]*\\b|`(?:[^`\\\\]|\\\\.)*`)",
+      "begin": "\\b(projection)\\b\\s+(\\b[_$[:alpha:]][_$[:alnum:]]*\\b|`(?:[^`\\\\]|\\\\.)*`)(#)(\\b[_$[:alpha:]][_$[:alnum:]]*\\b|`(?:[^`\\\\]|\\\\.)*`)",
       "beginCaptures": {
         "1": {
           "name": "keyword.other.tsp"
@@ -1114,7 +1114,7 @@
       ]
     },
     "scalar-constructor": {
-      "begin": "\\b(init)\\b\\s+(\\b[_$A-Za-z][_$0-9A-Za-z]*\\b|`(?:[^`\\\\]|\\\\.)*`)",
+      "begin": "\\b(init)\\b\\s+(\\b[_$[:alpha:]][_$[:alnum:]]*\\b|`(?:[^`\\\\]|\\\\.)*`)",
       "beginCaptures": {
         "1": {
           "name": "keyword.other.tsp"
@@ -1153,7 +1153,7 @@
       ]
     },
     "scalar-statement": {
-      "begin": "\\b(scalar)\\b\\s+(\\b[_$A-Za-z][_$0-9A-Za-z]*\\b|`(?:[^`\\\\]|\\\\.)*`)",
+      "begin": "\\b(scalar)\\b\\s+(\\b[_$[:alpha:]][_$[:alnum:]]*\\b|`(?:[^`\\\\]|\\\\.)*`)",
       "beginCaptures": {
         "1": {
           "name": "keyword.other.tsp"
@@ -1388,7 +1388,7 @@
       ]
     },
     "type-argument": {
-      "begin": "(?:(\\b[_$A-Za-z][_$0-9A-Za-z]*\\b|`(?:[^`\\\\]|\\\\.)*`)\\s*(=))",
+      "begin": "(?:(\\b[_$[:alpha:]][_$[:alnum:]]*\\b|`(?:[^`\\\\]|\\\\.)*`)\\s*(=))",
       "beginCaptures": {
         "1": {
           "name": "entity.name.type.tsp"
@@ -1443,7 +1443,7 @@
       ]
     },
     "type-parameter": {
-      "begin": "(\\b[_$A-Za-z][_$0-9A-Za-z]*\\b|`(?:[^`\\\\]|\\\\.)*`)",
+      "begin": "(\\b[_$[:alpha:]][_$[:alnum:]]*\\b|`(?:[^`\\\\]|\\\\.)*`)",
       "beginCaptures": {
         "1": {
           "name": "entity.name.type.tsp"
@@ -1567,7 +1567,7 @@
       ]
     },
     "union-statement": {
-      "begin": "\\b(union)\\b\\s+(\\b[_$A-Za-z][_$0-9A-Za-z]*\\b|`(?:[^`\\\\]|\\\\.)*`)",
+      "begin": "\\b(union)\\b\\s+(\\b[_$[:alpha:]][_$[:alnum:]]*\\b|`(?:[^`\\\\]|\\\\.)*`)",
       "beginCaptures": {
         "1": {
           "name": "keyword.other.tsp"
@@ -1588,7 +1588,7 @@
       ]
     },
     "union-variant": {
-      "begin": "(?:(\\b[_$A-Za-z][_$0-9A-Za-z]*\\b|`(?:[^`\\\\]|\\\\.)*`)\\s*(:))",
+      "begin": "(?:(\\b[_$[:alpha:]][_$[:alnum:]]*\\b|`(?:[^`\\\\]|\\\\.)*`)\\s*(:))",
       "beginCaptures": {
         "1": {
           "name": "variable.name.tsp"
