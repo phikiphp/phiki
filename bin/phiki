@@ -1,0 +1,107 @@
+#!/usr/bin/env php
+<?php
+
+namespace Phiki\Console;
+
+use Phiki\Phiki;
+
+$vendorPath = dirname(__DIR__, 4) . '/vendor/autoload.php';
+$localPath = dirname(__DIR__) . '/vendor/autoload.php';
+
+if (file_exists($vendorPath)) {
+    require_once $vendorPath;
+} else {
+    require_once $localPath;
+}
+
+function main(int $argc, array $argv): void {
+    if ($argc === 0) {
+        help();
+        exit(1);
+    }
+
+    $args = parse_args($argv);
+    
+    if (! file_exists($args['file'])) {
+        echo "File not found: {$args['file']}\n";
+        exit(1);
+    }
+
+    $phiki = new Phiki();
+    
+    echo $phiki->codeToTerminal(
+        file_get_contents($args['file']),
+        $args['grammar'],
+        $args['theme']
+    );
+}
+
+function parse_args(array $argv): array {
+    $args = [];
+    $processed = [];
+
+    foreach ($argv as $i => $arg) {
+        if (in_array($arg, ['-h', '--help'])) {
+            help();
+            exit(0);
+        }
+
+        if (in_array($arg, ['-g', '--grammar'])) {
+            $processed[] = $i;
+
+            if (! isset($argv[$i + 1]) || str_starts_with($argv[$i + 1], '-')) {
+                echo "Please specify a grammar using the -g or --grammar option.\n";
+                exit(1);
+            }
+
+            $args['grammar'] = $argv[$i + 1];
+            $processed[] = $i + 1;
+        }
+
+        if (in_array($arg, ['-t', '--theme'])) {
+            $processed[] = $i;
+
+            if (! isset($argv[$i + 1]) || str_starts_with($argv[$i + 1], '-')) {
+                echo "Please specify a theme using the -t or --theme option.\n";
+                exit(1);
+            }
+
+            $args['theme'] = $argv[$i + 1];
+            $processed[] = $i + 1;
+        }
+
+        if (isset($args['grammar']) && isset($args['theme'])) {
+            break;
+        }
+    }
+
+    $remaining = array_values(array_filter($argv, fn (int $index) => ! in_array($index, $processed), ARRAY_FILTER_USE_KEY));
+
+    if ($remaining === []) {
+        echo "Please specify a file to highlight.\n";
+        exit(1);
+    }
+
+    if (count($remaining) > 1) {
+        echo "Please specify only one file to highlight.\n";
+        exit(1);
+    }
+
+    $args['file'] = $remaining[0];
+
+    return $args;
+}
+
+function help(): void {
+    echo <<<'TXT'
+    Usage: phiki [options] <file>
+
+    Options:
+        -h, --help      Show this help message
+        -g, --grammar   Specify which grammar to use (e.g. php, javascript, ...)
+        -t, --theme     Specify which theme to use (e.g. github-dark, ayu-dark, ...)
+
+    TXT;
+}
+
+main($argc - 1, array_slice($argv, 1));
