@@ -213,13 +213,16 @@ PHP uses the PCRE2 engine which doesn't have support for all of Oniguruma's feat
 
 One of the biggest differences between PCRE2 and Oniguruma is that Oniguruma has support for "variable-length lookbehinds". Variable-length lookbehinds, both positive and negative, are normally created when a quantifier such as `+` or `*` is used inside of the lookbehind.
 
-PCRE2 **does not** support these types of lookbehinds and they're essentially impossible to translate into PCRE2-compatible equivalents. In these cases, Phiki also performs a series of manual "patches" on grammar files to get RegExs as close as possible to the intended output.
+PCRE2 **does not** support these types of infinite-length lookbehinds and they're impossible to translate into PCRE2-compatible equivalents. If you're using PHP 8.4 however, you can get very close since Phiki performs a series of patches on grammar files to translate `*` into a `{0,254}` and `+` into a `{1,255}`.
 
-**These patches are not perfect** – there is still a chance of running into errors in your application when highlighting code! If you do encounter an error with a message like the one below, please check the [Issues](https://github.com/ryangjchandler/phiki/issues) page or create a new issue with information about the grammar / language you're highlighting and a reproduction case.
+**These patches are not identical or perfect** – there is still a chance of running into errors in your application when highlighting code! If you do encounter an error with a message like the one below, please check the [Issues](https://github.com/phikiphp/phiki/issues) page or create a new issue with information about the grammar / language you're highlighting and a reproduction case.
 
 ```
 preg_match(): Compilation failed: length of lookbehind assertion is not limited at offset...
 ```
+
+> [!NOTE]
+> If you're running Phiki on PHP 8.2 or PHP 8.3, then you're still going to run into warnings or errors with these patched grammars since those versions of PHP do not use the latest version of PCRE2.
 
 ## Credits
 
