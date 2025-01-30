@@ -64,6 +64,7 @@ class EndPattern extends Pattern implements ContainsCapturesInterface, PatternCo
                 return false;
             }
         } catch (Exception) {
+            dd($regex, $this);
             return false;
         }
 

@@ -44,7 +44,8 @@ class BeginEndPattern extends Pattern implements ContainsCapturesInterface, Patt
             if (preg_match('/'.$this->begin->get($tokenizer->allowA(), $tokenizer->allowG()).'/u', $lineText, $matches, PREG_OFFSET_CAPTURE, $linePosition) !== 1) {
                 return false;
             }
-        } catch (Exception $e) {
+        } catch (Exception) {
+            dd($this->begin->get($tokenizer->allowA(), $tokenizer->allowG()), $this);
             return false;
         }
 
