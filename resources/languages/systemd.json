@@ -65,7 +65,7 @@
               "name": "keyword.operator.assignment"
             }
           },
-          "match": "(?<=\\G|[\\s\"'])([A-Za-z0-9_]+)(=)(?=[^\\s\"'])"
+          "match": "(?<=\\G|[\\s\"'])([A-Za-z0-9\\_]+)(=)(?=[^\\s\"'])"
         },
         {
           "include": "#variables"
@@ -283,7 +283,7 @@
     "executablePrefixes": {
       "patterns": [
         {
-          "match": "\\G([@\\-:]+(?:\\+|!!?)?|(?:\\+|!!?)[@\\-:]*)",
+          "match": "\\G([@\\-\\:]+(?:\\+|\\!\\!?)?|(?:\\+|\\!\\!?)[@\\-\\:]*)",
           "name": "keyword.operator.prefix.systemd"
         }
       ]
@@ -325,7 +325,7 @@
     "restartOptions": {
       "patterns": [
         {
-          "match": "\\b(no|always|on-(?:success|failure|abnormal|abort|watchdog))\\b",
+          "match": "\\b(no|always|on\\-(?:success|failure|abnormal|abort|watchdog))\\b",
           "name": "constant.language"
         }
       ]
@@ -333,7 +333,7 @@
     "sections": {
       "patterns": [
         {
-          "match": "^\\s*\\[(Address|Automount|BFIFO|BareUDP|BatmanAdvanced|Bond|Bridge|BridgeFDB|BridgeMDB|BridgeVLAN|CAKE|CAN|Container|Content|ControlledDelay|Coredump|D-BUS Service|DHCP|DHCPPrefixDelegation|DHCPServer|DHCPServerStaticLease|DHCPv4|DHCPv6|DHCPv6PrefixDelegation|DeficitRoundRobinScheduler|DeficitRoundRobinSchedulerClass|Distribution|EnhancedTransmissionSelection|Exec|FairQueueing|FairQueueingControlledDelay|Files|FlowQueuePIE|FooOverUDP|GENEVE|GenericRandomEarlyDetection|HeavyHitterFilter|HierarchyTokenBucket|HierarchyTokenBucketClass|Home|IOCost|IPVLAN|IPVTAP|IPoIB|IPv6AcceptRA|IPv6AddressLabel|IPv6PREF64Prefix|IPv6Prefix|IPv6PrefixDelegation|IPv6RoutePrefix|IPv6SendRA|Image|Install|Journal|Kube|L2TP|L2TPSession|LLDP|Link|Login|MACVLAN|MACVTAP|MACsec|MACsecReceiveAssociation|MACsecReceiveChannel|MACsecTransmitAssociation|Manager|Match|Mount|Neighbor|NetDev|Network|NetworkEmulator|NextHop|OOM|Output|PFIFO|PFIFOFast|PFIFOHeadDrop|PIE|PStore|Packages|Partition|Path|Peer|Pod|QDisc|QuickFairQueueing|QuickFairQueueingClass|Remote|Resolve|Route|RoutingPolicyRule|SR-IOV|Scope|Service|Sleep|Socket|Source|StochasticFairBlue|StochasticFairnessQueueing|Swap|Tap|Target|Time|Timer|TokenBucketFilter|TrafficControlQueueingDiscipline|Transfer|TrivialLinkEqualizer|Tun|Tunnel|UKI|Unit|Upload|VLAN|VRF|VXCAN|VXLAN|Volume|WLAN|WireGuard|WireGuardPeer|Xfrm)\\]",
+          "match": "^\\s*\\[(Address|Automount|BFIFO|BandMultiQueueing|BareUDP|BatmanAdvanced|Bond|Bridge|BridgeFDB|BridgeMDB|BridgeVLAN|CAKE|CAN|ClassfulMultiQueueing|Container|Content|ControlledDelay|Coredump|D-BUS Service|DHCP|DHCPPrefixDelegation|DHCPServer|DHCPServerStaticLease|DHCPv4|DHCPv6|DHCPv6PrefixDelegation|DeficitRoundRobinScheduler|DeficitRoundRobinSchedulerClass|Distribution|EnhancedTransmissionSelection|Exec|FairQueueing|FairQueueingControlledDelay|Feature|Files|FlowQueuePIE|FooOverUDP|GENEVE|GenericRandomEarlyDetection|HeavyHitterFilter|HierarchyTokenBucket|HierarchyTokenBucketClass|Home|IOCost|IPVLAN|IPVTAP|IPoIB|IPv6AcceptRA|IPv6AddressLabel|IPv6PREF64Prefix|IPv6Prefix|IPv6PrefixDelegation|IPv6RoutePrefix|IPv6SendRA|Image|Install|Journal|Kube|L2TP|L2TPSession|LLDP|Link|Login|MACVLAN|MACVTAP|MACsec|MACsecReceiveAssociation|MACsecReceiveChannel|MACsecTransmitAssociation|Manager|Match|Mount|Neighbor|NetDev|Network|NetworkEmulator|NextHop|OOM|Output|PFIFO|PFIFOFast|PFIFOHeadDrop|PIE|PStore|Packages|Partition|Path|Peer|Pod|QDisc|Quadlet|QuickFairQueueing|QuickFairQueueingClass|Remote|Resolve|Route|RoutingPolicyRule|SR-IOV|Scope|Service|Sleep|Socket|Source|StochasticFairBlue|StochasticFairnessQueueing|Swap|Tap|Target|Time|Timer|TokenBucketFilter|TrafficControlQueueingDiscipline|Transfer|TrivialLinkEqualizer|Tun|Tunnel|UKI|Unit|Upload|VLAN|VRF|VXCAN|VXLAN|Volume|WLAN|WireGuard|WireGuardPeer|Xfrm)\\]",
           "name": "entity.name.section"
         },
         {
@@ -381,7 +381,7 @@
               "name": "variable.other"
             }
           },
-          "match": "(\\$)([A-Za-z0-9_]+)\\b"
+          "match": "(\\$)([A-Za-z0-9\\_]+)\\b"
         },
         {
           "captures": {
@@ -395,7 +395,7 @@
               "name": "punctuation.definition.variable.systemd"
             }
           },
-          "match": "(\\$\\{)([A-Za-z0-9_]+)(\\})"
+          "match": "(\\$\\{)([A-Za-z0-9\\_]+)(\\})"
         },
         {
           "match": "%%",

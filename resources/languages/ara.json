@@ -130,7 +130,7 @@
         },
         {
           "comment": "Escaped characters in double-quoted strings e.g. \\n or \\t.",
-          "match": "\\\\[nrt\\\\$\\\"]",
+          "match": "\\\\[nrt\\\\\\$\\\"]",
           "name": "constant.character.escape.ara"
         }
       ]
@@ -220,11 +220,11 @@
               "name": "punctuation.separator.decimal.period.ara"
             }
           },
-          "match": "(?:(?:\\d+(?:_\\d+)*)?(\\.)\\d+(?:_\\d+)*(?:[eE][+-]?\\d+(?:_\\d+)*)?|\\d+(?:_\\d+)*(\\.)(?:\\d+(?:_\\d+)*)?(?:[eE][+-]?\\d+(?:_\\d+)*)?|\\d+(?:_\\d+)*[eE][+-]?\\d+(?:_\\d+)*)",
+          "match": "(?:(?:[0-9]+(?:_[0-9]+)*)?(\\.)[0-9]+(?:_[0-9]+)*(?:[eE][+-]?[0-9]+(?:_[0-9]+)*)?|[0-9]+(?:_[0-9]+)*(\\.)(?:[0-9]+(?:_[0-9]+)*)?(?:[eE][+-]?[0-9]+(?:_[0-9]+)*)?|[0-9]+(?:_[0-9]+)*[eE][+-]?[0-9]+(?:_[0-9]+)*)",
           "name": "constant.numeric.decimal.ara"
         },
         {
-          "match": "0|[1-9](?:_?\\d+)*",
+          "match": "0|[1-9](?:_?[0-9]+)*",
           "name": "constant.numeric.decimal.ara"
         }
       ]

@@ -38,11 +38,11 @@
     "builtin": {
       "patterns": [
         {
-          "match": "\\b(abs|all|any|ascii|bin|breakpoint|callable|chr|compile|delattr|dir|divmod|eval|exec|format|getattr|globals|hasattr|hash|hex|id|input|isinstance|issubclass|iter|aiter|len|locals|max|min|next|anext|oct|ord|pow|print|repr|round|setattr|sorted|sum|vars|False|None|True|NotImplemented|bool|memoryview|bytearray|bytes|classmethod|complex|dict|enumerate|filter|float|frozenset|property|int|list|map|object|range|reversed|set|slice|staticmethod|str|super|tuple|type|zip|open|quit|exit|copyright|credits|help)[\\s)]",
+          "match": "(?<![\\.:\\w_\\-=!@\\$%^&?/<>*])(abs|all|any|ascii|bin|breakpoint|callable|chr|compile|delattr|dir|divmod|eval|exec|format|getattr|globals|hasattr|hash|hex|id|input|isinstance|issubclass|iter|aiter|len|locals|max|min|next|anext|oct|ord|pow|print|repr|round|setattr|sorted|sum|vars|False|None|True|NotImplemented|bool|memoryview|bytearray|bytes|classmethod|complex|dict|enumerate|filter|float|frozenset|property|int|list|map|object|range|reversed|set|slice|staticmethod|str|super|tuple|type|zip|open|quit|exit|copyright|credits|help)(?![\\.:\\w_\\-=!@\\$%^&?/<>*])",
           "name": "storage.builtin.hy"
         },
         {
-          "match": "(?<=\\(\\s*)\\.\\.\\.[\\s)]",
+          "match": "(?<=\\(\\s*)\\.\\.\\.(?![\\.:\\w_\\-=!@\\$%^&?/<>*])",
           "name": "storage.builtin.dots.hy"
         }
       ]
@@ -58,23 +58,23 @@
     "constants": {
       "patterns": [
         {
-          "match": "(?<=[{\\[(\\s])(\\d+(\\.\\d+)?|(#x)[0-9a-fA-F]+|(#o)[0-7]+|(#b)[01]+)(?=[\\s;()'\",\\[\\]{}])",
+          "match": "(?<=[\\{\\[\\(\\s])([0-9]+(\\.[0-9]+)?|(#x)[0-9a-fA-F]+|(#o)[0-7]+|(#b)[01]+)(?=[\\s;()'\",\\[\\]\\{\\}])",
           "name": "constant.numeric.hy"
         }
       ]
     },
     "keysym": {
-      "match": "(?<![\\.:\\w_\\-=!@$%^&?\\/<>*]):[\\.:\\w_\\-=!@$%^&?\\/<>*]*",
+      "match": "(?<![\\.:\\w_\\-=!@\\$%^&?\\/<>*]):[\\.:\\w_\\-=!@\\$%^&?\\/<>*]*",
       "name": "variable.other.constant"
     },
     "keywords": {
       "patterns": [
         {
-          "match": "\\b(and|await|match|let|annotate|assert|break|chainc|cond|continue|deftype|do|except\\*?|finally|else|defreader|([dgls])?for|set[vx]|defclass|defmacro|del|export|eval-and-compile|eval-when-compile|get|global|if|import|(de)?fn|nonlocal|not-in|or|(quasi)?quote|require|return|cut|raise|try|unpack-iterable|unpack-mapping|unquote|unquote-splice|when|while|with|yield|local-macros|in|is|py(s)?|pragma|nonlocal|(is-)?not)[\\s)]",
+          "match": "(?<![\\.:\\w_\\-=!@\\$%^&?/<>*])(and|await|match|let|annotate|assert|break|chainc|cond|continue|deftype|do|except\\*?|finally|else|defreader|([dgls])?for|set[vx]|defclass|defmacro|del|export|eval-and-compile|eval-when-compile|get|global|if|import|(de)?fn|nonlocal|not-in|or|(quasi)?quote|require|return|cut|raise|try|unpack-iterable|unpack-mapping|unquote|unquote-splice|when|while|with|yield|local-macros|in|is|py(s)?|pragma|nonlocal|(is-)?not)(?![\\.:\\w_\\-=!@\\$%^&?/<>*])",
           "name": "keyword.control.hy"
         },
         {
-          "match": "(?<=\\(\\s*)\\.[\\s)]",
+          "match": "(?<=\\(\\s*)\\.(?![\\.:\\w_\\-=!@\\$%^&?/<>*])",
           "name": "keyword.control.dot.hy"
         }
       ]
@@ -82,7 +82,7 @@
     "operators": {
       "patterns": [
         {
-          "match": "(?<=\\()\\s*(\\+=?|\\/\\/?=?|\\*\\*?=?|--?=?|[!<>]?=|@=?|%=?|<<?=?|>>?=?|&=?|\\|=?|\\^|~@|~=?|#\\*\\*?)",
+          "match": "(?<![\\.:\\w_\\-=!@\\$%^&?/<>*])(\\+=?|\\/\\/?=?|\\*\\*?=?|--?=?|[!<>]?=|@=?|%=?|<<?=?|>>?=?|&=?|\\|=?|\\^|~@|~=?|#\\*\\*?)(?![\\.:\\w_\\-=!@\\$%^&?/<>*])",
           "name": "keyword.control.hy"
         }
       ]
@@ -99,7 +99,7 @@
       ]
     },
     "symbol": {
-      "match": "(?<![\\.:\\w_\\-=!@$%^&?/<>*#])[\\.a-zA-ZΑ-Ωα-ω_\\-=!@$%^<?/<>*#][\\.:\\w_\\-=!@$%^&?/<>*#]*",
+      "match": "(?<![\\.:\\w_\\-=!@\\$%^&?/<>*#])[\\.a-zA-ZΑ-Ωα-ω_\\-=!@\\$%^<?/<>*#][\\.:\\w_\\-=!@\\$%^&?/<>*#]*",
       "name": "variable.other.hy"
     }
   },

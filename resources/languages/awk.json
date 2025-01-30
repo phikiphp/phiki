@@ -146,7 +146,7 @@
       "name": "keyword.control.awk"
     },
     "numeric-constant": {
-      "match": "\\b\\d+(?:\\.\\d+)?(?:e[+-]\\d+)?\\b",
+      "match": "\\b[0-9]+(?:\\.[0-9]+)?(?:e[+-][0-9]+)?\\b",
       "name": "constant.numeric.awk"
     },
     "operator": {
@@ -366,7 +366,7 @@
     "variable": {
       "patterns": [
         {
-          "match": "\\$\\d+",
+          "match": "\\$[0-9]+",
           "name": "variable.language.awk"
         },
         {

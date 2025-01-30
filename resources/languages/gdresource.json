@@ -125,19 +125,19 @@
           "name": "constant.language.gdresource"
         },
         {
-          "match": "(?<!\\w)([+\\-]?(0|([1-9]((\\d|_\\d)+)?))(?:(?:\\.(0|([1-9]((\\d|_\\d)+)?)))?[eE][+\\-]?[1-9]_?\\d*|(?:\\.[0-9_]*)))(?!\\w)",
+          "match": "(?<!\\w)([\\+\\-]?(0|([1-9](([0-9]|_[0-9])+)?))(?:(?:\\.(0|([1-9](([0-9]|_[0-9])+)?)))?[eE][\\+\\-]?[1-9]_?[0-9]*|(?:\\.[0-9_]*)))(?!\\w)",
           "name": "constant.numeric.float.gdresource"
         },
         {
-          "match": "(?<!\\w)((?:[+\\-]?(0|([1-9]((\\d|_\\d)+)?))))(?!\\w)",
+          "match": "(?<!\\w)((?:[\\+\\-]?(0|([1-9](([0-9]|_[0-9])+)?))))(?!\\w)",
           "name": "constant.numeric.integer.gdresource"
         },
         {
-          "match": "(?<!\\w)([+\\-]?inf)(?!\\w)",
+          "match": "(?<!\\w)([\\+\\-]?inf)(?!\\w)",
           "name": "constant.numeric.inf.gdresource"
         },
         {
-          "match": "(?<!\\w)([+\\-]?nan)(?!\\w)",
+          "match": "(?<!\\w)([\\+\\-]?nan)(?!\\w)",
           "name": "constant.numeric.nan.gdresource"
         },
         {
@@ -242,7 +242,7 @@
           "name": "invalid.illegal.noValue.gdresource"
         },
         {
-          "begin": "\\s*([A-Za-z_-][^\\s]*|\".+\"|'.+'|\\d+)\\s*(=)\\s*",
+          "begin": "\\s*([A-Za-z_-][^\\s]*|\".+\"|'.+'|[0-9]+)\\s*(=)\\s*",
           "beginCaptures": {
             "1": {
               "name": "variable.other.property.gdresource"
@@ -267,7 +267,7 @@
           "name": "invalid.illegal.noValue.gdresource"
         },
         {
-          "begin": "\\s*([A-Za-z_-][^\\s]*|\".+\"|'.+'|\\d+)\\s*(=)\\s*",
+          "begin": "\\s*([A-Za-z_-][^\\s]*|\".+\"|'.+'|[0-9]+)\\s*(=)\\s*",
           "beginCaptures": {
             "1": {
               "name": "variable.other.property.gdresource"

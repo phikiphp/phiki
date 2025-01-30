@@ -291,7 +291,7 @@
           "name": "punctuation.definition.constant.xml"
         }
       },
-      "match": "(&)([:a-zA-Z_][:a-zA-Z0-9_.-]*|#\\d+|#x[0-9a-fA-F]+)(;)",
+      "match": "(&)([:a-zA-Z_][:a-zA-Z0-9_.-]*|#[0-9]+|#x[0-9a-fA-F]+)(;)",
       "name": "constant.character.entity.xml"
     },
     "internalSubset": {

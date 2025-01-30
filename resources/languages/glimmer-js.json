@@ -68,7 +68,7 @@
       ]
     },
     "component-tag": {
-      "begin": "(<\\/?)(@|this.)?([a-zA-Z0-9-_$:\\.]+)\\b",
+      "begin": "(<\\/?)(@|this.)?([a-zA-Z0-9-_\\$:\\.]+)\\b",
       "beginCaptures": {
         "1": {
           "name": "punctuation.definition.tag"
@@ -142,7 +142,7 @@
               "name": "punctuation.definition.entity.html.ember-handlebars"
             }
           },
-          "match": "(&)([a-zA-Z0-9]+|#\\d+|#x[0-9a-fA-F]+)(;)",
+          "match": "(&)([a-zA-Z0-9]+|#[0-9]+|#x[0-9a-fA-F]+)(;)",
           "name": "constant.character.entity.html.ember-handlebars"
         },
         {
@@ -179,7 +179,7 @@
       ]
     },
     "glimmer-block": {
-      "begin": "({{~?)(#|/)(([@$a-zA-Z0-9_/.-]+))",
+      "begin": "({{~?)(#|/)(([@\\$a-zA-Z0-9_/.-]+))",
       "captures": {
         "1": {
           "name": "punctuation.definition.tag"
@@ -709,8 +709,8 @@
           "name": "meta.js.embeddedTemplateWithArgs",
           "patterns": [
             {
-              "begin": "(?<=<template)",
-              "end": "(?=>)",
+              "begin": "(?<=\\<template)",
+              "end": "(?=\\>)",
               "patterns": [
                 {
                   "include": "#tag-like-content"
@@ -1191,7 +1191,7 @@
                   ]
                 },
                 {
-                  "begin": "(?i:(?=type\\s*=\\s*('|\"|)text/(x-handlebars|(x-(handlebars-)?|ng-)?template|html)[\\s\"'>]))",
+                  "begin": "(?ix:\n\t\t\t\t\t\t\t\t\t\t\t\t(?=\n\t\t\t\t\t\t\t\t\t\t\t\t\ttype\\s*=\\s*\n\t\t\t\t\t\t\t\t\t\t\t\t\t('|\"|)\n\t\t\t\t\t\t\t\t\t\t\t\t\ttext/\n\t\t\t\t\t\t\t\t\t\t\t\t\t(\n\t\t\t\t\t\t\t\t\t\t\t\t\t\tx-handlebars\n\t\t\t\t\t\t\t\t\t\t\t\t\t  | (x-(handlebars-)?|ng-)?template\n\t\t\t\t\t\t\t\t\t\t\t\t\t  | html\n\t\t\t\t\t\t\t\t\t\t\t\t\t)\n\t\t\t\t\t\t\t\t\t\t\t\t\t[\\s\"'>]\n\t\t\t\t\t\t\t\t\t\t\t\t)\n\t\t\t\t\t\t\t\t\t\t\t)",
                   "end": "((<))(?=/(?i:script))",
                   "endCaptures": {
                     "0": {

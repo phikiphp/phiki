@@ -35,8 +35,8 @@
   ],
   "repository": {
     "comment-block": {
-      "begin": "\\#-",
-      "end": "-#",
+      "begin": "\\#\\-",
+      "end": "\\-#",
       "name": "comment.berry",
       "patterns": [
         {
@@ -63,7 +63,7 @@
     "function": {
       "patterns": [
         {
-          "match": "\\b([a-zA-Z_]\\w*(?=\\s*\\())",
+          "match": "\\b([a-zA-Z_][a-zA-Z0-9_]*(?=\\s*\\())",
           "name": "entity.name.function.berry"
         }
       ]
@@ -92,7 +92,7 @@
               "name": "entity.other.attribute-name.berry"
             }
           },
-          "match": "\\.([a-zA-Z_]\\w*)"
+          "match": "\\.([a-zA-Z_][a-zA-Z0-9_]*)"
         }
       ]
     },
@@ -107,7 +107,7 @@
     "operator": {
       "patterns": [
         {
-          "match": "\\(|\\)|\\[|\\]|\\.|-|!|~|\\*|/|%|\\+|&|\\^|\\||<|>|=|:",
+          "match": "\\(|\\)|\\[|\\]|\\.|-|\\!|~|\\*|/|%|\\+|&|\\^|\\||<|>|=|:",
           "name": "keyword.operator.berry"
         }
       ]
@@ -135,7 +135,7 @@
               "name": "constant.character.escape.berry"
             },
             {
-              "match": "\\{\\{[^}]*\\}\\}",
+              "match": "\\{\\{[^\\}]*\\}\\}",
               "name": "string.quoted.other.berry"
             },
             {

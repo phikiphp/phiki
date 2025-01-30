@@ -231,7 +231,7 @@
       ]
     },
     "attributes-directives": {
-      "begin": "(?<!<)(on|use|bind|transition|in|out|animate|let|class|style)(:)(?:((?:--)?[_$A-Za-z][_\\-$0-9A-Za-z]*(?=\\s*=))|((?:--)?[_$A-Za-z][_\\-$0-9A-Za-z]*))((\\|\\w+)*)",
+      "begin": "(?<!<)(on|use|bind|transition|in|out|animate|let|class|style)(:)(?:((?:--)?[_$[:alpha:]][_\\-$[:alnum:]]*(?=\\s*=))|((?:--)?[_$[:alpha:]][_\\-$[:alnum:]]*))((\\|\\w+)*)",
       "beginCaptures": {
         "1": {
           "patterns": [
@@ -394,7 +394,7 @@
       ]
     },
     "attributes-keyvalue": {
-      "begin": "((?:--)?[_$A-Za-z][_\\-$0-9A-Za-z]*)",
+      "begin": "((?:--)?[_$[:alpha:]][_\\-$[:alnum:]]*)",
       "beginCaptures": {
         "0": {
           "patterns": [
@@ -755,16 +755,16 @@
               "include": "#destructuring-const"
             },
             {
-              "begin": "\\G\\s*([_$A-Za-z][_$0-9A-Za-z]+)\\s*",
+              "begin": "\\G\\s*([_$[:alpha:]][_$[:alnum:]]+)\\s*",
               "beginCaptures": {
                 "1": {
                   "name": "variable.other.constant.svelte"
                 }
               },
-              "end": "(?==)"
+              "end": "(?=\\=)"
             },
             {
-              "begin": "(?==)",
+              "begin": "(?=\\=)",
               "end": "(?=})",
               "name": "meta.embedded.expression.svelte source.ts",
               "patterns": [
@@ -782,7 +782,7 @@
             {
               "begin": "\\G\\s*?(?=\\S)",
               "contentName": "meta.embedded.expression.svelte source.ts",
-              "end": "(?=(?:^\\s*|\\s+)(as))",
+              "end": "(?=(?:(?:^\\s*|\\s+)(as))|\\s*(}|,))",
               "patterns": [
                 {
                   "include": "source.ts"
@@ -790,7 +790,7 @@
               ]
             },
             {
-              "begin": "(as)",
+              "begin": "(as)|(?=}|,)",
               "beginCaptures": {
                 "1": {
                   "name": "keyword.control.as.svelte"
@@ -827,7 +827,7 @@
                       ]
                     }
                   },
-                  "match": "(\\s*([_$A-Za-z][_$0-9A-Za-z]*)\\s*)"
+                  "match": "(\\s*([_$[:alpha:]][_$[:alnum:]]*)\\s*)"
                 },
                 {
                   "match": ",",
@@ -883,7 +883,7 @@
                   ]
                 }
               },
-              "match": "[_$A-Za-z][_$0-9A-Za-z]*"
+              "match": "[_$[:alpha:]][_$[:alnum:]]*"
             },
             {
               "match": ",",
@@ -1075,15 +1075,31 @@
               "name": "entity.name.tag.svelte"
             }
           },
-          "match": "(svelte)(:)([a-z][\\w0-9:-]*)"
+          "match": "(svelte)(:)([a-z][\\w:-]*)"
         },
         {
           "match": "slot",
           "name": "keyword.control.svelte"
         },
         {
-          "match": "[A-Z]\\w*",
-          "name": "support.class.component.svelte"
+          "captures": {
+            "1": {
+              "patterns": [
+                {
+                  "match": "\\w+",
+                  "name": "support.class.component.svelte"
+                },
+                {
+                  "match": "\\.",
+                  "name": "punctuation.definition.keyword.svelte"
+                }
+              ]
+            },
+            "2": {
+              "name": "support.class.component.svelte"
+            }
+          },
+          "match": "([\\w]+(?:\\.[\\w]+)+)|([A-Z][\\w]+)"
         },
         {
           "match": "[a-z][\\w0-9:]*-[\\w0-9:-]*",
@@ -1151,7 +1167,7 @@
           "include": "source.ts#comment"
         },
         {
-          "match": "(?<![_$0-9A-Za-z])(?:(?<=\\.\\.\\.)|(?<!\\.))(extends|in|out|const)(?![_$0-9A-Za-z])(?:(?=\\.\\.\\.)|(?!\\.))",
+          "match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(extends|in|out|const)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))",
           "name": "storage.modifier.ts"
         },
         {

@@ -142,7 +142,7 @@
       ]
     },
     "ColumnIndexLiteral": {
-      "match": "([$]\\d+)\\b",
+      "match": "([$][0-9]+)\\b",
       "name": "support.constant.columnindex.gnuplot"
     },
     "Command": {
@@ -610,7 +610,7 @@
       "name": "invalid.illegal.variable.gnuplot"
     },
     "InvalidWord": {
-      "match": "([^;#\\\\\\s]+)",
+      "match": "([^;#\\\\[:space:]]+)",
       "name": "invalid.illegal.gnuplot"
     },
     "LineComment": {
@@ -668,11 +668,11 @@
     "NumberLiteral": {
       "patterns": [
         {
-          "match": "(?:(((\\b\\d+)|(?<!\\d)))([.]\\d+)([Ee][+-]?\\d+)?)(cm|in)?\\b",
+          "match": "(?:(((\\b[0-9]+)|(?<!\\d)))([.][0-9]+)([Ee][+-]?[0-9]+)?)(cm|in)?\\b",
           "name": "constant.numeric.float.gnuplot"
         },
         {
-          "match": "(?:(\\b\\d+)((([Ee][+-]?\\d+\\b))|([.]([Ee][+-]?\\d+\\b)?)))(cm\\b|in\\b)?",
+          "match": "(?:(\\b[0-9]+)((([Ee][+-]?[0-9]+\\b))|([.]([Ee][+-]?[0-9]+\\b)?)))(cm\\b|in\\b)?",
           "name": "constant.numeric.float.gnuplot"
         },
         {
@@ -688,11 +688,11 @@
           "name": "constant.numeric.oct.gnuplot"
         },
         {
-          "match": "\\b(0\\d+)(cm|in)?\\b",
+          "match": "\\b(0[0-9]+)(cm|in)?\\b",
           "name": "invalid.illegal.oct.gnuplot"
         },
         {
-          "match": "\\b(\\d+)(cm|in)?\\b",
+          "match": "\\b([0-9]+)(cm|in)?\\b",
           "name": "constant.numeric.dec.gnuplot"
         }
       ]

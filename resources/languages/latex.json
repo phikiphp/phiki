@@ -1945,7 +1945,7 @@
       "name": "meta.function.verbatim.latex"
     },
     {
-      "begin": "(\\s*\\\\begin\\{VerbatimOut\\}\\{[^}]*\\})",
+      "begin": "(\\s*\\\\begin\\{VerbatimOut\\}\\{[^\\}]*\\})",
       "captures": {
         "1": {
           "patterns": [
@@ -2556,7 +2556,7 @@
       "name": "meta.scope.item.latex"
     },
     {
-      "begin": "((\\\\)(?:[aA]uto|foot|full|no|ref|short|[tT]ext|[pP]aren|[sS]mart)?[cC]ite(?:al)?(?:p|s|t|author|year(?:par)?|title)?[ANP]*\\*?)((?:(?:\\([^)]*\\)){0,2}(?:\\[[^\\]]*\\]){0,2}\\{[\\p{Alphabetic}\\p{Number}_:.-]*\\})*)(<[^\\]<>]*>)?((?:\\[[^\\]]*\\])*)(\\{)",
+      "begin": "((\\\\)(?:[aA]uto|foot|full|no|ref|short|[tT]ext|[pP]aren|[sS]mart)?[cC]ite(?:al)?(?:p|s|t|author|year(?:par)?|title)?[ANP]*\\*?)((?:(?:\\([^\\)]*\\)){0,2}(?:\\[[^\\]]*\\]){0,2}\\{[\\p{Alphabetic}\\p{Number}_:.-]*\\})*)(<[^\\]<>]*>)?((?:\\[[^\\]]*\\])*)(\\{)",
       "captures": {
         "1": {
           "name": "keyword.control.cite.latex"
@@ -2765,7 +2765,7 @@
           "name": "punctuation.definition.verb.latex"
         }
       },
-      "match": "((\\\\)(?:mint|mintinline))((?:\\[[^\\[]*?\\])?)(\\{)[a-zA-Z]*(\\})(?:(?:([^a-zA-Z{])(.*?)(\\6))|(?:(\\{)(.*?)(\\})))",
+      "match": "((\\\\)(?:mint|mintinline))((?:\\[[^\\[]*?\\])?)(\\{)[a-zA-Z]*(\\})(?:(?:([^a-zA-Z\\{])(.*?)(\\6))|(?:(\\{)(.*?)(\\})))",
       "name": "meta.function.verb.latex"
     },
     {
@@ -2802,7 +2802,7 @@
           "name": "punctuation.definition.verb.latex"
         }
       },
-      "match": "((\\\\)[a-z]+inline)((?:\\[[^\\[]*?\\])?)(?:(?:([^a-zA-Z{])(.*?)(\\4))|(?:(\\{)(.*?)(\\})))",
+      "match": "((\\\\)[a-z]+inline)((?:\\[[^\\[]*?\\])?)(?:(?:([^a-zA-Z\\{])(.*?)(\\4))|(?:(\\{)(.*?)(\\})))",
       "name": "meta.function.verb.latex"
     },
     {
@@ -2849,7 +2849,7 @@
           "name": "punctuation.definition.verb.latex"
         }
       },
-      "match": "((\\\\)(?:(?:py|pycon|pylab|pylabcon|sympy|sympycon)[cv]?|pyq|pycq|pyif))((?:\\[[^\\[]*?\\])?)(?:(?:([^a-zA-Z{])(.*?)(\\4))|(?:(\\{)(.*?)(\\})))",
+      "match": "((\\\\)(?:(?:py|pycon|pylab|pylabcon|sympy|sympycon)[cv]?|pyq|pycq|pyif))((?:\\[[^\\[]*?\\])?)(?:(?:([^a-zA-Z\\{])(.*?)(\\4))|(?:(\\{)(.*?)(\\})))",
       "name": "meta.function.verb.latex"
     },
     {
@@ -2896,7 +2896,7 @@
           "name": "punctuation.definition.verb.latex"
         }
       },
-      "match": "((\\\\)(?:jl|julia)[cv]?)((?:\\[[^\\[]*?\\])?)(?:(?:([^a-zA-Z{])(.*?)(\\4))|(?:(\\{)(.*?)(\\})))",
+      "match": "((\\\\)(?:jl|julia)[cv]?)((?:\\[[^\\[]*?\\])?)(?:(?:([^a-zA-Z\\{])(.*?)(\\4))|(?:(\\{)(.*?)(\\})))",
       "name": "meta.function.verb.latex"
     },
     {
@@ -3099,7 +3099,7 @@
               ]
             }
           },
-          "match": "((?:\\([^)]*\\)){0,2})((?:\\[[^\\]]*\\]){0,2})(\\{)([\\p{Alphabetic}\\p{Number}_:.-]+)(\\})(.*)"
+          "match": "((?:\\([^\\)]*\\)){0,2})((?:\\[[^\\]]*\\]){0,2})(\\{)([\\p{Alphabetic}\\p{Number}_:.-]+)(\\})(.*)"
         }
       ]
     },
@@ -3285,7 +3285,7 @@
               "name": "punctuation.definition.arguments.optional.end.latex"
             }
           },
-          "match": "(\\()([^(]*?)(\\))",
+          "match": "(\\()([^\\(]*?)(\\))",
           "name": "meta.parameter.optional.latex"
         }
       ]
@@ -3301,7 +3301,7 @@
               "name": "punctuation.definition.arguments.optional.end.latex"
             }
           },
-          "match": "(\\()[^(]*?(\\))",
+          "match": "(\\()[^\\(]*?(\\))",
           "name": "meta.parameter.optional.latex"
         }
       ]

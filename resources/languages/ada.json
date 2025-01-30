@@ -198,7 +198,7 @@
           ]
         }
       },
-      "match": "(?i)\\b([^(=>)]*)\\s*(=>)\\s*([^,)]+)",
+      "match": "(?i)\\b([^(=>)]*)\\s*(=>)\\s*([^,\\)]+)",
       "name": "meta.definition.array.aggregate.component.ada"
     },
     "array_dimensions": {
@@ -534,7 +534,7 @@
           ]
         }
       },
-      "match": "(?i)(\\d(?:(_)?\\d)*#)[0-9a-f](?:(_)?[0-9a-f])*(?:(\\.)[0-9a-f](?:(_)?[0-9a-f])*)?(#)([eE](?:\\+|-)?\\d(?:_?\\d)*)?",
+      "match": "(?i)(\\d(?:(_)?\\d)*#)[0-9a-f](?:(_)?[0-9a-f])*(?:(\\.)[0-9a-f](?:(_)?[0-9a-f])*)?(#)([eE](?:\\+|\\-)?\\d(?:_?\\d)*)?",
       "name": "constant.numeric.ada"
     },
     "basic_declaration": {
@@ -941,7 +941,7 @@
               ]
             }
           },
-          "match": "(?i)\\b((?:\\w|\\d|_)+)\\s*(=>)\\s*([^,)])+\\b"
+          "match": "(?i)\\b((?:\\w|\\d|_)+)\\s*(=>)\\s*([^,\\)])+\\b"
         },
         {
           "include": "#expression"
@@ -967,7 +967,7 @@
           ]
         }
       },
-      "match": "\\d(?:(_)?\\d)*(?:(\\.)\\d(?:(_)?\\d)*)?([eE](?:\\+|-)?\\d(?:_?\\d)*)?",
+      "match": "\\d(?:(_)?\\d)*(?:(\\.)\\d(?:(_)?\\d)*)?([eE](?:\\+|\\-)?\\d(?:_?\\d)*)?",
       "name": "constant.numeric.ada"
     },
     "declarative_item": {
@@ -1330,7 +1330,7 @@
           "name": "punctuation.ada"
         }
       },
-      "match": "([eE])(\\+|-)?\\d(?:(_)?\\d)*"
+      "match": "([eE])(\\+|\\-)?\\d(?:(_)?\\d)*"
     },
     "expression": {
       "name": "meta.expression.ada",
@@ -2312,7 +2312,7 @@
               ]
             }
           },
-          "match": "(?i)\\b(others)\\s*(=>)\\s*([^,)]+)"
+          "match": "(?i)\\b(others)\\s*(=>)\\s*([^,\\)]+)"
         },
         {
           "include": "#expression"
@@ -2610,7 +2610,7 @@
               "name": "keyword.ada"
             }
           },
-          "end": "(?=(;|\\))",
+          "end": "(?=(;|\\)))",
           "patterns": [
             {
               "include": "#expression"

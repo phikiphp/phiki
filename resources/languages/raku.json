@@ -37,7 +37,7 @@
           "name": "entity.name.type.class.perl.6"
         }
       },
-      "match": "(class|enum|grammar|knowhow|module|package|role|slang|subset)(\\s+)(((?:::|')?(?:([a-zA-Z_\\x{C0}-\\x{FF}$])([a-zA-Z0-9_\\x{C0}-\\x{FF}\\\\$]|[\\-'][a-zA-Z0-9_\\x{C0}-\\x{FF}$])*))+)",
+      "match": "(class|enum|grammar|knowhow|module|package|role|slang|subset)(\\s+)(((?:::|')?(?:([a-zA-Z_\\x{C0}-\\x{FF}\\$])([a-zA-Z0-9_\\x{C0}-\\x{FF}\\\\$]|[\\-'][a-zA-Z0-9_\\x{C0}-\\x{FF}\\$])*))+)",
       "name": "meta.class.perl.6"
     },
     {
@@ -242,7 +242,7 @@
       "name": "keyword.operator.perl"
     },
     {
-      "match": "(\\$|@|%|&)(\\*|:|!|\\^|~|=|\\?|(<(?=.+>)))?([a-zA-Z_\\x{C0}-\\x{FF}$])([a-zA-Z0-9_\\x{C0}-\\x{FF}$]|[\\-'][a-zA-Z0-9_\\x{C0}-\\x{FF}$])*",
+      "match": "(\\$|@|%|&)(\\*|:|!|\\^|~|=|\\?|(<(?=.+>)))?([a-zA-Z_\\x{C0}-\\x{FF}\\$])([a-zA-Z0-9_\\x{C0}-\\x{FF}\\$]|[\\-'][a-zA-Z0-9_\\x{C0}-\\x{FF}\\$])*",
       "name": "variable.other.identifier.perl.6"
     },
     {

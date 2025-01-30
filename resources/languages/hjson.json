@@ -445,7 +445,7 @@
       ]
     },
     "key": {
-      "begin": "(?:((?:[^:,{}\\[\\]\\s\"'][^:,{}\\[\\]\\s]*)|(?:'(?:[^\\\\']|(\\\\(?:[\"'\\\\\\/bfnrt]|u[0-9a-fA-F]{4}))|(\\\\.))*')|(?:\"(?:[^\\\\\"]|(\\\\(?:[\"'\\\\\\/bfnrt]|u[0-9a-fA-F]{4}))|(\\\\.))*\"))\\s*(?!\\n)([,{}\\[\\]]*))",
+      "begin": "(?:((?:[^:,\\{\\}\\[\\]\\s\"'][^:,\\{\\}\\[\\]\\s]*)|(?:'(?:[^\\\\']|(\\\\(?:[\"'\\\\\\/bfnrt]|u[0-9a-fA-F]{4}))|(\\\\.))*')|(?:\"(?:[^\\\\\"]|(\\\\(?:[\"'\\\\\\/bfnrt]|u[0-9a-fA-F]{4}))|(\\\\.))*\"))\\s*(?!\\n)([,\\{\\}\\[\\]]*))",
       "beginCaptures": {
         "0": {
           "name": "meta.structure.key-value.begin.hjson"
@@ -492,7 +492,7 @@
       ]
     },
     "keyValue": {
-      "begin": "(?:\\s*(:)\\s*([,}\\]]*))",
+      "begin": "(?:\\s*(:)\\s*([,\\}\\]]*))",
       "beginCaptures": {
         "1": {
           "name": "punctuation.separator.dictionary.key-value.hjson"
@@ -583,7 +583,7 @@
           "name": "punctuation.definition.array.begin.hjson"
         }
       },
-      "end": "(\\])(?:\\s*([^,\\s}]+))?",
+      "end": "(\\])(?:\\s*([^,\\s\\}]+))?",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.array.end.hjson"
@@ -655,7 +655,7 @@
               "name": "punctuation.definition.string.begin.hjson"
             }
           },
-          "end": "(\")(?:\\s*((?:[^,\\s}#/]|/[^/*])+))?",
+          "end": "(\")(?:\\s*((?:[^,\\s\\}#/]|/[^/*])+))?",
           "endCaptures": {
             "1": {
               "name": "punctuation.definition.string.end.hjson"
@@ -678,7 +678,7 @@
               "name": "punctuation.definition.string.begin.hjson"
             }
           },
-          "end": "(')(?:\\s*((?:[^,\\s}#/]|/[^/*])+))?",
+          "end": "(')(?:\\s*((?:[^,\\s\\}#/]|/[^/*])+))?",
           "endCaptures": {
             "1": {
               "name": "punctuation.definition.string.end.hjson"
@@ -703,7 +703,7 @@
           "name": "punctuation.definition.string.begin.hjson"
         }
       },
-      "end": "(''')(?:\\s*((?:[^,\\s}#/]|/[^/*])+))?",
+      "end": "(''')(?:\\s*((?:[^,\\s\\}#/]|/[^/*])+))?",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.string.end.hjson"
@@ -794,7 +794,7 @@
       ]
     },
     "ustring": {
-      "match": "([^:,{\\[}\\]\\s].*)$",
+      "match": "([^:,\\{\\[\\}\\]\\s].*)$",
       "name": "string.quoted.none.hjson"
     },
     "value": {

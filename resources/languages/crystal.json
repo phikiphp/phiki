@@ -222,7 +222,7 @@
           "name": "punctuation.definition.variable.crystal"
         }
       },
-      "match": "(?!%[Qxrqwi]?[(\\[{<\\|])%([a-zA-Z_]\\w*\\.)*[a-zA-Z_]\\w*",
+      "match": "(?!%[Qxrqwi]?[\\(\\[\\{\\<\\|])%([a-zA-Z_]\\w*\\.)*[a-zA-Z_]\\w*",
       "name": "variable.other.readwrite.fresh.crystal"
     },
     {
@@ -329,22 +329,22 @@
     },
     {
       "comment": "Floating point literal (fraction)",
-      "match": "\\b\\d[0-9_]*\\.\\d[0-9_]*([eE][+-]?[0-9_]+)?(f32|f64)?\\b",
+      "match": "\\b[0-9][0-9_]*\\.[0-9][0-9_]*([eE][+-]?[0-9_]+)?(f32|f64)?\\b",
       "name": "constant.numeric.float.crystal"
     },
     {
       "comment": "Floating point literal (exponent)",
-      "match": "\\b\\d[0-9_]*(\\.\\d[0-9_]*)?[eE][+-]?[0-9_]+(f32|f64)?\\b",
+      "match": "\\b[0-9][0-9_]*(\\.[0-9][0-9_]*)?[eE][+-]?[0-9_]+(f32|f64)?\\b",
       "name": "constant.numeric.float.crystal"
     },
     {
       "comment": "Floating point literal (typed)",
-      "match": "\\b\\d[0-9_]*(\\.\\d[0-9_]*)?([eE][+-]?[0-9_]+)?(f32|f64)\\b",
+      "match": "\\b[0-9][0-9_]*(\\.[0-9][0-9_]*)?([eE][+-]?[0-9_]+)?(f32|f64)\\b",
       "name": "constant.numeric.float.crystal"
     },
     {
       "comment": "Integer literal (decimal)",
-      "match": "\\b(?!0\\d)\\d[0-9_]*([ui](8|16|32|64|128))?\\b",
+      "match": "\\b(?!0[0-9])[0-9][0-9_]*([ui](8|16|32|64|128))?\\b",
       "name": "constant.numeric.integer.decimal.crystal"
     },
     {
@@ -538,14 +538,14 @@
       ]
     },
     {
-      "begin": "%x<",
+      "begin": "%x\\<",
       "beginCaptures": {
         "0": {
           "name": "punctuation.definition.string.begin.crystal"
         }
       },
       "comment": "execute string (allow for interpolation)",
-      "end": ">",
+      "end": "\\>",
       "endCaptures": {
         "0": {
           "name": "punctuation.definition.string.end.crystal"
@@ -707,14 +707,14 @@
       ]
     },
     {
-      "begin": "%r<",
+      "begin": "%r\\<",
       "beginCaptures": {
         "0": {
           "name": "punctuation.definition.string.begin.crystal"
         }
       },
       "comment": "regular expressions (literal)",
-      "end": ">[imsx]*",
+      "end": "\\>[imsx]*",
       "endCaptures": {
         "0": {
           "name": "punctuation.definition.string.end.crystal"
@@ -806,14 +806,14 @@
       ]
     },
     {
-      "begin": "%Q?<",
+      "begin": "%Q?\\<",
       "beginCaptures": {
         "0": {
           "name": "punctuation.definition.string.begin.crystal"
         }
       },
       "comment": "literal capable of interpolation <>",
-      "end": ">",
+      "end": "\\>",
       "endCaptures": {
         "0": {
           "name": "punctuation.definition.string.end.crystal"
@@ -909,14 +909,14 @@
       ]
     },
     {
-      "begin": "%[qwi]<",
+      "begin": "%[qwi]\\<",
       "beginCaptures": {
         "0": {
           "name": "punctuation.definition.string.begin.crystal"
         }
       },
       "comment": "literal incapable of interpolation -- <>",
-      "end": ">",
+      "end": "\\>",
       "endCaptures": {
         "0": {
           "name": "punctuation.definition.string.end.crystal"
@@ -925,7 +925,7 @@
       "name": "string.quoted.other.literal.lower.crystal",
       "patterns": [
         {
-          "match": "\\\\>|\\\\\\\\",
+          "match": "\\\\\\>|\\\\\\\\",
           "name": "constant.character.escape.crystal"
         },
         {
@@ -1424,7 +1424,7 @@
       "match": "(&\\.)\\s*(?![A-Z])"
     },
     {
-      "match": "(%|&|\\*\\*|\\*|\\+|-|/)",
+      "match": "(%|&|\\*\\*|\\*|\\+|\\-|/)",
       "name": "keyword.operator.arithmetic.crystal"
     },
     {
@@ -1479,7 +1479,7 @@
     },
     {
       "comment": "This is kindof experimental. There really is no way to perfectly match all regular variables, but you can pretty well assume that any normal word in certain curcumstances that havnt already been scoped as something else are probably variables, and the advantages beat the potential errors",
-      "match": "((?<=\\W)\\b|^)\\w+\\b(?=\\s*([\\])}=+\\-\\*\\/\\^$\\,\\.]|<\\s|<<[\\s|\\.]))",
+      "match": "((?<=\\W)\\b|^)\\w+\\b(?=\\s*([\\]\\)\\}\\=\\+\\-\\*\\/\\^\\$\\,\\.]|<\\s|<<[\\s|\\.]))",
       "name": "variable.other.crystal"
     }
   ],
@@ -1703,13 +1703,13 @@
       ]
     },
     "nest_ltgt": {
-      "begin": "<",
+      "begin": "\\<",
       "captures": {
         "0": {
           "name": "punctuation.section.scope.crystal"
         }
       },
-      "end": ">",
+      "end": "\\>",
       "patterns": [
         {
           "include": "#nest_ltgt"
@@ -1717,13 +1717,13 @@
       ]
     },
     "nest_ltgt_i": {
-      "begin": "<",
+      "begin": "\\<",
       "captures": {
         "0": {
           "name": "punctuation.section.scope.crystal"
         }
       },
-      "end": ">",
+      "end": "\\>",
       "patterns": [
         {
           "include": "#interpolated_crystal"
@@ -1737,13 +1737,13 @@
       ]
     },
     "nest_ltgt_r": {
-      "begin": "<",
+      "begin": "\\<",
       "captures": {
         "0": {
           "name": "punctuation.section.scope.crystal"
         }
       },
-      "end": ">",
+      "end": "\\>",
       "patterns": [
         {
           "include": "#regex_sub"

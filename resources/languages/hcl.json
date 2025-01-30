@@ -27,13 +27,13 @@
         }
       },
       "comment": "Matches traversal attribute access such as .attr",
-      "end": "[A-Za-z][\\w-]*|\\d*",
+      "end": "[[:alpha:]][\\w-]*|\\d*",
       "endCaptures": {
         "0": {
           "patterns": [
             {
               "comment": "Attribute name",
-              "match": "(?!null|false|true)[A-Za-z][\\w-]*",
+              "match": "(?!null|false|true)[[:alpha:]][\\w-]*",
               "name": "variable.other.member.hcl"
             },
             {
@@ -61,7 +61,7 @@
         }
       },
       "comment": "Identifier \"=\" with optional parens",
-      "match": "(\\()?(\\b(?!null\\b|false\\b|true\\b)[A-Za-z][0-9A-Za-z_-]*)(\\))?\\s*(=(?!=|>))\\s*",
+      "match": "(\\()?(\\b(?!null\\b|false\\b|true\\b)[[:alpha:]][[:alnum:]_-]*)(\\))?\\s*(\\=(?!\\=|\\>))\\s*",
       "name": "variable.declaration.hcl"
     },
     "attribute_splat": {
@@ -80,13 +80,13 @@
       }
     },
     "block": {
-      "begin": "([\\w][\\-\\w]*)(([^\\S\\r\\n]*([\\w][\\-_\\w]*|\\\"[^\\\"\\r\\n]*\\\"))*)[^\\S\\r\\n]*(\\{)",
+      "begin": "([\\w][\\-\\w]*)(([^\\S\\r\\n]+([\\w][\\-_\\w]*|\\\"[^\\\"\\r\\n]*\\\"))*)[^\\S\\r\\n]*(\\{)",
       "beginCaptures": {
         "1": {
           "patterns": [
             {
               "comment": "Block type",
-              "match": "\\b(?!null|false|true)[A-Za-z][0-9A-Za-z_-]*\\b",
+              "match": "\\b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\\b",
               "name": "entity.name.type.hcl"
             }
           ]
@@ -100,7 +100,7 @@
             },
             {
               "comment": "Block label (Identifier)",
-              "match": "[A-Za-z][0-9A-Za-z_-]*",
+              "match": "[[:alpha:]][[:alnum:]_-]*",
               "name": "variable.other.enummember.hcl"
             }
           ]
@@ -263,7 +263,7 @@
           "name": "keyword.control.conditional.hcl"
         },
         {
-          "match": ":",
+          "match": "\\:",
           "name": "keyword.operator.hcl"
         },
         {
@@ -286,11 +286,11 @@
         "1": {
           "patterns": [
             {
-              "match": "\\b[A-Za-z][\\w_-]*::([A-Za-z][\\w_-]*::)?[A-Za-z][\\w_-]*\\b",
+              "match": "\\b[[:alpha:]][\\w_-]*::([[:alpha:]][\\w_-]*::)?[[:alpha:]][\\w_-]*\\b",
               "name": "support.function.namespaced.hcl"
             },
             {
-              "match": "\\b[A-Za-z][\\w_-]*\\b",
+              "match": "\\b[[:alpha:]][\\w_-]*\\b",
               "name": "support.function.builtin.hcl"
             }
           ]
@@ -336,7 +336,7 @@
       "name": "storage.type.hcl"
     },
     "heredoc": {
-      "begin": "(<<-?)\\s*(\\w+)\\s*$",
+      "begin": "(\\<\\<\\-?)\\s*(\\w+)\\s*$",
       "beginCaptures": {
         "1": {
           "name": "keyword.operator.heredoc.hcl"
@@ -367,7 +367,7 @@
         "2": {
           "patterns": [
             {
-              "match": "=>",
+              "match": "\\=\\>",
               "name": "storage.type.function.hcl"
             },
             {
@@ -427,7 +427,7 @@
     },
     "local_identifiers": {
       "comment": "Local Identifiers",
-      "match": "\\b(?!null|false|true)[A-Za-z][0-9A-Za-z_-]*\\b",
+      "match": "\\b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\\b",
       "name": "variable.other.readwrite.hcl"
     },
     "numeric_literals": {
@@ -480,7 +480,7 @@
       },
       "patterns": [
         {
-          "match": "=>",
+          "match": "\\=\\>",
           "name": "storage.type.function.hcl"
         },
         {
@@ -550,7 +550,7 @@
             }
           },
           "comment": "Literal, named object key",
-          "match": "\\b((?!null|false|true)[A-Za-z][0-9A-Za-z_-]*)\\s*(=(?!=))\\s*"
+          "match": "\\b((?!null|false|true)[[:alpha:]][[:alnum:]_-]*)\\s*(\\=(?!=))\\s*"
         },
         {
           "captures": {
@@ -568,7 +568,7 @@
             }
           },
           "comment": "String object key",
-          "match": "^\\s*((\").*(\"))\\s*(=)\\s*"
+          "match": "^\\s*((\").*(\"))\\s*(\\=)\\s*"
         },
         {
           "begin": "^\\s*\\(",
@@ -605,19 +605,19 @@
     "operators": {
       "patterns": [
         {
-          "match": ">=",
+          "match": "\\>\\=",
           "name": "keyword.operator.hcl"
         },
         {
-          "match": "<=",
+          "match": "\\<\\=",
           "name": "keyword.operator.hcl"
         },
         {
-          "match": "==",
+          "match": "\\=\\=",
           "name": "keyword.operator.hcl"
         },
         {
-          "match": "!=",
+          "match": "\\!\\=",
           "name": "keyword.operator.hcl"
         },
         {
@@ -625,7 +625,7 @@
           "name": "keyword.operator.arithmetic.hcl"
         },
         {
-          "match": "-",
+          "match": "\\-",
           "name": "keyword.operator.arithmetic.hcl"
         },
         {
@@ -649,15 +649,15 @@
           "name": "keyword.operator.logical.hcl"
         },
         {
-          "match": "!",
+          "match": "\\!",
           "name": "keyword.operator.logical.hcl"
         },
         {
-          "match": ">",
+          "match": "\\>",
           "name": "keyword.operator.hcl"
         },
         {
-          "match": "<",
+          "match": "\\<",
           "name": "keyword.operator.hcl"
         },
         {
@@ -669,11 +669,11 @@
           "name": "keyword.operator.hcl"
         },
         {
-          "match": ":",
+          "match": "\\:",
           "name": "keyword.operator.hcl"
         },
         {
-          "match": "=>",
+          "match": "\\=\\>",
           "name": "keyword.operator.hcl"
         }
       ]

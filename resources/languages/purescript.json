@@ -180,7 +180,7 @@
       ]
     },
     {
-      "begin": "^(\\s)*(data|newtype)\\s+(.+?)\\s*(?==|$)",
+      "begin": "^(\\s)*(data|newtype)\\s+(.+?)\\s*(?=\\=|$)",
       "beginCaptures": {
         "2": {
           "name": "storage.type.data.purescript"
@@ -242,7 +242,7 @@
       ]
     },
     {
-      "begin": "^(\\s)*(type)\\s+(.+?)\\s*(?==|$)",
+      "begin": "^(\\s)*(type)\\s+(.+?)\\s*(?=\\=|$)",
       "beginCaptures": {
         "2": {
           "name": "storage.type.data.purescript"
@@ -323,7 +323,7 @@
           "name": "meta.delimiter.decimal.period.purescript"
         }
       },
-      "match": "(?<!\\$)(?:(?:\\b\\d+(\\.)\\d+[eE][+-]?\\d+\\b)|(?:\\b\\d+[eE][+-]?\\d+\\b)|(?:\\b\\d+(\\.)\\d+\\b)|(?:\\b\\d+\\b(?!\\.)))(?!\\$)",
+      "match": "(?<!\\$)(?:(?:\\b[0-9]+(\\.)[0-9]+[eE][+-]?[0-9]+\\b)|(?:\\b[0-9]+[eE][+-]?[0-9]+\\b)|(?:\\b[0-9]+(\\.)[0-9]+\\b)|(?:\\b[0-9]+\\b(?!\\.)))(?!\\$)",
       "name": "constant.numeric.decimal.purescript"
     },
     {
@@ -331,7 +331,7 @@
       "name": "constant.language.boolean.purescript"
     },
     {
-      "match": "\\b((\\d+_?)*\\d+|0([xX][0-9a-fA-F]+|[oO][0-7]+))\\b",
+      "match": "\\b(([0-9]+_?)*[0-9]+|0([xX][0-9a-fA-F]+|[oO][0-7]+))\\b",
       "name": "constant.numeric.purescript"
     },
     {
@@ -462,7 +462,7 @@
       "include": "#infix_op"
     },
     {
-      "match": "<-|->",
+      "match": "\\<-|-\\>",
       "name": "keyword.other.arrow.purescript"
     },
     {

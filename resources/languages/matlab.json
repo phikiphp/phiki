@@ -388,7 +388,7 @@
                     "1": {
                       "patterns": [
                         {
-                          "match": "[a-zA-Z]\\w*",
+                          "match": "[a-zA-Z][a-zA-Z0-9_]*",
                           "name": "variable.parameter.class.matlab"
                         },
                         {
@@ -418,7 +418,7 @@
                     "5": {
                       "patterns": [
                         {
-                          "match": "[a-zA-Z]\\w*(\\.[a-zA-Z]\\w*)*",
+                          "match": "[a-zA-Z][a-zA-Z0-9_]*(\\.[a-zA-Z][a-zA-Z0-9_]*)*",
                           "name": "entity.other.inherited-class.matlab"
                         },
                         {
@@ -435,7 +435,7 @@
                       ]
                     }
                   },
-                  "match": "(\\([^)]*\\))?\\s*(([a-zA-Z]\\w*)(?:\\s*(<)\\s*([^%]*))?)\\s*($|(?=(%|...)).*)"
+                  "match": "(\\([^)]*\\))?\\s*(([a-zA-Z][a-zA-Z0-9_]*)(?:\\s*(<)\\s*([^%]*))?)\\s*($|(?=(%|...)).*)"
                 }
               ]
             }
@@ -457,7 +457,7 @@
                 "3": {
                   "patterns": [
                     {
-                      "match": "[a-zA-Z]\\w*",
+                      "match": "[a-zA-Z][a-zA-Z0-9_]*",
                       "name": "variable.parameter.properties.matlab"
                     },
                     {
@@ -502,7 +502,7 @@
                 "3": {
                   "patterns": [
                     {
-                      "match": "[a-zA-Z]\\w*",
+                      "match": "[a-zA-Z][a-zA-Z0-9_]*",
                       "name": "variable.parameter.methods.matlab"
                     },
                     {
@@ -544,7 +544,7 @@
                 "3": {
                   "patterns": [
                     {
-                      "match": "[a-zA-Z]\\w*",
+                      "match": "[a-zA-Z][a-zA-Z0-9_]*",
                       "name": "variable.parameter.events.matlab"
                     },
                     {
@@ -742,7 +742,7 @@
     "function": {
       "patterns": [
         {
-          "begin": "(^\\s*)(function)\\s+(?:(?:(\\[)([^\\]]*)(\\])|([a-zA-Z]\\w*))\\s*=\\s*)?([a-zA-Z]\\w*(\\.[a-zA-Z]\\w*)*)\\s*",
+          "begin": "(^\\s*)(function)\\s+(?:(?:(\\[)([^\\]]*)(\\])|([a-zA-Z][a-zA-Z0-9_]*))\\s*=\\s*)?([a-zA-Z][a-zA-Z0-9_]*(\\.[a-zA-Z][a-zA-Z0-9_]*)*)\\s*",
           "beginCaptures": {
             "2": {
               "name": "storage.type.function.matlab"
@@ -799,7 +799,7 @@
                 "3": {
                   "patterns": [
                     {
-                      "match": "[a-zA-Z]\\w*",
+                      "match": "[a-zA-Z][a-zA-Z0-9_]*",
                       "name": "variable.parameter.arguments.matlab"
                     }
                   ]
@@ -885,7 +885,7 @@
     },
     "numbers": {
       "comment": "Valid numbers: 1, .1, 1.1, .1e1, 1.1e1, 1e1, 1i, 1j, 1e2j",
-      "match": "(?<=[\\s\\-+\\*\\/\\\\=:\\[({,]|^)\\d*\\.?\\d+([eE][+-]?\\d)?([0-9&&[^\\.]])*(i|j)?\\b",
+      "match": "(?<=[\\s\\-\\+\\*\\/\\\\=:\\[\\(\\{,]|^)\\d*\\.?\\d+([eE][+-]?\\d)?([0-9&&[^\\.]])*(i|j)?\\b",
       "name": "constant.numeric.matlab"
     },
     "operators": {
@@ -970,7 +970,7 @@
             },
             {
               "comment": "Operator symbols",
-              "match": "((\\%([+\\-0]?\\d{0,3}(\\.\\d{1,3})?)(c|d|e|E|f|g|G|s|((b|t)?(o|u|x|X))))|\\%\\%|\\\\(b|f|n|r|t|\\\\))",
+              "match": "((\\%([\\+\\-0]?\\d{0,3}(\\.\\d{1,3})?)(c|d|e|E|f|g|G|s|((b|t)?(o|u|x|X))))|\\%\\%|\\\\(b|f|n|r|t|\\\\))",
               "name": "constant.character.escape.matlab"
             }
           ]
@@ -1051,7 +1051,7 @@
       ]
     },
     "validators": {
-      "begin": "\\s*[;]?\\s*([a-zA-Z][a-zA-Z0-9_\\.?]*)",
+      "begin": "\\s*[;]?\\s*([a-zA-Z][a-zA-Z0-9_\\.\\?]*)",
       "comment": "Property and argument validation. Match an identifier allowing . and ?.",
       "end": "([;\\n%=].*)",
       "endCaptures": {
@@ -1108,7 +1108,7 @@
         },
         {
           "comment": "Size declaration",
-          "match": "\\s*(\\([^)]*\\))",
+          "match": "\\s*(\\([^\\)]*\\))",
           "name": "storage.type.matlab"
         },
         {

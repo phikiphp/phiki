@@ -210,7 +210,7 @@
       ]
     },
     "numeric": {
-      "match": "(?<![a-zA-Z])([+-]?(\\d*[.])?\\d+f?)(?![\\.a-zA-Z])",
+      "match": "(?<![a-zA-Z])([+-]?([0-9]*[.])?[0-9]+f?)(?![\\.a-zA-Z])",
       "name": "constant.numeric.tcl"
     },
     "operator": {
@@ -283,7 +283,7 @@
           "name": "punctuation.definition.variable.tcl"
         }
       },
-      "match": "(\\$)((?:\\w|::)+(\\([^)]+\\))?|\\{[^}]*\\})",
+      "match": "(\\$)((?:[a-zA-Z0-9_]|::)+(\\([^\\)]+\\))?|\\{[^\\}]*\\})",
       "name": "support.function.tcl"
     }
   },

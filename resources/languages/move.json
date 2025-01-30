@@ -116,7 +116,7 @@
       "patterns": [
         {
           "comment": "Annotation name",
-          "match": "\\b(\\w+)\\s*(?==)",
+          "match": "\\b(\\w+)\\s*(?=\\=)",
           "name": "meta.annotation.name.move"
         },
         {
@@ -758,7 +758,7 @@
         },
         {
           "comment": "Numeric literal",
-          "match": "(?<!(?:\\w|(?:(?<!\\.)\\.)))\\d[_0-9]*(?:\\.(?!\\.)(?:\\d[_0-9]*)?)?(?:[eE][+\\-]?[_0-9]+)?(?:[u](?:8|16|32|64|128|256))?",
+          "match": "(?<!(?:\\w|(?:(?<!\\.)\\.)))[0-9][_0-9]*(?:\\.(?!\\.)(?:[0-9][_0-9]*)?)?(?:[eE][+\\-]?[_0-9]+)?(?:[u](?:8|16|32|64|128|256))?",
           "name": "constant.numeric.move"
         },
         {
@@ -822,7 +822,7 @@
     },
     "local_call": {
       "comment": "call to a local / imported fun",
-      "match": "\\b([a-z][_a-z0-9]*)(?=[<(])",
+      "match": "\\b([a-z][_a-z0-9]*)(?=[<\\(])",
       "name": "entity.name.function.call.local.move"
     },
     "macro": {
@@ -902,7 +902,7 @@
         }
       },
       "comment": "<expr>.[ident]<>?() call",
-      "match": "\\.([a-z][_a-z0-9]*)(?=[<(])",
+      "match": "\\.([a-z][_a-z0-9]*)(?=[<\\(])",
       "name": "meta.path.call.move"
     },
     "module": {
@@ -1320,7 +1320,7 @@
           "name": "storage.modifier.type.move"
         }
       },
-      "end": "(?<=[};)])",
+      "end": "(?<=[};\\)])",
       "name": "meta.struct.move",
       "patterns": [
         {

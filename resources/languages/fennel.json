@@ -96,7 +96,7 @@
     "methods": {
       "patterns": [
         {
-          "match": "\\w+:\\w+",
+          "match": "\\w+\\:\\w+",
           "name": "entity.name.function.method.fennel"
         }
       ]
@@ -128,11 +128,11 @@
           "name": "keyword.special.fennel"
         },
         {
-          "match": "(->(>)?)",
+          "match": "(\\-\\>(\\>)?)",
           "name": "keyword.special.fennel"
         },
         {
-          "match": "-\\?>(>)?",
+          "match": "\\-\\?\\>(\\>)?",
           "name": "keyword.special.fennel"
         },
         {

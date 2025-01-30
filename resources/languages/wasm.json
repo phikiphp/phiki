@@ -107,12 +107,12 @@
           "patterns": [
             {
               "comment": "Floating point literal",
-              "match": "[+-]?\\b\\d\\d*(?:\\.\\d\\d*)?(?:[eE][+-]?\\d+)?\\b",
+              "match": "[+-]?\\b[0-9][0-9]*(?:\\.[0-9][0-9]*)?(?:[eE][+-]?[0-9]+)?\\b",
               "name": "constant.numeric.float.wat"
             },
             {
               "comment": "Floating point hexadecimal literal",
-              "match": "[+-]?\\b0x([0-9a-fA-F]*\\.[0-9a-fA-F]+|[0-9a-fA-F]+\\.?)[Pp][+-]?\\d+\\b",
+              "match": "[+-]?\\b0x([0-9a-fA-F]*\\.[0-9a-fA-F]+|[0-9a-fA-F]+\\.?)[Pp][+-]?[0-9]+\\b",
               "name": "constant.numeric.float.wat"
             },
             {

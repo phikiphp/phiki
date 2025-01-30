@@ -312,7 +312,7 @@
       "match": "//|/\\*"
     },
     "comparison-operator": {
-      "match": "=|!=",
+      "match": "=|\\!\\=",
       "name": "keyword.operator.comparison.ql"
     },
     "concat": {
@@ -432,7 +432,7 @@
       "name": "keyword.type.float.ql"
     },
     "float-literal": {
-      "match": "-?\\d+\\.\\d+(?!\\d)",
+      "match": "-?[0-9]+\\.[0-9]+(?![0-9])",
       "name": "constant.numeric.decimal.ql"
     },
     "forall": {
@@ -557,7 +557,7 @@
           ]
         }
       },
-      "end": "(?<!\\bimport)(?<=(?:>)|[A-Za-z0-9_])(?!\\s*(\\.|::|\\,|(?:<)))",
+      "end": "(?<!\\bimport)(?<=(?:\\>)|[A-Za-z0-9_])(?!\\s*(\\.|\\:\\:|\\,|(?:<)))",
       "name": "meta.block.import-directive.ql",
       "patterns": [
         {
@@ -620,7 +620,7 @@
       "name": "keyword.type.int.ql"
     },
     "int-literal": {
-      "match": "-?\\d+(?!\\d)",
+      "match": "-?[0-9]+(?![0-9])",
       "name": "constant.numeric.decimal.ql"
     },
     "keyword": {
@@ -965,7 +965,7 @@
       ]
     },
     "module-qualifier": {
-      "match": "(?:\\b[A-Za-z][0-9A-Za-z_]*(?:(?!(?:[0-9A-Za-z_]))))(?=\\s*::)",
+      "match": "(?:\\b[A-Za-z][0-9A-Za-z_]*(?:(?!(?:[0-9A-Za-z_]))))(?=\\s*\\:\\:)",
       "name": "entity.name.type.namespace.ql"
     },
     "newtype": {
@@ -973,7 +973,7 @@
       "name": "keyword.other.newtype.ql"
     },
     "newtype-branch-name-with-prefix": {
-      "begin": "=|(?:\\b(?:or)(?:(?!(?:[0-9A-Za-z_]))))",
+      "begin": "\\=|(?:\\b(?:or)(?:(?!(?:[0-9A-Za-z_]))))",
       "beginCaptures": {
         "0": {
           "patterns": [
@@ -1374,7 +1374,7 @@
           ]
         }
       },
-      "end": "(?<=(?:[0-9A-Za-z_])(?:(?!(?:[0-9A-Za-z_]))))",
+      "end": "(?<=(?:[0-9A-Za-z_]))(?:(?!(?:[0-9A-Za-z_])))",
       "match": "meta.block.select-as-clause.ql",
       "patterns": [
         {

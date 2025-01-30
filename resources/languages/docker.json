@@ -36,6 +36,9 @@
       "match": "^\\s*(?i:(ONBUILD)\\s+)?(?i:(CMD|ENTRYPOINT))\\s"
     },
     {
+      "include": "#string-character-escape"
+    },
+    {
       "begin": "\"",
       "beginCaptures": {
         "1": {
@@ -51,8 +54,7 @@
       "name": "string.quoted.double.dockerfile",
       "patterns": [
         {
-          "match": "\\\\.",
-          "name": "constant.character.escaped.dockerfile"
+          "include": "#string-character-escape"
         }
       ]
     },
@@ -72,8 +74,7 @@
       "name": "string.quoted.single.dockerfile",
       "patterns": [
         {
-          "match": "\\\\.",
-          "name": "constant.character.escaped.dockerfile"
+          "include": "#string-character-escape"
         }
       ]
     },
@@ -93,5 +94,11 @@
       "match": "^(\\s*)((#).*$\\n?)"
     }
   ],
+  "repository": {
+    "string-character-escape": {
+      "match": "\\\\.",
+      "name": "constant.character.escaped.dockerfile"
+    }
+  },
   "scopeName": "source.dockerfile"
 }

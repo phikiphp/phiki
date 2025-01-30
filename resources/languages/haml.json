@@ -4,7 +4,7 @@
     "haml",
     "html.haml"
   ],
-  "foldingStartMarker": "^\\s*([-%#:\\.\\w=].*)\\s$",
+  "foldingStartMarker": "^\\s*([-%#\\:\\.\\w\\=].*)\\s$",
   "foldingStopMarker": "^\\s*$",
   "name": "haml",
   "patterns": [
@@ -77,7 +77,7 @@
       "name": "comment.line.slash.haml"
     },
     {
-      "begin": "^(\\s*)(-\\#|\\/|-\\s*\\/\\*+)",
+      "begin": "^(\\s*)(\\-\\#|\\/|\\-\\s*\\/\\*+)",
       "beginCaptures": {
         "2": {
           "name": "punctuation.section.comment.haml"
@@ -122,7 +122,7 @@
               "name": "entity.other.attribute-name.class"
             }
           },
-          "match": "(\\.[\\w\\-:]+)",
+          "match": "(\\.[\\w\\-\\:]+)",
           "name": "meta.selector.css"
         },
         {
@@ -160,7 +160,7 @@
               "name": "constant.other.symbol.ruby"
             },
             {
-              "match": "=",
+              "match": "\\=",
               "name": "punctuation"
             },
             {

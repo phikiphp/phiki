@@ -12,6 +12,9 @@
       "include": "#double_comment"
     },
     {
+      "include": "#multi_line_comment"
+    },
+    {
       "include": "#model_block_definition"
     },
     {
@@ -136,6 +139,9 @@
           "include": "#double_comment"
         },
         {
+          "include": "#multi_line_comment"
+        },
+        {
           "include": "#assignment"
         }
       ]
@@ -168,7 +174,7 @@
           "include": "#string_interpolation"
         },
         {
-          "match": "([\\w\\-\\/\\._\\\\%@:?=]+)",
+          "match": "([\\w\\-\\/\\._\\\\%@:\\?=]+)",
           "name": "string.quoted.double.prisma"
         }
       ]
@@ -199,6 +205,9 @@
         },
         {
           "include": "#double_comment"
+        },
+        {
+          "include": "#multi_line_comment"
         },
         {
           "include": "#enum_value_definition"
@@ -250,7 +259,7 @@
               "name": "invalid.illegal.required_type.prisma"
             }
           },
-          "match": "^\\s*(\\w+)(\\s*:)?\\s+((?!(?:Int|BigInt|String|DateTime|Bytes|Decimal|Float|Json|Boolean)\\b)\\b\\w+)?(Int|BigInt|String|DateTime|Bytes|Decimal|Float|Json|Boolean)?(\\[\\])?(\\?)?(!)?"
+          "match": "^\\s*(\\w+)(\\s*:)?\\s+((?!(?:Int|BigInt|String|DateTime|Bytes|Decimal|Float|Json|Boolean)\\b)\\b\\w+)?(Int|BigInt|String|DateTime|Bytes|Decimal|Float|Json|Boolean)?(\\[\\])?(\\?)?(\\!)?"
         },
         {
           "include": "#attribute_with_arguments"
@@ -352,9 +361,17 @@
           "include": "#double_comment"
         },
         {
+          "include": "#multi_line_comment"
+        },
+        {
           "include": "#field_definition"
         }
       ]
+    },
+    "multi_line_comment": {
+      "begin": "/\\*",
+      "end": "\\*/",
+      "name": "comment.prisma"
     },
     "named_argument": {
       "name": "source.prisma.named_argument",
@@ -368,7 +385,7 @@
       ]
     },
     "number": {
-      "match": "((0(x|X)[0-9a-fA-F]*)|(\\+|-)?\\b((\\d+\\.?\\d*)|(\\.\\d+))((e|E)(\\+|-)?\\d+)?)([LlFfUuDdg]|UL|ul)?\\b",
+      "match": "((0(x|X)[0-9a-fA-F]*)|(\\+|-)?\\b(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))((e|E)(\\+|-)?[0-9]+)?)([LlFfUuDdg]|UL|ul)?\\b",
       "name": "constant.numeric.prisma"
     },
     "string_interpolation": {

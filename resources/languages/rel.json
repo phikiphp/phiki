@@ -125,7 +125,7 @@
     "keywords": {
       "patterns": [
         {
-          "match": "(\\b(def|entity|bound|include|ic|forall|exists|∀|∃|return|module|^end)\\b)|(((<)?\\|(>)?)|∀|∃)",
+          "match": "(\\b(def|entity|bound|include|ic|forall|exists|∀|∃|return|module|^end)\\b)|(((\\<)?\\|(\\>)?)|∀|∃)",
           "name": "keyword.control.rel"
         }
       ]
@@ -133,7 +133,7 @@
     "operators": {
       "patterns": [
         {
-          "match": "(\\b(if|then|else|and|or|not|eq|neq|lt|lt_eq|gt|gt_eq)\\b)|(\\+|-|\\*|\\/|÷|\\^|\\%|=|!=|≠|<|<=|≤|>|>=|≥|\\&)|\\s+(end)",
+          "match": "(\\b(if|then|else|and|or|not|eq|neq|lt|lt_eq|gt|gt_eq)\\b)|(\\+|\\-|\\*|\\/|÷|\\^|\\%|\\=|\\!\\=|≠|\\<|\\<\\=|≤|\\>|\\>\\=|≥|\\&)|\\s+(end)",
           "name": "keyword.other.rel"
         }
       ]
@@ -141,7 +141,7 @@
     "otherkeywords": {
       "patterns": [
         {
-          "match": "\\s*(@inline)\\s*|\\s*(@auto_number)\\s*|\\s*(function)\\s|(\\b(implies|select|from|∈|where|for|in)\\b)|(((<)?\\|(>)?)|∈)",
+          "match": "\\s*(@inline)\\s*|\\s*(@auto_number)\\s*|\\s*(function)\\s|(\\b(implies|select|from|∈|where|for|in)\\b)|(((\\<)?\\|(\\>)?)|∈)",
           "name": "keyword.other.rel"
         }
       ]
@@ -182,7 +182,7 @@
     "symbols": {
       "patterns": [
         {
-          "match": "(:[\\[_$A-Za-z](\\]|[_$0-9A-Za-z]*))",
+          "match": "(:[\\[_$[:alpha:]](\\]|[_$[:alnum:]]*))",
           "name": "variable.parameter.rel"
         }
       ]

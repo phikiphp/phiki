@@ -14,7 +14,7 @@
   ],
   "repository": {
     "annotated-parameter": {
-      "begin": "\\b([A-Za-z_]\\w*)\\s*(:)",
+      "begin": "\\b([[:alpha:]_]\\w*)\\s*(:)",
       "beginCaptures": {
         "1": {
           "name": "variable.parameter.function.language.python"
@@ -143,7 +143,7 @@
       ]
     },
     "call-wrapper-inheritance": {
-      "begin": "\\b(?=([A-Za-z_]\\w*)\\s*(\\())",
+      "begin": "\\b(?=([[:alpha:]_]\\w*)\\s*(\\())",
       "comment": "same as a function call, but in inheritance context",
       "end": "(\\))",
       "endCaptures": {
@@ -164,7 +164,7 @@
     "class-declaration": {
       "patterns": [
         {
-          "begin": "\\s*(class)\\s+(?=[A-Za-z_]\\w*\\s*(:|\\())",
+          "begin": "\\s*(class)\\s+(?=[[:alpha:]_]\\w*\\s*(:|\\())",
           "beginCaptures": {
             "1": {
               "name": "storage.type.class.python"
@@ -248,7 +248,7 @@
           "name": "keyword.operator.assignment.python"
         }
       },
-      "match": "\\b([A-Za-z_]\\w*)\\s*(=)(?!=)"
+      "match": "\\b([[:alpha:]_]\\w*)\\s*(=)(?!=)"
     },
     "class-name": {
       "patterns": [
@@ -259,7 +259,7 @@
           "include": "#builtin-possible-callables"
         },
         {
-          "match": "\\b([A-Za-z_]\\w*)\\b",
+          "match": "\\b([[:alpha:]_]\\w*)\\b",
           "name": "entity.name.type.class.python"
         }
       ]
@@ -297,11 +297,11 @@
               "name": "comment.typehint.type.notation.python"
             },
             {
-              "match": "([\\[\\](),\\.=\\*]|(->))",
+              "match": "([\\[\\]\\(\\),\\.\\=\\*]|(->))",
               "name": "comment.typehint.punctuation.notation.python"
             },
             {
-              "match": "([A-Za-z_]\\w*)",
+              "match": "([[:alpha:]_]\\w*)",
               "name": "comment.typehint.variable.notation.python"
             }
           ]
@@ -380,7 +380,7 @@
       ]
     },
     "decorator": {
-      "begin": "^\\s*((@))\\s*(?=[A-Za-z_]\\w*)",
+      "begin": "^\\s*((@))\\s*(?=[[:alpha:]_]\\w*)",
       "beginCaptures": {
         "1": {
           "name": "entity.name.function.decorator.python"
@@ -422,7 +422,7 @@
               "name": "punctuation.separator.period.python"
             }
           },
-          "match": "([A-Za-z_]\\w*)|(\\.)",
+          "match": "([[:alpha:]_]\\w*)|(\\.)",
           "name": "entity.name.function.decorator.python"
         },
         {
@@ -434,7 +434,7 @@
               "name": "invalid.illegal.decorator.python"
             }
           },
-          "match": "\\s*([^(A-Za-z\\s_\\.#\\\\].*?)(?=\\#|$)",
+          "match": "\\s*([^([:alpha:]\\s_\\.#\\\\].*?)(?=\\#|$)",
           "name": "invalid.illegal.decorator.python"
         }
       ]
@@ -648,7 +648,7 @@
       ]
     },
     "double-one-regexp-conditional": {
-      "begin": "(\\()\\?\\((\\w+(?:\\s+[0-9A-Za-z]+)?|\\d+)\\)",
+      "begin": "(\\()\\?\\((\\w+(?:\\s+[[:alnum:]]+)?|\\d+)\\)",
       "beginCaptures": {
         "0": {
           "name": "keyword.operator.conditional.regexp"
@@ -816,7 +816,7 @@
       ]
     },
     "double-one-regexp-named-group": {
-      "begin": "(\\()(\\?P<\\w+(?:\\s+[0-9A-Za-z]+)?>)",
+      "begin": "(\\()(\\?P<\\w+(?:\\s+[[:alnum:]]+)?>)",
       "beginCaptures": {
         "1": {
           "name": "support.other.parenthesis.regexp punctuation.parenthesis.named.begin.regexp"
@@ -949,7 +949,7 @@
       ]
     },
     "double-three-regexp-conditional": {
-      "begin": "(\\()\\?\\((\\w+(?:\\s+[0-9A-Za-z]+)?|\\d+)\\)",
+      "begin": "(\\()\\?\\((\\w+(?:\\s+[[:alnum:]]+)?|\\d+)\\)",
       "beginCaptures": {
         "0": {
           "name": "keyword.operator.conditional.regexp"
@@ -1135,7 +1135,7 @@
       ]
     },
     "double-three-regexp-named-group": {
-      "begin": "(\\()(\\?P<\\w+(?:\\s+[0-9A-Za-z]+)?>)",
+      "begin": "(\\()(\\?P<\\w+(?:\\s+[[:alnum:]]+)?>)",
       "beginCaptures": {
         "1": {
           "name": "support.other.parenthesis.regexp punctuation.parenthesis.named.begin.regexp"
@@ -1240,7 +1240,7 @@
         },
         {
           "comment": "Tokenize identifiers to help linters",
-          "match": "\\b([A-Za-z_]\\w*)\\b"
+          "match": "\\b([[:alpha:]_]\\w*)\\b"
         }
       ]
     },
@@ -1352,7 +1352,7 @@
         },
         {
           "comment": "Tokenize identifiers to help linters",
-          "match": "\\b([A-Za-z_]\\w*)\\b"
+          "match": "\\b([[:alpha:]_]\\w*)\\b"
         }
       ]
     },
@@ -1559,7 +1559,7 @@
       ]
     },
     "fstring-multi-core": {
-      "match": "(.+?)(($\\n?)|(?=[\\\\}{]|'''|\"\"\"))|\\n",
+      "match": "(.+?)(($\\n?)|(?=[\\\\\\}\\{]|'''|\"\"\"))|\\n",
       "name": "string.interpolated.python string.quoted.multi.python"
     },
     "fstring-normf-quoted-multi-line": {
@@ -1649,7 +1649,7 @@
       ]
     },
     "fstring-raw-multi-core": {
-      "match": "(.+?)(($\\n?)|(?=[\\\\}{]|'''|\"\"\"))|\\n",
+      "match": "(.+?)(($\\n?)|(?=[\\\\\\}\\{]|'''|\"\"\"))|\\n",
       "name": "string.interpolated.python string.quoted.raw.multi.python"
     },
     "fstring-raw-quoted-multi-line": {
@@ -1723,7 +1723,7 @@
       ]
     },
     "fstring-raw-single-core": {
-      "match": "(.+?)(($\\n?)|(?=[\\\\}{]|(['\"])|((?<!\\\\)\\n)))|\\n",
+      "match": "(.+?)(($\\n?)|(?=[\\\\\\}\\{]|(['\"])|((?<!\\\\)\\n)))|\\n",
       "name": "string.interpolated.python string.quoted.raw.single.python"
     },
     "fstring-single-brace": {
@@ -1750,7 +1750,7 @@
       ]
     },
     "fstring-single-core": {
-      "match": "(.+?)(($\\n?)|(?=[\\\\}{]|(['\"])|((?<!\\\\)\\n)))|\\n",
+      "match": "(.+?)(($\\n?)|(?=[\\\\\\}\\{]|(['\"])|((?<!\\\\)\\n)))|\\n",
       "name": "string.interpolated.python string.quoted.single.python"
     },
     "fstring-terminator-multi": {
@@ -1946,7 +1946,7 @@
               "name": "keyword.operator.assignment.python"
             }
           },
-          "match": "\\b([A-Za-z_]\\w*)\\s*(=)(?!=)"
+          "match": "\\b([[:alpha:]_]\\w*)\\s*(=)(?!=)"
         },
         {
           "match": "=(?!=)",
@@ -1969,7 +1969,7 @@
       ]
     },
     "function-call": {
-      "begin": "\\b(?=([A-Za-z_]\\w*)\\s*(\\())",
+      "begin": "\\b(?=([[:alpha:]_]\\w*)\\s*(\\())",
       "comment": "Regular function call of the type \"name(args)\"",
       "end": "(\\))",
       "endCaptures": {
@@ -1991,7 +1991,7 @@
       ]
     },
     "function-declaration": {
-      "begin": "\\s*(?:\\b(async)\\s+)?\\b(def)\\s+(?=[A-Za-z_][\\w]*\\s*\\()",
+      "begin": "\\s*(?:\\b(async)\\s+)?\\b(def)\\s+(?=[[:alpha:]_][[:word:]]*\\s*\\()",
       "beginCaptures": {
         "1": {
           "name": "storage.type.function.async.python"
@@ -2039,7 +2039,7 @@
           "include": "#builtin-possible-callables"
         },
         {
-          "match": "\\b([A-Za-z_]\\w*)\\b",
+          "match": "\\b([[:alpha:]_]\\w*)\\b",
           "name": "entity.name.function.python"
         }
       ]
@@ -2051,7 +2051,7 @@
         },
         {
           "comment": "Some color schemas support meta.function-call.generic scope",
-          "match": "\\b([A-Za-z_]\\w*)\\b",
+          "match": "\\b([[:alpha:]_]\\w*)\\b",
           "name": "meta.function-call.generic.python"
         }
       ]
@@ -2164,7 +2164,7 @@
           "name": "entity.other.inherited-class.python"
         }
       },
-      "match": "\\b([A-Za-z_]\\w*)\\b"
+      "match": "\\b([[:alpha:]_]\\w*)\\b"
     },
     "inheritance-name": {
       "patterns": [
@@ -2182,7 +2182,7 @@
     "item-access": {
       "patterns": [
         {
-          "begin": "\\b(?=[A-Za-z_]\\w*\\s*\\[)",
+          "begin": "\\b(?=[[:alpha:]_]\\w*\\s*\\[)",
           "end": "(\\])",
           "endCaptures": {
             "1": {
@@ -2235,7 +2235,7 @@
           "include": "#special-names"
         },
         {
-          "match": "\\b([A-Za-z_]\\w*)\\b",
+          "match": "\\b([[:alpha:]_]\\w*)\\b",
           "name": "meta.indexed-name.python"
         },
         {
@@ -2300,7 +2300,7 @@
                   "name": "punctuation.separator.parameters.python"
                 }
               },
-              "match": "([A-Za-z_]\\w*)\\s*(?:(,)|(?=:|$))"
+              "match": "([[:alpha:]_]\\w*)\\s*(?:(,)|(?=:|$))"
             },
             {
               "include": "#comments"
@@ -2333,7 +2333,7 @@
       "name": "storage.type.function.lambda.python"
     },
     "lambda-parameter-with-default": {
-      "begin": "\\b([A-Za-z_]\\w*)\\s*(=)",
+      "begin": "\\b([[:alpha:]_]\\w*)\\s*(=)",
       "beginCaptures": {
         "1": {
           "name": "variable.parameter.function.language.python"
@@ -2486,7 +2486,7 @@
     },
     "member-access-attribute": {
       "comment": "Highlight attribute access in otherwise non-specialized cases.",
-      "match": "\\b([A-Za-z_]\\w*)\\b",
+      "match": "\\b([[:alpha:]_]\\w*)\\b",
       "name": "meta.attribute.python"
     },
     "member-access-base": {
@@ -2557,7 +2557,7 @@
           "include": "#number-long"
         },
         {
-          "match": "\\b\\d+\\w+",
+          "match": "\\b[0-9]+\\w+",
           "name": "invalid.illegal.name.python"
         }
       ]
@@ -2580,7 +2580,7 @@
           "name": "invalid.illegal.dec.python"
         }
       },
-      "match": "(?<![\\w\\.])(?:[1-9](?:_?\\d)*|0+|\\d(?:_?\\d)*([jJ])|0(\\d+)(?![eE\\.]))\\b",
+      "match": "(?<![\\w\\.])(?:[1-9](?:_?[0-9])*|0+|[0-9](?:_?[0-9])*([jJ])|0([0-9]+)(?![eE\\.]))\\b",
       "name": "constant.numeric.dec.python"
     },
     "number-float": {
@@ -2589,7 +2589,7 @@
           "name": "storage.type.imaginary.number.python"
         }
       },
-      "match": "(?<!\\w)(?:(?:\\.\\d(?:_?\\d)*|\\d(?:_?\\d)*\\.\\d(?:_?\\d)*|\\d(?:_?\\d)*\\.)(?:[eE][+-]?\\d(?:_?\\d)*)?|\\d(?:_?\\d)*(?:[eE][+-]?\\d(?:_?\\d)*))([jJ])?\\b",
+      "match": "(?<!\\w)(?:(?:\\.[0-9](?:_?[0-9])*|[0-9](?:_?[0-9])*\\.[0-9](?:_?[0-9])*|[0-9](?:_?[0-9])*\\.)(?:[eE][+-]?[0-9](?:_?[0-9])*)?|[0-9](?:_?[0-9])*(?:[eE][+-]?[0-9](?:_?[0-9])*))([jJ])?\\b",
       "name": "constant.numeric.float.python"
     },
     "number-hex": {
@@ -2608,7 +2608,7 @@
         }
       },
       "comment": "this is to support python2 syntax for long ints",
-      "match": "(?<![\\w\\.])([1-9]\\d*|0)([lL])\\b",
+      "match": "(?<![\\w\\.])([1-9][0-9]*|0)([lL])\\b",
       "name": "constant.numeric.bin.python"
     },
     "number-oct": {
@@ -2719,7 +2719,7 @@
               "name": "punctuation.separator.parameters.python"
             }
           },
-          "match": "([A-Za-z_]\\w*)\\s*(?:(,)|(?=[)#\\n=]))"
+          "match": "([[:alpha:]_]\\w*)\\s*(?:(,)|(?=[)#\\n=]))"
         },
         {
           "include": "#comments"
@@ -2772,7 +2772,7 @@
           "name": "support.other.parenthesis.regexp punctuation.parenthesis.backreference.named.end.regexp"
         }
       },
-      "match": "(\\()(\\?P=\\w+(?:\\s+[0-9A-Za-z]+)?)(\\))",
+      "match": "(\\()(\\?P=\\w+(?:\\s+[[:alnum:]]+)?)(\\))",
       "name": "meta.backreference.named.regexp"
     },
     "regexp-backreference-number": {
@@ -3125,7 +3125,7 @@
       ]
     },
     "single-one-regexp-conditional": {
-      "begin": "(\\()\\?\\((\\w+(?:\\s+[0-9A-Za-z]+)?|\\d+)\\)",
+      "begin": "(\\()\\?\\((\\w+(?:\\s+[[:alnum:]]+)?|\\d+)\\)",
       "beginCaptures": {
         "0": {
           "name": "keyword.operator.conditional.regexp"
@@ -3293,7 +3293,7 @@
       ]
     },
     "single-one-regexp-named-group": {
-      "begin": "(\\()(\\?P<\\w+(?:\\s+[0-9A-Za-z]+)?>)",
+      "begin": "(\\()(\\?P<\\w+(?:\\s+[[:alnum:]]+)?>)",
       "beginCaptures": {
         "1": {
           "name": "support.other.parenthesis.regexp punctuation.parenthesis.named.begin.regexp"
@@ -3426,7 +3426,7 @@
       ]
     },
     "single-three-regexp-conditional": {
-      "begin": "(\\()\\?\\((\\w+(?:\\s+[0-9A-Za-z]+)?|\\d+)\\)",
+      "begin": "(\\()\\?\\((\\w+(?:\\s+[[:alnum:]]+)?|\\d+)\\)",
       "beginCaptures": {
         "0": {
           "name": "keyword.operator.conditional.regexp"
@@ -3612,7 +3612,7 @@
       ]
     },
     "single-three-regexp-named-group": {
-      "begin": "(\\()(\\?P<\\w+(?:\\s+[0-9A-Za-z]+)?>)",
+      "begin": "(\\()(\\?P<\\w+(?:\\s+[[:alnum:]]+)?>)",
       "beginCaptures": {
         "1": {
           "name": "support.other.parenthesis.regexp punctuation.parenthesis.named.begin.regexp"
@@ -3691,7 +3691,7 @@
       ]
     },
     "special-names": {
-      "match": "\\b(_*[A-Z][_\\d]*[A-Z])[A-Z\\d]*(_\\w*)?\\b",
+      "match": "\\b(_*[[:upper:]][_\\d]*[[:upper:]])[[:upper:]\\d]*(_\\w*)?\\b",
       "name": "constant.other.caps.python"
     },
     "special-variables": {
@@ -3922,7 +3922,7 @@
               "name": "storage.type.format.python"
             }
           },
-          "match": "({{|}}|(?:{\\w*(\\.[A-Za-z_]\\w*|\\[[^\\]'\"]+\\])*(![rsa])?(:\\w?[<>=^]?[-+ ]?\\#?\\d*,?(\\.\\d+)?[bcdeEfFgGnosxX%]?)?}))",
+          "match": "({{|}}|(?:{\\w*(\\.[[:alpha:]_]\\w*|\\[[^\\]'\"]+\\])*(![rsa])?(:\\w?[<>=^]?[-+ ]?\\#?\\d*,?(\\.\\d+)?[bcdeEfFgGnosxX%]?)?}))",
           "name": "meta.format.brace.python"
         },
         {
@@ -3937,7 +3937,7 @@
               "name": "storage.type.format.python"
             }
           },
-          "match": "({\\w*(\\.[A-Za-z_]\\w*|\\[[^\\]'\"]+\\])*(![rsa])?(:)[^'\"{}\\n]*(?:\\{[^'\"}\\n]*?\\}[^'\"{}\\n]*)*})",
+          "match": "({\\w*(\\.[[:alpha:]_]\\w*|\\[[^\\]'\"]+\\])*(![rsa])?(:)[^'\"{}\\n]*(?:\\{[^'\"}\\n]*?\\}[^'\"{}\\n]*)*})",
           "name": "meta.format.brace.python"
         }
       ]

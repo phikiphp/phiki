@@ -135,11 +135,11 @@
           "name": "constant.numeric.hexfloat.zig"
         },
         {
-          "match": "\\b\\d[0-9_]*(\\.\\d[0-9_]*)?([eE][+-]?[0-9_]+)?\\b",
+          "match": "\\b[0-9][0-9_]*(\\.[0-9][0-9_]*)?([eE][+-]?[0-9_]+)?\\b",
           "name": "constant.numeric.float.zig"
         },
         {
-          "match": "\\b\\d[0-9_]*\\b",
+          "match": "\\b[0-9][0-9_]*\\b",
           "name": "constant.numeric.decimal.zig"
         },
         {
@@ -155,7 +155,7 @@
           "name": "constant.numeric.binary.zig"
         },
         {
-          "match": "\\b\\d(([eEpP][+-])|[0-9a-zA-Z_])*(\\.(([eEpP][+-])|[0-9a-zA-Z_])*)?([eEpP][+-])?[0-9a-zA-Z_]*\\b",
+          "match": "\\b[0-9](([eEpP][+-])|[0-9a-zA-Z_])*(\\.(([eEpP][+-])|[0-9a-zA-Z_])*)?([eEpP][+-])?[0-9a-zA-Z_]*\\b",
           "name": "constant.numeric.invalid.zig"
         }
       ]

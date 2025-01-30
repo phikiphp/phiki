@@ -72,7 +72,7 @@
               "name": "storage.type.attribute.luau"
             }
           },
-          "match": "(@)([a-zA-Z_]\\w*)",
+          "match": "(@)([a-zA-Z_][a-zA-Z0-9_]*)",
           "name": "meta.attribute.luau"
         }
       ]
@@ -85,7 +85,7 @@
           "name": "comment.block.luau",
           "patterns": [
             {
-              "begin": "(```lua)\\s+",
+              "begin": "(```luau?)\\s+",
               "beginCaptures": {
                 "1": {
                   "name": "comment.luau"
@@ -177,7 +177,7 @@
           ]
         },
         {
-          "match": "\\b([a-zA-Z_]\\w*)\\b",
+          "match": "\\b([a-zA-Z_][a-zA-Z0-9_]*)\\b",
           "name": "variable.parameter.luau"
         }
       ]
@@ -192,7 +192,7 @@
           "name": "keyword.control.luau"
         }
       },
-      "end": "(?<=[)\\-{}\\[\\]\"'])",
+      "end": "(?<=[\\)\\-{}\\[\\]\"'])",
       "name": "meta.function.luau",
       "patterns": [
         {
@@ -224,7 +224,7 @@
               "name": "variable.parameter.function.varargs.luau"
             },
             {
-              "match": "[a-zA-Z_]\\w*",
+              "match": "[a-zA-Z_][a-zA-Z0-9_]*",
               "name": "variable.parameter.function.luau"
             },
             {
@@ -238,7 +238,7 @@
                   "name": "keyword.operator.type.luau"
                 }
               },
-              "end": "(?=[),])",
+              "end": "(?=[\\),])",
               "patterns": [
                 {
                   "include": "#type_literal"
@@ -252,7 +252,7 @@
           "name": "variable.language.metamethod.luau"
         },
         {
-          "match": "\\b([a-zA-Z_]\\w*)\\b",
+          "match": "\\b([a-zA-Z_][a-zA-Z0-9_]*)\\b",
           "name": "entity.name.function.luau"
         }
       ]
@@ -262,7 +262,7 @@
       "end": "(>)",
       "patterns": [
         {
-          "match": "[a-zA-Z_]\\w*",
+          "match": "[a-zA-Z_][a-zA-Z0-9_]*",
           "name": "entity.name.type.luau"
         },
         {
@@ -277,11 +277,11 @@
     "identifier": {
       "patterns": [
         {
-          "match": "\\b([a-zA-Z_]\\w*)\\b(?=\\s*(?:[({\"']|\\[\\[))",
+          "match": "\\b([a-zA-Z_][a-zA-Z0-9_]*)\\b(?=\\s*(?:[({\"']|\\[\\[))",
           "name": "entity.name.function.luau"
         },
         {
-          "match": "(?<=[^.]\\.|:)\\b([a-zA-Z_]\\w*)\\b",
+          "match": "(?<=[^.]\\.|:)\\b([a-zA-Z_][a-zA-Z0-9_]*)\\b",
           "name": "variable.other.property.luau"
         },
         {
@@ -289,7 +289,7 @@
           "name": "variable.other.constant.luau"
         },
         {
-          "match": "\\b([a-zA-Z_]\\w*)\\b",
+          "match": "\\b([a-zA-Z_][a-zA-Z0-9_]*)\\b",
           "name": "variable.other.readwrite.luau"
         }
       ]
@@ -397,7 +397,7 @@
           "name": "variable.other.constant.luau"
         },
         {
-          "match": "\\b([a-zA-Z_]\\w*)\\b",
+          "match": "\\b([a-zA-Z_][a-zA-Z0-9_]*)\\b",
           "name": "variable.other.readwrite.luau"
         }
       ]
@@ -405,15 +405,15 @@
     "number": {
       "patterns": [
         {
-          "match": "\\b0_*[xX]_*[\\da-fA-F_]*(?:[eE][+\\-]?_*\\d[\\d_]*(?:\\.[\\d_]*)?)?",
+          "match": "\\b0_*[xX]_*[\\da-fA-F_]*(?:[eE][\\+\\-]?_*\\d[\\d_]*(?:\\.[\\d_]*)?)?",
           "name": "constant.numeric.hex.luau"
         },
         {
-          "match": "\\b0_*[bB][01_]+(?:[eE][+\\-]?_*\\d[\\d_]*(?:\\.[\\d_]*)?)?",
+          "match": "\\b0_*[bB][01_]+(?:[eE][\\+\\-]?_*\\d[\\d_]*(?:\\.[\\d_]*)?)?",
           "name": "constant.numeric.binary.luau"
         },
         {
-          "match": "(?:\\d[\\d_]*(?:\\.[\\d_]*)?|\\.\\d[\\d_]*)(?:[eE][+\\-]?_*\\d[\\d_]*(?:\\.[\\d_]*)?)?",
+          "match": "(?:\\d[\\d_]*(?:\\.[\\d_]*)?|\\.\\d[\\d_]*)(?:[eE][\\+\\-]?_*\\d[\\d_]*(?:\\.[\\d_]*)?)?",
           "name": "constant.numeric.decimal.luau"
         }
       ]
@@ -609,7 +609,7 @@
       ]
     },
     "type_annotation": {
-      "begin": ":(?!\\b([a-zA-Z_]\\w*)\\b(?=\\s*(?:[({\"']|\\[\\[)))",
+      "begin": ":(?!\\b([a-zA-Z_][a-zA-Z0-9_]*)\\b(?=\\s*(?:[({\"']|\\[\\[)))",
       "end": "(?<=\\))(?!\\s*->)|=|;|$|(?=\\breturn\\b)|(?=\\bend\\b)",
       "patterns": [
         {
@@ -627,7 +627,7 @@
           "name": "keyword.operator.typecast.luau"
         }
       },
-      "end": "(?=^|[;),}\\]:?\\-+>](?!\\s*[&\\|])|$|\\b(break|do|else|for|if|elseif|return|then|repeat|while|until|end|in|continue)\\b)",
+      "end": "(?=^|[;),}\\]:?\\-\\+\\>](?!\\s*[&\\|])|$|\\b(break|do|else|for|if|elseif|return|then|repeat|while|until|end|in|continue)\\b)",
       "patterns": [
         {
           "include": "#type_literal"
@@ -648,7 +648,7 @@
         },
         {
           "match": "->",
-          "name": "keyword.operator.type.luau"
+          "name": "keyword.operator.type.function.luau"
         },
         {
           "match": "\\b(false)\\b",
@@ -688,13 +688,13 @@
           "begin": "(<)",
           "beginCaptures": {
             "1": {
-              "name": "keyword.operator.type.luau"
+              "name": "punctuation.definition.typeparameters.begin.luau"
             }
           },
           "end": "(>)",
           "endCaptures": {
             "1": {
-              "name": "keyword.operator.type.luau"
+              "name": "punctuation.definition.typeparameters.end.luau"
             }
           },
           "patterns": [
@@ -708,7 +708,7 @@
           ]
         },
         {
-          "match": "\\b([a-zA-Z_]\\w*)\\b",
+          "match": "\\b([a-zA-Z_][a-zA-Z0-9_]*)\\b",
           "name": "entity.name.type.luau"
         },
         {
@@ -733,7 +733,7 @@
                   "name": "keyword.operator.type.luau"
                 }
               },
-              "match": "\\b([a-zA-Z_]\\w*)\\b(:)"
+              "match": "\\b([a-zA-Z_][a-zA-Z0-9_]*)\\b(:)"
             },
             {
               "include": "#type_literal"
@@ -757,7 +757,7 @@
                   "name": "keyword.operator.type.luau"
                 }
               },
-              "match": "\\b([a-zA-Z_]\\w*)\\b(:)",
+              "match": "\\b([a-zA-Z_][a-zA-Z0-9_]*)\\b(:)",
               "name": "variable.parameter.luau"
             },
             {

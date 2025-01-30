@@ -129,7 +129,7 @@
       "begin": "(?i)(?=\\s*[a-z0-9\"'])",
       "comment": "Name list.",
       "contentName": "meta.name-list.fortran",
-      "end": "(?=[);!\\n])",
+      "end": "(?=[\\);!\\n])",
       "patterns": [
         {
           "include": "#constants"
@@ -200,7 +200,7 @@
     "IO-statements": {
       "patterns": [
         {
-          "begin": "(?i)\\b(?:(backspace)|(close)|(endfile)|(format)|(inquire)|(open)|(read)|(rewind)|(write))\\s*(?=\\()",
+          "begin": "(?ix)\\b(?:(backspace)|(close)|(endfile)|(format)|(inquire)|(open)|(read)|(rewind)|(write))\\s*(?=\\()",
           "beginCaptures": {
             "1": {
               "name": "keyword.control.backspace.fortran"
@@ -406,7 +406,7 @@
         }
       },
       "comment": "Introduced in the Fortran 1977 standard.",
-      "match": "(-)|(\\+)|\\/(?!\\/|=|\\\\)|(\\*\\*)|(\\*)"
+      "match": "(\\-)|(\\+)|\\/(?!\\/|\\=|\\\\)|(\\*\\*)|(\\*)"
     },
     "array-constructor": {
       "begin": "(?=\\s*(\\[|\\(\\/))",
@@ -511,7 +511,7 @@
     },
     "assignment-operator": {
       "comment": "Introduced in the Fortran 1977 standard.",
-      "match": "(?<!\\/|=|<|>)(=)(?!=|>)",
+      "match": "(?<!\\/|\\=|\\<|\\>)(\\=)(?!\\=|\\>)",
       "name": "keyword.operator.assignment.fortran"
     },
     "associate-construct": {
@@ -545,7 +545,7 @@
       "match": "(?i)\\G\\s*\\b(asynchronous)\\b"
     },
     "attribute-specification-statement": {
-      "begin": "(?i)(?=\\b(?:allocatable|asynchronous|contiguous|external|intrinsic|optional|parameter|pointer|private|protected|public|save|target|value|volatile)\\b|(bind|dimension|intent)\\s*\\(|(codimension)\\s*\\[)",
+      "begin": "(?ix)(?=\\b(?:allocatable|asynchronous|contiguous |external|intrinsic|optional|parameter|pointer|private|protected|public|save|target|value|volatile)\\b |(bind|dimension|intent)\\s*\\( |(codimension)\\s*\\[)",
       "end": "(?=[;!\\n])",
       "name": "meta.statement.attribute-specification.fortran",
       "patterns": [
@@ -655,7 +655,7 @@
           "name": "entity.name.block-data.fortran"
         }
       },
-      "end": "(?i)\\b(?:(end\\s*block\\s*data)(?:\\s+(\\2))?|(end))\\b(?:\\s*(\\S((?!\\n).)*))?",
+      "end": "(?ix)\\b(?:(end\\s*block\\s*data)(?:\\s+(\\2))?|(end))\\b (?:\\s*(\\S((?!\\n).)*))?",
       "endCaptures": {
         "1": {
           "name": "keyword.control.end-block-data.fortran"
@@ -728,7 +728,7 @@
           "name": "meta.statement.control.call.fortran",
           "patterns": [
             {
-              "begin": "(?i)\\G\\s*([a-z]\\w*)(%)([a-z]\\w*)\\b\\s*(?=\\()",
+              "begin": "(?ix)\\G\\s*([a-z]\\w*)(%)([a-z]\\w*)\\b\\s*(?=\\()",
               "beginCaptures": {
                 "1": {
                   "name": "variable.other.fortran"
@@ -1054,7 +1054,7 @@
                       "name": "keyword.operator.minus.exponent.hexadecimal.cpp"
                     }
                   },
-                  "match": "(\\G0[xX])([0-9a-fA-F](?:[0-9a-fA-F]|((?<=[0-9a-fA-F])'(?=[0-9a-fA-F])))*)?((?:(?<=[0-9a-fA-F])\\.|\\.(?=[0-9a-fA-F])))([0-9a-fA-F](?:[0-9a-fA-F]|((?<=[0-9a-fA-F])'(?=[0-9a-fA-F])))*)?(?:(?<!')([pP])((?:\\+)?)((?:-)?)(\\d(?:\\d|(?<=[0-9a-fA-F])'(?=[0-9a-fA-F]))*))?([lLfF](?!\\w))?((?:\\w(?<![0-9a-fA-FpP])\\w*)?$)"
+                  "match": "(\\G0[xX])([0-9a-fA-F](?:[0-9a-fA-F]|((?<=[0-9a-fA-F])'(?=[0-9a-fA-F])))*)?((?:(?<=[0-9a-fA-F])\\.|\\.(?=[0-9a-fA-F])))([0-9a-fA-F](?:[0-9a-fA-F]|((?<=[0-9a-fA-F])'(?=[0-9a-fA-F])))*)?(?:(?<!')([pP])((?:\\+)?)((?:\\-)?)([0-9](?:[0-9]|(?<=[0-9a-fA-F])'(?=[0-9a-fA-F]))*))?([lLfF](?!\\w))?((?:\\w(?<![0-9a-fA-FpP])\\w*)?$)"
                 },
                 {
                   "captures": {
@@ -1110,7 +1110,7 @@
                       ]
                     }
                   },
-                  "match": "\\G(?=[0-9.])(?!0[xXbB])(\\d(?:\\d|((?<=[0-9a-fA-F])'(?=[0-9a-fA-F])))*)?((?:(?<=\\d)\\.|\\.(?=\\d)))(\\d(?:\\d|((?<=[0-9a-fA-F])'(?=[0-9a-fA-F])))*)?(?:(?<!')([eE])((?:\\+)?)((?:-)?)(\\d(?:\\d|(?<=[0-9a-fA-F])'(?=[0-9a-fA-F]))*))?([lLfF](?!\\w))?((?:\\w(?<![0-9eE])\\w*)?$)"
+                  "match": "\\G(?=[0-9.])(?!0[xXbB])([0-9](?:[0-9]|((?<=[0-9a-fA-F])'(?=[0-9a-fA-F])))*)?((?:(?<=[0-9])\\.|\\.(?=[0-9])))([0-9](?:[0-9]|((?<=[0-9a-fA-F])'(?=[0-9a-fA-F])))*)?(?:(?<!')([eE])((?:\\+)?)((?:\\-)?)([0-9](?:[0-9]|(?<=[0-9a-fA-F])'(?=[0-9a-fA-F]))*))?([lLfF](?!\\w))?((?:\\w(?<![0-9eE])\\w*)?$)"
                 },
                 {
                   "captures": {
@@ -1136,7 +1136,7 @@
                       "name": "keyword.other.unit.user-defined.cpp"
                     }
                   },
-                  "match": "(\\G0[bB])([01](?:[01]|((?<=[0-9a-fA-F])'(?=[0-9a-fA-F])))*)((?:[uU]|(?:[uU]ll?)|(?:[uU]LL?)|(?:ll?[uU]?)|(?:LL?[uU]?)|[fF])(?!\\w))?((?:\\w(?<!\\d)\\w*)?$)"
+                  "match": "(\\G0[bB])([01](?:[01]|((?<=[0-9a-fA-F])'(?=[0-9a-fA-F])))*)((?:[uU]|(?:[uU]ll?)|(?:[uU]LL?)|(?:ll?[uU]?)|(?:LL?[uU]?)|[fF])(?!\\w))?((?:\\w(?<![0-9])\\w*)?$)"
                 },
                 {
                   "captures": {
@@ -1162,7 +1162,7 @@
                       "name": "keyword.other.unit.user-defined.cpp"
                     }
                   },
-                  "match": "(\\G0)((?:[0-7]|((?<=[0-9a-fA-F])'(?=[0-9a-fA-F])))+)((?:[uU]|(?:[uU]ll?)|(?:[uU]LL?)|(?:ll?[uU]?)|(?:LL?[uU]?)|[fF])(?!\\w))?((?:\\w(?<!\\d)\\w*)?$)"
+                  "match": "(\\G0)((?:[0-7]|((?<=[0-9a-fA-F])'(?=[0-9a-fA-F])))+)((?:[uU]|(?:[uU]ll?)|(?:[uU]LL?)|(?:ll?[uU]?)|(?:LL?[uU]?)|[fF])(?!\\w))?((?:\\w(?<![0-9])\\w*)?$)"
                 },
                 {
                   "captures": {
@@ -1206,7 +1206,7 @@
                       "name": "keyword.other.unit.user-defined.cpp"
                     }
                   },
-                  "match": "(\\G0[xX])([0-9a-fA-F](?:[0-9a-fA-F]|((?<=[0-9a-fA-F])'(?=[0-9a-fA-F])))*)(?:(?<!')([pP])((?:\\+)?)((?:-)?)(\\d(?:\\d|(?<=[0-9a-fA-F])'(?=[0-9a-fA-F]))*))?((?:[uU]|(?:[uU]ll?)|(?:[uU]LL?)|(?:ll?[uU]?)|(?:LL?[uU]?)|[fF])(?!\\w))?((?:\\w(?<![0-9a-fA-FpP])\\w*)?$)"
+                  "match": "(\\G0[xX])([0-9a-fA-F](?:[0-9a-fA-F]|((?<=[0-9a-fA-F])'(?=[0-9a-fA-F])))*)(?:(?<!')([pP])((?:\\+)?)((?:\\-)?)([0-9](?:[0-9]|(?<=[0-9a-fA-F])'(?=[0-9a-fA-F]))*))?((?:[uU]|(?:[uU]ll?)|(?:[uU]LL?)|(?:ll?[uU]?)|(?:LL?[uU]?)|[fF])(?!\\w))?((?:\\w(?<![0-9a-fA-FpP])\\w*)?$)"
                 },
                 {
                   "captures": {
@@ -1247,7 +1247,7 @@
                       "name": "keyword.other.unit.user-defined.cpp"
                     }
                   },
-                  "match": "\\G(?=[0-9.])(?!0[xXbB])(\\d(?:\\d|((?<=[0-9a-fA-F])'(?=[0-9a-fA-F])))*)(?:(?<!')([eE])((?:\\+)?)((?:-)?)(\\d(?:\\d|(?<=[0-9a-fA-F])'(?=[0-9a-fA-F]))*))?((?:[uU]|(?:[uU]ll?)|(?:[uU]LL?)|(?:ll?[uU]?)|(?:LL?[uU]?)|[fF])(?!\\w))?((?:\\w(?<![0-9eE])\\w*)?$)"
+                  "match": "\\G(?=[0-9.])(?!0[xXbB])([0-9](?:[0-9]|((?<=[0-9a-fA-F])'(?=[0-9a-fA-F])))*)(?:(?<!')([eE])((?:\\+)?)((?:\\-)?)([0-9](?:[0-9]|(?<=[0-9a-fA-F])'(?=[0-9a-fA-F]))*))?((?:[uU]|(?:[uU]ll?)|(?:[uU]LL?)|(?:ll?[uU]?)|(?:LL?[uU]?)|[fF])(?!\\w))?((?:\\w(?<![0-9eE])\\w*)?$)"
                 },
                 {
                   "match": "(?:(?:[0-9a-zA-Z_\\.]|')|(?<=[eEpP])[+-])+",
@@ -1412,7 +1412,7 @@
         }
       },
       "comment": "Derived type parameter.",
-      "match": "(?i)\\b(integer)\\s*(,)\\s*(kind|len)\\s*(?:(::)\\s*([a-z]\\w*)?)?\\s*(?=[;!\\n])"
+      "match": "(?ix)\\b(integer)\\s*(,)\\s*(kind|len)\\s*(?:(::)\\s*([a-z]\\w*)?)?\\s*(?=[;!\\n])"
     },
     "derived-type-component-procedure-specification": {
       "begin": "(?i)(?=\\b(?:procedure)\\b)",
@@ -1468,7 +1468,7 @@
       ]
     },
     "derived-type-component-type-specification": {
-      "begin": "(?i)(?=\\b(?:character|class|complex|double\\s*precision|double\\s*complex|integer|logical|real|type)\\b(?![^:'\";!\\n]*\\bfunction\\b))",
+      "begin": "(?ix)(?=\\b(?:character|class|complex|double\\s*precision|double\\s*complex|integer|logical|real|type)\\b(?![^:'\";!\\n]*\\bfunction\\b))",
       "comment": "Introduced in the Fortran 1995 standard.",
       "end": "(?=[;!\\n])",
       "name": "meta.specification.derived-type.fortran",
@@ -1699,7 +1699,7 @@
       ]
     },
     "derived-type-definition": {
-      "begin": "(?i)\\b(type)\\b(?!\\s*(\\(|is\\b|=))",
+      "begin": "(?i)\\b(type)\\b(?!\\s*(\\(|is\\b|\\=))",
       "beginCaptures": {
         "1": {
           "name": "keyword.control.type.fortran"
@@ -1964,7 +1964,7 @@
         }
       },
       "comment": "dummy variable",
-      "match": "(?i)(?:^|(?<=[&,(]))\\s*([a-z]\\w*)"
+      "match": "(?i)(?:^|(?<=[&,\\(]))\\s*([a-z]\\w*)"
     },
     "dummy-variable-list": {
       "begin": "\\G\\s*(\\()",
@@ -2074,7 +2074,7 @@
               "include": "#comments"
             },
             {
-              "begin": "(?i)\\b(enumerator)\\b",
+              "begin": "(?ix)\\b(enumerator)\\b",
               "beginCaptures": {
                 "1": {
                   "name": "keyword.other.enumerator.fortran"
@@ -2395,7 +2395,7 @@
                 }
               },
               "comment": "Function body.",
-              "end": "(?i)\\s*\\b(?:(end\\s*function)(?:\\s+([a-z_]\\w*))?|(end))\\b\\s*([^;!\\n]+)?(?=[;!\\n])",
+              "end": "(?ix)\\s*\\b(?:(end\\s*function)(?:\\s+([a-z_]\\w*))?|(end))\\b \\s*([^;!\\n]+)?(?=[;!\\n])",
               "endCaptures": {
                 "1": {
                   "name": "keyword.other.endfunction.fortran"
@@ -2473,7 +2473,7 @@
       "name": "meta.interface.generic.fortran",
       "patterns": [
         {
-          "begin": "(?i)\\G\\s*\\b(assignment)\\s*(\\()\\s*(?:(=)|(\\S.*))\\s*(\\))",
+          "begin": "(?ix)\\G\\s*\\b(assignment)\\s* (\\()\\s*(?:(\\=)|(\\S.*))\\s*(\\))",
           "beginCaptures": {
             "1": {
               "name": "keyword.other.assignment.fortran"
@@ -2492,7 +2492,7 @@
             }
           },
           "comment": "Assignment generic interface.",
-          "end": "(?i)\\b(end\\s*interface)\\b(?:\\s*\\b(\\1)\\b\\s*(\\()\\s*(?:(\\3)|(\\S.*))\\s*(\\)))?",
+          "end": "(?ix)\\b(end\\s*interface)\\b (?:\\s*\\b(\\1)\\b\\s*(\\()\\s*(?:(\\3)|(\\S.*))\\s*(\\)))?",
           "endCaptures": {
             "1": {
               "name": "keyword.control.endinterface.fortran"
@@ -2523,7 +2523,7 @@
           ]
         },
         {
-          "begin": "(?i)\\G\\s*\\b(operator)\\s*(\\()\\s*(?:(\\.[a-z]+\\.|==|\\/=|>=|>|<|<=|-|\\+|\\/|\\/\\/|\\*\\*|\\*)|(\\S.*))\\s*(\\))",
+          "begin": "(?ix)\\G\\s*\\b(operator)\\s* (\\()\\s*(?: (\\.[a-z]+\\.|\\=\\=|\\/\\=|\\>\\=|\\>|\\<|\\<\\=|\\-|\\+|\\/|\\/\\/|\\*\\*|\\*) |(\\S.*) )\\s*(\\))",
           "beginCaptures": {
             "1": {
               "name": "keyword.other.operator.fortran"
@@ -2542,7 +2542,7 @@
             }
           },
           "comment": "Operator generic interface.",
-          "end": "(?i)\\b(end\\s*interface)\\b(?:\\s*\\b(\\1)\\b\\s*(\\()\\s*(?:(\\3)|(\\S.*))\\s*(\\)))?",
+          "end": "(?ix)\\b(end\\s*interface)\\b (?:\\s*\\b(\\1)\\b\\s*(\\()\\s*(?:(\\3)|(\\S.*))\\s*(\\)))?",
           "endCaptures": {
             "1": {
               "name": "keyword.control.endinterface.fortran"
@@ -2573,7 +2573,7 @@
           ]
         },
         {
-          "begin": "(?i)\\G\\s*\\b(?:(read)|(write))\\s*(\\()\\s*(?:(formatted)|(unformatted)|(\\S.*))\\s*(\\))",
+          "begin": "(?ix)\\G\\s*\\b(?:(read)|(write))\\s* (\\()\\s*(?:(formatted)|(unformatted)|(\\S.*))\\s*(\\))",
           "beginCaptures": {
             "1": {
               "name": "keyword.other.read.fortran"
@@ -2598,7 +2598,7 @@
             }
           },
           "comment": "Read/Write generic interface.",
-          "end": "(?i)\\b(end\\s*interface)\\b(?:\\s*\\b(?:(\\2)|(\\3))\\b\\s*(\\()\\s*(?:(\\4)|(\\5)|(\\S.*))\\s*(\\)))?",
+          "end": "(?ix)\\b(end\\s*interface)\\b(?:\\s*\\b(?:(\\2)|(\\3))\\b\\s* (\\()\\s*(?:(\\4)|(\\5)|(\\S.*))\\s*(\\)))?",
           "endCaptures": {
             "1": {
               "name": "keyword.control.endinterface.fortran"
@@ -3041,7 +3041,7 @@
     "intrinsic-functions": {
       "patterns": [
         {
-          "begin": "(?i)\\b(acosh|asinh|atanh|bge|bgt|ble|blt|dshiftl|dshiftr|findloc|hypot|iall|iany|image_index|iparity|is_contiguous|lcobound|leadz|mask[lr]|merge_bits|norm2|num_images|parity|popcnt|poppar|shift[alr]|storage_size|this_image|trailz|ucobound)\\s*(?=\\()",
+          "begin": "(?ix)\\b(acosh|asinh|atanh|bge|bgt|ble|blt|dshiftl|dshiftr| findloc|hypot|iall|iany|image_index|iparity|is_contiguous|lcobound| leadz|mask[lr]|merge_bits|norm2|num_images|parity|popcnt|poppar| shift[alr]|storage_size|this_image|trailz|ucobound)\\s*(?=\\()",
           "beginCaptures": {
             "1": {
               "name": "support.function.intrinsic.fortran"
@@ -3064,7 +3064,7 @@
           ]
         },
         {
-          "begin": "(?i)\\b(bessel_[jy][01n]|erf(c(_scaled)?)?|gamma|log_gamma)\\s*(?=\\()",
+          "begin": "(?ix)\\b(bessel_[jy][01n]|erf(c(_scaled)?)?|gamma|log_gamma)\\s*(?=\\()",
           "beginCaptures": {
             "1": {
               "name": "support.function.intrinsic.fortran"
@@ -3087,7 +3087,7 @@
           ]
         },
         {
-          "begin": "(?i)\\b(command_argument_count|extends_type_of|is_iostat_end|is_iostat_eor|new_line|same_type_as|selected_char_kind)\\s*(?=\\()",
+          "begin": "(?ix)\\b(command_argument_count|extends_type_of|is_iostat_end| is_iostat_eor|new_line|same_type_as|selected_char_kind)\\s*(?=\\()",
           "beginCaptures": {
             "1": {
               "name": "support.function.intrinsic.fortran"
@@ -3110,7 +3110,7 @@
           ]
         },
         {
-          "begin": "(?i)\\b(ieee_(class|copy_sign|is_(finite|nan|negative|normal)|logb|next_after|rem|rint|scalb|selected_real_kind|support_(datatype|denormal|divide|inf|io|nan|rounding|sqrt|standard|underflow_control)|unordered|value))\\s*(?=\\()",
+          "begin": "(?ix)\\b(ieee_( class|copy_sign|is_(finite|nan|negative|normal)|logb|next_after|rem| rint|scalb|selected_real_kind| support_(datatype|denormal|divide|inf|io|nan|rounding|sqrt|standard|underflow_control)| unordered|value))\\s*(?=\\()",
           "beginCaptures": {
             "1": {
               "name": "support.function.intrinsic.fortran"
@@ -3133,7 +3133,7 @@
           ]
         },
         {
-          "begin": "(?i)\\b(ieee_support_(flag|halting))\\s*(?=\\()",
+          "begin": "(?ix)\\b(ieee_support_(flag|halting))\\s*(?=\\()",
           "beginCaptures": {
             "1": {
               "name": "support.function.intrinsic.fortran"
@@ -3156,7 +3156,7 @@
           ]
         },
         {
-          "begin": "(?i)\\b(c_(associated|funloc|loc|sizeof))\\s*(?=\\()",
+          "begin": "(?ix)\\b(c_(associated|funloc|loc|sizeof))\\s*(?=\\()",
           "beginCaptures": {
             "1": {
               "name": "support.function.intrinsic.fortran"
@@ -3176,7 +3176,7 @@
           ]
         },
         {
-          "begin": "(?i)\\b(compiler_(options|version))\\s*(?=\\()",
+          "begin": "(?ix)\\b(compiler_(options|version))\\s*(?=\\()",
           "beginCaptures": {
             "1": {
               "name": "support.function.intrinsic.fortran"
@@ -3199,7 +3199,7 @@
           ]
         },
         {
-          "begin": "(?i)\\b(null)\\s*(?=\\()",
+          "begin": "(?ix)\\b(null)\\s*(?=\\()",
           "beginCaptures": {
             "1": {
               "name": "support.function.intrinsic.fortran"
@@ -3222,7 +3222,7 @@
           ]
         },
         {
-          "begin": "(?i)\\b(achar|adjustl|adjustr|all|allocated|associated|any|bit_size|btest|ceiling|count|cshift|digits|dot_product|eoshift|epsilon|exponent|floor|fraction|huge|iachar|iand|ibclr|ibits|ibset|ieor|ior|ishftc?|kind|lbound|len_trim|logical|matmul|maxexponent|maxloc|maxval|merge|minexponent|minloc|minval|modulo|nearest|not|pack|precision|present|product|radix|range|repeat|reshape|rrspacing|scale|scan|selected_(int|real)_kind|set_exponent|shape|size|spacing|spread|sum|tiny|transfer|transpose|trim|ubound|unpack|verify)\\s*(?=\\()",
+          "begin": "(?ix)\\b(achar|adjustl|adjustr|all|allocated|associated|any|bit_size|btest|ceiling|count|cshift|digits|dot_product|eoshift|epsilon|exponent|floor|fraction|huge|iachar|iand|ibclr|ibits|ibset|ieor|ior|ishftc?| kind|lbound|len_trim|logical|matmul|maxexponent|maxloc|maxval|merge|minexponent|minloc|minval|modulo|nearest|not|pack|precision|present|product|radix|range|repeat|reshape|rrspacing|scale|scan|selected_(int|real)_kind|set_exponent|shape|size|spacing|spread|sum|tiny|transfer|transpose|trim|ubound|unpack|verify)\\s*(?=\\()",
           "beginCaptures": {
             "1": {
               "name": "support.function.intrinsic.fortran"
@@ -3245,7 +3245,7 @@
           ]
         },
         {
-          "begin": "(?i)\\b([icd]?abs|acos|[ad]int|[ad]nint|aimag|amax[01]|amin[01]|d?asin|d?atan|d?atan2|char|conjg|[cd]?cos|d?cosh|cmplx|dble|i?dim|dmax1|dmin1|dprod|[cd]?exp|float|ichar|idint|ifix|index|int|len|lge|lgt|lle|llt|[acd]?log|[ad]?log10|max[01]?|min[01]?|[ad]?mod|(id)?nint|real|[di]?sign|[cd]?sin|d?sinh|sngl|[cd]?sqrt|d?tan|d?tanh)\\s*(?=\\()",
+          "begin": "(?ix)\\b([icd]?abs|acos|[ad]int|[ad]nint|aimag|amax[01]| amin[01]|d?asin|d?atan|d?atan2|char|conjg|[cd]?cos|d?cosh|cmplx|dble| i?dim|dmax1|dmin1|dprod|[cd]?exp|float|ichar|idint|ifix|index|int|len| lge|lgt|lle|llt|[acd]?log|[ad]?log10|max[01]?|min[01]?|[ad]?mod| (id)?nint|real|[di]?sign|[cd]?sin|d?sinh|sngl|[cd]?sqrt|d?tan|d?tanh) \\s*(?=\\()",
           "beginCaptures": {
             "1": {
               "name": "support.function.intrinsic.fortran"
@@ -3272,7 +3272,7 @@
     "intrinsic-subroutines": {
       "patterns": [
         {
-          "begin": "(?i)\\G\\s*\\b(date_and_time|mvbits|random_number|random_seed|system_clock)\\s*(?=\\()",
+          "begin": "(?ix)\\G\\s*\\b(date_and_time|mvbits|random_number|random_seed| system_clock)\\s*(?=\\()",
           "beginCaptures": {
             "1": {
               "name": "entity.name.function.subroutine.fortran"
@@ -3387,7 +3387,7 @@
           ]
         },
         {
-          "begin": "(?i)\\G\\s*\\b(execute_command_line|get_command|get_command_argument|get_environment_variable|move_alloc)\\s*(?=\\()",
+          "begin": "(?ix)\\G\\s*\\b(execute_command_line|get_command| get_command_argument|get_environment_variable|move_alloc)\\s*(?=\\()",
           "beginCaptures": {
             "1": {
               "name": "entity.name.function.subroutine.fortran"
@@ -3504,12 +3504,12 @@
       "patterns": [
         {
           "comment": "Introduced in the Fortran 1977 standard.",
-          "match": "(?i)(\\s*\\.(and|eq|eqv|le|lt|ge|gt|ne|neqv|not|or)\\.)",
+          "match": "(?ix)(\\s*\\.(and|eq|eqv|le|lt|ge|gt|ne|neqv|not|or)\\.)",
           "name": "keyword.logical.fortran"
         },
         {
           "comment": "Introduced in the Fortran 1990 standard.",
-          "match": "(==|\\/=|>=|(?<!=)>|<=|<)",
+          "match": "(\\=\\=|\\/\\=|\\>\\=|(?<!\\=)\\>|\\<\\=|\\<)",
           "name": "keyword.logical.fortran.modern"
         }
       ]
@@ -3563,10 +3563,10 @@
         }
       },
       "comment": "Introduced in the Fortran 1990 standard.",
-      "match": "(?i)\\s*\\b(module)\\b(?=\\s*(?:[;!\\n]|[^'\";!\\n]*\\b(?:function|procedure|subroutine)\\b))"
+      "match": "(?ix)\\s*\\b(module)\\b(?=\\s*(?:[;!\\n]| [^'\";!\\n]*\\b(?:function|procedure|subroutine)\\b))"
     },
     "module-definition": {
-      "begin": "(?i)(?=\\b(module)\\b)(?![^'\";!\\n]*\\b(?:function|procedure|subroutine)\\b)",
+      "begin": "(?ix)(?=\\b(module)\\b)(?![^'\";!\\n]* \\b(?:function|procedure|subroutine)\\b)",
       "comment": "Introduced in the Fortran 1990 standard.",
       "end": "(?=[;!\\n])",
       "name": "meta.module.fortran",
@@ -3588,7 +3588,7 @@
             }
           },
           "comment": "Module body.",
-          "end": "(?i)\\b(?:(end\\s*module)(?:\\s+([a-z_]\\w*))?|(end))\\b\\s*([^;!\\n]+)?(?=[;!\\n])",
+          "end": "(?ix)\\b(?:(end\\s*module)(?:\\s+([a-z_]\\w*))?|(end))\\b \\s*([^;!\\n]+)?(?=[;!\\n])",
           "endCaptures": {
             "1": {
               "name": "keyword.other.endmodule.fortran"
@@ -3639,7 +3639,7 @@
       "begin": "(?i)(?=\\s*[a-z])",
       "comment": "Name list.",
       "contentName": "meta.name-list.fortran",
-      "end": "(?=[);!\\n])",
+      "end": "(?=[\\);!\\n])",
       "patterns": [
         {
           "include": "#constants"
@@ -3672,7 +3672,7 @@
     },
     "named-control-constructs": {
       "applyEndPatternLast": 1,
-      "begin": "(?i)([a-z]\\w*)\\s*(:)(?=\\s*(?:associate|block(?!\\s*data)|critical|do|forall|if|select\\s*case|select\\s*type|select\\s*rank|where)\\b)",
+      "begin": "(?ix)([a-z]\\w*)\\s*(:)(?=\\s*(?:associate|block(?!\\s*data)|critical|do|forall|if|select\\s*case|select\\s*type|select\\s*rank|where)\\b)",
       "comment": "Introduced in the Fortran 1990 standard.",
       "contentName": "meta.named-construct.fortran.modern",
       "end": "(?i)(?!\\s*\\b(?:associate|block(?!\\s*data)|critical|do|forall|if|select\\s*case|select\\s*type|select\\s*rank|where)\\b)(?:\\b(\\1)\\b)?([^\\s;!\\n]*?)?(?=\\s*[;!\\n])",
@@ -3758,7 +3758,7 @@
     },
     "numeric-constant": {
       "comment": "Numeric constants",
-      "match": "(?i)[+\\-]?(\\b\\d+\\.?\\d*|\\.\\d+)(_\\w+|d[+\\-]?\\d+|e[+\\-]?\\d+(_\\w+)?)?(?![a-z_])",
+      "match": "(?ix)[\\+\\-]?(\\b\\d+\\.?\\d*|\\.\\d+) (_\\w+|d[\\+\\-]?\\d+|e[\\+\\-]?\\d+(_\\w+)?)?(?![a-z_])",
       "name": "constant.numeric.fortran"
     },
     "numeric-type": {
@@ -3826,7 +3826,7 @@
               "name": "constant.numeric.fortran"
             }
           },
-          "match": "(?i)\\b(?:(complex)|(double\\s*precision)|(double\\s*complex)|(integer)|(real)|(dimension))\\b(?:\\s*(\\*)\\s*(\\d*))?"
+          "match": "(?ix)\\b(?:(complex)|(double\\s*precision)|(double\\s*complex)|(integer)|(real)|(dimension))\\b(?:\\s*(\\*)\\s*(\\d*))?"
         }
       ]
     },
@@ -4038,7 +4038,7 @@
     },
     "pointer-operators": {
       "comment": "Introduced in the Fortran 1990 standard.",
-      "match": "(=>)",
+      "match": "(\\=\\>)",
       "name": "keyword.other.point.fortran"
     },
     "preprocessor": {
@@ -4075,11 +4075,11 @@
         }
       },
       "comment": "division regex is different than in main fortran",
-      "match": "(-)|(\\+)|(\\/)|(\\*)"
+      "match": "(\\-)|(\\+)|(\\/)|(\\*)"
     },
     "preprocessor-assignment-operator": {
       "comment": "assignments with = are not allowed",
-      "match": "(?<!=)(=)(?!=)",
+      "match": "(?<!\\=)(\\=)(?!\\=)",
       "name": "keyword.operator.assignment.preprocessor.fortran"
     },
     "preprocessor-comments": {
@@ -4381,7 +4381,7 @@
         }
       },
       "comment": "and:&&, bitand:&, or:||, bitor:|, not eq:!=, not:!, xor:^, compl:~",
-      "match": "(&&)|(==)|(!=)|(\\|\\|)|(<=)|(>=)|(<)|(>)|(~)|(\\^)|(&)|(!)|(\\|)",
+      "match": "(&&)|(==)|(\\!=)|(\\|\\|)|(\\<\\=)|(\\>=)|(\\<)|(\\>)|(~)|(\\^)|(&)|(\\!)|(\\|)",
       "name": "keyword.operator.logical.preprocessor.fortran"
     },
     "preprocessor-operators": {
@@ -4498,7 +4498,7 @@
       "match": "(?i)\\s*\\b(private)\\b"
     },
     "procedure-call-dummy-variable": {
-      "match": "(?i)\\s*([a-z]\\w*)(?=\\s*=)(?!\\s*==)",
+      "match": "(?i)\\s*([a-z]\\w*)(?=\\s*\\=)(?!\\s*\\=\\=)",
       "name": "variable.parameter.dummy-variable.fortran.modern"
     },
     "procedure-definition": {
@@ -4524,7 +4524,7 @@
                 }
               },
               "comment": "Procedure body.",
-              "end": "(?i)\\s*\\b(?:(end\\s*procedure)(?:\\s+([a-z_]\\w*))?|(end))\\b\\s*([^;!\\n]+)?(?=[;!\\n])",
+              "end": "(?ix)\\s*\\b(?:(end\\s*procedure)(?:\\s+([a-z_]\\w*))?|(end))\\b \\s*([^;!\\n]+)?(?=[;!\\n])",
               "endCaptures": {
                 "1": {
                   "name": "keyword.other.endprocedure.fortran"
@@ -4739,7 +4739,7 @@
             }
           },
           "comment": "Program body.",
-          "end": "(?i)\\b(?:(end\\s*program)(?:\\s+([a-z_]\\w*))?|(end))\\b\\s*([^;!\\n]+)?(?=[;!\\n])",
+          "end": "(?ix)\\b(?:(end\\s*program)(?:\\s+([a-z_]\\w*))?|(end))\\b\\s*([^;!\\n]+)?(?=[;!\\n])",
           "endCaptures": {
             "1": {
               "name": "keyword.control.endprogram.fortran"
@@ -5210,7 +5210,7 @@
             }
           },
           "comment": "Submodule body.",
-          "end": "(?i)\\s*\\b(?:(end\\s*submodule)(?:\\s+([a-z_]\\w*))?|(end))\\b\\s*([^;!\\n]+)?(?=[;!\\n])",
+          "end": "(?ix)\\s*\\b(?:(end\\s*submodule)(?:\\s+([a-z_]\\w*))?|(end))\\b \\s*([^;!\\n]+)?(?=[;!\\n])",
           "endCaptures": {
             "1": {
               "name": "keyword.other.endsubmodule.fortran"
@@ -5303,7 +5303,7 @@
                 }
               },
               "comment": "Subroutine body.",
-              "end": "(?i)\\b(?:(end\\s*subroutine)(?:\\s+([a-z_]\\w*))?|(end))\\b\\s*([^;!\\n]+)?(?=[;!\\n])",
+              "end": "(?ix)\\b(?:(end\\s*subroutine)(?:\\s+([a-z_]\\w*))?|(end))\\b \\s*([^;!\\n]+)?(?=[;!\\n])",
               "endCaptures": {
                 "1": {
                   "name": "keyword.other.endsubroutine.fortran"
@@ -5424,9 +5424,9 @@
       "match": "(?i)\\s*\\b(target)\\b"
     },
     "type-specification-statements": {
-      "begin": "(?i)(?=\\b(?:character|class|complex|double\\s*precision|double\\s*complex|integer|logical|real|type|dimension)\\b(?![^'\";!\\n:]*\\bfunction\\b))",
+      "begin": "(?ix)(?=\\b(?:character|class|complex|double\\s*precision|double\\s*complex|integer|logical|real|type|dimension)\\b(?![^'\";!\\n:]*\\bfunction\\b))",
       "comment": "Supported types for function and escape :: if function is used as a variable name (which is bad practice).",
-      "end": "(?=[);!\\n])",
+      "end": "(?=[\\);!\\n])",
       "name": "meta.specification.type.fortran",
       "patterns": [
         {

@@ -86,17 +86,17 @@
       "patterns": [
         {
           "comment": "decimal float literal",
-          "match": "(-?\\b\\d\\d*\\.\\d\\d*)([eE][+-]?\\d+)?\\b",
+          "match": "(-?\\b[0-9][0-9]*\\.[0-9][0-9]*)([eE][+-]?[0-9]+)?\\b",
           "name": "constant.numeric.float.wgsl"
         },
         {
           "comment": "int literal",
-          "match": "-?\\b0x[0-9a-fA-F]+\\b|\\b0\\b|-?\\b[1-9]\\d*\\b",
+          "match": "-?\\b0x[0-9a-fA-F]+\\b|\\b0\\b|-?\\b[1-9][0-9]*\\b",
           "name": "constant.numeric.decimal.wgsl"
         },
         {
           "comment": "uint literal",
-          "match": "\\b0x[0-9a-fA-F]+u\\b|\\b0u\\b|\\b[1-9]\\d*u\\b",
+          "match": "\\b0x[0-9a-fA-F]+u\\b|\\b0u\\b|\\b[1-9][0-9]*u\\b",
           "name": "constant.numeric.decimal.wgsl"
         },
         {

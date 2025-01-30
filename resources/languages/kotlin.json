@@ -232,7 +232,7 @@
                   "name": "variable.parameter.kotlin"
                 }
               },
-              "match": "{(@link)\\s+(\\S+)?#([\\w$]+\\s*\\([^()]*\\)).*}"
+              "match": "{(@link)\\s+(\\S+)?#([\\w$]+\\s*\\([^\\(\\)]*\\)).*}"
             }
           ]
         }
@@ -391,7 +391,7 @@
     "operators": {
       "patterns": [
         {
-          "match": "(===?|!==?|<=|>=|<|>)",
+          "match": "(===?|\\!==?|<=|>=|<|>)",
           "name": "keyword.operator.comparison.kotlin"
         },
         {

@@ -3,7 +3,7 @@
   "name": "git-commit",
   "patterns": [
     {
-      "begin": "(?=^diff --git)",
+      "begin": "(?=^diff\\ \\-\\-git)",
       "comment": "diff presented at the end of the commit message when using commit -v.",
       "contentName": "source.diff",
       "end": "\\z",

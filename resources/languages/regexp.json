@@ -73,7 +73,7 @@
           "name": "support.other.parenthesis.regexp punctuation.parenthesis.backreference.named.end.regexp"
         }
       },
-      "match": "(\\()(\\?P=\\w+(?:\\s+[0-9A-Za-z]+)?)(\\))",
+      "match": "(\\()(\\?P=\\w+(?:\\s+[[:alnum:]]+)?)(\\))",
       "name": "meta.backreference.named.regexp"
     },
     "regexp-backreference-number": {
@@ -210,7 +210,7 @@
       ]
     },
     "regexp-conditional": {
-      "begin": "(\\()\\?\\((\\w+(?:\\s+[0-9A-Za-z]+)?|\\d+)\\)",
+      "begin": "(\\()\\?\\((\\w+(?:\\s+[[:alnum:]]+)?|\\d+)\\)",
       "beginCaptures": {
         "0": {
           "name": "keyword.operator.conditional.regexp"
@@ -417,7 +417,7 @@
       ]
     },
     "regexp-named-group": {
-      "begin": "(\\()(\\?P<\\w+(?:\\s+[0-9A-Za-z]+)?>)",
+      "begin": "(\\()(\\?P<\\w+(?:\\s+[[:alnum:]]+)?>)",
       "beginCaptures": {
         "1": {
           "name": "support.other.parenthesis.regexp punctuation.parenthesis.named.begin.regexp"

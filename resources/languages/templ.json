@@ -40,7 +40,7 @@
       ]
     },
     "call-expression": {
-      "begin": "({!)\\s+",
+      "begin": "({\\!)\\s+",
       "beginCaptures": {
         "0": {
           "name": "start.call-expression.templ"
@@ -332,7 +332,7 @@
               "name": "punctuation.definition.entity.html"
             }
           },
-          "match": "(&)([a-zA-Z0-9]+|#\\d+|#[xX][0-9a-fA-F]+)(;)",
+          "match": "(&)([a-zA-Z0-9]+|#[0-9]+|#[xX][0-9a-fA-F]+)(;)",
           "name": "constant.character.entity.html"
         },
         {
@@ -612,6 +612,32 @@
       "patterns": [
         {
           "include": "#tag-stuff"
+        }
+      ]
+    },
+    "raw-go": {
+      "begin": "{{",
+      "beginCaptures": {
+        "0": {
+          "name": "start.raw-go.templ"
+        },
+        "1": {
+          "name": "punctuation.brace.open"
+        }
+      },
+      "end": "}}",
+      "endCaptures": {
+        "0": {
+          "name": "end.raw-go.templ"
+        },
+        "1": {
+          "name": "punctuation.brace.open"
+        }
+      },
+      "name": "raw-go.templ",
+      "patterns": [
+        {
+          "include": "source.go"
         }
       ]
     },
@@ -1103,6 +1129,9 @@
         },
         {
           "include": "#switch-expression"
+        },
+        {
+          "include": "#raw-go"
         }
       ]
     }

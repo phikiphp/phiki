@@ -92,7 +92,7 @@
   ],
   "repository": {
     "arithmetic_operators": {
-      "match": "(\\+|-|/|%|(?<!:)\\*)",
+      "match": "(\\+|\\-|/|%|(?<!:)\\*)",
       "name": "keyword.operator.actionscript.3"
     },
     "array_access_operators": {
@@ -358,7 +358,7 @@
       ]
     },
     "functions": {
-      "begin": "\\b(function)\\b(?:\\s+\\b(get|set)\\b\\s+)?\\s*([a-zA-Z0-9_$]+\\b)?",
+      "begin": "\\b(function)\\b(?:\\s+\\b(get|set)\\b\\s+)?\\s*([a-zA-Z0-9_\\$]+\\b)?",
       "beginCaptures": {
         "1": {
           "name": "storage.type.function.actionscript.3"
@@ -391,7 +391,7 @@
         }
       },
       "comment": "Following convention, let's guess that anything in all caps/digits (possible underscores) is a constant.",
-      "match": "\\b([A-Z$][A-Z0-9_]+)\\b"
+      "match": "\\b([A-Z\\$][A-Z0-9_]+)\\b"
     },
     "guess_type": {
       "captures": {
@@ -400,7 +400,7 @@
         }
       },
       "comment": "Following convention, let's guess that any word starting with one or more capital letters (that contains at least some lower-case letters so that constants aren't detected) refers to a class/type. May be fully-qualified.",
-      "match": "\\b((?:[A-Za-z0-9_$]+\\.)*[A-Z][A-Z0-9]*[a-z]+[A-Za-z0-9_$]*)\\b"
+      "match": "\\b((?:[A-Za-z0-9_\\$]+\\.)*[A-Z][A-Z0-9]*[a-z]+[A-Za-z0-9_\\$]*)\\b"
     },
     "implements": {
       "captures": {
@@ -426,7 +426,7 @@
           "name": "support.type.actionscript.3"
         }
       },
-      "match": "(^|\\s+|;)\\b(import)\\b\\s+([A-Za-z0-9$_\\.]+(?:\\.\\*)?)\\s*(?=;|$)",
+      "match": "(^|\\s+|;)\\b(import)\\b\\s+([A-Za-z0-9\\$_\\.]+(?:\\.\\*)?)\\s*(?=;|$)",
       "name": "meta.import.actionscript.3"
     },
     "interface": {
@@ -642,11 +642,11 @@
           "name": "storage.modifier.actionscript.3"
         }
       },
-      "match": "((\\w+)\\s+)?(namespace)\\s+(?:[A-Za-z0-9_$]+)",
+      "match": "((\\w+)\\s+)?(namespace)\\s+(?:[A-Za-z0-9_\\$]+)",
       "name": "meta.namespace_declaration.actionscript.3"
     },
     "numbers": {
-      "match": "\\b((0(x|X)[0-9a-fA-F]*)|((\\d+\\.?\\d*)|(\\.\\d+))((e|E)(\\+|-)?\\d+)?)(L|l|UL|ul|u|U|F|f)?\\b",
+      "match": "\\b((0(x|X)[0-9a-fA-F]*)|(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))((e|E)(\\+|-)?[0-9]+)?)(L|l|UL|ul|u|U|F|f)?\\b",
       "name": "constant.numeric.actionscript.3"
     },
     "object_literal": {
@@ -772,7 +772,7 @@
       "name": "meta.package_name.actionscript.3"
     },
     "parameters": {
-      "begin": "(\\.\\.\\.)?\\s*([A-Za-z_$][A-Za-z0-9_$]*)(?:\\s*(:)\\s*(?:(?:([A-Za-z$][A-Za-z0-9_$]+(?:\\.[A-Za-z$][A-Za-z0-9_$]+)*)(?:\\.<([A-Za-z$][A-Za-z0-9_$]+(?:\\.[A-Za-z$][A-Za-z0-9_$]+)*)>)?)|(\\*)))?(?:\\s*(=))?",
+      "begin": "(\\.\\.\\.)?\\s*([A-Za-z\\_\\$][A-Za-z0-9_\\$]*)(?:\\s*(\\:)\\s*(?:(?:([A-Za-z\\$][A-Za-z0-9_\\$]+(?:\\.[A-Za-z\\$][A-Za-z0-9_\\$]+)*)(?:\\.<([A-Za-z\\$][A-Za-z0-9_\\$]+(?:\\.[A-Za-z\\$][A-Za-z0-9_\\$]+)*)>)?)|(\\*)))?(?:\\s*(=))?",
       "beginCaptures": {
         "1": {
           "name": "keyword.operator.actionscript.3"
@@ -881,7 +881,7 @@
           "name": "support.type.actionscript.3"
         }
       },
-      "match": "(:)\\s*(?:([A-Za-z$][A-Za-z0-9_$]+(?:\\.[A-Za-z$][A-Za-z0-9_$]+)*)(?:\\.<([A-Za-z$][A-Za-z0-9_$]+(?:\\.[A-Za-z$][A-Za-z0-9_$]+)*)>)?)|(\\*)"
+      "match": "(\\:)\\s*(?:([A-Za-z\\$][A-Za-z0-9_\\$]+(?:\\.[A-Za-z\\$][A-Za-z0-9_\\$]+)*)(?:\\.<([A-Za-z\\$][A-Za-z0-9_\\$]+(?:\\.[A-Za-z\\$][A-Za-z0-9_\\$]+)*)>)?)|(\\*)"
     },
     "strings": {
       "patterns": [
@@ -944,7 +944,7 @@
           "name": "keyword.operator.actionscript.3"
         }
       },
-      "match": "((static)\\s+)?((\\w+)\\s+)?((static)\\s+)?(const|var)\\s+(?:[A-Za-z0-9_$]+)(?:\\s*(:))?",
+      "match": "((static)\\s+)?((\\w+)\\s+)?((static)\\s+)?(const|var)\\s+(?:[A-Za-z0-9_\\$]+)(?:\\s*(:))?",
       "name": "meta.variable_declaration.actionscript.3"
     },
     "vector_creation_operators": {

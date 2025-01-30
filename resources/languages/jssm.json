@@ -36,7 +36,7 @@
     },
     {
       "comment": "semver",
-      "match": "(\\d*)(\\.)(\\d*)(\\.)(\\d*)",
+      "match": "([0-9]*)(\\.)([0-9]*)(\\.)([0-9]*)",
       "name": "constant.numeric"
     },
     {
@@ -136,7 +136,7 @@
     },
     {
       "comment": "edge probability annotation",
-      "match": "(\\d+)%",
+      "match": "([0-9]+)%",
       "name": "constant.numeric.jssmProbability"
     },
     {
