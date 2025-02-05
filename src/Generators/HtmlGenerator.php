@@ -76,12 +76,12 @@ class HtmlGenerator implements OutputGeneratorInterface
     private function buildCode(array $tokens): string
     {
         $output = [];
-        
+
         foreach ($tokens as $i => $line) {
             $output[] = $this->buildLine($line, $i);
         }
 
-        return '<code>' . implode($output) . '</code>';
+        return '<code>'.implode($output).'</code>';
     }
 
     private function buildLine(array $line, int $index): string
@@ -96,7 +96,7 @@ class HtmlGenerator implements OutputGeneratorInterface
             $output[] = $this->buildToken($token);
         }
 
-        return '<span class="line">' . implode($output) . '</span>';
+        return '<span class="line">'.implode($output).'</span>';
     }
 
     private function buildLineNumber(int $lineNumber): string

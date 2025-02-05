@@ -64,7 +64,7 @@ class Phiki
     }
 
     /**
-     * @param  bool  $withGutter   Include a gutter in the generated HTML. The gutter typically contains line numbers and helps provide context for the code.
+     * @param  bool  $withGutter  Include a gutter in the generated HTML. The gutter typically contains line numbers and helps provide context for the code.
      * @param  bool  $withWrapper  Wrap the generated HTML in an additional `<div>` so that it can be styled with CSS. Useful for avoiding overflow issues.
      */
     public function codeToHtml(string $code, string|Grammar $grammar, string|array|Theme $theme, bool $withGutter = false, bool $withWrapper = false): string

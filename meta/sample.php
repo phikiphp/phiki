@@ -4,7 +4,7 @@ use Phiki\Environment\Environment;
 use Phiki\Phiki;
 use Phiki\Theme\Theme;
 
-require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__.'/../vendor/autoload.php';
 
 set_error_handler(function ($severity, $message, $file, $line) {
     throw new ErrorException($message, 0, $severity, $file, $line);
@@ -18,7 +18,7 @@ $repository = $environment->getGrammarRepository();
 $grammars = $repository->getAllGrammarNames();
 natsort($grammars);
 
-$sample = file_get_contents(__DIR__ . '/../resources/samples/' . $grammar . '.sample');
+$sample = file_get_contents(__DIR__.'/../resources/samples/'.$grammar.'.sample');
 $tokens = (new Phiki($environment))->codeToTokens($sample, $grammar);
 $html = (new Phiki($environment))->codeToHtml($sample, $grammar, ['light' => Theme::GithubLight, 'dark' => Theme::GithubDark], $withGutter);
 

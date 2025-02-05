@@ -2,8 +2,8 @@
 
 namespace Phiki\Grammar;
 
-use Phiki\Contracts\GrammarRepositoryInterface;
 use Phiki\Contracts\GrammarDetectionInterface;
+use Phiki\Contracts\GrammarRepositoryInterface;
 use Phiki\Exceptions\UnrecognisedGrammarException;
 use Phiki\Grammar\Detections\JavaScript;
 use Phiki\Grammar\Detections\Php;
