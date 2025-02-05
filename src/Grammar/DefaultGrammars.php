@@ -6,6 +6,7 @@ abstract class DefaultGrammars
 {
     final const NAMES_TO_PATHS = [
         'txt' => __DIR__ . '/../../resources/languages/txt.json',
+        'antlers' => __DIR__ . '/../../resources/languages/antlers.json',
         "astro" => __DIR__ . "/../../resources/languages/astro.json",
 "hy" => __DIR__ . "/../../resources/languages/hy.json",
 "nim" => __DIR__ . "/../../resources/languages/nim.json",

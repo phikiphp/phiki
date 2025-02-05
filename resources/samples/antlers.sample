@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Webpage</title>
+    </head>
+    <body>
+        <ul id="navigation">
+        {{ songs }}
+          <li>{{ value }} (Next: {{ next:value }}) (Prev: {{ prev:value }})</li>
+        {{ /songs }}
+        </ul>
+
+        <h1>My Webpage</h1>
+        {{ a_variable }}
+    </body>
+</html>
+
+{# From https://statamic.dev/antlers #}
