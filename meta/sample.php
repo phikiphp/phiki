@@ -1,5 +1,7 @@
 <?php
 
+set_time_limit(2);
+
 use Phiki\Environment\Environment;
 use Phiki\Phiki;
 use Phiki\Theme\Theme;
