@@ -215,7 +215,7 @@ class Tokenizer
 
     public function matchInjections(string $lineText): MatchedInjection|false
     {
-        if (! $this->grammar->hasInjections()) {
+        if ($this->state->hasActiveInjection() || ! $this->grammar->hasInjections()) {
             return false;
         }
 
