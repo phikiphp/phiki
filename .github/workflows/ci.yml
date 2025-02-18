@@ -40,7 +40,7 @@ jobs:
               run: composer update --no-interaction --prefer-dist
 
             - name: Run PHPStan
-              run: ./vendor/bin/phpstan analyse --error-format=github
+              run: composer lint -- --error-format=github
     test:
         runs-on: ${{ matrix.os }}
         strategy:
@@ -80,4 +80,4 @@ jobs:
               run: composer update --no-interaction --prefer-dist
 
             - name: Run tests
-              run: ./vendor/bin/pest
+              run: composer test
