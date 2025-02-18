@@ -63,6 +63,11 @@ final class ParsedGrammar extends Pattern implements PatternCollectionInterface
         return $parser->parse($grammar);
     }
 
+    public function wasInjected(): bool
+    {
+        return false;
+    }
+
     public function __toString(): string
     {
         return sprintf('grammar: %s', $this->scopeName);

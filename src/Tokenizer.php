@@ -63,6 +63,7 @@ class Tokenizer
         $this->checkWhileConditions($line, $lineText);
 
         while ($this->state->getLinePosition() < strlen($lineText)) {
+            $remainingText = substr($lineText, $this->state->getLinePosition());
             $root = $this->state->getPattern();
             $matched = $this->match($lineText);
             $endIsMatched = false;
@@ -92,16 +93,22 @@ class Tokenizer
                     strlen($lineText) - 1,
                 );
 
-                $this->state->setActiveInjection(false);
-
                 break;
+            }
+
+            if ($matched->pattern->wasInjected()) {
+                $this->state->setActiveInjection();
             }
 
             // We've found a match for an `end` here. We need to remove it from the stack.
             // It's important that we do this here since we don't want to have an effect
             // on any capture patterns etc.
             if ($endIsMatched) {
-                $this->state->popPattern();
+                $poppedPattern = $this->state->popPattern();
+
+                if ($poppedPattern->wasInjected()) {
+                    $this->state->resetActiveInjection();
+                }
 
                 if ($root instanceof ProvidesContentName && $root->getContentName() !== null) {
                     $this->state->popScope();
@@ -120,8 +127,6 @@ class Tokenizer
                     $this->state->popScope();
                 }
             }
-
-            $this->state->setActiveInjection(false);
         }
     }
 
@@ -133,7 +138,7 @@ class Tokenizer
             new CollectionPattern($patterns),
         ]);
 
-        $matched = $this->match($lineText);
+        $matched = $this->matchRule($lineText);
 
         $this->state->setPatterns($patternStack);
 
@@ -365,23 +370,25 @@ class Tokenizer
                 $this->state->popScope();
             }
 
-            $endMatched = $endPattern->tryMatch($this, $lineText, $this->state->getLinePosition());
+            $this->state->pushPattern($endPattern);
+            
+            // $endMatched = $endPattern->tryMatch($this, $lineText, $this->state->getLinePosition());
 
-            // If we can't see the `end` pattern, we should just return.
-            if ($endMatched === false) {
-                $this->state->pushPattern($endPattern);
+            // // If we can't see the `end` pattern, we should just return.
+            // if ($endMatched === false) {
+            //     $this->state->pushPattern($endPattern);
 
-                return;
-            }
+            //     return;
+            // }
 
-            // If we can see the `end` pattern, we should process it.
-            $this->process($endMatched, $line, $lineText);
+            // // If we can see the `end` pattern, we should process it.
+            // $this->process($endMatched, $line, $lineText);
 
-            if ($matched->pattern->scope()) {
-                foreach ($matched->pattern->scope() as $_) {
-                    $this->state->popScope();
-                }
-            }
+            // if ($matched->pattern->scope()) {
+            //     foreach ($matched->pattern->scope() as $_) {
+            //         $this->state->popScope();
+            //     }
+            // }
         }
 
         if ($matched->pattern instanceof BeginWhilePattern) {
@@ -790,7 +797,11 @@ class Tokenizer
             $whileMatched = $root->tryMatch($this, $lineText, $this->state->getLinePosition());
 
             if (! $whileMatched) {
-                $this->state->popPattern();
+                $poppedPattern = $this->state->popPattern();
+
+                if ($poppedPattern->wasInjected()) {
+                    $this->state->resetActiveInjection();
+                }
 
                 if ($root->contentName) {
                     $this->state->popScope();

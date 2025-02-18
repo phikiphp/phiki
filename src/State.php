@@ -47,9 +47,14 @@ final class State
         return $this->hasActiveInjection;
     }
 
-    public function setActiveInjection(bool $active): void
+    public function resetActiveInjection(): void
     {
-        $this->hasActiveInjection = $active;
+        $this->hasActiveInjection = false;
+    }
+
+    public function setActiveInjection(): void
+    {
+        $this->hasActiveInjection = true;
     }
 
     public function pushPattern(PatternInterface $pattern): void

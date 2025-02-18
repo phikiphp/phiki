@@ -80,7 +80,13 @@ class BeginEndPattern extends Pattern implements ContainsCapturesInterface, Patt
             $this->endCaptures,
             $this->captures,
             $this->patterns,
+            $this->injection,
         );
+    }
+
+    public function wasInjected(): bool
+    {
+        return $this->injection;
     }
 
     public function __toString(): string

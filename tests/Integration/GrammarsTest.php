@@ -20,7 +20,6 @@ dataset('grammars', function () {
         'haxe',
         'fluent',
         'stylus',
-        'svelte',
         'viml',
         'sas',
         'git-commit',

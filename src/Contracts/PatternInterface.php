@@ -25,4 +25,9 @@ interface PatternInterface extends Stringable
      * Return the scope that this pattern applies.
      */
     public function scope(): string|array|null;
+
+    /**
+     * Determine whether or not the pattern was injected.
+     */
+    public function wasInjected(): bool;
 }

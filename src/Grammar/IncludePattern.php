@@ -48,6 +48,11 @@ class IncludePattern extends Pattern
         return null;
     }
 
+    public function wasInjected(): bool
+    {
+        return $this->injection;
+    }
+
     public function __toString(): string
     {
         if (isset($this->reference, $this->scopeName)) {

@@ -79,6 +79,11 @@ class WhilePattern extends Pattern implements ContainsCapturesInterface, Pattern
         return $this->name ? explode(' ', $this->name) : null;
     }
 
+    public function wasInjected(): bool
+    {
+        return $this->injection;
+    }
+
     public function __toString(): string
     {
         return sprintf('while: %s', $this->while);

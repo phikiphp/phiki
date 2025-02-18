@@ -51,6 +51,11 @@ class MatchPattern extends Pattern implements ContainsCapturesInterface
         return $this->name ? explode(' ', $this->name) : null;
     }
 
+    public function wasInjected(): bool
+    {
+        return $this->injection;
+    }
+
     public function __toString(): string
     {
         return sprintf('match: %s', $this->match);

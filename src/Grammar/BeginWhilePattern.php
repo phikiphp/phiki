@@ -83,6 +83,11 @@ class BeginWhilePattern extends Pattern implements ContainsCapturesInterface, Pa
         );
     }
 
+    public function wasInjected(): bool
+    {
+        return $this->injection;
+    }
+
     public function __toString(): string
     {
         return sprintf('begin: %s', $this->begin);
