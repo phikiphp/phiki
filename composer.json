@@ -50,7 +50,7 @@
             "Composer\\Config::disableProcessTimeout",
             "@php ./meta/update-sources.php"
         ],
-        "test": "@php vendor/bin/pest",
+        "test": "@php -dmemory_limit=-1 vendor/bin/pest --enforce-time-limit --default-time-limit=5",
         "lint": "vendor/bin/phpstan"
     }
 }

@@ -15,6 +15,7 @@ use Phiki\Grammar\CollectionPattern;
 use Phiki\Grammar\EndPattern;
 use Phiki\Grammar\IncludePattern;
 use Phiki\Grammar\Injections\Prefix;
+use Phiki\Grammar\MatchedInjection;
 use Phiki\Grammar\MatchedPattern;
 use Phiki\Grammar\MatchPattern;
 use Phiki\Grammar\ParsedGrammar;
@@ -141,34 +142,43 @@ class Tokenizer
 
     public function match(string $lineText): MatchedPattern|false
     {
-        $closest = false;
-        $offset = $this->state->getLinePosition();
+        $ruleMatch = $this->matchRule($lineText);
+        $injectionMatch = $this->matchInjections($lineText);
+
+        // No injections matched, can return early.
+        if ($injectionMatch === false) {
+            return $ruleMatch;
+        }
+
+        // No rules matched but an injection was matched, can return early.
+        if ($ruleMatch === false) {
+            return $injectionMatch->matchedPattern;
+        }
+        
+        // If the injection is closer than the rule, the injection wins.
+        if ($injectionMatch->offset() < $ruleMatch->offset()) {
+            return $injectionMatch->matchedPattern;
+        }
+
+        // If the injection has a `L:` prefix (indicating a high priority) and the offset is the same, the injection wins.
+        if ($injectionMatch->injection->getPrefix($this->state->getScopes()) === Prefix::Left && $injectionMatch->offset() === $ruleMatch->offset()) {
+            return $injectionMatch->matchedPattern;
+        }
+
+        return $ruleMatch;
+    }
+
+    public function matchRule(string $lineText): MatchedPattern|false
+    {
         $root = $this->state->getPattern();
 
         if (! $root instanceof PatternCollectionInterface) {
-            throw new IndeterminateStateException('Root patterns must contain child patterns and implement '.PatternCollectionInterface::class);
+            throw new IndeterminateStateException('Root patterns must contain child patterns and implement ' . PatternCollectionInterface::class);
         }
 
+        $closest = false;
+        $offset = $this->state->getLinePosition();
         $patterns = $root->getPatterns();
-
-        if (! $this->state->hasActiveInjection() && $this->grammar->hasInjections()) {
-            foreach ($this->grammar->getInjections() as $injection) {
-                if (! $injection->matches($this->state->getScopes())) {
-                    continue;
-                }
-
-                $prefix = $injection->getPrefix($this->state->getScopes());
-
-                if ($prefix === Prefix::Left) {
-                    $patterns = [$injection->pattern, ...$patterns];
-                } else {
-                    $patterns = [...$patterns, $injection->pattern];
-                }
-
-                $this->state->setActiveInjection(true);
-                break;
-            }
-        }
 
         foreach ($patterns as $pattern) {
             $matched = $pattern->tryMatch($this, $lineText, $this->state->getLinePosition());
@@ -201,6 +211,42 @@ class Tokenizer
         }
 
         return $closest;
+    }
+
+    public function matchInjections(string $lineText): MatchedInjection|false
+    {
+        if (! $this->grammar->hasInjections()) {
+            return false;
+        }
+
+        $offset = PHP_INT_MAX;
+        $matchedInjection = false;
+        $scopes = $this->state->getScopes();
+
+        foreach ($this->grammar->getInjections() as $injection) {
+            if (! $injection->matches($scopes)) {
+                continue;
+            }
+
+            $matched = $injection->pattern->tryMatch($this, $lineText, $this->state->getLinePosition());
+
+            if ($matched === false) {
+                continue;
+            }
+
+            if ($matched->offset() >= $offset) {
+                continue;
+            }
+
+            $offset = $matched->offset();
+            $matchedInjection = new MatchedInjection($injection, $matched);
+
+            if ($offset === $this->state->getLinePosition()) {
+                break;
+            }
+        }
+
+        return $matchedInjection;
     }
 
     public function resolve(IncludePattern $pattern): ?Pattern
