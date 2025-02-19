@@ -11,7 +11,7 @@ describe('yaml', function () {
         expect($tokens)->toEqualCanonicalizing([
             [
                 new Token(['source.yaml', 'string.unquoted.plain.out.yaml', 'entity.name.tag.yaml'], 'n', 0, 1),
-                new Token(['source.yaml', 'string.unquoted.plain.out.yaml', 'entity.name.tag.yaml'], 'ame', 1, 4),
+                new Token(['source.yaml', 'entity.name.tag.yaml'], 'ame', 1, 4),
                 new Token(['source.yaml', 'punctuation.separator.key-value.mapping.yaml'], ':', 4, 5),
                 new Token(['source.yaml'], ' ', 5, 6),
                 new Token(['source.yaml', 'string.quoted.double.yaml', 'punctuation.definition.string.begin.yaml'], '"', 6, 7),
