@@ -6,7 +6,6 @@ abstract class DefaultGrammars
 {
     final const NAMES_TO_PATHS = [
         'txt' => __DIR__.'/../../resources/languages/txt.json',
-        'antlers' => __DIR__.'/../../resources/languages/antlers.json',
         'astro' => __DIR__.'/../../resources/languages/astro.json',
         'hy' => __DIR__.'/../../resources/languages/hy.json',
         'nim' => __DIR__.'/../../resources/languages/nim.json',
@@ -225,6 +224,7 @@ abstract class DefaultGrammars
         'cadence' => __DIR__.'/../../resources/languages/cadence.json',
         'desktop' => __DIR__.'/../../resources/languages/desktop.json',
         'asm' => __DIR__.'/../../resources/languages/asm.json',
+        'antlers' => __DIR__.'/../../resources/languages/antlers.json',
     ];
 
     final const SCOPES_TO_NAMES = [
@@ -447,5 +447,6 @@ abstract class DefaultGrammars
         'source.cadence' => 'cadence',
         'source.desktop' => 'desktop',
         'source.asm.x86_64' => 'asm',
+        'text.html.statamic' => 'antlers',
     ];
 }

@@ -225,6 +225,7 @@ enum Grammar: string
     case Cadence = 'cadence';
     case Desktop = 'desktop';
     case Asm = 'asm';
+    case Antlers = 'antlers';
 
     public function toParsedGrammar(GrammarRepositoryInterface $repository): ParsedGrammar
     {

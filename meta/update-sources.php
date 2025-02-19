@@ -62,6 +62,15 @@ function main()
         $scopesToNames[$grammar['scopeName']] = sprintf('"%s" => "%s"', $grammar['scopeName'], $grammar['name']);
     }
 
+    $manualGrammars = [
+        ['name' => 'antlers', 'path' => 'antlers.json', 'scopeName' => 'text.html.statamic'],
+    ];
+
+    foreach ($manualGrammars as $grammar) {
+        $namesToPaths[] = sprintf('"%s" => __DIR__ . "/../../resources/languages/%s"', $grammar['name'], $grammar['path']);
+        $scopesToNames[$grammar['scopeName']] = sprintf('"%s" => "%s"', $grammar['scopeName'], $grammar['name']);
+    }
+
     $namesToPathsString = implode(",\n", $namesToPaths);
     $scopesToNamesString = implode(",\n", $scopesToNames);
 
@@ -75,6 +84,10 @@ function main()
     $grammarCases = [];
 
     foreach ($grammars as $grammar) {
+        $grammarCases[] = sprintf('case %s = "%s";', Str::studly($grammar['name']), $grammar['name']);
+    }
+
+    foreach ($manualGrammars as $grammar) {
         $grammarCases[] = sprintf('case %s = "%s";', Str::studly($grammar['name']), $grammar['name']);
     }
 

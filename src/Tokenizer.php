@@ -159,7 +159,7 @@ class Tokenizer
         if ($ruleMatch === false) {
             return $injectionMatch->matchedPattern;
         }
-        
+
         // If the injection is closer than the rule, the injection wins.
         if ($injectionMatch->offset() < $ruleMatch->offset()) {
             return $injectionMatch->matchedPattern;
@@ -178,7 +178,7 @@ class Tokenizer
         $root = $this->state->getPattern();
 
         if (! $root instanceof PatternCollectionInterface) {
-            throw new IndeterminateStateException('Root patterns must contain child patterns and implement ' . PatternCollectionInterface::class);
+            throw new IndeterminateStateException('Root patterns must contain child patterns and implement '.PatternCollectionInterface::class);
         }
 
         $closest = false;
@@ -371,7 +371,7 @@ class Tokenizer
             }
 
             $this->state->pushPattern($endPattern);
-            
+
             // $endMatched = $endPattern->tryMatch($this, $lineText, $this->state->getLinePosition());
 
             // // If we can't see the `end` pattern, we should just return.
