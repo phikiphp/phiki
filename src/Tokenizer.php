@@ -138,7 +138,7 @@ class Tokenizer
             new CollectionPattern($patterns),
         ]);
 
-        $matched = $this->match($lineText);
+        $matched = $this->matchRule($lineText);
 
         $this->state->setPatterns($patternStack);
 
