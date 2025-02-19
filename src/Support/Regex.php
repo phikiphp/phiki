@@ -126,7 +126,7 @@ class Regex implements Stringable
     protected function escapeUnescapedCloseSetCharacters(string $pattern): string
     {
         // Escape unescaped close set characters, e.g. ]] converted to \]].
-        $pattern = preg_replace('/(?<!\\\)\]\]/', '\\]]', $pattern);
+        $pattern = preg_replace('/(?<!:)(?<!\\\)\]\]/', '\\]]', $pattern);
 
         return $pattern;
     }

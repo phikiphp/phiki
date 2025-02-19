@@ -46,6 +46,10 @@
             "Composer\\Config::disableProcessTimeout",
             "@php -S 127.0.0.1:8080 ./meta/sample.php"
         ],
+        "sample:debug": [
+            "Composer\\Config::disableProcessTimeout",
+            "herd debug -S 127.0.0.1:8080 ./meta/sample.php"
+        ],
         "update-sources": [
             "Composer\\Config::disableProcessTimeout",
             "@php ./meta/update-sources.php"
