@@ -495,6 +495,10 @@ class Tokenizer
             $groupStart = $group[1];
             $groupEnd = $group[1] + $groupLength;
 
+            if ($groupLength === 0) {
+                continue;
+            }
+
             if ($groupStart > $this->state->getLinePosition()) {
                 $this->tokens[$line][] = new Token(
                     $this->state->getScopes(),
