@@ -493,6 +493,10 @@ class Tokenizer
                 continue;
             }
 
+            if (trim($group[0]) === '') {
+                continue;
+            }
+
             $groupLength = strlen($group[0]);
             $groupStart = $group[1];
             $groupEnd = $group[1] + $groupLength;
@@ -618,7 +622,6 @@ class Tokenizer
                             // As long as we don't reach the end of the group, we can try to match a pattern.
                             while ($this->state->getLinePosition() < $groupEnd) {
                                 $subPatternMatched = $onlyPatternsPattern->tryMatch($this, $lineText, $this->state->getLinePosition(), $groupEnd);
-                                $endIsMatched = false;
 
                                 // If we match a subpattern, we need to check to see if the end matches since that takes priority.
                                 if ($subPatternMatched !== false && $endPattern instanceof EndPattern && $endMatched = $endPattern->tryMatch($this, $lineText, $this->state->getLinePosition())) {
