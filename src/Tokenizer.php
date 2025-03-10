@@ -493,6 +493,10 @@ class Tokenizer
                 continue;
             }
 
+            if (trim($group[0]) === '') {
+                continue;
+            }
+
             $groupLength = strlen($group[0]);
             $groupStart = $group[1];
             $groupEnd = $group[1] + $groupLength;
