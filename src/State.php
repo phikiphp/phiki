@@ -20,6 +20,23 @@ final class State
 
     protected bool $isFirstLine = true;
 
+    protected bool $stop = false;
+
+    public function stop(): void
+    {
+        $this->stop = true;
+    }
+
+    public function resume(): void
+    {
+        $this->stop = false;
+    }
+
+    public function shouldStop(): bool
+    {
+        return $this->stop;
+    }
+
     public function pushScopes(array $scopes): void
     {
         $this->scopeStack = array_merge($this->scopeStack, $scopes);

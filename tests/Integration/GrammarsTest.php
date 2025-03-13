@@ -3,6 +3,8 @@
 use Phiki\Grammar\GrammarRepository;
 use Phiki\Phiki;
 
+pest()->group('integration/themes');
+
 describe('Grammars', function () {
     test('default grammars do not produce warnings or exceptions', function (string $grammar) {
         $sample = file_get_contents(__DIR__.'/../../resources/samples/'.$grammar.'.sample');

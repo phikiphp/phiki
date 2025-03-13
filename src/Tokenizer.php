@@ -51,6 +51,7 @@ class Tokenizer
 
             $this->state->setLinePosition(0);
             $this->state->resetAnchorPositions();
+            $this->state->resume();
 
             $this->tokenizeLine($line, $lineText."\n");
         }
@@ -63,12 +64,22 @@ class Tokenizer
         $this->checkWhileConditions($line, $lineText);
 
         while ($this->state->getLinePosition() < strlen($lineText)) {
+            if ($this->state->shouldStop()) {
+                $this->tokens[$line][] = new Token(
+                    $this->state->getScopes(),
+                    substr($lineText, $this->state->getLinePosition()),
+                    $this->state->getLinePosition(),
+                    strlen($lineText) - 1,
+                );
+
+                break;
+            }
+
             $remainingText = substr($lineText, $this->state->getLinePosition());
             $root = $this->state->getPattern();
             $matched = $this->match($lineText);
             $endIsMatched = false;
 
-            // FIXME: Move all of this end pattern checking into the `match` method!
             // Some patterns will include `$self`. Since we're not fixing all patterns to match at the end of the previous match
             // we need to check if we're looking for an `end` pattern that is closer than the matched subpattern.
             if ($matched !== false && $root instanceof EndPattern && $endMatched = $root->tryMatch($this, $lineText, $this->state->getLinePosition())) {
@@ -360,35 +371,19 @@ class Tokenizer
                 $this->state->pushScope($matched->pattern->getContentName());
             }
 
+            $endPattern->setEnterPosition($this->state->getLinePosition());
+
             if ($endPattern->hasPatterns()) {
                 $this->state->pushPattern($endPattern);
 
                 return;
             }
 
-            if ($matched->pattern instanceof ProvidesContentName && $matched->pattern->getContentName() !== null) {
-                $this->state->popScope();
-            }
+            // if ($matched->pattern instanceof ProvidesContentName && $matched->pattern->getContentName() !== null) {
+            //     $this->state->popScope();
+            // }
 
             $this->state->pushPattern($endPattern);
-
-            // $endMatched = $endPattern->tryMatch($this, $lineText, $this->state->getLinePosition());
-
-            // // If we can't see the `end` pattern, we should just return.
-            // if ($endMatched === false) {
-            //     $this->state->pushPattern($endPattern);
-
-            //     return;
-            // }
-
-            // // If we can see the `end` pattern, we should process it.
-            // $this->process($endMatched, $line, $lineText);
-
-            // if ($matched->pattern->scope()) {
-            //     foreach ($matched->pattern->scope() as $_) {
-            //         $this->state->popScope();
-            //     }
-            // }
         }
 
         if ($matched->pattern instanceof BeginWhilePattern) {
@@ -422,12 +417,25 @@ class Tokenizer
                 $this->state->pushScope($matched->pattern->getContentName());
             }
 
+            $whilePattern->setEnterPosition($this->state->getLinePosition());
+
             $this->state->pushPattern($whilePattern);
 
             return;
         }
 
         if ($matched->pattern instanceof EndPattern) {
+            $hasAdvanced = $matched->pattern->hasCaptures() ? $matched->end() > $this->state->getLinePosition() : false;
+
+            // If the end pattern is at the same position as where it entered and it's not going to advance the position,
+            // we could be entering a state of infinite recursion which we want to avoid. This is likely caused by an error
+            // in the grammar, so we can gracefully handle it here and stop processing the rest of the line.
+            if (! $hasAdvanced && $matched->pattern->enterPosition === $this->state->getLinePosition()) {
+                $this->state->stop();
+
+                return;
+            }
+
             // FIXME: This is a bit of hack. There's a bug somewhere that is incorrectly popping the end scope off
             // of the stack before we're done with that specific scope. This will prevent this from happening.
             if ($matched->pattern->scope()) {

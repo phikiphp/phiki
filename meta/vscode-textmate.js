@@ -39,13 +39,20 @@ const registry = new vsctm.Registry({
                 vsctm.parseRawGrammar(data.toString(), 'javascript.json')
             );
         }
+        if (scopeName === 'source.shell') {
+            return readFile(
+                path.join(__dirname, "../resources/languages/shellscript.json")
+            ).then((data) =>
+                vsctm.parseRawGrammar(data.toString(), "shellscript.json")
+            );
+        }
         console.log(`Unknown scope name: ${scopeName}`);
         return null;
     },
 });
 
-registry.loadGrammar("source.svelte").then(async (grammar) => {
-    const text = await readFile(path.join(__dirname, '../resources/samples/svelte.sample')).then(file => file.toString().split("\n"));
+registry.loadGrammar("source.shell").then(async (grammar) => {
+    const text = await readFile(path.join(__dirname, '../resources/samples/shellscript.sample')).then(file => file.toString().split("\n"));
     let ruleStack = vsctm.INITIAL;
     for (let i = 0; i < text.length; i++) {
         const line = text[i];

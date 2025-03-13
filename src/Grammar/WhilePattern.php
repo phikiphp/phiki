@@ -20,6 +20,7 @@ class WhilePattern extends Pattern implements ContainsCapturesInterface, Pattern
         public array $captures = [],
         public array $patterns = [],
         public bool $injection = false,
+        public int $enterPosition = 0,
     ) {}
 
     public function getContentName(): ?string
@@ -82,6 +83,11 @@ class WhilePattern extends Pattern implements ContainsCapturesInterface, Pattern
     public function wasInjected(): bool
     {
         return $this->injection;
+    }
+
+    public function setEnterPosition(int $position): void
+    {
+        $this->enterPosition = $position;
     }
 
     public function __toString(): string
