@@ -300,7 +300,7 @@ class Tokenizer
             $pattern instanceof BeginWhilePattern => $this->processBeginWhile($matched, $pattern, $line, $lineText),
             $pattern instanceof EndPattern => $this->processEnd($matched, $pattern, $line, $lineText),
             $pattern instanceof WhilePattern => $this->processWhile($matched, $pattern, $line, $lineText),
-            default => throw new UnreachableException(),
+            default => throw new UnreachableException,
         };
     }
 
@@ -628,7 +628,7 @@ class Tokenizer
                                     }
                                 }
 
-                                // If we haven't found a subpattern, we need to break out of this loop 
+                                // If we haven't found a subpattern, we need to break out of this loop
                                 // since we should now be able to match the end pattern.
                                 //
                                 // If we can't find the end pattern after this, then the grammar is incorrect :D
