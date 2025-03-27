@@ -23,6 +23,9 @@ use Phiki\Grammar\Pattern;
 use Phiki\Grammar\WhilePattern;
 use Phiki\Token\Token;
 
+/**
+ * @internal To directly interact with a set of tokens, use the `Phiki::codeToTokens()` method instead.
+ */
 class Tokenizer
 {
     protected State $state;
