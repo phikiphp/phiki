@@ -2,7 +2,4 @@
 
 namespace Phiki\Contracts;
 
-interface EngineInterface
-{
-    
-}
+interface EngineInterface {}
