@@ -63,7 +63,6 @@ class Tokenizer
         $this->checkWhileConditions($line, $lineText);
 
         while ($this->state->getLinePosition() < strlen($lineText)) {
-            $remainingText = substr($lineText, $this->state->getLinePosition());
             $root = $this->state->getPattern();
             $matched = $this->match($lineText);
             $endIsMatched = false;
