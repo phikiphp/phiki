@@ -367,24 +367,6 @@ class Tokenizer
             }
 
             $this->state->pushPattern($endPattern);
-
-            // $endMatched = $endPattern->tryMatch($this, $lineText, $this->state->getLinePosition());
-
-            // // If we can't see the `end` pattern, we should just return.
-            // if ($endMatched === false) {
-            //     $this->state->pushPattern($endPattern);
-
-            //     return;
-            // }
-
-            // // If we can see the `end` pattern, we should process it.
-            // $this->process($endMatched, $line, $lineText);
-
-            // if ($matched->pattern->scope()) {
-            //     foreach ($matched->pattern->scope() as $_) {
-            //         $this->state->popScope();
-            //     }
-            // }
         }
 
         if ($matched->pattern instanceof BeginWhilePattern) {
