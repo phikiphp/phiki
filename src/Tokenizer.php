@@ -370,10 +370,9 @@ class Tokenizer
 
         $this->state->setAnchorPosition($matched->end());
 
-        /** @phpstan-ignore-next-line method.notFound */
         $endPattern = $pattern->createEndPattern($matched);
 
-        if ($pattern instanceof ProvidesContentName && $pattern->getContentName() !== null) {
+        if ($pattern->getContentName() !== null) {
             $this->state->pushScope($pattern->getContentName());
         }
 
@@ -383,7 +382,7 @@ class Tokenizer
             return;
         }
 
-        if ($pattern instanceof ProvidesContentName && $pattern->getContentName() !== null) {
+        if ($pattern->getContentName() !== null) {
             $this->state->popScope();
         }
 
@@ -415,10 +414,9 @@ class Tokenizer
 
         $this->state->setAnchorPosition($matched->end());
 
-        /** @phpstan-ignore-next-line method.notFound */
         $whilePattern = $pattern->createWhilePattern($matched);
 
-        if ($pattern instanceof ProvidesContentName && $pattern->getContentName() !== null) {
+        if ($pattern->getContentName() !== null) {
             $this->state->pushScope($pattern->getContentName());
         }
 

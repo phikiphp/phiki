@@ -55,6 +55,6 @@
             "@php ./meta/update-sources.php"
         ],
         "test": "@php -dmemory_limit=-1 vendor/bin/pest --enforce-time-limit --default-time-limit=1",
-        "lint": "vendor/bin/phpstan"
+        "lint": "vendor/bin/phpstan --memory-limit=-1"
     }
 }
