@@ -295,23 +295,17 @@ class Tokenizer
         }
 
         match (true) {
-            $pattern instanceof MatchPattern => $this->processMatch($matched, $line, $lineText),
-            $pattern instanceof BeginEndPattern => $this->processBeginEnd($matched, $line, $lineText),
-            $pattern instanceof BeginWhilePattern => $this->processBeginWhile($matched, $line, $lineText),
-            $pattern instanceof EndPattern => $this->processEnd($matched, $line, $lineText),
-            $pattern instanceof WhilePattern => $this->processWhile($matched, $line, $lineText),
+            $pattern instanceof MatchPattern => $this->processMatch($matched, $pattern, $line, $lineText),
+            $pattern instanceof BeginEndPattern => $this->processBeginEnd($matched, $pattern, $line, $lineText),
+            $pattern instanceof BeginWhilePattern => $this->processBeginWhile($matched, $pattern, $line, $lineText),
+            $pattern instanceof EndPattern => $this->processEnd($matched, $pattern, $line, $lineText),
+            $pattern instanceof WhilePattern => $this->processWhile($matched, $pattern, $line, $lineText),
             default => throw new UnreachableException(),
         };
     }
 
-    protected function processMatch(MatchedPattern $matched, int $line, string $lineText): void
+    protected function processMatch(MatchedPattern $matched, MatchPattern $pattern, int $line, string $lineText): void
     {
-        if (! $matched->pattern instanceof MatchPattern) {
-            throw new UnreachableException();
-        }
-
-        $pattern = $matched->pattern;
-
         if (! $pattern->hasCaptures()) {
             if ($matched->text() !== '') {
                 $this->tokens[$line][] = new Token(
@@ -351,14 +345,8 @@ class Tokenizer
         }
     }
 
-    protected function processBeginEnd(MatchedPattern $matched, int $line, string $lineText): void
+    protected function processBeginEnd(MatchedPattern $matched, BeginEndPattern $pattern, int $line, string $lineText): void
     {
-        if (! $matched->pattern instanceof BeginEndPattern) {
-            throw new UnreachableException();
-        }
-
-        $pattern = $matched->pattern;
-
         if ($pattern->scope()) {
             $this->state->pushScopes($this->processScope($pattern->scope(), $matched));
         }
@@ -402,14 +390,8 @@ class Tokenizer
         $this->state->pushPattern($endPattern);
     }
 
-    protected function processBeginWhile(MatchedPattern $matched, int $line, string $lineText): void
+    protected function processBeginWhile(MatchedPattern $matched, BeginWhilePattern $pattern, int $line, string $lineText): void
     {
-        if (! $matched->pattern instanceof BeginWhilePattern) {
-            throw new UnreachableException();
-        }
-
-        $pattern = $matched->pattern;
-
         if ($pattern->scope()) {
             $this->state->pushScopes($this->processScope($pattern->scope(), $matched));
         }
@@ -443,14 +425,8 @@ class Tokenizer
         $this->state->pushPattern($whilePattern);
     }
 
-    protected function processEnd(MatchedPattern $matched, int $line, string $lineText): void
+    protected function processEnd(MatchedPattern $matched, EndPattern $pattern, int $line, string $lineText): void
     {
-        if (! $matched->pattern instanceof EndPattern) {
-            throw new UnreachableException();
-        }
-
-        $pattern = $matched->pattern;
-
         // FIXME: This is a bit of hack. There's a bug somewhere that is incorrectly popping the end scope off
         // of the stack before we're done with that specific scope. This will prevent this from happening.
         if ($pattern->scope()) {
@@ -479,14 +455,8 @@ class Tokenizer
         $this->state->setLinePosition($matched->end());
     }
 
-    protected function processWhile(MatchedPattern $matched, int $line, string $lineText): void
+    protected function processWhile(MatchedPattern $matched, WhilePattern $pattern, int $line, string $lineText): void
     {
-        if (! $matched->pattern instanceof WhilePattern) {
-            throw new UnreachableException();
-        }
-
-        $pattern = $matched->pattern;
-
         if ($pattern->hasCaptures()) {
             $this->captures($matched, $line, $lineText);
         } else {
