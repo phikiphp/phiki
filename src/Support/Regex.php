@@ -26,10 +26,8 @@ class Regex implements Stringable
 
     protected string $pattern;
 
-    public function __construct(
-        string $pattern,
-        protected ?string $lowered = null,
-    ) {
+    public function __construct(string $pattern)
+    {
         $length = strlen($pattern);
         $lastPushedPos = 0;
         $output = [];
