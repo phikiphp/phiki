@@ -5,6 +5,7 @@ namespace Phiki\Grammar\Injections;
 use Phiki\Contracts\InjectionMatcherInterface;
 use Phiki\Contracts\PatternInterface;
 
+/** @internal */
 class Injection implements InjectionMatcherInterface
 {
     public function __construct(

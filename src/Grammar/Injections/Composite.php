@@ -4,6 +4,7 @@ namespace Phiki\Grammar\Injections;
 
 use Phiki\Contracts\InjectionMatcherInterface;
 
+/** @internal */
 class Composite implements InjectionMatcherInterface
 {
     /**

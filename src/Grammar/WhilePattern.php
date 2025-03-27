@@ -9,6 +9,7 @@ use Phiki\Contracts\ProvidesContentName;
 use Phiki\Support\Regex;
 use Phiki\Tokenizer;
 
+/** @internal */
 class WhilePattern extends Pattern implements ContainsCapturesInterface, PatternCollectionInterface, ProvidesContentName
 {
     public function __construct(

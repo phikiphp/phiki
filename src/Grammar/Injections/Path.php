@@ -4,6 +4,7 @@ namespace Phiki\Grammar\Injections;
 
 use Phiki\Contracts\InjectionMatcherInterface;
 
+/** @internal */
 class Path implements InjectionMatcherInterface
 {
     public function __construct(

@@ -4,6 +4,7 @@ namespace Phiki\Grammar;
 
 use Phiki\Tokenizer;
 
+/** @internal */
 class IncludePattern extends Pattern
 {
     public function __construct(

@@ -4,6 +4,7 @@ namespace Phiki\Grammar;
 
 use Phiki\Contracts\PatternInterface;
 
+/** @internal */
 class MatchedPattern
 {
     public function __construct(

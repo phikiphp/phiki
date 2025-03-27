@@ -4,6 +4,7 @@ namespace Phiki\Grammar\Injections;
 
 use Stringable;
 
+/** @internal */
 class Scope implements Stringable
 {
     public function __construct(
