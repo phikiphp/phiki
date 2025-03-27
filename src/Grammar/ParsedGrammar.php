@@ -5,6 +5,7 @@ namespace Phiki\Grammar;
 use Phiki\Contracts\PatternCollectionInterface;
 use Phiki\Tokenizer;
 
+/** @internal */
 final class ParsedGrammar extends Pattern implements PatternCollectionInterface
 {
     /**

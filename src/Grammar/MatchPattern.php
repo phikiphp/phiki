@@ -7,6 +7,7 @@ use Phiki\Contracts\ContainsCapturesInterface;
 use Phiki\Support\Regex;
 use Phiki\Tokenizer;
 
+/** @internal */
 class MatchPattern extends Pattern implements ContainsCapturesInterface
 {
     /**

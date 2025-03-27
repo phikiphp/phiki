@@ -4,6 +4,7 @@ namespace Phiki\Grammar;
 
 use Phiki\Grammar\Injections\Injection;
 
+/** @internal */
 class MatchedInjection
 {
     public function __construct(

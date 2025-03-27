@@ -2,6 +2,7 @@
 
 namespace Phiki\Grammar\Injections;
 
+/** @internal */
 enum Operator
 {
     case Or;

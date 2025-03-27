@@ -4,6 +4,7 @@ namespace Phiki\Grammar;
 
 use Phiki\Contracts\PatternCollectionInterface;
 
+/** @internal */
 class Capture implements PatternCollectionInterface
 {
     public function __construct(
