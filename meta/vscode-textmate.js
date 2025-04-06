@@ -39,13 +39,20 @@ const registry = new vsctm.Registry({
                 vsctm.parseRawGrammar(data.toString(), 'javascript.json')
             );
         }
+        if (scopeName === 'source.cpp') {
+            return readFile(
+                path.join(__dirname, "../resources/languages/cpp.json")
+            ).then((data) =>
+                vsctm.parseRawGrammar(data.toString(), "cpp.json")
+            );
+        }
         console.log(`Unknown scope name: ${scopeName}`);
         return null;
     },
 });
 
-registry.loadGrammar("source.svelte").then(async (grammar) => {
-    const text = await readFile(path.join(__dirname, '../resources/samples/svelte.sample')).then(file => file.toString().split("\n"));
+registry.loadGrammar("source.cpp").then(async (grammar) => {
+    const text = await readFile(path.join(__dirname, '../resources/samples/cpp.sample')).then(file => file.toString().split("\n"));
     let ruleStack = vsctm.INITIAL;
     for (let i = 0; i < text.length; i++) {
         const line = text[i];
@@ -53,11 +60,11 @@ registry.loadGrammar("source.svelte").then(async (grammar) => {
         // console.log(`\nTokenizing line: ${line}`);
         for (let j = 0; j < lineTokens.tokens.length; j++) {
             const token = lineTokens.tokens[j];
-            // console.log(
-            //     ` - token from ${token.startIndex} to ${token.endIndex} ` +
-            //         `(${line.substring(token.startIndex, token.endIndex)}) ` +
-            //         `with scopes ${token.scopes.join(", ")}`
-            // );
+            console.log(
+                ` - token from ${token.startIndex} to ${token.endIndex} ` +
+                    `(${line.substring(token.startIndex, token.endIndex)}) ` +
+                    `with scopes ${token.scopes.join(", ")}`
+            );
         }
         ruleStack = lineTokens.ruleStack;
     }
