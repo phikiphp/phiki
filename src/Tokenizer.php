@@ -23,6 +23,9 @@ use Phiki\Grammar\Pattern;
 use Phiki\Grammar\WhilePattern;
 use Phiki\Token\Token;
 
+/**
+ * @internal To directly interact with a set of tokens, use the `Phiki::codeToTokens()` method instead.
+ */
 class Tokenizer
 {
     protected State $state;
@@ -63,14 +66,10 @@ class Tokenizer
         $this->checkWhileConditions($line, $lineText);
 
         while ($this->state->getLinePosition() < strlen($lineText)) {
-            $remainingText = substr($lineText, $this->state->getLinePosition());
             $root = $this->state->getPattern();
             $matched = $this->match($lineText);
             $endIsMatched = false;
 
-            // FIXME: Move all of this end pattern checking into the `match` method!
-            // Some patterns will include `$self`. Since we're not fixing all patterns to match at the end of the previous match
-            // we need to check if we're looking for an `end` pattern that is closer than the matched subpattern.
             if ($matched !== false && $root instanceof EndPattern && $endMatched = $root->tryMatch($this, $lineText, $this->state->getLinePosition())) {
                 if ($endMatched->offset() <= $matched->offset()) {
                     $matched = $endMatched;
@@ -282,9 +281,11 @@ class Tokenizer
 
     protected function process(MatchedPattern $matched, int $line, string $lineText): void
     {
+        $pattern = $matched->pattern;
+
         if ($matched->offset() > $this->state->getLinePosition()) {
             $this->tokens[$line][] = new Token(
-                $matched->pattern instanceof EndPattern && $matched->pattern->contentName !== null ? [...$this->state->getScopes(), $matched->pattern->contentName] : $this->state->getScopes(),
+                $pattern instanceof EndPattern && $pattern->contentName !== null ? [...$this->state->getScopes(), $pattern->contentName] : $this->state->getScopes(),
                 substr($lineText, $this->state->getLinePosition(), $matched->offset() - $this->state->getLinePosition()),
                 $this->state->getLinePosition(),
                 $matched->offset(),
@@ -293,33 +294,71 @@ class Tokenizer
             $this->state->setLinePosition($matched->offset());
         }
 
-        if ($matched->pattern instanceof MatchPattern && $matched->pattern->hasCaptures()) {
-            if ($matched->pattern->scope()) {
-                $this->state->pushScopes($this->processScope($matched->pattern->scope(), $matched));
-            }
+        match (true) {
+            $pattern instanceof MatchPattern => $this->processMatch($matched, $pattern, $line, $lineText),
+            $pattern instanceof BeginEndPattern => $this->processBeginEnd($matched, $pattern, $line, $lineText),
+            $pattern instanceof BeginWhilePattern => $this->processBeginWhile($matched, $pattern, $line, $lineText),
+            $pattern instanceof EndPattern => $this->processEnd($matched, $pattern, $line, $lineText),
+            $pattern instanceof WhilePattern => $this->processWhile($matched, $pattern, $line, $lineText),
+            default => throw new UnreachableException,
+        };
+    }
 
-            $this->captures($matched, $line, $lineText);
-
-            if ($this->state->getLinePosition() < $matched->end()) {
-                $this->tokens[$line][] = new Token(
-                    $this->state->getScopes(),
-                    substr($lineText, $this->state->getLinePosition(), $matched->end() - $this->state->getLinePosition()),
-                    $this->state->getLinePosition(),
-                    $matched->end(),
-                );
-
-                $this->state->setLinePosition($matched->end());
-            }
-
-            if ($matched->pattern->scope()) {
-                foreach ($matched->pattern->scope() as $_) {
-                    $this->state->popScope();
-                }
-            }
-        } elseif ($matched->pattern instanceof MatchPattern) {
+    protected function processMatch(MatchedPattern $matched, MatchPattern $pattern, int $line, string $lineText): void
+    {
+        if (! $pattern->hasCaptures()) {
             if ($matched->text() !== '') {
                 $this->tokens[$line][] = new Token(
-                    $matched->pattern->produceScopes($this->state->getScopes()),
+                    $pattern->produceScopes($this->state->getScopes()),
+                    $matched->text(),
+                    $matched->offset(),
+                    $matched->end(),
+                );
+            }
+
+            $this->state->setLinePosition($matched->end());
+
+            return;
+        }
+
+        if ($pattern->scope()) {
+            $this->state->pushScopes($this->processScope($pattern->scope(), $matched));
+        }
+
+        $this->captures($matched, $line, $lineText);
+
+        if ($this->state->getLinePosition() < $matched->end()) {
+            $this->tokens[$line][] = new Token(
+                $this->state->getScopes(),
+                substr($lineText, $this->state->getLinePosition(), $matched->end() - $this->state->getLinePosition()),
+                $this->state->getLinePosition(),
+                $matched->end(),
+            );
+
+            $this->state->setLinePosition($matched->end());
+        }
+
+        if ($pattern->scope()) {
+            foreach ($pattern->scope() as $_) {
+                $this->state->popScope();
+            }
+        }
+    }
+
+    protected function processBeginEnd(MatchedPattern $matched, BeginEndPattern $pattern, int $line, string $lineText): void
+    {
+        if ($pattern->scope()) {
+            $this->state->pushScopes($this->processScope($pattern->scope(), $matched));
+        }
+
+        $this->state->pushAnchorPosition($this->state->getAnchorPosition());
+
+        if ($pattern->hasCaptures()) {
+            $this->captures($matched, $line, $lineText);
+        } else {
+            if ($matched->text() !== '') {
+                $this->tokens[$line][] = new Token(
+                    $this->state->getScopes(),
                     $matched->text(),
                     $matched->offset(),
                     $matched->end(),
@@ -329,151 +368,109 @@ class Tokenizer
             $this->state->setLinePosition($matched->end());
         }
 
-        if ($matched->pattern instanceof BeginEndPattern) {
-            if ($matched->pattern->scope()) {
-                $this->state->pushScopes($this->processScope($matched->pattern->scope(), $matched));
-            }
+        $this->state->setAnchorPosition($matched->end());
 
-            $this->state->pushAnchorPosition($this->state->getAnchorPosition());
+        $endPattern = $pattern->createEndPattern($matched);
 
-            if ($matched->pattern->hasCaptures()) {
-                $this->captures($matched, $line, $lineText);
-            } else {
-                if ($matched->text() !== '') {
-                    $this->tokens[$line][] = new Token(
-                        $this->state->getScopes(),
-                        $matched->text(),
-                        $matched->offset(),
-                        $matched->end(),
-                    );
-                }
-
-                $this->state->setLinePosition($matched->end());
-            }
-
-            $this->state->setAnchorPosition($matched->end());
-
-            /** @phpstan-ignore-next-line method.notFound */
-            $endPattern = $matched->pattern->createEndPattern($matched);
-
-            if ($matched->pattern instanceof ProvidesContentName && $matched->pattern->getContentName() !== null) {
-                $this->state->pushScope($matched->pattern->getContentName());
-            }
-
-            if ($endPattern->hasPatterns()) {
-                $this->state->pushPattern($endPattern);
-
-                return;
-            }
-
-            if ($matched->pattern instanceof ProvidesContentName && $matched->pattern->getContentName() !== null) {
-                $this->state->popScope();
-            }
-
-            $this->state->pushPattern($endPattern);
-
-            // $endMatched = $endPattern->tryMatch($this, $lineText, $this->state->getLinePosition());
-
-            // // If we can't see the `end` pattern, we should just return.
-            // if ($endMatched === false) {
-            //     $this->state->pushPattern($endPattern);
-
-            //     return;
-            // }
-
-            // // If we can see the `end` pattern, we should process it.
-            // $this->process($endMatched, $line, $lineText);
-
-            // if ($matched->pattern->scope()) {
-            //     foreach ($matched->pattern->scope() as $_) {
-            //         $this->state->popScope();
-            //     }
-            // }
+        if ($pattern->getContentName() !== null) {
+            $this->state->pushScope($pattern->getContentName());
         }
 
-        if ($matched->pattern instanceof BeginWhilePattern) {
-            if ($matched->pattern->scope()) {
-                $this->state->pushScopes($this->processScope($matched->pattern->scope(), $matched));
-            }
-
-            $this->state->pushAnchorPosition($this->state->getAnchorPosition());
-
-            if ($matched->pattern->hasCaptures()) {
-                $this->captures($matched, $line, $lineText);
-            } else {
-                if ($matched->text() !== '') {
-                    $this->tokens[$line][] = new Token(
-                        $this->state->getScopes(),
-                        $matched->text(),
-                        $matched->offset(),
-                        $matched->end(),
-                    );
-                }
-
-                $this->state->setLinePosition($matched->end());
-            }
-
-            $this->state->setAnchorPosition($matched->end());
-
-            /** @phpstan-ignore-next-line method.notFound */
-            $whilePattern = $matched->pattern->createWhilePattern($matched);
-
-            if ($matched->pattern instanceof ProvidesContentName && $matched->pattern->getContentName() !== null) {
-                $this->state->pushScope($matched->pattern->getContentName());
-            }
-
-            $this->state->pushPattern($whilePattern);
+        if ($endPattern->hasPatterns()) {
+            $this->state->pushPattern($endPattern);
 
             return;
         }
 
-        if ($matched->pattern instanceof EndPattern) {
-            // FIXME: This is a bit of hack. There's a bug somewhere that is incorrectly popping the end scope off
-            // of the stack before we're done with that specific scope. This will prevent this from happening.
-            if ($matched->pattern->scope()) {
-                $potentialMatchedPatternScopes = $this->processScope($matched->pattern->scope(), $matched->pattern->begin);
+        if ($pattern->getContentName() !== null) {
+            $this->state->popScope();
+        }
 
-                foreach ($potentialMatchedPatternScopes as $potentialScope) {
-                    if (! in_array($potentialScope, $this->state->getScopes())) {
-                        $this->state->pushScope($potentialScope);
-                    }
-                }
-            }
+        $this->state->pushPattern($endPattern);
+    }
 
-            if ($matched->pattern->hasCaptures()) {
-                $this->captures($matched, $line, $lineText);
-            } else {
-                if ($matched->text() !== '') {
-                    $this->tokens[$line][] = new Token(
-                        $this->state->getScopes(),
-                        $matched->text(),
-                        $matched->offset(),
-                        $matched->end(),
-                    );
-                }
+    protected function processBeginWhile(MatchedPattern $matched, BeginWhilePattern $pattern, int $line, string $lineText): void
+    {
+        if ($pattern->scope()) {
+            $this->state->pushScopes($this->processScope($pattern->scope(), $matched));
+        }
+
+        $this->state->pushAnchorPosition($this->state->getAnchorPosition());
+
+        if ($pattern->hasCaptures()) {
+            $this->captures($matched, $line, $lineText);
+        } else {
+            if ($matched->text() !== '') {
+                $this->tokens[$line][] = new Token(
+                    $this->state->getScopes(),
+                    $matched->text(),
+                    $matched->offset(),
+                    $matched->end(),
+                );
             }
 
             $this->state->setLinePosition($matched->end());
         }
 
-        if ($matched->pattern instanceof WhilePattern) {
-            if ($matched->pattern->hasCaptures()) {
-                $this->captures($matched, $line, $lineText);
-            } else {
-                if ($matched->text() !== '') {
-                    $this->tokens[$line][] = new Token(
-                        $this->state->getScopes(),
-                        $matched->text(),
-                        $matched->offset(),
-                        $matched->end(),
-                    );
-                }
+        $this->state->setAnchorPosition($matched->end());
 
-                $this->state->setLinePosition($matched->end());
+        $whilePattern = $pattern->createWhilePattern($matched);
+
+        if ($pattern->getContentName() !== null) {
+            $this->state->pushScope($pattern->getContentName());
+        }
+
+        $this->state->pushPattern($whilePattern);
+    }
+
+    protected function processEnd(MatchedPattern $matched, EndPattern $pattern, int $line, string $lineText): void
+    {
+        // FIXME: This is a bit of hack. There's a bug somewhere that is incorrectly popping the end scope off
+        // of the stack before we're done with that specific scope. This will prevent this from happening.
+        if ($pattern->scope()) {
+            $potentialMatchedPatternScopes = $this->processScope($pattern->scope(), $pattern->begin);
+
+            foreach ($potentialMatchedPatternScopes as $potentialScope) {
+                if (! in_array($potentialScope, $this->state->getScopes())) {
+                    $this->state->pushScope($potentialScope);
+                }
+            }
+        }
+
+        if ($pattern->hasCaptures()) {
+            $this->captures($matched, $line, $lineText);
+        } else {
+            if ($matched->text() !== '') {
+                $this->tokens[$line][] = new Token(
+                    $this->state->getScopes(),
+                    $matched->text(),
+                    $matched->offset(),
+                    $matched->end(),
+                );
+            }
+        }
+
+        $this->state->setLinePosition($matched->end());
+    }
+
+    protected function processWhile(MatchedPattern $matched, WhilePattern $pattern, int $line, string $lineText): void
+    {
+        if ($pattern->hasCaptures()) {
+            $this->captures($matched, $line, $lineText);
+        } else {
+            if ($matched->text() !== '') {
+                $this->tokens[$line][] = new Token(
+                    $this->state->getScopes(),
+                    $matched->text(),
+                    $matched->offset(),
+                    $matched->end(),
+                );
             }
 
-            $this->state->setAnchorPosition($matched->end());
+            $this->state->setLinePosition($matched->end());
         }
+
+        $this->state->setAnchorPosition($matched->end());
     }
 
     protected function captures(MatchedPattern $pattern, int $line, string $lineText): void
@@ -631,7 +628,7 @@ class Tokenizer
                                     }
                                 }
 
-                                // If we haven't found a subpattern, we need to break out of this loop 
+                                // If we haven't found a subpattern, we need to break out of this loop
                                 // since we should now be able to match the end pattern.
                                 //
                                 // If we can't find the end pattern after this, then the grammar is incorrect :D

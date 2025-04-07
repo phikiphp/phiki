@@ -4,6 +4,7 @@ namespace Phiki\Grammar;
 
 use Phiki\Contracts\PatternInterface;
 
+/** @internal */
 abstract class Pattern implements PatternInterface
 {
     public function produceScopes(array $scopes): array

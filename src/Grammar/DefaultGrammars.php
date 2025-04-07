@@ -2,6 +2,7 @@
 
 namespace Phiki\Grammar;
 
+/** @internal */
 abstract class DefaultGrammars
 {
     final const NAMES_TO_PATHS = [
