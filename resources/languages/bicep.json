@@ -1,7 +1,8 @@
 {
   "displayName": "Bicep",
   "fileTypes": [
-    ".bicep"
+    ".bicep",
+    ".bicepparam"
   ],
   "name": "bicep",
   "patterns": [
@@ -14,7 +15,7 @@
   ],
   "repository": {
     "array-literal": {
-      "begin": "\\[(?!(?:[ \\t\\r\\n]|\\/\\*(?:\\*(?!\\/)|[^*])*\\*\\/)*\\bfor\\b)",
+      "begin": "\\[(?!(?:[ \\t\\r\\n]|/\\*(?:\\*(?!/)|[^*])*\\*/)*\\bfor\\b)",
       "end": "]",
       "name": "meta.array-literal.bicep",
       "patterns": [
@@ -42,7 +43,7 @@
       ]
     },
     "decorator": {
-      "begin": "@(?:[ \\t\\r\\n]|\\/\\*(?:\\*(?!\\/)|[^*])*\\*\\/)*(?=\\b[_$[:alpha:]][_$[:alnum:]]*\\b)",
+      "begin": "@(?:[ \\t\\r\\n]|/\\*(?:\\*(?!/)|[^*])*\\*/)*(?=\\b[_$[:alpha:]][_$[:alnum:]]*\\b)",
       "end": "",
       "name": "meta.decorator.bicep",
       "patterns": [
@@ -55,7 +56,7 @@
       ]
     },
     "directive": {
-      "begin": "#\\b[_a-zA-Z-0-9]+\\b",
+      "begin": "#\\b[_a-zA-Z\\-0-9]+\\b",
       "end": "$",
       "name": "meta.directive.bicep",
       "patterns": [
@@ -68,11 +69,11 @@
       ]
     },
     "directive-variable": {
-      "match": "\\b[_a-zA-Z-0-9]+\\b",
+      "match": "\\b[_a-zA-Z\\-0-9]+\\b",
       "name": "keyword.control.declaration.bicep"
     },
     "escape-character": {
-      "match": "\\\\(u{[0-9A-Fa-f]+}|n|r|t|\\\\|'|\\${)",
+      "match": "\\\\(u\\{\\h+}|[nrt\\\\']|\\$\\{)",
       "name": "constant.character.escape.bicep"
     },
     "expression": {
@@ -116,7 +117,7 @@
       ]
     },
     "function-call": {
-      "begin": "(\\b[_$[:alpha:]][_$[:alnum:]]*\\b)(?:[ \\t\\r\\n]|\\/\\*(?:\\*(?!\\/)|[^*])*\\*\\/)*\\(",
+      "begin": "(\\b[_$[:alpha:]][_$[:alnum:]]*\\b)(?:[ \\t\\r\\n]|/\\*(?:\\*(?!/)|[^*])*\\*/)*\\(",
       "beginCaptures": {
         "1": {
           "name": "entity.name.function.bicep"
@@ -134,7 +135,7 @@
       ]
     },
     "identifier": {
-      "match": "\\b[_$[:alpha:]][_$[:alnum:]]*\\b(?!(?:[ \\t\\r\\n]|\\/\\*(?:\\*(?!\\/)|[^*])*\\*\\/)*\\()",
+      "match": "\\b[_$[:alpha:]][_$[:alnum:]]*\\b(?!(?:[ \\t\\r\\n]|/\\*(?:\\*(?!/)|[^*])*\\*/)*\\()",
       "name": "variable.other.readwrite.bicep"
     },
     "keyword": {
@@ -142,7 +143,7 @@
       "name": "keyword.control.declaration.bicep"
     },
     "lambda-start": {
-      "begin": "(\\((?:[ \\t\\r\\n]|\\/\\*(?:\\*(?!\\/)|[^*])*\\*\\/)*\\b[_$[:alpha:]][_$[:alnum:]]*\\b(?:[ \\t\\r\\n]|\\/\\*(?:\\*(?!\\/)|[^*])*\\*\\/)*(,(?:[ \\t\\r\\n]|\\/\\*(?:\\*(?!\\/)|[^*])*\\*\\/)*\\b[_$[:alpha:]][_$[:alnum:]]*\\b(?:[ \\t\\r\\n]|\\/\\*(?:\\*(?!\\/)|[^*])*\\*\\/)*)*\\)|\\((?:[ \\t\\r\\n]|\\/\\*(?:\\*(?!\\/)|[^*])*\\*\\/)*\\)|(?:[ \\t\\r\\n]|\\/\\*(?:\\*(?!\\/)|[^*])*\\*\\/)*\\b[_$[:alpha:]][_$[:alnum:]]*\\b(?:[ \\t\\r\\n]|\\/\\*(?:\\*(?!\\/)|[^*])*\\*\\/)*)(?=(?:[ \\t\\r\\n]|\\/\\*(?:\\*(?!\\/)|[^*])*\\*\\/)*=>)",
+      "begin": "(\\((?:[ \\t\\r\\n]|/\\*(?:\\*(?!/)|[^*])*\\*/)*\\b[_$[:alpha:]][_$[:alnum:]]*\\b(?:[ \\t\\r\\n]|/\\*(?:\\*(?!/)|[^*])*\\*/)*(,(?:[ \\t\\r\\n]|/\\*(?:\\*(?!/)|[^*])*\\*/)*\\b[_$[:alpha:]][_$[:alnum:]]*\\b(?:[ \\t\\r\\n]|/\\*(?:\\*(?!/)|[^*])*\\*/)*)*\\)|\\((?:[ \\t\\r\\n]|/\\*(?:\\*(?!/)|[^*])*\\*/)*\\)|(?:[ \\t\\r\\n]|/\\*(?:\\*(?!/)|[^*])*\\*/)*\\b[_$[:alpha:]][_$[:alnum:]]*\\b(?:[ \\t\\r\\n]|/\\*(?:\\*(?!/)|[^*])*\\*/)*)(?=(?:[ \\t\\r\\n]|/\\*(?:\\*(?!/)|[^*])*\\*/)*=>)",
       "beginCaptures": {
         "1": {
           "name": "meta.undefined.bicep",
@@ -156,7 +157,7 @@
           ]
         }
       },
-      "end": "(?:[ \\t\\r\\n]|\\/\\*(?:\\*(?!\\/)|[^*])*\\*\\/)*=>",
+      "end": "(?:[ \\t\\r\\n]|/\\*(?:\\*(?!/)|[^*])*\\*/)*=>",
       "name": "meta.lambda-start.bicep"
     },
     "line-comment": {
@@ -172,7 +173,7 @@
       "name": "constant.numeric.bicep"
     },
     "object-literal": {
-      "begin": "{",
+      "begin": "\\{",
       "end": "}",
       "name": "meta.object-literal.bicep",
       "patterns": [
@@ -188,7 +189,7 @@
       ]
     },
     "object-property-key": {
-      "match": "\\b[_$[:alpha:]][_$[:alnum:]]*\\b(?=(?:[ \\t\\r\\n]|\\/\\*(?:\\*(?!\\/)|[^*])*\\*\\/)*:)",
+      "match": "\\b[_$[:alpha:]][_$[:alnum:]]*\\b(?=(?:[ \\t\\r\\n]|/\\*(?:\\*(?!/)|[^*])*\\*/)*:)",
       "name": "variable.other.property.bicep"
     },
     "string-literal": {
@@ -205,7 +206,7 @@
       ]
     },
     "string-literal-subst": {
-      "begin": "(?<!\\\\)(\\${)",
+      "begin": "(?<!\\\\)(\\$\\{)",
       "beginCaptures": {
         "1": {
           "name": "punctuation.definition.template-expression.begin.bicep"

@@ -25,11 +25,11 @@
       "name": "comment.line.double-dash.oracle"
     },
     {
-      "match": "(?i)(?:^\\s*)rem(?:\\s+.*$)",
+      "match": "(?i)^\\s*rem\\s+.*$",
       "name": "comment.line.sqlplus.oracle"
     },
     {
-      "match": "(?i)(?:^\\s*)prompt(?:\\s+.*$)",
+      "match": "(?i)^\\s*prompt\\s+.*$",
       "name": "comment.line.sqlplus-prompt.oracle"
     },
     {
@@ -84,7 +84,7 @@
       "name": "meta.procedure.oracle"
     },
     {
-      "match": "[!<>:]?=|<>|<|>|\\+|(?<!\\.)\\*|-|(?<!^)/|\\|\\|",
+      "match": "[!<>:]?=|<>|[<>+]|(?<!\\.)\\*|-|(?<!^)/|\\|\\|",
       "name": "keyword.operator.oracle"
     },
     {
@@ -108,7 +108,7 @@
       "name": "support.function.oracle"
     },
     {
-      "match": "(?i)\\b(sql|sqlcode)\\b",
+      "match": "(?i)\\b(sql(?:|code))\\b",
       "name": "variable.language.oracle"
     },
     {
@@ -152,7 +152,7 @@
       "name": "keyword.other.pragma.oracle"
     },
     {
-      "match": "(?i)\\b(p(i|o|io)_[-a-z0-9_]+)\\b",
+      "match": "(?i)\\b(p([io]|io)_[-a-z0-9_]+)\\b",
       "name": "variable.parameter.oracle"
     },
     {
@@ -180,7 +180,7 @@
       "name": "keyword.other.ddl.oracle"
     },
     {
-      "match": "(?i)\\b(with|select|from|where|order\\s+(siblings\\s+)?by|group\\s+by|rollup|cube|((left|right|cross|natural)\\s+(outer\\s+)?)?join|on|asc|desc|update|set|insert|into|values|delete|distinct|union|minus|intersect|having|limit|table|between|like|of|row|(range|rows)\\s+between|nulls\\s+first|nulls\\s+last|before|after|all|any|exists|rownum|cursor|returning|over|partition\\s+by|merge|using|matched|pivot|unpivot)\\b",
+      "match": "(?i)\\b(with|select|from|where|order\\s+(siblings\\s+)?by|group\\s+by|rollup|cube|((left|right|cross|natural)\\s+(outer\\s+)?)?join|on|asc|desc|update|set|insert|into|values|delete|distinct|union|minus|intersect|having|limit|table|between|like|of|row|(r(?:ange|ows))\\s+between|nulls\\s+first|nulls\\s+last|before|after|all|any|exists|rownum|cursor|returning|over|partition\\s+by|merge|using|matched|pivot|unpivot)\\b",
       "name": "keyword.other.sql.oracle"
     },
     {
@@ -206,7 +206,7 @@
           "name": "support.class.oracle"
         }
       },
-      "match": "(?i)\\b((htf|htp)\\.(\\w+))\\b",
+      "match": "(?i)\\b((ht[fp])\\.(\\w+))\\b",
       "name": "support.function.oracle"
     },
     {
@@ -219,7 +219,7 @@
       "name": "support.function.user-defined.oracle"
     },
     {
-      "match": "(?i)\\b(raise|raise_application_error)\\b",
+      "match": "(?i)\\b(raise(?:|_application_error))\\b",
       "name": "support.function.oracle"
     },
     {

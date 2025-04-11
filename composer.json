@@ -34,7 +34,8 @@
         "laravel/pint": "^1.18.1",
         "phpstan/phpstan": "^2.0",
         "phpstan/extension-installer": "^1.4.3",
-        "illuminate/support": "^11.30"
+        "illuminate/support": "^11.30",
+        "symfony/var-exporter": "^7.2"
     },
     "config": {
         "allow-plugins": {
@@ -45,11 +46,11 @@
     "scripts": {
         "sample": [
             "Composer\\Config::disableProcessTimeout",
-            "@php -S 127.0.0.1:8080 ./meta/sample.php"
+            "@php -S 127.0.0.1:8080 ./samples/serve.php"
         ],
         "sample:debug": [
             "Composer\\Config::disableProcessTimeout",
-            "herd debug -S 127.0.0.1:8080 ./meta/sample.php"
+            "herd debug -S 127.0.0.1:8080 ./samples/serve.php"
         ],
         "update-sources": [
             "Composer\\Config::disableProcessTimeout",

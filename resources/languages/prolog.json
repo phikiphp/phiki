@@ -186,7 +186,7 @@
           "name": "constant.other.atom.quoted.prolog"
         },
         {
-          "match": "\\[\\]",
+          "match": "\\[]",
           "name": "constant.other.atom.emptylist.prolog"
         }
       ]
@@ -224,7 +224,7 @@
     "constants": {
       "patterns": [
         {
-          "match": "(?<![a-zA-Z]|/)(\\d+|(\\d+\\.\\d+))",
+          "match": "(?<![a-zA-Z/])(\\d+|(\\d+\\.\\d+))",
           "name": "constant.numeric.integer.prolog"
         },
         {
@@ -276,7 +276,7 @@
           "name": "keyword.control.cut.prolog"
         },
         {
-          "match": "(\\s(is)\\s)|=:=|=\\.\\.|=?\\\\?=|\\\\\\+|@?>|@?=?<|\\+|\\*|\\-",
+          "match": "(\\s(is)\\s)|=:=|=\\.\\.|=?\\\\?=|\\\\\\+|@?>|@?=?<|[+*-]",
           "name": "keyword.operator.prolog"
         }
       ]

@@ -63,7 +63,7 @@
           "name": "variable.other.constant.verilog"
         },
         {
-          "match": "[0-9]*'[bBoOdDhH][a-fA-F0-9_xXzZ]+\\b",
+          "match": "[0-9]*'[bBoOdDhH][_xXzZ\\h]+\\b",
           "name": "constant.numeric.sized_integer.verilog"
         },
         {
@@ -170,7 +170,7 @@
           "name": "keyword.other.compiler.directive.verilog"
         },
         {
-          "match": "\\$(f(open|close)|readmem(b|h)|timeformat|printtimescale|stop|finish|(s|real)?time|realtobits|bitstoreal|rtoi|itor|(f)?(display|write(h|b)))\\b",
+          "match": "\\$(f(open|close)|readmem([bh])|timeformat|printtimescale|stop|finish|(s|real)?time|realtobits|bitstoreal|rtoi|itor|(f)?(display|write([hb])))\\b",
           "name": "support.function.system.console.tasks.verilog"
         },
         {
@@ -194,7 +194,7 @@
           "name": "support.function.system.vcd.tasks.verilog"
         },
         {
-          "match": "\\$(countdrivers|list|input|scope|showscopes|(no)?(key|log)|reset(_count|_value)?|(inc)?save|restart|showvars|getpattern|sreadmem(b|h)|scale)",
+          "match": "\\$(countdrivers|list|input|scope|showscopes|(no)?(key|log)|reset(_(?:count|value))?|(inc)?save|restart|showvars|getpattern|sreadmem([bh])|scale)",
           "name": "support.function.non-standard.tasks.verilog"
         }
       ]
@@ -244,7 +244,7 @@
     "operators": {
       "patterns": [
         {
-          "match": "\\+|-|\\*|/|%|(<|>)=?|(!|=)?==?|!|&&?|\\|\\|?|\\^?~|~\\^?",
+          "match": "[+\\-*/%]|([<>])=?|([!=])?==?|!|&&?|\\|\\|?|\\^?~|~\\^?",
           "name": "keyword.operator.verilog"
         }
       ]

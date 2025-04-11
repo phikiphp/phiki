@@ -107,7 +107,7 @@
           "name": "meta.separator.comma.asp"
         }
       },
-      "match": "(?i:(dim)\\s*(?:(\\b[a-zA-Z_x7f-xff][a-zA-Z0-9_x7f-xff]*?\\b)\\s*(,?)))",
+      "match": "(?i:(dim)\\s*(\\b[a-zA-Z_x7f-xf][a-zA-Z0-9_x7f-xf]*?\\b)\\s*(,?))",
       "name": "variable.other.dim.asp"
     },
     {
@@ -149,7 +149,7 @@
           "name": "punctuation.definition.variable.asp"
         }
       },
-      "match": "(\\$)[a-zA-Z_x7f-xff][a-zA-Z0-9_x7f-xff]*?\\b\\s*",
+      "match": "(\\$)[a-zA-Z_x7f-xf][a-zA-Z0-9_x7f-xf]*?\\b\\s*",
       "name": "variable.other.asp"
     },
     {
@@ -173,7 +173,7 @@
       "name": "support.function.event.asp"
     },
     {
-      "match": "(?i:(?<=as )(\\b[a-zA-Z_x7f-xff][a-zA-Z0-9_x7f-xff]*?\\b))",
+      "match": "(?i:(?<=as )(\\b[a-zA-Z_x7f-xf][a-zA-Z0-9_x7f-xf]*?\\b))",
       "name": "support.type.vb.asp"
     },
     {
@@ -181,7 +181,7 @@
       "name": "support.function.vb.asp"
     },
     {
-      "match": "-?\\b((0(x|X)[0-9a-fA-F]*)|(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))((e|E)(\\+|-)?[0-9]+)?)(L|l|UL|ul|u|U|F|f)?\\b",
+      "match": "-?\\b((0([xX])\\h*)|(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))(([eE])([+-])?[0-9]+)?)([Ll]|UL|ul|[uUFf])?\\b",
       "name": "constant.numeric.asp"
     },
     {
@@ -194,15 +194,15 @@
           "name": "entity.name.function.asp"
         }
       },
-      "match": "(?i:(\\b[a-zA-Z_x7f-xff][a-zA-Z0-9_x7f-xff]*?\\b)(?=\\(\\)?))",
+      "match": "(?i:(\\b[a-zA-Z_x7f-xf][a-zA-Z0-9_x7f-xf]*?\\b)(?=\\(\\)?))",
       "name": "support.function.asp"
     },
     {
-      "match": "(?i:((?<=(\\+|=|-|\\&|\\\\|/|<|>|\\(|,))\\s*\\b([a-zA-Z_x7f-xff][a-zA-Z0-9_x7f-xff]*?)\\b(?!(\\(|\\.))|\\b([a-zA-Z_x7f-xff][a-zA-Z0-9_x7f-xff]*?)\\b(?=\\s*(\\+|=|-|\\&|\\\\|/|<|>|\\(|\\)))))",
+      "match": "(?i:((?<=([+=\\-\\&\\\\/<>(,]))\\s*\\b([a-zA-Z_x7f-xf][a-zA-Z0-9_x7f-xf]*?)\\b(?!([(.]))|\\b([a-zA-Z_x7f-xf][a-zA-Z0-9_x7f-xf]*?)\\b(?=\\s*([+=\\-\\&\\\\/<>()]))))",
       "name": "variable.other.asp"
     },
     {
-      "match": "!|\\$|%|&|\\*|\\-\\-|\\-|\\+\\+|\\+|~|===|==|=|!=|!==|<=|>=|<<=|>>=|>>>=|<>|<|>|!|&&|\\|\\||\\?\\:|\\*=|/=|%=|\\+=|\\-=|&=|\\^=|\\b(in|instanceof|new|delete|typeof|void)\\b",
+      "match": "[!$%\\&*]|--|-|\\+\\+|[+~]|===|==|=|!=|!==|<=|>=|<<=|>>=|>>>=|<>|[<>!]|&&|\\|\\||\\?:|\\*=|/=|%=|\\+=|-=|&=|\\^=|\\b(in|instanceof|new|delete|typeof|void)\\b",
       "name": "keyword.operator.js"
     }
   ],

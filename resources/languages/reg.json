@@ -31,7 +31,7 @@
           "name": "punctuation.definition.section.reg"
         }
       },
-      "match": "^\\s*(\\[(?!-))(.*?)(\\])",
+      "match": "^\\s*(\\[(?!-))(.*?)(])",
       "name": "entity.name.function.section.add.reg"
     },
     {
@@ -46,7 +46,7 @@
           "name": "punctuation.definition.section.reg"
         }
       },
-      "match": "^\\s*(\\[-)(.*?)(\\])",
+      "match": "^\\s*(\\[-)(.*?)(])",
       "name": "entity.name.function.section.delete.reg"
     },
     {
@@ -112,7 +112,7 @@
           "name": "punctuation.definition.quote.reg"
         }
       },
-      "match": "^(\\s*([\"']?)(.+?)([\"']?)\\s*(=))?\\s*((-)|(([\"'])(.*?)([\"']))|(((?i:dword))(\\:)\\s*([\\dabcdefABCDEF]{1,8}))|(((?i:hex))((\\()([\\d]*)(\\)))?(\\:)(.*?)(\\\\?)))\\s*(;.*)?$",
+      "match": "^(\\s*([\"']?)(.+?)([\"']?)\\s*(=))?\\s*((-)|(([\"'])(.*?)([\"']))|(((?i:dword))(:)\\s*([\\dabcdefABCDEF]{1,8}))|(((?i:hex))((\\()(\\d*)(\\)))?(:)(.*?)(\\\\?)))\\s*(;.*)?$",
       "name": "meta.declaration.reg"
     },
     {

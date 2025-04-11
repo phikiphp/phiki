@@ -1,11 +1,11 @@
 {
   "displayName": "Jinja",
-  "foldingStartMarker": "({%\\s*(block|filter|for|if|macro|raw))",
-  "foldingStopMarker": "({%\\s*(endblock|endfilter|endfor|endif|endmacro|endraw)\\s*%})",
+  "foldingStartMarker": "(\\{%\\s*(block|filter|for|if|macro|raw))",
+  "foldingStopMarker": "(\\{%\\s*(end(?:block|filter|for|if|macro|raw))\\s*%})",
   "name": "jinja",
   "patterns": [
     {
-      "begin": "({%)\\s*(raw)\\s*(%})",
+      "begin": "(\\{%)\\s*(raw)\\s*(%})",
       "captures": {
         "1": {
           "name": "entity.other.jinja.delimiter.tag"
@@ -17,14 +17,14 @@
           "name": "entity.other.jinja.delimiter.tag"
         }
       },
-      "end": "({%)\\s*(endraw)\\s*(%})",
+      "end": "(\\{%)\\s*(endraw)\\s*(%})",
       "name": "comment.block.jinja.raw"
     },
     {
       "include": "#comments"
     },
     {
-      "begin": "{{-?",
+      "begin": "\\{\\{-?",
       "captures": [
         {
           "name": "variable.entity.other.jinja.delimiter"
@@ -39,7 +39,7 @@
       ]
     },
     {
-      "begin": "{%-?",
+      "begin": "\\{%-?",
       "captures": [
         {
           "name": "entity.other.jinja.delimiter.tag"
@@ -56,7 +56,7 @@
   ],
   "repository": {
     "comments": {
-      "begin": "{#-?",
+      "begin": "\\{#-?",
       "captures": [
         {
           "name": "entity.other.jinja.delimiter.comment"
@@ -86,7 +86,7 @@
           "name": "constant.character.escape.unicode.name.jinja"
         }
       },
-      "match": "(\\\\U[0-9A-Fa-f]{8})|(\\\\u[0-9A-Fa-f]{4})|(\\\\N\\{[a-zA-Z ]+\\})"
+      "match": "(\\\\U\\h{8})|(\\\\u\\h{4})|(\\\\N\\{[a-zA-Z ]+})"
     },
     "expression": {
       "patterns": [
@@ -129,7 +129,7 @@
               "name": "keyword.control.jinja"
             }
           },
-          "match": "(?<=\\{\\%-|\\{\\%)\\s*\\b([a-zA-Z_][a-zA-Z0-9_]*)\\b(?!\\s*[,=])"
+          "match": "(?<=\\{%(?:-|))\\s*\\b([a-zA-Z_][a-zA-Z0-9_]*)\\b(?!\\s*[,=])"
         },
         {
           "match": "\\b(and|else|if|in|import|not|or|recursive|with(out)?\\s+context)\\b",
@@ -148,7 +148,7 @@
           "name": "variable.other.jinja"
         },
         {
-          "match": "(\\+|\\-|\\*\\*|\\*|//|/|%)",
+          "match": "([+-]|\\*\\*|\\*|//|[/%])",
           "name": "keyword.operator.arithmetic.jinja"
         },
         {
@@ -180,7 +180,7 @@
               "name": "punctuation.other.jinja"
             }
           ],
-          "end": "\\]",
+          "end": "]",
           "patterns": [
             {
               "include": "#expression"
@@ -208,7 +208,7 @@
               "name": "punctuation.other.jinja"
             }
           ],
-          "end": "\\}",
+          "end": "}",
           "patterns": [
             {
               "include": "#expression"
@@ -216,11 +216,11 @@
           ]
         },
         {
-          "match": "(\\.|:|\\||,)",
+          "match": "([.:|,])",
           "name": "punctuation.other.jinja"
         },
         {
-          "match": "(==|<=|=>|<|>|!=)",
+          "match": "(==|<=|=>|[<>]|!=)",
           "name": "keyword.operator.comparison.jinja"
         },
         {
@@ -325,7 +325,7 @@
           "name": "constant.character.escape.return.jinja"
         }
       },
-      "match": "(\\\\\\n)|(\\\\\\\\)|(\\\\\\\")|(\\\\')|(\\\\a)|(\\\\b)|(\\\\f)|(\\\\n)|(\\\\r)|(\\\\t)|(\\\\v)"
+      "match": "(\\\\\\n)|(\\\\\\\\)|(\\\\\")|(\\\\')|(\\\\a)|(\\\\b)|(\\\\f)|(\\\\n)|(\\\\r)|(\\\\t)|(\\\\v)"
     },
     "string": {
       "patterns": [

@@ -46,7 +46,7 @@
       "name": "constant.numeric.turtle"
     },
     "iriref": {
-      "match": "<[^\\x20-\\x20<>\"{}|^`\\\\]*>",
+      "match": "<[^ - <>\"{}|^`\\\\]*>",
       "name": "entity.name.type.iriref.turtle"
     },
     "language-tag": {

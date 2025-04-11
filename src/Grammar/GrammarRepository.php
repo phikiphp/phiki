@@ -52,7 +52,11 @@ class GrammarRepository implements GrammarRepositoryInterface
 
         $parser = new Parser;
 
-        return $this->grammars[$name] = $parser->parse(json_decode(file_get_contents($grammar), true));
+        return $this->grammars[$name] = $parser->parse(
+            str_ends_with($grammar, '.php')
+                ? require_once $grammar
+                : json_decode(file_get_contents($grammar), true)
+        );
     }
 
     public function getFromScope(string $scope): ParsedGrammar

@@ -20,7 +20,7 @@
           "name": "support.class.attribute-begin.fluent"
         }
       },
-      "end": "^(?=\\s*[^\\.])",
+      "end": "^(?=\\s*[^.])",
       "patterns": [
         {
           "include": "#placeable"
@@ -45,7 +45,7 @@
           "name": "variable.other.named-argument.value.fluent"
         }
       },
-      "end": "(?=\\)|,|\\s)",
+      "end": "(?=[),\\s])",
       "name": "variable.other.named-argument.fluent"
     },
     "function-positional-argument": {
@@ -79,7 +79,7 @@
       ]
     },
     "placeable": {
-      "begin": "({)",
+      "begin": "(\\{)",
       "beginCaptures": {
         "1": {
           "name": "keyword.placeable.begin.fluent"
@@ -143,7 +143,7 @@
       ]
     },
     "placeable-reference-or-number": {
-      "match": "((-|\\$)[a-zA-Z0-9_-]+|[a-zA-Z][a-zA-Z0-9_-]*|[0-9]+)",
+      "match": "(([-$])[a-zA-Z0-9_-]+|[a-zA-Z][a-zA-Z0-9_-]*|[0-9]+)",
       "name": "variable.other.placeable.reference-or-number.fluent"
     },
     "placeable-string": {
@@ -177,7 +177,7 @@
       ]
     },
     "selector-item": {
-      "begin": "(\\s*\\*?\\[)([a-zA-Z0-9_-]+)(\\]\\s*)",
+      "begin": "(\\s*\\*?\\[)([a-zA-Z0-9_-]+)(]\\s*)",
       "beginCaptures": {
         "1": {
           "name": "support.function.selector-item.begin.fluent"

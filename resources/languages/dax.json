@@ -31,7 +31,7 @@
               "name": "punctuation.definition.comment.dax"
             }
           },
-          "end": "\n",
+          "end": "\\n",
           "name": "comment.line.dax"
         },
         {
@@ -41,7 +41,7 @@
               "name": "punctuation.definition.comment.dax"
             }
           },
-          "end": "\n",
+          "end": "\\n",
           "name": "comment.line.dax"
         },
         {
@@ -67,11 +67,11 @@
           "name": "keyword.control.dax"
         },
         {
-          "match": "{|}",
+          "match": "[{}]",
           "name": "keyword.array.constructor.dax"
         },
         {
-          "match": ">|<|>=|<=|=(?!==)",
+          "match": "[><]|>=|<=|=(?!==)",
           "name": "keyword.operator.comparison.dax"
         },
         {
@@ -79,12 +79,12 @@
           "name": "keyword.operator.logical.dax"
         },
         {
-          "match": "\\+|\\-|\\*|\\/",
+          "match": "[+\\-*/]",
           "name": "keyword.arithmetic.operator.dax"
         },
         {
           "begin": "\\[",
-          "end": "\\]",
+          "end": "]",
           "name": "support.function.dax"
         },
         {
@@ -93,8 +93,8 @@
           "name": "string.quoted.double.dax"
         },
         {
-          "begin": "\\'",
-          "end": "\\'",
+          "begin": "'",
+          "end": "'",
           "name": "support.class.dax"
         }
       ]
@@ -148,7 +148,6 @@
               "name": "variable.other.readwrite.dax"
             }
           },
-          "comment": "build out variable assignment",
           "end": "=",
           "endCaptures": {
             "0": {

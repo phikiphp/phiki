@@ -35,8 +35,8 @@
   ],
   "repository": {
     "comment-block": {
-      "begin": "\\#\\-",
-      "end": "\\-#",
+      "begin": "#-",
+      "end": "-#",
       "name": "comment.berry",
       "patterns": [
         {
@@ -44,7 +44,7 @@
       ]
     },
     "comments": {
-      "begin": "\\#",
+      "begin": "#",
       "end": "\\n",
       "name": "comment.line.berry",
       "patterns": [
@@ -99,7 +99,7 @@
     "number": {
       "patterns": [
         {
-          "match": "0x[a-fA-F0-9]+|\\d+|(\\d+\\.?|\\.\\d)\\d*([eE][+-]?\\d+)?",
+          "match": "0x\\h+|\\d+|(\\d+\\.?|\\.\\d)\\d*([eE][+-]?\\d+)?",
           "name": "constant.numeric.berry"
         }
       ]
@@ -107,7 +107,7 @@
     "operator": {
       "patterns": [
         {
-          "match": "\\(|\\)|\\[|\\]|\\.|-|\\!|~|\\*|/|%|\\+|&|\\^|\\||<|>|=|:",
+          "match": "[()\\[\\].\\-!~*/%+\\&^|<>=:]",
           "name": "keyword.operator.berry"
         }
       ]
@@ -115,32 +115,32 @@
     "strings": {
       "patterns": [
         {
-          "begin": "(\"|')",
+          "begin": "([\"'])",
           "end": "\\1",
           "name": "string.quoted.double.berry",
           "patterns": [
             {
-              "match": "(\\\\x[\\h]{2})|(\\\\[0-7]{3})|(\\\\\\\\)|(\\\\\")|(\\\\')|(\\\\a)|(\\\\b)|(\\\\f)|(\\\\n)|(\\\\r)|(\\\\t)|(\\\\v)",
+              "match": "(\\\\x\\h{2})|(\\\\[0-7]{3})|(\\\\\\\\)|(\\\\\")|(\\\\')|(\\\\a)|(\\\\b)|(\\\\f)|(\\\\n)|(\\\\r)|(\\\\t)|(\\\\v)",
               "name": "constant.character.escape.berry"
             }
           ]
         },
         {
-          "begin": "f(\"|')",
+          "begin": "f([\"'])",
           "end": "\\1",
           "name": "string.quoted.other.berry",
           "patterns": [
             {
-              "match": "(\\\\x[\\h]{2})|(\\\\[0-7]{3})|(\\\\\\\\)|(\\\\\")|(\\\\')|(\\\\a)|(\\\\b)|(\\\\f)|(\\\\n)|(\\\\r)|(\\\\t)|(\\\\v)",
+              "match": "(\\\\x\\h{2})|(\\\\[0-7]{3})|(\\\\\\\\)|(\\\\\")|(\\\\')|(\\\\a)|(\\\\b)|(\\\\f)|(\\\\n)|(\\\\r)|(\\\\t)|(\\\\v)",
               "name": "constant.character.escape.berry"
             },
             {
-              "match": "\\{\\{[^\\}]*\\}\\}",
+              "match": "\\{\\{[^}]*}}",
               "name": "string.quoted.other.berry"
             },
             {
               "begin": "\\{",
-              "end": "\\}",
+              "end": "}",
               "name": "keyword.other.unit.berry",
               "patterns": [
                 {

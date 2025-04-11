@@ -34,7 +34,7 @@
           "name": "variable.parameter"
         },
         {
-          "match": "\\s\\%[fFuUick]\\s",
+          "match": "(?<=^Exec.*)\\s%[fFuUick]\\s",
           "name": "variable.language"
         },
         {
@@ -46,19 +46,19 @@
     "keywords": {
       "patterns": [
         {
-          "match": "^Type\\b|^Version\\b|^Name\\b|^GenericName\\b|^NoDisplay\\b|^Comment\\b|^Icon\\b|^Hidden\\b|^OnlyShowIn\\b|^NotShowIn\\b|^DBusActivatable\\b|^TryExec\\b|^Exec\\b|^Path\\b|^Terminal\\b|^Actions\\b|^MimeType\\b|^Categories\\b|^Implements\\b|^Keywords\\b|^StartupNotify\\b|^StartupWMClass\\b|^URL\\b|^PrefersNonDefaultGPU\\b|^Encoding\\b",
+          "match": "^(?:Type\\b|Version\\b|Name\\b|GenericName\\b|NoDisplay\\b|Comment\\b|Icon\\b|Hidden\\b|OnlyShowIn\\b|NotShowIn\\b|DBusActivatable\\b|TryExec\\b|Exec\\b|Path\\b|Terminal\\b|Actions\\b|MimeType\\b|Categories\\b|Implements\\b|Keywords\\b|StartupNotify\\b|StartupWMClass\\b|URL\\b|PrefersNonDefaultGPU\\b|Encoding\\b)",
           "name": "keyword"
         },
         {
-          "match": "^X-[A-z 0-9 -]*",
+          "match": "^X-[A-z 0-9-]*",
           "name": "keyword.other"
         },
         {
-          "match": "(?<!^)\\[.+\\]",
+          "match": "(?<!^)\\[.+]",
           "name": "constant.language"
         },
         {
-          "match": "^GtkTheme\\b|^MetacityTheme\\b|^IconTheme\\b|^CursorTheme\\b|^ButtonLayout\\b|^ApplicationFont\\b",
+          "match": "^(?:GtkTheme\\b|MetacityTheme\\b|IconTheme\\b|CursorTheme\\b|ButtonLayout\\b|ApplicationFont\\b)",
           "name": "keyword"
         }
       ]
@@ -67,12 +67,12 @@
       "patterns": [
         {
           "begin": "^\\[Desktop",
-          "end": "\\]",
+          "end": "]",
           "name": "markup.heading"
         },
         {
           "begin": "^\\[X-\\w*",
-          "end": "\\]",
+          "end": "]",
           "name": "markup.heading"
         },
         {
@@ -92,11 +92,11 @@
           "name": "keyword.operator"
         },
         {
-          "match": "\\btrue\\b|\\bfalse\\b",
+          "match": "\\b(?:true\\b|false\\b)",
           "name": "variable.other"
         },
         {
-          "match": "\\d+(\\.{0,1}\\d*)",
+          "match": "(?<=^Version.*)\\d+(\\.?\\d*)",
           "name": "variable.other"
         }
       ]

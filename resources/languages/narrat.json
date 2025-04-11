@@ -17,7 +17,7 @@
           "name": "keyword.commands.variables.narrat"
         },
         {
-          "match": "\\b(talk|think)\\b",
+          "match": "\\b(t(?:alk|hink))\\b",
           "name": "keyword.commands.text.narrat"
         },
         {
@@ -73,7 +73,7 @@
     "comments": {
       "patterns": [
         {
-          "match": "\\/\\/.*$",
+          "match": "//.*$",
           "name": "comment.line.narrat"
         }
       ]
@@ -103,7 +103,7 @@
     "interpolation": {
       "patterns": [
         {
-          "match": "(\\w|\\.)+",
+          "match": "([\\w.])+",
           "name": "variable.interpolation.narrat"
         }
       ]
@@ -115,19 +115,19 @@
           "name": "keyword.control.narrat"
         },
         {
-          "match": "\\$[\\w|\\.]+\\b",
+          "match": "\\$[\\w|.]+\\b",
           "name": "variable.value.narrat"
         },
         {
-          "match": "^\\w+(?=(\\s|\\w)*:)",
+          "match": "^\\w+(?=([\\s\\w])*:)",
           "name": "entity.name.function.narrat"
         },
         {
-          "match": "^\\w+(?!(\\s|\\w)*:)",
+          "match": "^\\w+(?!([\\s\\w])*:)",
           "name": "invalid.label.narrat"
         },
         {
-          "match": "(?<=\\w)[^^](\\b\\w+\\b)(?=(\\s|\\w)*:)",
+          "match": "(?<=\\w)[^^](\\b\\w+\\b)(?=([\\s\\w])*:)",
           "name": "entity.other.attribute-name"
         }
       ]
@@ -135,11 +135,11 @@
     "operators": {
       "patterns": [
         {
-          "match": "(&&|\\|\\||!=|==|>=|<=|<|>|!|\\?)\\s",
+          "match": "(&&|\\|\\||!=|==|>=|<=|[<>!?])\\s",
           "name": "keyword.operator.logic.narrat"
         },
         {
-          "match": "(\\+|-|\\*|\\/)\\s",
+          "match": "([+\\-*/])\\s",
           "name": "keyword.operator.arithmetic.narrat"
         }
       ]
@@ -198,7 +198,7 @@
           "name": "constant.character.escape.narrat"
         },
         {
-          "begin": "%{",
+          "begin": "%\\{",
           "beginCaptures": {
             "0": {
               "name": "punctuation.template.open"

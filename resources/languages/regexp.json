@@ -16,7 +16,7 @@
           "name": "keyword.codetag.notation.python"
         }
       },
-      "match": "(?:\\b(NOTE|XXX|HACK|FIXME|BUG|TODO)\\b)"
+      "match": "\\b(NOTE|XXX|HACK|FIXME|BUG|TODO)\\b"
     },
     "fregexp-base-expression": {
       "patterns": [
@@ -27,7 +27,7 @@
           "include": "#fstring-formatting-braces"
         },
         {
-          "match": "\\{.*?\\}"
+          "match": "\\{.*?}"
         },
         {
           "include": "#regexp-base-common"
@@ -35,7 +35,7 @@
       ]
     },
     "fregexp-quantifier": {
-      "match": "\\{\\{(\\d+|\\d+,(\\d+)?|,\\d+)\\}\\}",
+      "match": "\\{\\{(\\d+|\\d+,(\\d+)?|,\\d+)}}",
       "name": "keyword.operator.quantifier.regexp"
     },
     "fstring-formatting-braces": {
@@ -52,11 +52,10 @@
               "name": "constant.character.format.placeholder.other.python"
             }
           },
-          "comment": "empty braces are illegal",
-          "match": "({)(\\s*?)(})"
+          "match": "(\\{)(\\s*?)(})"
         },
         {
-          "match": "({{|}})",
+          "match": "(\\{\\{|}})",
           "name": "constant.character.escape.python"
         }
       ]
@@ -73,7 +72,7 @@
           "name": "support.other.parenthesis.regexp punctuation.parenthesis.backreference.named.end.regexp"
         }
       },
-      "match": "(\\()(\\?P=\\w+(?:\\s+[[:alnum:]]+)?)(\\))",
+      "match": "(\\()(\\?P=\\w+(?:\\s+\\p{alnum}+)?)(\\))",
       "name": "meta.backreference.named.regexp"
     },
     "regexp-backreference-number": {
@@ -125,10 +124,10 @@
     "regexp-character-set": {
       "patterns": [
         {
-          "match": "\\[\\^?\\](?!.*?\\])"
+          "match": "\\[\\^?](?!.*?])"
         },
         {
-          "begin": "(\\[)(\\^)?(\\])?",
+          "begin": "(\\[)(\\^)?(])?",
           "beginCaptures": {
             "1": {
               "name": "punctuation.character.set.begin.regexp constant.other.set.regexp"
@@ -140,7 +139,7 @@
               "name": "constant.character.set.regexp"
             }
           },
-          "end": "(\\])",
+          "end": "(])",
           "endCaptures": {
             "1": {
               "name": "punctuation.character.set.end.regexp constant.other.set.regexp"
@@ -155,7 +154,7 @@
               "include": "#regexp-charecter-set-escapes"
             },
             {
-              "match": "[^\\n]",
+              "match": "\\N",
               "name": "constant.character.set.regexp"
             }
           ]
@@ -210,7 +209,7 @@
       ]
     },
     "regexp-conditional": {
-      "begin": "(\\()\\?\\((\\w+(?:\\s+[[:alnum:]]+)?|\\d+)\\)",
+      "begin": "(\\()\\?\\((\\w+(?:\\s+\\p{alnum}+)?|\\d+)\\)",
       "beginCaptures": {
         "0": {
           "name": "keyword.operator.conditional.regexp"
@@ -239,7 +238,7 @@
       "name": "constant.character.escape.regexp"
     },
     "regexp-escape-character": {
-      "match": "\\\\(x[0-9A-Fa-f]{2}|0[0-7]{1,2}|[0-7]{3})",
+      "match": "\\\\(x\\h{2}|0[0-7]{1,2}|[0-7]{3})",
       "name": "constant.character.escape.regexp"
     },
     "regexp-escape-sequence": {
@@ -266,7 +265,7 @@
       "name": "support.other.escape.special.regexp"
     },
     "regexp-escape-unicode": {
-      "match": "\\\\(u[0-9A-Fa-f]{4}|U[0-9A-Fa-f]{8})",
+      "match": "\\\\(u\\h{4}|U\\h{8})",
       "name": "constant.character.unicode.regexp"
     },
     "regexp-expression": {
@@ -417,7 +416,7 @@
       ]
     },
     "regexp-named-group": {
-      "begin": "(\\()(\\?P<\\w+(?:\\s+[[:alnum:]]+)?>)",
+      "begin": "(\\()(\\?P<\\w+(?:\\s+\\p{alnum}+)?>)",
       "beginCaptures": {
         "1": {
           "name": "support.other.parenthesis.regexp punctuation.parenthesis.named.begin.regexp"
@@ -487,7 +486,7 @@
       ]
     },
     "regexp-quantifier": {
-      "match": "\\{(\\d+|\\d+,(\\d+)?|,\\d+)\\}",
+      "match": "\\{(\\d+|\\d+,(\\d+)?|,\\d+)}",
       "name": "keyword.operator.quantifier.regexp"
     }
   },

@@ -88,7 +88,7 @@
           "name": "support.function.library.fennel"
         },
         {
-          "match": "\\b(_G|_VERSION)\\b",
+          "match": "\\b(_(?:G|VERSION))\\b",
           "name": "constant.language.fennel"
         }
       ]
@@ -96,7 +96,7 @@
     "methods": {
       "patterns": [
         {
-          "match": "\\w+\\:\\w+",
+          "match": "\\w+:\\w+",
           "name": "entity.name.function.method.fennel"
         }
       ]
@@ -124,15 +124,15 @@
     "special": {
       "patterns": [
         {
-          "match": "\\#|\\%|\\+|\\*|[?][.]|(\\.)?\\.|(\\/)?\\/|:|<=?|=|>=?|\\^",
+          "match": "[#%+*]|\\?\\.|(\\.)?\\.|(/)?/|:|<=?|=|>=?|\\^",
           "name": "keyword.special.fennel"
         },
         {
-          "match": "(\\-\\>(\\>)?)",
+          "match": "(->(>)?)",
           "name": "keyword.special.fennel"
         },
         {
-          "match": "\\-\\?\\>(\\>)?",
+          "match": "-\\?>(>)?",
           "name": "keyword.special.fennel"
         },
         {
@@ -195,7 +195,7 @@
           "name": "punctuation.table.bracket.open.fennel"
         }
       },
-      "end": "\\}",
+      "end": "}",
       "endCaptures": {
         "0": {
           "name": "punctuation.table.bracket.close.fennel"
@@ -215,7 +215,7 @@
           "name": "punctuation.vector.bracket.open.fennel"
         }
       },
-      "end": "\\]",
+      "end": "]",
       "endCaptures": {
         "0": {
           "name": "punctuation.vector.bracket.close.fennel"

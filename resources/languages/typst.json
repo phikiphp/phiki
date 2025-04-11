@@ -24,7 +24,7 @@
           "include": "#common"
         },
         {
-          "begin": "{",
+          "begin": "\\{",
           "captures": {
             "0": {
               "name": "punctuation.definition.block.code.typst"
@@ -45,7 +45,7 @@
               "name": "punctuation.definition.block.content.typst"
             }
           },
-          "end": "\\]",
+          "end": "]",
           "name": "meta.block.content.typst",
           "patterns": [
             {
@@ -60,7 +60,7 @@
               "name": "punctuation.definition.comment.typst"
             }
           },
-          "end": "\n",
+          "end": "\\n",
           "name": "comment.line.double-slash.typst"
         },
         {
@@ -84,7 +84,7 @@
           "name": "keyword.operator.assignment.typst"
         },
         {
-          "match": "\\+|\\*|/|(?<![[:alpha:]_][[:alnum:]_-]{0,254})-(?![[:alnum:]_-]{0,254}[[:alpha:]_])",
+          "match": "[+*/]|(?<![[:alpha:]_][[:alnum:]_-]*)-(?![:alnum]_-]*[[:alpha:]_])",
           "name": "keyword.operator.arithmetic.typst"
         },
         {
@@ -115,12 +115,10 @@
           "include": "#constants"
         },
         {
-          "comment": "Function name",
-          "match": "\\b[[:alpha:]_][[:alnum:]_-]*!?(?=\\[|\\()",
+          "match": "\\b[[:alpha:]_][[:alnum:]_-]*!?(?=[\\[(])",
           "name": "entity.name.function.typst"
         },
         {
-          "comment": "Function name",
           "match": "(?<=\\bshow\\s{0,251})\\b[[:alpha:]_][[:alnum:]_-]*(?=\\s*[:.])",
           "name": "entity.name.function.typst"
         },
@@ -131,7 +129,6 @@
               "name": "punctuation.definition.group.typst"
             }
           },
-          "comment": "Function arguments",
           "end": "\\)",
           "patterns": [
             {
@@ -184,7 +181,7 @@
               "name": "punctuation.definition.comment.typst"
             }
           },
-          "end": "\n",
+          "end": "\\n",
           "name": "comment.line.double-slash.typst",
           "patterns": [
             {
@@ -250,7 +247,7 @@
           "name": "string.quoted.double.typst",
           "patterns": [
             {
-              "match": "\\\\([\\\\\"nrt]|u\\{?[0-9a-zA-Z]*\\}?)",
+              "match": "\\\\([\\\\\"nrt]|u\\{?[0-9a-zA-Z]*}?)",
               "name": "constant.character.escape.string.typst"
             }
           ]
@@ -273,7 +270,7 @@
           "include": "#common"
         },
         {
-          "match": "\\\\([\\\\\\/\\[\\]{}#*_=~`$-.]|u\\{[0-9a-zA-Z]*\\}?)",
+          "match": "\\\\([\\\\/\\[\\]{}#*_=~`$-.]|u\\{[0-9a-zA-Z]*}?)",
           "name": "constant.character.escape.content.typst"
         },
         {
@@ -305,13 +302,13 @@
           "name": "constant.symbol.typst"
         },
         {
-          "begin": "(^\\*|\\*$|((?<=\\W|_)\\*)|(\\*(?=\\W|_)))",
+          "begin": "(^\\*|\\*$|((?<=[\\W_])\\*)|(\\*(?=[\\W_])))",
           "captures": {
             "0": {
               "name": "punctuation.definition.bold.typst"
             }
           },
-          "end": "(^\\*|\\*$|((?<=\\W|_)\\*)|(\\*(?=\\W|_)))|\n|(?=\\])",
+          "end": "(^\\*|\\*$|((?<=[\\W_])\\*)|(\\*(?=[\\W_])))|\\n|(?=])",
           "name": "markup.bold.typst",
           "patterns": [
             {
@@ -320,13 +317,13 @@
           ]
         },
         {
-          "begin": "(^_|_$|((?<=\\W|_)_)|(_(?=\\W|_)))",
+          "begin": "(^_|_$|((?<=[\\W_])_)|(_(?=[\\W_])))",
           "captures": {
             "0": {
               "name": "punctuation.definition.italic.typst"
             }
           },
-          "end": "(^_|_$|((?<=\\W|_)_)|(_(?=\\W|_)))|\n|(?=\\])",
+          "end": "(^_|_$|((?<=[\\W_])_)|(_(?=[\\W_])))|\\n|(?=])",
           "name": "markup.italic.typst",
           "patterns": [
             {
@@ -335,7 +332,7 @@
           ]
         },
         {
-          "match": "https?://[0-9a-zA-Z~/%#&=',;\\.\\+\\?]*",
+          "match": "https?://[0-9a-zA-Z~/%#\\&=',;.+?]*",
           "name": "markup.underline.link.typst"
         },
         {
@@ -345,7 +342,7 @@
               "name": "punctuation.definition.raw.typst"
             }
           },
-          "end": "\\0",
+          "end": "\\x00",
           "name": "markup.raw.block.typst"
         },
         {
@@ -376,7 +373,7 @@
             }
           },
           "contentName": "entity.name.section.typst",
-          "end": "\n|(?=<)",
+          "end": "\\n|(?=<)",
           "name": "markup.heading.typst",
           "patterns": [
             {
@@ -431,7 +428,7 @@
               "name": "punctuation.definition.keyword.typst"
             }
           },
-          "end": "\n|(;)|(?=])",
+          "end": "\\n|(;)|(?=])",
           "endCaptures": {
             "1": {
               "name": "punctuation.terminator.statement.typst"
@@ -453,7 +450,7 @@
           "name": "keyword.other.typst"
         },
         {
-          "begin": "((#)if|(?<=(}|])\\s{0,254})else)\\b",
+          "begin": "((#)if|(?<=([}\\]])\\s*)else)\\b",
           "beginCaptures": {
             "0": {
               "name": "keyword.control.conditional.typst"
@@ -462,7 +459,7 @@
               "name": "punctuation.definition.keyword.typst"
             }
           },
-          "end": "\n|(?=])|(?<=}|])",
+          "end": "\\n|(?=])|(?<=[}\\]])",
           "patterns": [
             {
               "include": "#code"
@@ -479,7 +476,7 @@
               "name": "punctuation.definition.keyword.typst"
             }
           },
-          "end": "\n|(?=])|(?<=}|])",
+          "end": "\\n|(?=])|(?<=[}\\]])",
           "patterns": [
             {
               "include": "#code"
@@ -505,7 +502,7 @@
               "name": "punctuation.definition.keyword.typst"
             }
           },
-          "end": "\n|(;)|(?=])",
+          "end": "\\n|(;)|(?=])",
           "endCaptures": {
             "1": {
               "name": "punctuation.terminator.statement.typst"
@@ -532,8 +529,7 @@
               "name": "punctuation.definition.function.typst"
             }
           },
-          "comment": "Function name",
-          "match": "((#)[[:alpha:]_][[:alnum:]_-]*!?)(?=\\[|\\()",
+          "match": "((#)[[:alpha:]_][[:alnum:]_-]*!?)(?=[\\[(])",
           "name": "entity.name.function.typst"
         },
         {
@@ -543,7 +539,6 @@
               "name": "punctuation.definition.group.typst"
             }
           },
-          "comment": "Function arguments",
           "end": "\\)",
           "patterns": [
             {

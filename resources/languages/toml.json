@@ -59,7 +59,7 @@
               "name": "punctuation.definition.section.begin.toml"
             }
           },
-          "match": "^\\s*(\\[)([^\\[\\]]*)(\\])",
+          "match": "^\\s*(\\[)([^\\[\\]]*)(])",
           "name": "meta.group.toml"
         },
         {
@@ -79,7 +79,7 @@
               "name": "punctuation.definition.section.begin.toml"
             }
           },
-          "match": "^\\s*(\\[\\[)([^\\[\\]]*)(\\]\\])",
+          "match": "^\\s*(\\[\\[)([^\\[\\]]*)(]])",
           "name": "meta.group.double.toml"
         }
       ]
@@ -119,7 +119,7 @@
             "3": {
               "patterns": [
                 {
-                  "match": "\\\\([btnfr\"\\\\]|u[0-9A-Fa-f]{4}|U[0-9A-Fa-f]{8})",
+                  "match": "\\\\([btnfr\"\\\\]|u\\h{4}|U\\h{8})",
                   "name": "constant.character.escape.toml"
                 },
                 {
@@ -187,7 +187,7 @@
                     "2": {
                       "patterns": [
                         {
-                          "match": "\\\\([btnfr\"\\\\]|u[0-9A-Fa-f]{4}|U[0-9A-Fa-f]{8})",
+                          "match": "\\\\([btnfr\"\\\\]|u\\h{4}|U\\h{8})",
                           "name": "constant.character.escape.toml"
                         },
                         {
@@ -219,7 +219,6 @@
               "name": "punctuation.separator.key-value.toml"
             }
           },
-          "comment": "Dotted key",
           "end": "(?<=\\S)(?<!=)|$",
           "patterns": [
             {
@@ -247,7 +246,7 @@
           "name": "string.quoted.triple.double.toml",
           "patterns": [
             {
-              "match": "\\\\([btnfr\"\\\\]|u[0-9A-Fa-f]{4}|U[0-9A-Fa-f]{8})",
+              "match": "\\\\([btnfr\"\\\\]|u\\h{4}|U\\h{8})",
               "name": "constant.character.escape.toml"
             },
             {
@@ -272,7 +271,7 @@
           "name": "string.quoted.double.toml",
           "patterns": [
             {
-              "match": "\\\\([btnfr\"\\\\]|u[0-9A-Fa-f]{4}|U[0-9A-Fa-f]{8})",
+              "match": "\\\\([btnfr\"\\\\]|u\\h{4}|U\\h{8})",
               "name": "constant.character.escape.toml"
             },
             {
@@ -354,7 +353,7 @@
               "name": "punctuation.definition.array.begin.toml"
             }
           },
-          "end": "\\]",
+          "end": "]",
           "endCaptures": {
             "0": {
               "name": "punctuation.definition.array.end.toml"
@@ -363,7 +362,7 @@
           "name": "meta.array.toml",
           "patterns": [
             {
-              "begin": "(?=[\"'']|[+-]?[0-9]|[+-]?(inf|nan)|true|false|\\[|\\{)",
+              "begin": "(?=[\"']|[+-]?[0-9]|[+-]?(inf|nan)|true|false|[\\[{])",
               "end": ",|(?=])",
               "endCaptures": {
                 "0": {
@@ -397,7 +396,7 @@
               "name": "punctuation.definition.inline-table.begin.toml"
             }
           },
-          "end": "\\}",
+          "end": "}",
           "endCaptures": {
             "0": {
               "name": "punctuation.definition.inline-table.end.toml"

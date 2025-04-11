@@ -11,8 +11,7 @@
   ],
   "repository": {
     "ampersand": {
-      "comment": "Markdown will convert this for us. We match it so that the HTML grammar will not mark it up as invalid.",
-      "match": "&(?!([a-zA-Z0-9]+|#[0-9]+|#x[0-9a-fA-F]+);)",
+      "match": "&(?!([a-zA-Z0-9]+|#[0-9]+|#x\\h+);)",
       "name": "meta.other.valid-ampersand.markdown"
     },
     "block": {
@@ -50,7 +49,7 @@
       ]
     },
     "blockquote": {
-      "begin": "(^|\\G)[ ]{0,3}(>) ?",
+      "begin": "(^|\\G) {0,3}(>) ?",
       "captures": {
         "2": {
           "name": "punctuation.definition.quote.begin.markdown"
@@ -65,7 +64,7 @@
       "while": "(^|\\G)\\s*(>) ?"
     },
     "bold": {
-      "begin": "(?<open>(\\*\\*(?=\\w)|(?<!\\w)\\*\\*|(?<!\\w)\\b__))(?=\\S)(?=(<[^>]*+>|(?<raw>`+)([^`]|(?!(?<!`)\\k<raw>(?!`))`)*+\\k<raw>|\\\\[\\\\`*_{}\\[\\]()#.!+\\->]?+|\\[((?<square>[^\\[\\]\\\\]|\\\\.|\\[\\g<square>*+\\])*+\\](([ ]?\\[[^\\]]*+\\])|(\\([ \\t]*+<?(.*?)>?[ \\t]*+((?<title>['\"])(.*?)\\k<title>)?\\))))|(?!(?<=\\S)\\k<open>).)++(?<=\\S)(?=__\\b|\\*\\*)\\k<open>)",
+      "begin": "(?<open>(\\*\\*(?=\\w)|(?<!\\w)\\*\\*|(?<!\\w)\\b__))(?=\\S)(?=(<[^>]*+>|(?<raw>`+)([^`]|(?!(?<!`)\\k<raw>(?!`))`)*+\\k<raw>|\\\\[\\\\`*_{}\\[\\]()#.!+\\->]?+|\\[((?<square>[^\\[\\]\\\\]|\\\\.|\\[\\g<square>*+])*+](( ?\\[[^\\]]*+])|(\\([ \\t]*+<?(.*?)>?[ \\t]*+((?<title>['\"])(.*?)\\k<title>)?\\))))|(?!(?<=\\S)\\k<open>).)++(?<=\\S)(?=__\\b|\\*\\*)\\k<open>)",
       "captures": {
         "1": {
           "name": "punctuation.definition.bold.markdown"
@@ -132,8 +131,7 @@
       ]
     },
     "bracket": {
-      "comment": "Markdown will convert this for us. We match it so that the HTML grammar will not mark it up as invalid.",
-      "match": "<(?![a-zA-Z/?\\$!])",
+      "match": "<(?![a-zA-Z/?$!])",
       "name": "meta.other.valid-bracket.markdown"
     },
     "escape": {
@@ -316,7 +314,7 @@
       ]
     },
     "fenced_code_block_basic": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(html|htm|shtml|xhtml|inc|tmpl|tpl)((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(html|htm|shtml|xhtml|inc|tmpl|tpl)((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -349,7 +347,7 @@
       ]
     },
     "fenced_code_block_bibtex": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(bibtex)((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(bibtex)((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -382,7 +380,7 @@
       ]
     },
     "fenced_code_block_c": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(c|h)((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:([ch])((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -415,7 +413,7 @@
       ]
     },
     "fenced_code_block_clojure": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(clj|cljs|clojure)((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(cl(?:j|js|ojure))((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -448,7 +446,7 @@
       ]
     },
     "fenced_code_block_coffee": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(coffee|Cakefile|coffee.erb)((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(coffee|Cakefile|coffee.erb)((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -481,7 +479,7 @@
       ]
     },
     "fenced_code_block_cpp": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(cpp|c\\+\\+|cxx)((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(c(?:pp|\\+\\+|xx))((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -514,7 +512,7 @@
       ]
     },
     "fenced_code_block_csharp": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(cs|csharp|c#)((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(c(?:s|sharp|#))((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -547,7 +545,7 @@
       ]
     },
     "fenced_code_block_css": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(css|css.erb)((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(css(?:|.erb))((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -580,7 +578,7 @@
       ]
     },
     "fenced_code_block_dart": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(dart)((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(dart)((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -613,7 +611,7 @@
       ]
     },
     "fenced_code_block_diff": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(patch|diff|rej)((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(patch|diff|rej)((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -646,7 +644,7 @@
       ]
     },
     "fenced_code_block_dockerfile": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(dockerfile|Dockerfile)((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(dockerfile|Dockerfile)((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -679,7 +677,7 @@
       ]
     },
     "fenced_code_block_dosbatch": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(bat|batch)((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(bat(?:|ch))((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -712,7 +710,7 @@
       ]
     },
     "fenced_code_block_elixir": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(elixir)((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(elixir)((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -745,7 +743,7 @@
       ]
     },
     "fenced_code_block_erlang": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(erlang)((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(erlang)((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -778,7 +776,7 @@
       ]
     },
     "fenced_code_block_fsharp": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(fs|fsharp|f#)((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(f(?:s|sharp|#))((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -811,7 +809,7 @@
       ]
     },
     "fenced_code_block_git_commit": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(COMMIT_EDITMSG|MERGE_MSG)((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(COMMIT_EDITMSG|MERGE_MSG)((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -844,7 +842,7 @@
       ]
     },
     "fenced_code_block_git_rebase": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(git-rebase-todo)((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(git-rebase-todo)((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -877,7 +875,7 @@
       ]
     },
     "fenced_code_block_go": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(go|golang)((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(go(?:|lang))((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -910,7 +908,7 @@
       ]
     },
     "fenced_code_block_groovy": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(groovy|gvy)((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(g(?:roovy|vy))((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -943,7 +941,7 @@
       ]
     },
     "fenced_code_block_handlebars": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(handlebars|hbs)((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(h(?:andlebars|bs))((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -976,7 +974,7 @@
       ]
     },
     "fenced_code_block_ini": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(ini|conf)((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(ini|conf)((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -1009,7 +1007,7 @@
       ]
     },
     "fenced_code_block_java": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(java|bsh)((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(java|bsh)((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -1042,7 +1040,7 @@
       ]
     },
     "fenced_code_block_js": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(js|jsx|javascript|es6|mjs|cjs|dataviewjs|\\{\\.js.+?\\})((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(js|jsx|javascript|es6|mjs|cjs|dataviewjs|\\{\\.js.+?})((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -1075,7 +1073,7 @@
       ]
     },
     "fenced_code_block_js_regexp": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(regexp)((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(regexp)((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -1108,7 +1106,7 @@
       ]
     },
     "fenced_code_block_json": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(json|json5|sublime-settings|sublime-menu|sublime-keymap|sublime-mousemap|sublime-theme|sublime-build|sublime-project|sublime-completions)((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(json|json5|sublime-settings|sublime-menu|sublime-keymap|sublime-mousemap|sublime-theme|sublime-build|sublime-project|sublime-completions)((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -1141,7 +1139,7 @@
       ]
     },
     "fenced_code_block_jsonc": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(jsonc)((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(jsonc)((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -1174,7 +1172,7 @@
       ]
     },
     "fenced_code_block_julia": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(julia|\\{\\.julia.+?\\})((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(julia|\\{\\.julia.+?})((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -1207,7 +1205,7 @@
       ]
     },
     "fenced_code_block_latex": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(latex|tex)((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(latex|tex)((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -1240,7 +1238,7 @@
       ]
     },
     "fenced_code_block_less": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(less)((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(less)((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -1273,7 +1271,7 @@
       ]
     },
     "fenced_code_block_log": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(log)((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(log)((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -1306,7 +1304,7 @@
       ]
     },
     "fenced_code_block_lua": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(lua)((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(lua)((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -1339,7 +1337,7 @@
       ]
     },
     "fenced_code_block_makefile": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(Makefile|makefile|GNUmakefile|OCamlMakefile)((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(Makefile|makefile|GNUmakefile|OCamlMakefile)((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -1372,7 +1370,7 @@
       ]
     },
     "fenced_code_block_markdown": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(markdown|md)((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(m(?:arkdown|d))((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -1405,7 +1403,7 @@
       ]
     },
     "fenced_code_block_objc": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(objectivec|objective-c|mm|objc|obj-c|m|h)((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(objectivec|objective-c|mm|objc|obj-c|[mh])((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -1438,7 +1436,7 @@
       ]
     },
     "fenced_code_block_perl": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(perl|pl|pm|pod|t|PL|psgi|vcl)((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(perl|pl|pm|pod|t|PL|psgi|vcl)((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -1471,7 +1469,7 @@
       ]
     },
     "fenced_code_block_perl6": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(perl6|p6|pl6|pm6|nqp)((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(perl6|p6|pl6|pm6|nqp)((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -1504,7 +1502,7 @@
       ]
     },
     "fenced_code_block_php": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(php|php3|php4|php5|phpt|phtml|aw|ctp)((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(php|php3|php4|php5|phpt|phtml|aw|ctp)((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -1540,7 +1538,7 @@
       ]
     },
     "fenced_code_block_powershell": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(powershell|ps1|psm1|psd1|pwsh)((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(p(?:owershell|s1|sm1|sd1|wsh))((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -1573,7 +1571,7 @@
       ]
     },
     "fenced_code_block_pug": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(jade|pug)((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(jade|pug)((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -1606,7 +1604,7 @@
       ]
     },
     "fenced_code_block_python": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(python|py|py3|rpy|pyw|cpy|SConstruct|Sconstruct|sconstruct|SConscript|gyp|gypi|\\{\\.python.+?\\})((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(python|py|py3|rpy|pyw|cpy|SConstruct|Sconstruct|sconstruct|SConscript|gyp|gypi|\\{\\.python.+?})((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -1639,7 +1637,7 @@
       ]
     },
     "fenced_code_block_r": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(R|r|s|S|Rprofile|\\{\\.r.+?\\})((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:([RrsS]|Rprofile|\\{\\.r.+?})((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -1672,7 +1670,7 @@
       ]
     },
     "fenced_code_block_regexp_python": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(re)((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(re)((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -1705,7 +1703,7 @@
       ]
     },
     "fenced_code_block_ruby": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(ruby|rb|rbx|rjs|Rakefile|rake|cgi|fcgi|gemspec|irbrc|Capfile|ru|prawn|Cheffile|Gemfile|Guardfile|Hobofile|Vagrantfile|Appraisals|Rantfile|Berksfile|Berksfile.lock|Thorfile|Puppetfile)((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(ruby|rb|rbx|rjs|Rakefile|rake|cgi|fcgi|gemspec|irbrc|Capfile|ru|prawn|Cheffile|Gemfile|Guardfile|Hobofile|Vagrantfile|Appraisals|Rantfile|Berksfile|Berksfile.lock|Thorfile|Puppetfile)((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -1738,7 +1736,7 @@
       ]
     },
     "fenced_code_block_rust": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(rust|rs|\\{\\.rust.+?\\})((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(rust|rs|\\{\\.rust.+?})((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -1771,7 +1769,7 @@
       ]
     },
     "fenced_code_block_scala": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(scala|sbt)((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(s(?:cala|bt))((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -1804,7 +1802,7 @@
       ]
     },
     "fenced_code_block_scss": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(scss)((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(scss)((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -1837,7 +1835,7 @@
       ]
     },
     "fenced_code_block_shell": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(shell|sh|bash|zsh|bashrc|bash_profile|bash_login|profile|bash_logout|.textmate_init|\\{\\.bash.+?\\})((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(shell|sh|bash|zsh|bashrc|bash_profile|bash_login|profile|bash_logout|.textmate_init|\\{\\.bash.+?})((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -1870,7 +1868,7 @@
       ]
     },
     "fenced_code_block_sql": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(sql|ddl|dml)((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(sql|ddl|dml)((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -1903,7 +1901,7 @@
       ]
     },
     "fenced_code_block_swift": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(swift)((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(swift)((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -1936,7 +1934,7 @@
       ]
     },
     "fenced_code_block_ts": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(typescript|ts)((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(t(?:ypescript|s))((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -1969,7 +1967,7 @@
       ]
     },
     "fenced_code_block_tsx": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(tsx)((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(tsx)((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -2002,7 +2000,7 @@
       ]
     },
     "fenced_code_block_twig": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(twig)((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(twig)((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -2053,7 +2051,7 @@
       "name": "markup.fenced_code.block.markdown"
     },
     "fenced_code_block_vs_net": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(vb)((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(vb)((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -2086,7 +2084,7 @@
       ]
     },
     "fenced_code_block_xml": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(xml|xsd|tld|jsp|pt|cpt|dtml|rss|opml)((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(xml|xsd|tld|jsp|pt|cpt|dtml|rss|opml)((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -2119,7 +2117,7 @@
       ]
     },
     "fenced_code_block_xsl": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(xsl|xslt)((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(xsl(?:|t))((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -2152,7 +2150,7 @@
       ]
     },
     "fenced_code_block_yaml": {
-      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(yaml|yml)((\\s+|:|,|\\{|\\?)[^`]*)?$)",
+      "begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(y(?:aml|ml))((\\s+|[:,{?])[^`]*)?$)",
       "beginCaptures": {
         "3": {
           "name": "punctuation.definition.markdown"
@@ -2187,7 +2185,7 @@
     "frontMatter": {
       "applyEndPatternLast": 1,
       "begin": "\\A(?=(-{3,}))",
-      "end": "^ {,3}\\1-*[ \\t]*$|^[ \\t]*\\.{3}$",
+      "end": "^(?: {0,3}\\1-*[ \\t]*$|[ \\t]*\\.{3}$)",
       "endCaptures": {
         "0": {
           "name": "punctuation.definition.end.frontmatter"
@@ -2210,7 +2208,7 @@
               "include": "source.yaml"
             }
           ],
-          "while": "^(?! {,3}\\1-*[ \\t]*$|[ \\t]*\\.{3}$)"
+          "while": "^(?! {0,3}\\1-*[ \\t]*$|[ \\t]*\\.{3}$)"
         }
       ]
     },
@@ -2359,7 +2357,7 @@
           ]
         }
       },
-      "match": "(?:^|\\G)[ ]{0,3}(#{1,6}\\s+(.*?)(\\s+#{1,6})?\\s*)$",
+      "match": "(?:^|\\G) {0,3}(#{1,6}\\s+(.*?)(\\s+#{1,6})?\\s*)$",
       "name": "markup.heading.markdown"
     },
     "heading-setext": {
@@ -2426,7 +2424,7 @@
           ]
         },
         {
-          "begin": "(?i)(^|\\G)\\s*(?=</?[a-zA-Z]+[^\\s/&gt;]*(\\s|$|/?>))",
+          "begin": "(?i)(^|\\G)\\s*(?=</?[a-zA-Z]+[^\\s/\\&gt;]*(\\s|$|/?>))",
           "patterns": [
             {
               "include": "text.html.derivative"
@@ -2435,7 +2433,7 @@
           "while": "^(?!\\s*$)"
         },
         {
-          "begin": "(^|\\G)\\s*(?=(<[a-zA-Z0-9\\-](/?>|\\s.*?>)|</[a-zA-Z0-9\\-]>)\\s*$)",
+          "begin": "(^|\\G)\\s*(?=(<(?:[a-zA-Z0-9-](/?>|\\s.*?>)|/[a-zA-Z0-9-]>))\\s*$)",
           "patterns": [
             {
               "include": "text.html.derivative"
@@ -2502,7 +2500,7 @@
           "name": "punctuation.definition.link.markdown"
         }
       },
-      "match": "(\\!\\[)((?<square>[^\\[\\]\\\\]|\\\\.|\\[\\g<square>*+\\])*+)(\\])(\\()[ \\t]*((<)((?:\\\\[<>]|[^<>\\n])*)(>)|((?<url>(?>[^\\s()]+)|\\(\\g<url>*\\))*))[ \\t]*(?:((\\().+?(\\)))|((\").+?(\"))|((').+?(')))?\\s*(\\))",
+      "match": "(!\\[)((?<square>[^\\[\\]\\\\]|\\\\.|\\[\\g<square>*+])*+)(])(\\()[ \\t]*((<)((?:\\\\[<>]|[^<>\\n])*)(>)|((?<url>(?>[^\\s()]+)|\\(\\g<url>*\\))*))[ \\t]*(?:((\\().+?(\\)))|((\").+?(\"))|((').+?(')))?\\s*(\\))",
       "name": "meta.image.inline.markdown"
     },
     "image-ref": {
@@ -2526,7 +2524,7 @@
           "name": "punctuation.definition.constant.markdown"
         }
       },
-      "match": "(\\!\\[)((?<square>[^\\[\\]\\\\]|\\\\.|\\[\\g<square>*+\\])*+)(\\])[ ]?(\\[)(.*?)(\\])",
+      "match": "(!\\[)((?<square>[^\\[\\]\\\\]|\\\\.|\\[\\g<square>*+])*+)(]) ?(\\[)(.*?)(])",
       "name": "meta.image.reference.markdown"
     },
     "inline": {
@@ -2579,7 +2577,7 @@
       ]
     },
     "italic": {
-      "begin": "(?<open>(\\*(?=\\w)|(?<!\\w)\\*|(?<!\\w)\\b_))(?=\\S)(?=(<[^>]*+>|(?<raw>`+)([^`]|(?!(?<!`)\\k<raw>(?!`))`)*+\\k<raw>|\\\\[\\\\`*_{}\\[\\]()#.!+\\->]?+|\\[((?<square>[^\\[\\]\\\\]|\\\\.|\\[\\g<square>*+\\])*+\\](([ ]?\\[[^\\]]*+\\])|(\\([ \\t]*+<?(.*?)>?[ \\t]*+((?<title>['\"])(.*?)\\k<title>)?\\))))|\\k<open>\\k<open>|(?!(?<=\\S)\\k<open>).)++(?<=\\S)(?=_\\b|\\*)\\k<open>)",
+      "begin": "(?<open>(\\*(?=\\w)|(?<!\\w)\\*|(?<!\\w)\\b_))(?=\\S)(?=(<[^>]*+>|(?<raw>`+)([^`]|(?!(?<!`)\\k<raw>(?!`))`)*+\\k<raw>|\\\\[\\\\`*_{}\\[\\]()#.!+\\->]?+|\\[((?<square>[^\\[\\]\\\\]|\\\\.|\\[\\g<square>*+])*+](( ?\\[[^\\]]*+])|(\\([ \\t]*+<?(.*?)>?[ \\t]*+((?<title>['\"])(.*?)\\k<title>)?\\))))|\\k<open>\\k<open>|(?!(?<=\\S)\\k<open>).)++(?<=\\S)(?=_\\b|\\*)\\k<open>)",
       "captures": {
         "1": {
           "name": "punctuation.definition.italic.markdown"
@@ -2696,7 +2694,7 @@
           "name": "string.other.link.description.title.markdown"
         }
       },
-      "match": "\\s*(\\[)([^]]+?)(\\])(:)[ \\t]*(?:(<)((?:\\\\[<>]|[^<>\\n])*)(>)|(\\S+?))[ \\t]*(?:((\\().+?(\\)))|((\").+?(\"))|((').+?(')))?\\s*$",
+      "match": "\\s*(\\[)([^\\]]+?)(])(:)[ \\t]*(?:(<)((?:\\\\[<>]|[^<>\\n])*)(>)|(\\S+?))[ \\t]*(?:((\\().+?(\\)))|((\").+?(\"))|((').+?(')))?\\s*$",
       "name": "meta.link.reference.def.markdown"
     },
     "link-email": {
@@ -2711,7 +2709,7 @@
           "name": "punctuation.definition.link.markdown"
         }
       },
-      "match": "(<)((?:mailto:)?[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*)(>)",
+      "match": "(<)((?:mailto:)?[a-zA-Z0-9.!#$%\\&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*)(>)",
       "name": "meta.link.email.lt-gt.markdown"
     },
     "link-inet": {
@@ -2803,7 +2801,7 @@
           "name": "punctuation.definition.link.markdown"
         }
       },
-      "match": "(\\[)((?<square>[^\\[\\]\\\\]|\\\\.|\\[\\g<square>*+\\])*+)(\\])(\\()[ \\t]*((<)((?:\\\\[<>]|[^<>\\n])*)(>)|((?<url>(?>[^\\s()]+)|\\(\\g<url>*\\))*))[ \\t]*(?:((\\()[^()]*(\\)))|((\")[^\"]*(\"))|((')[^']*(')))?\\s*(\\))",
+      "match": "(\\[)((?<square>[^\\[\\]\\\\]|\\\\.|\\[\\g<square>*+])*+)(])(\\()[ \\t]*((<)((?:\\\\[<>]|[^<>\\n])*)(>)|((?<url>(?>[^\\s()]+)|\\(\\g<url>*\\))*))[ \\t]*(?:((\\()[^()]*(\\)))|((\")[^\"]*(\"))|((')[^']*(')))?\\s*(\\))",
       "name": "meta.link.inline.markdown"
     },
     "link-ref": {
@@ -2844,7 +2842,7 @@
           "name": "punctuation.definition.constant.end.markdown"
         }
       },
-      "match": "(?<![\\]\\\\])(\\[)((?<square>[^\\[\\]\\\\]|\\\\.|\\[\\g<square>*+\\])*+)(\\])(\\[)([^\\]]*+)(\\])",
+      "match": "(?<![\\]\\\\])(\\[)((?<square>[^\\[\\]\\\\]|\\\\.|\\[\\g<square>*+])*+)(])(\\[)([^\\]]*+)(])",
       "name": "meta.link.reference.markdown"
     },
     "link-ref-literal": {
@@ -2865,7 +2863,7 @@
           "name": "punctuation.definition.constant.end.markdown"
         }
       },
-      "match": "(?<![\\]\\\\])(\\[)((?<square>[^\\[\\]\\\\]|\\\\.|\\[\\g<square>*+\\])*+)(\\])[ ]?(\\[)(\\])",
+      "match": "(?<![\\]\\\\])(\\[)((?<square>[^\\[\\]\\\\]|\\\\.|\\[\\g<square>*+])*+)(]) ?(\\[)(])",
       "name": "meta.link.reference.literal.markdown"
     },
     "link-ref-shortcut": {
@@ -2880,7 +2878,7 @@
           "name": "punctuation.definition.link.title.end.markdown"
         }
       },
-      "match": "(?<![\\]\\\\])(\\[)((?:[^\\s\\[\\]\\\\]|\\\\[\\[\\]])+?)((?<!\\\\)\\])",
+      "match": "(?<![\\]\\\\])(\\[)((?:[^\\s\\[\\]\\\\]|\\\\[\\[\\]])+?)((?<!\\\\)])",
       "name": "meta.link.reference.markdown"
     },
     "list_paragraph": {
@@ -2897,18 +2895,17 @@
           "include": "#heading-setext"
         }
       ],
-      "while": "(^|\\G)(?!\\s*$|#|[ ]{0,3}([-*_>][ ]{2,}){3,}[ \\t]*$\\n?|[ ]{0,3}[*+->]|[ ]{0,3}[0-9]+\\.)"
+      "while": "(^|\\G)(?!\\s*$|#| {0,3}([-*_>] {2,}){3,}[ \\t]*$\\n?| {0,3}[*+->]| {0,3}[0-9]+\\.)"
     },
     "lists": {
       "patterns": [
         {
-          "begin": "(^|\\G)([ ]{0,3})([*+-])([ \\t])",
+          "begin": "(^|\\G)( {0,3})([*+-])([ \\t])",
           "beginCaptures": {
             "3": {
               "name": "punctuation.definition.list.begin.markdown"
             }
           },
-          "comment": "Currently does not support un-indented second lines.",
           "name": "markup.list.unnumbered.markdown",
           "patterns": [
             {
@@ -2918,10 +2915,10 @@
               "include": "#list_paragraph"
             }
           ],
-          "while": "((^|\\G)([ ]{2,4}|\\t))|(^[ \\t]*$)"
+          "while": "((^|\\G)( {2,4}|\\t))|(^[ \\t]*$)"
         },
         {
-          "begin": "(^|\\G)([ ]{0,3})([0-9]+[\\.\\)])([ \\t])",
+          "begin": "(^|\\G)( {0,3})([0-9]+[.)])([ \\t])",
           "beginCaptures": {
             "3": {
               "name": "punctuation.definition.list.begin.markdown"
@@ -2936,12 +2933,12 @@
               "include": "#list_paragraph"
             }
           ],
-          "while": "((^|\\G)([ ]{2,4}|\\t))|(^[ \\t]*$)"
+          "while": "((^|\\G)( {2,4}|\\t))|(^[ \\t]*$)"
         }
       ]
     },
     "paragraph": {
-      "begin": "(^|\\G)[ ]{0,3}(?=[^ \\t\\n])",
+      "begin": "(^|\\G) {0,3}(?=[^ \\t\\n])",
       "name": "meta.paragraph.markdown",
       "patterns": [
         {
@@ -2954,7 +2951,7 @@
           "include": "#heading-setext"
         }
       ],
-      "while": "(^|\\G)((?=\\s*[-=]{3,}\\s*$)|[ ]{4,}(?=[^ \\t\\n]))"
+      "while": "(^|\\G)((?=\\s*[-=]{3,}\\s*$)| {4,}(?=[^ \\t\\n]))"
     },
     "raw": {
       "captures": {
@@ -2969,12 +2966,12 @@
       "name": "markup.inline.raw.string.markdown"
     },
     "raw_block": {
-      "begin": "(^|\\G)([ ]{4}|\\t)",
+      "begin": "(^|\\G)( {4}|\\t)",
       "name": "markup.raw.block.markdown",
-      "while": "(^|\\G)([ ]{4}|\\t)"
+      "while": "(^|\\G)( {4}|\\t)"
     },
     "separator": {
-      "match": "(^|\\G)[ ]{0,3}([\\*\\-\\_])([ ]{0,2}\\2){2,}[ \\t]*$\\n?",
+      "match": "(^|\\G) {0,3}([*\\-_])( {0,2}\\2){2,}[ \\t]*$\\n?",
       "name": "meta.separator.markdown"
     },
     "strikethrough": {

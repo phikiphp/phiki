@@ -33,13 +33,13 @@
     },
     "block-comment": {
       "begin": "^(\\s*)\\.{2}(\\s+|$)",
-      "end": "^(?=\\S)|^\\s*$",
+      "end": "^(?:(?=\\S)|\\s*$)",
       "name": "comment.block",
       "patterns": [
         {
           "begin": "^\\s{3,}(?=\\S)",
           "name": "comment.block",
-          "while": "^\\s{3}.*|^\\s*$"
+          "while": "^(?:\\s{3}.*|\\s*$)"
         }
       ]
     },
@@ -177,11 +177,11 @@
     "citation": {
       "applyEndPatternLast": 0,
       "begin": "(?<=[\\s\"'(\\[{<]|^)`[^\\s`]",
-      "end": "`_{,2}|^\\s*$",
+      "end": "`_{0,2}|^\\s*$",
       "name": "entity.name.tag"
     },
     "code-block": {
-      "begin": "^(\\s*)(\\.{2}\\s+(code|code-block)::)",
+      "begin": "^(\\s*)(\\.{2}\\s+(code(?:|-block))::)",
       "beginCaptures": {
         "2": {
           "name": "keyword.control"
@@ -192,10 +192,10 @@
           "include": "#block-param"
         }
       ],
-      "while": "^\\1(?=\\s)|^\\s*$"
+      "while": "^(?:\\1(?=\\s)|\\s*$)"
     },
     "code-block-cmake": {
-      "begin": "^(\\s*)(\\.{2}\\s+(code|code-block)::)\\s*(cmake)\\s*$",
+      "begin": "^(\\s*)(\\.{2}\\s+(code(?:|-block))::)\\s*(cmake)\\s*$",
       "beginCaptures": {
         "2": {
           "name": "keyword.control"
@@ -212,10 +212,10 @@
           "include": "source.cmake"
         }
       ],
-      "while": "^\\1(?=\\s)|^\\s*$"
+      "while": "^(?:\\1(?=\\s)|\\s*$)"
     },
     "code-block-console": {
-      "begin": "^(\\s*)(\\.{2}\\s+(code|code-block)::)\\s*(console|shell|bash)\\s*$",
+      "begin": "^(\\s*)(\\.{2}\\s+(code(?:|-block))::)\\s*(console|shell|bash)\\s*$",
       "beginCaptures": {
         "2": {
           "name": "keyword.control"
@@ -232,10 +232,10 @@
           "include": "source.shell"
         }
       ],
-      "while": "^\\1(?=\\s)|^\\s*$"
+      "while": "^(?:\\1(?=\\s)|\\s*$)"
     },
     "code-block-cpp": {
-      "begin": "^(\\s*)(\\.{2}\\s+(code|code-block)::)\\s*(c|c\\+\\+|cpp|C|C\\+\\+|CPP|Cpp)\\s*$",
+      "begin": "^(\\s*)(\\.{2}\\s+(code(?:|-block))::)\\s*(c|c\\+\\+|cpp|C|C\\+\\+|CPP|Cpp)\\s*$",
       "beginCaptures": {
         "2": {
           "name": "keyword.control"
@@ -252,10 +252,10 @@
           "include": "source.cpp"
         }
       ],
-      "while": "^\\1(?=\\s)|^\\s*$"
+      "while": "^(?:\\1(?=\\s)|\\s*$)"
     },
     "code-block-dts": {
-      "begin": "^(\\s*)(\\.{2}\\s+(code|code-block)::)\\s*(dts|DTS|devicetree)\\s*$",
+      "begin": "^(\\s*)(\\.{2}\\s+(code(?:|-block))::)\\s*(dts|DTS|devicetree)\\s*$",
       "beginCaptures": {
         "2": {
           "name": "keyword.control"
@@ -272,10 +272,10 @@
           "include": "source.dts"
         }
       ],
-      "while": "^\\1(?=\\s)|^\\s*$"
+      "while": "^(?:\\1(?=\\s)|\\s*$)"
     },
     "code-block-javascript": {
-      "begin": "^(\\s*)(\\.{2}\\s+(code|code-block)::)\\s*(javascript)\\s*$",
+      "begin": "^(\\s*)(\\.{2}\\s+(code(?:|-block))::)\\s*(javascript)\\s*$",
       "beginCaptures": {
         "2": {
           "name": "keyword.control"
@@ -292,10 +292,10 @@
           "include": "source.js"
         }
       ],
-      "while": "^\\1(?=\\s)|^\\s*$"
+      "while": "^(?:\\1(?=\\s)|\\s*$)"
     },
     "code-block-kconfig": {
-      "begin": "^(\\s*)(\\.{2}\\s+(code|code-block)::)\\s*([kK]config)\\s*$",
+      "begin": "^(\\s*)(\\.{2}\\s+(code(?:|-block))::)\\s*([kK]config)\\s*$",
       "beginCaptures": {
         "2": {
           "name": "keyword.control"
@@ -312,10 +312,10 @@
           "include": "source.kconfig"
         }
       ],
-      "while": "^\\1(?=\\s)|^\\s*$"
+      "while": "^(?:\\1(?=\\s)|\\s*$)"
     },
     "code-block-py": {
-      "begin": "^(\\s*)(\\.{2}\\s+(code|code-block)::)\\s*(python)\\s*$",
+      "begin": "^(\\s*)(\\.{2}\\s+(code(?:|-block))::)\\s*(python)\\s*$",
       "beginCaptures": {
         "2": {
           "name": "keyword.control"
@@ -332,10 +332,10 @@
           "include": "source.python"
         }
       ],
-      "while": "^\\1(?=\\s)|^\\s*$"
+      "while": "^(?:\\1(?=\\s)|\\s*$)"
     },
     "code-block-ruby": {
-      "begin": "^(\\s*)(\\.{2}\\s+(code|code-block)::)\\s*(ruby)\\s*$",
+      "begin": "^(\\s*)(\\.{2}\\s+(code(?:|-block))::)\\s*(ruby)\\s*$",
       "beginCaptures": {
         "2": {
           "name": "keyword.control"
@@ -352,10 +352,10 @@
           "include": "source.ruby"
         }
       ],
-      "while": "^\\1(?=\\s)|^\\s*$"
+      "while": "^(?:\\1(?=\\s)|\\s*$)"
     },
     "code-block-yaml": {
-      "begin": "^(\\s*)(\\.{2}\\s+(code|code-block)::)\\s*(ya?ml)\\s*$",
+      "begin": "^(\\s*)(\\.{2}\\s+(code(?:|-block))::)\\s*(ya?ml)\\s*$",
       "beginCaptures": {
         "2": {
           "name": "keyword.control"
@@ -372,7 +372,7 @@
           "include": "source.yaml"
         }
       ],
-      "while": "^\\1(?=\\s)|^\\s*$"
+      "while": "^(?:\\1(?=\\s)|\\s*$)"
     },
     "doctest": {
       "begin": "^(>>>)\\s*(.*)",
@@ -405,7 +405,7 @@
           "include": "source.python"
         }
       ],
-      "while": "^\\1(?=\\s)|^\\s*$"
+      "while": "^(?:\\1(?=\\s)|\\s*$)"
     },
     "domain-auto": {
       "begin": "^(\\s*)(\\.{2}\\s+auto(?:class|module|exception|function|decorator|data|method|attribute|property)::)\\s*(.*)",
@@ -429,10 +429,10 @@
           "include": "#body"
         }
       ],
-      "while": "^\\1(?=\\s)|^\\s*$"
+      "while": "^(?:\\1(?=\\s)|\\s*$)"
     },
     "domain-cpp": {
-      "begin": "^(\\s*)(\\.{2}\\s+(?:cpp|c):(?:class|struct|function|member|var|type|enum|enum-struct|enum-class|enumerator|union|concept)::)\\s*(?:(@\\w+)|(.*))",
+      "begin": "^(\\s*)(\\.{2}\\s+c(?:pp|):(?:class|struct|function|member|var|type|enum|enum-struct|enum-class|enumerator|union|concept)::)\\s*(?:(@\\w+)|(.*))",
       "beginCaptures": {
         "2": {
           "name": "keyword.control"
@@ -456,7 +456,7 @@
           "include": "#body"
         }
       ],
-      "while": "^\\1(?=\\s)|^\\s*$"
+      "while": "^(?:\\1(?=\\s)|\\s*$)"
     },
     "domain-js": {
       "begin": "^(\\s*)(\\.{2}\\s+js:\\w+::)\\s*(.*)",
@@ -504,7 +504,7 @@
           "include": "#body"
         }
       ],
-      "while": "^\\1(?=\\s)|^\\s*$"
+      "while": "^(?:\\1(?=\\s)|\\s*$)"
     },
     "domains": {
       "patterns": [
@@ -527,11 +527,11 @@
       "name": "constant.character.escape"
     },
     "footnote": {
-      "match": "^\\s*\\.{2}\\s+\\[(?:[\\w\\.-]+|[#*]|#\\w+)\\]\\s+",
+      "match": "^\\s*\\.{2}\\s+\\[(?:[\\w.-]+|[#*]|#\\w+)]\\s+",
       "name": "entity.name.tag"
     },
     "footnote-ref": {
-      "match": "\\[(?:[\\w\\.-]+|[#*])\\]_",
+      "match": "\\[(?:[\\w.-]+|[#*])]_",
       "name": "entity.name.tag"
     },
     "ignore": {
@@ -543,13 +543,13 @@
           "match": "<[`*]+>"
         },
         {
-          "match": "{[`*]+}"
+          "match": "\\{[`*]+}"
         },
         {
           "match": "\\([`*]+\\)"
         },
         {
-          "match": "\\[[`*]+\\]"
+          "match": "\\[[`*]+]"
         },
         {
           "match": "\"[`*]+\""
@@ -634,10 +634,10 @@
           "name": "keyword.control"
         }
       },
-      "while": "^\\1(?=\\s)|^\\s*$"
+      "while": "^(?:\\1(?=\\s)|\\s*$)"
     },
     "macro": {
-      "match": "\\|[^\\|]+\\|",
+      "match": "\\|[^|]+\\|",
       "name": "entity.name.tag"
     },
     "monospaced": {
@@ -667,7 +667,7 @@
           "include": "text.html.derivative"
         }
       ],
-      "while": "^\\1(?=\\s)|^\\s*$"
+      "while": "^(?:\\1(?=\\s)|\\s*$)"
     },
     "ref": {
       "begin": "(:ref:)`",
@@ -701,7 +701,7 @@
           "name": "keyword.control"
         }
       },
-      "match": "^\\s*(\\.{2})\\s+(\\|[^\\|]+\\|)\\s+(replace::)"
+      "match": "^\\s*(\\.{2})\\s+(\\|[^|]+\\|)\\s+(replace::)"
     },
     "simple-table": {
       "match": "^[=\\s]+$",
@@ -727,7 +727,7 @@
       ]
     },
     "title": {
-      "match": "^(\\*{3,}|#{3,}|\\={3,}|~{3,}|\\+{3,}|-{3,}|`{3,}|\\^{3,}|:{3,}|\"{3,}|_{3,}|'{3,})$",
+      "match": "^(\\*{3,}|#{3,}|={3,}|~{3,}|\\+{3,}|-{3,}|`{3,}|\\^{3,}|:{3,}|\"{3,}|_{3,}|'{3,})$",
       "name": "markup.heading"
     }
   },

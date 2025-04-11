@@ -35,13 +35,13 @@
   ],
   "repository": {
     "comment": {
-      "begin": "\\{{--",
+      "begin": "\\{\\{--",
       "beginCaptures": {
         "0": {
           "name": "punctuation.definition.comment.begin.edge"
         }
       },
-      "end": "\\--}}",
+      "end": "--}}",
       "endCaptures": {
         "0": {
           "name": "punctuation.definition.comment.end.edge"
@@ -50,13 +50,13 @@
       "name": "comment.block"
     },
     "escapedMustache": {
-      "begin": "\\@{{",
+      "begin": "@\\{\\{",
       "beginCaptures": {
         "0": {
           "name": "punctuation.definition.comment.begin.edge"
         }
       },
-      "end": "\\}}",
+      "end": "}}",
       "endCaptures": {
         "0": {
           "name": "punctuation.definition.comment.end.edge"
@@ -65,13 +65,13 @@
       "name": "comment.block"
     },
     "mustache": {
-      "begin": "\\{{",
+      "begin": "\\{\\{",
       "beginCaptures": {
         "0": {
           "name": "punctuation.mustache.begin"
         }
       },
-      "end": "\\}}",
+      "end": "}}",
       "endCaptures": {
         "0": {
           "name": "punctuation.mustache.end"
@@ -99,13 +99,13 @@
       ]
     },
     "safeMustache": {
-      "begin": "\\{{{",
+      "begin": "\\{\\{\\{",
       "beginCaptures": {
         "0": {
           "name": "punctuation.mustache.begin"
         }
       },
-      "end": "\\}}}",
+      "end": "}}}",
       "endCaptures": {
         "0": {
           "name": "punctuation.mustache.end"

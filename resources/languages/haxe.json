@@ -13,7 +13,7 @@
   "repository": {
     "abstract": {
       "begin": "(?=abstract\\s+[A-Z])",
-      "end": "(?<=\\})|(;)",
+      "end": "(?<=})|(;)",
       "endCaptures": {
         "1": {
           "name": "punctuation.terminator.hx"
@@ -34,7 +34,7 @@
     },
     "abstract-block": {
       "begin": "(?<=\\{)",
-      "end": "(\\})",
+      "end": "(})",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.block.end.hx"
@@ -80,7 +80,7 @@
     },
     "abstract-name-post": {
       "begin": "(?<=\\w)",
-      "end": "([\\{;])",
+      "end": "([{;])",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.block.begin.hx"
@@ -98,7 +98,7 @@
           "include": "#type"
         },
         {
-          "match": "[\\(\\)]",
+          "match": "[()]",
           "name": "punctuation.definition.other.hx"
         }
       ]
@@ -159,7 +159,7 @@
           "name": "punctuation.definition.array.begin.hx"
         }
       },
-      "end": "\\]",
+      "end": "]",
       "endCaptures": {
         "0": {
           "name": "punctuation.definition.array.end.hx"
@@ -199,8 +199,8 @@
       ]
     },
     "arrow-function-parameter": {
-      "begin": "(?<=\\(|,)",
-      "end": "(?=\\)|,)",
+      "begin": "(?<=[(,])",
+      "end": "(?=[),])",
       "patterns": [
         {
           "include": "#parameter-name"
@@ -226,7 +226,7 @@
           "name": "keyword.operator.type.annotation.hx"
         }
       },
-      "end": "(?=\\)|,|=)",
+      "end": "(?=[),=])",
       "patterns": [
         {
           "include": "#type"
@@ -240,7 +240,7 @@
           "name": "punctuation.definition.block.begin.hx"
         }
       },
-      "end": "\\}",
+      "end": "}",
       "endCaptures": {
         "0": {
           "name": "punctuation.definition.block.end.hx"
@@ -330,7 +330,7 @@
     },
     "class": {
       "begin": "(?=class)",
-      "end": "(?<=\\})|(;)",
+      "end": "(?<=})|(;)",
       "endCaptures": {
         "1": {
           "name": "punctuation.terminator.hx"
@@ -351,7 +351,7 @@
     },
     "class-block": {
       "begin": "(?<=\\{)",
-      "end": "(\\})",
+      "end": "(})",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.block.end.hx"
@@ -398,7 +398,7 @@
     },
     "class-name-post": {
       "begin": "(?<=\\w)",
-      "end": "([\\{;])",
+      "end": "([{;])",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.block.begin.hx"
@@ -483,7 +483,7 @@
               "name": "punctuation.definition.tag"
             }
           },
-          "end": "(?<=\\)|\\n)",
+          "end": "(?<=[)\\n])",
           "endCaptures": {
             "0": {
               "name": "punctuation.definition.tag"
@@ -534,7 +534,7 @@
               "name": "constant.numeric.suffix.hx"
             }
           },
-          "match": "\\b(?:0[xX][0-9a-fA-F][_0-9a-fA-F]*([iu][0-9][0-9_]*)?)\\b"
+          "match": "\\b0[xX]\\h[_\\h]*([iu][0-9][0-9_]*)?\\b"
         },
         {
           "captures": {
@@ -545,7 +545,7 @@
               "name": "constant.numeric.suffix.hx"
             }
           },
-          "match": "\\b(?:0[bB][01][_01]*([iu][0-9][0-9_]*)?)\\b"
+          "match": "\\b0[bB][01][_01]*([iu][0-9][0-9_]*)?\\b"
         },
         {
           "captures": {
@@ -595,13 +595,13 @@
               "name": "constant.numeric.suffix.hx"
             }
           },
-          "match": "(?<!\\$)(?:(?:\\b[0-9][0-9_]*(\\.)[0-9_]+[eE][+-]?[0-9_]+([fiu][0-9][0-9_]*)?\\b)|(?:\\b[0-9][0-9_]*(\\.)[eE][+-]?[0-9_]+([fiu][0-9][0-9_]*)?\\b)|(?:\\B(\\.)[0-9][0-9_]*[eE][+-]?[0-9_]+([fiu][0-9][0-9_]*)?\\b)|(?:\\b[0-9][0-9_]*[eE][+-]?[0-9][0-9_]*([fiu][0-9][0-9_]*)?\\b)|(?:\\b[0-9][0-9_]*(\\.)[0-9_]+([fiu][0-9][0-9_]*)?\\b)|(?:\\b[0-9][0-9_]*(\\.)(?!\\.)(?:\\B|([fiu][0-9][0-9_]*)\\b))|(?:\\B(\\.)[0-9][0-9_]*([fiu][0-9][0-9_]*)?\\b)|(?:\\b[0-9][0-9_]*([fiu][0-9][0-9_]*)?\\b))(?!\\$)"
+          "match": "(?<!\\$)(?:\\b[0-9][0-9_]*(\\.)[0-9_]+[eE][+-]?[0-9_]+([fiu][0-9][0-9_]*)?\\b|\\b[0-9][0-9_]*(\\.)[eE][+-]?[0-9_]+([fiu][0-9][0-9_]*)?\\b|\\B(\\.)[0-9][0-9_]*[eE][+-]?[0-9_]+([fiu][0-9][0-9_]*)?\\b|\\b[0-9][0-9_]*[eE][+-]?[0-9][0-9_]*([fiu][0-9][0-9_]*)?\\b|\\b[0-9][0-9_]*(\\.)[0-9_]+([fiu][0-9][0-9_]*)?\\b|\\b[0-9][0-9_]*(\\.)(?!\\.)(?:\\B|([fiu][0-9][0-9_]*)\\b)|\\B(\\.)[0-9][0-9_]*([fiu][0-9][0-9_]*)?\\b|\\b[0-9][0-9_]*([fiu][0-9][0-9_]*)?\\b)(?!\\$)"
         }
       ]
     },
     "enum": {
       "begin": "(?=enum\\s+[A-Z])",
-      "end": "(?<=\\})|(;)",
+      "end": "(?<=})|(;)",
       "endCaptures": {
         "1": {
           "name": "punctuation.terminator.hx"
@@ -622,7 +622,7 @@
     },
     "enum-block": {
       "begin": "(?<=\\{)",
-      "end": "(\\})",
+      "end": "(})",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.block.end.hx"
@@ -699,7 +699,7 @@
     },
     "enum-name-post": {
       "begin": "(?<=\\w)",
-      "end": "([\\{;])",
+      "end": "([{;])",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.block.begin.hx"
@@ -760,8 +760,8 @@
       ]
     },
     "function-type-parameter": {
-      "begin": "(?<=\\(|,)",
-      "end": "(?=\\)|,)",
+      "begin": "(?<=[(,])",
+      "end": "(?=[),])",
       "patterns": [
         {
           "include": "#global"
@@ -807,7 +807,7 @@
           "name": "keyword.operator.type.annotation.hx"
         }
       },
-      "end": "(?=\\)|,|=)",
+      "end": "(?=[),=])",
       "patterns": [
         {
           "include": "#type"
@@ -881,7 +881,7 @@
     },
     "interface": {
       "begin": "(?=interface)",
-      "end": "(?<=\\})|(;)",
+      "end": "(?<=})|(;)",
       "endCaptures": {
         "1": {
           "name": "punctuation.terminator.hx"
@@ -902,7 +902,7 @@
     },
     "interface-block": {
       "begin": "(?<=\\{)",
-      "end": "(\\})",
+      "end": "(})",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.block.end.hx"
@@ -945,7 +945,7 @@
     },
     "interface-name-post": {
       "begin": "(?<=\\w)",
-      "end": "([\\{;])",
+      "end": "([{;])",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.block.begin.hx"
@@ -985,7 +985,7 @@
               "name": "constant.numeric.javadoc"
             }
           },
-          "match": "(@since)\\s+([\\w\\.-]+)\\s+"
+          "match": "(@since)\\s+([\\w.-]+)\\s+"
         },
         {
           "captures": {
@@ -1156,7 +1156,7 @@
           "name": "keyword.other.type.hx"
         },
         {
-          "match": "\\__(global|this)__\\b",
+          "match": "__(global|this)__\\b",
           "name": "keyword.other.untyped-property.hx"
         },
         {
@@ -1300,7 +1300,7 @@
     },
     "method": {
       "begin": "(?=\\bfunction\\b)",
-      "end": "(?<=[\\};])",
+      "end": "(?<=[};])",
       "name": "meta.method.hx",
       "patterns": [
         {
@@ -1324,7 +1324,7 @@
           "name": "punctuation.definition.block.begin.hx"
         }
       },
-      "end": "(\\})",
+      "end": "(})",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.block.end.hx"
@@ -1424,7 +1424,7 @@
           "name": "keyword.operator.type.annotation.hx"
         }
       },
-      "end": "(?=\\{|;|[a-z0-9])",
+      "end": "(?=[{;a-z0-9])",
       "patterns": [
         {
           "include": "#type"
@@ -1485,11 +1485,11 @@
           "name": "keyword.operator.logical.hx"
         },
         {
-          "match": "(~|&|\\||\\^|>>>|<<|>>)",
+          "match": "([~\\&|^]|>>>|<<|>>)",
           "name": "keyword.operator.bitwise.hx"
         },
         {
-          "match": "(==|!=|<=|>=|<|>)",
+          "match": "(==|!=|<=|>=|[<>])",
           "name": "keyword.operator.comparison.hx"
         },
         {
@@ -1497,11 +1497,11 @@
           "name": "keyword.operator.logical.hx"
         },
         {
-          "match": "(\\-\\-|\\+\\+)",
+          "match": "(--|\\+\\+)",
           "name": "keyword.operator.increment-decrement.hx"
         },
         {
-          "match": "(\\-|\\+|\\*|\\/|%)",
+          "match": "([-+*/%])",
           "name": "keyword.operator.arithmetic.hx"
         },
         {
@@ -1568,7 +1568,7 @@
       ]
     },
     "parameter": {
-      "begin": "(?<=\\(|,)",
+      "begin": "(?<=[(,])",
       "end": "(?=\\)(?!\\s*->)|,)",
       "patterns": [
         {
@@ -1595,7 +1595,7 @@
           "name": "keyword.operator.assignment.hx"
         }
       },
-      "end": "(?=\\)|,)",
+      "end": "(?=[),])",
       "patterns": [
         {
           "include": "#block"
@@ -1606,7 +1606,7 @@
       ]
     },
     "parameter-name": {
-      "begin": "(?<=\\(|,)",
+      "begin": "(?<=[(,])",
       "end": "([_a-zA-Z]\\w*)",
       "endCaptures": {
         "1": {
@@ -1632,7 +1632,7 @@
           "name": "keyword.operator.type.annotation.hx"
         }
       },
-      "end": "(?=\\)(?!\\s*->)|,|=)",
+      "end": "(?=\\)(?!\\s*->)|[,=])",
       "patterns": [
         {
           "include": "#type"
@@ -1745,7 +1745,7 @@
     "regexp": {
       "patterns": [
         {
-          "match": "\\\\[bB]|\\^|\\$",
+          "match": "\\\\[bB]|[\\^$]",
           "name": "keyword.control.anchor.regexp"
         },
         {
@@ -1753,7 +1753,7 @@
           "name": "keyword.other.back-reference.regexp"
         },
         {
-          "match": "[?+*]|\\{(\\d+,\\d+|\\d+,|,\\d+|\\d+)\\}\\??",
+          "match": "[?+*]|\\{(\\d+,\\d+|\\d+,|,\\d+|\\d+)}\\??",
           "name": "keyword.operator.quantifier.regexp"
         },
         {
@@ -1822,7 +1822,7 @@
               "name": "keyword.operator.negation.regexp"
             }
           },
-          "end": "(\\])",
+          "end": "(])",
           "endCaptures": {
             "1": {
               "name": "punctuation.definition.character-class.regexp"
@@ -1851,7 +1851,7 @@
                   "name": "constant.character.escape.backslash.regexp"
                 }
               },
-              "match": "(?:.|(\\\\(?:[0-7]{3}|x\\h\\h|u\\h\\h\\h\\h))|(\\\\c[A-Z])|(\\\\.))\\-(?:[^\\]\\\\]|(\\\\(?:[0-7]{3}|x\\h\\h|u\\h\\h\\h\\h))|(\\\\c[A-Z])|(\\\\.))",
+              "match": "(?:.|(\\\\(?:[0-7]{3}|x\\h\\h|u\\h\\h\\h\\h))|(\\\\c[A-Z])|(\\\\.))-(?:[^\\]\\\\]|(\\\\(?:[0-7]{3}|x\\h\\h|u\\h\\h\\h\\h))|(\\\\c[A-Z])|(\\\\.))",
               "name": "constant.other.character-class.range.regexp"
             },
             {
@@ -1871,7 +1871,7 @@
           "name": "constant.character.escape.hx"
         },
         {
-          "match": "\\\\x[0-9A-Fa-f]{2}",
+          "match": "\\\\x\\h{2}",
           "name": "constant.character.escape.hx"
         },
         {
@@ -1879,7 +1879,7 @@
           "name": "constant.character.escape.hx"
         },
         {
-          "match": "\\\\u\\{[0-9A-Fa-f]{1,}\\}",
+          "match": "\\\\u\\{\\h+}",
           "name": "constant.character.escape.hx"
         },
         {
@@ -1953,7 +1953,7 @@
               "include": "#string-escape-sequences"
             },
             {
-              "begin": "(\\${)",
+              "begin": "(\\$\\{)",
               "beginCaptures": {
                 "0": {
                   "name": "punctuation.definition.block.begin.hx"
@@ -2031,7 +2031,7 @@
               "name": "punctuation.definition.block.begin.hx"
             }
           },
-          "end": "(?<=\\})",
+          "end": "(?<=})",
           "patterns": [
             {
               "include": "#typedef-block"
@@ -2189,7 +2189,7 @@
     },
     "typedef": {
       "begin": "(?=typedef)",
-      "end": "(?<=\\})|(;)",
+      "end": "(?<=})|(;)",
       "endCaptures": {
         "1": {
           "name": "punctuation.terminator.hx"
@@ -2210,7 +2210,7 @@
     },
     "typedef-block": {
       "begin": "(?<=\\{)",
-      "end": "(\\})",
+      "end": "(})",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.block.end.hx"
@@ -2314,7 +2314,7 @@
           "name": "keyword.operator.type.annotation.hx"
         }
       },
-      "end": "(?=\\}|,|;)",
+      "end": "(?=[},;])",
       "patterns": [
         {
           "include": "#type"
@@ -2402,7 +2402,7 @@
           "name": "keyword.operator.assignment.hx"
         }
       },
-      "end": "(?=;|,)",
+      "end": "(?=[;,])",
       "patterns": [
         {
           "include": "#block"
@@ -2472,7 +2472,7 @@
           "name": "keyword.operator.type.annotation.hx"
         }
       },
-      "end": "(?=$|;|,|=)",
+      "end": "(?=$|[;,=])",
       "patterns": [
         {
           "include": "#type"

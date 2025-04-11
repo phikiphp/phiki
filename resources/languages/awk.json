@@ -51,7 +51,7 @@
       ]
     },
     "escaped-char": {
-      "match": "\\\\(?:[\\\\abfnrtv/\"]|x[0-9A-Fa-f]{2}|[0-7]{3})",
+      "match": "\\\\(?:[\\\\abfnrtv/\"]|x\\h{2}|[0-7]{3})",
       "name": "constant.character.escape.awk"
     },
     "expression": {
@@ -136,7 +136,7 @@
           "name": "meta.brace.round.awk"
         },
         {
-          "match": "\\,",
+          "match": ",",
           "name": "punctuation.separator.parameters.awk"
         }
       ]
@@ -176,7 +176,7 @@
           "name": "keyword.operator.trinary.awk"
         },
         {
-          "match": "(\\[|\\])",
+          "match": "([\\[\\]])",
           "name": "keyword.operator.index.awk"
         }
       ]
@@ -199,7 +199,7 @@
     },
     "procedure": {
       "begin": "\\{",
-      "end": "\\}",
+      "end": "}",
       "patterns": [
         {
           "include": "#comment"

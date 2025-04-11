@@ -46,11 +46,11 @@
     "commands": {
       "patterns": [
         {
-          "match": "\\bcom(\\s|\\!)",
+          "match": "\\bcom([\\s!])",
           "name": "storage.other.command.viml"
         },
         {
-          "match": "\\bau(\\s|\\!)",
+          "match": "\\bau([\\s!])",
           "name": "storage.other.command.viml"
         },
         {
@@ -93,7 +93,7 @@
               "name": "comment.line.foldmarker.viml"
             },
             {
-              "match": "\\}\\}\\}\\d?",
+              "match": "}}}\\d?",
               "name": "comment.line.foldmarker.viml"
             }
           ]
@@ -108,7 +108,7 @@
               "name": "comment.line.foldmarker.viml"
             },
             {
-              "match": "\\}\\}\\}\\d?",
+              "match": "}}}\\d?",
               "name": "comment.line.foldmarker.viml"
             }
           ]
@@ -130,7 +130,7 @@
     "entity": {
       "patterns": [
         {
-          "match": "(([absg]\\:)?[a-zA-Z0-9_#.]{2,})\\b(?=\\()",
+          "match": "(([absg]:)?[a-zA-Z0-9_#.]{2,})\\b(?=\\()",
           "name": "entity.name.function.viml"
         }
       ]
@@ -138,11 +138,11 @@
     "keyword": {
       "patterns": [
         {
-          "match": "\\b(if|while|for|return|au(g|group)|else(if|)?|do|in)\\b",
+          "match": "\\b(if|while|for|return|au(g(?:|roup))|else(if|)?|do|in)\\b",
           "name": "keyword.control.viml"
         },
         {
-          "match": "\\b(end|endif|endfor|endwhile)\\s|$",
+          "match": "\\b(end(?:|if|for|while))\\s|$",
           "name": "keyword.control.viml"
         },
         {
@@ -165,13 +165,13 @@
     "map": {
       "patterns": [
         {
-          "begin": "(\\<)",
+          "begin": "(<)",
           "beginCaptures": {
             "1": {
               "name": "punctuation.definition.map.viml"
             }
           },
-          "end": "(\\>|\\s)",
+          "end": "([>\\s])",
           "endCaptures": {
             "1": {
               "name": "punctuation.definition.map.viml"
@@ -213,11 +213,11 @@
           "name": "keyword.operator.viml"
         },
         {
-          "match": " ([:\\-.]|[&|]{2})( |$)",
+          "match": " ([:\\-.]|[\\&|]{2})( |$)",
           "name": "keyword.operator.viml"
         },
         {
-          "match": "([.]{3})",
+          "match": "(\\.{3})",
           "name": "keyword.operator.viml"
         },
         {
@@ -245,7 +245,7 @@
           "name": "support.type.option.shortname.viml"
         },
         {
-          "match": "\\b(noanti|noantialias|noarab|noarabic|noarshape|noarabicshape|noari|noallowrevins|noakm|noaltkeymap|noacd|noautochdir|noai|noautoindent|noar|noautoread|noaw|noautowrite|noawa|noautowriteall|nobk|nobackup|nobeval|noballooneval|nobevalterm|noballoonevalterm|nobin|nobinary|nobomb|nobri|nobreakindent|nobl|nobuflisted|nocin|nocindent|nocp|nocompatible|nocf|noconfirm|noci|nocopyindent|nocsre|nocscoperelative|nocst|nocscopetag|nocsverb|nocscopeverbose|nocrb|nocursorbind|nocuc|nocursorcolumn|nocul|nocursorline|nodeco|nodelcombine|nodiff|nodg|nodigraph|noed|noedcompatible|noemo|noemoji|noeol|noendofline|noea|noequalalways|noeb|noerrorbells|noek|noesckeys|noet|noexpandtab|noex|noexrc|nofic|nofileignorecase|nofixeol|nofixendofline|nofk|nofkmap|nofen|nofoldenable|nofs|nofsync|nogd|nogdefault|noguipty|nohid|nohidden|nohk|nohkmap|nohkp|nohkmapp|nohls|nohlsearch|noicon|noic|noignorecase|noimc|noimcmdline|noimd|noimdisable|nois|noincsearch|noinf|noinfercase|noim|noinsertmode|nojs|nojoinspaces|nolnr|nolangnoremap|nolrm|nolangremap|nolz|nolazyredraw|nolbr|nolinebreak|nolisp|nolist|nolpl|noloadplugins|nomacatsui|nomagic|noml|nomodeline|noma|nomodifiable|nomod|nomodified|nomore|nomousef|nomousefocus|nomh|nomousehide|nonu|nonumber|noodev|noopendevice|nopaste|nopi|nopreserveindent|nopvw|nopreviewwindow|noprompt|noro|noreadonly|nornu|norelativenumber|nors|norestorescreen|nori|norevins|norl|norightleft|noru|noruler|noscb|noscrollbind|nosecure|nossl|noshellslash|nostmp|noshelltemp|nosr|noshiftround|nosn|noshortname|nosc|noshowcmd|nosft|noshowfulltag|nosm|noshowmatch|nosmd|noshowmode|noscs|nosmartcase|nosi|nosmartindent|nosta|nosmarttab|nospell|nosb|nosplitbelow|nospr|nosplitright|nosol|nostartofline|noswf|noswapfile|notbs|notagbsearch|notr|notagrelative|notgst|notagstack|notbidi|notermbidi|notgc|notermguicolors|noterse|nota|notextauto|notx|notextmode|notop|notildeop|noto|notimeout|notitle|nottimeout|notbi|nottybuiltin|notf|nottyfast|noudf|noundofile|novb|novisualbell|nowarn|nowiv|noweirdinvert|nowic|nowildignorecase|nowmnu|nowildmenu|nowfh|nowinfixheight|nowfw|nowinfixwidth|nowrapscan|nowrap|nows|nowrite|nowa|nowriteany|nowb|nowritebackup)\\b",
+          "match": "\\b(no(?:anti|antialias|arab|arabic|arshape|arabicshape|ari|allowrevins|akm|altkeymap|acd|autochdir|ai|autoindent|ar|autoread|aw|autowrite|awa|autowriteall|bk|backup|beval|ballooneval|bevalterm|balloonevalterm|bin|binary|bomb|bri|breakindent|bl|buflisted|cin|cindent|cp|compatible|cf|confirm|ci|copyindent|csre|cscoperelative|cst|cscopetag|csverb|cscopeverbose|crb|cursorbind|cuc|cursorcolumn|cul|cursorline|deco|delcombine|diff|dg|digraph|ed|edcompatible|emo|emoji|eol|endofline|ea|equalalways|eb|errorbells|ek|esckeys|et|expandtab|ex|exrc|fic|fileignorecase|fixeol|fixendofline|fk|fkmap|fen|foldenable|fs|fsync|gd|gdefault|guipty|hid|hidden|hk|hkmap|hkp|hkmapp|hls|hlsearch|icon|ic|ignorecase|imc|imcmdline|imd|imdisable|is|incsearch|inf|infercase|im|insertmode|js|joinspaces|lnr|langnoremap|lrm|langremap|lz|lazyredraw|lbr|linebreak|lisp|list|lpl|loadplugins|macatsui|magic|ml|modeline|ma|modifiable|mod|modified|more|mousef|mousefocus|mh|mousehide|nu|number|odev|opendevice|paste|pi|preserveindent|pvw|previewwindow|prompt|ro|readonly|rnu|relativenumber|rs|restorescreen|ri|revins|rl|rightleft|ru|ruler|scb|scrollbind|secure|ssl|shellslash|stmp|shelltemp|sr|shiftround|sn|shortname|sc|showcmd|sft|showfulltag|sm|showmatch|smd|showmode|scs|smartcase|si|smartindent|sta|smarttab|spell|sb|splitbelow|spr|splitright|sol|startofline|swf|swapfile|tbs|tagbsearch|tr|tagrelative|tgst|tagstack|tbidi|termbidi|tgc|termguicolors|terse|ta|textauto|tx|textmode|top|tildeop|to|timeout|title|ttimeout|tbi|ttybuiltin|tf|ttyfast|udf|undofile|vb|visualbell|warn|wiv|weirdinvert|wic|wildignorecase|wmnu|wildmenu|wfh|winfixheight|wfw|winfixwidth|wrapscan|wrap|ws|write|wa|writeany|wb|writebackup))\\b",
           "name": "support.type.option.off.viml"
         }
       ]
@@ -257,7 +257,7 @@
           "name": "punctuation.parens.viml"
         },
         {
-          "match": "([,])",
+          "match": "(,)",
           "name": "punctuation.comma.viml"
         }
       ]
@@ -269,11 +269,11 @@
           "name": "storage.viml"
         },
         {
-          "match": "\\b(abort|autocmd)\\b",
+          "match": "\\b(a(?:bort|utocmd))\\b",
           "name": "storage.viml"
         },
         {
-          "match": "\\b(set(l|local)?)\\b",
+          "match": "\\b(set(l(?:|ocal))?)\\b",
           "name": "storage.viml"
         },
         {
@@ -285,7 +285,7 @@
           "name": "storage.viml"
         },
         {
-          "match": "\\b(Plug|Plugin)\\b",
+          "match": "\\b(Plug(?:|in))\\b",
           "name": "storage.plugin.viml"
         }
       ]
@@ -323,7 +323,7 @@
           "name": "support.function.viml"
         },
         {
-          "match": "(v\\:(beval_col|beval_bufnr|beval_lnum|beval_text|beval_winnr|char|charconvert_from|charconvert_to|cmdarg|cmdbang|count|count1|ctype|dying|errmsg|exception|fcs_reason|fcs_choice|fname_in|fname_out|fname_new|fname_diff|folddashes|foldlevel|foldend|foldstart|insertmode|key|lang|lc_time|lnum|mouse_win|mouse_lnum|mouse_col|oldfiles|operator|prevcount|profiling|progname|register|scrollstart|servername|searchforward|shell_error|statusmsg|swapname|swapchoice|swapcommand|termresponse|this_session|throwpoint|val|version|warningmsg|windowid))",
+          "match": "(v:(beval_col|beval_bufnr|beval_lnum|beval_text|beval_winnr|char|charconvert_from|charconvert_to|cmdarg|cmdbang|count|count1|ctype|dying|errmsg|exception|fcs_reason|fcs_choice|fname_in|fname_out|fname_new|fname_diff|folddashes|foldlevel|foldend|foldstart|insertmode|key|lang|lc_time|lnum|mouse_win|mouse_lnum|mouse_col|oldfiles|operator|prevcount|profiling|progname|register|scrollstart|servername|searchforward|shell_error|statusmsg|swapname|swapchoice|swapcommand|termresponse|this_session|throwpoint|val|version|warningmsg|windowid))",
           "name": "support.type.builtin.vim-variable.viml"
         },
         {
@@ -335,7 +335,7 @@
           "name": "support.type.builtin.viml"
         },
         {
-          "match": "\\<args\\>",
+          "match": "<args>",
           "name": "support.variable.args.viml"
         },
         {
@@ -367,7 +367,7 @@
           "name": "keyword.other.syntax.viml"
         },
         {
-          "match": "\\b(add|containedin|contains|matchgroup|nextgroup)\\=",
+          "match": "\\b(add|containedin|contains|matchgroup|nextgroup)=",
           "name": "keyword.other.syntax.viml"
         },
         {
@@ -379,7 +379,7 @@
               "name": "string.regexp.viml"
             }
           },
-          "match": "((start|skip|end)\\=)(\\+\\S+\\+\\s)?"
+          "match": "((start|skip|end)=)(\\+\\S+\\+\\s)?"
         },
         {
           "captures": {
@@ -396,7 +396,7 @@
               "name": "storage.modifier.syntax.viml"
             }
           },
-          "match": "(syn|syntax)\\s+(cluster|keyword|match|region)(\\s+\\w+\\s+)(contained)?",
+          "match": "(syn(?:|tax))\\s+(cluster|keyword|match|region)(\\s+\\w+\\s+)(contained)?",
           "patterns": [
           ]
         },
@@ -418,7 +418,7 @@
               "name": "variable.other.viml"
             }
           },
-          "match": "(hi|highlight)(?:\\s+)(def|default)(?:\\s+)(link)(?:\\s+)(\\w+)(?:\\s+)(\\w+)",
+          "match": "(hi(?:|ghlight))\\s+(def(?:|ault))\\s+(link)\\s+(\\w+)\\s+(\\w+)",
           "patterns": [
           ]
         }

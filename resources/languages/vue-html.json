@@ -241,7 +241,7 @@
       ]
     },
     {
-      "begin": "(</?)((?i:a|abbr|acronym|area|b|base|basefont|bdo|big|br|button|caption|cite|code|col|colgroup|del|dfn|em|font|head|html|i|img|input|ins|isindex|kbd|label|legend|li|link|map|meta|noscript|optgroup|option|param|q|s|samp|script|select|small|span|strike|strong|style|sub|sup|table|tbody|td|textarea|tfoot|th|thead|title|tr|tt|u|var)(?!-)\\b)",
+      "begin": "(</?)((?i:a|abbr|acronym|area|b|base|basefont|bdo|big|br|button|caption|cite|code|col|colgroup|del|dfn|em|font|head|html|i|img|input|ins|isindex|kbd|label|legend|li|link|map|meta|noscript|optgroup|option|param|[qs]|samp|script|select|small|span|strike|strong|style|sub|sup|table|tbody|td|textarea|tfoot|th|thead|title|tr|tt|u|var)(?!-)\\b)",
       "beginCaptures": {
         "1": {
           "name": "punctuation.definition.tag.begin.html"
@@ -310,7 +310,7 @@
               "name": "punctuation.definition.entity.html"
             }
           },
-          "match": "(&)([a-zA-Z0-9]+|#[0-9]+|#x[0-9a-fA-F]+)(;)",
+          "match": "(&)([a-zA-Z0-9]+|#[0-9]+|#x\\h+)(;)",
           "name": "constant.character.entity.html"
         },
         {
@@ -379,7 +379,7 @@
           "name": "punctuation.separator.key-value.html"
         }
       },
-      "end": "(?!\\G)(?<='|\"|[^\\s<>/])",
+      "end": "(?!\\G)(?<=['\"[^\\s<>/]])",
       "name": "meta.attribute-with-value.id.html",
       "patterns": [
         {
@@ -468,7 +468,7 @@
       "name": "string.unquoted.html"
     },
     "vue-directives": {
-      "begin": "(?:\\b(v-)|(:|@|#))([a-zA-Z0-9\\-_]+)(?:\\:([a-zA-Z\\-_]+))?(?:\\.([a-zA-Z\\-_]+))*\\s*(=)",
+      "begin": "(?:\\b(v-)|([:@#]))([a-zA-Z0-9\\-_]+)(?::([a-zA-Z\\-_]+))?(?:\\.([a-zA-Z\\-_]+))*\\s*(=)",
       "captures": {
         "1": {
           "name": "entity.other.attribute-name.html"
@@ -489,7 +489,7 @@
           "name": "punctuation.separator.key-value.html"
         }
       },
-      "end": "(?<='|\")|(?=[\\s<>`])",
+      "end": "(?<=['\"])|(?=[\\s<>`])",
       "name": "meta.directive.vue",
       "patterns": [
         {

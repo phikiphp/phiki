@@ -4,7 +4,7 @@
     "st"
   ],
   "foldingStartMarker": "\\[",
-  "foldingStopMarker": "^\\s*\\]|^\\s\\]",
+  "foldingStopMarker": "^(?:\\s*]|\\s])",
   "name": "smalltalk",
   "patterns": [
     {
@@ -28,7 +28,6 @@
       "name": "keyword.operator.assignment.smalltalk"
     },
     {
-      "comment": "Parse the variable declaration like: |a b c|",
       "match": "/^:\\w*\\s*\\|/",
       "name": "constant.other.block.smalltalk"
     },
@@ -62,18 +61,17 @@
           ]
         }
       },
-      "comment": "Parse the blocks like: [ :a :b | ...... ]",
       "match": "\\[((\\s+|:\\w+)*)\\|"
     },
     {
       "include": "#numeric"
     },
     {
-      "match": "<(?!<|=)|>(?!<|=|>)|<=|>=|=|==|~=|~~|>>|\\^",
+      "match": "<(?![<=])|>(?![<=>])|<=|>=|=|==|~=|~~|>>|\\^",
       "name": "keyword.operator.comparison.smalltalk"
     },
     {
-      "match": "(\\*|\\+|\\-|/|\\\\)",
+      "match": "([*+\\-/\\\\])",
       "name": "keyword.operator.arithmetic.smalltalk"
     },
     {
@@ -81,12 +79,10 @@
       "name": "keyword.operator.logical.smalltalk"
     },
     {
-      "comment": "Fake reserved word -> main Smalltalk messages",
       "match": "(?<!\\.)\\b(ensure|resume|retry|signal)\\b(?![?!])",
       "name": "keyword.control.smalltalk"
     },
     {
-      "comment": "Fake conditionals. Smalltalk Methods.",
       "match": "ifCurtailed:|ifTrue:|ifFalse:|whileFalse:|whileTrue:",
       "name": "keyword.control.conditionals.smalltalk"
     },
@@ -134,8 +130,7 @@
           "name": "punctuation.definition.constant.smalltalk"
         }
       },
-      "comment": "messages/methods",
-      "match": "(?>[a-zA-Z_]\\w*(?>[?!])?)(:)(?!:)",
+      "match": "(?>[a-zA-Z_]\\w*[?!]?)(:)(?!:)",
       "name": "constant.other.messages.smalltalk"
     },
     {
@@ -144,7 +139,6 @@
           "name": "punctuation.definition.constant.smalltalk"
         }
       },
-      "comment": "symbols",
       "match": "(#)[a-zA-Z_][a-zA-Z0-9_:]*",
       "name": "constant.other.symbol.smalltalk"
     },
@@ -155,7 +149,7 @@
           "name": "punctuation.definition.constant.begin.smalltalk"
         }
       ],
-      "end": "\\]",
+      "end": "]",
       "endCaptures": [
         {
           "name": "punctuation.definition.constant.end.smalltalk"
@@ -180,7 +174,6 @@
           "name": "punctuation.definition.constant.begin.smalltalk"
         }
       ],
-      "comment": "Array Constructor",
       "end": "\\)",
       "endCaptures": [
         {

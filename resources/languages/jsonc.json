@@ -14,7 +14,7 @@
           "name": "punctuation.definition.array.begin.json.comments"
         }
       },
-      "end": "\\]",
+      "end": "]",
       "endCaptures": {
         "0": {
           "name": "punctuation.definition.array.end.json.comments"
@@ -83,7 +83,7 @@
           "name": "punctuation.definition.dictionary.begin.json.comments"
         }
       },
-      "end": "\\}",
+      "end": "}",
       "endCaptures": {
         "0": {
           "name": "punctuation.definition.dictionary.end.json.comments"
@@ -92,7 +92,6 @@
       "name": "meta.structure.dictionary.json.comments",
       "patterns": [
         {
-          "comment": "the JSON object key",
           "include": "#objectkey"
         },
         {
@@ -105,7 +104,7 @@
               "name": "punctuation.separator.dictionary.key-value.json.comments"
             }
           },
-          "end": "(,)|(?=\\})",
+          "end": "(,)|(?=})",
           "endCaptures": {
             "1": {
               "name": "punctuation.separator.dictionary.pair.json.comments"
@@ -114,7 +113,6 @@
           "name": "meta.structure.dictionary.value.json.comments",
           "patterns": [
             {
-              "comment": "the JSON object value",
               "include": "#value"
             },
             {
@@ -124,7 +122,7 @@
           ]
         },
         {
-          "match": "[^\\s\\}]",
+          "match": "[^\\s}]",
           "name": "invalid.illegal.expected-dictionary-separator.json.comments"
         }
       ]
@@ -172,7 +170,7 @@
     "stringcontent": {
       "patterns": [
         {
-          "match": "\\\\(?:[\"\\\\\\/bfnrt]|u[0-9a-fA-F]{4})",
+          "match": "\\\\(?:[\"\\\\/bfnrt]|u\\h{4})",
           "name": "constant.character.escape.json.comments"
         },
         {

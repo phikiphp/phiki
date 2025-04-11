@@ -40,7 +40,6 @@
       "include": "#char"
     },
     {
-      "comment": "Floats are always decimal",
       "match": "\\b([0-9]+\\.[0-9]+([eE][+-]?[0-9]+)?|[0-9]+[eE][+-]?[0-9]+)\\b",
       "name": "constant.numeric.float.elm"
     },
@@ -49,7 +48,7 @@
       "name": "constant.numeric.elm"
     },
     {
-      "match": "\\b(0x[0-9a-fA-F]+)\\b",
+      "match": "\\b(0x\\h+)\\b",
       "name": "constant.numeric.elm"
     },
     {
@@ -94,7 +93,7 @@
           "name": "keyword.operator.assignment.elm"
         }
       },
-      "match": "(\\|)\\s+([a-z][a-zA-Z0-9_]*)\\s+(\\=)",
+      "match": "(\\|)\\s+([a-z][a-zA-Z0-9_]*)\\s+(=)",
       "name": "meta.record.field.update.elm"
     },
     {
@@ -121,7 +120,7 @@
           "name": "keyword.operator.assignment.elm"
         }
       },
-      "match": "(\\{)\\s+([a-z][a-zA-Z0-9_]*)\\s+(\\=)",
+      "match": "(\\{)\\s+([a-z][a-zA-Z0-9_]*)\\s+(=)",
       "name": "meta.record.field.elm"
     },
     {
@@ -136,11 +135,11 @@
           "name": "keyword.operator.assignment.elm"
         }
       },
-      "match": "(,)\\s+([a-z][a-zA-Z0-9_]*)\\s+(\\=)",
+      "match": "(,)\\s+([a-z][a-zA-Z0-9_]*)\\s+(=)",
       "name": "meta.record.field.elm"
     },
     {
-      "match": "(\\}|\\{)",
+      "match": "([}{])",
       "name": "punctuation.bracket.elm"
     },
     {
@@ -160,7 +159,7 @@
       "include": "#infix_op"
     },
     {
-      "match": "(\\=|\\:|\\||\\\\)",
+      "match": "([=:|\\\\])",
       "name": "keyword.other.elm"
     },
     {
@@ -196,7 +195,7 @@
           "name": "punctuation.definition.comment.elm"
         }
       },
-      "end": "-\\}",
+      "end": "-}",
       "name": "comment.block.elm",
       "patterns": [
         {
@@ -220,11 +219,11 @@
       "name": "string.quoted.single.elm",
       "patterns": [
         {
-          "match": "\\\\(NUL|SOH|STX|ETX|EOT|ENQ|ACK|BEL|BS|HT|LF|VT|FF|CR|SO|SI|DLE|DC1|DC2|DC3|DC4|NAK|SYN|ETB|CAN|EM|SUB|ESC|FS|GS|RS|US|SP|DEL|[abfnrtv\\\\\\\"'\\&]|x[0-9a-fA-F]{1,5})",
+          "match": "\\\\(NUL|SOH|STX|ETX|EOT|ENQ|ACK|BEL|BS|HT|LF|VT|FF|CR|SO|SI|DLE|DC1|DC2|DC3|DC4|NAK|SYN|ETB|CAN|EM|SUB|ESC|FS|GS|RS|US|SP|DEL|[abfnrtv\\\\\"'\\&]|x\\h{1,5})",
           "name": "constant.character.escape.elm"
         },
         {
-          "match": "\\^[A-Z@\\[\\]\\\\\\^_]",
+          "match": "\\^[A-Z@\\[\\]\\\\^_]",
           "name": "constant.character.escape.control.elm"
         }
       ]
@@ -271,7 +270,7 @@
           "name": "entity.glsl.bracket.elm"
         }
       },
-      "end": "(\\|\\])",
+      "end": "(\\|])",
       "endCaptures": {
         "1": {
           "name": "entity.glsl.bracket.elm"
@@ -314,7 +313,7 @@
       ]
     },
     "infix_op": {
-      "match": "(</>|<\\?>|<\\||<=|\\|\\||&&|>=|\\|>|\\|=|\\|\\.|\\+\\+|::|/=|==|//|>>|<<|<|>|\\^|\\+|-|/|\\*)",
+      "match": "(</>|<\\?>|<\\||<=|\\|\\||&&|>=|\\|>|\\|=|\\|\\.|\\+\\+|::|/=|==|//|>>|<<|[<>^+\\-/*])",
       "name": "keyword.operator.elm"
     },
     "module": {
@@ -397,7 +396,6 @@
           "include": "#infix_op"
         },
         {
-          "comment": "So named because I don't know what to call this.",
           "match": "\\(.*?\\)",
           "name": "meta.other.unknown.elm"
         }
@@ -420,11 +418,11 @@
       "name": "support.module.elm"
     },
     "parens": {
-      "match": "(\\(|\\))",
+      "match": "([()])",
       "name": "punctuation.parens.elm"
     },
     "period": {
-      "match": "[.]",
+      "match": "\\.",
       "name": "keyword.other.period.elm"
     },
     "record-accessor": {
@@ -474,11 +472,11 @@
       "name": "string.quoted.double.elm",
       "patterns": [
         {
-          "match": "\\\\(NUL|SOH|STX|ETX|EOT|ENQ|ACK|BEL|BS|HT|LF|VT|FF|CR|SO|SI|DLE|DC1|DC2|DC3|DC4|NAK|SYN|ETB|CAN|EM|SUB|ESC|FS|GS|RS|US|SP|DEL|[abfnrtv\\\\\\\"'\\&]|x[0-9a-fA-F]{1,5})",
+          "match": "\\\\(NUL|SOH|STX|ETX|EOT|ENQ|ACK|BEL|BS|HT|LF|VT|FF|CR|SO|SI|DLE|DC1|DC2|DC3|DC4|NAK|SYN|ETB|CAN|EM|SUB|ESC|FS|GS|RS|US|SP|DEL|[abfnrtv\\\\\"'\\&]|x\\h{1,5})",
           "name": "constant.character.escape.elm"
         },
         {
-          "match": "\\^[A-Z@\\[\\]\\\\\\^_]",
+          "match": "\\^[A-Z@\\[\\]\\\\^_]",
           "name": "constant.character.escape.control.elm"
         }
       ]
@@ -499,11 +497,11 @@
       "name": "string.quoted.triple.elm",
       "patterns": [
         {
-          "match": "\\\\(NUL|SOH|STX|ETX|EOT|ENQ|ACK|BEL|BS|HT|LF|VT|FF|CR|SO|SI|DLE|DC1|DC2|DC3|DC4|NAK|SYN|ETB|CAN|EM|SUB|ESC|FS|GS|RS|US|SP|DEL|[abfnrtv\\\\\\\"'\\&]|x[0-9a-fA-F]{1,5})",
+          "match": "\\\\(NUL|SOH|STX|ETX|EOT|ENQ|ACK|BEL|BS|HT|LF|VT|FF|CR|SO|SI|DLE|DC1|DC2|DC3|DC4|NAK|SYN|ETB|CAN|EM|SUB|ESC|FS|GS|RS|US|SP|DEL|[abfnrtv\\\\\"'\\&]|x\\h{1,5})",
           "name": "constant.character.escape.elm"
         },
         {
-          "match": "\\^[A-Z@\\[\\]\\\\\\^_]",
+          "match": "\\^[A-Z@\\[\\]\\\\^_]",
           "name": "constant.character.escape.control.elm"
         }
       ]
@@ -533,7 +531,7 @@
           "name": "punctuation.spaces.elm"
         },
         {
-          "match": "\\=",
+          "match": "=",
           "name": "keyword.operator.assignment.elm"
         },
         {
@@ -590,15 +588,15 @@
               "name": "constant.type-constructor.elm"
             }
           },
-          "match": "(\\=|\\|)\\s+([A-Z][a-zA-Z0-9_]*)\\b",
+          "match": "([=|])\\s+([A-Z][a-zA-Z0-9_]*)\\b",
           "name": "meta.record.field.elm"
         },
         {
-          "match": "\\=",
+          "match": "=",
           "name": "keyword.operator.assignment.elm"
         },
         {
-          "match": "\\-\\>",
+          "match": "->",
           "name": "keyword.operator.arrow.elm"
         },
         {
@@ -627,7 +625,7 @@
           "name": "punctuation.section.braces.begin"
         }
       },
-      "end": "(\\})",
+      "end": "(})",
       "endCaptures": {
         "1": {
           "name": "punctuation.section.braces.end"
@@ -652,11 +650,11 @@
               "name": "keyword.other.elm"
             }
           },
-          "match": "([a-z][a-zA-Z0-9_]*)\\s+(\\:)",
+          "match": "([a-z][a-zA-Z0-9_]*)\\s+(:)",
           "name": "meta.record.field.elm"
         },
         {
-          "match": "\\,",
+          "match": ",",
           "name": "punctuation.separator.comma.elm"
         },
         {
@@ -679,7 +677,7 @@
       ]
     },
     "type-signature": {
-      "begin": "^(port\\s+)?([a-z_][a-zA-Z0-9_']*)\\s+(\\:)",
+      "begin": "^(port\\s+)?([a-z_][a-zA-Z0-9_']*)\\s+(:)",
       "beginCaptures": {
         "1": {
           "name": "keyword.other.port.elm"

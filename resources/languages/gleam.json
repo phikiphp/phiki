@@ -1,5 +1,8 @@
 {
   "displayName": "Gleam",
+  "fileTypes": [
+    "gleam"
+  ],
   "name": "gleam",
   "patterns": [
     {
@@ -51,10 +54,7 @@
           "include": "#decimal_number"
         },
         {
-          "include": "#boolean"
-        },
-        {
-          "match": "[[:upper:]][[:alnum:]]*",
+          "match": "\\p{upper}\\p{alnum}*",
           "name": "entity.name.type.gleam"
         }
       ]
@@ -66,13 +66,13 @@
       ]
     },
     "discards": {
-      "match": "\\b_(?:[[:word:]]+)?\\b",
+      "match": "\\b_\\p{word}+{0,1}\\b",
       "name": "comment.unused.gleam"
     },
     "entity": {
       "patterns": [
         {
-          "begin": "\\b([[:lower:]][[:word:]]*)\\b[[:space:]]*\\(",
+          "begin": "\\b(\\p{lower}\\p{word}*)\\b\\s*\\(",
           "captures": {
             "1": {
               "name": "entity.name.function.gleam"
@@ -86,11 +86,11 @@
           ]
         },
         {
-          "match": "\\b([[:lower:]][[:word:]]*):\\s",
+          "match": "\\b(\\p{lower}\\p{word}*):\\s",
           "name": "variable.parameter.gleam"
         },
         {
-          "match": "\\b([[:lower:]][[:word:]]*):",
+          "match": "\\b(\\p{lower}\\p{word}*):",
           "name": "entity.name.namespace.gleam"
         }
       ]
@@ -104,11 +104,11 @@
     "keywords": {
       "patterns": [
         {
-          "match": "\\b(as|use|case|if|fn|import|let|assert|pub|type|opaque|const|todo|panic|else|try)\\b",
+          "match": "\\b(as|use|case|if|fn|import|let|assert|pub|type|opaque|const|todo|panic|else|try|echo)\\b",
           "name": "keyword.control.gleam"
         },
         {
-          "match": "(<\\-|\\->)",
+          "match": "(<-|->)",
           "name": "keyword.operator.arrow.gleam"
         },
         {
@@ -124,11 +124,11 @@
           "name": "keyword.operator.comparison.gleam"
         },
         {
-          "match": "(<=\\.|>=\\.|<\\.|>\\.)",
+          "match": "([<>](?:=\\.|\\.))",
           "name": "keyword.operator.comparison.float.gleam"
         },
         {
-          "match": "(<=|>=|<|>)",
+          "match": "(<=|>=|[<>])",
           "name": "keyword.operator.comparison.int.gleam"
         },
         {
@@ -144,11 +144,11 @@
           "name": "keyword.operator.other.gleam"
         },
         {
-          "match": "(\\+\\.|\\-\\.|/\\.|\\*\\.)",
+          "match": "(\\+\\.|-\\.|/\\.|\\*\\.)",
           "name": "keyword.operator.arithmetic.float.gleam"
         },
         {
-          "match": "(\\+|\\-|/|\\*|%)",
+          "match": "([+\\-/*%])",
           "name": "keyword.operator.arithmetic.int.gleam"
         },
         {

@@ -8,7 +8,7 @@
   ],
   "repository": {
     "enum-def": {
-      "begin": "^\\s*(enum)\\s+(\\w+)\\s*{",
+      "begin": "^\\s*(enum)\\s+(\\w+)\\s*\\{",
       "beginCaptures": {
         "1": {
           "name": "keyword.nextflow"
@@ -30,7 +30,7 @@
     "enum-values": {
       "patterns": [
         {
-          "begin": "(?<=;|^)\\s*\\b([A-Z0-9_]+)(?=\\s*(?:,|}|\\(|$))",
+          "begin": "(?<=;|^)\\s*\\b([A-Z0-9_]+)(?=\\s*(?:[,}(]|$))",
           "beginCaptures": {
             "1": {
               "name": "constant.enum.name.groovy"
@@ -62,7 +62,7 @@
           "match": "\\s"
         },
         {
-          "begin": "(?=(?:\\w|<)[^\\(]*\\s+(?:[\\w$]|<)+\\s*\\()",
+          "begin": "(?=[\\w<][^(]*\\s+[\\w$<]+\\s*\\()",
           "end": "(?=[\\w$]+\\s*\\()",
           "name": "meta.method.return-type.java",
           "patterns": [
@@ -88,7 +88,7 @@
               "patterns": [
                 {
                   "begin": "(?=[^,)])",
-                  "end": "(?=,|\\))",
+                  "end": "(?=[,)])",
                   "name": "meta.method.parameter.groovy",
                   "patterns": [
                     {
@@ -102,7 +102,7 @@
                           "name": "keyword.operator.assignment.groovy"
                         }
                       },
-                      "end": "(?=,|\\))",
+                      "end": "(?=[,)])",
                       "name": "meta.parameter.default.groovy",
                       "patterns": [
                         {
@@ -141,7 +141,7 @@
           ]
         },
         {
-          "begin": "{",
+          "begin": "\\{",
           "end": "(?=})",
           "name": "meta.method.body.java",
           "patterns": [
@@ -154,7 +154,7 @@
     },
     "function-def": {
       "applyEndPatternLast": 1,
-      "begin": "(?:(?<=;|^|{)(?=\\s*(?:(?:def)|(?:(?:(?:boolean|byte|char|short|int|float|long|double)|(?:@?(?:[a-zA-Z]\\w*\\.)*[A-Z]+\\w*))[\\[\\]]*(?:<.*>)?)n)\\s+([^=]+\\s+)?\\w+\\s*\\())",
+      "begin": "(?<=;|^|\\{)(?=\\s*(?:def|(?:(?:boolean|byte|char|short|int|float|long|double)|@?(?:[a-zA-Z]\\w*\\.)*[A-Z]+\\w*)[\\[\\]]*(?:<.*>)?n)\\s+([^=]+\\s+)?\\w+\\s*\\()",
       "end": "}|(?=[^{])",
       "name": "meta.definition.method.groovy",
       "patterns": [
@@ -201,7 +201,7 @@
       ]
     },
     "output-def": {
-      "begin": "^\\s*(output)\\s*{",
+      "begin": "^\\s*(output)\\s*\\{",
       "beginCaptures": {
         "1": {
           "name": "keyword.nextflow"
@@ -222,7 +222,7 @@
           "name": "constant.block.nextflow"
         },
         {
-          "match": "\\b(val|env|file|path|stdin|stdout|tuple)(\\(|\\s)",
+          "match": "\\b(val|env|file|path|stdin|stdout|tuple)([(\\s])",
           "name": "entity.name.function.nextflow"
         },
         {
@@ -231,7 +231,7 @@
       ]
     },
     "process-def": {
-      "begin": "^\\s*(process)\\s+(\\w+)\\s*{",
+      "begin": "^\\s*(process)\\s+(\\w+)\\s*\\{",
       "beginCaptures": {
         "1": {
           "name": "keyword.nextflow"
@@ -260,7 +260,7 @@
       ]
     },
     "workflow-def": {
-      "begin": "^\\s*(workflow)(?:\\s+(\\w+))?\\s*{",
+      "begin": "^\\s*(workflow)(?:\\s+(\\w+))?\\s*\\{",
       "beginCaptures": {
         "1": {
           "name": "keyword.nextflow"

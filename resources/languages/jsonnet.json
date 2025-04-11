@@ -13,39 +13,39 @@
     "builtin-functions": {
       "patterns": [
         {
-          "match": "\\bstd[.](acos|asin|atan|ceil|char|codepoint|cos|exp|exponent)\\b",
+          "match": "\\bstd\\.(acos|asin|atan|ceil|char|codepoint|cos|exp|exponent)\\b",
           "name": "support.function.jsonnet"
         },
         {
-          "match": "\\bstd[.](filter|floor|force|length|log|makeArray|mantissa)\\b",
+          "match": "\\bstd\\.(filter|floor|force|length|log|makeArray|mantissa)\\b",
           "name": "support.function.jsonnet"
         },
         {
-          "match": "\\bstd[.](objectFields|objectHas|pow|sin|sqrt|tan|type|thisFile)\\b",
+          "match": "\\bstd\\.(objectFields|objectHas|pow|sin|sqrt|tan|type|thisFile)\\b",
           "name": "support.function.jsonnet"
         },
         {
-          "match": "\\bstd[.](acos|asin|atan|ceil|char|codepoint|cos|exp|exponent)\\b",
+          "match": "\\bstd\\.(acos|asin|atan|ceil|char|codepoint|cos|exp|exponent)\\b",
           "name": "support.function.jsonnet"
         },
         {
-          "match": "\\bstd[.](abs|assertEqual|escapeString(Bash|Dollars|Json|Python))\\b",
+          "match": "\\bstd\\.(abs|assertEqual|escapeString(Bash|Dollars|Json|Python))\\b",
           "name": "support.function.jsonnet"
         },
         {
-          "match": "\\bstd[.](filterMap|flattenArrays|foldl|foldr|format|join)\\b",
+          "match": "\\bstd\\.(filterMap|flattenArrays|foldl|foldr|format|join)\\b",
           "name": "support.function.jsonnet"
         },
         {
-          "match": "\\bstd[.](lines|manifest(Ini|Python(Vars)?)|map|max|min|mod)\\b",
+          "match": "\\bstd\\.(lines|manifest(Ini|Python(Vars)?)|map|max|min|mod)\\b",
           "name": "support.function.jsonnet"
         },
         {
-          "match": "\\bstd[.](set|set(Diff|Inter|Member|Union)|sort)\\b",
+          "match": "\\bstd\\.(s(?:et|et(Diff|Inter|Member|Union)|ort))\\b",
           "name": "support.function.jsonnet"
         },
         {
-          "match": "\\bstd[.](range|split|stringChars|substr|toString|uniq)\\b",
+          "match": "\\bstd\\.(range|split|stringChars|substr|toString|uniq)\\b",
           "name": "support.function.jsonnet"
         }
       ]
@@ -73,7 +73,7 @@
       "name": "string.quoted.double.jsonnet",
       "patterns": [
         {
-          "match": "\\\\([\"\\\\\\/bfnrt]|(u[0-9a-fA-F]{4}))",
+          "match": "\\\\([\"\\\\/bfnrt]|(u\\h{4}))",
           "name": "constant.character.escape.jsonnet"
         },
         {
@@ -129,7 +129,7 @@
     "keywords": {
       "patterns": [
         {
-          "match": "[!:~\\+\\-&\\|\\^=<>\\*\\/%]",
+          "match": "[!:~+\\-\\&|^=<>*/%]",
           "name": "keyword.operator.jsonnet"
         },
         {
@@ -173,11 +173,11 @@
           "name": "constant.numeric.jsonnet"
         },
         {
-          "match": "\\b\\d+[.]\\d*([Ee][+-]?\\d+)?\\b",
+          "match": "\\b\\d+\\.\\d*([Ee][+-]?\\d+)?\\b",
           "name": "constant.numeric.jsonnet"
         },
         {
-          "match": "\\b[.]\\d+([Ee][+-]?\\d+)?\\b",
+          "match": "\\b\\.\\d+([Ee][+-]?\\d+)?\\b",
           "name": "constant.numeric.jsonnet"
         }
       ]
@@ -188,7 +188,7 @@
       "name": "string.quoted.double.jsonnet",
       "patterns": [
         {
-          "match": "\\\\(['\\\\\\/bfnrt]|(u[0-9a-fA-F]{4}))",
+          "match": "\\\\(['\\\\/bfnrt]|(u\\h{4}))",
           "name": "constant.character.escape.jsonnet"
         },
         {

@@ -45,7 +45,7 @@
           "name": "punctuation.bracket.gdshader"
         }
       },
-      "end": "\\]",
+      "end": "]",
       "name": "meta.array-size.gdshader",
       "patterns": [
         {
@@ -110,7 +110,7 @@
       "name": "constant.language.float.gdshader"
     },
     "constructor": {
-      "match": "\\b[a-zA-Z_]\\w*(?=\\s*\\[\\s*\\w*\\s*\\]\\s*[(])|\\b[A-Z]\\w*(?=\\s*[(])",
+      "match": "\\b(?:[a-zA-Z_]\\w*(?=\\s*\\[\\s*\\w*\\s*]\\s*\\()|[A-Z]\\w*(?=\\s*\\())",
       "name": "entity.name.type.constructor.gdshader"
     },
     "controlKeyword": {
@@ -235,14 +235,14 @@
           "name": "entity.name.variable.field.gdshader"
         }
       },
-      "match": "([.])\\s*([a-zA-Z_]\\w*)\\b(?!\\s*\\()"
+      "match": "(\\.)\\s*([a-zA-Z_]\\w*)\\b(?!\\s*\\()"
     },
     "identifierFunction": {
-      "match": "\\b[a-zA-Z_]\\w*(?=(?:\\s|/\\*(?:\\*(?!/)|[^*])*\\*/)*[(])",
+      "match": "\\b[a-zA-Z_]\\w*(?=(?:\\s|/\\*(?:\\*(?!/)|[^*])*\\*/)*\\()",
       "name": "entity.name.function.gdshader"
     },
     "identifierType": {
-      "match": "\\b[a-zA-Z_]\\w*(?=(?:\\s*\\[\\s*\\w*\\s*\\])?\\s+[a-zA-Z_]\\w*\\b)",
+      "match": "\\b[a-zA-Z_]\\w*(?=(?:\\s*\\[\\s*\\w*\\s*])?\\s+[a-zA-Z_]\\w*\\b)",
       "name": "entity.name.type.gdshader"
     },
     "identifierVariable": {
@@ -275,7 +275,7 @@
       ]
     },
     "languageVariable": {
-      "match": "\\b(?:[A-Z][A-Z_0-9]*)\\b",
+      "match": "\\b[A-Z][A-Z_0-9]*\\b",
       "name": "variable.language.gdshader"
     },
     "literalBool": {
@@ -283,11 +283,11 @@
       "name": "constant.language.boolean.gdshader"
     },
     "literalFloat": {
-      "match": "\\b(?:\\d+[eE][-+]?\\d+|(?:\\d*[.]\\d+|\\d+[.])(?:[eE][-+]?\\d+)?)[fF]?",
+      "match": "\\b(?:\\d+[eE][-+]?\\d+|(?:\\d*\\.\\d+|\\d+\\.)(?:[eE][-+]?\\d+)?)[fF]?",
       "name": "constant.numeric.float.gdshader"
     },
     "literalInt": {
-      "match": "\\b(?:0[xX][0-9A-Fa-f]+|\\d+[uU]?)\\b",
+      "match": "\\b(?:0[xX]\\h+|\\d+[uU]?)\\b",
       "name": "constant.numeric.integer.gdshader"
     },
     "modifierKeyword": {
@@ -295,7 +295,7 @@
       "name": "storage.modifier.gdshader"
     },
     "operator": {
-      "match": "\\<\\<\\=?|\\>\\>\\=?|[-+*/&|<>=!]\\=|\\&\\&|[|][|]|[-+~!*/%<>&^|=]",
+      "match": "<<=?|>>=?|[-+*/\\&|<>=!]=|&&|\\|\\||[-+~!*/%<>\\&^|=]",
       "name": "keyword.operator.gdshader"
     },
     "precisionKeyword": {
@@ -303,34 +303,34 @@
       "name": "storage.type.built-in.primitive.precision.gdshader"
     },
     "processorFunction": {
-      "match": "\\b(?:vertex|fragment|light|start|process|sky|fog)(?=(?:\\s|/\\*(?:\\*(?!/)|[^*])*\\*/)*[(])",
+      "match": "\\b(?:vertex|fragment|light|start|process|sky|fog)(?=(?:\\s|/\\*(?:\\*(?!/)|[^*])*\\*/)*\\()",
       "name": "support.function.gdshader"
     },
     "separator": {
       "patterns": [
         {
-          "match": "[.]",
+          "match": "\\.",
           "name": "punctuation.accessor.gdshader"
         },
         {
           "include": "#separatorComma"
         },
         {
-          "match": "[;]",
+          "match": ";",
           "name": "punctuation.terminator.statement.gdshader"
         },
         {
-          "match": "[:]",
+          "match": ":",
           "name": "keyword.operator.type.annotation.gdshader"
         }
       ]
     },
     "separatorComma": {
-      "match": "[,]",
+      "match": ",",
       "name": "punctuation.separator.comma.gdshader"
     },
     "structDefinition": {
-      "begin": "(?=\\b(?:struct)\\b)",
+      "begin": "(?=\\bstruct\\b)",
       "end": "(?<=;)",
       "patterns": [
         {
@@ -357,7 +357,7 @@
           "name": "punctuation.definition.block.struct.gdshader"
         }
       },
-      "end": "\\}",
+      "end": "}",
       "name": "meta.definition.block.struct.gdshader",
       "patterns": [
         {
@@ -378,7 +378,7 @@
       ]
     },
     "structKeyword": {
-      "match": "\\b(?:struct)\\b",
+      "match": "\\bstruct\\b",
       "name": "keyword.other.struct.gdshader"
     },
     "structName": {
@@ -394,7 +394,7 @@
           "name": "variable.other.property.gdshader"
         }
       },
-      "match": "([.])\\s*([xyzw]{2,4}|[rgba]{2,4}|[stpq]{2,4})\\b"
+      "match": "(\\.)\\s*([xyzw]{2,4}|[rgba]{2,4}|[stpq]{2,4})\\b"
     },
     "typeKeyword": {
       "match": "\\b(?:void|bool|[biu]?vec[234]|u?int|float|mat[234]|[iu]?sampler(?:3D|2D(?:Array)?)|samplerCube)\\b",

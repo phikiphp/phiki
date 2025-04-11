@@ -5,8 +5,8 @@
     "html.twig"
   ],
   "firstLineMatch": "<!(?i:DOCTYPE)|<(?i:html)|<\\?(?i:php)|\\{\\{|\\{%|\\{#",
-  "foldingStartMarker": "(<(?i:body|div|dl|fieldset|form|head|li|ol|script|select|style|table|tbody|tfoot|thead|tr|ul)\\b.*?>|<!--(?!.*--\\s*>)|^<!--\\ \\#tminclude\\ (?>.*?-->)$|\\{%\\s+(autoescape|block|embed|filter|for|if|macro|raw|sandbox|set|spaceless|trans|verbatim))",
-  "foldingStopMarker": "(</(?i:body|div|dl|fieldset|form|head|li|ol|script|select|style|table|tbody|tfoot|thead|tr|ul)>|^(?!.*?<!--).*?--\\s*>|^<!--\\ end\\ tminclude\\ -->$|\\{%\\s+end(autoescape|block|embed|filter|for|if|macro|raw|sandbox|set|spaceless|trans|verbatim))",
+  "foldingStartMarker": "(<(?i:body|div|dl|fieldset|form|head|li|ol|script|select|style|table|tbody|tfoot|thead|tr|ul)\\b.*?>|<!--(?!.*--\\s*>)|^<!-- #tminclude (?>.*?-->)$|\\{%\\s+(autoescape|block|embed|filter|for|if|macro|raw|sandbox|set|spaceless|trans|verbatim))",
+  "foldingStopMarker": "(</(?i:body|div|dl|fieldset|form|head|li|ol|script|select|style|table|tbody|tfoot|thead|tr|ul)>|^(?!.*?<!--).*?--\\s*>|^<!-- end tminclude -->$|\\{%\\s+end(autoescape|block|embed|filter|for|if|macro|raw|sandbox|set|spaceless|trans|verbatim))",
   "name": "twig",
   "patterns": [
     {
@@ -234,9 +234,8 @@
       ]
     },
     {
-      "begin": "(?ix)   # Enable free spacing mode, case insensitive\n                        # Make sure our opening js tag has word boundaries\n                        (?<=\\{\\%\\sjs\\s\\%\\}|\\{\\%\\sincludejs\\s\\%\\})\n                    ",
-      "comment": "Add JS support to set tags that use the pattern \"css\" in their name",
-      "end": "(?ix)(?=\\{\\%\\sendjs\\s\\%\\}|\\{\\%\\sendincludejs\\s\\%\\})",
+      "begin": "(?i)(?<=\\{%\\s(?:js\\s%}|includejs\\s%}))",
+      "end": "(?i)(?=\\{%\\send(?:js\\s%}|includejs\\s%}))",
       "name": "source.js.embedded.twig",
       "patterns": [
         {
@@ -245,9 +244,8 @@
       ]
     },
     {
-      "begin": "(?ix)   # Enable free spacing mode, case insensitive\n                        (?<=\\{\\%\\scss\\s\\%\\}|\\{\\%\\sincludecss\\s\\%\\}|\\{\\%\\sincludehirescss\\s\\%\\})\n                        ",
-      "comment": "Add CSS support to set tags that use the pattern \"css\" in their name",
-      "end": "(?ix)(?=\\{\\%\\sendcss\\s\\%\\}|\\{\\%\\sendincludecss\\s\\%\\}|\\{\\%\\sendincludehirescss\\s\\%\\})",
+      "begin": "(?i)(?<=\\{%\\s(?:css\\s%}|includecss\\s%}|includehirescss\\s%}))",
+      "end": "(?i)(?=\\{%\\send(?:css\\s%}|includecss\\s%}|includehirescss\\s%}))",
       "name": "source.css.embedded.twig",
       "patterns": [
         {
@@ -256,9 +254,8 @@
       ]
     },
     {
-      "begin": "(?ix)   # Enable free spacing mode, case insensitive\n                        (?<=\\{\\%\\sscss\\s\\%\\}|\\{\\%\\sincludescss\\s\\%\\}|\\{\\%\\sincludehiresscss\\s\\%\\})\n                        ",
-      "comment": "Add SCSS support to set tags that use the pattern \"scss\" in their name",
-      "end": "(?ix)(?=\\{\\%\\sendscss\\s\\%\\}|\\{\\%\\sendincludescss\\s\\%\\}|\\{\\%\\sendincludehiresscss\\s\\%\\})",
+      "begin": "(?i)(?<=\\{%\\s(?:scss\\s%}|includescss\\s%}|includehiresscss\\s%}))",
+      "end": "(?i)(?=\\{%\\send(?:scss\\s%}|includescss\\s%}|includehiresscss\\s%}))",
       "name": "source.css.scss.embedded.twig",
       "patterns": [
         {
@@ -308,7 +305,7 @@
       ]
     },
     {
-      "begin": "(</?)((?i:a|abbr|acronym|area|b|base|basefont|bdo|big|br|button|caption|cite|code|col|colgroup|del|dfn|em|font|head|html|i|img|input|ins|isindex|kbd|label|legend|li|link|map|meta|noscript|optgroup|option|param|q|s|samp|script|select|small|span|strike|strong|style|sub|sup|table|tbody|td|textarea|tfoot|th|thead|title|tr|tt|u|var)\\b)",
+      "begin": "(</?)((?i:a|abbr|acronym|area|b|base|basefont|bdo|big|br|button|caption|cite|code|col|colgroup|del|dfn|em|font|head|html|i|img|input|ins|isindex|kbd|label|legend|li|link|map|meta|noscript|optgroup|option|param|[qs]|samp|script|select|small|span|strike|strong|style|sub|sup|table|tbody|td|textarea|tfoot|th|thead|title|tr|tt|u|var)\\b)",
       "beginCaptures": {
         "1": {
           "name": "punctuation.definition.tag.begin.html"
@@ -408,7 +405,7 @@
               "name": "punctuation.definition.entity.html"
             }
           },
-          "match": "(&)([a-zA-Z0-9]+|#[0-9]+|#x[0-9a-fA-F]+)(;)",
+          "match": "(&)([a-zA-Z0-9]+|#[0-9]+|#x\\h+)(;)",
           "name": "constant.character.entity.html"
         },
         {
@@ -427,7 +424,7 @@
       ]
     },
     "python": {
-      "begin": "(?:^\\s*)<\\?python(?!.*\\?>)",
+      "begin": "^\\s*<\\?python(?!.*\\?>)",
       "end": "\\?>(?:\\s*$\\n)?",
       "name": "source.python.embedded.html",
       "patterns": [
@@ -558,7 +555,7 @@
           "name": "punctuation.separator.key-value.html"
         }
       },
-      "end": "(?<='|\")",
+      "end": "(?<=['\"])",
       "name": "meta.attribute-with-value.id.html",
       "patterns": [
         {
@@ -631,13 +628,13 @@
       ]
     },
     "twig-arrays": {
-      "begin": "(?<=[\\s\\(\\{\\[:,])\\[",
+      "begin": "(?<=[\\s({\\[:,])\\[",
       "beginCaptures": {
         "0": {
           "name": "punctuation.section.array.begin.twig"
         }
       },
-      "end": "\\]",
+      "end": "]",
       "endCaptures": {
         "0": {
           "name": "punctuation.section.array.end.twig"
@@ -700,7 +697,7 @@
           "name": "punctuation.definition.comment.begin.twig"
         }
       },
-      "end": "-?#\\}",
+      "end": "-?#}",
       "endCaptures": {
         "0": {
           "name": "punctuation.definition.comment.end.twig"
@@ -711,11 +708,11 @@
     "twig-constants": {
       "patterns": [
         {
-          "match": "(?i)(?<=[\\s\\[\\(\\{:,])(?:true|false|null|none)(?=[\\s\\)\\]\\}\\,])",
+          "match": "(?i)(?<=[\\s\\[({:,])(?:true|false|null|none)(?=[\\s)\\]},])",
           "name": "constant.language.twig"
         },
         {
-          "match": "(?<=[\\s\\[\\(\\{:,]|\\.\\.|\\*\\*)[0-9]+(?:\\.[0-9]+)?(?=[\\s\\)\\]\\}\\,]|\\.\\.|\\*\\*)",
+          "match": "(?<=[\\s\\[({:,]|\\.\\.|\\*\\*)[0-9]+(?:\\.[0-9]+)?(?=[\\s)\\]},]|\\.\\.|\\*\\*)",
           "name": "constant.numeric.twig"
         }
       ]
@@ -726,7 +723,7 @@
           "name": "support.function.twig"
         }
       },
-      "match": "(?<=(?:[a-zA-Z0-9_\\x{7f}-\\x{ff}\\]\\)\\'\\\"]\\|)|\\{%\\sfilter\\s)(abs|capitalize|e(?:scape)?|first|join|(?:json|url)_encode|keys|last|length|lower|nl2br|number_format|raw|reverse|round|sort|striptags|title|trim|upper)(?=[\\s\\|\\]\\}\\):,]|\\.\\.|\\*\\*)"
+      "match": "(?<=[a-zA-Z0-9_\\x7F-ÿ\\])'\"]\\||\\{%\\sfilter\\s)(abs|capitalize|e(?:scape)?|first|join|(?:json|url)_encode|keys|last|length|lower|nl2br|number_format|raw|reverse|round|sort|striptags|title|trim|upper)(?=[\\s|\\]}):,]|\\.\\.|\\*\\*)"
     },
     "twig-filters-ud": {
       "captures": {
@@ -734,10 +731,10 @@
           "name": "meta.function-call.other.twig"
         }
       },
-      "match": "(?<=(?:[a-zA-Z0-9_\\x{7f}-\\x{ff}\\]\\)\\'\\\"]\\|)|\\{%\\sfilter\\s)([a-zA-Z_\\x{7f}-\\x{ff}][a-zA-Z0-9_\\x{7f}-\\x{ff}]*)"
+      "match": "(?<=[a-zA-Z0-9_\\x7F-ÿ\\])'\"]\\||\\{%\\sfilter\\s)([a-zA-Z_\\x7F-ÿ][a-zA-Z0-9_\\x7F-ÿ]*)"
     },
     "twig-filters-warg": {
-      "begin": "(?<=(?:[a-zA-Z0-9_\\x{7f}-\\x{ff}\\]\\)\\'\\\"]\\|)|\\{%\\sfilter\\s)(batch|convert_encoding|date|date_modify|default|e(?:scape)?|format|join|merge|number_format|replace|round|slice|split|trim)(\\()",
+      "begin": "(?<=[a-zA-Z0-9_\\x7F-ÿ\\])'\"]\\||\\{%\\sfilter\\s)(batch|convert_encoding|date|date_modify|default|e(?:scape)?|format|join|merge|number_format|replace|round|slice|split|trim)(\\()",
       "beginCaptures": {
         "1": {
           "name": "support.function.twig"
@@ -799,7 +796,7 @@
       ]
     },
     "twig-filters-warg-ud": {
-      "begin": "(?<=(?:[a-zA-Z0-9_\\x{7f}-\\x{ff}\\]\\)\\'\\\"]\\|)|\\{%\\sfilter\\s)([a-zA-Z_\\x{7f}-\\x{ff}][a-zA-Z0-9_\\x{7f}-\\x{ff}]*)(\\()",
+      "begin": "(?<=[a-zA-Z0-9_\\x7F-ÿ\\])'\"]\\||\\{%\\sfilter\\s)([a-zA-Z_\\x7F-ÿ][a-zA-Z0-9_\\x7F-ÿ]*)(\\()",
       "beginCaptures": {
         "1": {
           "name": "meta.function-call.other.twig"
@@ -866,7 +863,7 @@
       "match": "(?<=is\\s)(defined|empty|even|iterable|odd)"
     },
     "twig-functions-warg": {
-      "begin": "(?<=[\\s\\(\\[\\{:,])(attribute|block|constant|cycle|date|divisible by|dump|include|max|min|parent|random|range|same as|source|template_from_string)(\\()",
+      "begin": "(?<=[\\s(\\[{:,])(attribute|block|constant|cycle|date|divisible by|dump|include|max|min|parent|random|range|same as|source|template_from_string)(\\()",
       "beginCaptures": {
         "1": {
           "name": "support.function.twig"
@@ -922,13 +919,13 @@
       ]
     },
     "twig-hashes": {
-      "begin": "(?<=[\\s\\(\\{\\[:,])\\{",
+      "begin": "(?<=[\\s({\\[:,])\\{",
       "beginCaptures": {
         "0": {
           "name": "punctuation.section.hash.begin.twig"
         }
       },
-      "end": "\\}",
+      "end": "}",
       "endCaptures": {
         "0": {
           "name": "punctuation.section.hash.end.twig"
@@ -993,7 +990,7 @@
       "name": "keyword.control.twig"
     },
     "twig-macros": {
-      "begin": "(?<=[\\s\\(\\[\\{:,])([a-zA-Z_\\x{7f}-\\x{ff}][a-zA-Z0-9_\\x{7f}-\\x{ff}]*)(?:(\\.)([a-zA-Z_\\x{7f}-\\x{ff}][a-zA-Z0-9_\\x{7f}-\\x{ff}]*))?(\\()",
+      "begin": "(?<=[\\s(\\[{:,])([a-zA-Z_\\x7F-ÿ][a-zA-Z0-9_\\x7F-ÿ]*)(?:(\\.)([a-zA-Z_\\x7F-ÿ][a-zA-Z0-9_\\x7F-ÿ]*))?(\\()",
       "beginCaptures": {
         "1": {
           "name": "meta.function-call.twig"
@@ -1066,7 +1063,7 @@
           "name": "variable.other.twig"
         }
       },
-      "match": "(?<=[\\s\\{\\[\\(:,])([a-zA-Z_\\x{7f}-\\x{ff}][a-zA-Z0-9_\\x{7f}-\\x{ff}]*)(?=[\\s\\}\\[\\]\\(\\)\\.\\|,:])"
+      "match": "(?<=[\\s{\\[(:,])([a-zA-Z_\\x7F-ÿ][a-zA-Z0-9_\\x7F-ÿ]*)(?=[\\s}\\[\\]().|,:])"
     },
     "twig-operators": {
       "patterns": [
@@ -1076,7 +1073,7 @@
               "name": "keyword.operator.arithmetic.twig"
             }
           },
-          "match": "(?<=\\s)(\\+|-|//?|%|\\*\\*?)(?=\\s)"
+          "match": "(?<=\\s)([+-]|//?|%|\\*\\*?)(?=\\s)"
         },
         {
           "captures": {
@@ -1084,7 +1081,7 @@
               "name": "keyword.operator.assignment.twig"
             }
           },
-          "match": "(?<=\\s)(=|~)(?=\\s)"
+          "match": "(?<=\\s)([=~])(?=\\s)"
         },
         {
           "captures": {
@@ -1100,7 +1097,7 @@
               "name": "keyword.operator.comparison.twig"
             }
           },
-          "match": "(?<=\\s)((?:!|=)=|<=?|>=?|(?:not )?in|is(?: not)?|(?:ends|starts) with|matches)(?=\\s)"
+          "match": "(?<=\\s)([!=]=|<=?|>=?|(?:not )?in|is(?: not)?|(?:ends|starts) with|matches)(?=\\s)"
         },
         {
           "captures": {
@@ -1108,7 +1105,7 @@
               "name": "keyword.operator.logical.twig"
             }
           },
-          "match": "(?<=\\s)(\\?|:|\\?:|\\?\\?|and|not|or)(?=\\s)"
+          "match": "(?<=\\s)([?:]|\\?:|\\?\\?|and|not|or)(?=\\s)"
         },
         {
           "captures": {
@@ -1116,7 +1113,7 @@
               "name": "keyword.operator.other.twig"
             }
           },
-          "match": "(?<=[a-zA-Z0-9_\\x{7f}-\\x{ff}\\]\\)'\"])\\.\\.(?=[a-zA-Z0-9_\\x{7f}-\\x{ff}'\"])"
+          "match": "(?<=[a-zA-Z0-9_\\x7F-ÿ\\])'\"])\\.\\.(?=[a-zA-Z0-9_\\x7F-ÿ'\"])"
         },
         {
           "captures": {
@@ -1124,7 +1121,7 @@
               "name": "keyword.operator.other.twig"
             }
           },
-          "match": "(?<=[a-zA-Z0-9_\\x{7f}-\\x{ff}\\]\\}\\)'\"])\\|(?=[a-zA-Z_\\x{7f}-\\x{ff}])"
+          "match": "(?<=[a-zA-Z0-9_\\x7F-ÿ\\]})'\"])\\|(?=[a-zA-Z_\\x7F-ÿ])"
         }
       ]
     },
@@ -1135,7 +1132,7 @@
           "name": "punctuation.section.tag.twig"
         }
       },
-      "end": "-?\\}\\}",
+      "end": "-?}}",
       "endCaptures": {
         "0": {
           "name": "punctuation.section.tag.twig"
@@ -1198,10 +1195,10 @@
               "name": "variable.other.property.twig"
             }
           },
-          "match": "(?<=[a-zA-Z0-9_\\x{7f}-\\x{ff}])(\\.)([a-zA-Z_\\x{7f}-\\x{ff}][a-zA-Z0-9_\\x{7f}-\\x{ff}]*)(?=[\\.\\s\\|\\[\\)\\]\\}:,])"
+          "match": "(?<=[a-zA-Z0-9_\\x7F-ÿ])(\\.)([a-zA-Z_\\x7F-ÿ][a-zA-Z0-9_\\x7F-ÿ]*)(?=[.\\s|\\[)\\]}:,])"
         },
         {
-          "begin": "(?<=[a-zA-Z0-9_\\x{7f}-\\x{ff}])(\\.)([a-zA-Z_\\x{7f}-\\x{ff}][a-zA-Z0-9_\\x{7f}-\\x{ff}]*)(\\()",
+          "begin": "(?<=[a-zA-Z0-9_\\x7F-ÿ])(\\.)([a-zA-Z_\\x7F-ÿ][a-zA-Z0-9_\\x7F-ÿ]*)(\\()",
           "beginCaptures": {
             "1": {
               "name": "punctuation.separator.property.twig"
@@ -1289,7 +1286,7 @@
               "name": "punctuation.section.array.end.twig"
             }
           },
-          "match": "(?<=[a-zA-Z0-9_\\x{7f}-\\x{ff}\\]])(?:(\\[)('[a-zA-Z_\\x{7f}-\\x{ff}][a-zA-Z0-9_\\x{7f}-\\x{ff}]*')(\\])|(\\[)(\"[a-zA-Z_\\x{7f}-\\x{ff}][a-zA-Z0-9_\\x{7f}-\\x{ff}]*\")(\\])|(\\[)([a-zA-Z_\\x{7f}-\\x{ff}][a-zA-Z0-9_\\x{7f}-\\x{ff}]*)(\\]))"
+          "match": "(?<=[a-zA-Z0-9_\\x7F-ÿ\\]])(?:(\\[)('[a-zA-Z_\\x7F-ÿ][a-zA-Z0-9_\\x7F-ÿ]*')(])|(\\[)(\"[a-zA-Z_\\x7F-ÿ][a-zA-Z0-9_\\x7F-ÿ]*\")(])|(\\[)([a-zA-Z_\\x7F-ÿ][a-zA-Z0-9_\\x7F-ÿ]*)(]))"
         }
       ]
     },
@@ -1300,7 +1297,7 @@
           "name": "punctuation.section.tag.twig"
         }
       },
-      "end": "-?%\\}",
+      "end": "-?%}",
       "endCaptures": {
         "0": {
           "name": "punctuation.section.tag.twig"

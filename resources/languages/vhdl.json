@@ -100,7 +100,7 @@
     "attribute_list": {
       "patterns": [
         {
-          "begin": "\\'\\(",
+          "begin": "'\\(",
           "beginCaptures": {
             "0": {
               "name": "punctuation.vhdl"
@@ -334,7 +334,7 @@
     "constants_numeric": {
       "patterns": [
         {
-          "match": "\\b([+\\-]?[\\d_]+\\.[\\d_]+([eE][+\\-]?[\\d_]+)?)\\b",
+          "match": "\\b([+-]?[\\d_]+\\.[\\d_]+([eE][+-]?[\\d_]+)?)\\b",
           "name": "constant.numeric.floating_point.vhdl"
         },
         {
@@ -346,15 +346,15 @@
           "name": "constant.numeric.integer.vhdl"
         },
         {
-          "match": "[xX]\"[0-9a-fA-F_uUxXzZwWlLhH\\-]+\"",
+          "match": "[xX]\"[_uUxXzZwWlLhH\\-\\h]+\"",
           "name": "constant.numeric.quoted.double.string.hex.vhdl"
         },
         {
-          "match": "[oO]\"[0-7_uUxXzZwWlLhH\\-]+\"",
+          "match": "[oO]\"[0-7_uUxXzZwWlLhH-]+\"",
           "name": "constant.numeric.quoted.double.string.octal.vhdl"
         },
         {
-          "match": "[bB]?\"[01_uUxXzZwWlLhH\\-]+\"",
+          "match": "[bB]?\"[01_uUxXzZwWlLhH-]+\"",
           "name": "constant.numeric.quoted.double.string.binary.vhdl"
         },
         {
@@ -367,7 +367,7 @@
           "name": "constant.numeric.quoted.double.string.illegal.vhdl"
         },
         {
-          "match": "'[01uUxXzZwWlLhH\\-]'",
+          "match": "'[01uUxXzZwWlLhH-]'",
           "name": "constant.numeric.quoted.single.std_logic"
         }
       ]
@@ -385,6 +385,9 @@
         },
         {
           "include": "#while_pattern"
+        },
+        {
+          "include": "#loop_pattern"
         }
       ]
     },
@@ -639,7 +642,7 @@
                   "name": "keyword.language.vhdl"
                 }
               },
-              "end": "\\;",
+              "end": ";",
               "endCaptures": {
                 "0": {
                   "name": "punctuation.terminator.function_prototype.vhdl"
@@ -758,8 +761,52 @@
           "name": "standard.library.language.vhdl"
         },
         {
-          "match": "(\\+|\\-|<=|=|=>|:=|>=|>|<|/|\\||&|(\\*{1,2}))",
+          "match": "([+-]|<=|=|=>|:=|>=|[></|\\&]|(\\*{1,2}))",
           "name": "keyword.operator.vhdl"
+        }
+      ]
+    },
+    "loop_pattern": {
+      "patterns": [
+        {
+          "begin": "^\\s*(([a-zA-Z][a-zA-Z0-9_]*)\\s*(:)\\s*)?\\b((?i:loop))\\b",
+          "beginCaptures": {
+            "2": {
+              "name": "entity.name.tag.loop.begin.vhdl"
+            },
+            "3": {
+              "name": "punctuation.vhdl"
+            },
+            "4": {
+              "name": "keyword.language.vhdl"
+            }
+          },
+          "end": "\\b((?i:end))\\s+(((?i:loop))|(\\S+))\\b(\\s+((\\2)|(.+?)))?(?=\\s*;)",
+          "endCaptures": {
+            "1": {
+              "name": "keyword.language.vhdl"
+            },
+            "3": {
+              "name": "keyword.language.vhdl"
+            },
+            "4": {
+              "name": "invalid.illegal.loop.keyword.required.vhdl"
+            },
+            "7": {
+              "name": "entity.name.tag.loop.end.vhdl"
+            },
+            "8": {
+              "name": "invalid.illegal.mismatched.identifier.vhdl"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#control_patterns"
+            },
+            {
+              "include": "#cleanup"
+            }
+          ]
         }
       ]
     },
@@ -903,7 +950,7 @@
           "patterns": [
             {
               "begin": "(?=['\"a-zA-Z0-9])",
-              "end": "(;|\\)|,)",
+              "end": "([;),])",
               "endCaptures": {
                 "0": {
                   "name": "punctuation.vhdl"
@@ -1038,7 +1085,7 @@
     "procedure_prototype_pattern": {
       "patterns": [
         {
-          "begin": "\\b((?i:procedure))\\s+(([a-zA-Z][a-zA-Z0-9_]*)|(.+?))(?=\\s*(\\(|;))",
+          "begin": "\\b((?i:procedure))\\s+(([a-zA-Z][a-zA-Z0-9_]*)|(.+?))(?=\\s*([(;]))",
           "beginCaptures": {
             "1": {
               "name": "keyword.language.vhdl"
@@ -1217,7 +1264,7 @@
     "punctuation": {
       "patterns": [
         {
-          "match": "(\\.|,|:|;|\\(|\\))",
+          "match": "([.,:;()])",
           "name": "punctuation.vhdl"
         }
       ]
@@ -1316,7 +1363,7 @@
     "support_constants": {
       "patterns": [
         {
-          "match": "\\b(?i:math_1_over_e|math_1_over_pi|math_1_over_sqrt_2|math_2_pi|math_3_pi_over_2|math_deg_to_rad|math_e|math_log10_of_e|math_log2_of_e|math_log_of_10|math_log_of_2|math_pi|math_pi_over_2|math_pi_over_3|math_pi_over_4|math_rad_to_deg|math_sqrt_2|math_sqrt_pi)\\b",
+          "match": "\\b(?i:math_(?:1_over_e|1_over_pi|1_over_sqrt_2|2_pi|3_pi_over_2|deg_to_rad|e|log10_of_e|log2_of_e|log_of_10|log_of_2|pi|pi_over_2|pi_over_3|pi_over_4|rad_to_deg|sqrt_2|sqrt_pi))\\b",
           "name": "support.constant.ieee.math_real.vhdl"
         },
         {
@@ -1368,7 +1415,7 @@
           "name": "support.type.std.textio.vhdl"
         },
         {
-          "match": "\\b(?i:std_logic|std_ulogic|std_logic_vector|std_ulogic_vector)\\b",
+          "match": "\\b(?i:std_(?:logic|ulogic)(?:|_vector))\\b",
           "name": "support.type.ieee.std_logic_1164.vhdl"
         },
         {
@@ -1376,7 +1423,7 @@
           "name": "support.type.ieee.numeric_std.vhdl"
         },
         {
-          "match": "\\b(?i:complex|complex_polar)\\b",
+          "match": "\\b(?i:complex(?:|_polar))\\b",
           "name": "support.type.ieee.math_complex.vhdl"
         }
       ]

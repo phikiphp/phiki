@@ -10,59 +10,59 @@
       "name": "comment log.verbose"
     },
     {
-      "match": "(?i)\\[(verbose|verb|vrb|vb|v)\\]",
+      "match": "(?i)\\[(v(?:erbose|erb|rb|b|))]",
       "name": "comment log.verbose"
     },
     {
-      "match": "(?<=^[\\s\\d\\p]{0,254})\\bV\\b",
+      "match": "(?<=^[\\s\\dp]*)\\bV\\b",
       "name": "comment log.verbose"
     },
     {
-      "match": "\\b(DEBUG|Debug)\\b|(?i)\\b(debug)\\:",
+      "match": "\\b(D(?:EBUG|ebug))\\b|(?i)\\b(debug):",
       "name": "markup.changed log.debug"
     },
     {
-      "match": "(?i)\\[(debug|dbug|dbg|de|d)\\]",
+      "match": "(?i)\\[(d(?:ebug|bug|bg|e|))]",
       "name": "markup.changed log.debug"
     },
     {
-      "match": "(?<=^[\\s\\d\\p]{0,254})\\bD\\b",
+      "match": "(?<=^[\\s\\dp]*)\\bD\\b",
       "name": "markup.changed log.debug"
     },
     {
-      "match": "\\b(HINT|INFO|INFORMATION|Info|NOTICE|II)\\b|(?i)\\b(info|information)\\:",
+      "match": "\\b(HINT|INFO|INFORMATION|Info|NOTICE|II)\\b|(?i)\\b(info(?:|rmation)):",
       "name": "markup.inserted log.info"
     },
     {
-      "match": "(?i)\\[(information|info|inf|in|i)\\]",
+      "match": "(?i)\\[(i(?:nformation|nfo|nf|n|))]",
       "name": "markup.inserted log.info"
     },
     {
-      "match": "(?<=^[\\s\\d\\p]{0,254})\\bI\\b",
+      "match": "(?<=^[\\s\\dp]*)\\bI\\b",
       "name": "markup.inserted log.info"
     },
     {
-      "match": "\\b(WARNING|WARN|Warn|WW)\\b|(?i)\\b(warning)\\:",
+      "match": "\\b(W(?:ARNING|ARN|arn|W))\\b|(?i)\\b(warning):",
       "name": "markup.deleted log.warning"
     },
     {
-      "match": "(?i)\\[(warning|warn|wrn|wn|w)\\]",
+      "match": "(?i)\\[(w(?:arning|arn|rn|n|))]",
       "name": "markup.deleted log.warning"
     },
     {
-      "match": "(?<=^[\\s\\d\\p]{0,254})\\bW\\b",
+      "match": "(?<=^[\\s\\dp]*)\\bW\\b",
       "name": "markup.deleted log.warning"
     },
     {
-      "match": "\\b(ALERT|CRITICAL|EMERGENCY|ERROR|FAILURE|FAIL|Fatal|FATAL|Error|EE)\\b|(?i)\\b(error)\\:",
+      "match": "\\b(ALERT|CRITICAL|EMERGENCY|ERROR|FAILURE|FAIL|Fatal|FATAL|Error|EE)\\b|(?i)\\b(error):",
       "name": "string.regexp, strong log.error"
     },
     {
-      "match": "(?i)\\[(error|eror|err|er|e|fatal|fatl|ftl|fa|f)\\]",
+      "match": "(?i)\\[(error|eror|err|er|e|fatal|fatl|ftl|fa|f)]",
       "name": "string.regexp, strong log.error"
     },
     {
-      "match": "(?<=^[\\s\\d\\p]{0,254})\\bE\\b",
+      "match": "(?<=^[\\s\\dp]*)\\bE\\b",
       "name": "string.regexp, strong log.error"
     },
     {
@@ -74,23 +74,23 @@
       "name": "comment log.date"
     },
     {
-      "match": "T?\\d{1,2}:\\d{2}(:\\d{2}([.,]\\d{1,})?)?(Z| ?[+-]\\d{1,2}:\\d{2})?\\b",
+      "match": "T?\\d{1,2}:\\d{2}(:\\d{2}([.,]\\d+)?)?(Z| ?[+-]\\d{1,2}:\\d{2})?\\b",
       "name": "comment log.date"
     },
     {
-      "match": "T\\d{2}\\d{2}(\\d{2}([.,]\\d{1,})?)?(Z| ?[+-]\\d{1,2}\\d{2})?\\b",
+      "match": "T\\d{2}\\d{2}(\\d{2}([.,]\\d+)?)?(Z| ?[+-]\\d{1,2}\\d{2})?\\b",
       "name": "comment log.date"
     },
     {
-      "match": "\\b([0-9a-fA-F]{40}|[0-9a-fA-F]{10}|[0-9a-fA-F]{7})\\b",
+      "match": "\\b(\\h{40}|\\h{10}|\\h{7})\\b",
       "name": "constant.language"
     },
     {
-      "match": "\\b[0-9a-fA-F]{8}[-]?([0-9a-fA-F]{4}[-]?){3}[0-9a-fA-F]{12}\\b",
+      "match": "\\b\\h{8}-?(\\h{4}-?){3}\\h{12}\\b",
       "name": "constant.language log.constant"
     },
     {
-      "match": "\\b([0-9a-fA-F]{2,}[:-])+[0-9a-fA-F]{2,}+\\b",
+      "match": "\\b(\\h{2,}[:-])+\\h{2,}+\\b",
       "name": "constant.language log.constant"
     },
     {
@@ -98,7 +98,7 @@
       "name": "constant.language log.constant"
     },
     {
-      "match": "\\b(0x[a-fA-F0-9]+)\\b",
+      "match": "\\b(0x\\h+)\\b",
       "name": "constant.language log.constant"
     },
     {
@@ -106,7 +106,7 @@
       "name": "string log.string"
     },
     {
-      "match": "(?<![\\w])'[^']*'",
+      "match": "(?<!\\w)'[^']*'",
       "name": "string log.string"
     },
     {

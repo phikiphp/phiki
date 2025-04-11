@@ -68,7 +68,7 @@
       ]
     },
     "component-tag": {
-      "begin": "(<\\/?)(@|this.)?([a-zA-Z0-9-_\\$:\\.]+)\\b",
+      "begin": "(</?)(@|this.)?([a-zA-Z0-9\\-_$:.]+)\\b",
       "beginCaptures": {
         "1": {
           "name": "punctuation.definition.tag"
@@ -93,13 +93,13 @@
               "include": "#glimmer-component-path"
             },
             {
-              "match": "(@|:|\\$)",
+              "match": "([@:$])",
               "name": "markup.bold"
             }
           ]
         }
       },
-      "end": "(\\/?)(>)",
+      "end": "(/?)(>)",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.tag"
@@ -142,7 +142,7 @@
               "name": "punctuation.definition.entity.html.ember-handlebars"
             }
           },
-          "match": "(&)([a-zA-Z0-9]+|#[0-9]+|#x[0-9a-fA-F]+)(;)",
+          "match": "(&)([a-zA-Z0-9]+|#[0-9]+|#x\\h+)(;)",
           "name": "constant.character.entity.html.ember-handlebars"
         },
         {
@@ -179,7 +179,7 @@
       ]
     },
     "glimmer-block": {
-      "begin": "({{~?)(#|/)(([@\\$a-zA-Z0-9_/.-]+))",
+      "begin": "(\\{\\{~?)([#/])(([@$a-zA-Z0-9_/.-]+))",
       "captures": {
         "1": {
           "name": "punctuation.definition.tag"
@@ -194,7 +194,7 @@
               "include": "#glimmer-component-path"
             },
             {
-              "match": "(\\/)+",
+              "match": "(/)+",
               "name": "punctuation.definition.tag"
             },
             {
@@ -233,11 +233,11 @@
           "name": "keyword.operator"
         }
       },
-      "match": "({{~?)(true|false|null|undefined|\\d*(\\.)?\\d+)(~?}})",
+      "match": "(\\{\\{~?)(true|false|null|undefined|\\d*(\\.)?\\d+)(~?}})",
       "name": "entity.expression.ember-handlebars"
     },
     "glimmer-comment-block": {
-      "begin": "{{!--",
+      "begin": "\\{\\{!--",
       "captures": {
         "0": {
           "name": "punctuation.definition.block.comment.glimmer"
@@ -255,7 +255,7 @@
       ]
     },
     "glimmer-comment-inline": {
-      "begin": "{{!",
+      "begin": "\\{\\{!",
       "captures": {
         "0": {
           "name": "punctuation.definition.block.comment.glimmer"
@@ -278,10 +278,10 @@
           "name": "punctuation.definition.tag"
         }
       },
-      "match": "(::|_|\\$|\\.)"
+      "match": "(::|[_$.])"
     },
     "glimmer-control-expression": {
-      "begin": "({{~?)(([-a-zA-Z_0-9/]+)\\s)",
+      "begin": "(\\{\\{~?)(([-a-zA-Z_0-9/]+)\\s)",
       "captures": {
         "1": {
           "name": "keyword.operator"
@@ -345,11 +345,11 @@
           "name": "punctuation.definition.tag"
         }
       },
-      "match": "({{~?)(else\\s[a-z]+\\s|else)([()@a-zA-Z0-9\\.\\s\\b]+)?(~?}})",
+      "match": "(\\{\\{~?)(else(?:\\s[a-z]+\\s|))([()@a-zA-Z0-9.\\s\\x08]+)?(~?}})",
       "name": "entity.expression.ember-handlebars"
     },
     "glimmer-expression": {
-      "begin": "({{~?)(([()\\s@a-zA-Z0-9_.-]+))",
+      "begin": "(\\{\\{~?)(([()\\s@a-zA-Z0-9_.-]+))",
       "captures": {
         "1": {
           "name": "keyword.operator"
@@ -361,11 +361,11 @@
           "name": "support.function",
           "patterns": [
             {
-              "match": "[(]+",
+              "match": "\\(+",
               "name": "string.regexp"
             },
             {
-              "match": "[)]+",
+              "match": "\\)+",
               "name": "string.regexp"
             },
             {
@@ -387,7 +387,7 @@
       ]
     },
     "glimmer-expression-property": {
-      "begin": "({{~?)((@|this.)([a-zA-Z0-9_.-]+))",
+      "begin": "(\\{\\{~?)((@|this.)([a-zA-Z0-9_.-]+))",
       "captures": {
         "1": {
           "name": "keyword.operator"
@@ -470,7 +470,7 @@
           "name": "keyword.operator"
         }
       },
-      "match": "({{~?)(yield|outlet)(~?}})",
+      "match": "(\\{\\{~?)(yield|outlet)(~?}})",
       "name": "entity.expression.ember-handlebars"
     },
     "glimmer-subexp": {
@@ -520,7 +520,7 @@
       ]
     },
     "glimmer-unescaped-expression": {
-      "begin": "{{{",
+      "begin": "\\{\\{\\{",
       "captures": {
         "0": {
           "name": "keyword.operator"
@@ -580,7 +580,7 @@
       ]
     },
     "html-tag": {
-      "begin": "(<\\/?)([a-z0-9-]+)(?!\\.|:)\\b",
+      "begin": "(</?)([a-z0-9-]+)(?![.:])\\b",
       "beginCaptures": {
         "1": {
           "name": "punctuation.definition.tag"
@@ -589,7 +589,7 @@
           "name": "entity.name.tag.html.ember-handlebars"
         }
       },
-      "end": "(\\/?)(>)",
+      "end": "(/?)(>)",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.tag"
@@ -709,8 +709,8 @@
           "name": "meta.js.embeddedTemplateWithArgs",
           "patterns": [
             {
-              "begin": "(?<=\\<template)",
-              "end": "(?=\\>)",
+              "begin": "(?<=<template)",
+              "end": "(?=>)",
               "patterns": [
                 {
                   "include": "#tag-like-content"
@@ -780,7 +780,7 @@
           ]
         },
         {
-          "begin": "(\\b(?:\\w+\\.)*(?:hbs|html)\\s*)(`)",
+          "begin": "(\\b(?:\\w+\\.)*h(?:bs|tml)\\s*)(`)",
           "beginCaptures": {
             "1": {
               "name": "entity.name.function.tagged-template.js"
@@ -875,7 +875,7 @@
           },
           "patterns": [
             {
-              "begin": "((`|'|\"))",
+              "begin": "(([`'\"]))",
               "beginCaptures": {
                 "1": {
                   "name": "string.template.ts"
@@ -884,7 +884,7 @@
                   "name": "punctuation.definition.string.template.begin.ts"
                 }
               },
-              "end": "((`|'|\"))",
+              "end": "(([`'\"]))",
               "endCaptures": {
                 "1": {
                   "name": "string.template.ts"
@@ -967,7 +967,7 @@
           },
           "patterns": [
             {
-              "begin": "((`|'|\"))",
+              "begin": "(([`'\"]))",
               "beginCaptures": {
                 "1": {
                   "name": "string.template.ts"
@@ -977,7 +977,7 @@
                 }
               },
               "contentName": "meta.embedded.block.html",
-              "end": "((`|'|\"))",
+              "end": "(([`'\"]))",
               "endCaptures": {
                 "1": {
                   "name": "string.template.ts"
@@ -1191,7 +1191,7 @@
                   ]
                 },
                 {
-                  "begin": "(?ix:\n\t\t\t\t\t\t\t\t\t\t\t\t(?=\n\t\t\t\t\t\t\t\t\t\t\t\t\ttype\\s*=\\s*\n\t\t\t\t\t\t\t\t\t\t\t\t\t('|\"|)\n\t\t\t\t\t\t\t\t\t\t\t\t\ttext/\n\t\t\t\t\t\t\t\t\t\t\t\t\t(\n\t\t\t\t\t\t\t\t\t\t\t\t\t\tx-handlebars\n\t\t\t\t\t\t\t\t\t\t\t\t\t  | (x-(handlebars-)?|ng-)?template\n\t\t\t\t\t\t\t\t\t\t\t\t\t  | html\n\t\t\t\t\t\t\t\t\t\t\t\t\t)\n\t\t\t\t\t\t\t\t\t\t\t\t\t[\\s\"'>]\n\t\t\t\t\t\t\t\t\t\t\t\t)\n\t\t\t\t\t\t\t\t\t\t\t)",
+                  "begin": "(?i:(?=type\\s*=\\s*(['\"]|)text/(x-handlebars|(x-(handlebars-)?|ng-)?template|html)[\\s\"'>]))",
                   "end": "((<))(?=/(?i:script))",
                   "endCaptures": {
                     "0": {
@@ -1490,7 +1490,7 @@
       ]
     },
     "variable": {
-      "match": "\\b([a-zA-Z0-9-_]+)\\b",
+      "match": "\\b([a-zA-Z0-9\\-_]+)\\b",
       "name": "support.function",
       "patterns": [
       ]

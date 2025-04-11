@@ -283,7 +283,7 @@
               ]
             },
             {
-              "match": "\\|\\||\\||:|;|,|\\.|->",
+              "match": "\\|\\||[|:;,.]|->",
               "name": "punctuation.separator.define.erlang"
             },
             {
@@ -342,7 +342,7 @@
       ]
     },
     "docstring": {
-      "begin": "(?<!\")(([\"]{3,})\\s*)(\\S.*)?$",
+      "begin": "(?<!\")((\"{3,})\\s*)(\\S.*)?$",
       "beginCaptures": {
         "1": {
           "name": "meta.string.quoted.triple.begin.erlang"
@@ -354,7 +354,6 @@
           "name": "invalid.illegal.string.erlang"
         }
       },
-      "comment": "Only whitespace characters are allowed after the beggining and before the closing sequences and those cannot be in the same line",
       "end": "^(\\s*(\\2))(?!\")",
       "endCaptures": {
         "1": {
@@ -528,7 +527,6 @@
               "name": "variable.other.erlang"
             }
           },
-          "comment": "Implicit function expression with optional module qualifier when both module and function can be atom or variable",
           "match": "\\b(fun)\\s+((([a-z][a-zA-Z\\d@_]*+)|(_[a-zA-Z\\d@_]++|[A-Z][a-zA-Z\\d@_]*+))\\s*+(:)\\s*+)?(([a-z][a-zA-Z\\d@_]*+|'[^']*+')|(_[a-zA-Z\\d@_]++|[A-Z][a-zA-Z\\d@_]*+))\\s*(/)",
           "name": "meta.expression.fun.implicit.erlang"
         },
@@ -548,7 +546,6 @@
               "name": "punctuation.separator.module-function.erlang"
             }
           },
-          "comment": "Implicit function expression with module qualifier when module can be atom or variable and function can by anything",
           "end": "(/)",
           "endCaptures": {
             "1": {
@@ -569,7 +566,6 @@
               "name": "keyword.control.fun.erlang"
             }
           },
-          "comment": "Implicit function expression when both module and function can by anything",
           "end": "(/)",
           "endCaptures": {
             "1": {
@@ -593,7 +589,6 @@
               "name": "punctuation.definition.parameters.begin.erlang"
             }
           },
-          "comment": "Function type in type specification",
           "end": "(\\))",
           "endCaptures": {
             "1": {
@@ -613,7 +608,6 @@
               "name": "keyword.control.fun.erlang"
             }
           },
-          "comment": "Explicit function expression",
           "end": "\\b(end)\\b",
           "endCaptures": {
             "1": {
@@ -918,7 +912,7 @@
           "name": "punctuation.definition.list.begin.erlang"
         }
       },
-      "end": "(\\])",
+      "end": "(])",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.list.end.erlang"
@@ -936,7 +930,7 @@
               "name": "punctuation.separator.function-arity.erlang"
             }
           },
-          "end": "(,)|(?=\\])",
+          "end": "(,)|(?=])",
           "endCaptures": {
             "1": {
               "name": "punctuation.separator.list.erlang"
@@ -988,7 +982,7 @@
               ]
             },
             {
-              "match": ",|;",
+              "match": "[,;]",
               "name": "punctuation.separator.guards.erlang"
             },
             {
@@ -1012,7 +1006,7 @@
           "name": "punctuation.definition.class.record.begin.erlang"
         }
       },
-      "end": "(\\})",
+      "end": "(})",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.class.record.end.erlang"
@@ -1030,7 +1024,7 @@
               "name": "variable.language.omitted.field.erlang"
             }
           },
-          "end": "(,)|(?=\\})",
+          "end": "(,)|(?=})",
           "endCaptures": {
             "1": {
               "name": "punctuation.separator.class.record.erlang"
@@ -1058,7 +1052,6 @@
               "name": "punctuation.definition.escape.erlang"
             }
           },
-          "comment": "escape sequence",
           "match": "(\\\\)([bdefnrstv\\\\'\"]|(\\^)[@-_a-z]|[0-7]{1,3}|x[\\da-fA-F]{2})",
           "name": "constant.character.escape.erlang"
         },
@@ -1078,8 +1071,7 @@
               "name": "punctuation.separator.placeholder-parts.erlang"
             }
           },
-          "comment": "io:fwrite format control sequence",
-          "match": "(~)((\\-)?\\d++|(\\*))?((\\.)(\\d++|(\\*))?((\\.)((\\*)|.))?)?[tlkK]*[~cfegswpWPBX#bx\\+ni]",
+          "match": "(~)((-)?\\d++|(\\*))?((\\.)(\\d++|(\\*))?((\\.)((\\*)|.))?)?[tlkK]*[~cfegswpWPBX#bx+ni]",
           "name": "constant.character.format.placeholder.other.erlang"
         },
         {
@@ -1088,7 +1080,6 @@
               "name": "punctuation.definition.placeholder.erlang"
             }
           },
-          "comment": "io:fread format control sequence",
           "match": "(~)(\\*)?(\\d++)?(t)?[~du\\-#fsacl]",
           "name": "constant.character.format.placeholder.other.erlang"
         },
@@ -1105,7 +1096,7 @@
           "name": "punctuation.separator.value-type.erlang"
         }
       },
-      "end": "(?=,|:|>>)",
+      "end": "(?=[,:]|>>)",
       "patterns": [
         {
           "captures": {
@@ -1150,7 +1141,7 @@
           "name": "punctuation.definition.list.begin.erlang"
         }
       },
-      "end": "(\\])",
+      "end": "(])",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.list.end.erlang"
@@ -1292,7 +1283,7 @@
               "name": "punctuation.separator.float-exponent.erlang"
             }
           },
-          "match": "\\d++(\\.)\\d++([eE][\\+\\-]?\\d++)?",
+          "match": "\\d++(\\.)\\d++([eE][+-]?\\d++)?",
           "name": "constant.numeric.float.erlang"
         },
         {
@@ -1708,7 +1699,7 @@
               "name": "entity.name.type.class.record.erlang"
             }
           },
-          "end": "(?<=\\})",
+          "end": "(?<=})",
           "name": "meta.record-usage.erlang",
           "patterns": [
             {
@@ -1719,7 +1710,7 @@
       ]
     },
     "sigil-docstring": {
-      "begin": "(~[bBsS]?)(([\"]{3,})\\s*)(\\S.*)?$",
+      "begin": "(~[bBsS]?)((\"{3,})\\s*)(\\S.*)?$",
       "beginCaptures": {
         "1": {
           "name": "storage.type.string.erlang"
@@ -1734,7 +1725,6 @@
           "name": "invalid.illegal.string.erlang"
         }
       },
-      "comment": "Only whitespace characters are allowed after the beggining and before the closing sequences and those cannot be in the same line",
       "end": "^(\\s*(\\3))(?!\")",
       "endCaptures": {
         "1": {
@@ -1793,7 +1783,7 @@
       ]
     },
     "sigil-string-curly-brackets": {
-      "begin": "(~[bs]?)([{])",
+      "begin": "(~[bs]?)(\\{)",
       "beginCaptures": {
         "1": {
           "name": "storage.type.string.erlang"
@@ -1802,7 +1792,7 @@
           "name": "punctuation.definition.string.begin.erlang"
         }
       },
-      "end": "([}])",
+      "end": "(})",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.string.end.erlang"
@@ -1816,7 +1806,7 @@
       ]
     },
     "sigil-string-curly-brackets-verbatim": {
-      "begin": "(~[BS])([{])",
+      "begin": "(~[BS])(\\{)",
       "beginCaptures": {
         "1": {
           "name": "storage.type.string.erlang"
@@ -1825,7 +1815,7 @@
           "name": "punctuation.definition.string.begin.erlang"
         }
       },
-      "end": "([}])",
+      "end": "(})",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.string.end.erlang"
@@ -1916,7 +1906,7 @@
       "name": "string.quoted.less-greater.sigil.erlang"
     },
     "sigil-string-parenthesis": {
-      "begin": "(~[bs]?)([(])",
+      "begin": "(~[bs]?)(\\()",
       "beginCaptures": {
         "1": {
           "name": "storage.type.string.erlang"
@@ -1925,7 +1915,7 @@
           "name": "punctuation.definition.string.begin.erlang"
         }
       },
-      "end": "([)])",
+      "end": "(\\))",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.string.end.erlang"
@@ -1939,7 +1929,7 @@
       ]
     },
     "sigil-string-parenthesis-verbatim": {
-      "begin": "(~[BS])([(])",
+      "begin": "(~[BS])(\\()",
       "beginCaptures": {
         "1": {
           "name": "storage.type.string.erlang"
@@ -1948,7 +1938,7 @@
           "name": "punctuation.definition.string.begin.erlang"
         }
       },
-      "end": "([)])",
+      "end": "(\\))",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.string.end.erlang"
@@ -1957,7 +1947,7 @@
       "name": "string.quoted.parenthesis.sigil.erlang"
     },
     "sigil-string-single-character": {
-      "begin": "(~[bs]?)([/\\|`#])",
+      "begin": "(~[bs]?)([/|`#])",
       "beginCaptures": {
         "1": {
           "name": "storage.type.string.erlang"
@@ -1980,7 +1970,7 @@
       ]
     },
     "sigil-string-single-character-verbatim": {
-      "begin": "(~[BS])([/\\|`#])",
+      "begin": "(~[BS])([/|`#])",
       "beginCaptures": {
         "1": {
           "name": "storage.type.string.erlang"
@@ -2039,7 +2029,7 @@
       "name": "string.quoted.single.sigil.erlang"
     },
     "sigil-string-square-brackets": {
-      "begin": "(~[bs]?)([\\[])",
+      "begin": "(~[bs]?)(\\[)",
       "beginCaptures": {
         "1": {
           "name": "storage.type.string.erlang"
@@ -2048,7 +2038,7 @@
           "name": "punctuation.definition.string.begin.erlang"
         }
       },
-      "end": "([\\]])",
+      "end": "(])",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.string.end.erlang"
@@ -2062,7 +2052,7 @@
       ]
     },
     "sigil-string-square-brackets-verbatim": {
-      "begin": "(~[BS])([\\[])",
+      "begin": "(~[BS])(\\[)",
       "beginCaptures": {
         "1": {
           "name": "storage.type.string.erlang"
@@ -2071,7 +2061,7 @@
           "name": "punctuation.definition.string.begin.erlang"
         }
       },
-      "end": "([\\]])",
+      "end": "(])",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.string.end.erlang"
@@ -2100,7 +2090,7 @@
       ]
     },
     "symbolic-operator": {
-      "match": "\\+\\+|\\+|--|-|\\*|/=|/|=/=|=:=|==|=<|=|<-|<|>=|>|!|::|\\?=",
+      "match": "\\+\\+|\\+|--|[-*]|/=|/|=/=|=:=|==|=<|=|<-|<|>=|[>!]|::|\\?=",
       "name": "keyword.operator.symbolic.erlang"
     },
     "textual-operator": {
@@ -2114,7 +2104,7 @@
           "name": "punctuation.definition.tuple.begin.erlang"
         }
       },
-      "end": "(\\})",
+      "end": "(})",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.tuple.end.erlang"

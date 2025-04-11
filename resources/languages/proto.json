@@ -59,7 +59,7 @@
           "name": "entity.name.class.proto"
         }
       },
-      "end": "\\}",
+      "end": "}",
       "patterns": [
         {
           "include": "#reserved"
@@ -71,7 +71,7 @@
           "include": "#comments"
         },
         {
-          "begin": "([A-Za-z][A-Za-z0-9_]*)\\s*(=)\\s*(0[xX][0-9a-fA-F]+|[0-9]+)",
+          "begin": "([A-Za-z][A-Za-z0-9_]*)\\s*(=)\\s*(0[xX]\\h+|[0-9]+)",
           "beginCaptures": {
             "1": {
               "name": "variable.other.proto"
@@ -98,7 +98,7 @@
       ]
     },
     "field": {
-      "begin": "\\s*(optional|repeated|required)?\\s*\\b([\\w.]+)\\s+(\\w+)\\s*(=)\\s*(0[xX][0-9a-fA-F]+|[0-9]+)",
+      "begin": "\\s*(optional|repeated|required)?\\s*\\b([\\w.]+)\\s+(\\w+)\\s*(=)\\s*(0[xX]\\h+|[0-9]+)",
       "beginCaptures": {
         "1": {
           "name": "storage.modifier.proto"
@@ -130,7 +130,7 @@
     },
     "fieldOptions": {
       "begin": "\\[",
-      "end": "\\]",
+      "end": "]",
       "patterns": [
         {
           "include": "#constants"
@@ -251,7 +251,7 @@
           "name": "entity.name.class.message.proto"
         }
       },
-      "end": "\\}",
+      "end": "}",
       "patterns": [
         {
           "include": "#reserved"
@@ -289,7 +289,7 @@
           "name": "entity.name.function"
         }
       },
-      "end": "\\}|(;)",
+      "end": "}|(;)",
       "endCaptures": {
         "1": {
           "name": "punctuation.terminator.proto"
@@ -311,7 +311,7 @@
       ]
     },
     "number": {
-      "match": "\\b((0(x|X)[0-9a-fA-F]*)|(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))((e|E)(\\+|-)?[0-9]+)?)\\b",
+      "match": "\\b((0([xX])\\h*)|(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))(([eE])([+-])?[0-9]+)?)\\b",
       "name": "constant.numeric.proto"
     },
     "oneof": {
@@ -324,7 +324,7 @@
           "name": "variable.other.proto"
         }
       },
-      "end": "\\}",
+      "end": "}",
       "patterns": [
         {
           "include": "#optionStmt"
@@ -452,7 +452,7 @@
           "name": "entity.name.class.message.proto"
         }
       },
-      "end": "\\}",
+      "end": "}",
       "patterns": [
         {
           "include": "#comments"
@@ -470,12 +470,12 @@
       "name": "storage.type.proto"
     },
     "string": {
-      "match": "('([^']|\\')*')|(\"([^\"]|\\\")*\")",
+      "match": "('([[^']'])*')|(\"([[^\"]\"])*\")",
       "name": "string.quoted.double.proto"
     },
     "subMsgOption": {
       "begin": "\\{",
-      "end": "\\}",
+      "end": "}",
       "patterns": [
         {
           "include": "#kv"

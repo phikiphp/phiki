@@ -55,12 +55,12 @@
       "name": "support.constant.property-value.blendfactors.shaderlab"
     },
     {
-      "match": "\\[([a-zA-Z_][a-zA-Z0-9_]*)\\](?!\\s*[a-zA-Z_][a-zA-Z0-9_]*\\s*\\(\")",
+      "match": "\\[([a-zA-Z_][a-zA-Z0-9_]*)](?!\\s*[a-zA-Z_][a-zA-Z0-9_]*\\s*\\(\")",
       "name": "support.variable.reference.shaderlab"
     },
     {
       "begin": "(\\[)",
-      "end": "(\\])",
+      "end": "(])",
       "name": "meta.attribute.shaderlab",
       "patterns": [
         {
@@ -77,7 +77,7 @@
       "name": "support.variable.declaration.shaderlab"
     },
     {
-      "begin": "\\b(CGPROGRAM|CGINCLUDE)\\b",
+      "begin": "\\b(CG(?:PROGRAM|INCLUDE))\\b",
       "beginCaptures": {
         "1": {
           "name": "keyword.other"
@@ -97,7 +97,7 @@
       ]
     },
     {
-      "begin": "\\b(HLSLPROGRAM|HLSLINCLUDE)\\b",
+      "begin": "\\b(HLSL(?:PROGRAM|INCLUDE))\\b",
       "beginCaptures": {
         "1": {
           "name": "keyword.other"
@@ -157,7 +157,7 @@
           "name": "support.variable.various.shaderlab"
         },
         {
-          "match": "\\b(SHADER_API_D3D9|SHADER_API_D3D11|SHADER_API_GLCORE|SHADER_API_OPENGL|SHADER_API_GLES|SHADER_API_GLES3|SHADER_API_METAL|SHADER_API_D3D11_9X|SHADER_API_PSSL|SHADER_API_XBOXONE|SHADER_API_PSP2|SHADER_API_WIIU|SHADER_API_MOBILE|SHADER_API_GLSL)\\b",
+          "match": "\\b(SHADER_API_(?:D3D9|D3D11|GLCORE|OPENGL|GLES|GLES3|METAL|D3D11_9X|PSSL|XBOXONE|PSP2|WIIU|MOBILE|GLSL))\\b",
           "name": "support.variable.preprocessor.targetplatform.shaderlab"
         },
         {
@@ -169,15 +169,15 @@
           "name": "support.variable.preprocessor.unityversion.shaderlab"
         },
         {
-          "match": "\\b(UNITY_BRANCH|UNITY_FLATTEN|UNITY_NO_SCREENSPACE_SHADOWS|UNITY_NO_LINEAR_COLORSPACE|UNITY_NO_RGBM|UNITY_NO_DXT5nm|UNITY_FRAMEBUFFER_FETCH_AVAILABLE|UNITY_USE_RGBA_FOR_POINT_SHADOWS|UNITY_ATTEN_CHANNEL|UNITY_HALF_TEXEL_OFFSET|UNITY_UV_STARTS_AT_TOP|UNITY_MIGHT_NOT_HAVE_DEPTH_Texture|UNITY_NEAR_CLIP_VALUE|UNITY_VPOS_TYPE|UNITY_CAN_COMPILE_TESSELLATION|UNITY_COMPILER_HLSL|UNITY_COMPILER_HLSL2GLSL|UNITY_COMPILER_CG|UNITY_REVERSED_Z)\\b",
+          "match": "\\b(UNITY_(?:BRANCH|FLATTEN|NO_SCREENSPACE_SHADOWS|NO_LINEAR_COLORSPACE|NO_RGBM|NO_DXT5nm|FRAMEBUFFER_FETCH_AVAILABLE|USE_RGBA_FOR_POINT_SHADOWS|ATTEN_CHANNEL|HALF_TEXEL_OFFSET|UV_STARTS_AT_TOP|MIGHT_NOT_HAVE_DEPTH_Texture|NEAR_CLIP_VALUE|VPOS_TYPE|CAN_COMPILE_TESSELLATION|COMPILER_HLSL|COMPILER_HLSL2GLSL|COMPILER_CG|REVERSED_Z))\\b",
           "name": "support.variable.preprocessor.platformdifference.shaderlab"
         },
         {
-          "match": "\\b(UNITY_PASS_FORWARDBASE|UNITY_PASS_FORWARDADD|UNITY_PASS_DEFERRED|UNITY_PASS_SHADOWCASTER|UNITY_PASS_PREPASSBASE|UNITY_PASS_PREPASSFINAL)\\b",
+          "match": "\\b(UNITY_PASS_(?:FORWARDBASE|FORWARDADD|DEFERRED|SHADOWCASTER|PREPASSBASE|PREPASSFINAL))\\b",
           "name": "support.variable.preprocessor.texture2D.shaderlab"
         },
         {
-          "match": "\\b(appdata_base|appdata_tan|appdata_full|appdata_img)\\b",
+          "match": "\\b(appdata_(?:base|tan|full|img))\\b",
           "name": "support.class.structures.shaderlab"
         },
         {

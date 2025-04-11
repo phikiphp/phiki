@@ -120,7 +120,7 @@
             }
           },
           "contentName": "source.js.embedded.jison",
-          "end": "\\}\\}",
+          "end": "}}",
           "endCaptures": {
             "0": {
               "name": "punctuation.definition.action.end.jison"
@@ -135,7 +135,7 @@
         },
         {
           "begin": "(?=%\\{)",
-          "end": "(?<=%\\})",
+          "end": "(?<=%})",
           "name": "meta.action.jison",
           "patterns": [
             {
@@ -250,7 +250,7 @@
         },
         {
           "begin": "(?=%\\{)",
-          "end": "(?<=%\\})",
+          "end": "(?<=%})",
           "name": "meta.section.prologue.jison",
           "patterns": [
             {
@@ -430,7 +430,7 @@
               "name": "constant.numeric.integer.hexadecimal.jison"
             }
           },
-          "match": "(0[Xx])([0-9A-Fa-f]+)"
+          "match": "(0[Xx])(\\h+)"
         },
         {
           "match": "\\d+",
@@ -529,7 +529,7 @@
             }
           },
           "contentName": "source.js.embedded.jison",
-          "end": "\\}",
+          "end": "}",
           "endCaptures": {
             "0": {
               "name": "punctuation.definition.action.end.jison"
@@ -620,7 +620,7 @@
                       "name": "punctuation.definition.named-reference.end.jison"
                     }
                   },
-                  "match": "(\\[)([[:alpha:]_](?:[\\w-]*\\w)?)(\\])"
+                  "match": "(\\[)([[:alpha:]_](?:[\\w-]*\\w)?)(])"
                 },
                 {
                   "begin": "(%(prec))\\s*",
@@ -654,7 +654,7 @@
                   "name": "keyword.other.$0.jison"
                 },
                 {
-                  "match": "(?:%(?:e(?:mpty|psilon))|\\b[Ɛɛεϵ])\\b",
+                  "match": "(?:%e(?:mpty|psilon)|\\b[Ɛɛεϵ])\\b",
                   "name": "keyword.other.empty.jison"
                 },
                 {
@@ -676,7 +676,7 @@
             }
           },
           "contentName": "source.js.embedded.jison",
-          "end": "%\\}",
+          "end": "%}",
           "endCaptures": {
             "0": {
               "name": "punctuation.definition.user-code-block.end.jison"

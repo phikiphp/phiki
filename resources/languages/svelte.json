@@ -379,14 +379,14 @@
       ]
     },
     "attributes-interpolated": {
-      "begin": "(?<!:|=)\\s*({)",
+      "begin": "(?<![:=])\\s*(\\{)",
       "captures": {
         "1": {
           "name": "entity.other.attribute-name.svelte"
         }
       },
       "contentName": "meta.embedded.expression.svelte source.ts",
-      "end": "(\\})",
+      "end": "(})",
       "patterns": [
         {
           "include": "source.ts"
@@ -448,7 +448,7 @@
               "name": "constant.numeric.decimal.svelte"
             }
           },
-          "match": "(?:(['\"])([0-9._]+[\\w%]{,4})(\\1))|(?:([0-9._]+[\\w%]{,4})(?=\\s|/?>))"
+          "match": "(['\"])([0-9._]+[\\w%]{0,4})(\\1)|([0-9._]+[\\w%]{0,4})(?=\\s|/?>)"
         },
         {
           "match": "([^\\s\"'=<>`/]|/(?!>))+",
@@ -530,7 +530,7 @@
     "destructuring": {
       "patterns": [
         {
-          "begin": "(?={)",
+          "begin": "(?=\\{)",
           "end": "(?<=})",
           "name": "meta.embedded.expression.svelte source.ts",
           "patterns": [
@@ -541,7 +541,7 @@
         },
         {
           "begin": "(?=\\[)",
-          "end": "(?<=\\])",
+          "end": "(?<=])",
           "name": "meta.embedded.expression.svelte source.ts",
           "patterns": [
             {
@@ -554,7 +554,7 @@
     "destructuring-const": {
       "patterns": [
         {
-          "begin": "(?={)",
+          "begin": "(?=\\{)",
           "end": "(?<=})",
           "name": "meta.embedded.expression.svelte source.ts",
           "patterns": [
@@ -565,7 +565,7 @@
         },
         {
           "begin": "(?=\\[)",
-          "end": "(?<=\\])",
+          "end": "(?<=])",
           "name": "meta.embedded.expression.svelte source.ts",
           "patterns": [
             {
@@ -585,7 +585,7 @@
             }
           },
           "contentName": "meta.embedded.expression.svelte source.ts",
-          "end": "\\}",
+          "end": "}",
           "endCaptures": {
             "0": {
               "name": "punctuation.section.embedded.end.svelte"
@@ -593,7 +593,7 @@
           },
           "patterns": [
             {
-              "begin": "\\G\\s*(?={)",
+              "begin": "\\G\\s*(?=\\{)",
               "end": "(?<=})",
               "patterns": [
                 {
@@ -623,8 +623,8 @@
           "include": "#interpolation"
         },
         {
-          "begin": "(?<=>|})",
-          "end": "(?=<|{)",
+          "begin": "(?<=[>}])",
+          "end": "(?=[<{])",
           "name": "text.svelte"
         }
       ]
@@ -643,7 +643,7 @@
       ]
     },
     "special-tags-block-begin": {
-      "begin": "({)\\s*(#([a-z]*))",
+      "begin": "(\\{)\\s*(#([a-z]*))",
       "beginCaptures": {
         "1": {
           "name": "punctuation.definition.block.begin.svelte"
@@ -670,7 +670,7 @@
       ]
     },
     "special-tags-block-end": {
-      "begin": "({)\\s*(/([a-z]*))",
+      "begin": "(\\{)\\s*(/([a-z]*))",
       "beginCaptures": {
         "1": {
           "name": "punctuation.definition.block.begin.svelte"
@@ -761,10 +761,20 @@
                   "name": "variable.other.constant.svelte"
                 }
               },
-              "end": "(?=\\=)"
+              "end": "(?=[:=])"
             },
             {
-              "begin": "(?=\\=)",
+              "begin": "(?=:)",
+              "end": "(?==)",
+              "name": "meta.type.annotation.svelte",
+              "patterns": [
+                {
+                  "include": "source.ts"
+                }
+              ]
+            },
+            {
+              "begin": "(?==)",
               "end": "(?=})",
               "name": "meta.embedded.expression.svelte source.ts",
               "patterns": [
@@ -782,7 +792,7 @@
             {
               "begin": "\\G\\s*?(?=\\S)",
               "contentName": "meta.embedded.expression.svelte source.ts",
-              "end": "(?=(?:(?:^\\s*|\\s+)(as))|\\s*(}|,))",
+              "end": "(?=(?:^\\s*|\\s+)(as)|\\s*([},]))",
               "patterns": [
                 {
                   "include": "source.ts"
@@ -790,7 +800,7 @@
               ]
             },
             {
-              "begin": "(as)|(?=}|,)",
+              "begin": "(as)|(?=[},])",
               "beginCaptures": {
                 "1": {
                   "name": "keyword.control.as.svelte"
@@ -894,7 +904,7 @@
       ]
     },
     "special-tags-void": {
-      "begin": "({)\\s*((?:[@:])(else\\s+if|[a-z]*))",
+      "begin": "(\\{)\\s*([@:](else\\s+if|[a-z]*))",
       "beginCaptures": {
         "1": {
           "name": "punctuation.definition.block.begin.svelte"
@@ -907,7 +917,7 @@
           ]
         }
       },
-      "end": "\\}",
+      "end": "}",
       "endCaptures": {
         "0": {
           "name": "punctuation.definition.block.end.svelte"
@@ -982,7 +992,7 @@
       "name": "meta.scope.tag.$2.svelte"
     },
     "tags-general-start": {
-      "begin": "(<)([^/\\s>/]*)",
+      "begin": "(<)([^/\\s>]*)",
       "beginCaptures": {
         "0": {
           "patterns": [
@@ -1099,7 +1109,7 @@
               "name": "support.class.component.svelte"
             }
           },
-          "match": "([\\w]+(?:\\.[\\w]+)+)|([A-Z][\\w]+)"
+          "match": "(\\w+(?:\\.\\w+)+)|([A-Z]\\w+)"
         },
         {
           "match": "[a-z][\\w0-9:]*-[\\w0-9:-]*",
@@ -1134,7 +1144,7 @@
           ]
         }
       },
-      "match": "(<)([^/\\s>/]*)",
+      "match": "(<)([^/\\s>]*)",
       "name": "meta.tag.start.svelte"
     },
     "tags-void": {

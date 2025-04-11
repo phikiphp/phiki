@@ -12,7 +12,6 @@
           ]
         }
       },
-      "comment": "Full Line Comment",
       "match": "^\\s?(#.*$)\\n"
     },
     {
@@ -45,8 +44,7 @@
           ]
         }
       },
-      "comment": "ENV entry",
-      "match": "^\\s?(.*?)\\s?(\\=)(.*)$"
+      "match": "^\\s?(.*?)\\s?(=)(.*)$"
     }
   ],
   "repository": {
@@ -63,13 +61,11 @@
           ]
         }
       },
-      "comment": "Double Quoted String",
       "match": "\"(.*)\"",
       "name": "string.quoted.double.dotenv"
     },
     "escape-characters": {
-      "comment": "Escape characters",
-      "match": "\\\\[nrtfb\"'\\\\]|\\\\u[0123456789ABCDEF]{4}",
+      "match": "\\\\(?:[nrtfb\"'\\\\]|u[0123456789ABCDEF]{4})",
       "name": "constant.character.escape.dotenv"
     },
     "interpolation": {
@@ -84,8 +80,7 @@
           "name": "keyword.interpolation.end.dotenv"
         }
       },
-      "comment": "Interpolation (variable substitution)",
-      "match": "(\\$\\{)(.*)(\\})"
+      "match": "(\\$\\{)(.*)(})"
     },
     "key": {
       "captures": {
@@ -101,21 +96,17 @@
           ]
         }
       },
-      "comment": "Key",
       "match": "(export\\s)?(.*)"
     },
     "line-comment": {
-      "comment": "Comment",
       "match": "#.*$",
       "name": "comment.line.dotenv"
     },
     "single-quoted-string": {
-      "comment": "Single Quoted String",
       "match": "'(.*)'",
       "name": "string.quoted.single.dotenv"
     },
     "variable": {
-      "comment": "env variable",
       "match": "[a-zA-Z_]+[a-zA-Z0-9_]*"
     }
   },

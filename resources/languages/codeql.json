@@ -12,15 +12,15 @@
   ],
   "repository": {
     "abstract": {
-      "match": "\\b(?:abstract)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\babstract(?![0-9A-Za-z_])",
       "name": "storage.modifier.abstract.ql"
     },
     "additional": {
-      "match": "\\b(?:additional)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\badditional(?![0-9A-Za-z_])",
       "name": "storage.modifier.additional.ql"
     },
     "and": {
-      "match": "\\b(?:and)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\band(?![0-9A-Za-z_])",
       "name": "keyword.other.and.ql"
     },
     "annotation": {
@@ -92,34 +92,34 @@
       ]
     },
     "any": {
-      "match": "\\b(?:any)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bany(?![0-9A-Za-z_])",
       "name": "keyword.quantifier.any.ql"
     },
     "arithmetic-operator": {
-      "match": "\\+|-|\\*|/|%",
+      "match": "[+\\-*/%]",
       "name": "keyword.operator.arithmetic.ql"
     },
     "as": {
-      "match": "\\b(?:as)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bas(?![0-9A-Za-z_])",
       "name": "keyword.other.as.ql"
     },
     "asc": {
-      "match": "\\b(?:asc)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\basc(?![0-9A-Za-z_])",
       "name": "keyword.order.asc.ql"
     },
     "at-lower-id": {
-      "match": "@[a-z][0-9A-Za-z_]*(?:(?!(?:[0-9A-Za-z_])))"
+      "match": "@[a-z][0-9A-Za-z_]*(?![0-9A-Za-z_])"
     },
     "avg": {
-      "match": "\\b(?:avg)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bavg(?![0-9A-Za-z_])",
       "name": "keyword.aggregate.avg.ql"
     },
     "bindingset": {
-      "match": "\\b(?:bindingset)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bbindingset(?![0-9A-Za-z_])",
       "name": "storage.modifier.bindingset.ql"
     },
     "bindingset-annotation": {
-      "begin": "((?:\\b(?:bindingset)(?:(?!(?:[0-9A-Za-z_])))))",
+      "begin": "(\\bbindingset(?![0-9A-Za-z_]))",
       "beginCaptures": {
         "1": {
           "patterns": [
@@ -129,7 +129,7 @@
           ]
         }
       },
-      "end": "(?!(?:\\s|$|(?://|/\\*))|\\[)|(?<=\\])",
+      "end": "(?!(?:\\s|$|/[/*])|\\[)|(?<=])",
       "name": "meta.block.bindingset-annotation.ql",
       "patterns": [
         {
@@ -141,7 +141,7 @@
       ]
     },
     "bindingset-annotation-body": {
-      "begin": "((?:\\[))",
+      "begin": "(\\[)",
       "beginCaptures": {
         "1": {
           "patterns": [
@@ -151,7 +151,7 @@
           ]
         }
       },
-      "end": "((?:\\]))",
+      "end": "(])",
       "endCaptures": {
         "1": {
           "patterns": [
@@ -167,29 +167,29 @@
           "include": "#non-context-sensitive"
         },
         {
-          "match": "(?:\\b[A-Za-z][0-9A-Za-z_]*(?:(?!(?:[0-9A-Za-z_]))))",
+          "match": "\\b[A-Za-z][0-9A-Za-z_]*(?![0-9A-Za-z_])",
           "name": "variable.parameter.ql"
         }
       ]
     },
     "boolean": {
-      "match": "\\b(?:boolean)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bboolean(?![0-9A-Za-z_])",
       "name": "keyword.type.boolean.ql"
     },
     "by": {
-      "match": "\\b(?:by)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bby(?![0-9A-Za-z_])",
       "name": "keyword.order.by.ql"
     },
     "cached": {
-      "match": "\\b(?:cached)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bcached(?![0-9A-Za-z_])",
       "name": "storage.modifier.cached.ql"
     },
     "class": {
-      "match": "\\b(?:class)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bclass(?![0-9A-Za-z_])",
       "name": "keyword.other.class.ql"
     },
     "class-body": {
-      "begin": "((?:\\{))",
+      "begin": "(\\{)",
       "beginCaptures": {
         "1": {
           "patterns": [
@@ -199,7 +199,7 @@
           ]
         }
       },
-      "end": "((?:\\}))",
+      "end": "(})",
       "endCaptures": {
         "1": {
           "patterns": [
@@ -217,7 +217,7 @@
       ]
     },
     "class-declaration": {
-      "begin": "((?:\\b(?:class)(?:(?!(?:[0-9A-Za-z_])))))",
+      "begin": "(\\bclass(?![0-9A-Za-z_]))",
       "beginCaptures": {
         "1": {
           "patterns": [
@@ -227,7 +227,7 @@
           ]
         }
       },
-      "end": "(?<=\\}|;)",
+      "end": "(?<=[};])",
       "name": "meta.block.class-declaration.ql",
       "patterns": [
         {
@@ -240,7 +240,7 @@
           "include": "#non-context-sensitive"
         },
         {
-          "match": "(?:\\b[A-Z][0-9A-Za-z_]*(?:(?!(?:[0-9A-Za-z_]))))",
+          "match": "\\b[A-Z][0-9A-Za-z_]*(?![0-9A-Za-z_])",
           "name": "entity.name.type.class.ql"
         }
       ]
@@ -263,11 +263,11 @@
       "name": "punctuation.anglebracket.close.ql"
     },
     "close-brace": {
-      "match": "\\}",
+      "match": "}",
       "name": "punctuation.curlybrace.close.ql"
     },
     "close-bracket": {
-      "match": "\\]",
+      "match": "]",
       "name": "punctuation.squarebracket.close.ql"
     },
     "close-paren": {
@@ -293,7 +293,7 @@
                   "name": "keyword.tag.ql"
                 }
               ],
-              "while": "(^|\\G)\\s*([^*]|\\*(?!/))(?=([^*]|[*](?!/))*$)"
+              "while": "(^|\\G)\\s*([^*]|\\*(?!/))(?=([^*]|\\*(?!/))*$)"
             }
           ]
         },
@@ -309,38 +309,38 @@
       ]
     },
     "comment-start": {
-      "match": "//|/\\*"
+      "match": "/[/*]"
     },
     "comparison-operator": {
-      "match": "=|\\!\\=",
+      "match": "=|!=",
       "name": "keyword.operator.comparison.ql"
     },
     "concat": {
-      "match": "\\b(?:concat)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bconcat(?![0-9A-Za-z_])",
       "name": "keyword.aggregate.concat.ql"
     },
     "count": {
-      "match": "\\b(?:count)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bcount(?![0-9A-Za-z_])",
       "name": "keyword.aggregate.count.ql"
     },
     "date": {
-      "match": "\\b(?:date)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bdate(?![0-9A-Za-z_])",
       "name": "keyword.type.date.ql"
     },
     "default": {
-      "match": "\\b(?:default)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bdefault(?![0-9A-Za-z_])",
       "name": "storage.modifier.default.ql"
     },
     "deprecated": {
-      "match": "\\b(?:deprecated)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bdeprecated(?![0-9A-Za-z_])",
       "name": "storage.modifier.deprecated.ql"
     },
     "desc": {
-      "match": "\\b(?:desc)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bdesc(?![0-9A-Za-z_])",
       "name": "keyword.order.desc.ql"
     },
     "dont-care": {
-      "match": "\\b(?:_)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\b_(?![0-9A-Za-z_])",
       "name": "variable.language.dont-care.ql"
     },
     "dot": {
@@ -352,21 +352,21 @@
       "name": "punctuation.operator.range.ql"
     },
     "else": {
-      "match": "\\b(?:else)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\belse(?![0-9A-Za-z_])",
       "name": "keyword.other.else.ql"
     },
     "end-of-as-clause": {
-      "match": "(?:(?<=(?:[0-9A-Za-z_]))(?!(?:[0-9A-Za-z_]))(?<!(?<!(?:[0-9A-Za-z_]))as))|(?=\\s*(?!(?://|/\\*)|(?:\\b[A-Za-z][0-9A-Za-z_]*(?:(?!(?:[0-9A-Za-z_])))))\\S)|(?=\\s*(?:(?:(?:\\b(?:_)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:and)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:any)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:as)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:asc)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:avg)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:boolean)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:by)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:class)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:concat)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:count)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:date)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:desc)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:else)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:exists)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:extends)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:false)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:float)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:forall)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:forex)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:from)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:if)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:implies)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:import)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:in)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:instanceof)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:int)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:max)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:min)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:module)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:newtype)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:none)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:not)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:or)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:order)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:predicate)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:rank)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:result)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:select)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:strictconcat)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:strictcount)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:strictsum)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:string)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:sum)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:super)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:then)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:this)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:true)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:unique)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:where)(?:(?!(?:[0-9A-Za-z_])))))))"
+      "match": "(?<=[0-9A-Za-z_])(?![0-9A-Za-z_])(?<!(?<![0-9A-Za-z_])as)|(?=\\s*(?!/[/*]|\\b[A-Za-z][0-9A-Za-z_]*(?![0-9A-Za-z_]))\\S)|(?=\\s*\\b(?:_(?![0-9A-Za-z_])|and(?![0-9A-Za-z_])|any(?![0-9A-Za-z_])|as(?![0-9A-Za-z_])|asc(?![0-9A-Za-z_])|avg(?![0-9A-Za-z_])|boolean(?![0-9A-Za-z_])|by(?![0-9A-Za-z_])|class(?![0-9A-Za-z_])|concat(?![0-9A-Za-z_])|count(?![0-9A-Za-z_])|date(?![0-9A-Za-z_])|desc(?![0-9A-Za-z_])|else(?![0-9A-Za-z_])|exists(?![0-9A-Za-z_])|extends(?![0-9A-Za-z_])|false(?![0-9A-Za-z_])|float(?![0-9A-Za-z_])|forall(?![0-9A-Za-z_])|forex(?![0-9A-Za-z_])|from(?![0-9A-Za-z_])|if(?![0-9A-Za-z_])|implies(?![0-9A-Za-z_])|import(?![0-9A-Za-z_])|in(?![0-9A-Za-z_])|instanceof(?![0-9A-Za-z_])|int(?![0-9A-Za-z_])|max(?![0-9A-Za-z_])|min(?![0-9A-Za-z_])|module(?![0-9A-Za-z_])|newtype(?![0-9A-Za-z_])|none(?![0-9A-Za-z_])|not(?![0-9A-Za-z_])|or(?![0-9A-Za-z_])|order(?![0-9A-Za-z_])|predicate(?![0-9A-Za-z_])|rank(?![0-9A-Za-z_])|result(?![0-9A-Za-z_])|select(?![0-9A-Za-z_])|strictconcat(?![0-9A-Za-z_])|strictcount(?![0-9A-Za-z_])|strictsum(?![0-9A-Za-z_])|string(?![0-9A-Za-z_])|sum(?![0-9A-Za-z_])|super(?![0-9A-Za-z_])|then(?![0-9A-Za-z_])|this(?![0-9A-Za-z_])|true(?![0-9A-Za-z_])|unique(?![0-9A-Za-z_])|where(?![0-9A-Za-z_])))"
     },
     "end-of-id": {
-      "match": "(?!(?:[0-9A-Za-z_]))"
+      "match": "(?![0-9A-Za-z_])"
     },
     "exists": {
-      "match": "\\b(?:exists)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bexists(?![0-9A-Za-z_])",
       "name": "keyword.quantifier.exists.ql"
     },
     "expr-as-clause": {
-      "begin": "((?:\\b(?:as)(?:(?!(?:[0-9A-Za-z_])))))",
+      "begin": "(\\bas(?![0-9A-Za-z_]))",
       "beginCaptures": {
         "1": {
           "patterns": [
@@ -376,24 +376,24 @@
           ]
         }
       },
-      "end": "(?:(?:(?<=(?:[0-9A-Za-z_]))(?!(?:[0-9A-Za-z_]))(?<!(?<!(?:[0-9A-Za-z_]))as))|(?=\\s*(?!(?://|/\\*)|(?:\\b[A-Za-z][0-9A-Za-z_]*(?:(?!(?:[0-9A-Za-z_])))))\\S)|(?=\\s*(?:(?:(?:\\b(?:_)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:and)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:any)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:as)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:asc)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:avg)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:boolean)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:by)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:class)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:concat)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:count)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:date)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:desc)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:else)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:exists)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:extends)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:false)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:float)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:forall)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:forex)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:from)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:if)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:implies)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:import)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:in)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:instanceof)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:int)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:max)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:min)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:module)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:newtype)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:none)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:not)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:or)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:order)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:predicate)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:rank)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:result)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:select)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:strictconcat)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:strictcount)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:strictsum)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:string)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:sum)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:super)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:then)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:this)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:true)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:unique)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:where)(?:(?!(?:[0-9A-Za-z_]))))))))",
+      "end": "(?:(?<=[0-9A-Za-z_])(?![0-9A-Za-z_])(?<!(?<![0-9A-Za-z_])as)|(?=\\s*(?!/[/*]|\\b[A-Za-z][0-9A-Za-z_]*(?![0-9A-Za-z_]))\\S)|(?=\\s*\\b(?:_(?![0-9A-Za-z_])|and(?![0-9A-Za-z_])|any(?![0-9A-Za-z_])|as(?![0-9A-Za-z_])|asc(?![0-9A-Za-z_])|avg(?![0-9A-Za-z_])|boolean(?![0-9A-Za-z_])|by(?![0-9A-Za-z_])|class(?![0-9A-Za-z_])|concat(?![0-9A-Za-z_])|count(?![0-9A-Za-z_])|date(?![0-9A-Za-z_])|desc(?![0-9A-Za-z_])|else(?![0-9A-Za-z_])|exists(?![0-9A-Za-z_])|extends(?![0-9A-Za-z_])|false(?![0-9A-Za-z_])|float(?![0-9A-Za-z_])|forall(?![0-9A-Za-z_])|forex(?![0-9A-Za-z_])|from(?![0-9A-Za-z_])|if(?![0-9A-Za-z_])|implies(?![0-9A-Za-z_])|import(?![0-9A-Za-z_])|in(?![0-9A-Za-z_])|instanceof(?![0-9A-Za-z_])|int(?![0-9A-Za-z_])|max(?![0-9A-Za-z_])|min(?![0-9A-Za-z_])|module(?![0-9A-Za-z_])|newtype(?![0-9A-Za-z_])|none(?![0-9A-Za-z_])|not(?![0-9A-Za-z_])|or(?![0-9A-Za-z_])|order(?![0-9A-Za-z_])|predicate(?![0-9A-Za-z_])|rank(?![0-9A-Za-z_])|result(?![0-9A-Za-z_])|select(?![0-9A-Za-z_])|strictconcat(?![0-9A-Za-z_])|strictcount(?![0-9A-Za-z_])|strictsum(?![0-9A-Za-z_])|string(?![0-9A-Za-z_])|sum(?![0-9A-Za-z_])|super(?![0-9A-Za-z_])|then(?![0-9A-Za-z_])|this(?![0-9A-Za-z_])|true(?![0-9A-Za-z_])|unique(?![0-9A-Za-z_])|where(?![0-9A-Za-z_]))))",
       "name": "meta.block.expr-as-clause.ql",
       "patterns": [
         {
           "include": "#non-context-sensitive"
         },
         {
-          "match": "(?:\\b[A-Za-z][0-9A-Za-z_]*(?:(?!(?:[0-9A-Za-z_]))))",
+          "match": "\\b[A-Za-z][0-9A-Za-z_]*(?![0-9A-Za-z_])",
           "name": "variable.other.ql"
         }
       ]
     },
     "extends": {
-      "match": "\\b(?:extends)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bextends(?![0-9A-Za-z_])",
       "name": "keyword.other.extends.ql"
     },
     "extends-clause": {
-      "begin": "((?:\\b(?:extends)(?:(?!(?:[0-9A-Za-z_])))))",
+      "begin": "(\\bextends(?![0-9A-Za-z_]))",
       "beginCaptures": {
         "1": {
           "patterns": [
@@ -410,25 +410,25 @@
           "include": "#non-context-sensitive"
         },
         {
-          "match": "(?:\\b[A-Za-z][0-9A-Za-z_]*(?:(?!(?:[0-9A-Za-z_]))))|(?:@[a-z][0-9A-Za-z_]*(?:(?!(?:[0-9A-Za-z_]))))",
+          "match": "\\b[A-Za-z][0-9A-Za-z_]*(?![0-9A-Za-z_])|@[a-z][0-9A-Za-z_]*(?![0-9A-Za-z_])",
           "name": "entity.name.type.ql"
         }
       ]
     },
     "external": {
-      "match": "\\b(?:external)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bexternal(?![0-9A-Za-z_])",
       "name": "storage.modifier.external.ql"
     },
     "false": {
-      "match": "\\b(?:false)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bfalse(?![0-9A-Za-z_])",
       "name": "constant.language.boolean.false.ql"
     },
     "final": {
-      "match": "\\b(?:final)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bfinal(?![0-9A-Za-z_])",
       "name": "storage.modifier.final.ql"
     },
     "float": {
-      "match": "\\b(?:float)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bfloat(?![0-9A-Za-z_])",
       "name": "keyword.type.float.ql"
     },
     "float-literal": {
@@ -436,19 +436,19 @@
       "name": "constant.numeric.decimal.ql"
     },
     "forall": {
-      "match": "\\b(?:forall)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bforall(?![0-9A-Za-z_])",
       "name": "keyword.quantifier.forall.ql"
     },
     "forex": {
-      "match": "\\b(?:forex)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bforex(?![0-9A-Za-z_])",
       "name": "keyword.quantifier.forex.ql"
     },
     "from": {
-      "match": "\\b(?:from)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bfrom(?![0-9A-Za-z_])",
       "name": "keyword.other.from.ql"
     },
     "from-section": {
-      "begin": "((?:\\b(?:from)(?:(?!(?:[0-9A-Za-z_])))))",
+      "begin": "(\\bfrom(?![0-9A-Za-z_]))",
       "beginCaptures": {
         "1": {
           "patterns": [
@@ -458,25 +458,25 @@
           ]
         }
       },
-      "end": "(?=(?:\\b(?:select)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:where)(?:(?!(?:[0-9A-Za-z_])))))",
+      "end": "(?=\\b(?:select(?![0-9A-Za-z_])|where(?![0-9A-Za-z_])))",
       "name": "meta.block.from-section.ql",
       "patterns": [
         {
           "include": "#non-context-sensitive"
         },
         {
-          "match": "(?:\\b[A-Z][0-9A-Za-z_]*(?:(?!(?:[0-9A-Za-z_]))))(?=\\s*(?:,|(?:\\b(?:where)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:select)(?:(?!(?:[0-9A-Za-z_]))))|$))",
+          "match": "\\b[A-Z][0-9A-Za-z_]*(?![0-9A-Za-z_])(?=\\s*(?:,|\\bwhere(?![0-9A-Za-z_])|\\bselect(?![0-9A-Za-z_])|$))",
           "name": "variable.parameter.ql"
         },
         {
           "include": "#module-qualifier"
         },
         {
-          "match": "(?:\\b[A-Z][0-9A-Za-z_]*(?:(?!(?:[0-9A-Za-z_]))))|(?:@[a-z][0-9A-Za-z_]*(?:(?!(?:[0-9A-Za-z_]))))",
+          "match": "\\b[A-Z][0-9A-Za-z_]*(?![0-9A-Za-z_])|@[a-z][0-9A-Za-z_]*(?![0-9A-Za-z_])",
           "name": "entity.name.type.ql"
         },
         {
-          "match": "(?:\\b[a-z][0-9A-Za-z_]*(?:(?!(?:[0-9A-Za-z_]))))",
+          "match": "\\b[a-z][0-9A-Za-z_]*(?![0-9A-Za-z_])",
           "name": "variable.parameter.ql"
         }
       ]
@@ -485,15 +485,15 @@
       "match": "[0-9A-Za-z_]"
     },
     "if": {
-      "match": "\\b(?:if)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bif(?![0-9A-Za-z_])",
       "name": "keyword.other.if.ql"
     },
     "implements": {
-      "match": "\\b(?:implements)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bimplements(?![0-9A-Za-z_])",
       "name": "keyword.other.implements.ql"
     },
     "implements-clause": {
-      "begin": "((?:\\b(?:implements)(?:(?!(?:[0-9A-Za-z_])))))",
+      "begin": "(\\bimplements(?![0-9A-Za-z_]))",
       "beginCaptures": {
         "1": {
           "patterns": [
@@ -510,21 +510,21 @@
           "include": "#non-context-sensitive"
         },
         {
-          "match": "(?:\\b[A-Za-z][0-9A-Za-z_]*(?:(?!(?:[0-9A-Za-z_]))))|(?:@[a-z][0-9A-Za-z_]*(?:(?!(?:[0-9A-Za-z_]))))",
+          "match": "\\b[A-Za-z][0-9A-Za-z_]*(?![0-9A-Za-z_])|@[a-z][0-9A-Za-z_]*(?![0-9A-Za-z_])",
           "name": "entity.name.type.ql"
         }
       ]
     },
     "implies": {
-      "match": "\\b(?:implies)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bimplies(?![0-9A-Za-z_])",
       "name": "keyword.other.implies.ql"
     },
     "import": {
-      "match": "\\b(?:import)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bimport(?![0-9A-Za-z_])",
       "name": "keyword.other.import.ql"
     },
     "import-as-clause": {
-      "begin": "((?:\\b(?:as)(?:(?!(?:[0-9A-Za-z_])))))",
+      "begin": "(\\bas(?![0-9A-Za-z_]))",
       "beginCaptures": {
         "1": {
           "patterns": [
@@ -534,20 +534,20 @@
           ]
         }
       },
-      "end": "(?:(?:(?<=(?:[0-9A-Za-z_]))(?!(?:[0-9A-Za-z_]))(?<!(?<!(?:[0-9A-Za-z_]))as))|(?=\\s*(?!(?://|/\\*)|(?:\\b[A-Za-z][0-9A-Za-z_]*(?:(?!(?:[0-9A-Za-z_])))))\\S)|(?=\\s*(?:(?:(?:\\b(?:_)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:and)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:any)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:as)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:asc)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:avg)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:boolean)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:by)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:class)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:concat)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:count)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:date)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:desc)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:else)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:exists)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:extends)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:false)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:float)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:forall)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:forex)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:from)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:if)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:implies)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:import)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:in)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:instanceof)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:int)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:max)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:min)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:module)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:newtype)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:none)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:not)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:or)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:order)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:predicate)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:rank)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:result)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:select)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:strictconcat)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:strictcount)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:strictsum)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:string)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:sum)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:super)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:then)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:this)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:true)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:unique)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:where)(?:(?!(?:[0-9A-Za-z_]))))))))",
+      "end": "(?:(?<=[0-9A-Za-z_])(?![0-9A-Za-z_])(?<!(?<![0-9A-Za-z_])as)|(?=\\s*(?!/[/*]|\\b[A-Za-z][0-9A-Za-z_]*(?![0-9A-Za-z_]))\\S)|(?=\\s*\\b(?:_(?![0-9A-Za-z_])|and(?![0-9A-Za-z_])|any(?![0-9A-Za-z_])|as(?![0-9A-Za-z_])|asc(?![0-9A-Za-z_])|avg(?![0-9A-Za-z_])|boolean(?![0-9A-Za-z_])|by(?![0-9A-Za-z_])|class(?![0-9A-Za-z_])|concat(?![0-9A-Za-z_])|count(?![0-9A-Za-z_])|date(?![0-9A-Za-z_])|desc(?![0-9A-Za-z_])|else(?![0-9A-Za-z_])|exists(?![0-9A-Za-z_])|extends(?![0-9A-Za-z_])|false(?![0-9A-Za-z_])|float(?![0-9A-Za-z_])|forall(?![0-9A-Za-z_])|forex(?![0-9A-Za-z_])|from(?![0-9A-Za-z_])|if(?![0-9A-Za-z_])|implies(?![0-9A-Za-z_])|import(?![0-9A-Za-z_])|in(?![0-9A-Za-z_])|instanceof(?![0-9A-Za-z_])|int(?![0-9A-Za-z_])|max(?![0-9A-Za-z_])|min(?![0-9A-Za-z_])|module(?![0-9A-Za-z_])|newtype(?![0-9A-Za-z_])|none(?![0-9A-Za-z_])|not(?![0-9A-Za-z_])|or(?![0-9A-Za-z_])|order(?![0-9A-Za-z_])|predicate(?![0-9A-Za-z_])|rank(?![0-9A-Za-z_])|result(?![0-9A-Za-z_])|select(?![0-9A-Za-z_])|strictconcat(?![0-9A-Za-z_])|strictcount(?![0-9A-Za-z_])|strictsum(?![0-9A-Za-z_])|string(?![0-9A-Za-z_])|sum(?![0-9A-Za-z_])|super(?![0-9A-Za-z_])|then(?![0-9A-Za-z_])|this(?![0-9A-Za-z_])|true(?![0-9A-Za-z_])|unique(?![0-9A-Za-z_])|where(?![0-9A-Za-z_]))))",
       "name": "meta.block.import-as-clause.ql",
       "patterns": [
         {
           "include": "#non-context-sensitive"
         },
         {
-          "match": "(?:\\b[A-Za-z][0-9A-Za-z_]*(?:(?!(?:[0-9A-Za-z_]))))",
+          "match": "\\b[A-Za-z][0-9A-Za-z_]*(?![0-9A-Za-z_])",
           "name": "entity.name.type.namespace.ql"
         }
       ]
     },
     "import-directive": {
-      "begin": "((?:\\b(?:import)(?:(?!(?:[0-9A-Za-z_])))))",
+      "begin": "(\\bimport(?![0-9A-Za-z_]))",
       "beginCaptures": {
         "1": {
           "patterns": [
@@ -557,7 +557,7 @@
           ]
         }
       },
-      "end": "(?<!\\bimport)(?<=(?:\\>)|[A-Za-z0-9_])(?!\\s*(\\.|\\:\\:|\\,|(?:<)))",
+      "end": "(?<!\\bimport)(?<=[>A-Za-z0-9_])(?!\\s*(\\.|::|[,<]))",
       "name": "meta.block.import-directive.ql",
       "patterns": [
         {
@@ -567,21 +567,21 @@
           "include": "#non-context-sensitive"
         },
         {
-          "match": "(?:\\b[A-Za-z][0-9A-Za-z_]*(?:(?!(?:[0-9A-Za-z_]))))",
+          "match": "\\b[A-Za-z][0-9A-Za-z_]*(?![0-9A-Za-z_])",
           "name": "entity.name.type.namespace.ql"
         }
       ]
     },
     "in": {
-      "match": "\\b(?:in)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bin(?![0-9A-Za-z_])",
       "name": "keyword.other.in.ql"
     },
     "instanceof": {
-      "match": "\\b(?:instanceof)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\binstanceof(?![0-9A-Za-z_])",
       "name": "keyword.other.instanceof.ql"
     },
     "instantiation-args": {
-      "begin": "((?:<))",
+      "begin": "(<)",
       "beginCaptures": {
         "1": {
           "patterns": [
@@ -591,7 +591,7 @@
           ]
         }
       },
-      "end": "((?:>))",
+      "end": "(>)",
       "endCaptures": {
         "1": {
           "patterns": [
@@ -610,13 +610,13 @@
           "include": "#non-context-sensitive"
         },
         {
-          "match": "(?:\\b[A-Za-z][0-9A-Za-z_]*(?:(?!(?:[0-9A-Za-z_]))))",
+          "match": "\\b[A-Za-z][0-9A-Za-z_]*(?![0-9A-Za-z_])",
           "name": "entity.name.type.namespace.ql"
         }
       ]
     },
     "int": {
-      "match": "\\b(?:int)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bint(?![0-9A-Za-z_])",
       "name": "keyword.type.int.ql"
     },
     "int-literal": {
@@ -778,11 +778,11 @@
       ]
     },
     "language": {
-      "match": "\\b(?:language)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\blanguage(?![0-9A-Za-z_])",
       "name": "storage.modifier.language.ql"
     },
     "language-annotation": {
-      "begin": "((?:\\b(?:language)(?:(?!(?:[0-9A-Za-z_])))))",
+      "begin": "(\\blanguage(?![0-9A-Za-z_]))",
       "beginCaptures": {
         "1": {
           "patterns": [
@@ -792,7 +792,7 @@
           ]
         }
       },
-      "end": "(?!(?:\\s|$|(?://|/\\*))|\\[)|(?<=\\])",
+      "end": "(?!(?:\\s|$|/[/*])|\\[)|(?<=])",
       "name": "meta.block.language-annotation.ql",
       "patterns": [
         {
@@ -804,7 +804,7 @@
       ]
     },
     "language-annotation-body": {
-      "begin": "((?:\\[))",
+      "begin": "(\\[)",
       "beginCaptures": {
         "1": {
           "patterns": [
@@ -814,7 +814,7 @@
           ]
         }
       },
-      "end": "((?:\\]))",
+      "end": "(])",
       "endCaptures": {
         "1": {
           "patterns": [
@@ -830,13 +830,13 @@
           "include": "#non-context-sensitive"
         },
         {
-          "match": "\\b(?:monotonicAggregates)(?:(?!(?:[0-9A-Za-z_])))",
+          "match": "\\bmonotonicAggregates(?![0-9A-Za-z_])",
           "name": "storage.modifier.ql"
         }
       ]
     },
     "library": {
-      "match": "\\b(?:library)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\blibrary(?![0-9A-Za-z_])",
       "name": "storage.modifier.library.ql"
     },
     "literal": {
@@ -853,22 +853,22 @@
       ]
     },
     "lower-id": {
-      "match": "\\b[a-z][0-9A-Za-z_]*(?:(?!(?:[0-9A-Za-z_])))"
+      "match": "\\b[a-z][0-9A-Za-z_]*(?![0-9A-Za-z_])"
     },
     "max": {
-      "match": "\\b(?:max)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bmax(?![0-9A-Za-z_])",
       "name": "keyword.aggregate.max.ql"
     },
     "min": {
-      "match": "\\b(?:min)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bmin(?![0-9A-Za-z_])",
       "name": "keyword.aggregate.min.ql"
     },
     "module": {
-      "match": "\\b(?:module)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bmodule(?![0-9A-Za-z_])",
       "name": "keyword.other.module.ql"
     },
     "module-body": {
-      "begin": "((?:\\{))",
+      "begin": "(\\{)",
       "beginCaptures": {
         "1": {
           "patterns": [
@@ -878,7 +878,7 @@
           ]
         }
       },
-      "end": "((?:\\}))",
+      "end": "(})",
       "endCaptures": {
         "1": {
           "patterns": [
@@ -896,7 +896,7 @@
       ]
     },
     "module-declaration": {
-      "begin": "((?:\\b(?:module)(?:(?!(?:[0-9A-Za-z_])))))",
+      "begin": "(\\bmodule(?![0-9A-Za-z_]))",
       "beginCaptures": {
         "1": {
           "patterns": [
@@ -906,7 +906,7 @@
           ]
         }
       },
-      "end": "(?<=\\}|;)",
+      "end": "(?<=[};])",
       "name": "meta.block.module-declaration.ql",
       "patterns": [
         {
@@ -919,7 +919,7 @@
           "include": "#non-context-sensitive"
         },
         {
-          "match": "(?:\\b[A-Za-z][0-9A-Za-z_]*(?:(?!(?:[0-9A-Za-z_]))))",
+          "match": "\\b[A-Za-z][0-9A-Za-z_]*(?![0-9A-Za-z_])",
           "name": "entity.name.type.namespace.ql"
         }
       ]
@@ -965,15 +965,15 @@
       ]
     },
     "module-qualifier": {
-      "match": "(?:\\b[A-Za-z][0-9A-Za-z_]*(?:(?!(?:[0-9A-Za-z_]))))(?=\\s*\\:\\:)",
+      "match": "\\b[A-Za-z][0-9A-Za-z_]*(?![0-9A-Za-z_])(?=\\s*::)",
       "name": "entity.name.type.namespace.ql"
     },
     "newtype": {
-      "match": "\\b(?:newtype)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bnewtype(?![0-9A-Za-z_])",
       "name": "keyword.other.newtype.ql"
     },
     "newtype-branch-name-with-prefix": {
-      "begin": "\\=|(?:\\b(?:or)(?:(?!(?:[0-9A-Za-z_]))))",
+      "begin": "=|\\bor(?![0-9A-Za-z_])",
       "beginCaptures": {
         "0": {
           "patterns": [
@@ -986,7 +986,7 @@
           ]
         }
       },
-      "end": "(?:\\b[A-Z][0-9A-Za-z_]*(?:(?!(?:[0-9A-Za-z_]))))",
+      "end": "\\b[A-Z][0-9A-Za-z_]*(?![0-9A-Za-z_])",
       "endCaptures": {
         "0": {
           "name": "entity.name.type.ql"
@@ -1000,7 +1000,7 @@
       ]
     },
     "newtype-declaration": {
-      "begin": "((?:\\b(?:newtype)(?:(?!(?:[0-9A-Za-z_])))))",
+      "begin": "(\\bnewtype(?![0-9A-Za-z_]))",
       "beginCaptures": {
         "1": {
           "patterns": [
@@ -1010,7 +1010,7 @@
           ]
         }
       },
-      "end": "(?:\\b[A-Z][0-9A-Za-z_]*(?:(?!(?:[0-9A-Za-z_]))))",
+      "end": "\\b[A-Z][0-9A-Za-z_]*(?![0-9A-Za-z_])",
       "endCaptures": {
         "0": {
           "name": "entity.name.type.ql"
@@ -1040,11 +1040,11 @@
       ]
     },
     "none": {
-      "match": "\\b(?:none)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bnone(?![0-9A-Za-z_])",
       "name": "keyword.quantifier.none.ql"
     },
     "not": {
-      "match": "\\b(?:not)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bnot(?![0-9A-Za-z_])",
       "name": "keyword.other.not.ql"
     },
     "open-angle": {
@@ -1116,15 +1116,15 @@
       ]
     },
     "or": {
-      "match": "\\b(?:or)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bor(?![0-9A-Za-z_])",
       "name": "keyword.other.or.ql"
     },
     "order": {
-      "match": "\\b(?:order)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\border(?![0-9A-Za-z_])",
       "name": "keyword.order.order.ql"
     },
     "override": {
-      "match": "\\b(?:override)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\boverride(?![0-9A-Za-z_])",
       "name": "storage.modifier.override.ql"
     },
     "pipe": {
@@ -1132,11 +1132,11 @@
       "name": "punctuation.separator.pipe.ql"
     },
     "pragma": {
-      "match": "\\b(?:pragma)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bpragma(?![0-9A-Za-z_])",
       "name": "storage.modifier.pragma.ql"
     },
     "pragma-annotation": {
-      "begin": "((?:\\b(?:pragma)(?:(?!(?:[0-9A-Za-z_])))))",
+      "begin": "(\\bpragma(?![0-9A-Za-z_]))",
       "beginCaptures": {
         "1": {
           "patterns": [
@@ -1146,7 +1146,7 @@
           ]
         }
       },
-      "end": "(?!(?:\\s|$|(?://|/\\*))|\\[)|(?<=\\])",
+      "end": "(?!(?:\\s|$|/[/*])|\\[)|(?<=])",
       "name": "meta.block.pragma-annotation.ql",
       "patterns": [
         {
@@ -1158,7 +1158,7 @@
       ]
     },
     "pragma-annotation-body": {
-      "begin": "((?:\\[))",
+      "begin": "(\\[)",
       "beginCaptures": {
         "1": {
           "patterns": [
@@ -1168,7 +1168,7 @@
           ]
         }
       },
-      "end": "((?:\\]))",
+      "end": "(])",
       "endCaptures": {
         "1": {
           "patterns": [
@@ -1187,11 +1187,11 @@
       ]
     },
     "predicate": {
-      "match": "\\b(?:predicate)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bpredicate(?![0-9A-Za-z_])",
       "name": "keyword.other.predicate.ql"
     },
     "predicate-body": {
-      "begin": "((?:\\{))",
+      "begin": "(\\{)",
       "beginCaptures": {
         "1": {
           "patterns": [
@@ -1201,7 +1201,7 @@
           ]
         }
       },
-      "end": "((?:\\}))",
+      "end": "(})",
       "endCaptures": {
         "1": {
           "patterns": [
@@ -1230,22 +1230,22 @@
           "include": "#module-qualifier"
         },
         {
-          "match": "(?:\\b[a-z][0-9A-Za-z_]*(?:(?!(?:[0-9A-Za-z_]))))\\s*(?:\\*|\\+)?\\s*(?=\\()",
+          "match": "\\b[a-z][0-9A-Za-z_]*(?![0-9A-Za-z_])\\s*[*+]?\\s*(?=\\()",
           "name": "entity.name.function.ql"
         },
         {
-          "match": "(?:\\b[a-z][0-9A-Za-z_]*(?:(?!(?:[0-9A-Za-z_]))))",
+          "match": "\\b[a-z][0-9A-Za-z_]*(?![0-9A-Za-z_])",
           "name": "variable.other.ql"
         },
         {
-          "match": "(?:\\b[A-Z][0-9A-Za-z_]*(?:(?!(?:[0-9A-Za-z_]))))|(?:@[a-z][0-9A-Za-z_]*(?:(?!(?:[0-9A-Za-z_]))))",
+          "match": "\\b[A-Z][0-9A-Za-z_]*(?![0-9A-Za-z_])|@[a-z][0-9A-Za-z_]*(?![0-9A-Za-z_])",
           "name": "entity.name.type.ql"
         }
       ]
     },
     "predicate-or-field-declaration": {
-      "begin": "(?:(?=(?:\\b[A-Za-z][0-9A-Za-z_]*(?:(?!(?:[0-9A-Za-z_])))))(?!(?:(?:(?:\\b(?:_)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:and)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:any)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:as)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:asc)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:avg)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:boolean)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:by)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:class)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:concat)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:count)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:date)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:desc)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:else)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:exists)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:extends)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:false)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:float)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:forall)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:forex)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:from)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:if)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:implies)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:import)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:in)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:instanceof)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:int)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:max)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:min)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:module)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:newtype)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:none)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:not)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:or)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:order)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:predicate)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:rank)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:result)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:select)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:strictconcat)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:strictcount)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:strictsum)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:string)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:sum)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:super)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:then)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:this)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:true)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:unique)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:where)(?:(?!(?:[0-9A-Za-z_]))))))|(?:(?:(?:\\b(?:abstract)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:additional)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:bindingset)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:cached)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:default)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:deprecated)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:external)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:final)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:language)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:library)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:override)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:pragma)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:private)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:query)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:signature)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:transient)(?:(?!(?:[0-9A-Za-z_]))))))))|(?=(?:(?:(?:\\b(?:boolean)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:date)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:float)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:int)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:predicate)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:string)(?:(?!(?:[0-9A-Za-z_])))))))|(?=(?:@[a-z][0-9A-Za-z_]*(?:(?!(?:[0-9A-Za-z_])))))",
-      "end": "(?<=\\}|;)",
+      "begin": "(?=\\b[A-Za-z][0-9A-Za-z_]*(?![0-9A-Za-z_]))(?!\\b(?:(?:_(?![0-9A-Za-z_])|and(?![0-9A-Za-z_])|any(?![0-9A-Za-z_])|as(?![0-9A-Za-z_])|asc(?![0-9A-Za-z_])|avg(?![0-9A-Za-z_])|boolean(?![0-9A-Za-z_])|by(?![0-9A-Za-z_])|class(?![0-9A-Za-z_])|concat(?![0-9A-Za-z_])|count(?![0-9A-Za-z_])|date(?![0-9A-Za-z_])|desc(?![0-9A-Za-z_])|else(?![0-9A-Za-z_])|exists(?![0-9A-Za-z_])|extends(?![0-9A-Za-z_])|false(?![0-9A-Za-z_])|float(?![0-9A-Za-z_])|forall(?![0-9A-Za-z_])|forex(?![0-9A-Za-z_])|from(?![0-9A-Za-z_])|if(?![0-9A-Za-z_])|implies(?![0-9A-Za-z_])|import(?![0-9A-Za-z_])|in(?![0-9A-Za-z_])|instanceof(?![0-9A-Za-z_])|int(?![0-9A-Za-z_])|max(?![0-9A-Za-z_])|min(?![0-9A-Za-z_])|module(?![0-9A-Za-z_])|newtype(?![0-9A-Za-z_])|none(?![0-9A-Za-z_])|not(?![0-9A-Za-z_])|or(?![0-9A-Za-z_])|order(?![0-9A-Za-z_])|predicate(?![0-9A-Za-z_])|rank(?![0-9A-Za-z_])|result(?![0-9A-Za-z_])|select(?![0-9A-Za-z_])|strictconcat(?![0-9A-Za-z_])|strictcount(?![0-9A-Za-z_])|strictsum(?![0-9A-Za-z_])|string(?![0-9A-Za-z_])|sum(?![0-9A-Za-z_])|super(?![0-9A-Za-z_])|then(?![0-9A-Za-z_])|this(?![0-9A-Za-z_])|true(?![0-9A-Za-z_])|unique(?![0-9A-Za-z_])|where(?![0-9A-Za-z_]))|(?:abstract(?![0-9A-Za-z_])|additional(?![0-9A-Za-z_])|bindingset(?![0-9A-Za-z_])|cached(?![0-9A-Za-z_])|default(?![0-9A-Za-z_])|deprecated(?![0-9A-Za-z_])|external(?![0-9A-Za-z_])|final(?![0-9A-Za-z_])|language(?![0-9A-Za-z_])|library(?![0-9A-Za-z_])|override(?![0-9A-Za-z_])|pragma(?![0-9A-Za-z_])|private(?![0-9A-Za-z_])|query(?![0-9A-Za-z_])|signature(?![0-9A-Za-z_])|transient(?![0-9A-Za-z_]))))|(?=\\b(?:boolean(?![0-9A-Za-z_])|date(?![0-9A-Za-z_])|float(?![0-9A-Za-z_])|int(?![0-9A-Za-z_])|predicate(?![0-9A-Za-z_])|string(?![0-9A-Za-z_])))|(?=@[a-z][0-9A-Za-z_]*(?![0-9A-Za-z_]))",
+      "end": "(?<=[};])",
       "name": "meta.block.predicate-or-field-declaration.ql",
       "patterns": [
         {
@@ -1261,21 +1261,21 @@
           "include": "#module-qualifier"
         },
         {
-          "match": "(?:\\b[a-z][0-9A-Za-z_]*(?:(?!(?:[0-9A-Za-z_]))))(?=\\s*;)",
+          "match": "\\b[a-z][0-9A-Za-z_]*(?![0-9A-Za-z_])(?=\\s*;)",
           "name": "variable.field.ql"
         },
         {
-          "match": "(?:\\b[a-z][0-9A-Za-z_]*(?:(?!(?:[0-9A-Za-z_]))))",
+          "match": "\\b[a-z][0-9A-Za-z_]*(?![0-9A-Za-z_])",
           "name": "entity.name.function.ql"
         },
         {
-          "match": "(?:\\b[A-Z][0-9A-Za-z_]*(?:(?!(?:[0-9A-Za-z_]))))|(?:@[a-z][0-9A-Za-z_]*(?:(?!(?:[0-9A-Za-z_]))))",
+          "match": "\\b[A-Z][0-9A-Za-z_]*(?![0-9A-Za-z_])|@[a-z][0-9A-Za-z_]*(?![0-9A-Za-z_])",
           "name": "entity.name.type.ql"
         }
       ]
     },
     "predicate-parameter-list": {
-      "begin": "((?:\\())",
+      "begin": "(\\()",
       "beginCaptures": {
         "1": {
           "patterns": [
@@ -1285,7 +1285,7 @@
           ]
         }
       },
-      "end": "((?:\\)))",
+      "end": "(\\))",
       "endCaptures": {
         "1": {
           "patterns": [
@@ -1301,18 +1301,18 @@
           "include": "#non-context-sensitive"
         },
         {
-          "match": "(?:\\b[A-Z][0-9A-Za-z_]*(?:(?!(?:[0-9A-Za-z_]))))(?=\\s*(?:,|\\)))",
+          "match": "\\b[A-Z][0-9A-Za-z_]*(?![0-9A-Za-z_])(?=\\s*[,)])",
           "name": "variable.parameter.ql"
         },
         {
           "include": "#module-qualifier"
         },
         {
-          "match": "(?:\\b[A-Z][0-9A-Za-z_]*(?:(?!(?:[0-9A-Za-z_]))))|(?:@[a-z][0-9A-Za-z_]*(?:(?!(?:[0-9A-Za-z_]))))",
+          "match": "\\b[A-Z][0-9A-Za-z_]*(?![0-9A-Za-z_])|@[a-z][0-9A-Za-z_]*(?![0-9A-Za-z_])",
           "name": "entity.name.type.ql"
         },
         {
-          "match": "(?:\\b[a-z][0-9A-Za-z_]*(?:(?!(?:[0-9A-Za-z_]))))",
+          "match": "\\b[a-z][0-9A-Za-z_]*(?![0-9A-Za-z_])",
           "name": "variable.parameter.ql"
         }
       ]
@@ -1340,15 +1340,15 @@
       ]
     },
     "private": {
-      "match": "\\b(?:private)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bprivate(?![0-9A-Za-z_])",
       "name": "storage.modifier.private.ql"
     },
     "query": {
-      "match": "\\b(?:query)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bquery(?![0-9A-Za-z_])",
       "name": "storage.modifier.query.ql"
     },
     "rank": {
-      "match": "\\b(?:rank)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\brank(?![0-9A-Za-z_])",
       "name": "keyword.aggregate.rank.ql"
     },
     "relational-operator": {
@@ -1356,15 +1356,15 @@
       "name": "keyword.operator.relational.ql"
     },
     "result": {
-      "match": "\\b(?:result)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bresult(?![0-9A-Za-z_])",
       "name": "variable.language.result.ql"
     },
     "select": {
-      "match": "\\b(?:select)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bselect(?![0-9A-Za-z_])",
       "name": "keyword.query.select.ql"
     },
     "select-as-clause": {
-      "begin": "((?:\\b(?:as)(?:(?!(?:[0-9A-Za-z_])))))",
+      "begin": "(\\bas(?![0-9A-Za-z_]))",
       "beginCaptures": {
         "1": {
           "patterns": [
@@ -1374,21 +1374,21 @@
           ]
         }
       },
-      "end": "(?<=(?:[0-9A-Za-z_]))(?:(?!(?:[0-9A-Za-z_])))",
+      "end": "(?<=[0-9A-Za-z_])(?![0-9A-Za-z_])",
       "match": "meta.block.select-as-clause.ql",
       "patterns": [
         {
           "include": "#non-context-sensitive"
         },
         {
-          "match": "(?:\\b[A-Za-z][0-9A-Za-z_]*(?:(?!(?:[0-9A-Za-z_]))))",
+          "match": "\\b[A-Za-z][0-9A-Za-z_]*(?![0-9A-Za-z_])",
           "name": "variable.other.ql"
         }
       ]
     },
     "select-clause": {
-      "begin": "(?=(?:\\b(?:from)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:where)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:select)(?:(?!(?:[0-9A-Za-z_])))))",
-      "end": "(?!(?:\\b(?:from)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:where)(?:(?!(?:[0-9A-Za-z_]))))|(?:\\b(?:select)(?:(?!(?:[0-9A-Za-z_])))))",
+      "begin": "(?=\\b(?:from(?![0-9A-Za-z_])|where(?![0-9A-Za-z_])|select(?![0-9A-Za-z_])))",
+      "end": "(?!\\b(?:from(?![0-9A-Za-z_])|where(?![0-9A-Za-z_])|select(?![0-9A-Za-z_])))",
       "name": "meta.block.select-clause.ql",
       "patterns": [
         {
@@ -1403,7 +1403,7 @@
       ]
     },
     "select-section": {
-      "begin": "((?:\\b(?:select)(?:(?!(?:[0-9A-Za-z_])))))",
+      "begin": "(\\bselect(?![0-9A-Za-z_]))",
       "beginCaptures": {
         "1": {
           "patterns": [
@@ -1429,26 +1429,26 @@
       "name": "punctuation.separator.statement.ql"
     },
     "signature": {
-      "match": "\\b(?:signature)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bsignature(?![0-9A-Za-z_])",
       "name": "storage.modifier.signature.ql"
     },
     "simple-id": {
-      "match": "\\b[A-Za-z][0-9A-Za-z_]*(?:(?!(?:[0-9A-Za-z_])))"
+      "match": "\\b[A-Za-z][0-9A-Za-z_]*(?![0-9A-Za-z_])"
     },
     "strictconcat": {
-      "match": "\\b(?:strictconcat)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bstrictconcat(?![0-9A-Za-z_])",
       "name": "keyword.aggregate.strictconcat.ql"
     },
     "strictcount": {
-      "match": "\\b(?:strictcount)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bstrictcount(?![0-9A-Za-z_])",
       "name": "keyword.aggregate.strictcount.ql"
     },
     "strictsum": {
-      "match": "\\b(?:strictsum)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bstrictsum(?![0-9A-Za-z_])",
       "name": "keyword.aggregate.strictsum.ql"
     },
     "string": {
-      "match": "\\b(?:string)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bstring(?![0-9A-Za-z_])",
       "name": "keyword.type.string.ql"
     },
     "string-escape": {
@@ -1462,7 +1462,7 @@
           "name": "punctuation.definition.string.begin.ql"
         }
       },
-      "end": "(\")|((?:[^\\\\\\n])$)",
+      "end": "(\")|([^\\\\\\n]$)",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.string.end.ql"
@@ -1479,42 +1479,42 @@
       ]
     },
     "sum": {
-      "match": "\\b(?:sum)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bsum(?![0-9A-Za-z_])",
       "name": "keyword.aggregate.sum.ql"
     },
     "super": {
-      "match": "\\b(?:super)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bsuper(?![0-9A-Za-z_])",
       "name": "variable.language.super.ql"
     },
     "then": {
-      "match": "\\b(?:then)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bthen(?![0-9A-Za-z_])",
       "name": "keyword.other.then.ql"
     },
     "this": {
-      "match": "\\b(?:this)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bthis(?![0-9A-Za-z_])",
       "name": "variable.language.this.ql"
     },
     "transient": {
-      "match": "\\b(?:transient)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\btransient(?![0-9A-Za-z_])",
       "name": "storage.modifier.transient.ql"
     },
     "true": {
-      "match": "\\b(?:true)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\btrue(?![0-9A-Za-z_])",
       "name": "constant.language.boolean.true.ql"
     },
     "unique": {
-      "match": "\\b(?:unique)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bunique(?![0-9A-Za-z_])",
       "name": "keyword.aggregate.unique.ql"
     },
     "upper-id": {
-      "match": "\\b[A-Z][0-9A-Za-z_]*(?:(?!(?:[0-9A-Za-z_])))"
+      "match": "\\b[A-Z][0-9A-Za-z_]*(?![0-9A-Za-z_])"
     },
     "where": {
-      "match": "\\b(?:where)(?:(?!(?:[0-9A-Za-z_])))",
+      "match": "\\bwhere(?![0-9A-Za-z_])",
       "name": "keyword.query.where.ql"
     },
     "where-section": {
-      "begin": "((?:\\b(?:where)(?:(?!(?:[0-9A-Za-z_])))))",
+      "begin": "(\\bwhere(?![0-9A-Za-z_]))",
       "beginCaptures": {
         "1": {
           "patterns": [
@@ -1524,7 +1524,7 @@
           ]
         }
       },
-      "end": "(?=(?:\\b(?:select)(?:(?!(?:[0-9A-Za-z_])))))",
+      "end": "(?=\\bselect(?![0-9A-Za-z_]))",
       "name": "meta.block.where-section.ql",
       "patterns": [
         {
@@ -1533,7 +1533,7 @@
       ]
     },
     "whitespace-or-comment-start": {
-      "match": "\\s|$|(?://|/\\*)"
+      "match": "\\s|$|/[/*]"
     }
   },
   "scopeName": "source.ql"

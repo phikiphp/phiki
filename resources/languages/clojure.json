@@ -65,7 +65,7 @@
     "constants": {
       "patterns": [
         {
-          "match": "(nil)(?=(\\s|\\)|\\]|\\}))",
+          "match": "(nil)(?=([\\s)\\]}]))",
           "name": "constant.language.nil.clojure"
         },
         {
@@ -81,11 +81,11 @@
           "name": "constant.numeric.ratio.clojure"
         },
         {
-          "match": "([-+]?(?:(?:3[0-6])|(?:[12]\\d)|[2-9])[rR][0-9A-Za-z]+N?)",
+          "match": "([-+]?(?:3[0-6]|[12]\\d|[2-9])[rR][0-9A-Za-z]+N?)",
           "name": "constant.numeric.arbitrary-radix.clojure"
         },
         {
-          "match": "([-+]?0[xX][0-9a-fA-F]+N?)",
+          "match": "([-+]?0[xX]\\h+N?)",
           "name": "constant.numeric.hexadecimal.clojure"
         },
         {
@@ -93,7 +93,7 @@
           "name": "constant.numeric.octal.clojure"
         },
         {
-          "match": "([-+]?[0-9]+(?:(\\.|(?=[eEM]))[0-9]*([eE][-+]?[0-9]+)?)M?)",
+          "match": "([-+]?[0-9]+(\\.|(?=[eEM]))[0-9]*([eE][-+]?[0-9]+)?M?)",
           "name": "constant.numeric.double.clojure"
         },
         {
@@ -106,23 +106,23 @@
       ]
     },
     "dynamic-variables": {
-      "match": "\\*[\\w\\.\\-\\_\\:\\+\\=\\>\\<\\!\\?\\d]+\\*",
+      "match": "\\*[\\w.\\-_:+=><!?\\d]+\\*",
       "name": "meta.symbol.dynamic.clojure"
     },
     "keyfn": {
       "patterns": [
         {
-          "match": "(?<=(\\s|\\(|\\[|\\{))(if(-[-\\p{Ll}\\?]*)?|when(-[-\\p{Ll}]*)?|for(-[-\\p{Ll}]*)?|cond|do|let(-[-\\p{Ll}\\?]*)?|binding|loop|recur|fn|throw[\\p{Ll}\\-]*|try|catch|finally|([\\p{Ll}]*case))(?=(\\s|\\)|\\]|\\}))",
+          "match": "(?<=([\\s(\\[{]))(if(-[-\\p{Ll}?]*)?|when(-[-\\p{Ll}]*)?|for(-[-\\p{Ll}]*)?|cond|do|let(-[-\\p{Ll}?]*)?|binding|loop|recur|fn|throw[\\p{Ll}-]*|try|catch|finally|(\\p{Ll}*case))(?=([\\s)\\]}]))",
           "name": "storage.control.clojure"
         },
         {
-          "match": "(?<=(\\s|\\(|\\[|\\{))(declare-?|(in-)?ns|import|use|require|load|compile|(def[\\p{Ll}\\-]*))(?=(\\s|\\)|\\]|\\}))",
+          "match": "(?<=([\\s(\\[{]))(declare-?|(in-)?ns|import|use|require|load|compile|(def[\\p{Ll}-]*))(?=([\\s)\\]}]))",
           "name": "keyword.control.clojure"
         }
       ]
     },
     "keyword": {
-      "match": "(?<=(\\s|\\(|\\[|\\{)):[\\w\\#\\.\\-\\_\\:\\+\\=\\>\\<\\/\\!\\?\\*]+(?=(\\s|\\)|\\]|\\}|\\,))",
+      "match": "(?<=([\\s(\\[{])):[\\w#.\\-_:+=></!?*]+(?=([\\s)\\]},]))",
       "name": "constant.keyword.clojure"
     },
     "map": {
@@ -132,7 +132,7 @@
           "name": "punctuation.section.map.begin.clojure"
         }
       },
-      "end": "(\\}(?=[\\}\\]\\)\\s]*(?:;|$)))|(\\})",
+      "end": "(}(?=[}\\])\\s]*(?:;|$)))|(})",
       "endCaptures": {
         "1": {
           "name": "punctuation.section.map.end.trailing.clojure"
@@ -157,7 +157,7 @@
               "name": "punctuation.section.metadata.map.begin.clojure"
             }
           },
-          "end": "(\\}(?=[\\}\\]\\)\\s]*(?:;|$)))|(\\})",
+          "end": "(}(?=[}\\])\\s]*(?:;|$)))|(})",
           "endCaptures": {
             "1": {
               "name": "punctuation.section.metadata.map.end.trailing.clojure"
@@ -196,18 +196,18 @@
               "name": "meta.symbol.namespace.clojure"
             }
           },
-          "match": "([\\p{L}\\.\\-\\_\\+\\=\\>\\<\\!\\?\\*][\\w\\.\\-\\_\\:\\+\\=\\>\\<\\!\\?\\*\\d]*)/"
+          "match": "([\\p{L}.\\-_+=><!?*][\\w.\\-_:+=><!?*\\d]*)/"
         }
       ]
     },
     "quoted-sexp": {
-      "begin": "(['``]\\()",
+      "begin": "(['`]\\()",
       "beginCaptures": {
         "1": {
           "name": "punctuation.section.expression.begin.clojure"
         }
       },
-      "end": "(\\))$|(\\)(?=[\\}\\]\\)\\s]*(?:;|$)))|(\\))",
+      "end": "(\\))$|(\\)(?=[}\\])\\s]*(?:;|$)))|(\\))",
       "endCaptures": {
         "1": {
           "name": "punctuation.section.expression.end.trailing.clojure"
@@ -251,13 +251,13 @@
       "name": "constant.character.escape.clojure"
     },
     "set": {
-      "begin": "(\\#\\{)",
+      "begin": "(#\\{)",
       "beginCaptures": {
         "1": {
           "name": "punctuation.section.set.begin.clojure"
         }
       },
-      "end": "(\\}(?=[\\}\\]\\)\\s]*(?:;|$)))|(\\})",
+      "end": "(}(?=[}\\])\\s]*(?:;|$)))|(})",
       "endCaptures": {
         "1": {
           "name": "punctuation.section.set.end.trailing.clojure"
@@ -280,7 +280,7 @@
           "name": "punctuation.section.expression.begin.clojure"
         }
       },
-      "end": "(\\))$|(\\)(?=[\\}\\]\\)\\s]*(?:;|$)))|(\\))",
+      "end": "(\\))$|(\\)(?=[}\\])\\s]*(?:;|$)))|(\\))",
       "endCaptures": {
         "1": {
           "name": "punctuation.section.expression.end.trailing.clojure"
@@ -311,7 +311,7 @@
               "include": "#dynamic-variables"
             },
             {
-              "match": "([\\p{L}\\.\\-\\_\\+\\=\\>\\<\\!\\?\\*][\\w\\.\\-\\_\\:\\+\\=\\>\\<\\!\\?\\*\\d]*)",
+              "match": "([\\p{L}.\\-_+=><!?*][\\w.\\-_:+=><!?*\\d]*)",
               "name": "entity.global.clojure"
             },
             {
@@ -343,7 +343,7 @@
               "name": "entity.name.function.clojure"
             }
           },
-          "match": "(?<=\\()(.+?)(?=\\s|\\))",
+          "match": "(?<=\\()(.+?)(?=[\\s)])",
           "patterns": [
             {
               "include": "$self"
@@ -389,13 +389,13 @@
     "symbol": {
       "patterns": [
         {
-          "match": "([\\p{L}\\.\\-\\_\\+\\=\\>\\<\\!\\?\\*][\\w\\.\\-\\_\\:\\+\\=\\>\\<\\!\\?\\*\\d]*)",
+          "match": "([\\p{L}.\\-_+=><!?*][\\w.\\-_:+=><!?*\\d]*)",
           "name": "meta.symbol.clojure"
         }
       ]
     },
     "var": {
-      "match": "(?<=(\\s|\\(|\\[|\\{)\\#)'[\\w\\.\\-\\_\\:\\+\\=\\>\\<\\/\\!\\?\\*]+(?=(\\s|\\)|\\]|\\}))",
+      "match": "(?<=([\\s(\\[{])#)'[\\w.\\-_:+=></!?*]+(?=([\\s)\\]}]))",
       "name": "meta.var.clojure"
     },
     "vector": {
@@ -405,7 +405,7 @@
           "name": "punctuation.section.vector.begin.clojure"
         }
       },
-      "end": "(\\](?=[\\}\\]\\)\\s]*(?:;|$)))|(\\])",
+      "end": "(](?=[}\\])\\s]*(?:;|$)))|(])",
       "endCaptures": {
         "1": {
           "name": "punctuation.section.vector.end.trailing.clojure"

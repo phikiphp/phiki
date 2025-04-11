@@ -13,7 +13,7 @@
         }
       },
       "contentName": "source.cairo0",
-      "end": "\\}",
+      "end": "}",
       "endCaptures": {
         "0": {
           "name": "keyword.control.end"
@@ -37,7 +37,7 @@
         }
       },
       "contentName": "source.cairo0",
-      "end": "\\}",
+      "end": "}",
       "endCaptures": {
         "0": {
           "name": "keyword.control.end"
@@ -61,7 +61,7 @@
         }
       },
       "contentName": "source.cairo0",
-      "end": "\\}",
+      "end": "}",
       "endCaptures": {
         "0": {
           "name": "keyword.control.end"
@@ -91,11 +91,11 @@
       "name": "keyword.other.meta"
     },
     {
-      "match": "\\b(SIZEOF_LOCALS|SIZE)\\b",
+      "match": "\\b(SIZE(?:OF_LOCALS|))\\b",
       "name": "markup.italic"
     },
     {
-      "match": "//[^\n]*\n",
+      "match": "//[^\\n]*\\n",
       "name": "comment.line.sharp"
     },
     {
@@ -113,7 +113,7 @@
         }
       },
       "contentName": "source.cairo0",
-      "end": "\\}",
+      "end": "}",
       "endCaptures": {
         "0": {
           "name": "storage.type.function.cairo"
@@ -137,7 +137,7 @@
         }
       },
       "contentName": "source.cairo0",
-      "end": "\\}",
+      "end": "}",
       "endCaptures": {
         "0": {
           "name": "storage.type.function.cairo"
@@ -155,7 +155,7 @@
       "name": "constant.numeric.decimal"
     },
     {
-      "match": "\\b[+-]?0x[0-9a-fA-F]+\\b",
+      "match": "\\b[+-]?0x\\h+\\b",
       "name": "constant.numeric.hexadecimal"
     },
     {
@@ -167,7 +167,7 @@
       "name": "string.quoted.double"
     },
     {
-      "begin": "%{",
+      "begin": "%\\{",
       "beginCaptures": {
         "0": {
           "name": "punctuation.section.embedded.begin.python"

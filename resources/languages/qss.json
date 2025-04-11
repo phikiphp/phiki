@@ -38,7 +38,7 @@
           "name": "support.constant.property-value.named-color.qss"
         },
         {
-          "match": "#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})\\b",
+          "match": "#(\\h{3}|\\h{6}|\\h{8})\\b",
           "name": "support.constant.property-value.color.qss"
         }
       ]
@@ -117,7 +117,7 @@
       "patterns": [
         {
           "begin": "\\[",
-          "end": "\\]",
+          "end": "]",
           "patterns": [
             {
               "include": "#comment-block"
@@ -137,7 +137,7 @@
       "patterns": [
         {
           "begin": ":",
-          "end": ";|(?=\\})",
+          "end": ";|(?=})",
           "patterns": [
             {
               "include": "#comment-block"
@@ -146,7 +146,7 @@
               "include": "#color"
             },
             {
-              "begin": "\\b(qlineargradient|qradialgradient|qconicalgradient)\\s*\\(",
+              "begin": "\\b(q(?:lineargradient|radialgradient|conicalgradient))\\s*\\(",
               "beginCaptures": {
                 "1": {
                   "name": "entity.name.function.qss"
@@ -215,7 +215,7 @@
       "patterns": [
         {
           "begin": "\\{",
-          "end": "\\}",
+          "end": "}",
           "patterns": [
             {
               "include": "#comment-block"
@@ -267,7 +267,7 @@
     "stylable-widgets": {
       "patterns": [
         {
-          "match": "\\b(QAbstractScrollArea|QAbstractItemView|QCheckBox|QColumnView|QComboBox|QDateEdit|QDateTimeEdit|QDialog|QDialogButtonBox|QDockWidget|QDoubleSpinBox|QFrame|QGroupBox|QHeaderView|QLabel|QLineEdit|QListView|QListWidget|QMainWindow|QMenu|QMenuBar|QMessageBox|QProgressBar|QPlainTextEdit|QPushButton|QRadioButton|QScrollBar|QSizeGrip|QSlider|QSpinBox|QSplitter|QStatusBar|QTabBar|QTabWidget|QTableView|QTableWidget|QTextEdit|QTimeEdit|QToolBar|QToolButton|QToolBox|QToolTip|QTreeView|QTreeWidget|QWidget)\\b",
+          "match": "\\b(Q(?:AbstractScrollArea|AbstractItemView|CheckBox|ColumnView|ComboBox|DateEdit|DateTimeEdit|Dialog|DialogButtonBox|DockWidget|DoubleSpinBox|Frame|GroupBox|HeaderView|Label|LineEdit|ListView|ListWidget|MainWindow|Menu|MenuBar|MessageBox|ProgressBar|PlainTextEdit|PushButton|RadioButton|ScrollBar|SizeGrip|Slider|SpinBox|Splitter|StatusBar|TabBar|TabWidget|TableView|TableWidget|TextEdit|TimeEdit|ToolBar|ToolButton|ToolBox|ToolTip|TreeView|TreeWidget|Widget))\\b",
           "name": "entity.name.type.qss"
         }
       ]

@@ -13,19 +13,19 @@
       "name": "comment.line.double-slash.hlsl"
     },
     {
-      "match": "\\b[0-9]+\\.[0-9]*(F|f)?\\b",
+      "match": "\\b[0-9]+\\.[0-9]*([Ff])?\\b",
       "name": "constant.numeric.decimal.hlsl"
     },
     {
-      "match": "(\\.([0-9]+)(F|f)?)\\b",
+      "match": "(\\.([0-9]+)([Ff])?)\\b",
       "name": "constant.numeric.decimal.hlsl"
     },
     {
-      "match": "\\b([0-9]+(F|f)?)\\b",
+      "match": "\\b([0-9]+([Ff])?)\\b",
       "name": "constant.numeric.decimal.hlsl"
     },
     {
-      "match": "\\b(0(x|X)[0-9a-fA-F]+)\\b",
+      "match": "\\b(0([xX])\\h+)\\b",
       "name": "constant.numeric.hex.hlsl"
     },
     {
@@ -53,23 +53,23 @@
       "name": "storage.type.basic.hlsl"
     },
     {
-      "match": "\\b([a-zA-Z_][a-zA-Z0-9_]*)(?=[\\s]*\\()",
+      "match": "\\b([a-zA-Z_][a-zA-Z0-9_]*)(?=\\s*\\()",
       "name": "support.function.hlsl"
     },
     {
-      "match": "(?<=\\:\\s|\\:)(?i:BINORMAL[0-9]*|BLENDINDICES[0-9]*|BLENDWEIGHT[0-9]*|COLOR[0-9]*|NORMAL[0-9]*|POSITIONT|POSITION|PSIZE[0-9]*|TANGENT[0-9]*|TEXCOORD[0-9]*|FOG|TESSFACTOR[0-9]*|VFACE|VPOS|DEPTH[0-9]*)\\b",
+      "match": "(?<=:(?:\\s|))(?i:BINORMAL[0-9]*|BLENDINDICES[0-9]*|BLENDWEIGHT[0-9]*|COLOR[0-9]*|NORMAL[0-9]*|POSITIONT|POSITION|PSIZE[0-9]*|TANGENT[0-9]*|TEXCOORD[0-9]*|FOG|TESSFACTOR[0-9]*|VFACE|VPOS|DEPTH[0-9]*)\\b",
       "name": "support.variable.semantic.hlsl"
     },
     {
-      "match": "(?<=\\:\\s|\\:)(?i:SV_ClipDistance[0-9]*|SV_CullDistance[0-9]*|SV_Coverage|SV_Depth|SV_DepthGreaterEqual[0-9]*|SV_DepthLessEqual[0-9]*|SV_InstanceID|SV_IsFrontFace|SV_Position|SV_RenderTargetArrayIndex|SV_SampleIndex|SV_StencilRef|SV_Target[0-7]?|SV_VertexID|SV_ViewportArrayIndex)\\b",
+      "match": "(?<=:(?:\\s|))(?i:SV_(?:ClipDistance[0-9]*|CullDistance[0-9]*|Coverage|Depth|DepthGreaterEqual[0-9]*|DepthLessEqual[0-9]*|InstanceID|IsFrontFace|Position|RenderTargetArrayIndex|SampleIndex|StencilRef|Target[0-7]?|VertexID|ViewportArrayIndex))\\b",
       "name": "support.variable.semantic.sm4.hlsl"
     },
     {
-      "match": "(?<=\\:\\s|\\:)(?i:SV_DispatchThreadID|SV_DomainLocation|SV_GroupID|SV_GroupIndex|SV_GroupThreadID|SV_GSInstanceID|SV_InsideTessFactor|SV_OutputControlPointID|SV_TessFactor)\\b",
+      "match": "(?<=:(?:\\s|))(?i:SV_(?:DispatchThreadID|DomainLocation|GroupID|GroupIndex|GroupThreadID|GSInstanceID|InsideTessFactor|OutputControlPointID|TessFactor))\\b",
       "name": "support.variable.semantic.sm5.hlsl"
     },
     {
-      "match": "(?<=\\:\\s|\\:)(?i:SV_InnerCoverage|SV_StencilRef)\\b",
+      "match": "(?<=:(?:\\s|))(?i:SV_(?:InnerCoverage|StencilRef))\\b",
       "name": "support.variable.semantic.sm5_1.hlsl"
     },
     {
@@ -101,11 +101,11 @@
       "name": "support.type.object.hlsl"
     },
     {
-      "match": "\\b(RasterizerOrderedBuffer|RasterizerOrderedByteAddressBuffer|RasterizerOrderedStructuredBuffer|RasterizerOrderedTexture1D|RasterizerOrderedTexture1DArray|RasterizerOrderedTexture2D|RasterizerOrderedTexture2DArray|RasterizerOrderedTexture3D)\\b",
+      "match": "\\b(RasterizerOrdered(?:Buffer|ByteAddressBuffer|StructuredBuffer|Texture1D|Texture1DArray|Texture2D|Texture2DArray|Texture3D))\\b",
       "name": "support.type.object.rasterizerordered.hlsl"
     },
     {
-      "match": "\\b(RWBuffer|RWByteAddressBuffer|RWStructuredBuffer|RWTexture1D|RWTexture1DArray|RWTexture2D|RWTexture2DArray|RWTexture3D)\\b",
+      "match": "\\b(RW(?:Buffer|ByteAddressBuffer|StructuredBuffer|Texture1D|Texture1DArray|Texture2D|Texture2DArray|Texture3D))\\b",
       "name": "support.type.object.rw.hlsl"
     },
     {
@@ -113,19 +113,19 @@
       "name": "support.type.object.geometryshader.hlsl"
     },
     {
-      "match": "\\b(sampler|sampler1D|sampler2D|sampler3D|samplerCUBE|sampler_state)\\b",
+      "match": "\\b(sampler(?:|1D|2D|3D|CUBE|_state))\\b",
       "name": "support.type.sampler.legacy.hlsl"
     },
     {
-      "match": "\\b(SamplerState|SamplerComparisonState)\\b",
+      "match": "\\b(Sampler(?:State|ComparisonState))\\b",
       "name": "support.type.sampler.hlsl"
     },
     {
-      "match": "\\b(texture2D|textureCUBE)\\b",
+      "match": "\\b(texture(?:2D|CUBE))\\b",
       "name": "support.type.texture.legacy.hlsl"
     },
     {
-      "match": "\\b(Texture1D|Texture1DArray|Texture2D|Texture2DArray|Texture2DMS|Texture2DMSArray|Texture3D|TextureCube|TextureCubeArray)\\b",
+      "match": "\\b(Texture(?:1D|1DArray|2D|2DArray|2DMS|2DMSArray|3D|Cube|CubeArray))\\b",
       "name": "support.type.texture.hlsl"
     },
     {

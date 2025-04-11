@@ -23,7 +23,7 @@
   ],
   "repository": {
     "class": {
-      "begin": "(?:^\\s*)(class)\\b",
+      "begin": "^\\s*(class)\\b",
       "beginCaptures": {
         "1": {
           "name": "keyword.control.tasl.class"
@@ -72,7 +72,7 @@
           "name": "punctuation.definition.block.tasl.coproduct"
         }
       },
-      "end": "\\]",
+      "end": "]",
       "endCaptures": {
         "0": {
           "name": "punctuation.definition.block.tasl.coproduct"
@@ -91,11 +91,11 @@
       ]
     },
     "datatype": {
-      "match": "[a-zA-Z][a-zA-Z0-9]*:(?:[A-Za-z0-9\\-._~!$&'()*+,;=:@/?]|%[0-9A-Fa-f]{2})+",
+      "match": "[a-zA-Z][a-zA-Z0-9]*:(?:[A-Za-z0-9\\-._~!$\\&'()*+,;=:@/?]|%\\h{2})+",
       "name": "string.regexp"
     },
     "edge": {
-      "begin": "(?:^\\s*)(edge)\\b",
+      "begin": "^\\s*(edge)\\b",
       "beginCaptures": {
         "1": {
           "name": "keyword.control.tasl.edge"
@@ -164,7 +164,7 @@
       "match": "([a-zA-Z][a-zA-Z0-9]*)\\b"
     },
     "key": {
-      "match": "[a-zA-Z][a-zA-Z0-9]*:(?:[A-Za-z0-9\\-._~!$&'()*+,;=:@/?]|%[0-9A-Fa-f]{2})+",
+      "match": "[a-zA-Z][a-zA-Z0-9]*:(?:[A-Za-z0-9\\-._~!$\\&'()*+,;=:@/?]|%\\h{2})+",
       "name": "markup.bold entity.name.class"
     },
     "literal": {
@@ -191,10 +191,10 @@
           ]
         }
       },
-      "match": "(?:^\\s*)(namespace)\\b(.*)"
+      "match": "^\\s*(namespace)\\b(.*)"
     },
     "namespaceURI": {
-      "match": "[a-z]+:[a-zA-Z0-9-._~:\\/?#\\[\\]@!$&'()*+,;%=]+",
+      "match": "[a-z]+:[a-zA-Z0-9\\-._~:/?#\\[\\]@!$\\&'()*+,;%=]+",
       "name": "markup.underline.link"
     },
     "option": {
@@ -226,7 +226,7 @@
       ]
     },
     "product": {
-      "begin": "{",
+      "begin": "\\{",
       "beginCaptures": {
         "0": {
           "name": "punctuation.definition.block.tasl.product"
@@ -266,11 +266,11 @@
       "match": "(\\*)\\s*(.*)"
     },
     "term": {
-      "match": "[a-zA-Z][a-zA-Z0-9]*:(?:[A-Za-z0-9\\-._~!$&'()*+,;=:@/?]|%[0-9A-Fa-f]{2})+",
+      "match": "[a-zA-Z][a-zA-Z0-9]*:(?:[A-Za-z0-9\\-._~!$\\&'()*+,;=:@/?]|%\\h{2})+",
       "name": "entity.other.tasl.key"
     },
     "type": {
-      "begin": "(?:^\\s*)(type)\\b",
+      "begin": "^\\s*(type)\\b",
       "beginCaptures": {
         "1": {
           "name": "keyword.control.tasl.type"

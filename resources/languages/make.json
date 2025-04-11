@@ -25,7 +25,7 @@
     "another-variable-braces": {
       "patterns": [
         {
-          "begin": "(?<={)(?!})",
+          "begin": "(?<=\\{)(?!})",
           "end": "(?=}|((?<!\\\\)\\n))",
           "name": "variable.other.makefile",
           "patterns": [
@@ -59,7 +59,7 @@
       ]
     },
     "braces-interpolation": {
-      "begin": "{",
+      "begin": "\\{",
       "end": "}",
       "patterns": [
         {
@@ -73,7 +73,7 @@
     "builtin-variable-braces": {
       "patterns": [
         {
-          "match": "(?<={)(MAKEFILES|VPATH|SHELL|MAKESHELL|MAKE|MAKELEVEL|MAKEFLAGS|MAKECMDGOALS|CURDIR|SUFFIXES|\\.LIBPATTERNS)(?=\\s*})",
+          "match": "(?<=\\{)(MAKEFILES|VPATH|SHELL|MAKESHELL|MAKE|MAKELEVEL|MAKEFLAGS|MAKECMDGOALS|CURDIR|SUFFIXES|\\.LIBPATTERNS)(?=\\s*})",
           "name": "variable.language.makefile"
         }
       ]
@@ -91,7 +91,7 @@
       "name": "punctuation.separator.delimeter.comma.makefile"
     },
     "comment": {
-      "begin": "(^[ ]+)?((?<!\\\\)(\\\\\\\\)*)(?=#)",
+      "begin": "(^ +)?((?<!\\\\)(\\\\\\\\)*)(?=#)",
       "beginCaptures": {
         "1": {
           "name": "punctuation.whitespace.comment.leading.makefile"
@@ -120,7 +120,7 @@
     "directives": {
       "patterns": [
         {
-          "begin": "^[ ]*([s\\-]?include)\\b",
+          "begin": "^ *([s-]?include)\\b",
           "beginCaptures": {
             "1": {
               "name": "keyword.control.include.makefile"
@@ -141,7 +141,7 @@
           ]
         },
         {
-          "begin": "^[ ]*(vpath)\\b",
+          "begin": "^ *(vpath)\\b",
           "beginCaptures": {
             "1": {
               "name": "keyword.control.vpath.makefile"
@@ -162,7 +162,7 @@
           ]
         },
         {
-          "begin": "^\\s*(?:(override)\\s*)?(define)\\s*([^\\s]+)\\s*(=|\\?=|:=|\\+=)?(?=\\s)",
+          "begin": "^\\s*(?:(override)\\s*)?(define)\\s*(\\S+)\\s*(=|\\?=|:=|\\+=)?(?=\\s)",
           "captures": {
             "1": {
               "name": "keyword.control.override.makefile"
@@ -198,7 +198,7 @@
           ]
         },
         {
-          "begin": "^[ ]*(export)\\b",
+          "begin": "^ *(export)\\b",
           "beginCaptures": {
             "1": {
               "name": "keyword.control.$1.makefile"
@@ -213,13 +213,13 @@
               "include": "#variable-assignment"
             },
             {
-              "match": "[^\\s]+",
+              "match": "\\S+",
               "name": "variable.other.makefile"
             }
           ]
         },
         {
-          "begin": "^[ ]*(override|private)\\b",
+          "begin": "^ *(override|private)\\b",
           "beginCaptures": {
             "1": {
               "name": "keyword.control.$1.makefile"
@@ -236,7 +236,7 @@
           ]
         },
         {
-          "begin": "^[ ]*(unexport|undefine)\\b",
+          "begin": "^ *(un(?:export|define))\\b",
           "beginCaptures": {
             "1": {
               "name": "keyword.control.$1.makefile"
@@ -248,13 +248,13 @@
               "include": "#comment"
             },
             {
-              "match": "[^\\s]+",
+              "match": "\\S+",
               "name": "variable.other.makefile"
             }
           ]
         },
         {
-          "begin": "^\\s*(ifeq|ifneq|ifdef|ifndef)(?=\\s)",
+          "begin": "^\\s*(if(?:|n)(?:eq|def))(?=\\s)",
           "captures": {
             "1": {
               "name": "keyword.control.$1.makefile"
@@ -280,7 +280,7 @@
               ]
             },
             {
-              "begin": "^\\s*else(?=\\s)\\s*(ifeq|ifneq|ifdef|ifndef)*(?=\\s)",
+              "begin": "^\\s*else(?=\\s)\\s*(if(?:|n)(?:eq|def))*(?=\\s)",
               "beginCaptures": {
                 "0": {
                   "name": "keyword.control.else.makefile"
@@ -309,7 +309,7 @@
     "flavor-variable-braces": {
       "patterns": [
         {
-          "begin": "(?<={)(origin|flavor)\\s(?=[^\\s}]+\\s*})",
+          "begin": "(?<=\\{)(origin|flavor)\\s(?=[^\\s}]+\\s*})",
           "beginCaptures": {
             "1": {
               "name": "support.function.$1.makefile"
@@ -349,7 +349,7 @@
     "function-variable-braces": {
       "patterns": [
         {
-          "begin": "(?<={)(subst|patsubst|strip|findstring|filter(-out)?|sort|word(list)?|firstword|lastword|dir|notdir|suffix|basename|addsuffix|addprefix|join|wildcard|realpath|abspath|info|error|warning|shell|foreach|if|or|and|call|eval|value|file|guile)\\s",
+          "begin": "(?<=\\{)(subst|patsubst|strip|findstring|filter(-out)?|sort|word(list)?|firstword|lastword|dir|notdir|suffix|basename|addsuffix|addprefix|join|wildcard|realpath|abspath|info|error|warning|shell|foreach|if|or|and|call|eval|value|file|guile)\\s",
           "beginCaptures": {
             "1": {
               "name": "support.function.$1.makefile"
@@ -368,7 +368,7 @@
               "include": "#interpolation"
             },
             {
-              "match": "%|\\*",
+              "match": "[%*]",
               "name": "constant.other.placeholder.makefile"
             },
             {
@@ -401,7 +401,7 @@
               "include": "#interpolation"
             },
             {
-              "match": "%|\\*",
+              "match": "[%*]",
               "name": "constant.other.placeholder.makefile"
             },
             {
@@ -462,7 +462,7 @@
       ]
     },
     "target": {
-      "begin": "^(?!\\t)([^:]*)(:)(?!\\=)",
+      "begin": "^(?!\\t)([^:]*)(:)(?!=)",
       "beginCaptures": {
         "1": {
           "patterns": [
@@ -507,7 +507,7 @@
               "name": "constant.character.escape.continuation.makefile"
             },
             {
-              "match": "%|\\*",
+              "match": "[%*]",
               "name": "constant.other.placeholder.makefile"
             },
             {
@@ -521,7 +521,7 @@
       ]
     },
     "variable-assignment": {
-      "begin": "(^[ ]*|\\G\\s*)([^\\s:#=]+)\\s*((?<![?:+!])=|\\?=|:=|\\+=|!=)",
+      "begin": "(^ *|\\G\\s*)([^\\s:#=]+)\\s*((?<![?:+!])=|\\?=|:=|\\+=|!=)",
       "beginCaptures": {
         "2": {
           "name": "variable.other.makefile",
@@ -552,7 +552,7 @@
     "variable-braces": {
       "patterns": [
         {
-          "begin": "\\${",
+          "begin": "\\$\\{",
           "captures": {
             "0": {
               "name": "punctuation.definition.variable.makefile"

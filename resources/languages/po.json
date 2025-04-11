@@ -8,8 +8,7 @@
   "name": "po",
   "patterns": [
     {
-      "begin": "^(?=(msgid(_plural)?|msgctxt)\\s*\"[^\"])|^\\s*$",
-      "comment": "Start of body of document, after header",
+      "begin": "^(?:(?=(msg(?:id(_plural)?|ctxt))\\s*\"[^\"])|\\s*$)",
       "end": "\\z",
       "patterns": [
         {
@@ -67,7 +66,7 @@
           ]
         },
         {
-          "begin": "^(msgstr)(?:(\\[)(\\d+)(\\]))?\\s+",
+          "begin": "^(msgstr)(?:(\\[)(\\d+)(]))?\\s+",
           "beginCaptures": {
             "1": {
               "name": "keyword.control.msgstr.po"
@@ -99,7 +98,7 @@
           ]
         },
         {
-          "begin": "^(msgctxt)(?:(\\[)(\\d+)(\\]))?\\s+",
+          "begin": "^(msgctxt)(?:(\\[)(\\d+)(]))?\\s+",
           "beginCaptures": {
             "1": {
               "name": "keyword.control.msgctxt.po"
@@ -143,7 +142,6 @@
           "include": "#comments"
         },
         {
-          "comment": "a line that does not begin with # or \". Could improve this regexp",
           "match": "^(?!\\s*$)[^#\"].*$\\n?",
           "name": "invalid.illegal.po"
         }
@@ -171,7 +169,7 @@
                       "name": "entity.name.type.flag.po"
                     }
                   },
-                  "match": "(?:\\G|,\\s*)((?:fuzzy)|(?:no-)?(?:c|objc|sh|lisp|elisp|librep|scheme|smalltalk|java|csharp|awk|object-pascal|ycp|tcl|perl|perl-brace|php|gcc-internal|qt|boost)-format)"
+                  "match": "(?:\\G|,\\s*)(fuzzy|(?:no-)?(?:c|objc|sh|lisp|elisp|librep|scheme|smalltalk|java|csharp|awk|object-pascal|ycp|tcl|perl|perl-brace|php|gcc-internal|qt|boost)-format)"
                 }
               ]
             },

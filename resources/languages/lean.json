@@ -12,11 +12,11 @@
       "name": "storage.type.lean4"
     },
     {
-      "match": "\\battribute\\b\\s*\\[[^\\]]*\\]",
+      "match": "\\battribute\\b\\s*\\[[^\\]]*]",
       "name": "storage.modifier.lean4"
     },
     {
-      "match": "@\\[[^\\]]*\\]",
+      "match": "@\\[[^\\]]*]",
       "name": "storage.modifier.lean4"
     },
     {
@@ -36,13 +36,13 @@
       "name": "keyword.other.command.lean4"
     },
     {
-      "begin": "\\b(?<!\\.)(inductive|coinductive|structure|theorem|axiom|abbrev|lemma|def|instance|class|constant)\\b\\s+(\\{[^}]*\\})?",
+      "begin": "\\b(?<!\\.)(inductive|coinductive|structure|theorem|axiom|abbrev|lemma|def|instance|class|constant)\\b\\s+(\\{[^}]*})?",
       "beginCaptures": {
         "1": {
           "name": "keyword.other.definitioncommand.lean4"
         }
       },
-      "end": "(?=\\bwith\\b|\\bextends\\b|\\bwhere\\b|[:\\|\\(\\[\\{⦃<>])",
+      "end": "(?=\\bwith\\b|\\bextends\\b|\\bwhere\\b|[:|(\\[{⦃<>])",
       "name": "meta.definitioncommand.lean4",
       "patterns": [
         {
@@ -82,7 +82,7 @@
               "name": "keyword.other.lean4"
             }
           },
-          "end": "(\\})",
+          "end": "(})",
           "endCaptures": {
             "1": {
               "name": "keyword.other.lean4"
@@ -99,11 +99,11 @@
           "name": "constant.character.escape.lean4"
         },
         {
-          "match": "\\\\x[0-9A-Fa-f][0-9A-Fa-f]",
+          "match": "\\\\x\\h\\h",
           "name": "constant.character.escape.lean4"
         },
         {
-          "match": "\\\\u[0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f]",
+          "match": "\\\\u\\h\\h\\h\\h",
           "name": "constant.character.escape.lean4"
         }
       ]
@@ -118,11 +118,11 @@
           "name": "constant.character.escape.lean4"
         },
         {
-          "match": "\\\\x[0-9A-Fa-f][0-9A-Fa-f]",
+          "match": "\\\\x\\h\\h",
           "name": "constant.character.escape.lean4"
         },
         {
-          "match": "\\\\u[0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f]",
+          "match": "\\\\u\\h\\h\\h\\h",
           "name": "constant.character.escape.lean4"
         }
       ]
@@ -141,7 +141,7 @@
           "name": "constant.character.escape.lean4"
         }
       },
-      "match": "'(\\\\(x[0-9A-Fa-f][0-9A-Fa-f]|u[0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f]|.))'",
+      "match": "'(\\\\(x\\h\\h|u\\h\\h\\h\\h|.))'",
       "name": "string.quoted.single.lean4"
     },
     {
@@ -149,7 +149,7 @@
       "name": "entity.name.lean4"
     },
     {
-      "match": "\\b([0-9]+|0([xX][0-9a-fA-F]+)|[-]?(0|[1-9][0-9]*)(\\.[0-9]+)?([eE][+-]?[0-9]+)?)\\b",
+      "match": "\\b([0-9]+|0([xX]\\h+)|-?(0|[1-9][0-9]*)(\\.[0-9]+)?([eE][+-]?[0-9]+)?)\\b",
       "name": "constant.numeric.lean4"
     }
   ],
@@ -199,7 +199,7 @@
     "definitionName": {
       "patterns": [
         {
-          "match": "\\b[^:«»\\(\\)\\{\\}[:space:]=→λ∀?][^:«»\\(\\)\\{\\}[:space:]]*",
+          "match": "\\b[^:«»(){}\\s=→λ∀?][^:«»(){}\\s]*",
           "name": "entity.name.function.lean4"
         },
         {

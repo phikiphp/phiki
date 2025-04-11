@@ -43,7 +43,7 @@
   ],
   "repository": {
     "ArrayDecl": {
-      "begin": "\\b(?:(array)\\s+([A-Za-z_]\\w*)?)",
+      "begin": "\\b(array)\\s+([A-Za-z_]\\w*)?",
       "beginCaptures": {
         "1": {
           "name": "support.type.array.gnuplot"
@@ -60,7 +60,7 @@
           ]
         }
       },
-      "end": "(?=(;|#|\\\\(?!\\n)|(?<!\\\\)\\n$))",
+      "end": "(?=([;#]|\\\\(?!\\n)|(?<!\\\\)\\n$))",
       "name": "meta.variable.gnuplot",
       "patterns": [
         {
@@ -71,7 +71,7 @@
     "BuiltinFunction": {
       "patterns": [
         {
-          "match": "\\b(?:defined)\\b",
+          "match": "\\bdefined\\b",
           "name": "invalid.deprecated.function.gnuplot"
         },
         {
@@ -95,7 +95,7 @@
           "name": "keyword.operator.logical.gnuplot"
         },
         {
-          "match": "(<<|>>|&|\\||\\^)",
+          "match": "(<<|>>|[\\&|^])",
           "name": "keyword.operator.bitwise.gnuplot"
         },
         {
@@ -107,11 +107,11 @@
           "name": "keyword.operator.assignment.gnuplot"
         },
         {
-          "match": "(\\+|-|~|!)",
+          "match": "([+\\-~!])",
           "name": "keyword.operator.arithmetic.gnuplot"
         },
         {
-          "match": "(\\*\\*|\\+|-|\\*|/|%)",
+          "match": "(\\*\\*|[+\\-*/%])",
           "name": "keyword.operator.arithmetic.gnuplot"
         },
         {
@@ -128,7 +128,7 @@
     "BuiltinVariable": {
       "patterns": [
         {
-          "match": "\\b(?:FIT_LIMIT|FIT_MAXITER|FIT_START_LAMBDA|FIT_LAMBDA_FACTOR|FIT_SKIP|FIT_INDEX)\\b",
+          "match": "\\bFIT_(?:LIMIT|MAXITER|START_LAMBDA|LAMBDA_FACTOR|SKIP|INDEX)\\b",
           "name": "invalid.deprecated.variable.gnuplot"
         },
         {
@@ -142,14 +142,14 @@
       ]
     },
     "ColumnIndexLiteral": {
-      "match": "([$][0-9]+)\\b",
+      "match": "(\\$[0-9]+)\\b",
       "name": "support.constant.columnindex.gnuplot"
     },
     "Command": {
       "patterns": [
         {
-          "begin": "\\b(?:update)\\b",
-          "end": "(?=(;|#|\\\\(?!\\n)|(?<!\\\\)\\n$))",
+          "begin": "\\bupdate\\b",
+          "end": "(?=([;#]|\\\\(?!\\n)|(?<!\\\\)\\n$))",
           "name": "invalid.deprecated.command.gnuplot"
         },
         {
@@ -159,7 +159,7 @@
               "name": "keyword.other.command.gnuplot"
             }
           },
-          "end": "(?=(;|#|\\\\(?!\\n)|(?<!\\\\)\\n$))",
+          "end": "(?=([;#]|\\\\(?!\\n)|(?<!\\\\)\\n$))",
           "patterns": [
             {
               "include": "#InvalidWord"
@@ -173,7 +173,7 @@
               "name": "keyword.other.command.gnuplot"
             }
           },
-          "end": "(?=(;|#|\\\\(?!\\n)|(?<!\\\\)\\n$))",
+          "end": "(?=([;#]|\\\\(?!\\n)|(?<!\\\\)\\n$))",
           "patterns": [
             {
               "include": "#Expression"
@@ -197,7 +197,7 @@
               "name": "keyword.control.import.gnuplot"
             }
           },
-          "end": "(?=(;|#|\\\\(?!\\n)|(?<!\\\\)\\n$))",
+          "end": "(?=([;#]|\\\\(?!\\n)|(?<!\\\\)\\n$))",
           "patterns": [
             {
               "include": "#SingleQuotedStringLiteral"
@@ -217,7 +217,7 @@
               "name": "keyword.other.command.gnuplot"
             }
           },
-          "end": "(?=(;|#|\\\\(?!\\n)|(?<!\\\\)\\n$))",
+          "end": "(?=([;#]|\\\\(?!\\n)|(?<!\\\\)\\n$))",
           "patterns": [
             {
               "match": "\\b(bind|error(state)?|session)\\b",
@@ -235,7 +235,7 @@
               "name": "keyword.other.command.gnuplot"
             }
           },
-          "end": "(?=(;|#|\\\\(?!\\n)|(?<!\\\\)\\n$))",
+          "end": "(?=([;#]|\\\\(?!\\n)|(?<!\\\\)\\n$))",
           "patterns": [
             {
               "include": "#BuiltinVariable"
@@ -244,7 +244,7 @@
               "include": "#BuiltinFunction"
             },
             {
-              "match": "(?<=\\s)([$]?[A-Za-z_]\\w*\\*?)(?=\\s)",
+              "match": "(?<=\\s)(\\$?[A-Za-z_]\\w*\\*?)(?=\\s)",
               "name": "source.gnuplot"
             },
             {
@@ -259,7 +259,7 @@
               "name": "keyword.control.conditional.gnuplot"
             }
           },
-          "end": "(?=(\\{|#|\\\\(?!\\n)|(?<!\\\\)\\n$))",
+          "end": "(?=([{#]|\\\\(?!\\n)|(?<!\\\\)\\n$))",
           "patterns": [
             {
               "include": "#Expression"
@@ -273,7 +273,7 @@
               "name": "keyword.control.conditional.gnuplot"
             }
           },
-          "end": "(?=(\\{|#|\\\\(?!\\n)|(?<!\\\\)\\n$))"
+          "end": "(?=([{#]|\\\\(?!\\n)|(?<!\\\\)\\n$))"
         },
         {
           "begin": "\\b(do)\\b",
@@ -282,7 +282,7 @@
               "name": "keyword.control.flow.gnuplot"
             }
           },
-          "end": "(?=(\\{|#|\\\\(?!\\n)|(?<!\\\\)\\n$))",
+          "end": "(?=([{#]|\\\\(?!\\n)|(?<!\\\\)\\n$))",
           "patterns": [
             {
               "include": "#ForIterationExpr"
@@ -296,7 +296,7 @@
               "name": "keyword.other.command.gnuplot"
             }
           },
-          "end": "(?=(;|#|\\\\(?!\\n)|(?<!\\\\)\\n$))",
+          "end": "(?=([;#]|\\\\(?!\\n)|(?<!\\\\)\\n$))",
           "patterns": [
             {
               "match": "\\b(hidden3d|map|transparent|solid)\\b",
@@ -320,7 +320,7 @@
               "name": "keyword.other.command.gnuplot"
             }
           },
-          "end": "(?=(;|#|\\\\(?!\\n)|(?<!\\\\)\\n$))",
+          "end": "(?=([;#]|\\\\(?!\\n)|(?<!\\\\)\\n$))",
           "patterns": [
             {
               "include": "#SetUnsetOptions"
@@ -340,7 +340,7 @@
               "name": "keyword.other.command.gnuplot"
             }
           },
-          "end": "(?=(;|#|\\\\(?!\\n)|(?<!\\\\)\\n$))",
+          "end": "(?=([;#]|\\\\(?!\\n)|(?<!\\\\)\\n$))",
           "patterns": [
             {
               "include": "#ExtraShowOptions"
@@ -360,7 +360,7 @@
               "name": "keyword.other.command.gnuplot"
             }
           },
-          "end": "(?=(;|#|\\\\(?!\\n)|(?<!\\\\)\\n$))",
+          "end": "(?=([;#]|\\\\(?!\\n)|(?<!\\\\)\\n$))",
           "patterns": [
             {
               "include": "#ColumnIndexLiteral"
@@ -379,7 +379,7 @@
       ]
     },
     "DataBlock": {
-      "begin": "(?:([$][A-Za-z_]\\w*)\\s*(<<)\\s*([A-Za-z_]\\w*)\\s*(?=(\\#|$)))",
+      "begin": "(\\$[A-Za-z_]\\w*)\\s*(<<)\\s*([A-Za-z_]\\w*)\\s*(?=(#|$))",
       "beginCaptures": {
         "1": {
           "patterns": [
@@ -415,7 +415,7 @@
       ]
     },
     "DeprecatedScriptArgsLiteral": {
-      "match": "([$][0-9#])",
+      "match": "(\\$[0-9#])",
       "name": "invalid.illegal.scriptargs.gnuplot"
     },
     "DoubleQuotedStringLiteral": {
@@ -481,7 +481,7 @@
       "name": "support.class.options.gnuplot"
     },
     "ForIterationExpr": {
-      "begin": "\\b(?:(for)\\s*(\\[)\\s*(?:([A-Za-z_]\\w*)\\s+(in)\\b)?)",
+      "begin": "\\b(for)\\s*(\\[)\\s*(?:([A-Za-z_]\\w*)\\s+(in)\\b)?",
       "beginCaptures": {
         "1": {
           "name": "keyword.control.flow.gnuplot"
@@ -500,7 +500,7 @@
           "name": "keyword.control.flow.gnuplot"
         }
       },
-      "end": "((\\])|(?=(#|\\\\(?!\\n)|(?<!\\\\)\\n$)))",
+      "end": "((])|(?=(#|\\\\(?!\\n)|(?<!\\\\)\\n$)))",
       "endCaptures": {
         "2": {
           "patterns": [
@@ -548,7 +548,7 @@
       ]
     },
     "FunctionDecl": {
-      "begin": "\\b(?:([A-Za-z_]\\w*)\\s*((\\()\\s*([A-Za-z_]\\w*)\\s*(?:(,)\\s*([A-Za-z_]\\w*)\\s*)*(\\))))",
+      "begin": "\\b([A-Za-z_]\\w*)\\s*((\\()\\s*([A-Za-z_]\\w*)\\s*(?:(,)\\s*([A-Za-z_]\\w*)\\s*)*(\\)))",
       "beginCaptures": {
         "1": {
           "name": "entity.name.function.gnuplot",
@@ -577,7 +577,7 @@
           "name": "punctuation.definition.parameters.end.gnuplot"
         }
       },
-      "end": "(?=(;|#|\\\\(?!\\n)|(?<!\\\\)\\n$))",
+      "end": "(?=([;#]|\\\\(?!\\n)|(?<!\\\\)\\n$))",
       "name": "meta.function.gnuplot",
       "patterns": [
         {
@@ -610,7 +610,7 @@
       "name": "invalid.illegal.variable.gnuplot"
     },
     "InvalidWord": {
-      "match": "([^;#\\\\[:space:]]+)",
+      "match": "([^;#\\\\\\s]+)",
       "name": "invalid.illegal.gnuplot"
     },
     "LineComment": {
@@ -648,7 +648,7 @@
       ]
     },
     "MacroExpansion": {
-      "begin": "([@][A-Za-z_]\\w*)",
+      "begin": "(@[A-Za-z_]\\w*)",
       "beginCaptures": {
         "1": {
           "patterns": [
@@ -658,7 +658,7 @@
           ]
         }
       },
-      "end": "(?=(;|#|\\\\(?!\\n)|(?<!\\\\)\\n$))",
+      "end": "(?=([;#]|\\\\(?!\\n)|(?<!\\\\)\\n$))",
       "patterns": [
         {
           "include": "#Expression"
@@ -668,15 +668,15 @@
     "NumberLiteral": {
       "patterns": [
         {
-          "match": "(?:(((\\b[0-9]+)|(?<!\\d)))([.][0-9]+)([Ee][+-]?[0-9]+)?)(cm|in)?\\b",
+          "match": "(((\\b[0-9]+)|(?<!\\d)))(\\.[0-9]+)([Ee][+-]?[0-9]+)?(cm|in)?\\b",
           "name": "constant.numeric.float.gnuplot"
         },
         {
-          "match": "(?:(\\b[0-9]+)((([Ee][+-]?[0-9]+\\b))|([.]([Ee][+-]?[0-9]+\\b)?)))(cm\\b|in\\b)?",
+          "match": "(\\b[0-9]+)((([Ee][+-]?[0-9]+\\b))|(\\.([Ee][+-]?[0-9]+\\b)?))(cm\\b|in\\b)?",
           "name": "constant.numeric.float.gnuplot"
         },
         {
-          "match": "\\b(0[Xx][0-9a-fA-F]+)(cm|in)?\\b",
+          "match": "\\b(0[Xx]\\h+)(cm|in)?\\b",
           "name": "constant.numeric.hex.gnuplot"
         },
         {
@@ -714,7 +714,7 @@
       ]
     },
     "RGBColorSpec": {
-      "match": "\\G(0x|#)(([0-9a-fA-F]{6})|([0-9a-fA-F]{8}))\\b",
+      "match": "\\G(0x|#)((\\h{6})|(\\h{8}))\\b",
       "name": "constant.other.placeholder.gnuplot"
     },
     "RangeSeparators": {
@@ -728,7 +728,7 @@
           "name": "punctuation.separator.range.gnuplot"
         },
         {
-          "match": "(\\])",
+          "match": "(])",
           "name": "punctuation.section.brackets.end.gnuplot"
         }
       ]
@@ -740,7 +740,7 @@
           "name": "invalid.deprecated.options.gnuplot"
         },
         {
-          "match": "\\G\\s*\\b(?:angles|arrow|autoscale|border|boxwidth|clip|cntr(label|param)|color(box|sequence)?|contour|(dash|line)type|datafile|decimal(sign)?|dgrid3d|dummy|encoding|(error)?bars|fit|fontpath|format|grid|hidden3d|history|(iso)?samples|jitter|key|label|link|loadpath|locale|logscale|mapping|[lrtb]margin|margins|micro|minus(sign)?|mono(chrome)?|mouse|multiplot|nonlinear|object|offsets|origin|output|parametric|(p|r)axis|pm3d|palette|pointintervalbox|pointsize|polar|print|psdir|size|style|surface|table|terminal|termoption|theta|tics|timestamp|timefmt|title|view|xyplane|zero|(no)?(m)?(x|x2|y|y2|z|cb|r|t)tics|(x|x2|y|y2|z|cb)data|(x|x2|y|y2|z|cb|r)label|(x|x2|y|y2|z|cb)dtics|(x|x2|y|y2|z|cb)mtics|(x|x2|y|y2|z|cb|[rtuv])range|(x|x2|y|y2|z)?zeroaxis)\\b",
+          "match": "\\G\\s*\\b(?:angles|arrow|autoscale|border|boxwidth|clip|cntr(label|param)|color(box|sequence)?|contour|(dash|line)type|datafile|decimal(sign)?|dgrid3d|dummy|encoding|(error)?bars|fit|fontpath|format|grid|hidden3d|history|(iso)?samples|jitter|key|label|link|loadpath|locale|logscale|mapping|[lrtb]margin|margins|micro|minus(sign)?|mono(chrome)?|mouse|multiplot|nonlinear|object|offsets|origin|output|parametric|([pr])axis|pm3d|palette|pointintervalbox|pointsize|polar|print|psdir|size|style|surface|table|terminal|termoption|theta|tics|timestamp|timefmt|title|view|xyplane|zero|(no)?(m)?(x|x2|y|y2|z|cb|[rt])tics|(x|x2|y|y2|z|cb)data|(x|x2|y|y2|z|cb|r)label|(x|x2|y|y2|z|cb)dtics|(x|x2|y|y2|z|cb)mtics|(x|x2|y|y2|z|cb|[rtuv])range|(x|x2|y|y2|z)?zeroaxis)\\b",
           "name": "support.class.options.gnuplot"
         }
       ]
@@ -819,7 +819,7 @@
           ]
         }
       },
-      "end": "((\\])|(?=(#|\\\\(?!\\n)|(?<!\\\\)\\n$)))",
+      "end": "((])|(?=(#|\\\\(?!\\n)|(?<!\\\\)\\n$)))",
       "endCaptures": {
         "2": {
           "patterns": [
@@ -858,7 +858,7 @@
       ]
     },
     "VariableDecl": {
-      "begin": "\\b(?:([A-Za-z_]\\w*)\\s*(?:(\\[)\\s*(.*)\\s*(\\])\\s*)?(?=(=)(?!\\s*=)))",
+      "begin": "\\b([A-Za-z_]\\w*)\\s*(?:(\\[)\\s*(.*)\\s*(])\\s*)?(?=(=)(?!\\s*=))",
       "beginCaptures": {
         "1": {
           "name": "entity.name.variable.gnuplot",
@@ -879,7 +879,7 @@
           ]
         }
       },
-      "end": "(?=(;|#|\\\\(?!\\n)|(?<!\\\\)\\n$))",
+      "end": "(?=([;#]|\\\\(?!\\n)|(?<!\\\\)\\n$))",
       "name": "meta.variable.gnuplot",
       "patterns": [
         {

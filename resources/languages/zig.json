@@ -123,7 +123,7 @@
           "name": "keyword.type.integer.zig"
         },
         {
-          "match": "\\b(c_char|c_short|c_ushort|c_int|c_uint|c_long|c_ulong|c_longlong|c_ulonglong|c_longdouble)\\b",
+          "match": "\\b(c_(?:char|short|ushort|int|uint|long|ulong|longlong|ulonglong|longdouble))\\b",
           "name": "keyword.type.c.zig"
         }
       ]
@@ -131,7 +131,7 @@
     "numbers": {
       "patterns": [
         {
-          "match": "\\b0x[0-9a-fA-F][0-9a-fA-F_]*(\\.[0-9a-fA-F][0-9a-fA-F_]*)?([pP][+-]?[0-9a-fA-F_]+)?\\b",
+          "match": "\\b0x\\h[_\\h]*(\\.\\h[_\\h]*)?([pP][+-]?[_\\h]+)?\\b",
           "name": "constant.numeric.hexfloat.zig"
         },
         {
@@ -143,7 +143,7 @@
           "name": "constant.numeric.decimal.zig"
         },
         {
-          "match": "\\b0x[a-fA-F0-9_]+\\b",
+          "match": "\\b0x[_\\h]+\\b",
           "name": "constant.numeric.hexadecimal.zig"
         },
         {
@@ -163,19 +163,19 @@
     "operators": {
       "patterns": [
         {
-          "match": "(?<=\\[)\\*c(?=\\])",
+          "match": "(?<=\\[)\\*c(?=])",
           "name": "keyword.operator.c-pointer.zig"
         },
         {
-          "match": "(\\b(and|or)\\b)|(==|!=|<=|>=|<|>)",
+          "match": "(\\b(and|or)\\b)|(==|!=|<=|>=|[<>])",
           "name": "keyword.operator.comparison.zig"
         },
         {
-          "match": "(-%?|\\+%?|\\*%?|/|%)=?",
+          "match": "(-%?|\\+%?|\\*%?|[/%])=?",
           "name": "keyword.operator.arithmetic.zig"
         },
         {
-          "match": "(<<%?|>>|!|~|&|\\^|\\|)=?",
+          "match": "(<<%?|>>|[!~\\&^|])=?",
           "name": "keyword.operator.bitwise.zig"
         },
         {
@@ -215,7 +215,7 @@
     "stringcontent": {
       "patterns": [
         {
-          "match": "\\\\([nrt'\"\\\\]|(x[0-9a-fA-F]{2})|(u\\{[0-9a-fA-F]+\\}))",
+          "match": "\\\\([nrt'\"\\\\]|(x\\h{2})|(u\\{\\h+}))",
           "name": "constant.character.escape.zig"
         },
         {
@@ -242,7 +242,7 @@
           "name": "string.multiline.zig"
         },
         {
-          "match": "'([^'\\\\]|\\\\(x\\h{2}|[0-2][0-7]{,2}|3[0-6][0-7]?|37[0-7]?|[4-7][0-7]?|.))'",
+          "match": "'([^'\\\\]|\\\\(x\\h{2}|[0-2][0-7]{0,2}|3[0-6][0-7]?|37[0-7]?|[4-7][0-7]?|.))'",
           "name": "string.quoted.single.zig"
         }
       ]
@@ -250,7 +250,6 @@
     "support": {
       "patterns": [
         {
-          "comment": "Built-in functions",
           "match": "@[_a-zA-Z][_a-zA-Z0-9]*",
           "name": "support.function.builtin.zig"
         }

@@ -11,11 +11,11 @@
     "uwsgi_params"
   ],
   "foldingStartMarker": "\\{\\s*$",
-  "foldingStopMarker": "^\\s*\\}",
+  "foldingStopMarker": "^\\s*}",
   "name": "nginx",
   "patterns": [
     {
-      "match": "\\#.*",
+      "match": "#.*",
       "name": "comment.line.number-sign"
     },
     {
@@ -26,7 +26,7 @@
         }
       },
       "contentName": "meta.embedded.block.lua",
-      "end": "\\}",
+      "end": "}",
       "name": "meta.context.lua.nginx",
       "patterns": [
         {
@@ -57,7 +57,7 @@
           "name": "storage.type.directive.context.nginx"
         }
       },
-      "end": "\\}",
+      "end": "}",
       "name": "meta.context.events.nginx",
       "patterns": [
         {
@@ -72,7 +72,7 @@
           "name": "storage.type.directive.context.nginx"
         }
       },
-      "end": "\\}",
+      "end": "}",
       "name": "meta.context.http.nginx",
       "patterns": [
         {
@@ -87,7 +87,7 @@
           "name": "storage.type.directive.context.nginx"
         }
       },
-      "end": "\\}",
+      "end": "}",
       "name": "meta.context.mail.nginx",
       "patterns": [
         {
@@ -102,7 +102,7 @@
           "name": "storage.type.directive.context.nginx"
         }
       },
-      "end": "\\}",
+      "end": "}",
       "name": "meta.context.stream.nginx",
       "patterns": [
         {
@@ -117,7 +117,7 @@
           "name": "storage.type.directive.context.nginx"
         }
       },
-      "end": "\\}",
+      "end": "}",
       "name": "meta.context.server.nginx",
       "patterns": [
         {
@@ -126,7 +126,7 @@
       ]
     },
     {
-      "begin": "\\b(location) +([\\^]?~[\\*]?|=) +(.*?)\\{",
+      "begin": "\\b(location) +(\\^?~\\*?|=) +(.*?)\\{",
       "beginCaptures": {
         "1": {
           "name": "storage.type.directive.context.nginx"
@@ -138,7 +138,7 @@
           "name": "string.regexp.nginx"
         }
       },
-      "end": "\\}",
+      "end": "}",
       "name": "meta.context.location.nginx",
       "patterns": [
         {
@@ -156,7 +156,7 @@
           "name": "entity.name.context.location.nginx"
         }
       },
-      "end": "\\}",
+      "end": "}",
       "name": "meta.context.location.nginx",
       "patterns": [
         {
@@ -171,7 +171,7 @@
           "name": "storage.type.directive.context.nginx"
         }
       },
-      "end": "\\}",
+      "end": "}",
       "name": "meta.context.limit_except.nginx",
       "patterns": [
         {
@@ -204,7 +204,7 @@
           "name": "entity.name.context.location.nginx"
         }
       },
-      "end": "\\}",
+      "end": "}",
       "name": "meta.context.upstream.nginx",
       "patterns": [
         {
@@ -219,7 +219,7 @@
           "name": "storage.type.directive.context.nginx"
         }
       },
-      "end": "\\}",
+      "end": "}",
       "name": "meta.context.types.nginx",
       "patterns": [
         {
@@ -228,7 +228,7 @@
       ]
     },
     {
-      "begin": "\\b(map) +(\\$)([A-Za-z0-9\\_]+) +(\\$)([A-Za-z0-9\\_]+) *\\{",
+      "begin": "\\b(map) +(\\$)([A-Za-z0-9_]+) +(\\$)([A-Za-z0-9_]+) *\\{",
       "beginCaptures": {
         "1": {
           "name": "storage.type.directive.context.nginx"
@@ -246,7 +246,7 @@
           "name": "variable.other.nginx"
         }
       },
-      "end": "\\}",
+      "end": "}",
       "name": "meta.context.map.nginx",
       "patterns": [
         {
@@ -257,14 +257,14 @@
           "name": "punctuation.terminator.nginx"
         },
         {
-          "match": "\\#.*",
+          "match": "#.*",
           "name": "comment.line.number-sign"
         }
       ]
     },
     {
       "begin": "\\{",
-      "end": "\\}",
+      "end": "}",
       "name": "meta.block.nginx",
       "patterns": [
         {
@@ -342,7 +342,7 @@
       }
     },
     {
-      "begin": "([\"'\\s]|^)(accept_)(mutex|mutex_delay)([\"'\\s]|$)",
+      "begin": "([\"'\\s]|^)(accept_)(mutex(?:|_delay))([\"'\\s]|$)",
       "beginCaptures": {
         "1": {
           "name": "keyword.directive.nginx"
@@ -790,7 +790,7 @@
       ]
     },
     {
-      "begin": "([\"'\\s]|^)(tcp_)(nodelay|nopush)([\"'\\s]|$)",
+      "begin": "([\"'\\s]|^)(tcp_)(no(?:delay|push))([\"'\\s]|$)",
       "beginCaptures": {
         "1": {
           "name": "keyword.directive.nginx"
@@ -818,7 +818,7 @@
       ]
     },
     {
-      "begin": "([\"'\\s]|^)(types_)(hash_bucket_size|hash_max_size)([\"'\\s]|$)",
+      "begin": "([\"'\\s]|^)(types_)(hash_(?:bucket_size|max_size))([\"'\\s]|$)",
       "beginCaptures": {
         "1": {
           "name": "keyword.directive.nginx"
@@ -846,7 +846,7 @@
       ]
     },
     {
-      "begin": "([\"'\\s]|^)(variables_)(hash_bucket_size|hash_max_size)([\"'\\s]|$)",
+      "begin": "([\"'\\s]|^)(variables_)(hash_(?:bucket_size|max_size))([\"'\\s]|$)",
       "beginCaptures": {
         "1": {
           "name": "keyword.directive.nginx"
@@ -958,7 +958,7 @@
       ]
     },
     {
-      "begin": "([\"'\\s]|^)(ancient_)(browser|browser_value)([\"'\\s]|$)",
+      "begin": "([\"'\\s]|^)(ancient_)(browser(?:|_value))([\"'\\s]|$)",
       "beginCaptures": {
         "1": {
           "name": "keyword.directive.nginx"
@@ -986,7 +986,7 @@
       ]
     },
     {
-      "begin": "([\"'\\s]|^)(modern_)(browser|browser_value)([\"'\\s]|$)",
+      "begin": "([\"'\\s]|^)(modern_)(browser(?:|_value))([\"'\\s]|$)",
       "beginCaptures": {
         "1": {
           "name": "keyword.directive.nginx"
@@ -1210,7 +1210,7 @@
       ]
     },
     {
-      "begin": "([\"'\\s]|^)(image_)(filter|filter_buffer|filter_interlace|filter_jpeg_quality|filter_sharpen|filter_transparency|filter_webp_quality)([\"'\\s]|$)",
+      "begin": "([\"'\\s]|^)(image_)(filter(?:|_buffer|_interlace|_jpeg_quality|_sharpen|_transparency|_webp_quality))([\"'\\s]|$)",
       "beginCaptures": {
         "1": {
           "name": "keyword.directive.nginx"
@@ -1238,7 +1238,7 @@
       ]
     },
     {
-      "begin": "([\"'\\s]|^)(map_)(hash_bucket_size|hash_max_size)([\"'\\s]|$)",
+      "begin": "([\"'\\s]|^)(map_)(hash_(?:bucket_size|max_size))([\"'\\s]|$)",
       "beginCaptures": {
         "1": {
           "name": "keyword.directive.nginx"
@@ -1378,7 +1378,7 @@
       ]
     },
     {
-      "begin": "([\"'\\s]|^)(real_)(ip_header|ip_recursive)([\"'\\s]|$)",
+      "begin": "([\"'\\s]|^)(real_)(ip_(?:header|recursive))([\"'\\s]|$)",
       "beginCaptures": {
         "1": {
           "name": "keyword.directive.nginx"
@@ -1406,7 +1406,7 @@
       ]
     },
     {
-      "begin": "([\"'\\s]|^)(referer_)(hash_bucket_size|hash_max_size)([\"'\\s]|$)",
+      "begin": "([\"'\\s]|^)(referer_)(hash_(?:bucket_size|max_size))([\"'\\s]|$)",
       "beginCaptures": {
         "1": {
           "name": "keyword.directive.nginx"
@@ -1462,7 +1462,7 @@
       ]
     },
     {
-      "begin": "([\"'\\s]|^)(secure_)(link|link_md5|link_secret)([\"'\\s]|$)",
+      "begin": "([\"'\\s]|^)(secure_)(link(?:|_md5|_secret))([\"'\\s]|$)",
       "beginCaptures": {
         "1": {
           "name": "keyword.directive.nginx"
@@ -1490,7 +1490,7 @@
       ]
     },
     {
-      "begin": "([\"'\\s]|^)(session_)(log|log_format|log_zone)([\"'\\s]|$)",
+      "begin": "([\"'\\s]|^)(session_)(log(?:|_format|_zone))([\"'\\s]|$)",
       "beginCaptures": {
         "1": {
           "name": "keyword.directive.nginx"
@@ -1546,7 +1546,7 @@
       ]
     },
     {
-      "begin": "([\"'\\s]|^)(sub_)(filter|filter_last_modified|filter_once|filter_types)([\"'\\s]|$)",
+      "begin": "([\"'\\s]|^)(sub_)(filter(?:|_last_modified|_once|_types))([\"'\\s]|$)",
       "beginCaptures": {
         "1": {
           "name": "keyword.directive.nginx"
@@ -1574,7 +1574,7 @@
       ]
     },
     {
-      "begin": "([\"'\\s]|^)(health_)(check|check_timeout)([\"'\\s]|$)",
+      "begin": "([\"'\\s]|^)(health_)(check(?:|_timeout))([\"'\\s]|$)",
       "beginCaptures": {
         "1": {
           "name": "keyword.directive.nginx"
@@ -1910,7 +1910,7 @@
       ]
     },
     {
-      "begin": "([\"'\\s]|^)(zone_)(sync_buffers|sync_connect_retry_interval|sync_connect_timeout|sync_interval|sync_recv_buffer_size|sync_server|sync_ssl|sync_ssl_certificate|sync_ssl_certificate_key|sync_ssl_ciphers|sync_ssl_conf_command|sync_ssl_crl|sync_ssl_name|sync_ssl_password_file|sync_ssl_protocols|sync_ssl_server_name|sync_ssl_trusted_certificate|sync_ssl_verify|sync_ssl_verify_depth|sync_timeout)([\"'\\s]|$)",
+      "begin": "([\"'\\s]|^)(zone_)(sync_(?:buffers|connect_retry_interval|connect_timeout|interval|recv_buffer_size|server|ssl|ssl_certificate|ssl_certificate_key|ssl_ciphers|ssl_conf_command|ssl_crl|ssl_name|ssl_password_file|ssl_protocols|ssl_server_name|ssl_trusted_certificate|ssl_verify|ssl_verify_depth|timeout))([\"'\\s]|$)",
       "beginCaptures": {
         "1": {
           "name": "keyword.directive.nginx"
@@ -2019,7 +2019,7 @@
       ]
     },
     {
-      "begin": "\\b([a-zA-Z0-9\\_]+)\\s+",
+      "begin": "\\b([a-zA-Z0-9_]+)\\s+",
       "beginCaptures": {
         "1": {
           "name": "keyword.directive.unknown.nginx"
@@ -2038,7 +2038,7 @@
       ]
     },
     {
-      "begin": "\\b([a-z]+\\/[A-Za-z0-9\\-\\.\\+]+)\\b",
+      "begin": "\\b([a-z]+/[A-Za-z0-9\\-.+]+)\\b",
       "beginCaptures": {
         "1": {
           "name": "constant.other.mediatype.nginx"
@@ -2064,15 +2064,15 @@
           "include": "#variables"
         },
         {
-          "match": "\\!?\\~\\*?\\s",
+          "match": "!?~\\*?\\s",
           "name": "keyword.operator.nginx"
         },
         {
-          "match": "\\!?\\-[fdex]\\s",
+          "match": "!?-[fdex]\\s",
           "name": "keyword.operator.nginx"
         },
         {
-          "match": "\\!?=[^=]",
+          "match": "!?=[^=]",
           "name": "keyword.operator.nginx"
         },
         {
@@ -2130,7 +2130,7 @@
               "name": "constant.numeric.nginx"
             }
           },
-          "match": "(?:^|\\s)(weight|max_conn|max_fails|fail_timeout|slow_start)(=)(\\d[\\d\\.]*[bBkKmMgGtTsShHdD]?)(?:\\s|;|$)"
+          "match": "(?:^|\\s)(weight|max_conn|max_fails|fail_timeout|slow_start)(=)(\\d[\\d.]*[bBkKmMgGtTsShHdD]?)(?:[\\s;]|$)"
         },
         {
           "include": "#values"
@@ -2143,7 +2143,7 @@
           "include": "#variables"
         },
         {
-          "match": "\\#.*",
+          "match": "#.*",
           "name": "comment.line.number-sign"
         },
         {
@@ -2152,18 +2152,18 @@
               "name": "constant.numeric.nginx"
             }
           },
-          "match": "(?<=\\G|\\s)(=?[0-9][0-9\\.]*[bBkKmMgGtTsShHdD]?)(?=[\\t ;])"
+          "match": "(?<=\\G|\\s)(=?[0-9][0-9.]*[bBkKmMgGtTsShHdD]?)(?=[\\t ;])"
         },
         {
           "match": "(?<=\\G|\\s)(on|off|true|false)(?=[\\t ;])",
           "name": "constant.language.nginx"
         },
         {
-          "match": "(?<=\\G|\\s)(kqueue|rtsig|epoll|\\/dev\\/poll|select|poll|eventport|max|all|default_server|default|main|crit|error|debug|warn|notice|last)(?=[\\t ;])",
+          "match": "(?<=\\G|\\s)(kqueue|rtsig|epoll|/dev/poll|select|poll|eventport|max|all|default_server|default|main|crit|error|debug|warn|notice|last)(?=[\\t ;])",
           "name": "constant.language.nginx"
         },
         {
-          "match": "\\\\.*\\ |\\~\\*|\\~|\\!\\~\\*|\\!\\~",
+          "match": "\\\\.* |~\\*|~|!~\\*|!~",
           "name": "keyword.operator.nginx"
         },
         {
@@ -2182,7 +2182,7 @@
               "name": "variable.other.nginx"
             }
           },
-          "match": "(\\$)([A-Za-z0-9\\_]+)\\b"
+          "match": "(\\$)([A-Za-z0-9_]+)\\b"
         },
         {
           "captures": {
@@ -2196,7 +2196,7 @@
               "name": "punctuation.definition.variable.nginx"
             }
           },
-          "match": "(\\$\\{)([A-Za-z0-9\\_]+)(\\})"
+          "match": "(\\$\\{)([A-Za-z0-9_]+)(})"
         }
       ]
     }

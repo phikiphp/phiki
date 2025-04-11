@@ -119,7 +119,7 @@
     "arithmetic-expression": {
       "patterns": [
         {
-          "match": "\\^\\^|\\+\\+|--|(?<!/)\\+(?!/)|-|~|(?<!/)\\*(?!/)|(?<![+*/])/(?![+*/])|%",
+          "match": "\\^\\^|\\+\\+|--|(?<!/)\\+(?!/)|[-~]|(?<!/)\\*(?!/)|(?<![+*/])/(?![+*/])|%",
           "name": "keyword.operator.numeric.d"
         }
       ]
@@ -176,7 +176,7 @@
               "name": "keyword.control.switch.d"
             }
           },
-          "end": "(?<=\\})",
+          "end": "(?<=})",
           "patterns": [
             {
               "begin": "\\{",
@@ -186,7 +186,7 @@
                 }
               },
               "contentName": "gfm.markup.raw.assembly.d",
-              "end": "\\}",
+              "end": "}",
               "endCaptures": {
                 "0": {
                   "name": "keyword.control.asm.end.d"
@@ -288,7 +288,7 @@
     "binary-integer": {
       "patterns": [
         {
-          "match": "\\b(0b|0B)[0-1_]+(Lu|LU|uL|UL|L|u|U)?\\b",
+          "match": "\\b(0[bB])[0-1_]+(Lu|LU|uL|UL|[LuU])?\\b",
           "name": "constant.numeric.integer.binary.d"
         }
       ]
@@ -296,7 +296,7 @@
     "bitwise-expression": {
       "patterns": [
         {
-          "match": "\\||\\^|&",
+          "match": "[|^\\&]",
           "name": "keyword.operator.bitwise.d"
         }
       ]
@@ -550,7 +550,7 @@
     "conditional-expression": {
       "patterns": [
         {
-          "match": "\\s(\\?|:)\\s",
+          "match": "\\s([?:])\\s",
           "name": "keyword.operator.ternary.d"
         }
       ]
@@ -626,7 +626,7 @@
     "decimal-float": {
       "patterns": [
         {
-          "match": "\\b((\\.[0-9])|(0\\.)|(([1-9]|(0[1-9_]))[0-9_]*\\.))[0-9_]*((e-|E-|e\\+|E\\+|e|E)[0-9][0-9_]*)?[LfF]?i?\\b",
+          "match": "\\b((\\.[0-9])|(0\\.)|(([1-9]|(0[1-9_]))[0-9_]*\\.))[0-9_]*((e-|E-|e\\+|E\\+|[eE])[0-9][0-9_]*)?[LfF]?i?\\b",
           "name": "constant.numeric.float.decimal.d"
         }
       ]
@@ -634,7 +634,7 @@
     "decimal-integer": {
       "patterns": [
         {
-          "match": "\\b(0(?=[^\\dxXbB]))|([1-9][0-9_]*)(Lu|LU|uL|UL|L|u|U)?\\b",
+          "match": "\\b(0(?=[^\\dxXbB]))|([1-9][0-9_]*)(Lu|LU|uL|UL|[LuU])?\\b",
           "name": "constant.numeric.integer.decimal.d"
         }
       ]
@@ -731,7 +731,7 @@
       "patterns": [
         {
           "begin": "\\{",
-          "end": "\\}",
+          "end": "}",
           "name": "constant.character.delimited.braces.d",
           "patterns": [
             {
@@ -745,7 +745,7 @@
       "patterns": [
         {
           "begin": "\\[",
-          "end": "\\]",
+          "end": "]",
           "name": "constant.characters.delimited.brackets.d",
           "patterns": [
             {
@@ -862,7 +862,7 @@
               "name": "storage.type.enum.d"
             }
           },
-          "end": "([A-Za-z_][\\w_\\d]*)\\s*(?=;|=|\\()(;)?",
+          "end": "([A-Za-z_][\\w_\\d]*)\\s*(?=[;=(])(;)?",
           "endCaptures": {
             "1": {
               "name": "entity.name.type.enum.d"
@@ -915,11 +915,11 @@
           "name": "constant.character.escape-sequence.entity.d"
         },
         {
-          "match": "(\\\\x[0-9a-fA-F_]{2}|\\\\u[0-9a-fA-F_]{4}|\\\\U[0-9a-fA-F_]{8}|\\\\[0-7]{1,3})",
+          "match": "(\\\\(?:x[_\\h]{2}|u[_\\h]{4}|U[_\\h]{8}|[0-7]{1,3}))",
           "name": "constant.character.escape-sequence.number.d"
         },
         {
-          "match": "(\\\\t|\\\\'|\\\\\"|\\\\\\?|\\\\0|\\\\a|\\\\b|\\\\f|\\\\n|\\\\r|\\\\v|\\\\\\\\)",
+          "match": "(\\\\[t'\"?0abfnrv\\\\])",
           "name": "constant.character.escape-sequence.d"
         }
       ]
@@ -1029,7 +1029,7 @@
               "name": "storage.type.array.expression.begin.d"
             }
           },
-          "end": "\\]",
+          "end": "]",
           "endCaptures": {
             "0": {
               "name": "storage.type.array.expression.end.d"
@@ -1216,7 +1216,7 @@
               "name": "meta.lexical.token.symbolic.d"
             }
           },
-          "end": "(?=[\\);,\\]}])",
+          "end": "(?=[);,\\]}])",
           "patterns": [
             {
               "include": "source.d"
@@ -1224,7 +1224,7 @@
           ]
         },
         {
-          "begin": "(?<=\\)|\\()(\\s*)({)",
+          "begin": "(?<=[)(])(\\s*)(\\{)",
           "beginCaptures": {
             "1": {
               "name": "source.d"
@@ -1245,7 +1245,7 @@
     "function-prelude": {
       "patterns": [
         {
-          "match": "(?!typeof|typeid)((\\.\\s*)?[_\\w][_\\d\\w]*)(\\s*\\.\\s*[_\\w][_\\d\\w]*)*\\s*(?=\\()",
+          "match": "(?!type(?:of|id))((\\.\\s*)?[_\\w][_\\d\\w]*)(\\s*\\.\\s*[_\\w][_\\d\\w]*)*\\s*(?=\\()",
           "name": "entity.name.function.d"
         }
       ]
@@ -1284,7 +1284,7 @@
           "name": "string.hex-string.d",
           "patterns": [
             {
-              "match": "[a-fA-F0-9_s]+",
+              "match": "[_s\\h]+",
               "name": "constant.character.hex-string.d"
             }
           ]
@@ -1294,7 +1294,7 @@
     "hexadecimal-float": {
       "patterns": [
         {
-          "match": "\\b0[xX][0-9a-fA-F_]*(\\.[0-9a-fA-F_]*)?(p-|P-|p\\+|P\\+|p|P)[0-9][0-9_]*[LfF]?i?\\b",
+          "match": "\\b0[xX][_\\h]*(\\.[_\\h]*)?(p-|P-|p\\+|P\\+|[pP])[0-9][0-9_]*[LfF]?i?\\b",
           "name": "constant.numeric.float.hexadecimal.d"
         }
       ]
@@ -1302,7 +1302,7 @@
     "hexadecimal-integer": {
       "patterns": [
         {
-          "match": "\\b(0x|0X)([0-9a-fA-F][0-9a-fA-F_]*)(Lu|LU|uL|UL|L|u|U)?\\b",
+          "match": "\\b(0[xX])(\\h[_\\h]*)(Lu|LU|uL|UL|[LuU])?\\b",
           "name": "constant.numeric.integer.hexadecimal.d"
         }
       ]
@@ -1331,6 +1331,68 @@
         {
           "match": "\\b(is|!is)\\b",
           "name": "keyword.operator.identity.d"
+        }
+      ]
+    },
+    "ies-string": {
+      "patterns": [
+        {
+          "begin": "i\"",
+          "end": "\"[cwd]?",
+          "name": "string.ies-string.d",
+          "patterns": [
+            {
+              "include": "#interpolation-escape"
+            },
+            {
+              "include": "#interpolation-sequence"
+            },
+            {
+              "include": "#double-quoted-characters"
+            }
+          ]
+        }
+      ]
+    },
+    "ies-token-string": {
+      "begin": "iq\\{",
+      "beginCaptures": {
+        "0": {
+          "name": "string.quoted.token.d"
+        }
+      },
+      "end": "}[cdw]?",
+      "endCaptures": {
+        "0": {
+          "name": "string.quoted.token.d"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#interpolation-sequence"
+        },
+        {
+          "include": "#token-string-content"
+        }
+      ]
+    },
+    "ies-wysiwyg-string": {
+      "patterns": [
+        {
+          "begin": "i`",
+          "end": "`[cwd]?",
+          "name": "string.ies-wysiwyg-string.d",
+          "patterns": [
+            {
+              "include": "#interpolation-escape"
+            },
+            {
+              "include": "#interpolation-sequence"
+            },
+            {
+              "include": "#wysiwyg-characters"
+            }
+          ]
         }
       ]
     },
@@ -1454,7 +1516,7 @@
       "patterns": [
         {
           "begin": "\\[",
-          "end": "\\]",
+          "end": "]",
           "patterns": [
             {
               "match": "\\.\\.|\\$",
@@ -1492,6 +1554,30 @@
             }
           },
           "match": "\\b(interface)(?:\\s+([A-Za-z_][\\w_\\d]*))?\\b"
+        }
+      ]
+    },
+    "interpolation-escape": {
+      "match": "\\\\\\$",
+      "name": "constant.character.escape-sequence.d"
+    },
+    "interpolation-sequence": {
+      "begin": "\\$\\(",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.template-expression.begin.d"
+        }
+      },
+      "end": "\\)",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.template-expression.end.d"
+        }
+      },
+      "name": "meta.interpolation.expression.d",
+      "patterns": [
+        {
+          "include": "#expression"
         }
       ]
     },
@@ -2376,15 +2462,15 @@
     "operands": {
       "patterns": [
         {
-          "match": "\\?|:",
+          "match": "[?:]",
           "name": "keyword.operator.ternary.assembly.d"
         },
         {
-          "match": "\\]|\\[",
+          "match": "[\\]\\[]",
           "name": "keyword.operator.bracket.assembly.d"
         },
         {
-          "match": ">>>|\\|\\||&&|==|!=|<=|>=|<<|>>|\\||\\^|&|<|>|\\+|-|\\*|/|%|~|!",
+          "match": ">>>|\\|\\||&&|==|!=|<=|>=|<<|>>|[|^\\&<>+\\-*/%~!]",
           "name": "keyword.operator.assembly.d"
         }
       ]
@@ -2504,7 +2590,7 @@
     "rel-expression": {
       "patterns": [
         {
-          "match": "!<>=|!<>|<>=|!>=|!<=|<=|>=|<>|!>|!<|<|>",
+          "match": "!<>=|!<>|<>=|!>=|!<=|<=|>=|<>|!>|!<|[<>]",
           "name": "keyword.operator.rel.d"
         }
       ]
@@ -2566,7 +2652,7 @@
     "special-keyword": {
       "patterns": [
         {
-          "match": "\\b(__FILE__|__FILE_FULL_PATH__|__MODULE__|__LINE__|__FUNCTION__|__PRETTY_FUNCTION__)\\b",
+          "match": "\\b(__(?:FILE__|FILE_FULL_PATH__|MODULE__|LINE__|FUNCTION__|PRETTY_FUNCTION__))\\b",
           "name": "constant.language.special-keyword.d"
         }
       ]
@@ -2582,7 +2668,7 @@
     "special-tokens": {
       "patterns": [
         {
-          "match": "\\b(__DATE__|__TIME__|__TIMESTAMP__|__VENDOR__|__VERSION__)\\b",
+          "match": "\\b(__(?:DATE__|TIME__|TIMESTAMP__|VENDOR__|VERSION__))\\b",
           "name": "gfm.markup.raw.special-tokens.d"
         }
       ]
@@ -2741,6 +2827,15 @@
         },
         {
           "include": "#token-string"
+        },
+        {
+          "include": "#ies-string"
+        },
+        {
+          "include": "#ies-wysiwyg-string"
+        },
+        {
+          "include": "#ies-token-string"
         }
       ]
     },
@@ -2837,7 +2932,7 @@
           "name": "string.quoted.token.d"
         }
       },
-      "end": "\\}[cdw]?",
+      "end": "}[cdw]?",
       "endCaptures": {
         "0": {
           "name": "string.quoted.token.d"
@@ -2852,7 +2947,7 @@
     "token-string-content": {
       "patterns": [
         {
-          "begin": "{",
+          "begin": "\\{",
           "end": "}",
           "patterns": [
             {
@@ -2886,7 +2981,7 @@
           "include": "#keyword"
         },
         {
-          "match": "~=|~|>>>|>>=|>>|>=|>|=>|==|=|<>|<=|<<|<|%=|%|#|&=|&&|&|\\$|\\|=|\\|\\||\\||\\+=|\\+\\+|\\+|\\^=|\\^\\^=|\\^\\^|\\^|\\*=|\\*|\\}|\\{|\\]|\\[|\\)|\\(|\\.\\.\\.|\\.\\.|\\.|\\?|\\!>=|\\!>|\\!=|\\!<>=|\\!<>|\\!<=|\\!<|\\!|/=|/|@|:|;|,|-=|--|-",
+          "match": "~=|~|>>>|>>=|>>|>=|>|=>|==|=|<>|<=|<<|<|%=|[%#]|&=|&&|[\\&$]|\\|=|\\|\\||\\||\\+=|\\+\\+|\\+|\\^=|\\^\\^=|\\^\\^|\\^|\\*=|[*}{\\]\\[)(]|\\.\\.\\.|\\.\\.|[.?]|!>=|!>|!=|!<>=|!<>|!<=|!<|!|/=|[/@:;,]|-=|--|-",
           "name": "meta.lexical.token.symbolic.d"
         },
         {
@@ -3169,8 +3264,8 @@
     "wysiwyg-string": {
       "patterns": [
         {
-          "begin": "r\\\"",
-          "end": "\\\"[cwd]?",
+          "begin": "r\"",
+          "end": "\"[cwd]?",
           "name": "string.wysiwyg-string.d",
           "patterns": [
             {

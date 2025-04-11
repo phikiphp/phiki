@@ -41,7 +41,7 @@
       "patterns": [
         {
           "begin": "\\{\\{!--",
-          "end": "--\\}\\}",
+          "end": "--}}",
           "name": "comment.block.handlebars",
           "patterns": [
             {
@@ -72,7 +72,7 @@
       ]
     },
     "block_helper": {
-      "begin": "(\\{\\{)(~?\\#)([-a-zA-Z0-9_\\./>]+)\\s?(@?[-a-zA-Z0-9_\\./]+)*\\s?(@?[-a-zA-Z0-9_\\./]+)*\\s?(@?[-a-zA-Z0-9_\\./]+)*",
+      "begin": "(\\{\\{)(~?#)([-a-zA-Z0-9_./>]+)\\s?(@?[-a-zA-Z0-9_./]+)*\\s?(@?[-a-zA-Z0-9_./]+)*\\s?(@?[-a-zA-Z0-9_./]+)*",
       "beginCaptures": {
         "1": {
           "name": "support.constant.handlebars"
@@ -96,7 +96,7 @@
           "name": "support.constant.handlebars"
         }
       },
-      "end": "(~?\\}\\})",
+      "end": "(~?}})",
       "endCaptures": {
         "1": {
           "name": "support.constant.handlebars"
@@ -116,7 +116,7 @@
       "patterns": [
         {
           "begin": "\\{\\{!",
-          "end": "\\}\\}",
+          "end": "}}",
           "name": "comment.block.handlebars",
           "patterns": [
             {
@@ -147,7 +147,7 @@
       ]
     },
     "else_token": {
-      "begin": "(\\{\\{)(~?else)(@?\\s(if)\\s([-a-zA-Z0-9_\\.\\(\\s\\)/]+))?",
+      "begin": "(\\{\\{)(~?else)(@?\\s(if)\\s([-a-zA-Z0-9_.(\\s)/]+))?",
       "beginCaptures": {
         "1": {
           "name": "support.constant.handlebars"
@@ -162,7 +162,7 @@
           "name": "variable.parameter.handlebars"
         }
       },
-      "end": "(~?\\}\\}\\}*)",
+      "end": "(~?}}}*)",
       "endCaptures": {
         "1": {
           "name": "support.constant.handlebars"
@@ -171,7 +171,7 @@
       "name": "meta.function.inline.else.handlebars"
     },
     "end_block": {
-      "begin": "(\\{\\{)(~?/)([a-zA-Z0-9/_\\.-]+)\\s*",
+      "begin": "(\\{\\{)(~?/)([a-zA-Z0-9/_.-]+)\\s*",
       "beginCaptures": {
         "1": {
           "name": "support.constant.handlebars"
@@ -183,7 +183,7 @@
           "name": "support.constant.handlebars keyword.control"
         }
       },
-      "end": "(~?\\}\\})",
+      "end": "(~?}})",
       "endCaptures": {
         "1": {
           "name": "support.constant.handlebars"
@@ -204,7 +204,7 @@
               "name": "punctuation.definition.entity.html"
             }
           },
-          "match": "(&)([a-zA-Z0-9]+|#[0-9]+|#x[0-9a-fA-F]+)(;)",
+          "match": "(&)([a-zA-Z0-9]+|#[0-9]+|#x\\h+)(;)",
           "name": "constant.character.entity.html"
         },
         {
@@ -224,7 +224,7 @@
     "extends": {
       "patterns": [
         {
-          "begin": "(\\{\\{!<)\\s([-a-zA-Z0-9_\\./]+)",
+          "begin": "(\\{\\{!<)\\s([-a-zA-Z0-9_./]+)",
           "beginCaptures": {
             "1": {
               "name": "support.function.handlebars"
@@ -233,7 +233,7 @@
               "name": "support.class.handlebars"
             }
           },
-          "end": "(\\}\\})",
+          "end": "(}})",
           "endCaptures": {
             "1": {
               "name": "support.function.handlebars"
@@ -254,23 +254,23 @@
       ]
     },
     "handlebars_attribute_name": {
-      "begin": "\\b([-a-zA-Z0-9_\\.]+)\\b=",
+      "begin": "\\b([-a-zA-Z0-9_.]+)\\b=",
       "captures": {
         "1": {
           "name": "variable.parameter.handlebars"
         }
       },
-      "end": "(?='|\"|)",
+      "end": "(?=['\"]|)",
       "name": "entity.other.attribute-name.handlebars"
     },
     "handlebars_attribute_value": {
-      "begin": "([-a-zA-Z0-9_\\./]+)\\b",
+      "begin": "([-a-zA-Z0-9_./]+)\\b",
       "captures": {
         "1": {
           "name": "variable.parameter.handlebars"
         }
       },
-      "end": "('|\"|)",
+      "end": "(['\"]|)",
       "name": "entity.other.attribute-value.handlebars",
       "patterns": [
         {
@@ -517,7 +517,7 @@
           ]
         },
         {
-          "begin": "(</?)((?i:a|abbr|acronym|area|b|base|basefont|bdo|big|br|button|caption|cite|code|col|colgroup|del|dfn|em|font|head|html|i|img|input|ins|isindex|kbd|label|legend|li|link|map|meta|noscript|optgroup|option|param|q|s|samp|script|select|small|span|strike|strong|style|sub|sup|table|tbody|td|textarea|tfoot|th|thead|title|tr|tt|u|var)\\b)",
+          "begin": "(</?)((?i:a|abbr|acronym|area|b|base|basefont|bdo|big|br|button|caption|cite|code|col|colgroup|del|dfn|em|font|head|html|i|img|input|ins|isindex|kbd|label|legend|li|link|map|meta|noscript|optgroup|option|param|[qs]|samp|script|select|small|span|strike|strong|style|sub|sup|table|tbody|td|textarea|tfoot|th|thead|title|tr|tt|u|var)\\b)",
           "captures": {
             "1": {
               "name": "punctuation.definition.tag.html"
@@ -584,7 +584,7 @@
       ]
     },
     "inline_script": {
-      "begin": "(?:^\\s+)?(<)((?i:script))\\b(?:.*(type)=([\"'](?:text/x-handlebars-template|text/x-handlebars|text/template|x-tmpl-handlebars)[\"']))(?![^>]*/>)",
+      "begin": "(?:^\\s+)?(<)((?i:script))\\b.*(type)=([\"'](?:text/x-handlebars-template|text/x-handlebars|text/template|x-tmpl-handlebars)[\"'])(?![^>]*/>)",
       "beginCaptures": {
         "1": {
           "name": "punctuation.definition.tag.html"
@@ -651,7 +651,7 @@
       ]
     },
     "partial_and_var": {
-      "begin": "(\\{\\{~?\\{*(>|!<)*)\\s*(@?[-a-zA-Z0-9$_\\./]+)*",
+      "begin": "(\\{\\{~?\\{*(>|!<)*)\\s*(@?[-a-zA-Z0-9$_./]+)*",
       "beginCaptures": {
         "1": {
           "name": "support.constant.handlebars"
@@ -660,7 +660,7 @@
           "name": "variable.parameter.handlebars"
         }
       },
-      "end": "(~?\\}\\}\\}*)",
+      "end": "(~?}}}*)",
       "endCaptures": {
         "1": {
           "name": "support.constant.handlebars"
@@ -803,7 +803,7 @@
           "name": "punctuation.separator.key-value.html"
         }
       },
-      "end": "(?<='|\"|)",
+      "end": "(?<=['\"]|)",
       "name": "entity.other.attribute-name.html",
       "patterns": [
         {
@@ -821,7 +821,7 @@
           "name": "punctuation.separator.key-value.html"
         }
       },
-      "end": "(?<='|\"|)",
+      "end": "(?<=['\"]|)",
       "name": "meta.attribute-with-value.id.html",
       "patterns": [
         {
