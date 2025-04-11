@@ -22,7 +22,7 @@
     "inCategories": {
       "patterns": [
         {
-          "match": "(?<=^Categories.*)AudioVideo|(?<=^Categories.*)Audio|(?<=^Categories.*)Video|(?<=^Categories.*)Development|(?<=^Categories.*)Education|(?<=^Categories.*)Game|(?<=^Categories.*)Graphics|(?<=^Categories.*)Network|(?<=^Categories.*)Office|(?<=^Categories.*)Science|(?<=^Categories.*)Settings|(?<=^Categories.*)System|(?<=^Categories.*)Utility",
+          "match": "AudioVideo|Audio|Video|Development|Education|Game|Graphics|Network|Office|Science|Settings|System|Utility",
           "name": "markup.bold"
         }
       ]
@@ -30,7 +30,7 @@
     "inCommands": {
       "patterns": [
         {
-          "match": "(?<=^Exec.*\\s)-+\\S+",
+          "match": "-+\\S+",
           "name": "variable.parameter"
         },
         {
@@ -88,7 +88,7 @@
     "values": {
       "patterns": [
         {
-          "match": "(?<=^\\S+)=",
+          "match": "=",
           "name": "keyword.operator"
         },
         {
