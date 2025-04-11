@@ -738,7 +738,7 @@
     "special-tags-modes": {
       "patterns": [
         {
-          "begin": "(?<=(if|key|then|catch|snippet|html|render).{0,248}?)\\G",
+          "begin": "(?<=(if|key|then|catch|snippet|html|render).*?)\\G",
           "end": "(?=})",
           "name": "meta.embedded.expression.svelte source.ts",
           "patterns": [
@@ -748,7 +748,7 @@
           ]
         },
         {
-          "begin": "(?<=const.{0,249}?)\\G",
+          "begin": "(?<=const.*?)\\G",
           "end": "(?=})",
           "patterns": [
             {
@@ -786,7 +786,7 @@
           ]
         },
         {
-          "begin": "(?<=each.{0,250}?)\\G",
+          "begin": "(?<=each.*?)\\G",
           "end": "(?=})",
           "patterns": [
             {
@@ -848,7 +848,7 @@
           ]
         },
         {
-          "begin": "(?<=await.{0,249}?)\\G",
+          "begin": "(?<=await.*?)\\G",
           "end": "(?=})",
           "patterns": [
             {
@@ -879,7 +879,7 @@
           ]
         },
         {
-          "begin": "(?<=debug.{0,249}?)\\G",
+          "begin": "(?<=debug.*?)\\G",
           "end": "(?=})",
           "patterns": [
             {

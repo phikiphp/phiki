@@ -470,7 +470,7 @@
       ]
     },
     "function-multiple-inout": {
-      "begin": "(?<=]\\s{0,254})(:)\\s+(\\[)",
+      "begin": "(?<=]\\s*)(:)\\s+(\\[)",
       "beginCaptures": {
         "1": {
           "name": "punctuation.definition.in-out.nushell"
