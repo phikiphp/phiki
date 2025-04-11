@@ -6,12 +6,13 @@ use Phiki\Grammar\MatchedPattern;
 use Phiki\Tokenizer;
 use Stringable;
 
+/** @internal */
 interface PatternInterface extends Stringable
 {
     /**
      * Attempt to match the pattern against the current line's text, starting from the given position.
      */
-    public function tryMatch(Tokenizer $tokenizer, string $lineText, int $linePosition, ?int $cannotExceed = null): MatchedPattern|false;
+    public function match(Tokenizer $tokenizer, string $lineText, int $linePosition, ?int $cannotExceed = null): MatchedPattern|false;
 
     /**
      * Produce a new stack of scopes based on the current stack and the pattern's scope.

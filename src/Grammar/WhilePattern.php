@@ -50,7 +50,7 @@ class WhilePattern extends Pattern implements ContainsCapturesInterface, Pattern
         return count($this->whileCaptures) > 0 || count($this->captures) > 0;
     }
 
-    public function tryMatch(Tokenizer $tokenizer, string $lineText, int $linePosition, ?int $cannotExceed = null): MatchedPattern|false
+    public function match(Tokenizer $tokenizer, string $lineText, int $linePosition, ?int $cannotExceed = null): MatchedPattern|false
     {
         $regex = preg_replace_callback('/\\\\(\d+)/', function ($matches) {
             if (! isset($this->begin->matches[$matches[1]][0])) {

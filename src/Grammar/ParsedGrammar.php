@@ -41,7 +41,7 @@ final class ParsedGrammar extends Pattern implements PatternCollectionInterface
         return count($this->patterns) > 0;
     }
 
-    public function tryMatch(Tokenizer $tokenizer, string $lineText, int $linePosition, ?int $cannotExceed = null): MatchedPattern|false
+    public function match(Tokenizer $tokenizer, string $lineText, int $linePosition, ?int $cannotExceed = null): MatchedPattern|false
     {
         return $tokenizer->matchUsing($lineText, $this->getPatterns());
     }

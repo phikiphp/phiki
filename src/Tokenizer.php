@@ -70,7 +70,7 @@ class Tokenizer
             $matched = $this->match($lineText);
             $endIsMatched = false;
 
-            if ($matched !== false && $root instanceof EndPattern && $endMatched = $root->tryMatch($this, $lineText, $this->state->getLinePosition())) {
+            if ($matched !== false && $root instanceof EndPattern && $endMatched = $root->match($this, $lineText, $this->state->getLinePosition())) {
                 if ($endMatched->offset() <= $matched->offset()) {
                     $matched = $endMatched;
                     $endIsMatched = true;
@@ -79,7 +79,7 @@ class Tokenizer
 
             // We didn't find a matching subpattern and we're looking for an `end` pattern.
             // If we find it on this line, we need to pop it off the stack and process the end pattern.
-            if ($matched === false && $root instanceof EndPattern && $matched = $root->tryMatch($this, $lineText, $this->state->getLinePosition())) {
+            if ($matched === false && $root instanceof EndPattern && $matched = $root->match($this, $lineText, $this->state->getLinePosition())) {
                 $endIsMatched = true;
             }
 
@@ -185,7 +185,7 @@ class Tokenizer
         $patterns = $root->getPatterns();
 
         foreach ($patterns as $pattern) {
-            $matched = $pattern->tryMatch($this, $lineText, $this->state->getLinePosition());
+            $matched = $pattern->match($this, $lineText, $this->state->getLinePosition());
 
             // No match found. Move on to next pattern.
             if ($matched === false) {
@@ -232,7 +232,7 @@ class Tokenizer
                 continue;
             }
 
-            $matched = $injection->pattern->tryMatch($this, $lineText, $this->state->getLinePosition());
+            $matched = $injection->pattern->match($this, $lineText, $this->state->getLinePosition());
 
             if ($matched === false) {
                 continue;
@@ -524,7 +524,7 @@ class Tokenizer
 
                     // We can loop through each of the patterns to find the nearest one that matches.
                     foreach ($capture->getPatterns() as $capturePattern) {
-                        $matched = $capturePattern->tryMatch($this, $lineText, $this->state->getLinePosition(), cannotExceed: $groupEnd);
+                        $matched = $capturePattern->match($this, $lineText, $this->state->getLinePosition(), cannotExceed: $groupEnd);
 
                         // No match found. Move on to next pattern.
                         if ($matched === false) {
@@ -618,10 +618,10 @@ class Tokenizer
 
                             // As long as we don't reach the end of the group, we can try to match a pattern.
                             while ($this->state->getLinePosition() < $groupEnd) {
-                                $subPatternMatched = $onlyPatternsPattern->tryMatch($this, $lineText, $this->state->getLinePosition(), $groupEnd);
+                                $subPatternMatched = $onlyPatternsPattern->match($this, $lineText, $this->state->getLinePosition(), $groupEnd);
 
                                 // If we match a subpattern, we need to check to see if the end matches since that takes priority.
-                                if ($subPatternMatched !== false && $endPattern instanceof EndPattern && $endMatched = $endPattern->tryMatch($this, $lineText, $this->state->getLinePosition())) {
+                                if ($subPatternMatched !== false && $endPattern instanceof EndPattern && $endMatched = $endPattern->match($this, $lineText, $this->state->getLinePosition())) {
                                     // If the end does match, then we can break out of this loop and process the end pattern normally.
                                     if ($endMatched->offset() <= $subPatternMatched->offset()) {
                                         break;
@@ -649,7 +649,7 @@ class Tokenizer
                             }
                         }
 
-                        $endMatched = $endPattern->tryMatch($this, $lineText, $this->state->getLinePosition());
+                        $endMatched = $endPattern->match($this, $lineText, $this->state->getLinePosition());
 
                         // If we can't see the `end` pattern, we should just continue.
                         if ($endMatched === false) {
@@ -799,7 +799,7 @@ class Tokenizer
         // If we've got a `while` pattern on the stack and it doesn't match the current line, we need to pop
         // it off and handle it accordingly.
         if ($root instanceof WhilePattern) {
-            $whileMatched = $root->tryMatch($this, $lineText, $this->state->getLinePosition());
+            $whileMatched = $root->match($this, $lineText, $this->state->getLinePosition());
 
             if (! $whileMatched) {
                 $poppedPattern = $this->state->popPattern();

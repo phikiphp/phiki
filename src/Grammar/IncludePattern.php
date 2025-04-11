@@ -13,12 +13,12 @@ class IncludePattern extends Pattern
         public bool $injection = false,
     ) {}
 
-    public function tryMatch(Tokenizer $tokenizer, string $lineText, int $linePosition, ?int $cannotExceed = null): MatchedPattern|false
+    public function match(Tokenizer $tokenizer, string $lineText, int $linePosition, ?int $cannotExceed = null): MatchedPattern|false
     {
         $resolved = $tokenizer->resolve($this);
 
         if ($resolved !== null) {
-            return $resolved->tryMatch($tokenizer, $lineText, $linePosition, $cannotExceed);
+            return $resolved->match($tokenizer, $lineText, $linePosition, $cannotExceed);
         }
 
         return false;

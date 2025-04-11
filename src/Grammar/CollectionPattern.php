@@ -26,13 +26,13 @@ class CollectionPattern extends Pattern implements PatternCollectionInterface
         return count($this->patterns) > 0;
     }
 
-    public function tryMatch(Tokenizer $tokenizer, string $lineText, int $linePosition, ?int $cannotExceed = null): MatchedPattern|false
+    public function match(Tokenizer $tokenizer, string $lineText, int $linePosition, ?int $cannotExceed = null): MatchedPattern|false
     {
         $closest = false;
         $offset = $linePosition;
 
         foreach ($this->getPatterns() as $pattern) {
-            $matched = $pattern->tryMatch($tokenizer, $lineText, $linePosition, $cannotExceed);
+            $matched = $pattern->match($tokenizer, $lineText, $linePosition, $cannotExceed);
 
             if ($matched === false) {
                 continue;
