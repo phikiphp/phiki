@@ -247,6 +247,10 @@ preg_match(): Compilation failed: length of lookbehind assertion is not limited 
 > [!NOTE]
 > If you're running Phiki on PHP 8.2 or PHP 8.3, then you're still going to run into warnings or errors with these patched grammars since those versions of PHP do not use the latest version of PCRE2.
 
+## Contributing
+
+All contributions are welcome. Please consult the [CONTRIBUTING](./CONTRIBUTING.md) guide.
+
 ## Credits
 
 * [Ryan Chandler](https://github.com/ryangjchandler)
