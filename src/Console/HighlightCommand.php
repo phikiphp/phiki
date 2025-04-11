@@ -15,8 +15,8 @@ class HighlightCommand extends Command
 {
     public function execute(InputInterface $input, OutputInterface $output): int
     {
-        $phiki = new Phiki();
-        
+        $phiki = new Phiki;
+
         echo $phiki->codeToTerminal(
             file_get_contents($input->getArgument('file')),
             $input->getOption('grammar'),
