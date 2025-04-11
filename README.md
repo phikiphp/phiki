@@ -113,6 +113,19 @@ $phiki = new Phiki($environment);
 $phiki->codeToHtml('...', 'my-language', 'my-theme');
 ```
 
+If you don't have a JSON file containing the grammar file and would rather use a PHP array, you can instead create a `ParsedGrammar` instance from an array.
+
+```php
+$environment
+    ->getGrammarRepository()
+    ->register('my-language', ParsedGrammar::fromArray([
+        'scopeName' => 'source.language',
+        'patterns' => [
+            // ...
+        ]
+    ]));
+```
+
 ### Terminal Output
 
 Phiki has support for generating output designed for use in the terminal. This is available through the `codeToTerminal()` method which accepts the same parameters as the `codeToHtml()` method.
