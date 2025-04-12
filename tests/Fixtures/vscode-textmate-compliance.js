@@ -1,8 +1,11 @@
 const process = require('node:process');
 const fs = require('node:fs');
+const path = require('node:path');
+const oniguruma = require('vscode-oniguruma');
+const vsctm = require('vscode-textmate');
 
 const sample = process.argv[2];
-const grammar = process.argv[3];
+const scope = process.argv[3];
 const scopeMap = JSON.parse(process.argv[4]);
 
 function readFile(path) {
@@ -44,7 +47,7 @@ const registry = new vsctm.Registry({
 
 const tokens = []
 
-registry.loadGrammar(grammar).then(async grammar => {
+registry.loadGrammar(scope).then(async grammar => {
     const text = await readFile(sample);
     const lines = text.toString().split(/\r?\n/);
 
@@ -54,7 +57,7 @@ registry.loadGrammar(grammar).then(async grammar => {
         const lineTokens = grammar.tokenizeLine(line, ruleStack);
 
         tokens.push(
-            lineTokens.map(lineToken => ({
+            lineTokens.tokens.map(lineToken => ({
                 scopes: lineToken.scopes,
                 text: line.substring(lineToken.startIndex, lineToken.endIndex),
                 start: lineToken.startIndex,
@@ -64,4 +67,6 @@ registry.loadGrammar(grammar).then(async grammar => {
 
         ruleStack = lineTokens.ruleStack;
     }
+
+    console.log(JSON.stringify(tokens));
 })
