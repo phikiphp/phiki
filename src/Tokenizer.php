@@ -53,6 +53,19 @@ class Tokenizer
             $this->state->resetAnchorPositions();
 
             $this->tokenizeLine($line, $lineText."\n");
+
+            // If the last token added has a newline character, we need to remove it.
+            if (isset($this->tokens[$line]) && count($this->tokens[$line]) > 0) {
+                $lastToken = end($this->tokens[$line]);
+
+                if ($lastToken->text === "\n") {
+                    $lastToken->text = '';
+                    $lastToken->end = $lastToken->start;
+                } elseif (str_ends_with($lastToken->text, "\n")) {
+                    $lastToken->text = substr($lastToken->text, 0, -1);
+                    $lastToken->end = $lastToken->start + strlen($lastToken->text);
+                }
+            }
         }
 
         return $this->tokens;
