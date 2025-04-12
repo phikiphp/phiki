@@ -3,10 +3,13 @@
 set_time_limit(2);
 
 use Phiki\Environment\Environment;
+use Phiki\Grammar\DefaultGrammars;
 use Phiki\Phiki;
 use Phiki\Theme\Theme;
+use Phiki\Token\Token;
+use Symfony\Component\Process\Process;
 
-require_once __DIR__.'/../vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
 set_error_handler(function ($severity, $message, $file, $line) {
     throw new ErrorException($message, 0, $severity, $file, $line);
@@ -20,9 +23,42 @@ $repository = $environment->getGrammarRepository();
 $grammars = $repository->getAllGrammarNames();
 natsort($grammars);
 
-$sample = file_get_contents(__DIR__.'/../resources/samples/'.$grammar.'.sample');
+$sample = file_get_contents($samplePath = __DIR__ . '/../resources/samples/' . $grammar . '.sample');
 $tokens = (new Phiki($environment))->codeToTokens($sample, $grammar);
 $html = (new Phiki($environment))->codeToHtml($sample, $grammar, ['light' => Theme::GithubLight, 'dark' => Theme::GithubDark], $withGutter);
+
+$process = new Process(
+    [
+        'node',
+        __DIR__ . '/../tests/Fixtures/vscode-textmate-compliance.js',
+        $samplePath,
+        array_flip(DefaultGrammars::SCOPES_TO_NAMES)[$grammar],
+        json_encode(collect(DefaultGrammars::SCOPES_TO_NAMES)
+            ->mapWithKeys(fn(string $name, string $scope) => [$scope => DefaultGrammars::NAMES_TO_PATHS[$name]])
+            ->all()),
+    ],
+);
+
+$process->run();
+
+if (! $process->isSuccessful()) {
+    throw new RuntimeException($process->getErrorOutput() . ':' . PHP_EOL . $process->getOutput());
+}
+
+$vscodeTextmateOutput = array_map(
+    fn(array $lineTokens) => array_map(
+        fn(array $token) => new Token(
+            scopes: $token['scopes'],
+            text: $token['text'],
+            start: $token['start'],
+            end: $token['end'],
+        ),
+        $lineTokens
+    ),
+    json_decode($process->getOutput(), true),
+);
+
+$tokenDiff = array_diff_multidimensional($tokens, $vscodeTextmateOutput, false);
 
 ?>
 
@@ -102,7 +138,22 @@ $html = (new Phiki($environment))->codeToHtml($sample, $grammar, ['light' => The
 
         <?= $html ?>
 
-        <?php dump($tokens); ?>
+        <div class="grid grid-cols-2 gap-10">
+            <div>
+                <p class="text-xl text-white mb-4">Phiki tokens:</p>
+                <?php dump($tokens); ?>
+            </div>
+
+            <div>
+                <p class="text-xl text-white mb-4">vscode-textmate tokens:</p>
+                <?php dump($vscodeTextmateOutput); ?>
+            </div>
+
+            <div>
+                <p class="text-xl text-white mb-4">Differences:</p>
+                <?php dump($tokenDiff); ?>
+            </div>
+        </div>
     </main>
 </body>
 

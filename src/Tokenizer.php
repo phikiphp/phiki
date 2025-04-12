@@ -53,6 +53,26 @@ class Tokenizer
             $this->state->resetAnchorPositions();
 
             $this->tokenizeLine($line, $lineText."\n");
+
+            // If the last token added has a newline character, we need to remove it.
+            if (isset($this->tokens[$line]) && count($this->tokens[$line]) > 0) {
+                $lastToken = end($this->tokens[$line]);
+
+                // If we have a newline token and the line has more than just that newline token, 
+                // we need to remove it from the tokens array.
+                if ($lastToken->text === "\n" && count($this->tokens[$line]) > 1) {
+                    array_pop($this->tokens[$line]);
+                // Otherwise, if the last token is a newline character, we need to remove that from the token text.
+                } elseif ($lastToken->text === "\n") {
+                    $lastToken->text = '';
+                    $lastToken->end = $lastToken->start + 1;
+                // And if the last token ends with a newline character, we need to remove that from the token text
+                // and update the end position accordingly.
+                } elseif (str_ends_with($lastToken->text, "\n")) {
+                    $lastToken->text = substr($lastToken->text, 0, -1);
+                    $lastToken->end = $lastToken->start + strlen($lastToken->text) + 1;
+                }
+            }
         }
 
         return $this->tokens;
@@ -63,7 +83,6 @@ class Tokenizer
         $this->checkWhileConditions($line, $lineText);
 
         while ($this->state->getLinePosition() < strlen($lineText)) {
-            $remainingText = substr($lineText, $this->state->getLinePosition());
             $root = $this->state->getPattern();
             $matched = $this->match($lineText);
             $endIsMatched = false;

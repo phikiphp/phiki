@@ -28,6 +28,8 @@ class TerminalGenerator implements OutputGeneratorInterface
                     $output .= Color::ANSI_RESET;
                 }
             }
+
+            $output .= PHP_EOL;
         }
 
         return $output;

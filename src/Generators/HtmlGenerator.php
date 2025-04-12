@@ -96,7 +96,7 @@ class HtmlGenerator implements OutputGeneratorInterface
             $output[] = $this->buildToken($token);
         }
 
-        return '<span class="line">'.implode($output).'</span>';
+        return '<span class="line">'.implode($output)."</span>\n";
     }
 
     private function buildLineNumber(int $lineNumber): string

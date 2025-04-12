@@ -22,7 +22,6 @@ it('does not produce duplicated text for small reproduction', function () {
                 new Token(['source.cpp', 'comment.block.cpp', 'punctuation.definition.comment.begin.cpp'], '/*', 10, 12),
                 new Token(['source.cpp', 'comment.block.cpp'], ' comment ', 12, 21),
                 new Token(['source.cpp', 'comment.block.cpp', 'punctuation.definition.comment.end.cpp'], '*/', 21, 23),
-                new Token(['source.cpp'], "\n", 23, 23),
             ],
         ]);
 })->issue(57);
