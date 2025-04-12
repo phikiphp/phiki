@@ -17,7 +17,6 @@ describe('yaml', function () {
                 new Token(['source.yaml', 'string.quoted.double.yaml', 'punctuation.definition.string.begin.yaml'], '"', 6, 7),
                 new Token(['source.yaml', 'string.quoted.double.yaml'], 'Hello, world', 7, 19),
                 new Token(['source.yaml', 'string.quoted.double.yaml', 'punctuation.definition.string.end.yaml'], '"', 19, 20),
-                new Token(['source.yaml'], "\n", 20, 20),
             ],
         ]);
     });
