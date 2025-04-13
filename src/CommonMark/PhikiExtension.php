@@ -4,6 +4,7 @@ namespace Phiki\CommonMark;
 
 use League\CommonMark\Environment\EnvironmentBuilderInterface;
 use League\CommonMark\Extension\CommonMark\Node\Block\FencedCode;
+use League\CommonMark\Extension\CommonMark\Node\Inline\Code;
 use League\CommonMark\Extension\ExtensionInterface;
 use Phiki\Phiki;
 use Phiki\Theme\Theme;
@@ -24,6 +25,7 @@ class PhikiExtension implements ExtensionInterface
     public function register(EnvironmentBuilderInterface $environment): void
     {
         $environment
-            ->addRenderer(FencedCode::class, new CodeBlockRenderer($this->theme, $this->phiki, $this->withGutter, $this->withWrapper), 10);
+            ->addRenderer(FencedCode::class, new CodeBlockRenderer($this->theme, $this->phiki, $this->withGutter, $this->withWrapper), 10)
+            ->addRenderer(Code::class, new InlineCodeRenderer($this->theme, $this->phiki), 10);
     }
 }

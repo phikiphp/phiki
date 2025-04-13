@@ -2,6 +2,10 @@
 
 set_time_limit(2);
 
+use League\CommonMark\Environment\Environment as EnvironmentEnvironment;
+use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
+use League\CommonMark\MarkdownConverter;
+use Phiki\CommonMark\PhikiExtension;
 use Phiki\Environment\Environment;
 use Phiki\Grammar\DefaultGrammars;
 use Phiki\Phiki;
@@ -17,6 +21,7 @@ set_error_handler(function ($severity, $message, $file, $line) {
 
 $grammar = $_GET['grammar'] ?? 'php';
 $withGutter = ($_GET['gutter'] ?? false) === 'on';
+$markdown = $_GET['markdown'] ?? null;
 $environment = Environment::default()->enableStrictMode();
 /** @var \Phiki\Grammar\GrammarRepository $repository */
 $repository = $environment->getGrammarRepository();
@@ -59,6 +64,14 @@ $vscodeTextmateOutput = array_map(
 );
 
 $tokenDiff = array_diff_multidimensional($tokens, $vscodeTextmateOutput, false);
+
+$converter = new MarkdownConverter(
+    (new EnvironmentEnvironment())
+        ->addExtension(new CommonMarkCoreExtension)
+        ->addExtension(new PhikiExtension('github-dark'))
+);
+
+$generatedMarkdown = $markdown ? $converter->convert($markdown)->getContent() : null;
 
 ?>
 
@@ -153,6 +166,18 @@ $tokenDiff = array_diff_multidimensional($tokens, $vscodeTextmateOutput, false);
                 <p class="text-xl text-white mb-4">Differences:</p>
                 <?php dump($tokenDiff); ?>
             </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-10 mt-10">
+            <div>
+                <p class="text-xl text-white mb-4">markdown:</p>
+                <form>
+                    <textarea name="markdown" class="w-full min-h-[300px] text-black"><?= $markdown ? htmlspecialchars($markdown) : null ?></textarea>
+                    <button>generate</button>
+                </form>
+            </div>
+
+            <div class="bg-white"><?= $generatedMarkdown ?></div>
         </div>
     </main>
 </body>

@@ -16,11 +16,20 @@ class HtmlGenerator implements OutputGeneratorInterface
         protected array $themes,
         protected bool $withGutter = false,
         protected bool $withWrapper = false,
+        protected bool $inline = false,
     ) {}
 
     public function generate(array $tokens): string
     {
-        return $this->withWrapper ? $this->buildWrapper($tokens) : $this->buildPre($tokens);
+        if ($this->inline) {
+            return $this->buildCode($tokens);
+        }
+
+        if ($this->withWrapper) {
+            return $this->buildWrapper($tokens);
+        }
+
+        return $this->buildPre($tokens);
     }
 
     private function buildWrapper($tokens): string
@@ -81,7 +90,38 @@ class HtmlGenerator implements OutputGeneratorInterface
             $output[] = $this->buildLine($line, $i);
         }
 
-        return '<code>'.implode($output).'</code>';
+        if (! $this->inline) {
+            return '<code>' . implode($output) . '</code>';
+        }
+
+        $codeClasses = $this->inline ? array_filter([
+            'phiki-inline',
+            $this->grammarName ? "language-$this->grammarName" : null,
+            $this->getDefaultTheme()->name,
+            count($this->themes) > 1 ? 'phiki-themes' : null,
+        ]) : [];
+
+        foreach ($this->themes as $theme) {
+            if ($theme !== $this->getDefaultTheme()) {
+                $codeClasses[] = $theme->name;
+            }
+        }
+
+        $codeStyles = [$this->getDefaultTheme()->base()->toStyleString()];
+
+        foreach ($this->themes as $id => $theme) {
+            if ($id !== $this->getDefaultThemeId()) {
+                $codeStyles[] = $theme->base()->toCssVarString($id);
+            }
+        }
+
+        return sprintf(
+            '<code class="%s"%s style="%s">%s</code>',
+            implode(' ', $codeClasses),
+            $this->grammarName ? " data-language=\"$this->grammarName\"" : null,
+            implode(';', $codeStyles),
+            implode('', $output),
+        );
     }
 
     private function buildLine(array $line, int $index): string
