@@ -76,6 +76,16 @@ $environment
     ->addExtension(new PhikiExtension('github-dark', withWrapper: true));
 ```
 
+#### Inline code highlighting
+
+If you wish to highlight inline code snippets in your Markdown content, you can specify a grammar after the opening backtick.
+
+```md
+`{php}echo "Hello, world!"`
+```
+
+This will produce a highlighted `<code>` element using the configured theme and the chosen grammar, specified inside of the `{}` characters.
+
 ### Laravel
 
 If you're using Laravel's `Str::markdown()` or `str()->markdown()` methods, you can use the same CommonMark extension by passing it through to the method.
