@@ -1,6 +1,6 @@
 ![Phiki](./art/banner.png)
 
-Phiki is a syntax highlighter written in PHP. It uses TextMate grammar files and Visual Studio Code themes to generate syntax highlighted code for the web and terminal.
+Phiki is a syntax highlighter written in PHP. It uses TextMate grammar files and Visual Studio Code themes to generate syntax highlighted code for the web.
 
 The name and public API of Phiki is heavily inspired by [Shiki](https://shiki.style/), a package that does more or less the same thing in the JavaScript ecosystem. The actual implementation of the highlighter is inspired by the [`vscode-textmate`](https://github.com/microsoft/vscode-textmate) package which Shiki uses internally, but isn't a 1-1 translation since the internal APIs of Phiki differ to `vscode-textmate`.
 
