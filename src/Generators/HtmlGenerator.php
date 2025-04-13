@@ -94,13 +94,13 @@ class HtmlGenerator implements OutputGeneratorInterface
             return '<code>' . implode($output) . '</code>';
         }
 
-        $codeClasses = $this->inline ? array_filter([
+        $codeClasses = array_filter([
             'phiki-inline',
             $this->grammarName ? "language-$this->grammarName" : null,
             $this->getDefaultTheme()->name,
             count($this->themes) > 1 ? 'phiki-themes' : null,
-        ]) : [];
-
+        ]);
+        
         foreach ($this->themes as $theme) {
             if ($theme !== $this->getDefaultTheme()) {
                 $codeClasses[] = $theme->name;

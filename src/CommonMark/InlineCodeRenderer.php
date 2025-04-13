@@ -25,15 +25,10 @@ class InlineCodeRenderer implements NodeRendererInterface
 
         $internal = new CodeRenderer();
 
-        preg_match('/^\{(?<match>[\w]+)}(?<code>.*)/', $node->getLiteral(), $match);
-
-        if (! isset($match['match'])) {
+        if (preg_match('/^\{([\w]+)}(.*)/', $node->getLiteral(), $match, PREG_UNMATCHED_AS_NULL) !== 1) {
             return $internal->render($node, $childRenderer);
         }
 
-        $grammar = $match['match'] ?? 'txt';
-        $code = $match['code'] ?? $node->getLiteral();
-
-        return $this->phiki->codeToHtml($code, $grammar, $this->theme, inline: true);
+        return $this->phiki->codeToHtml($match[2], $match[1], $this->theme, inline: true);
     }
 }
