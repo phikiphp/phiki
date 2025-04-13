@@ -45,4 +45,19 @@ describe('CommonMark > Extension', function () {
         expect($generated)
             ->toContain('data-language="php"');
     });
+
+    it('highlights inline code when grammar is present', function () {
+        $environment = new Environment;
+
+        $environment
+            ->addExtension(new CommonMarkCoreExtension)
+            ->addExtension(new PhikiExtension('github-dark'));
+
+        $markdown = new MarkdownConverter($environment);
+        $generated = $markdown->convert(<<<'MD'
+        `{php}echo "Hello, world!";`
+        MD)->getContent();
+
+        expect($generated)->toMatchSnapshot();
+    });
 });
