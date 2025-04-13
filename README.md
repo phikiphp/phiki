@@ -1,6 +1,6 @@
 ![Phiki](./art/banner.png)
 
-Phiki is a syntax highlighter written in PHP. It uses TextMate grammar files and Visual Studio Code themes to generate syntax highlighted code for the web and terminal.
+Phiki is a syntax highlighter written in PHP. It uses TextMate grammar files and Visual Studio Code themes to generate syntax highlighted code for the web.
 
 The name and public API of Phiki is heavily inspired by [Shiki](https://shiki.style/), a package that does more or less the same thing in the JavaScript ecosystem. The actual implementation of the highlighter is inspired by the [`vscode-textmate`](https://github.com/microsoft/vscode-textmate) package which Shiki uses internally, but isn't a 1-1 translation since the internal APIs of Phiki differ to `vscode-textmate`.
 
@@ -112,26 +112,6 @@ $phiki = new Phiki($environment);
 
 $phiki->codeToHtml('...', 'my-language', 'my-theme');
 ```
-
-### Terminal Output
-
-Phiki has support for generating output designed for use in the terminal. This is available through the `codeToTerminal()` method which accepts the same parameters as the `codeToHtml()` method.
-
-```php
-echo $phiki->codeToTerminal('echo "Hello, world"!', Grammar::Php, Theme::GithubDark);
-```
-
-![](./art/codeToTerminal.png)
-
-### Binary
-
-If you want to use Phiki to highlight a file in the terminal without writing any PHP code, you can use the `phiki` binary.
-
-```sh
-vendor/bin/phiki ./path/to/file --grammar php --theme github-dark
-```
-
-This will output the highlighted code from that file using the grammar and theme provided.
 
 ### Line numbers
 

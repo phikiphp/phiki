@@ -4,7 +4,6 @@ namespace Phiki;
 
 use Phiki\Environment\Environment;
 use Phiki\Generators\HtmlGenerator;
-use Phiki\Generators\TerminalGenerator;
 use Phiki\Grammar\Grammar;
 use Phiki\Support\Arr;
 use Phiki\Support\Str;
@@ -53,14 +52,6 @@ class Phiki
         $highlighter = new Highlighter($themes);
 
         return $highlighter->highlight($tokens);
-    }
-
-    public function codeToTerminal(string $code, string|Grammar $grammar, string|Theme $theme): string
-    {
-        $tokens = $this->codeToHighlightedTokens($code, $grammar, $theme);
-        $generator = new TerminalGenerator($this->environment->resolveTheme($theme));
-
-        return $generator->generate($tokens);
     }
 
     /**
