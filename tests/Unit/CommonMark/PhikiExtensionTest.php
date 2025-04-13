@@ -58,6 +58,6 @@ describe('CommonMark > Extension', function () {
         `{php}echo "Hello, world!";`
         MD)->getContent();
 
-        dd($generated);
-    })->only();
+        expect($generated)->toMatchSnapshot();
+    });
 });
