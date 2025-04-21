@@ -31,7 +31,7 @@
               "name": "punctuation.definition.comment.dax"
             }
           },
-          "end": "\n",
+          "end": "\\n",
           "name": "comment.line.dax"
         },
         {
@@ -41,7 +41,7 @@
               "name": "punctuation.definition.comment.dax"
             }
           },
-          "end": "\n",
+          "end": "\\n",
           "name": "comment.line.dax"
         },
         {
@@ -67,11 +67,11 @@
           "name": "keyword.control.dax"
         },
         {
-          "match": "{|}",
+          "match": "[{}]",
           "name": "keyword.array.constructor.dax"
         },
         {
-          "match": ">|<|>=|<=|=(?!==)",
+          "match": "[<>]|>=|<=|=(?!==)",
           "name": "keyword.operator.comparison.dax"
         },
         {
@@ -79,12 +79,12 @@
           "name": "keyword.operator.logical.dax"
         },
         {
-          "match": "\\+|\\-|\\*|\\/",
+          "match": "[-*+/]",
           "name": "keyword.arithmetic.operator.dax"
         },
         {
           "begin": "\\[",
-          "end": "\\]",
+          "end": "]",
           "name": "support.function.dax"
         },
         {
@@ -93,8 +93,8 @@
           "name": "string.quoted.double.dax"
         },
         {
-          "begin": "\\'",
-          "end": "\\'",
+          "begin": "'",
+          "end": "'",
           "name": "support.class.dax"
         }
       ]
@@ -110,7 +110,7 @@
               "name": "entity.name.label.dax"
             }
           },
-          "match": "(^(.*?)\\s*(:=|!=))"
+          "match": "^((.*?)\\s*([!:]=))"
         }
       ]
     },
@@ -133,7 +133,7 @@
       ]
     },
     "numbers": {
-      "match": "-?(?:0|[1-9]\\d*)(?:(?:\\.\\d+)?(?:[eE][+-]?\\d+)?)?",
+      "match": "-?(?:0|[1-9]\\d*)(?:(?:\\.\\d+)?(?:[Ee][-+]?\\d+)?)?",
       "name": "constant.numeric.dax"
     },
     "parameters": {
@@ -148,7 +148,6 @@
               "name": "variable.other.readwrite.dax"
             }
           },
-          "comment": "build out variable assignment",
           "end": "=",
           "endCaptures": {
             "0": {
@@ -164,7 +163,7 @@
           ]
         },
         {
-          "match": "[_$[:alpha:]][_$[:alnum:]]*",
+          "match": "[$_[:alpha:]][$_[:alnum:]]*",
           "name": "variable.other.constant.dax"
         }
       ]

@@ -1,8 +1,8 @@
 {
   "displayName": "jinja-html",
-  "firstLineMatch": "^{% extends [\"'][^\"']+[\"'] %}",
-  "foldingStartMarker": "(<(?i:(head|table|tr|div|style|script|ul|ol|form|dl))\\b.*?>|{%\\s*(block|filter|for|if|macro|raw))",
-  "foldingStopMarker": "(</(?i:(head|table|tr|div|style|script|ul|ol|form|dl))\\b.*?>|{%\\s*(endblock|endfilter|endfor|endif|endmacro|endraw)\\s*%})",
+  "firstLineMatch": "^\\{% extends [\"'][^\"']+[\"'] %}",
+  "foldingStartMarker": "(<(?i:(head|table|tr|div|style|script|ul|ol|form|dl))\\b.*?>|\\{%\\s*(block|filter|for|if|macro|raw))",
+  "foldingStopMarker": "(</(?i:(head|table|tr|div|style|script|ul|ol|form|dl))\\b.*?>|\\{%\\s*(end(?:block|filter|for|if|macro|raw))\\s*%})",
   "name": "jinja-html",
   "patterns": [
     {

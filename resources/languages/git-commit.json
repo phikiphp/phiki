@@ -3,8 +3,7 @@
   "name": "git-commit",
   "patterns": [
     {
-      "begin": "(?=^diff\\ \\-\\-git)",
-      "comment": "diff presented at the end of the commit message when using commit -v.",
+      "begin": "(?=^diff --git)",
       "contentName": "source.diff",
       "end": "\\z",
       "name": "meta.embedded.diff.git-commit",
@@ -16,7 +15,6 @@
     },
     {
       "begin": "^(?!#)",
-      "comment": "User supplied message",
       "end": "^(?=#)",
       "name": "meta.scope.message.git-commit",
       "patterns": [
@@ -29,7 +27,6 @@
               "name": "invalid.illegal.line-too-long.git-commit"
             }
           },
-          "comment": "Mark > 50 lines as deprecated, > 72 as illegal",
           "match": "\\G.{0,50}(.{0,22}(.*))$",
           "name": "meta.scope.subject.git-commit"
         }
@@ -37,7 +34,6 @@
     },
     {
       "begin": "^(?=#)",
-      "comment": "Git supplied metadata in a number of lines starting with #",
       "contentName": "comment.line.number-sign.git-commit",
       "end": "^(?!#)",
       "name": "meta.scope.metadata.git-commit",
@@ -75,7 +71,6 @@
               "name": "string.unquoted.filename.git-commit"
             }
           },
-          "comment": "Fallback for non-English git commit template",
           "match": "^#\\t([^:]+): *(.*)$"
         }
       ]

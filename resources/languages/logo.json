@@ -5,7 +5,7 @@
   "name": "logo",
   "patterns": [
     {
-      "match": "^to [\\w.]+",
+      "match": "^to [.\\w]+",
       "name": "entity.name.function.logo"
     },
     {
@@ -22,15 +22,15 @@
           "name": "punctuation.definition.variable.logo"
         }
       },
-      "match": "(\\:)(?:\\|[^|]*\\||[-\\w.]*)+",
+      "match": "(:)(?:\\|[^|]*\\||[-.\\w]*)+",
       "name": "variable.parameter.logo"
     },
     {
-      "match": "\"(?:\\|[^|]*\\||[-\\w.]*)+",
+      "match": "\"(?:\\|[^|]*\\||[-.\\w]*)+",
       "name": "string.other.word.logo"
     },
     {
-      "begin": "(^[ \\t]+)?(?=;)",
+      "begin": "(^[\\t ]+)?(?=;)",
       "beginCaptures": {
         "1": {
           "name": "punctuation.whitespace.comment.leading.logo"

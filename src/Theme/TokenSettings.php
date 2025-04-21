@@ -2,8 +2,6 @@
 
 namespace Phiki\Theme;
 
-use Phiki\Support\Color;
-
 readonly class TokenSettings
 {
     public function __construct(

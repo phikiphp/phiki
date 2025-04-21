@@ -29,7 +29,7 @@
     "comments": {
       "patterns": [
         {
-          "begin": "(^[ \\t]+)?(?=//)",
+          "begin": "(^[\\t ]+)?(?=//)",
           "beginCaptures": {
             "1": {
               "name": "punctuation.whitespace.comment.leading.verilog"
@@ -59,11 +59,11 @@
     "constants": {
       "patterns": [
         {
-          "match": "`(?!(celldefine|endcelldefine|default_nettype|define|undef|ifdef|ifndef|else|endif|include|resetall|timescale|unconnected_drive|nounconnected_drive))[a-z_A-Z][a-zA-Z0-9_$]*",
+          "match": "`(?!(celldefine|endcelldefine|default_nettype|define|undef|ifdef|ifndef|else|endif|include|resetall|timescale|unconnected_drive|nounconnected_drive))[A-Z_a-z][$0-9A-Z_a-z]*",
           "name": "variable.other.constant.verilog"
         },
         {
-          "match": "[0-9]*'[bBoOdDhH][a-fA-F0-9_xXzZ]+\\b",
+          "match": "[0-9]*'[BDHObdho][XZ_xz\\h]+\\b",
           "name": "constant.numeric.sized_integer.verilog"
         },
         {
@@ -82,7 +82,7 @@
           "name": "meta.block.numeric.range.verilog"
         },
         {
-          "match": "\\b\\d[\\d_]*(?i:e\\d+)?\\b",
+          "match": "\\b\\d[_\\d]*(?i:e\\d+)?\\b",
           "name": "constant.numeric.integer.verilog"
         },
         {
@@ -94,7 +94,7 @@
           "name": "constant.numeric.delay.verilog"
         },
         {
-          "match": "\\b[01xXzZ]+\\b",
+          "match": "\\b[01XZxz]+\\b",
           "name": "constant.numeric.logic.verilog"
         }
       ]
@@ -105,7 +105,7 @@
           "include": "#keywords"
         },
         {
-          "begin": "^\\s*(?!always|and|assign|output|input|inout|wire|module)([a-zA-Z][a-zA-Z0-9_]*)\\s+([a-zA-Z][a-zA-Z0-9_]*)(?<!begin|if)\\s*(?=\\(|$)",
+          "begin": "^\\s*(?!always|and|assign|output|input|inout|wire|module)([A-Za-z][0-9A-Z_a-z]*)\\s+([A-Za-z][0-9A-Z_a-z]*)(?<!begin|if)\\s*(?=\\(|$)",
           "beginCaptures": {
             "1": {
               "name": "entity.name.tag.module.reference.verilog"
@@ -134,7 +134,7 @@
           ]
         },
         {
-          "begin": "^\\s*([a-zA-Z][a-zA-Z0-9_]*)\\s*(#)(?=\\s*\\()",
+          "begin": "^\\s*([A-Za-z][0-9A-Z_a-z]*)\\s*(#)(?=\\s*\\()",
           "beginCaptures": {
             "1": {
               "name": "entity.name.tag.module.reference.verilog"
@@ -152,7 +152,7 @@
               "include": "#parenthetical_list"
             },
             {
-              "match": "[a-zA-Z][a-zA-Z0-9_]*",
+              "match": "[A-Za-z][0-9A-Z_a-z]*",
               "name": "entity.name.tag.module.identifier.verilog"
             }
           ]
@@ -170,7 +170,7 @@
           "name": "keyword.other.compiler.directive.verilog"
         },
         {
-          "match": "\\$(f(open|close)|readmem(b|h)|timeformat|printtimescale|stop|finish|(s|real)?time|realtobits|bitstoreal|rtoi|itor|(f)?(display|write(h|b)))\\b",
+          "match": "\\$(f(open|close)|readmem([bh])|timeformat|printtimescale|stop|finish|(s|real)?time|realtobits|bitstoreal|rtoi|itor|(f)?(display|write([bh])))\\b",
           "name": "support.function.system.console.tasks.verilog"
         },
         {
@@ -194,7 +194,7 @@
           "name": "support.function.system.vcd.tasks.verilog"
         },
         {
-          "match": "\\$(countdrivers|list|input|scope|showscopes|(no)?(key|log)|reset(_count|_value)?|(inc)?save|restart|showvars|getpattern|sreadmem(b|h)|scale)",
+          "match": "\\$(countdrivers|list|input|scope|showscopes|(no)?(key|log)|reset(_(?:count|value))?|(inc)?save|restart|showvars|getpattern|sreadmem([bh])|scale)",
           "name": "support.function.non-standard.tasks.verilog"
         }
       ]
@@ -202,7 +202,7 @@
     "module_pattern": {
       "patterns": [
         {
-          "begin": "\\b(module)\\s+([a-zA-Z][a-zA-Z0-9_]*)",
+          "begin": "\\b(module)\\s+([A-Za-z][0-9A-Z_a-z]*)",
           "beginCaptures": {
             "1": {
               "name": "storage.type.module.verilog"
@@ -244,7 +244,7 @@
     "operators": {
       "patterns": [
         {
-          "match": "\\+|-|\\*|/|%|(<|>)=?|(!|=)?==?|!|&&?|\\|\\|?|\\^?~|~\\^?",
+          "match": "[-%*+/]|([<>])=?|([!=])?==?|!|&&?|\\|\\|?|\\^?~|~\\^?",
           "name": "keyword.operator.verilog"
         }
       ]

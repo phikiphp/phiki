@@ -35,13 +35,13 @@
   ],
   "repository": {
     "comment": {
-      "begin": "\\{{--",
+      "begin": "\\{\\{--",
       "beginCaptures": {
         "0": {
           "name": "punctuation.definition.comment.begin.edge"
         }
       },
-      "end": "\\--}}",
+      "end": "--}}",
       "endCaptures": {
         "0": {
           "name": "punctuation.definition.comment.end.edge"
@@ -50,13 +50,13 @@
       "name": "comment.block"
     },
     "escapedMustache": {
-      "begin": "\\@{{",
+      "begin": "@\\{\\{",
       "beginCaptures": {
         "0": {
           "name": "punctuation.definition.comment.begin.edge"
         }
       },
-      "end": "\\}}",
+      "end": "}}",
       "endCaptures": {
         "0": {
           "name": "punctuation.definition.comment.end.edge"
@@ -65,13 +65,13 @@
       "name": "comment.block"
     },
     "mustache": {
-      "begin": "\\{{",
+      "begin": "\\{\\{",
       "beginCaptures": {
         "0": {
           "name": "punctuation.mustache.begin"
         }
       },
-      "end": "\\}}",
+      "end": "}}",
       "endCaptures": {
         "0": {
           "name": "punctuation.mustache.end"
@@ -90,7 +90,7 @@
           "name": "support.function.edge"
         }
       },
-      "match": "^(\\s*)((@{1,2})(!)?([a-zA-Z._]+))(~)?$",
+      "match": "^(\\s*)((@{1,2})(!)?([.A-Z_a-z]+))(~)?$",
       "name": "meta.embedded.block.javascript",
       "patterns": [
         {
@@ -99,13 +99,13 @@
       ]
     },
     "safeMustache": {
-      "begin": "\\{{{",
+      "begin": "\\{\\{\\{",
       "beginCaptures": {
         "0": {
           "name": "punctuation.mustache.begin"
         }
       },
-      "end": "\\}}}",
+      "end": "}}}",
       "endCaptures": {
         "0": {
           "name": "punctuation.mustache.end"
@@ -119,7 +119,7 @@
       ]
     },
     "tag": {
-      "begin": "^(\\s*)((@{1,2})(!)?([a-zA-Z._]+)(\\s{0,2}))(\\()",
+      "begin": "^(\\s*)((@{1,2})(!)?([.A-Z_a-z]+)(\\s{0,2}))(\\()",
       "beginCaptures": {
         "2": {
           "name": "support.function.edge"

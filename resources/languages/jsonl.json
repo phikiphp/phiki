@@ -14,7 +14,7 @@
           "name": "punctuation.definition.array.begin.json.lines"
         }
       },
-      "end": "\\]",
+      "end": "]",
       "endCaptures": {
         "0": {
           "name": "punctuation.definition.array.end.json.lines"
@@ -30,7 +30,7 @@
           "name": "punctuation.separator.array.json.lines"
         },
         {
-          "match": "[^\\s\\]]",
+          "match": "[^]\\s]",
           "name": "invalid.illegal.expected-array-separator.json.lines"
         }
       ]
@@ -73,7 +73,7 @@
       "name": "constant.language.json.lines"
     },
     "number": {
-      "match": "-?(?:0|[1-9]\\d*)(?:(?:\\.\\d+)?(?:[eE][+-]?\\d+)?)?",
+      "match": "-?(?:0|[1-9]\\d*)(?:(?:\\.\\d+)?(?:[Ee][-+]?\\d+)?)?",
       "name": "constant.numeric.json.lines"
     },
     "object": {
@@ -83,7 +83,7 @@
           "name": "punctuation.definition.dictionary.begin.json.lines"
         }
       },
-      "end": "\\}",
+      "end": "}",
       "endCaptures": {
         "0": {
           "name": "punctuation.definition.dictionary.end.json.lines"
@@ -92,7 +92,6 @@
       "name": "meta.structure.dictionary.json.lines",
       "patterns": [
         {
-          "comment": "the JSON object key",
           "include": "#objectkey"
         },
         {
@@ -105,7 +104,7 @@
               "name": "punctuation.separator.dictionary.key-value.json.lines"
             }
           },
-          "end": "(,)|(?=\\})",
+          "end": "(,)|(?=})",
           "endCaptures": {
             "1": {
               "name": "punctuation.separator.dictionary.pair.json.lines"
@@ -114,17 +113,16 @@
           "name": "meta.structure.dictionary.value.json.lines",
           "patterns": [
             {
-              "comment": "the JSON object value",
               "include": "#value"
             },
             {
-              "match": "[^\\s,]",
+              "match": "[^,\\s]",
               "name": "invalid.illegal.expected-dictionary-separator.json.lines"
             }
           ]
         },
         {
-          "match": "[^\\s\\}]",
+          "match": "[^}\\s]",
           "name": "invalid.illegal.expected-dictionary-separator.json.lines"
         }
       ]
@@ -172,7 +170,7 @@
     "stringcontent": {
       "patterns": [
         {
-          "match": "\\\\(?:[\"\\\\\\/bfnrt]|u[0-9a-fA-F]{4})",
+          "match": "\\\\(?:[\"/\\\\bfnrt]|u\\h{4})",
           "name": "constant.character.escape.json.lines"
         },
         {

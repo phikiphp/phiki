@@ -44,7 +44,7 @@
       ]
     },
     {
-      "begin": "^\\s*([a-z][a-zA-Z0-9_]*)(\\(?)(?=.*:-.*)",
+      "begin": "^\\s*([a-z][0-9A-Z_a-z]*)(\\(?)(?=.*:-.*)",
       "beginCaptures": {
         "1": {
           "name": "entity.name.function.clause.prolog"
@@ -76,7 +76,7 @@
       ]
     },
     {
-      "begin": "^\\s*([a-z][a-zA-Z0-9_]*)(\\(?)(?=.*-->.*)",
+      "begin": "^\\s*([a-z][0-9A-Z_a-z]*)(\\(?)(?=.*-->.*)",
       "beginCaptures": {
         "1": {
           "name": "entity.name.function.dcg.prolog"
@@ -139,7 +139,7 @@
       ]
     },
     {
-      "begin": "^\\s*([a-zA-Z][a-zA-Z0-9_]*)(\\(?)(?!.*(:-|-->).*)",
+      "begin": "^\\s*([A-Za-z][0-9A-Z_a-z]*)(\\(?)(?!.*(:-|-->).*)",
       "beginCaptures": {
         "1": {
           "name": "entity.name.function.fact.prolog"
@@ -178,7 +178,7 @@
     "atom": {
       "patterns": [
         {
-          "match": "(?<![a-zA-Z0-9_])[a-z][a-zA-Z0-9_]*(?!\\s*\\(|[a-zA-Z0-9_])",
+          "match": "(?<![0-9A-Z_a-z])[a-z][0-9A-Z_a-z]*(?!\\s*\\(|[0-9A-Z_a-z])",
           "name": "constant.other.atom.simple.prolog"
         },
         {
@@ -186,7 +186,7 @@
           "name": "constant.other.atom.quoted.prolog"
         },
         {
-          "match": "\\[\\]",
+          "match": "\\[]",
           "name": "constant.other.atom.emptylist.prolog"
         }
       ]
@@ -224,7 +224,7 @@
     "constants": {
       "patterns": [
         {
-          "match": "(?<![a-zA-Z]|/)(\\d+|(\\d+\\.\\d+))",
+          "match": "(?<![/A-Za-z])(\\d+|(\\d+\\.\\d+))",
           "name": "constant.numeric.integer.prolog"
         },
         {
@@ -276,7 +276,7 @@
           "name": "keyword.control.cut.prolog"
         },
         {
-          "match": "(\\s(is)\\s)|=:=|=\\.\\.|=?\\\\?=|\\\\\\+|@?>|@?=?<|\\+|\\*|\\-",
+          "match": "(\\s(is)\\s)|=:=|=\\.\\.|=?\\\\?=|\\\\\\+|@?>|@?=?<|[-*+]",
           "name": "keyword.operator.prolog"
         }
       ]
@@ -284,7 +284,7 @@
     "variable": {
       "patterns": [
         {
-          "match": "(?<![a-zA-Z0-9_])[A-Z][a-zA-Z0-9_]*",
+          "match": "(?<![0-9A-Z_a-z])[A-Z][0-9A-Z_a-z]*",
           "name": "variable.parameter.uppercase.prolog"
         },
         {

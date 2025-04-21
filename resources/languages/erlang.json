@@ -64,7 +64,7 @@
                   "name": "punctuation.definition.escape.erlang"
                 }
               },
-              "match": "(\\\\)([bdefnrstv\\\\'\"]|(\\^)[@-_a-z]|[0-7]{1,3}|x[\\da-fA-F]{2})",
+              "match": "(\\\\)([\"'\\\\bdefnrstv]|(\\^)[@-_a-z]|[0-7]{1,3}|x[A-Fa-f\\d]{2})",
               "name": "constant.other.symbol.escape.erlang"
             },
             {
@@ -74,7 +74,7 @@
           ]
         },
         {
-          "match": "[a-z][a-zA-Z\\d@_]*+",
+          "match": "[a-z][@-Z_a-z\\d]*+",
           "name": "constant.other.symbol.unquoted.erlang"
         }
       ]
@@ -100,7 +100,7 @@
           "name": "punctuation.section.directive.end.erlang"
         }
       },
-      "match": "^\\s*+(-)\\s*+(behaviour)\\s*+(\\()\\s*+([a-z][a-zA-Z\\d@_]*+)\\s*+(\\))\\s*+(\\.)",
+      "match": "^\\s*+(-)\\s*+(behaviour)\\s*+(\\()\\s*+([a-z][@-Z_a-z\\d]*+)\\s*+(\\))\\s*+(\\.)",
       "name": "meta.directive.behaviour.erlang"
     },
     "binary": {
@@ -154,7 +154,7 @@
               "name": "punctuation.definition.escape.erlang"
             }
           },
-          "match": "(\\$)((\\\\)([bdefnrstv\\\\'\"]|(\\^)[@-_a-z]|[0-7]{1,3}|x[\\da-fA-F]{2}))",
+          "match": "(\\$)((\\\\)([\"'\\\\bdefnrstv]|(\\^)[@-_a-z]|[0-7]{1,3}|x[A-Fa-f\\d]{2}))",
           "name": "constant.character.erlang"
         },
         {
@@ -177,7 +177,7 @@
       ]
     },
     "comment": {
-      "begin": "(^[ \\t]+)?(?=%)",
+      "begin": "(^[\\t ]+)?(?=%)",
       "beginCaptures": {
         "1": {
           "name": "punctuation.whitespace.comment.leading.erlang"
@@ -200,7 +200,7 @@
     "define-directive": {
       "patterns": [
         {
-          "begin": "^\\s*+(-)\\s*+(define)\\s*+(\\()\\s*+([a-zA-Z\\d@_]++)\\s*+",
+          "begin": "^\\s*+(-)\\s*+(define)\\s*+(\\()\\s*+([@-Z_a-z\\d]++)\\s*+",
           "beginCaptures": {
             "1": {
               "name": "punctuation.section.directive.begin.erlang"
@@ -232,7 +232,7 @@
           ]
         },
         {
-          "begin": "(?=^\\s*+-\\s*+define\\s*+\\(\\s*+[a-zA-Z\\d@_]++\\s*+\\()",
+          "begin": "(?=^\\s*+-\\s*+define\\s*+\\(\\s*+[@-Z_a-z\\d]++\\s*+\\()",
           "end": "(\\))\\s*+(\\.)",
           "endCaptures": {
             "1": {
@@ -245,7 +245,7 @@
           "name": "meta.directive.define.erlang",
           "patterns": [
             {
-              "begin": "^\\s*+(-)\\s*+(define)\\s*+(\\()\\s*+([a-zA-Z\\d@_]++)\\s*+(\\()",
+              "begin": "^\\s*+(-)\\s*+(define)\\s*+(\\()\\s*+([@-Z_a-z\\d]++)\\s*+(\\()",
               "beginCaptures": {
                 "1": {
                   "name": "punctuation.section.directive.begin.erlang"
@@ -283,7 +283,7 @@
               ]
             },
             {
-              "match": "\\|\\||\\||:|;|,|\\.|->",
+              "match": "\\|\\||[,.:;|]|->",
               "name": "punctuation.separator.define.erlang"
             },
             {
@@ -296,7 +296,7 @@
     "directive": {
       "patterns": [
         {
-          "begin": "^\\s*+(-)\\s*+([a-z][a-zA-Z\\d@_]*+)\\s*+(\\(?)",
+          "begin": "^\\s*+(-)\\s*+([a-z][@-Z_a-z\\d]*+)\\s*+(\\(?)",
           "beginCaptures": {
             "1": {
               "name": "punctuation.section.directive.begin.erlang"
@@ -336,13 +336,13 @@
               "name": "punctuation.section.directive.end.erlang"
             }
           },
-          "match": "^\\s*+(-)\\s*+([a-z][a-zA-Z\\d@_]*+)\\s*+(\\.)",
+          "match": "^\\s*+(-)\\s*+([a-z][@-Z_a-z\\d]*+)\\s*+(\\.)",
           "name": "meta.directive.erlang"
         }
       ]
     },
     "docstring": {
-      "begin": "(?<!\")(([\"]{3,})\\s*)(\\S.*)?$",
+      "begin": "(?<!\")((\"{3,})\\s*)(\\S.*)?$",
       "beginCaptures": {
         "1": {
           "name": "meta.string.quoted.triple.begin.erlang"
@@ -354,7 +354,6 @@
           "name": "invalid.illegal.string.erlang"
         }
       },
-      "comment": "Only whitespace characters are allowed after the beggining and before the closing sequences and those cannot be in the same line",
       "end": "^(\\s*(\\2))(?!\")",
       "endCaptures": {
         "1": {
@@ -528,12 +527,11 @@
               "name": "variable.other.erlang"
             }
           },
-          "comment": "Implicit function expression with optional module qualifier when both module and function can be atom or variable",
-          "match": "\\b(fun)\\s+((([a-z][a-zA-Z\\d@_]*+)|(_[a-zA-Z\\d@_]++|[A-Z][a-zA-Z\\d@_]*+))\\s*+(:)\\s*+)?(([a-z][a-zA-Z\\d@_]*+|'[^']*+')|(_[a-zA-Z\\d@_]++|[A-Z][a-zA-Z\\d@_]*+))\\s*(/)",
+          "match": "\\b(fun)\\s+((([a-z][@-Z_a-z\\d]*+)|(_[@-Z_a-z\\d]++|[A-Z][@-Z_a-z\\d]*+))\\s*+(:)\\s*+)?(([a-z][@-Z_a-z\\d]*+|'[^']*+')|(_[@-Z_a-z\\d]++|[A-Z][@-Z_a-z\\d]*+))\\s*(/)",
           "name": "meta.expression.fun.implicit.erlang"
         },
         {
-          "begin": "\\b(fun)\\s+(([a-z][a-zA-Z\\d@_]*+)|(_[a-zA-Z\\d@_]++|[A-Z][a-zA-Z\\d@_]*+))\\s*+(:)",
+          "begin": "\\b(fun)\\s+(([a-z][@-Z_a-z\\d]*+)|(_[@-Z_a-z\\d]++|[A-Z][@-Z_a-z\\d]*+))\\s*+(:)",
           "beginCaptures": {
             "1": {
               "name": "keyword.control.fun.erlang"
@@ -548,7 +546,6 @@
               "name": "punctuation.separator.module-function.erlang"
             }
           },
-          "comment": "Implicit function expression with module qualifier when module can be atom or variable and function can by anything",
           "end": "(/)",
           "endCaptures": {
             "1": {
@@ -569,7 +566,6 @@
               "name": "keyword.control.fun.erlang"
             }
           },
-          "comment": "Implicit function expression when both module and function can by anything",
           "end": "(/)",
           "endCaptures": {
             "1": {
@@ -593,7 +589,6 @@
               "name": "punctuation.definition.parameters.begin.erlang"
             }
           },
-          "comment": "Function type in type specification",
           "end": "(\\))",
           "endCaptures": {
             "1": {
@@ -613,7 +608,6 @@
               "name": "keyword.control.fun.erlang"
             }
           },
-          "comment": "Explicit function expression",
           "end": "\\b(end)\\b",
           "endCaptures": {
             "1": {
@@ -713,7 +707,7 @@
       ]
     },
     "function": {
-      "begin": "^\\s*+([a-z][a-zA-Z\\d@_]*+|'[^']*+')\\s*+(?=\\()",
+      "begin": "^\\s*+([a-z][@-Z_a-z\\d]*+|'[^']*+')\\s*+(?=\\()",
       "beginCaptures": {
         "1": {
           "name": "entity.name.function.definition.erlang"
@@ -733,7 +727,7 @@
               "name": "entity.name.function.erlang"
             }
           },
-          "match": "^\\s*+([a-z][a-zA-Z\\d@_]*+|'[^']*+')\\s*+(?=\\()"
+          "match": "^\\s*+([a-z][@-Z_a-z\\d]*+|'[^']*+')\\s*+(?=\\()"
         },
         {
           "begin": "(?=\\()",
@@ -758,7 +752,7 @@
       ]
     },
     "function-call": {
-      "begin": "(?=([a-z][a-zA-Z\\d@_]*+|'[^']*+'|_[a-zA-Z\\d@_]++|[A-Z][a-zA-Z\\d@_]*+)\\s*+(\\(|:\\s*+([a-z][a-zA-Z\\d@_]*+|'[^']*+'|_[a-zA-Z\\d@_]++|[A-Z][a-zA-Z\\d@_]*+)\\s*+\\())",
+      "begin": "(?=([a-z][@-Z_a-z\\d]*+|'[^']*+'|_[@-Z_a-z\\d]++|[A-Z][@-Z_a-z\\d]*+)\\s*+(\\(|:\\s*+([a-z][@-Z_a-z\\d]*+|'[^']*+'|_[@-Z_a-z\\d]++|[A-Z][@-Z_a-z\\d]*+)\\s*+\\())",
       "end": "(\\))",
       "endCaptures": {
         "1": {
@@ -795,7 +789,7 @@
           ]
         },
         {
-          "begin": "((([a-z][a-zA-Z\\d@_]*+|'[^']*+')|(_[a-zA-Z\\d@_]++|[A-Z][a-zA-Z\\d@_]*+))\\s*+(:)\\s*+)?(([a-z][a-zA-Z\\d@_]*+|'[^']*+')|(_[a-zA-Z\\d@_]++|[A-Z][a-zA-Z\\d@_]*+))\\s*+(\\()",
+          "begin": "((([a-z][@-Z_a-z\\d]*+|'[^']*+')|(_[@-Z_a-z\\d]++|[A-Z][@-Z_a-z\\d]*+))\\s*+(:)\\s*+)?(([a-z][@-Z_a-z\\d]*+|'[^']*+')|(_[@-Z_a-z\\d]++|[A-Z][@-Z_a-z\\d]*+))\\s*+(\\()",
           "beginCaptures": {
             "3": {
               "name": "entity.name.type.class.module.erlang"
@@ -832,7 +826,7 @@
     "import-export-directive": {
       "patterns": [
         {
-          "begin": "^\\s*+(-)\\s*+(import)\\s*+(\\()\\s*+([a-z][a-zA-Z\\d@_]*+|'[^']*+')\\s*+(,)",
+          "begin": "^\\s*+(-)\\s*+(import)\\s*+(\\()\\s*+([a-z][@-Z_a-z\\d]*+|'[^']*+')\\s*+(,)",
           "beginCaptures": {
             "1": {
               "name": "punctuation.section.directive.begin.erlang"
@@ -918,7 +912,7 @@
           "name": "punctuation.definition.list.begin.erlang"
         }
       },
-      "end": "(\\])",
+      "end": "(])",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.list.end.erlang"
@@ -927,7 +921,7 @@
       "name": "meta.structure.list.function.erlang",
       "patterns": [
         {
-          "begin": "([a-z][a-zA-Z\\d@_]*+|'[^']*+')\\s*+(/)",
+          "begin": "([a-z][@-Z_a-z\\d]*+|'[^']*+')\\s*+(/)",
           "beginCaptures": {
             "1": {
               "name": "entity.name.function.erlang"
@@ -936,7 +930,7 @@
               "name": "punctuation.separator.function-arity.erlang"
             }
           },
-          "end": "(,)|(?=\\])",
+          "end": "(,)|(?=])",
           "endCaptures": {
             "1": {
               "name": "punctuation.separator.list.erlang"
@@ -988,7 +982,7 @@
               ]
             },
             {
-              "match": ",|;",
+              "match": "[,;]",
               "name": "punctuation.separator.guards.erlang"
             },
             {
@@ -1012,7 +1006,7 @@
           "name": "punctuation.definition.class.record.begin.erlang"
         }
       },
-      "end": "(\\})",
+      "end": "(})",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.class.record.end.erlang"
@@ -1021,7 +1015,7 @@
       "name": "meta.structure.record.erlang",
       "patterns": [
         {
-          "begin": "(([a-z][a-zA-Z\\d@_]*+|'[^']*+')|(_))",
+          "begin": "(([a-z][@-Z_a-z\\d]*+|'[^']*+')|(_))",
           "beginCaptures": {
             "2": {
               "name": "variable.other.field.erlang"
@@ -1030,7 +1024,7 @@
               "name": "variable.language.omitted.field.erlang"
             }
           },
-          "end": "(,)|(?=\\})",
+          "end": "(,)|(?=})",
           "endCaptures": {
             "1": {
               "name": "punctuation.separator.class.record.erlang"
@@ -1058,8 +1052,7 @@
               "name": "punctuation.definition.escape.erlang"
             }
           },
-          "comment": "escape sequence",
-          "match": "(\\\\)([bdefnrstv\\\\'\"]|(\\^)[@-_a-z]|[0-7]{1,3}|x[\\da-fA-F]{2})",
+          "match": "(\\\\)([\"'\\\\bdefnrstv]|(\\^)[@-_a-z]|[0-7]{1,3}|x[A-Fa-f\\d]{2})",
           "name": "constant.character.escape.erlang"
         },
         {
@@ -1078,8 +1071,7 @@
               "name": "punctuation.separator.placeholder-parts.erlang"
             }
           },
-          "comment": "io:fwrite format control sequence",
-          "match": "(~)((\\-)?\\d++|(\\*))?((\\.)(\\d++|(\\*))?((\\.)((\\*)|.))?)?[tlkK]*[~cfegswpWPBX#bx\\+ni]",
+          "match": "(~)((-)?\\d++|(\\*))?((\\.)(\\d++|(\\*))?((\\.)((\\*)|.))?)?[Kklt]*[#+BPWXbcefginpswx~]",
           "name": "constant.character.format.placeholder.other.erlang"
         },
         {
@@ -1088,8 +1080,7 @@
               "name": "punctuation.definition.placeholder.erlang"
             }
           },
-          "comment": "io:fread format control sequence",
-          "match": "(~)(\\*)?(\\d++)?(t)?[~du\\-#fsacl]",
+          "match": "(~)(\\*)?(\\d++)?(t)?[-#acdflsu~]",
           "name": "constant.character.format.placeholder.other.erlang"
         },
         {
@@ -1105,7 +1096,7 @@
           "name": "punctuation.separator.value-type.erlang"
         }
       },
-      "end": "(?=,|:|>>)",
+      "end": "(?=[,:]|>>)",
       "patterns": [
         {
           "captures": {
@@ -1131,7 +1122,7 @@
               "name": "punctuation.separator.type-specifiers.erlang"
             }
           },
-          "match": "(integer|float|binary|bytes|bitstring|bits|utf8|utf16|utf32)|(signed|unsigned)|(big|little|native)|(unit)(:)(\\d++)|(-)"
+          "match": "(integer|float|binary|bytes|bitstring|bits|utf8|utf16|utf32)|((?:|un)signed)|(big|little|native)|(unit)(:)(\\d++)|(-)"
         }
       ]
     },
@@ -1150,7 +1141,7 @@
           "name": "punctuation.definition.list.begin.erlang"
         }
       },
-      "end": "(\\])",
+      "end": "(])",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.list.end.erlang"
@@ -1190,7 +1181,7 @@
               "name": "punctuation.section.directive.end.erlang"
             }
           },
-          "match": "^\\s*+(-)\\s*+(ifdef)\\s*+(\\()\\s*+([a-zA-z\\d@_]++)\\s*+(\\))\\s*+(\\.)",
+          "match": "^\\s*+(-)\\s*+(ifdef)\\s*+(\\()\\s*+([@-z\\d]++)\\s*+(\\))\\s*+(\\.)",
           "name": "meta.directive.ifdef.erlang"
         },
         {
@@ -1214,7 +1205,7 @@
               "name": "punctuation.section.directive.end.erlang"
             }
           },
-          "match": "^\\s*+(-)\\s*+(ifndef)\\s*+(\\()\\s*+([a-zA-z\\d@_]++)\\s*+(\\))\\s*+(\\.)",
+          "match": "^\\s*+(-)\\s*+(ifndef)\\s*+(\\()\\s*+([@-z\\d]++)\\s*+(\\))\\s*+(\\.)",
           "name": "meta.directive.ifndef.erlang"
         },
         {
@@ -1238,7 +1229,7 @@
               "name": "punctuation.section.directive.end.erlang"
             }
           },
-          "match": "^\\s*+(-)\\s*+(undef)\\s*+(\\()\\s*+([a-zA-z\\d@_]++)\\s*+(\\))\\s*+(\\.)",
+          "match": "^\\s*+(-)\\s*+(undef)\\s*+(\\()\\s*+([@-z\\d]++)\\s*+(\\))\\s*+(\\.)",
           "name": "meta.directive.undef.erlang"
         }
       ]
@@ -1252,7 +1243,7 @@
           "name": "entity.name.function.macro.erlang"
         }
       },
-      "match": "(\\?\\??)\\s*+([a-zA-Z\\d@_]++)",
+      "match": "(\\?\\??)\\s*+([@-Z_a-z\\d]++)",
       "name": "meta.macro-usage.erlang"
     },
     "module-directive": {
@@ -1276,7 +1267,7 @@
           "name": "punctuation.section.directive.end.erlang"
         }
       },
-      "match": "^\\s*+(-)\\s*+(module)\\s*+(\\()\\s*+([a-z][a-zA-Z\\d@_]*+)\\s*+(\\))\\s*+(\\.)",
+      "match": "^\\s*+(-)\\s*+(module)\\s*+(\\()\\s*+([a-z][@-Z_a-z\\d]*+)\\s*+(\\))\\s*+(\\.)",
       "name": "meta.directive.module.erlang"
     },
     "number": {
@@ -1292,7 +1283,7 @@
               "name": "punctuation.separator.float-exponent.erlang"
             }
           },
-          "match": "\\d++(\\.)\\d++([eE][\\+\\-]?\\d++)?",
+          "match": "\\d++(\\.)\\d++([Ee][-+]?\\d++)?",
           "name": "constant.numeric.float.erlang"
         },
         {
@@ -1301,7 +1292,7 @@
               "name": "punctuation.separator.base-integer.erlang"
             }
           },
-          "match": "2(#)([0-1]++_)*[0-1]++",
+          "match": "2(#)([01]++_)*[01]++",
           "name": "constant.numeric.integer.binary.erlang"
         },
         {
@@ -1310,7 +1301,7 @@
               "name": "punctuation.separator.base-integer.erlang"
             }
           },
-          "match": "3(#)([0-2]++_)*[0-2]++",
+          "match": "3(#)([012]++_)*[012]++",
           "name": "constant.numeric.integer.base-3.erlang"
         },
         {
@@ -1382,7 +1373,7 @@
               "name": "punctuation.separator.base-integer.erlang"
             }
           },
-          "match": "11(#)([\\daA]++_)*[\\daA]++",
+          "match": "11(#)([Aa\\d]++_)*[Aa\\d]++",
           "name": "constant.numeric.integer.base-11.erlang"
         },
         {
@@ -1391,7 +1382,7 @@
               "name": "punctuation.separator.base-integer.erlang"
             }
           },
-          "match": "12(#)([\\da-bA-B]++_)*[\\da-bA-B]++",
+          "match": "12(#)([ABab\\d]++_)*[ABab\\d]++",
           "name": "constant.numeric.integer.base-12.erlang"
         },
         {
@@ -1400,7 +1391,7 @@
               "name": "punctuation.separator.base-integer.erlang"
             }
           },
-          "match": "13(#)([\\da-cA-C]++_)*[\\da-cA-C]++",
+          "match": "13(#)([ABCabc\\d]++_)*[ABCabc\\d]++",
           "name": "constant.numeric.integer.base-13.erlang"
         },
         {
@@ -1409,7 +1400,7 @@
               "name": "punctuation.separator.base-integer.erlang"
             }
           },
-          "match": "14(#)([\\da-dA-D]++_)*[\\da-dA-D]++",
+          "match": "14(#)([A-Da-d\\d]++_)*[A-Da-d\\d]++",
           "name": "constant.numeric.integer.base-14.erlang"
         },
         {
@@ -1418,7 +1409,7 @@
               "name": "punctuation.separator.base-integer.erlang"
             }
           },
-          "match": "15(#)([\\da-eA-E]++_)*[\\da-eA-E]++",
+          "match": "15(#)([A-Ea-e\\d]++_)*[A-Ea-e\\d]++",
           "name": "constant.numeric.integer.base-15.erlang"
         },
         {
@@ -1427,7 +1418,7 @@
               "name": "punctuation.separator.base-integer.erlang"
             }
           },
-          "match": "16(#)([\\da-fA-F]++_)*[\\da-fA-F]++",
+          "match": "16(#)([A-Fa-f\\d]++_)*[A-Fa-f\\d]++",
           "name": "constant.numeric.integer.hexadecimal.erlang"
         },
         {
@@ -1436,7 +1427,7 @@
               "name": "punctuation.separator.base-integer.erlang"
             }
           },
-          "match": "17(#)([\\da-gA-G]++_)*[\\da-gA-G]++",
+          "match": "17(#)([A-Ga-g\\d]++_)*[A-Ga-g\\d]++",
           "name": "constant.numeric.integer.base-17.erlang"
         },
         {
@@ -1445,7 +1436,7 @@
               "name": "punctuation.separator.base-integer.erlang"
             }
           },
-          "match": "18(#)([\\da-hA-H]++_)*[\\da-hA-H]++",
+          "match": "18(#)([A-Ha-h\\d]++_)*[A-Ha-h\\d]++",
           "name": "constant.numeric.integer.base-18.erlang"
         },
         {
@@ -1454,7 +1445,7 @@
               "name": "punctuation.separator.base-integer.erlang"
             }
           },
-          "match": "19(#)([\\da-iA-I]++_)*[\\da-iA-I]++",
+          "match": "19(#)([A-Ia-i\\d]++_)*[A-Ia-i\\d]++",
           "name": "constant.numeric.integer.base-19.erlang"
         },
         {
@@ -1463,7 +1454,7 @@
               "name": "punctuation.separator.base-integer.erlang"
             }
           },
-          "match": "20(#)([\\da-jA-J]++_)*[\\da-jA-J]++",
+          "match": "20(#)([A-Ja-j\\d]++_)*[A-Ja-j\\d]++",
           "name": "constant.numeric.integer.base-20.erlang"
         },
         {
@@ -1472,7 +1463,7 @@
               "name": "punctuation.separator.base-integer.erlang"
             }
           },
-          "match": "21(#)([\\da-kA-K]++_)*[\\da-kA-K]++",
+          "match": "21(#)([A-Ka-k\\d]++_)*[A-Ka-k\\d]++",
           "name": "constant.numeric.integer.base-21.erlang"
         },
         {
@@ -1481,7 +1472,7 @@
               "name": "punctuation.separator.base-integer.erlang"
             }
           },
-          "match": "22(#)([\\da-lA-L]++_)*[\\da-lA-L]++",
+          "match": "22(#)([A-La-l\\d]++_)*[A-La-l\\d]++",
           "name": "constant.numeric.integer.base-22.erlang"
         },
         {
@@ -1490,7 +1481,7 @@
               "name": "punctuation.separator.base-integer.erlang"
             }
           },
-          "match": "23(#)([\\da-mA-M]++_)*[\\da-mA-M]++",
+          "match": "23(#)([A-Ma-m\\d]++_)*[A-Ma-m\\d]++",
           "name": "constant.numeric.integer.base-23.erlang"
         },
         {
@@ -1499,7 +1490,7 @@
               "name": "punctuation.separator.base-integer.erlang"
             }
           },
-          "match": "24(#)([\\da-nA-N]++_)*[\\da-nA-N]++",
+          "match": "24(#)([A-Na-n\\d]++_)*[A-Na-n\\d]++",
           "name": "constant.numeric.integer.base-24.erlang"
         },
         {
@@ -1508,7 +1499,7 @@
               "name": "punctuation.separator.base-integer.erlang"
             }
           },
-          "match": "25(#)([\\da-oA-O]++_)*[\\da-oA-O]++",
+          "match": "25(#)([A-Oa-o\\d]++_)*[A-Oa-o\\d]++",
           "name": "constant.numeric.integer.base-25.erlang"
         },
         {
@@ -1517,7 +1508,7 @@
               "name": "punctuation.separator.base-integer.erlang"
             }
           },
-          "match": "26(#)([\\da-pA-P]++_)*[\\da-pA-P]++",
+          "match": "26(#)([A-Pa-p\\d]++_)*[A-Pa-p\\d]++",
           "name": "constant.numeric.integer.base-26.erlang"
         },
         {
@@ -1526,7 +1517,7 @@
               "name": "punctuation.separator.base-integer.erlang"
             }
           },
-          "match": "27(#)([\\da-qA-Q]++_)*[\\da-qA-Q]++",
+          "match": "27(#)([A-Qa-q\\d]++_)*[A-Qa-q\\d]++",
           "name": "constant.numeric.integer.base-27.erlang"
         },
         {
@@ -1535,7 +1526,7 @@
               "name": "punctuation.separator.base-integer.erlang"
             }
           },
-          "match": "28(#)([\\da-rA-R]++_)*[\\da-rA-R]++",
+          "match": "28(#)([A-Ra-r\\d]++_)*[A-Ra-r\\d]++",
           "name": "constant.numeric.integer.base-28.erlang"
         },
         {
@@ -1544,7 +1535,7 @@
               "name": "punctuation.separator.base-integer.erlang"
             }
           },
-          "match": "29(#)([\\da-sA-S]++_)*[\\da-sA-S]++",
+          "match": "29(#)([A-Sa-s\\d]++_)*[A-Sa-s\\d]++",
           "name": "constant.numeric.integer.base-29.erlang"
         },
         {
@@ -1553,7 +1544,7 @@
               "name": "punctuation.separator.base-integer.erlang"
             }
           },
-          "match": "30(#)([\\da-tA-T]++_)*[\\da-tA-T]++",
+          "match": "30(#)([A-Ta-t\\d]++_)*[A-Ta-t\\d]++",
           "name": "constant.numeric.integer.base-30.erlang"
         },
         {
@@ -1562,7 +1553,7 @@
               "name": "punctuation.separator.base-integer.erlang"
             }
           },
-          "match": "31(#)([\\da-uA-U]++_)*[\\da-uA-U]++",
+          "match": "31(#)([A-Ua-u\\d]++_)*[A-Ua-u\\d]++",
           "name": "constant.numeric.integer.base-31.erlang"
         },
         {
@@ -1571,7 +1562,7 @@
               "name": "punctuation.separator.base-integer.erlang"
             }
           },
-          "match": "32(#)([\\da-vA-V]++_)*[\\da-vA-V]++",
+          "match": "32(#)([A-Va-v\\d]++_)*[A-Va-v\\d]++",
           "name": "constant.numeric.integer.base-32.erlang"
         },
         {
@@ -1580,7 +1571,7 @@
               "name": "punctuation.separator.base-integer.erlang"
             }
           },
-          "match": "33(#)([\\da-wA-W]++_)*[\\da-wA-W]++",
+          "match": "33(#)([A-Wa-w\\d]++_)*[A-Wa-w\\d]++",
           "name": "constant.numeric.integer.base-33.erlang"
         },
         {
@@ -1589,7 +1580,7 @@
               "name": "punctuation.separator.base-integer.erlang"
             }
           },
-          "match": "34(#)([\\da-xA-X]++_)*[\\da-xA-X]++",
+          "match": "34(#)([A-Xa-x\\d]++_)*[A-Xa-x\\d]++",
           "name": "constant.numeric.integer.base-34.erlang"
         },
         {
@@ -1598,7 +1589,7 @@
               "name": "punctuation.separator.base-integer.erlang"
             }
           },
-          "match": "35(#)([\\da-yA-Y]++_)*[\\da-yA-Y]++",
+          "match": "35(#)([A-Ya-y\\d]++_)*[A-Ya-y\\d]++",
           "name": "constant.numeric.integer.base-35.erlang"
         },
         {
@@ -1607,11 +1598,11 @@
               "name": "punctuation.separator.base-integer.erlang"
             }
           },
-          "match": "36(#)([\\da-zA-Z]++_)*[\\da-zA-Z]++",
+          "match": "36(#)([A-Za-z\\d]++_)*[A-Za-z\\d]++",
           "name": "constant.numeric.integer.base-36.erlang"
         },
         {
-          "match": "\\d++#([\\da-zA-Z]++_)*[\\da-zA-Z]++",
+          "match": "\\d++#([A-Za-z\\d]++_)*[A-Za-z\\d]++",
           "name": "invalid.illegal.integer.erlang"
         },
         {
@@ -1641,7 +1632,7 @@
       ]
     },
     "record-directive": {
-      "begin": "^\\s*+(-)\\s*+(record)\\s*+(\\()\\s*+([a-z][a-zA-Z\\d@_]*+|'[^']*+')\\s*+(,)",
+      "begin": "^\\s*+(-)\\s*+(record)\\s*+(\\()\\s*+([a-z][@-Z_a-z\\d]*+|'[^']*+')\\s*+(,)",
       "beginCaptures": {
         "1": {
           "name": "punctuation.section.directive.begin.erlang"
@@ -1695,11 +1686,11 @@
               "name": "variable.other.field.erlang"
             }
           },
-          "match": "(#)\\s*+([a-z][a-zA-Z\\d@_]*+|'[^']*+')\\s*+(\\.)\\s*+([a-z][a-zA-Z\\d@_]*+|'[^']*+')",
+          "match": "(#)\\s*+([a-z][@-Z_a-z\\d]*+|'[^']*+')\\s*+(\\.)\\s*+([a-z][@-Z_a-z\\d]*+|'[^']*+')",
           "name": "meta.record-usage.erlang"
         },
         {
-          "begin": "(#)\\s*+([a-z][a-zA-Z\\d@_]*+|'[^']*+')",
+          "begin": "(#)\\s*+([a-z][@-Z_a-z\\d]*+|'[^']*+')",
           "beginCaptures": {
             "1": {
               "name": "keyword.operator.record.erlang"
@@ -1708,7 +1699,7 @@
               "name": "entity.name.type.class.record.erlang"
             }
           },
-          "end": "(?<=\\})",
+          "end": "(?<=})",
           "name": "meta.record-usage.erlang",
           "patterns": [
             {
@@ -1719,7 +1710,7 @@
       ]
     },
     "sigil-docstring": {
-      "begin": "(~[bBsS]?)(([\"]{3,})\\s*)(\\S.*)?$",
+      "begin": "(~[BSbs]?)((\"{3,})\\s*)(\\S.*)?$",
       "beginCaptures": {
         "1": {
           "name": "storage.type.string.erlang"
@@ -1734,7 +1725,6 @@
           "name": "invalid.illegal.string.erlang"
         }
       },
-      "comment": "Only whitespace characters are allowed after the beggining and before the closing sequences and those cannot be in the same line",
       "end": "^(\\s*(\\3))(?!\")",
       "endCaptures": {
         "1": {
@@ -1793,7 +1783,7 @@
       ]
     },
     "sigil-string-curly-brackets": {
-      "begin": "(~[bs]?)([{])",
+      "begin": "(~[bs]?)(\\{)",
       "beginCaptures": {
         "1": {
           "name": "storage.type.string.erlang"
@@ -1802,7 +1792,7 @@
           "name": "punctuation.definition.string.begin.erlang"
         }
       },
-      "end": "([}])",
+      "end": "(})",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.string.end.erlang"
@@ -1816,7 +1806,7 @@
       ]
     },
     "sigil-string-curly-brackets-verbatim": {
-      "begin": "(~[BS])([{])",
+      "begin": "(~[BS])(\\{)",
       "beginCaptures": {
         "1": {
           "name": "storage.type.string.erlang"
@@ -1825,7 +1815,7 @@
           "name": "punctuation.definition.string.begin.erlang"
         }
       },
-      "end": "([}])",
+      "end": "(})",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.string.end.erlang"
@@ -1916,7 +1906,7 @@
       "name": "string.quoted.less-greater.sigil.erlang"
     },
     "sigil-string-parenthesis": {
-      "begin": "(~[bs]?)([(])",
+      "begin": "(~[bs]?)(\\()",
       "beginCaptures": {
         "1": {
           "name": "storage.type.string.erlang"
@@ -1925,7 +1915,7 @@
           "name": "punctuation.definition.string.begin.erlang"
         }
       },
-      "end": "([)])",
+      "end": "(\\))",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.string.end.erlang"
@@ -1939,7 +1929,7 @@
       ]
     },
     "sigil-string-parenthesis-verbatim": {
-      "begin": "(~[BS])([(])",
+      "begin": "(~[BS])(\\()",
       "beginCaptures": {
         "1": {
           "name": "storage.type.string.erlang"
@@ -1948,7 +1938,7 @@
           "name": "punctuation.definition.string.begin.erlang"
         }
       },
-      "end": "([)])",
+      "end": "(\\))",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.string.end.erlang"
@@ -1957,7 +1947,7 @@
       "name": "string.quoted.parenthesis.sigil.erlang"
     },
     "sigil-string-single-character": {
-      "begin": "(~[bs]?)([/\\|`#])",
+      "begin": "(~[bs]?)([#/`|])",
       "beginCaptures": {
         "1": {
           "name": "storage.type.string.erlang"
@@ -1980,7 +1970,7 @@
       ]
     },
     "sigil-string-single-character-verbatim": {
-      "begin": "(~[BS])([/\\|`#])",
+      "begin": "(~[BS])([#/`|])",
       "beginCaptures": {
         "1": {
           "name": "storage.type.string.erlang"
@@ -2039,7 +2029,7 @@
       "name": "string.quoted.single.sigil.erlang"
     },
     "sigil-string-square-brackets": {
-      "begin": "(~[bs]?)([\\[])",
+      "begin": "(~[bs]?)(\\[)",
       "beginCaptures": {
         "1": {
           "name": "storage.type.string.erlang"
@@ -2048,7 +2038,7 @@
           "name": "punctuation.definition.string.begin.erlang"
         }
       },
-      "end": "([\\]])",
+      "end": "(])",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.string.end.erlang"
@@ -2062,7 +2052,7 @@
       ]
     },
     "sigil-string-square-brackets-verbatim": {
-      "begin": "(~[BS])([\\[])",
+      "begin": "(~[BS])(\\[)",
       "beginCaptures": {
         "1": {
           "name": "storage.type.string.erlang"
@@ -2071,7 +2061,7 @@
           "name": "punctuation.definition.string.begin.erlang"
         }
       },
-      "end": "([\\]])",
+      "end": "(])",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.string.end.erlang"
@@ -2100,7 +2090,7 @@
       ]
     },
     "symbolic-operator": {
-      "match": "\\+\\+|\\+|--|-|\\*|/=|/|=/=|=:=|==|=<|=|<-|<|>=|>|!|::|\\?=",
+      "match": "\\+\\+|\\+|--|[-*]|/=|/|=/=|=:=|==|=<|=|<-|<|>=|[!>]|::|\\?=",
       "name": "keyword.operator.symbolic.erlang"
     },
     "textual-operator": {
@@ -2114,7 +2104,7 @@
           "name": "punctuation.definition.tuple.begin.erlang"
         }
       },
-      "end": "(\\})",
+      "end": "(})",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.tuple.end.erlang"
@@ -2140,7 +2130,7 @@
           "name": "variable.language.omitted.erlang"
         }
       },
-      "match": "(_[a-zA-Z\\d@_]++|[A-Z][a-zA-Z\\d@_]*+)|(_)"
+      "match": "(_[@-Z_a-z\\d]++|[A-Z][@-Z_a-z\\d]*+)|(_)"
     }
   },
   "scopeName": "source.erlang"

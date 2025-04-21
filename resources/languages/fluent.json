@@ -14,13 +14,13 @@
   ],
   "repository": {
     "attributes": {
-      "begin": "\\s*(\\.[a-zA-Z][a-zA-Z0-9_-]*\\s*=\\s*)",
+      "begin": "\\s*(\\.[A-Za-z][-0-9A-Z_a-z]*\\s*=\\s*)",
       "beginCaptures": {
         "1": {
           "name": "support.class.attribute-begin.fluent"
         }
       },
-      "end": "^(?=\\s*[^\\.])",
+      "end": "^(?=\\s*[^.])",
       "patterns": [
         {
           "include": "#placeable"
@@ -36,7 +36,7 @@
       "name": "support.function.function-comma.fluent"
     },
     "function-named-argument": {
-      "begin": "([a-zA-Z0-9]+:)\\s*([\"a-zA-Z0-9]+)",
+      "begin": "([0-9A-Za-z]+:)\\s*([\"0-9A-Za-z]+)",
       "beginCaptures": {
         "1": {
           "name": "support.function.named-argument.name.fluent"
@@ -45,11 +45,11 @@
           "name": "variable.other.named-argument.value.fluent"
         }
       },
-      "end": "(?=\\)|,|\\s)",
+      "end": "(?=[),\\s])",
       "name": "variable.other.named-argument.fluent"
     },
     "function-positional-argument": {
-      "match": "\\$[a-zA-Z0-9_-]+",
+      "match": "\\$[-0-9A-Z_a-z]+",
       "name": "variable.other.function.positional-argument.fluent"
     },
     "invalid-placeable-string-missing-end-quote": {
@@ -57,11 +57,11 @@
       "name": "invalid.illegal.wrong-placeable-missing-end-quote.fluent"
     },
     "invalid-placeable-wrong-placeable-missing-end": {
-      "match": "([^}A-Z]*$|[^-][^>]$)\\b",
+      "match": "([^A-Z}]*|[^-][^>])$\\b",
       "name": "invalid.illegal.wrong-placeable-missing-end.fluent"
     },
     "message": {
-      "begin": "^(-?[a-zA-Z][a-zA-Z0-9_-]*\\s*=\\s*)",
+      "begin": "^(-?[A-Za-z][-0-9A-Z_a-z]*\\s*=\\s*)",
       "beginCaptures": {
         "1": {
           "name": "support.class.message-identifier.fluent"
@@ -79,7 +79,7 @@
       ]
     },
     "placeable": {
-      "begin": "({)",
+      "begin": "(\\{)",
       "beginCaptures": {
         "1": {
           "name": "keyword.placeable.begin.fluent"
@@ -117,7 +117,7 @@
       ]
     },
     "placeable-function": {
-      "begin": "([A-Z][A-Z0-9_-]*\\()",
+      "begin": "([A-Z][-0-9A-Z_]*\\()",
       "beginCaptures": {
         "1": {
           "name": "support.function.placeable-function.call.begin.fluent"
@@ -143,7 +143,7 @@
       ]
     },
     "placeable-reference-or-number": {
-      "match": "((-|\\$)[a-zA-Z0-9_-]+|[a-zA-Z][a-zA-Z0-9_-]*|[0-9]+)",
+      "match": "(([-$])[-0-9A-Z_a-z]+|[A-Za-z][-0-9A-Z_a-z]*|[0-9]+)",
       "name": "variable.other.placeable.reference-or-number.fluent"
     },
     "placeable-string": {
@@ -177,7 +177,7 @@
       ]
     },
     "selector-item": {
-      "begin": "(\\s*\\*?\\[)([a-zA-Z0-9_-]+)(\\]\\s*)",
+      "begin": "(\\s*\\*?\\[)([-0-9A-Z_a-z]+)(]\\s*)",
       "beginCaptures": {
         "1": {
           "name": "support.function.selector-item.begin.fluent"

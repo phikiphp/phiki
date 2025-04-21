@@ -7,7 +7,6 @@ use Phiki\Contracts\PatternCollectionInterface;
 use Phiki\Contracts\ProvidesContentName;
 use Phiki\Environment\Environment;
 use Phiki\Exceptions\IndeterminateStateException;
-use Phiki\Exceptions\UnreachableException;
 use Phiki\Exceptions\UnrecognisedGrammarException;
 use Phiki\Grammar\BeginEndPattern;
 use Phiki\Grammar\BeginWhilePattern;
@@ -58,16 +57,16 @@ class Tokenizer
             if (isset($this->tokens[$line]) && count($this->tokens[$line]) > 0) {
                 $lastToken = end($this->tokens[$line]);
 
-                // If we have a newline token and the line has more than just that newline token, 
+                // If we have a newline token and the line has more than just that newline token,
                 // we need to remove it from the tokens array.
                 if ($lastToken->text === "\n" && count($this->tokens[$line]) > 1) {
                     array_pop($this->tokens[$line]);
-                // Otherwise, if the last token is a newline character, we need to remove that from the token text.
+                    // Otherwise, if the last token is a newline character, we need to remove that from the token text.
                 } elseif ($lastToken->text === "\n") {
                     $lastToken->text = '';
                     $lastToken->end = $lastToken->start + 1;
-                // And if the last token ends with a newline character, we need to remove that from the token text
-                // and update the end position accordingly.
+                    // And if the last token ends with a newline character, we need to remove that from the token text
+                    // and update the end position accordingly.
                 } elseif (str_ends_with($lastToken->text, "\n")) {
                     $lastToken->text = substr($lastToken->text, 0, -1);
                     $lastToken->end = $lastToken->start + strlen($lastToken->text) + 1;
@@ -650,7 +649,7 @@ class Tokenizer
                                     }
                                 }
 
-                                // If we haven't found a subpattern, we need to break out of this loop 
+                                // If we haven't found a subpattern, we need to break out of this loop
                                 // since we should now be able to match the end pattern.
                                 //
                                 // If we can't find the end pattern after this, then the grammar is incorrect :D

@@ -23,7 +23,7 @@ class InlineCodeRenderer implements NodeRendererInterface
             throw new \InvalidArgumentException('Node must be instance of '.Code::class);
         }
 
-        $internal = new CodeRenderer();
+        $internal = new CodeRenderer;
 
         if (preg_match('/^\{([\w]+)}(.*)/', $node->getLiteral(), $match, PREG_UNMATCHED_AS_NULL) !== 1) {
             return $internal->render($node, $childRenderer);

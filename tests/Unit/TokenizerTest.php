@@ -51,7 +51,7 @@ describe('match', function () {
                 new Token(['source.test', 'meta.function.test', 'storage.type.function.test'], 'function', 0, 8),
                 new Token(['source.test', 'meta.function.test'], ' ', 8, 9),
                 new Token(['source.test', 'meta.function.test', 'entity.name.function.test'], 'foo', 9, 12),
-                new Token(['source.test'], "() {}", 12, 18),
+                new Token(['source.test'], '() {}', 12, 18),
             ],
         ]);
     });
@@ -86,7 +86,7 @@ describe('match', function () {
                 new Token(['source.test', 'meta.namespace.test', 'keyword.other.namespace.test'], 'namespace', 0, 9),
                 new Token(['source.test', 'meta.namespace.test'], ' ', 9, 10),
                 new Token(['source.test', 'meta.namespace.test', 'entity.name.type.namespace.test'], 'Foo', 10, 13),
-                new Token(['source.test'], ";", 13, 15),
+                new Token(['source.test'], ';', 13, 15),
             ],
         ]);
     });
@@ -125,7 +125,7 @@ describe('match', function () {
                 new Token(['source.test', 'meta.namespace.test', 'entity.name.type.namespace.test'], 'Bar', 14, 17),
                 new Token(['source.test', 'meta.namespace.test', 'entity.name.type.namespace.test', 'punctuation.separator.inheritance.test'], '\\', 17, 18),
                 new Token(['source.test', 'meta.namespace.test', 'entity.name.type.namespace.test'], 'Baz', 18, 21),
-                new Token(['source.test'], ";", 21, 23),
+                new Token(['source.test'], ';', 21, 23),
             ],
         ]);
     });

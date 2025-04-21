@@ -23,7 +23,7 @@ function vscodeTextmateTokenize(string $samplePath, string $grammarName): array
     $process = new Process(
         [
             'node',
-            __DIR__ . '/Fixtures/vscode-textmate-compliance.js',
+            __DIR__.'/Fixtures/vscode-textmate-compliance.js',
             $samplePath,
             array_flip(DefaultGrammars::SCOPES_TO_NAMES)[$grammarName],
             json_encode(collect(DefaultGrammars::SCOPES_TO_NAMES)
@@ -35,15 +35,15 @@ function vscodeTextmateTokenize(string $samplePath, string $grammarName): array
     $process->run();
 
     if (! $process->isSuccessful()) {
-        throw new RuntimeException($process->getErrorOutput() . ':' . PHP_EOL . $process->getOutput());
+        throw new RuntimeException($process->getErrorOutput().':'.PHP_EOL.$process->getOutput());
     }
 
     $output = json_decode($process->getOutput(), true);
 
     if (! is_array($output)) {
-        throw new RuntimeException('Invalid output from process:' . PHP_EOL . $process->getOutput());
+        throw new RuntimeException('Invalid output from process:'.PHP_EOL.$process->getOutput());
     }
-    
+
     return array_map(
         fn (array $lineTokens) => array_map(
             fn (array $token) => new Token(
@@ -60,7 +60,7 @@ function vscodeTextmateTokenize(string $samplePath, string $grammarName): array
 
 dataset('grammars', function () {
     $repository = new GrammarRepository;
-    $grammars = array_filter($repository->getAllGrammarNames(), fn(string $grammar) => ! in_array($grammar, [
+    $grammars = array_filter($repository->getAllGrammarNames(), fn (string $grammar) => ! in_array($grammar, [
         'astro',
         'haxe',
         'fluent',

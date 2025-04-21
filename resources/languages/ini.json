@@ -3,7 +3,7 @@
   "name": "ini",
   "patterns": [
     {
-      "begin": "(^[ \\t]+)?(?=#)",
+      "begin": "(^[\\t ]+)?(?=#)",
       "beginCaptures": {
         "1": {
           "name": "punctuation.whitespace.comment.leading.ini"
@@ -24,7 +24,7 @@
       ]
     },
     {
-      "begin": "(^[ \\t]+)?(?=;)",
+      "begin": "(^[\\t ]+)?(?=;)",
       "beginCaptures": {
         "1": {
           "name": "punctuation.whitespace.comment.leading.ini"
@@ -53,7 +53,7 @@
           "name": "punctuation.separator.key-value.ini"
         }
       },
-      "match": "\\b([a-zA-Z0-9_.-]+)\\b\\s*(=)"
+      "match": "\\b([-.0-9A-Z_a-z]+)\\b\\s*(=)"
     },
     {
       "captures": {
@@ -64,7 +64,7 @@
           "name": "punctuation.definition.entity.ini"
         }
       },
-      "match": "^(\\[)(.*?)(\\])",
+      "match": "^(\\[)(.*?)(])",
       "name": "entity.name.section.group-title.ini"
     },
     {

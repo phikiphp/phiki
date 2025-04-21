@@ -13,7 +13,7 @@ use Phiki\Theme\Theme;
 use Phiki\Token\Token;
 use Symfony\Component\Process\Process;
 
-require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__.'/../vendor/autoload.php';
 
 set_error_handler(function ($severity, $message, $file, $line) {
     throw new ErrorException($message, 0, $severity, $file, $line);
@@ -28,18 +28,18 @@ $repository = $environment->getGrammarRepository();
 $grammars = $repository->getAllGrammarNames();
 natsort($grammars);
 
-$sample = file_get_contents($samplePath = __DIR__ . '/../resources/samples/' . $grammar . '.sample');
+$sample = file_get_contents($samplePath = __DIR__.'/../resources/samples/'.$grammar.'.sample');
 $tokens = (new Phiki($environment))->codeToTokens($sample, $grammar);
 $html = (new Phiki($environment))->codeToHtml($sample, $grammar, ['light' => Theme::GithubLight, 'dark' => Theme::GithubDark], $withGutter);
 
 $process = new Process(
     [
         'node',
-        __DIR__ . '/../tests/Fixtures/vscode-textmate-compliance.js',
+        __DIR__.'/../tests/Fixtures/vscode-textmate-compliance.js',
         $samplePath,
         array_flip(DefaultGrammars::SCOPES_TO_NAMES)[$grammar],
         json_encode(collect(DefaultGrammars::SCOPES_TO_NAMES)
-            ->mapWithKeys(fn(string $name, string $scope) => [$scope => DefaultGrammars::NAMES_TO_PATHS[$name]])
+            ->mapWithKeys(fn (string $name, string $scope) => [$scope => DefaultGrammars::NAMES_TO_PATHS[$name]])
             ->all()),
     ],
 );
@@ -47,12 +47,12 @@ $process = new Process(
 $process->run();
 
 if (! $process->isSuccessful()) {
-    throw new RuntimeException($process->getErrorOutput() . ':' . PHP_EOL . $process->getOutput());
+    throw new RuntimeException($process->getErrorOutput().':'.PHP_EOL.$process->getOutput());
 }
 
 $vscodeTextmateOutput = array_map(
-    fn(array $lineTokens) => array_map(
-        fn(array $token) => new Token(
+    fn (array $lineTokens) => array_map(
+        fn (array $token) => new Token(
             scopes: $token['scopes'],
             text: $token['text'],
             start: $token['start'],
@@ -66,7 +66,7 @@ $vscodeTextmateOutput = array_map(
 $tokenDiff = array_diff_multidimensional($tokens, $vscodeTextmateOutput, false);
 
 $converter = new MarkdownConverter(
-    (new EnvironmentEnvironment())
+    (new EnvironmentEnvironment)
         ->addExtension(new CommonMarkCoreExtension)
         ->addExtension(new PhikiExtension('github-dark'))
 );

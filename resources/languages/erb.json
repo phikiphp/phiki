@@ -9,7 +9,7 @@
     "text.html.erb - (meta.embedded.block.erb | meta.embedded.line.erb | comment)": {
       "patterns": [
         {
-          "begin": "(^\\s*)(?=<%+#(?![^%]*%>))",
+          "begin": "^(\\s*)(?=<%+#(?![^%]*%>))",
           "beginCaptures": {
             "0": {
               "name": "punctuation.whitespace.comment.leading.erb"
@@ -28,7 +28,7 @@
           ]
         },
         {
-          "begin": "(^\\s*)(?=<%(?![^%]*%>))",
+          "begin": "^(\\s*)(?=<%(?![^%]*%>))",
           "beginCaptures": {
             "0": {
               "name": "punctuation.whitespace.embedded.leading.erb"

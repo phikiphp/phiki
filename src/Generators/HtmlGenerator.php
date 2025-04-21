@@ -91,7 +91,7 @@ class HtmlGenerator implements OutputGeneratorInterface
         }
 
         if (! $this->inline) {
-            return '<code>' . implode($output) . '</code>';
+            return '<code>'.implode($output).'</code>';
         }
 
         $codeClasses = array_filter([
@@ -100,7 +100,7 @@ class HtmlGenerator implements OutputGeneratorInterface
             $this->getDefaultTheme()->name,
             count($this->themes) > 1 ? 'phiki-themes' : null,
         ]);
-        
+
         foreach ($this->themes as $theme) {
             if ($theme !== $this->getDefaultTheme()) {
                 $codeClasses[] = $theme->name;
