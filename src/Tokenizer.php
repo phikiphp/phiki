@@ -28,6 +28,7 @@ class Tokenizer
     protected State $state;
 
     protected array $tokens = [];
+    protected array $activeCapturesStack = [];
 
     public function __construct(
         protected ParsedGrammar $grammar,
@@ -41,6 +42,7 @@ class Tokenizer
         $this->state->pushScopes(preg_split('/\s+/', $this->grammar->scopeName));
 
         $this->tokens = [];
+        $this->activeCapturesStack = [];
 
         $lines = preg_split("/\R/", $input);
 
@@ -478,6 +480,24 @@ class Tokenizer
 
     protected function captures(MatchedPattern $pattern, int $line, string $lineText): void
     {
+        $recursionKey = spl_object_id($pattern->pattern) . ':' . $this->state->getLinePosition();
+        if (isset($this->activeCapturesStack[$recursionKey])) {
+            // Minimal advance to break loop
+            $advanceLength = max(1, strlen($pattern->text())); 
+            $advanceTo = $this->state->getLinePosition() + $advanceLength;
+
+            $this->tokens[$line][] = new Token(
+                ['error.tokenizer.infinite.recursion', ...$this->state->getScopes()],
+                substr($lineText, $this->state->getLinePosition(), $advanceLength),
+                $this->state->getLinePosition(),
+                $advanceTo
+            );
+            $this->state->setLinePosition($advanceTo);
+            return; // Abort this captures call
+        }
+
+        $this->activeCapturesStack[$recursionKey] = true;
+
         if (! $pattern->pattern instanceof ContainsCapturesInterface) {
             throw new IndeterminateStateException('Patterns must implement '.ContainsCapturesInterface::class.' in order to process captures.');
         }

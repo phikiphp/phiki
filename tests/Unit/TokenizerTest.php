@@ -613,3 +613,36 @@ describe('scopes', function () {
         ]);
     });
 });
+
+describe('infinite recursion protection', function () {
+    it('prevents infinite recursion for pathological patterns', function () {
+        $tokens = tokenize('foo', [
+            'scopeName' => 'source.test',
+            'patterns' => [
+                    [
+                        'name' => 'meta.recursive.test',
+                        'match' => '',
+                        'captures' => [
+                            '0' => [
+                                'patterns' => [
+                                    [
+                                        'match' => '',
+                                        'name' => 'meta.recursive.test',
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                    [
+                        'name' => 'meta.fallback.test',
+                        'match' => '.+',
+                    ],
+                ],
+            ]);
+        $flat = array_merge(...$tokens);
+        expect($flat)->not->toBeEmpty();
+        foreach ($flat as $token) {
+            expect($token->scopes)->toContain('error.tokenizer.infinite.recursion');
+        }
+    });
+});
