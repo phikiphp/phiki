@@ -146,7 +146,7 @@ class Parser
         $result = [];
 
         foreach ($captures as $index => $capture) {
-            $result[$index] = $this->capture($capture, $index);
+            $result[$index] = $this->capture($capture, strval($index));
         }
 
         return $result;
