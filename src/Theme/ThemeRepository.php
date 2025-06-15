@@ -7,7 +7,14 @@ use Phiki\Exceptions\UnrecognisedThemeException;
 
 class ThemeRepository implements ThemeRepositoryInterface
 {
-    protected array $themes = DefaultThemes::NAMES_TO_PATHS;
+    protected array $themes = [];
+
+    public function __construct()
+    {
+        foreach (Theme::cases() as $theme) {
+            $this->themes[$theme->value] = $theme->path();
+        }
+    }
 
     public function get(string $name): ParsedTheme
     {

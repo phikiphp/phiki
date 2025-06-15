@@ -10,31 +10,29 @@ use Phiki\Grammar\Detections\Php;
 
 class GrammarRepository implements GrammarRepositoryInterface
 {
-    protected array $grammars = DefaultGrammars::NAMES_TO_PATHS;
+    protected array $grammars = [];
 
-    protected array $scopesToGrammar = DefaultGrammars::SCOPES_TO_NAMES;
+    protected array $scopesToGrammar = [];
 
-    protected array $aliases = [
-        'bash' => 'shellscript',
-        'sh' => 'shellscript',
-        'shell' => 'shellscript',
-        'js' => 'javascript',
-        'yml' => 'yaml',
-        'golang' => 'go',
-        'text' => 'txt',
-        'plaintext' => 'txt',
-        'md' => 'markdown',
-        'py' => 'python',
-    ];
+    protected array $aliases = [];
 
     protected array $detections = [];
 
     public function __construct()
     {
+        foreach (Grammar::cases() as $grammar) {
+            $this->grammars[$grammar->value] = $grammar->path();
+            $this->scopesToGrammar[$grammar->scopeName()] = $grammar->value;
+
+            foreach ($grammar->aliases() as $alias) {
+                $this->aliases[$alias] = $grammar->value;
+            }
+        }
+
         $this->detections = [
             new JavaScript,
             new Php,
-        ];
+        ];  
     }
 
     public function get(string $name): ParsedGrammar

@@ -50,10 +50,6 @@
             "Composer\\Config::disableProcessTimeout",
             "herd debug -S 127.0.0.1:8080 ./meta/sample.php"
         ],
-        "update-sources": [
-            "Composer\\Config::disableProcessTimeout",
-            "@php ./meta/update-sources.php"
-        ],
         "test": "@php -dmemory_limit=-1 vendor/bin/pest --enforce-time-limit --default-time-limit=1",
         "lint": "vendor/bin/phpstan"
     }
