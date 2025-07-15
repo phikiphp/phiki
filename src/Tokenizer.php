@@ -115,8 +115,17 @@ class Tokenizer
                 }
             }
 
+            // Store the position before processing to detect if we advance
+            $positionBeforeProcessing = $this->state->getLinePosition();
+            
             // Match found – process pattern rules and continue.
             $this->process($matched, $line, $lineText);
+            
+            // Prevent infinite loops: if the pattern matched but didn't advance the position,
+            // we need to manually advance by at least 1 character
+            if ($this->state->getLinePosition() <= $positionBeforeProcessing) {
+                $this->state->setLinePosition($positionBeforeProcessing + 1);
+            }
 
             if ($endIsMatched) {
                 $this->state->setAnchorPosition($this->state->popAnchorPosition());

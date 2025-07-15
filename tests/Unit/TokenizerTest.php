@@ -698,4 +698,24 @@ describe('recursion prevention', function () {
         expect($tokens[0])->toContain(new Token(['source.test', 'meta.block.test', 'keyword.nested.test'], 'nested', 6, 12));
         expect($tokens[0])->toContain(new Token(['source.test', 'meta.block.test'], 'end', 13, 16));
     });
+
+    it('prevents infinite loops from patterns that match but never advance', function () {
+        $tokens = tokenize('abc', [
+            'scopeName' => 'source.test',
+            'patterns' => [
+                [
+                    'match' => '(?=a)', // Zero-width lookahead that matches but doesn't consume
+                    'name' => 'zero.width.test',
+                ],
+                [
+                    'match' => '\\w+',
+                    'name' => 'word.test',
+                ],
+            ],
+        ]);
+
+        // Should not hang and should tokenize the word
+        expect($tokens)->toHaveCount(1);
+        expect($tokens[0])->toContain(new Token(['source.test', 'word.test'], 'abc', 0, 3));
+    });
 });
