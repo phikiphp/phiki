@@ -20,6 +20,8 @@ final class State
 
     protected bool $isFirstLine = true;
 
+    protected array $includeStack = [];
+
     public function pushScopes(array $scopes): void
     {
         $this->scopeStack = array_merge($this->scopeStack, $scopes);
@@ -125,5 +127,20 @@ final class State
     public function isFirstLine(): bool
     {
         return $this->isFirstLine;
+    }
+
+    public function pushInclude(string $includeKey): void
+    {
+        $this->includeStack[] = $includeKey;
+    }
+
+    public function popInclude(): void
+    {
+        array_pop($this->includeStack);
+    }
+
+    public function isIncludeInStack(string $includeKey): bool
+    {
+        return in_array($includeKey, $this->includeStack, true);
     }
 }

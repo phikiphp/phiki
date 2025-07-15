@@ -258,8 +258,19 @@ class Tokenizer
     {
         $repository = $this->environment->getGrammarRepository();
 
+        // Create a unique key for this include pattern to track recursion
+        $includeKey = $this->getIncludeKey($pattern);
+        
+        // Check if we're already resolving this include pattern (recursion detection)
+        if ($this->state->isIncludeInStack($includeKey)) {
+            return null; // Prevent infinite recursion by returning null
+        }
+
+        // Push this include onto the stack to track recursion
+        $this->state->pushInclude($includeKey);
+
         try {
-            return match (true) {
+            $result = match (true) {
                 // "include": "$self"
                 $pattern->isSelf() => $repository->getFromScope($pattern->getScopeName() ?? $this->grammar->scopeName),
                 // "include": "$base"
@@ -272,12 +283,43 @@ class Tokenizer
                 default => $repository->getFromScope($pattern->getScopeName()),
             };
         } catch (UnrecognisedGrammarException $e) {
+            $this->state->popInclude(); // Make sure to pop even on exception
+            
             if ($this->environment->isStrictModeEnabled()) {
                 throw $e;
             }
 
             return null;
         }
+
+        // Pop this include from the stack now that we're done resolving it
+        $this->state->popInclude();
+
+        return $result;
+    }
+
+    /**
+     * Generate a unique key for an include pattern to track recursion
+     */
+    public function getIncludeKey(IncludePattern $pattern): string
+    {
+        if ($pattern->isSelf()) {
+            return '$self:' . ($pattern->getScopeName() ?? $this->grammar->scopeName);
+        }
+        
+        if ($pattern->isBase()) {
+            return '$base';
+        }
+        
+        if ($pattern->getReference() && $pattern->getScopeName()) {
+            return $pattern->getScopeName() . '#' . $pattern->getReference();
+        }
+        
+        if ($pattern->getReference()) {
+            return ($this->grammar->scopeName ?? 'unknown') . '#' . $pattern->getReference();
+        }
+        
+        return $pattern->getScopeName() ?? 'unknown';
     }
 
     protected function process(MatchedPattern $matched, int $line, string $lineText): void

@@ -613,3 +613,89 @@ describe('scopes', function () {
         ]);
     });
 });
+
+describe('recursion prevention', function () {
+    it('prevents infinite recursion with self-referencing includes', function () {
+        $tokens = tokenize('test recursive', [
+            'scopeName' => 'source.test',
+            'patterns' => [
+                [
+                    'include' => '#recursive-pattern',
+                ],
+            ],
+            'repository' => [
+                'recursive-pattern' => [
+                    'patterns' => [
+                        [
+                            'match' => '\\b(test)\\b',
+                            'name' => 'keyword.test',
+                        ],
+                        [
+                            'include' => '#recursive-pattern', // This creates recursion
+                        ],
+                    ],
+                ],
+            ],
+        ]);
+
+        // Should not hang or crash, should tokenize at least the 'test' keyword
+        expect($tokens)->toHaveCount(1);
+        expect($tokens[0])->toContain(new Token(['source.test', 'keyword.test'], 'test', 0, 4));
+    });
+
+    it('prevents infinite recursion with $self includes', function () {
+        $tokens = tokenize('self referencing', [
+            'scopeName' => 'source.test',
+            'patterns' => [
+                [
+                    'include' => '$self', // This could create recursion
+                ],
+                [
+                    'match' => '\\b(self)\\b',
+                    'name' => 'keyword.self.test',
+                ],
+            ],
+        ]);
+
+        // Should not hang or crash
+        expect($tokens)->toHaveCount(1);
+        expect($tokens[0])->toContain(new Token(['source.test', 'keyword.self.test'], 'self', 0, 4));
+    });
+
+    it('prevents recursion in nested begin/end patterns with includes', function () {
+        $tokens = tokenize('begin nested end', [
+            'scopeName' => 'source.test',
+            'patterns' => [
+                [
+                    'name' => 'meta.block.test',
+                    'begin' => '\\b(begin)\\b',
+                    'end' => '\\b(end)\\b',
+                    'patterns' => [
+                        [
+                            'include' => '#nested-include',
+                        ],
+                    ],
+                ],
+            ],
+            'repository' => [
+                'nested-include' => [
+                    'patterns' => [
+                        [
+                            'match' => '\\b(nested)\\b',
+                            'name' => 'keyword.nested.test',
+                        ],
+                        [
+                            'include' => '#nested-include', // Recursion
+                        ],
+                    ],
+                ],
+            ],
+        ]);
+
+        // Should not hang or crash, should tokenize the content
+        expect($tokens)->toHaveCount(1);
+        expect($tokens[0])->toContain(new Token(['source.test', 'meta.block.test'], 'begin', 0, 5));
+        expect($tokens[0])->toContain(new Token(['source.test', 'meta.block.test', 'keyword.nested.test'], 'nested', 6, 12));
+        expect($tokens[0])->toContain(new Token(['source.test', 'meta.block.test'], 'end', 13, 16));
+    });
+});
