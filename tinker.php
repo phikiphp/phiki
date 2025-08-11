@@ -10,7 +10,7 @@ $phiki = new Phiki();
 $tokens = $phiki->codeToTokens(
     <<<'EXAMPLE'
 class Foo {
-
+    
 }
 EXAMPLE,
     Grammar::Php,

@@ -2,6 +2,7 @@
 
 namespace Phiki\Support;
 
+use Phiki\Exceptions\GenericPatternException;
 use Stringable;
 
 class Regex implements Stringable
@@ -68,11 +69,16 @@ class Regex implements Stringable
             }, $pattern);
         }
 
+        // Throw for warnings.
+        set_error_handler(fn ($errno, $errstr) => throw new GenericPatternException($pattern, $errstr, $errno));
+
         mb_regex_set_options('n');
         mb_ereg_search_init($input, $pattern);
         mb_ereg_search_setpos($offset);
 
-        $result = mb_ereg_search_pos($pattern);
+        $result = mb_ereg_search_pos();
+
+        restore_error_handler();
 
         if ($result === false) {
             return false;

@@ -40,7 +40,7 @@ class BeginEndPattern extends Pattern implements ContainsCapturesInterface, Patt
 
     public function tryMatch(Tokenizer $tokenizer, string $lineText, int $linePosition, ?int $cannotExceed = null): MatchedPattern|false
     {
-        if (! $this->end->match($lineText, $matches, $linePosition, $tokenizer->allowA(), $tokenizer->allowG())) {
+        if (! $this->begin->match($lineText, $matches, $linePosition, $tokenizer->allowA(), $tokenizer->allowG())) {
             return false;
         }
 
