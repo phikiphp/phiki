@@ -51,19 +51,7 @@ class EndPattern extends Pattern implements ContainsCapturesInterface, PatternCo
 
     public function tryMatch(Tokenizer $tokenizer, string $lineText, int $linePosition, ?int $cannotExceed = null): MatchedPattern|false
     {
-        $regex = preg_replace_callback('/\\\\(\d+)/', function ($matches) {
-            if (! isset($this->begin->matches[$matches[1]][0])) {
-                return '';
-            }
-
-            return preg_quote($this->begin->matches[$matches[1]][0], '/');
-        }, $this->end->get($tokenizer->allowA(), $tokenizer->allowG()));
-
-        try {
-            if (preg_match('/'.$regex.'/u', $lineText, $matches, PREG_OFFSET_CAPTURE, $linePosition) !== 1) {
-                return false;
-            }
-        } catch (Exception) {
+        if (! $this->end->match($lineText, $matches, $linePosition, $tokenizer->allowA(), $tokenizer->allowG(), $this->begin->matches)) {
             return false;
         }
 

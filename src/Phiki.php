@@ -6,6 +6,7 @@ use Phiki\Environment\Environment;
 use Phiki\Generators\HtmlGenerator;
 use Phiki\Generators\TerminalGenerator;
 use Phiki\Grammar\Grammar;
+use Phiki\Grammar\ParsedGrammar;
 use Phiki\Support\Arr;
 use Phiki\Support\Str;
 use Phiki\Theme\ParsedTheme;
@@ -38,9 +39,9 @@ class Phiki
         return null;
     }
 
-    public function codeToTokens(string $code, string|Grammar $grammar): array
+    public function codeToTokens(string $code, string|Grammar|ParsedGrammar $grammar): array
     {
-        $grammar = $this->environment->resolveGrammar($grammar);
+        $grammar = $grammar instanceof ParsedGrammar ? $grammar : $this->environment->resolveGrammar($grammar);
         $tokenizer = new Tokenizer($grammar, $this->environment);
 
         return $tokenizer->tokenize($code);

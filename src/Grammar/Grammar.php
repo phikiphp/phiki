@@ -126,6 +126,11 @@ enum Grammar: string
         };
     }
 
+    public static function parse(array $grammar): ParsedGrammar
+    {
+        return (new Parser)->parse($grammar);
+    }
+
     public function toParsedGrammar(GrammarRepositoryInterface $repository): ParsedGrammar
     {
         return $repository->get($this->value);
