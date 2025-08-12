@@ -8,9 +8,7 @@ This section contains all of the necessary steps to upgrade Phiki from `v1.x` to
 
 ### Minimum PHP version increased to PHP 8.4
 
-PHP 8.4 uses a newer version of the PCRE2 engine which adds basic support for variable-length lookbehind assertions. This is something that was mentioned in the `README` of Phiki 1.x as a huge limitation when it comes to supporting more complicated TextMate grammars since other engines like Oniguruma and ECMAScript support "true" variable-length lookbehinds.
-
-By bumping Phiki's minimum PHP version to PHP 8.4 we can truly take advantage of this functionality and improve compatibility across the board.
+To keep up to date with the latest and greatest in PHP, the minimum version required for Phiki 2.x is PHP 8.4 or greater.
 
 ### Grammar changes
 
