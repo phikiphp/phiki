@@ -50,8 +50,6 @@ describe('php', function () {
     it('correctly tokenizes a class with extends', function () {
         $tokens = php('class A extends B {}');
 
-        dd($tokens);
-
         expect($tokens)->toEqualCanonicalizing([
             [
                 new Token(['source.php', 'meta.class.php', 'storage.type.class.php'], 'class', 0, 5),
@@ -174,8 +172,14 @@ describe('php', function () {
     it('correctly tokenizes a line comment', function () {
         $tokens = php('// This is a comment.');
 
-        dd($tokens);
-    })->only();
+        expect($tokens)->toEqualCanonicalizing([
+            [
+                new Token(['source.php', 'comment.line.double-slash.php', 'punctuation.definition.comment.php'], '//', 0, 2),
+                new Token(['source.php', 'comment.line.double-slash.php'], ' This is a comment.', 2, 21),
+                new Token(['source.php', 'comment.line.double-slash.php'], "\n", 21, 22),
+            ]
+        ]);
+    });
 });
 
 function php(string $input): array
