@@ -7,7 +7,6 @@ use Phiki\Contracts\PatternCollectionInterface;
 use Phiki\Contracts\ProvidesContentName;
 use Phiki\Environment\Environment;
 use Phiki\Exceptions\IndeterminateStateException;
-use Phiki\Exceptions\UnreachableException;
 use Phiki\Exceptions\UnrecognisedGrammarException;
 use Phiki\Grammar\BeginEndPattern;
 use Phiki\Grammar\BeginWhilePattern;
