@@ -537,6 +537,35 @@ describe('begin/end', function () {
             ]
         ]);
     });
+
+    it('can tokenize a begin/end pattern where the end pattern matches immediately after a subpattern', function () {
+        $tokens = tokenize('begin foo end foo', [
+            'patterns' => [
+                [
+                    'name' => 'meta.block.test',
+                    'begin' => '\\b(begin)\\b',
+                    'end' => '\\b(end)\\b',
+                    'patterns' => [
+                        [
+                            'name' => 'entity.name.test',
+                            'match' => '\\b(foo)\\b',
+                        ],
+                    ],
+                ]
+            ],
+        ]);
+
+        expect($tokens)->toEqualCanonicalizing([
+            [
+                new Token(['source.test', 'meta.block.test'], 'begin', 0, 5),
+                new Token(['source.test', 'meta.block.test'], ' ', 5, 6),
+                new Token(['source.test', 'meta.block.test', 'entity.name.test'], 'foo', 6, 9),
+                new Token(['source.test', 'meta.block.test'], ' ', 9, 10),
+                new Token(['source.test', 'meta.block.test'], 'end', 10, 13),
+                new Token(['source.test'], " foo\n", 13, 17),
+            ]
+        ]);
+    });
 });
 
 describe('scopes', function () {
