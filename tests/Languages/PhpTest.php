@@ -50,6 +50,8 @@ describe('php', function () {
     it('correctly tokenizes a class with extends', function () {
         $tokens = php('class A extends B {}');
 
+        dd($tokens);
+
         expect($tokens)->toEqualCanonicalizing([
             [
                 new Token(['source.php', 'meta.class.php', 'storage.type.class.php'], 'class', 0, 5),
@@ -65,7 +67,7 @@ describe('php', function () {
                 new Token(['source.php'], "\n", 20, 20),
             ],
         ]);
-    })->only();
+    });
 
     it('correctly tokenizes a top-level use statement without namespace separators', function () {
         $tokens = php('use A;');
@@ -168,6 +170,12 @@ describe('php', function () {
             ],
         ]);
     });
+
+    it('correctly tokenizes a line comment', function () {
+        $tokens = php('// This is a comment.');
+
+        dd($tokens);
+    })->only();
 });
 
 function php(string $input): array

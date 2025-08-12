@@ -61,18 +61,17 @@ class Regex implements Stringable
 
         if ($references !== []) {
             $pattern = preg_replace_callback('/\\\\(\d+)/', function ($matches) use ($references) {
-                if (! isset($references[$matches[1][0]])) {
+                if (! isset($references[$matches[1]][0])) {
                     return '';
                 }
 
-                return $references[$matches[1][0]];
+                return $references[$matches[1]][0];
             }, $pattern);
         }
 
         // Throw for warnings.
         set_error_handler(fn ($errno, $errstr) => throw new GenericPatternException($pattern, $errstr, $errno));
 
-        mb_regex_set_options('n');
         mb_ereg_search_init($input, $pattern);
         mb_ereg_search_setpos($offset);
 
@@ -87,10 +86,6 @@ class Regex implements Stringable
         [$start, $length] = $result;
 
         $matches = mb_ereg_search_getregs();
-
-        if (count($matches) === 0 || ! $matches[0]) {
-            return false;
-        }
 
         // Since we know the start position and length of the match, we can
         // extract the relevant portion of the input string to reduce the

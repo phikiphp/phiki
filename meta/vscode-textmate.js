@@ -25,29 +25,26 @@ const vscodeOnigurumaLib = oniguruma.loadWASM(wasmBin).then(() => {
     };
 });
 
+const grammarFiles = fs.readdirSync(path.join(__dirname, "../resources/languages"))
+const grammars = {}
+
+grammarFiles.forEach(file => {
+    const filePath = path.join(__dirname, "../resources/languages", file);
+    const contents = fs.readFileSync(filePath, 'utf8');
+    const grammar = vsctm.parseRawGrammar(contents, file);
+
+    grammars[grammar.scopeName] = grammar;
+})
+
 const registry = new vsctm.Registry({
     onigLib: vscodeOnigurumaLib,
     loadGrammar: (scopeName) => {
-        if (scopeName === "source.svelte") {
-            // https://github.com/textmate/javascript.tmbundle/blob/master/Syntaxes/JavaScript.plist
-            return readFile(path.join(__dirname, "../resources/languages/svelte.json")).then((data) =>
-                vsctm.parseRawGrammar(data.toString(), 'svelte.json')
-            );
+        if (! grammars[scopeName]) {
+            console.log(`Unknown scope name: ${scopeName}`);
+            return null;
         }
-        if (scopeName === 'source.js') {
-            return readFile(path.join(__dirname, "../resources/languages/javascript.json")).then((data) =>
-                vsctm.parseRawGrammar(data.toString(), 'javascript.json')
-            );
-        }
-        if (scopeName === 'source.cpp') {
-            return readFile(
-                path.join(__dirname, "../resources/languages/cpp.json")
-            ).then((data) =>
-                vsctm.parseRawGrammar(data.toString(), "cpp.json")
-            );
-        }
-        console.log(`Unknown scope name: ${scopeName}`);
-        return null;
+
+        return grammars[scopeName];
     },
 });
 
