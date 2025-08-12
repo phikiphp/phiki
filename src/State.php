@@ -105,6 +105,7 @@ final class State
     public function resetAnchorPositions(): void
     {
         $this->setAnchorPosition(-1);
+        $this->anchorPositionStack = [-1];
     }
 
     public function pushAnchorPosition(int $position): void
