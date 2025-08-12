@@ -41,7 +41,7 @@ class Tokenizer
 
         $this->tokens = [];
 
-        $lines = preg_split("/\R/", $input);
+        $lines = array_values(preg_split("/\R/", $input));
 
         foreach ($lines as $line => $lineText) {
             if ($line > 0) {
