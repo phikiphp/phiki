@@ -65,23 +65,6 @@ class Tokenizer
         while ($this->state->getLinePosition() < strlen($lineText)) {
             $root = $this->state->getPattern();
             $matched = $this->match($lineText);
-            $endIsMatched = false;
-
-            // FIXME: Move all of this end pattern checking into the `match` method!
-            // Some patterns will include `$self`. Since we're not fixing all patterns to match at the end of the previous match
-            // we need to check if we're looking for an `end` pattern that is closer than the matched subpattern.
-            if ($matched !== false && $root instanceof EndPattern && $endMatched = $root->tryMatch($this, $lineText, $this->state->getLinePosition())) {
-                if ($endMatched->offset() <= $matched->offset()) {
-                    $matched = $endMatched;
-                    $endIsMatched = true;
-                }
-            }
-
-            // We didn't find a matching subpattern and we're looking for an `end` pattern.
-            // If we find it on this line, we need to pop it off the stack and process the end pattern.
-            if ($matched === false && $root instanceof EndPattern && $matched = $root->tryMatch($this, $lineText, $this->state->getLinePosition())) {
-                $endIsMatched = true;
-            }
 
             // No match found, advance to the end of the line.
             if ($matched === false) {
@@ -102,7 +85,7 @@ class Tokenizer
             // We've found a match for an `end` here. We need to remove it from the stack.
             // It's important that we do this here since we don't want to have an effect
             // on any capture patterns etc.
-            if ($endIsMatched) {
+            if ($matched->pattern instanceof EndPattern) {
                 $poppedPattern = $this->state->popPattern();
 
                 if ($poppedPattern->wasInjected()) {
@@ -117,11 +100,11 @@ class Tokenizer
             // Match found – process pattern rules and continue.
             $this->process($matched, $line, $lineText);
 
-            if ($endIsMatched) {
+            if ($matched->pattern instanceof EndPattern) {
                 $this->state->setAnchorPosition($this->state->popAnchorPosition());
             }
 
-            if ($endIsMatched && $root->scope() && count($this->state->getScopes()) > 1) {
+            if ($matched->pattern instanceof EndPattern && $root->scope() && count($this->state->getScopes()) > 1) {
                 foreach ($root->scope() as $_) {
                     $this->state->popScope();
                 }
@@ -183,6 +166,10 @@ class Tokenizer
         $closest = false;
         $offset = $this->state->getLinePosition();
         $patterns = $root->getPatterns();
+
+        if ($root instanceof EndPattern) {
+            $patterns = [$root, ...$patterns];
+        }
 
         foreach ($patterns as $pattern) {
             $matched = $pattern->tryMatch($this, $lineText, $this->state->getLinePosition());
