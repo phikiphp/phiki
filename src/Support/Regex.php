@@ -2,6 +2,7 @@
 
 namespace Phiki\Support;
 
+use Phiki\Exceptions\FailedToSetSearchPositionException;
 use Phiki\Exceptions\GenericPatternException;
 use Stringable;
 
@@ -73,7 +74,10 @@ class Regex implements Stringable
         set_error_handler(fn ($errno, $errstr) => throw new GenericPatternException($pattern, $errstr, $errno));
 
         mb_ereg_search_init($input, $pattern);
-        mb_ereg_search_setpos($offset);
+        
+        if (! mb_ereg_search_setpos($offset)) {
+            throw new FailedToSetSearchPositionException();
+        }
 
         $result = mb_ereg_search_pos();
 
