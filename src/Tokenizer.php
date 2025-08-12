@@ -63,7 +63,7 @@ class Tokenizer
 
         while ($this->state->getLinePosition() < strlen($lineText)) {
             $root = $this->state->getPattern();
-            $matched = $this->match($lineText);
+            $matched = $this->matchRuleOrInjections($lineText);
 
             // No match found, advance to the end of the line.
             if ($matched === false) {
@@ -126,7 +126,7 @@ class Tokenizer
         return $matched;
     }
 
-    public function match(string $lineText): MatchedPattern|false
+    public function matchRuleOrInjections(string $lineText): MatchedPattern|false
     {
         $ruleMatch = $this->matchRule($lineText);
         $injectionMatch = $this->matchInjections($lineText);
