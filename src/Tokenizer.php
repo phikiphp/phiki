@@ -215,7 +215,7 @@ class Tokenizer
         $maxEnd = strlen($matches[0][0]) + $matches[0][1];
 
         for ($i = 0; $i < $len; $i++) {
-            $captureRule = $captures[$i];
+            $captureRule = $captures[$i] ?? null;
 
             if (! $captureRule) {
                 continue;
@@ -249,7 +249,7 @@ class Tokenizer
                 $scopeName = $captureRule->getScopeName($matches);
                 $nameScopesList = $stack->contentNameScopesList->push($scopeName);
                 $stackClone = $stack->push(new CollectionPattern($captureRule->patterns), $match[1], -1, false, null, $nameScopesList, $nameScopesList);
-                $this->tokenizeString($grammar, $matches[0], $isFirstLine && $match[1] === 0, $match[1], $stackClone, $lineTokens, false);
+                $this->tokenizeString($grammar, $match[0], $isFirstLine && $match[1] === 0, $match[1], $stackClone, $lineTokens, false);
                 continue;
             }
 
