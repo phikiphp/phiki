@@ -11,7 +11,7 @@ class StateStack
     /**
      * The depth in the list of this state stack.
      */
-    public readonly int $depth;
+    public int $depth;
 
     /**
      * Create a new instance.

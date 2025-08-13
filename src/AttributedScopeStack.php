@@ -11,8 +11,8 @@ class AttributedScopeStack
      * Create a new instance.
      */
     private function __construct(
-        public readonly AttributedScopeStack | null $parent,
-        public readonly ScopeStack $scopePath,
+        public AttributedScopeStack | null $parent,
+        public ScopeStack $scopePath,
     ) {}
 
     /**

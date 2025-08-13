@@ -17,7 +17,7 @@ class LineTokens
      * @param array<Token> $tokens
      */
     public function __construct(
-        public readonly string $lineText,
+        public string $lineText,
         public array $tokens = [],
     ) {}
 

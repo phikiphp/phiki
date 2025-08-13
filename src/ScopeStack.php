@@ -10,8 +10,8 @@ class ScopeStack implements Stringable
      * Create a new instance.
      */
     public function __construct(
-        public readonly ScopeStack | null $parent,
-        public readonly string $scopeName,
+        public ScopeStack | null $parent,
+        public string $scopeName,
     ) {}
 
     /**

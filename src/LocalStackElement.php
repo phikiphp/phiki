@@ -5,7 +5,7 @@ namespace Phiki;
 class LocalStackElement
 {
     public function __construct(
-        public readonly AttributedScopeStack $scopes,
-        public readonly int $endPos,
+        public AttributedScopeStack $scopes,
+        public int $endPos,
     ) {}
 }
