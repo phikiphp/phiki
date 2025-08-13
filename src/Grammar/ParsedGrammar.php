@@ -35,7 +35,7 @@ final class ParsedGrammar implements PatternInterface
         $compiled = [];
 
         foreach ($this->patterns as $pattern) {
-            $compiled[] = array_merge($compiled, $pattern->compile($grammar, $grammars, $allowA, $allowG));
+            $compiled = array_merge($compiled, $pattern->compile($grammar, $grammars, $allowA, $allowG));
         }
 
         return $compiled;

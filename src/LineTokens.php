@@ -18,7 +18,7 @@ class LineTokens
      */
     public function __construct(
         public readonly string $lineText,
-        public readonly array $tokens = [],
+        public array $tokens = [],
     ) {}
 
     /**

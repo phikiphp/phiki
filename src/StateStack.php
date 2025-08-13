@@ -17,14 +17,14 @@ class StateStack
      * Create a new instance.
      */
     public function __construct(
-        public readonly StateStack | null $parent,
+        public StateStack | null $parent,
         public PatternInterface $pattern,
-        public readonly int $enterPos,
-        public readonly int $anchorPos,
-        public readonly bool $beginRuleCapturedEOL,
-        public readonly string | null $endRule,
-        public readonly AttributedScopeStack | null $nameScopesList,
-        public readonly AttributedScopeStack | null $contentNameScopesList,
+        public int $enterPos,
+        public int $anchorPos,
+        public bool $beginRuleCapturedEOL,
+        public string | null $endRule,
+        public AttributedScopeStack | null $nameScopesList,
+        public AttributedScopeStack | null $contentNameScopesList,
     ) {
         $this->depth = $parent ? $parent->depth + 1 : 0;
     }

@@ -19,7 +19,7 @@ class Tokenizer
      * Create a new instance.
      */
     public function __construct(
-        protected Grammar $grammar,
+        protected ParsedGrammar $grammar,
         protected Environment $environment,
     ) {}
 
@@ -30,11 +30,11 @@ class Tokenizer
      */
     public function tokenize(string $text): array
     {
-        $rootScopeName = $this->grammar->scopeName();
+        $rootScopeName = $this->grammar->scopeName;
         $scopeList = AttributedScopeStack::createRoot($rootScopeName);
         $stateStack = new StateStack(
             parent: null,
-            pattern: $parsedGrammar = $this->grammar->toParsedGrammar($this->environment->getGrammarRepository()),
+            pattern: $this->grammar,
             enterPos: -1,
             anchorPos: -1,
             beginRuleCapturedEOL: false,
@@ -55,7 +55,7 @@ class Tokenizer
             $lineLength = strlen($lineText);
             $lineTokens = new LineTokens($lineText);
 
-            $this->tokenizeString($parsedGrammar, $lineText, $index === 0, 0, $stateStack, $lineTokens, true);
+            $this->tokenizeString($this->grammar, $lineText, $index === 0, 0, $stateStack, $lineTokens, true);
 
             $tokens[] = $lineTokens->getResult($stateStack, $lineLength);
         }
@@ -209,11 +209,10 @@ class Tokenizer
             return;
         }
 
-        $lineTextContent = $lineText;
         $len = min(count($captures), count($matches));
         /** @var LocalStackElement[] $localStack */
         $localStack = [];
-        $maxEnd = strlen($matches[0]) + $matches[0][1];
+        $maxEnd = strlen($matches[0][0]) + $matches[0][1];
 
         for ($i = 0; $i < $len; $i++) {
             $captureRule = $captures[$i];
