@@ -2,14 +2,13 @@
 
 namespace Phiki\Grammar;
 
-use Exception;
-use Phiki\Contracts\ContainsCapturesInterface;
-use Phiki\Contracts\PatternCollectionInterface;
-use Phiki\Contracts\ProvidesContentName;
+use Phiki\Contracts\GrammarRepositoryInterface;
+use Phiki\Contracts\HasContentNameInterface;
+use Phiki\Contracts\PatternInterface;
 use Phiki\Support\Regex;
-use Phiki\Tokenizer;
+use Phiki\Support\Str;
 
-class BeginWhilePattern extends Pattern implements ContainsCapturesInterface, PatternCollectionInterface, ProvidesContentName
+class BeginWhilePattern implements PatternInterface, HasContentNameInterface
 {
     public function __construct(
         public Regex $begin,
@@ -23,69 +22,47 @@ class BeginWhilePattern extends Pattern implements ContainsCapturesInterface, Pa
         public bool $injection = false,
     ) {}
 
-    public function getContentName(): ?string
+    public function getScopeName(array $captures): ?string
     {
-        return $this->contentName;
-    }
-
-    public function getPatterns(): array
-    {
-        return $this->patterns;
-    }
-
-    public function hasPatterns(): bool
-    {
-        return count($this->patterns) > 0;
-    }
-
-    public function tryMatch(Tokenizer $tokenizer, string $lineText, int $linePosition, ?int $cannotExceed = null): MatchedPattern|false
-    {
-        if (! $this->begin->match($lineText, $matches, $linePosition, $tokenizer->allowA(), $tokenizer->allowG())) {
-            return false;
+        if ($this->name === null) {
+            return null;
         }
 
-        if ($cannotExceed !== null && $matches[0][1] > $cannotExceed) {
-            return false;
+        return Str::replaceScopeNameCapture($this->name, $captures);
+    }
+
+    public function getContentName(array $captures): ?string
+    {
+        if ($this->contentName === null) {
+            return null;
         }
 
-        return new MatchedPattern($this, $matches);
+        return Str::replaceScopeNameCapture($this->contentName, $captures);
     }
 
-    public function scope(): ?array
+    /**
+     * Compile the pattern into a list of matchable patterns.
+     * 
+     * @return array<array{ 0: PatternInterface, 1: string }>
+     */
+    public function compile(ParsedGrammar $grammar, GrammarRepositoryInterface $grammars, bool $allowA, bool $allowG): array
     {
-        return $this->name ? explode(' ', $this->name) : null;
+        return [
+            [$this, $this->begin->get($allowA, $allowG)],
+        ];
     }
 
-    public function hasCaptures(): bool
-    {
-        return count($this->beginCaptures) > 0 || count($this->captures) > 0;
-    }
-
-    public function getCaptures(): array
-    {
-        return count($this->beginCaptures) > 0 ? $this->beginCaptures : $this->captures;
-    }
-
-    public function createWhilePattern(MatchedPattern $self): WhilePattern
+    public function createWhilePattern(MatchedPattern $matched): WhilePattern
     {
         return new WhilePattern(
-            $self,
+            $matched,
             $this->while,
             $this->name,
             $this->contentName,
             $this->whileCaptures,
             $this->captures,
             $this->patterns,
+            $this->injection
         );
-    }
-
-    public function wasInjected(): bool
-    {
-        return $this->injection;
-    }
-
-    public function __toString(): string
-    {
-        return sprintf('begin: %s', $this->begin);
     }
 }

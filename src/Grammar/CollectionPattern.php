@@ -2,75 +2,37 @@
 
 namespace Phiki\Grammar;
 
-use Phiki\Contracts\PatternCollectionInterface;
-use Phiki\Tokenizer;
+use Phiki\Contracts\GrammarRepositoryInterface;
+use Phiki\Contracts\PatternInterface;
 
-class CollectionPattern extends Pattern implements PatternCollectionInterface
+class CollectionPattern implements PatternInterface
 {
     /**
-     * @param  Pattern[]  $patterns
+     * @param  PatternInterface[]  $patterns
      */
     public function __construct(
         public array $patterns,
         public bool $injection = false,
     ) {}
 
-    public function getPatterns(): array
-    {
-        return $this->patterns;
-    }
-
-    public function hasPatterns(): bool
-    {
-        return count($this->patterns) > 0;
-    }
-
-    public function tryMatch(Tokenizer $tokenizer, string $lineText, int $linePosition, ?int $cannotExceed = null): MatchedPattern|false
-    {
-        $closest = false;
-        $offset = $linePosition;
-
-        foreach ($this->getPatterns() as $pattern) {
-            $matched = $pattern->tryMatch($tokenizer, $lineText, $linePosition, $cannotExceed);
-
-            if ($matched === false) {
-                continue;
-            }
-
-            if ($matched->offset() === $linePosition) {
-                return $matched;
-            }
-
-            if ($closest === false) {
-                $closest = $matched;
-                $offset = $matched->offset();
-
-                continue;
-            }
-
-            if ($matched->offset() < $offset) {
-                $closest = $matched;
-                $offset = $matched->offset();
-
-                continue;
-            }
-        }
-
-        return $closest;
-    }
-
-    public function scope(): null
+    public function getScopeName(array $captures): ?string
     {
         return null;
     }
 
-    public function wasInjected(): bool
+    /**
+     * Compile the pattern into a list of matchable patterns.
+     * 
+     * @return array<array{ 0: PatternInterface, 1: string }>
+     */
+    public function compile(ParsedGrammar $grammar, GrammarRepositoryInterface $grammars, bool $allowA, bool $allowG): array
     {
-        return $this->injection;
-    }
+        $compiled = [];
 
-    public function __toString(): string
-    {
-        return sprintf('collection: count(%d)', count($this->getPatterns()));
+        foreach ($this->patterns as $pattern) {
+            $compiled = array_merge($compiled, $pattern->compile($grammar, $grammars, $allowA, $allowG));
+        }
+
+        return $compiled;
     }
 }

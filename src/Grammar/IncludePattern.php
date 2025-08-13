@@ -2,9 +2,11 @@
 
 namespace Phiki\Grammar;
 
-use Phiki\Tokenizer;
+use Phiki\Contracts\GrammarRepositoryInterface;
+use Phiki\Contracts\PatternInterface;
+use Phiki\Exceptions\UnrecognisedGrammarException;
 
-class IncludePattern extends Pattern
+class IncludePattern implements PatternInterface
 {
     public function __construct(
         public ?string $reference,
@@ -12,57 +14,39 @@ class IncludePattern extends Pattern
         public bool $injection = false,
     ) {}
 
-    public function tryMatch(Tokenizer $tokenizer, string $lineText, int $linePosition, ?int $cannotExceed = null): MatchedPattern|false
-    {
-        $resolved = $tokenizer->resolve($this);
-
-        if ($resolved !== null) {
-            return $resolved->tryMatch($tokenizer, $lineText, $linePosition, $cannotExceed);
-        }
-
-        return false;
-    }
-
-    public function isSelf(): bool
-    {
-        return $this->reference === '$self';
-    }
-
-    public function isBase(): bool
-    {
-        return $this->reference === '$base';
-    }
-
-    public function getReference(): ?string
-    {
-        return $this->reference;
-    }
-
-    public function getScopeName(): ?string
-    {
-        return $this->scopeName;
-    }
-
-    public function scope(): null
+    public function getScopeName(array $captures): ?string
     {
         return null;
     }
 
-    public function wasInjected(): bool
+    /**
+     * Compile the pattern into a list of matchable patterns.
+     * 
+     * @return array<array{ 0: PatternInterface, 1: string }>
+     */
+    public function compile(ParsedGrammar $grammar, GrammarRepositoryInterface $grammars, bool $allowA, bool $allowG): array
     {
-        return $this->injection;
-    }
-
-    public function __toString(): string
-    {
-        if (isset($this->reference, $this->scopeName)) {
-            return sprintf('include: %s@%s', $this->reference, $this->scopeName);
+        try {
+            $resolved = match (true) {
+                // "include": "$self"
+                $this->reference === '$self' => $grammars->getFromScope($this->scopeName ?? $grammar->scopeName),
+                // "include": "$base"
+                $this->reference === '$base' => $grammar,
+                // "include": "#name"
+                $this->reference !== null && $this->scopeName === $grammar->scopeName => $grammar->resolve($this->reference),
+                // "include": "scope#name"
+                $this->reference !== null && $this->scopeName !== $grammar->scopeName => $grammars->getFromScope($this->scopeName)->resolve($this->reference),
+                // "include": "scope"
+                default => $grammars->getFromScope($this->scopeName),
+            };
+        } catch (UnrecognisedGrammarException) {
+            $resolved = null;
         }
 
-        if (isset($this->scopeName)) {
-            return sprintf('include: %s', $this->scopeName);
+        if ($resolved === null) {
+            return [];
         }
 
-        return sprintf('include: %s', $this->reference);
+        return $resolved->compile($grammar, $grammars, $allowA, $allowG);
     }
 }

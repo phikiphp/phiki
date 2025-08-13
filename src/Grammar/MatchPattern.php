@@ -2,12 +2,12 @@
 
 namespace Phiki\Grammar;
 
-use Exception;
-use Phiki\Contracts\ContainsCapturesInterface;
+use Phiki\Contracts\GrammarRepositoryInterface;
+use Phiki\Contracts\PatternInterface;
 use Phiki\Support\Regex;
-use Phiki\Tokenizer;
+use Phiki\Support\Str;
 
-class MatchPattern extends Pattern implements ContainsCapturesInterface
+class MatchPattern implements PatternInterface
 {
     /**
      * @param  Capture[]  $captures
@@ -19,41 +19,24 @@ class MatchPattern extends Pattern implements ContainsCapturesInterface
         public bool $injection = false,
     ) {}
 
-    public function tryMatch(Tokenizer $tokenizer, string $lineText, int $linePosition, ?int $cannotExceed = null): MatchedPattern|false
+    public function getScopeName(array $captures): ?string
     {
-        if (! $this->match->match($lineText, $matches, $linePosition, $tokenizer->allowA(), $tokenizer->allowG())) {
-            return false;
+        if ($this->name === null) {
+            return null;
         }
 
-        if ($cannotExceed !== null && $matches[0][1] > $cannotExceed) {
-            return false;
-        }
-
-        return new MatchedPattern($this, $matches);
+        return Str::replaceScopeNameCapture($this->name, $captures);
     }
 
-    public function getCaptures(): array
+    /**
+     * Compile the pattern into a list of matchable patterns.
+     * 
+     * @return array<array{ 0: PatternInterface, 1: string }>
+     */
+    public function compile(ParsedGrammar $grammar, GrammarRepositoryInterface $grammars, bool $allowA, bool $allowG): array
     {
-        return $this->captures;
-    }
-
-    public function hasCaptures(): bool
-    {
-        return count($this->captures) > 0;
-    }
-
-    public function scope(): ?array
-    {
-        return $this->name ? explode(' ', $this->name) : null;
-    }
-
-    public function wasInjected(): bool
-    {
-        return $this->injection;
-    }
-
-    public function __toString(): string
-    {
-        return sprintf('match: %s', $this->match);
+        return [
+            [$this, $this->match->get($allowA, $allowG)],
+        ];
     }
 }

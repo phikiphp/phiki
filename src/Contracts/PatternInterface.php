@@ -2,32 +2,21 @@
 
 namespace Phiki\Contracts;
 
-use Phiki\Grammar\MatchedPattern;
-use Phiki\Tokenizer;
-use Stringable;
+use Phiki\Grammar\ParsedGrammar;
 
-interface PatternInterface extends Stringable
+interface PatternInterface
 {
     /**
-     * Attempt to match the pattern against the current line's text, starting from the given position.
+     * Get the scope name of the pattern.
+     * 
+     * @param array<array{ 0: string, 1: int }> $captures
      */
-    public function tryMatch(Tokenizer $tokenizer, string $lineText, int $linePosition, ?int $cannotExceed = null): MatchedPattern|false;
+    public function getScopeName(array $captures): ?string;
 
     /**
-     * Produce a new stack of scopes based on the current stack and the pattern's scope.
-     *
-     * @param  string[]  $scopes
-     * @return string[]
+     * Compile the pattern into a list of matchable patterns.
+     * 
+     * @return array<array{ 0: PatternInterface, 1: string }>
      */
-    public function produceScopes(array $scopes): array;
-
-    /**
-     * Return the scope that this pattern applies.
-     */
-    public function scope(): string|array|null;
-
-    /**
-     * Determine whether or not the pattern was injected.
-     */
-    public function wasInjected(): bool;
+    public function compile(ParsedGrammar $grammar, GrammarRepositoryInterface $grammars, bool $allowA, bool $allowG): array;
 }

@@ -2,9 +2,11 @@
 
 namespace Phiki\Grammar;
 
-use Phiki\Contracts\PatternCollectionInterface;
+use Phiki\Contracts\GrammarRepositoryInterface;
+use Phiki\Contracts\PatternInterface;
+use Phiki\Support\Str;
 
-class Capture implements PatternCollectionInterface
+class Capture implements PatternInterface
 {
     public function __construct(
         public string $index,
@@ -12,18 +14,28 @@ class Capture implements PatternCollectionInterface
         public array $patterns = [],
     ) {}
 
-    public function getPatterns(): array
-    {
-        return $this->patterns;
-    }
-
-    public function hasPatterns(): bool
+    public function retokenizeCapturedWithRule(): bool
     {
         return count($this->patterns) > 0;
     }
 
-    public function scope(): ?array
+    public function getScopeName(array $captures): ?string
     {
-        return $this->name ? explode(' ', $this->name) : null;
+        if ($this->name === null) {
+            return null;
+        }
+
+        return Str::replaceScopeNameCapture($this->name, $captures);
+    }
+
+    public function compile(ParsedGrammar $grammar, GrammarRepositoryInterface $grammars, bool $allowA, bool $allowG): array
+    {
+        $compiled = [];
+
+        foreach ($this->patterns as $pattern) {
+            $compiled = array_merge($compiled, $pattern->compile($grammar, $grammars, $allowA, $allowG));
+        }
+
+        return $compiled;
     }
 }

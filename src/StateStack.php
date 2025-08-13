@@ -2,7 +2,9 @@
 
 namespace Phiki;
 
-use Phiki\Grammar\Pattern;
+use Phiki\Contracts\PatternInterface;
+use Phiki\Grammar\EndPattern;
+use Phiki\Grammar\WhilePattern;
 
 class StateStack
 {
@@ -16,7 +18,7 @@ class StateStack
      */
     public function __construct(
         public readonly StateStack | null $parent,
-        public readonly Pattern $pattern,
+        public PatternInterface $pattern,
         public readonly int $enterPos,
         public readonly int $anchorPos,
         public readonly bool $beginRuleCapturedEOL,
@@ -50,7 +52,7 @@ class StateStack
     /**
      * Push the given data into a new state stack.
      */
-    public function push(Pattern $pattern, int $enterPos, int $anchorPos, bool $beginRuleCapturedEOL, string | null $endRule, AttributedScopeStack | null $nameScopesList, AttributedScopeStack | null $contentNameScopesList): StateStack
+    public function push(PatternInterface $pattern, int $enterPos, int $anchorPos, bool $beginRuleCapturedEOL, string | null $endRule, AttributedScopeStack | null $nameScopesList, AttributedScopeStack | null $contentNameScopesList): StateStack
     {
         return new StateStack(
             parent: $this,
@@ -78,10 +80,10 @@ class StateStack
     /**
      * Generate a near-identical state stack with the given end rule.
      */
-    public function withEndRule(string $endRule): StateStack
+    public function withEndRule(EndPattern | WhilePattern $rule): StateStack
     {
         $stack = clone $this;
-        $stack->endRule = $endRule;
+        $stack->pattern = $rule;
 
         return $stack;
     }
@@ -102,5 +104,19 @@ class StateStack
         }
 
         return false;
+    }
+
+    /**
+     * Reset the state stack.
+     */
+    public function reset(): void
+    {
+        $el = $this;
+
+        while ($el !== null) {
+            $el->enterPos = -1;
+            $el->anchorPos = -1;
+            $el = $el->parent;
+        }
     }
 }

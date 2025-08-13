@@ -56,9 +56,9 @@ class Regex implements Stringable
         }
     }
 
-    public function match(string $input, mixed &$matches = [], int $offset = 0, bool $allowA = false, bool $allowG = false, array $references = []): bool
+    public function get(bool $allowA = false, bool $allowG = false, array $references = []): string
     {
-        $pattern = $this->get($allowA, $allowG);
+        $pattern = $this->resolveAnchors($this->pattern, $allowA, $allowG);
 
         if ($references !== []) {
             $pattern = preg_replace_callback('/\\\\(\d+)/', function ($matches) use ($references) {
@@ -70,62 +70,7 @@ class Regex implements Stringable
             }, $pattern);
         }
 
-        // Throw for warnings.
-        set_error_handler(fn ($errno, $errstr) => throw new GenericPatternException($pattern, $errstr, $errno));
-
-        mb_ereg_search_init($input, $pattern);
-        
-        if (! mb_ereg_search_setpos($offset)) {
-            throw new FailedToSetSearchPositionException();
-        }
-
-        $result = mb_ereg_search_pos();
-
-        restore_error_handler();
-
-        if ($result === false) {
-            return false;
-        }
-        
-        [$start, $length] = $result;
-
-        $matches = mb_ereg_search_getregs();
-
-        // Since we know the start position and length of the match, we can
-        // extract the relevant portion of the input string to reduce the
-        // search grid for subsequent matches.
-        $substr = mb_substr($input, $start, $length);
-        
-        foreach ($matches as $key => $match) {
-            // The first match is the full match, so we can just use the start position.
-            if ($key === 0) {
-                $matches[$key] = [$match, $start];
-                continue;
-            }
-
-            // If the capture group is empty, we need to use the same format as PCRE's PREG_OFFSET_CAPTURE,
-            // which is an array with an empty match and -1 as the offset.
-            if (! $match) {
-                $matches[$key] = ["", -1];
-
-                continue;
-            }
-
-            // For subsequent matches, we can use the reduced search grid to find the position
-            // of the match within the substring. We need to adjust the position based on the
-            // original input string's start position.
-            $pos = mb_strpos($substr, $match);
-
-            // We can then store the value in the matches array with the adjusted position.
-            $matches[$key] = [$match, $start + $pos];
-        }
-
-        return true;
-    }
-
-    public function get(bool $allowA = false, bool $allowG = false): string
-    {
-        return $this->resolveAnchors($this->pattern, $allowA, $allowG);
+        return $pattern;
     }
 
     private function buildAnchorCache(): array

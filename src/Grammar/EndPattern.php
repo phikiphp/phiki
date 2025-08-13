@@ -2,14 +2,12 @@
 
 namespace Phiki\Grammar;
 
-use Exception;
-use Phiki\Contracts\ContainsCapturesInterface;
-use Phiki\Contracts\PatternCollectionInterface;
-use Phiki\Contracts\ProvidesContentName;
+use Illuminate\Support\Str;
+use Phiki\Contracts\GrammarRepositoryInterface;
+use Phiki\Contracts\PatternInterface;
 use Phiki\Support\Regex;
-use Phiki\Tokenizer;
 
-class EndPattern extends Pattern implements ContainsCapturesInterface, PatternCollectionInterface, ProvidesContentName
+class EndPattern implements PatternInterface
 {
     public function __construct(
         public MatchedPattern $begin,
@@ -22,58 +20,30 @@ class EndPattern extends Pattern implements ContainsCapturesInterface, PatternCo
         public bool $injection = false,
     ) {}
 
-    public function getContentName(): ?string
+    public function getScopeName(array $captures): ?string
     {
-        return $this->contentName;
-    }
-
-    public function getPatterns(): array
-    {
-        return $this->patterns;
-    }
-
-    public function hasPatterns(): bool
-    {
-        return count($this->patterns) > 0;
-    }
-
-    public function getCaptures(): array
-    {
-        $captures = count($this->endCaptures) > 0 ? $this->endCaptures : $this->captures;
-
-        return $captures;
-    }
-
-    public function hasCaptures(): bool
-    {
-        return count($this->endCaptures) > 0 || count($this->captures) > 0;
-    }
-
-    public function tryMatch(Tokenizer $tokenizer, string $lineText, int $linePosition, ?int $cannotExceed = null): MatchedPattern|false
-    {
-        if (! $this->end->match($lineText, $matches, $linePosition, $tokenizer->allowA(), $tokenizer->allowG(), $this->begin->matches)) {
-            return false;
+        if ($this->name === null) {
+            return null;
         }
 
-        if ($cannotExceed !== null && $matches[0][1] > $cannotExceed) {
-            return false;
+        return Str::replaceScopeNameCapture($this->name, $captures);
+    }
+
+    /**
+     * Compile the pattern into a list of matchable patterns.
+     * 
+     * @return array<array{ 0: PatternInterface, 1: string }>
+     */
+    public function compile(ParsedGrammar $grammar, GrammarRepositoryInterface $grammars, bool $allowA, bool $allowG): array
+    {
+        $compiled = [
+            [$this, $this->end->get($allowA, $allowG)],
+        ];
+
+        foreach ($this->patterns as $pattern) {
+            $compiled = array_merge($compiled, $pattern->compile($grammar, $grammars, $allowA, $allowG));
         }
 
-        return new MatchedPattern($this, $matches);
-    }
-
-    public function scope(): ?array
-    {
-        return $this->name ? explode(' ', $this->name) : null;
-    }
-
-    public function wasInjected(): bool
-    {
-        return $this->injection;
-    }
-
-    public function __toString(): string
-    {
-        return sprintf('end: %s', $this->end);
-    }
+        return $compiled;
+    }   
 }

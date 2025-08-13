@@ -2,13 +2,13 @@
 
 namespace Phiki\Grammar;
 
-use Phiki\Contracts\PatternCollectionInterface;
-use Phiki\Tokenizer;
+use Phiki\Contracts\GrammarRepositoryInterface;
+use Phiki\Contracts\PatternInterface;
 
-final class ParsedGrammar extends Pattern implements PatternCollectionInterface
+final class ParsedGrammar implements PatternInterface
 {
     /**
-     * @param  Pattern[]  $patterns
+     * @param  PatternInterface[]  $patterns
      * @param  array<string, Pattern>  $repository
      * @param  Injections\Injection[]  $injections
      */
@@ -19,6 +19,27 @@ final class ParsedGrammar extends Pattern implements PatternCollectionInterface
         public array $repository,
         public array $injections,
     ) {}
+
+    public function getScopeName(array $captures): ?string
+    {
+        return null;
+    }
+
+    /**
+     * Compile the pattern into a list of matchable patterns.
+     * 
+     * @return array<array{ 0: PatternInterface, 1: string }>
+     */
+    public function compile(ParsedGrammar $grammar, GrammarRepositoryInterface $grammars, bool $allowA, bool $allowG): array
+    {
+        $compiled = [];
+
+        foreach ($this->patterns as $pattern) {
+            $compiled[] = array_merge($compiled, $pattern->compile($grammar, $grammars, $allowA, $allowG));
+        }
+
+        return $compiled;
+    }
 
     /** @return Injections\Injection[] */
     public function getInjections(): array
@@ -31,29 +52,9 @@ final class ParsedGrammar extends Pattern implements PatternCollectionInterface
         return count($this->injections) > 0;
     }
 
-    public function getPatterns(): array
-    {
-        return $this->patterns;
-    }
-
-    public function hasPatterns(): bool
-    {
-        return count($this->patterns) > 0;
-    }
-
-    public function tryMatch(Tokenizer $tokenizer, string $lineText, int $linePosition, ?int $cannotExceed = null): MatchedPattern|false
-    {
-        return $tokenizer->matchUsing($lineText, $this->getPatterns());
-    }
-
-    public function resolve(string $reference): ?Pattern
+    public function resolve(string $reference): ?PatternInterface
     {
         return $this->repository[$reference] ?? null;
-    }
-
-    public function scope(): string
-    {
-        return $this->scopeName;
     }
 
     public static function fromArray(array $grammar): ParsedGrammar
@@ -61,15 +62,5 @@ final class ParsedGrammar extends Pattern implements PatternCollectionInterface
         $parser = new Parser;
 
         return $parser->parse($grammar);
-    }
-
-    public function wasInjected(): bool
-    {
-        return false;
-    }
-
-    public function __toString(): string
-    {
-        return sprintf('grammar: %s', $this->scopeName);
     }
 }
