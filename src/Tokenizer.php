@@ -84,6 +84,12 @@ class Tokenizer
         $stop = false;
 
         while (! $stop) {
+            if ($linePos >= $lineLength) {
+                // If we've reached the end of the line, we can produce any remaining tokens.
+                $lineTokens->produce($stack, $lineLength);
+                break;
+            }
+
             // Find the next matching rule or injection.
             $rule = $this->matchRuleOrInjections($grammar, $lineText, $isFirstLine, $linePos, $stack, $anchorPosition);
 
