@@ -8,6 +8,7 @@ use Phiki\Exceptions\FailedToSetSearchPositionException;
 use Phiki\Exceptions\GenericPatternException;
 use Phiki\Grammar\MatchedPattern;
 use Phiki\Grammar\ParsedGrammar;
+use ValueError;
 
 class PatternSearcher
 {
@@ -29,19 +30,18 @@ class PatternSearcher
     public function findNextMatch(string $lineText, int $linePos): ?MatchedPattern
     {
         $patterns = $this->pattern->compile($this->grammar, $this->grammars, $this->allowA, $this->allowG);
+        $subject = mb_substr($lineText, $linePos);
         $bestLocation = null;
         $bestLength = null;
         $bestMatches = null;
         $bestPattern = null;
 
         foreach ($patterns as [$pattern, $regex]) {
-            if (! mb_ereg_search_init($lineText, $regex)) {
+            if (! mb_ereg_search_init($subject, $regex)) {
                 throw new GenericPatternException($regex, "Failed to initialize regex search for pattern: $pattern");
             }
 
-            if (! mb_ereg_search_setpos($linePos)) {
-                throw new FailedToSetSearchPositionException();
-            }
+            mb_ereg_search_setpos(0);
 
             $result = mb_ereg_search_pos();
 
@@ -51,7 +51,7 @@ class PatternSearcher
 
             [$start, $length] = $result;
             
-            if ($start === $linePos) {
+            if ($start === 0) {
                 $bestLocation = $start;
                 $bestMatches = mb_ereg_search_getregs();
                 $bestLength = $length;
@@ -83,7 +83,7 @@ class PatternSearcher
         foreach ($bestMatches as $key => $match) {
             // The first match is the full match, so we can just use the start position.
             if ($key === 0) {
-                $bestMatches[$key] = [$match, $bestLocation];
+                $bestMatches[$key] = [$match, $linePos + $bestLocation];
                 continue;
             }
 
@@ -103,7 +103,7 @@ class PatternSearcher
             $pos = mb_strpos($substr, $match);
 
             // We can then store the value in the matches array with the adjusted position.
-            $bestMatches[$key] = [$match, $bestLocation + $pos];
+            $bestMatches[$key] = [$match, $linePos + $bestLocation + $pos];
         }
 
         return new MatchedPattern($bestPattern, $bestMatches);
