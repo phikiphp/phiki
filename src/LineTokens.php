@@ -57,7 +57,7 @@ class LineTokens
      */
     public function getResult(StateStack $stack, int $lineLength): array
     {
-        if (count($this->tokens) > 0 && $this->tokens[count($this->tokens) - 1]->start === $lineLength - 1) {
+        if (count($this->tokens) > 0 && $this->tokens[count($this->tokens) - 1]->start === $lineLength) {
             array_pop($this->tokens);
         }
 
