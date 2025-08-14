@@ -42,7 +42,7 @@ class LineTokens
 
         $this->tokens[] = new Token(
             scopes: $scopes,
-            text: substr($this->lineText, $this->lastTokenEndIndex, $endIndex),
+            text: substr($this->lineText, $this->lastTokenEndIndex, $endIndex - $this->lastTokenEndIndex),
             start: $this->lastTokenEndIndex,
             end: $endIndex,
         );
