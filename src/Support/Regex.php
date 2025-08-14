@@ -60,15 +60,13 @@ class Regex implements Stringable
     {
         $pattern = $this->resolveAnchors($this->pattern, $allowA, $allowG);
 
-        if ($references !== []) {
-            $pattern = preg_replace_callback('/\\\\(\d+)/', function ($matches) use ($references) {
-                if (! isset($references[$matches[1]][0])) {
-                    return '';
-                }
+        $pattern = preg_replace_callback('/\\\\(\d+)/', function ($matches) use ($references) {
+            if (! isset($references[$matches[1]][0])) {
+                return '';
+            }
 
-                return $references[$matches[1]][0];
-            }, $pattern);
-        }
+            return $references[$matches[1]][0];
+        }, $pattern);
 
         return $pattern;
     }

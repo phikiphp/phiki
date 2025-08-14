@@ -35,7 +35,9 @@ class PatternSearcher
         $bestPattern = null;
 
         foreach ($patterns as [$pattern, $regex]) {
-            mb_ereg_search_init($lineText, $regex);
+            if (! mb_ereg_search_init($lineText, $regex)) {
+                throw new GenericPatternException($regex, "Failed to initialize regex search for pattern: $pattern");
+            }
 
             if (! mb_ereg_search_setpos($linePos)) {
                 throw new FailedToSetSearchPositionException();
@@ -76,6 +78,7 @@ class PatternSearcher
         // extract the relevant portion of the input string to reduce the
         // search grid for subsequent matches.
         $substr = mb_substr($lineText, $bestLocation, $bestLength);
+        $keyToIndexMap = array_flip(array_keys($bestMatches));
 
         foreach ($bestMatches as $key => $match) {
             // The first match is the full match, so we can just use the start position.
@@ -83,6 +86,8 @@ class PatternSearcher
                 $bestMatches[$key] = [$match, $bestLocation];
                 continue;
             }
+
+            $key = is_string($key) ? $keyToIndexMap[$key] : $key;
 
             // If the capture group is empty, we need to use the same format as PCRE's PREG_OFFSET_CAPTURE,
             // which is an array with an empty match and -1 as the offset.
