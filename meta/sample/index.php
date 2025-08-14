@@ -60,7 +60,7 @@ $input = $_GET['input'] ?? '';
 
             <div class="grid grid-cols-2 gap-x-12 flex-1">
                 <textarea name="input" id="input" class="w-full h-full resize-none border border-neutral-200 rounded p-4 font-mono text-xs"><?= htmlspecialchars($input) ?></textarea>
-                <div class="w-full h-full border border-neutral-200 rounded overflow-hidden flex flex-col [&_pre]:p-4 [&_pre]:flex-1 [&_pre]:overflow-auto">
+                <div class="w-full h-full border border-neutral-200 rounded overflow-hidden flex flex-col [&_pre]:p-4 [&_pre]:flex-1 [&_pre]:overflow-auto [&_pre]:text-xs">
                     <?= (new Phiki)->codeToHtml($input, $grammar, $theme) ?>
                 </div>
             </div>
