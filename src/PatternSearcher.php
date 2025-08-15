@@ -77,7 +77,7 @@ class PatternSearcher
         // Since we know the start position and length of the match, we can
         // extract the relevant portion of the input string to reduce the
         // search grid for subsequent matches.
-        $substr = mb_substr($lineText, $bestLocation, $bestLength);
+        $substr = mb_substr($subject, $bestLocation, $bestLength);
         $keyToIndexMap = array_flip(array_keys($bestMatches));
 
         foreach ($bestMatches as $key => $match) {
