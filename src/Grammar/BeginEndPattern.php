@@ -31,6 +31,11 @@ class BeginEndPattern implements PatternInterface, HasContentNameInterface
         return Str::replaceScopeNameCapture($this->name, $captures);
     }
 
+    public function captures(): array
+    {
+        return count(array_filter($this->beginCaptures)) > 0 ? $this->beginCaptures : $this->captures;
+    }
+
     public function getContentName(array $captures): ?string
     {
         if ($this->contentName === null) {

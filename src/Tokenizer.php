@@ -107,7 +107,7 @@ class Tokenizer
                 $stack = $stack->withContentNameScopesList($stack->nameScopesList);
 
                 // Now we can process the captures for this matched pattern.
-                $this->handleCaptures($grammar, $lineText, $isFirstLine, $stack, $lineTokens, $rule->pattern->endCaptures, $rule->matches);
+                $this->handleCaptures($grammar, $lineText, $isFirstLine, $stack, $lineTokens, $rule->pattern->captures(), $rule->matches);
 
                 // We now need to make sure we produce tokens for the remaining text in the match.
                 $lineTokens->produce($stack, $rule->end());
@@ -144,7 +144,7 @@ class Tokenizer
 
                 // If we matched a `begin` `end` pattern, we need to handle the captures for that.
                 if ($rule->pattern instanceof BeginEndPattern) {
-                    $this->handleCaptures($grammar, $lineText, $isFirstLine, $stack, $lineTokens, $rule->pattern->beginCaptures, $rule->matches);
+                    $this->handleCaptures($grammar, $lineText, $isFirstLine, $stack, $lineTokens, $rule->pattern->captures(), $rule->matches);
 
                     $lineTokens->produce($stack, $rule->end());
                     $anchorPosition = $rule->end();
@@ -161,7 +161,7 @@ class Tokenizer
                         continue;
                     }
                 } elseif ($rule->pattern instanceof BeginWhilePattern) {
-                    $this->handleCaptures($grammar, $lineText, $isFirstLine, $stack, $lineTokens, $rule->pattern->beginCaptures, $rule->matches);
+                    $this->handleCaptures($grammar, $lineText, $isFirstLine, $stack, $lineTokens, $rule->pattern->captures(), $rule->matches);
 
                     $lineTokens->produce($stack, $rule->end());
                     $anchorPosition = $rule->end();

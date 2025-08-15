@@ -29,6 +29,11 @@ class EndPattern implements PatternInterface
         return Str::replaceScopeNameCapture($this->name, $captures);
     }
 
+    public function captures(): array
+    {
+        return count(array_filter($this->endCaptures)) > 0 ? $this->endCaptures : $this->captures;
+    }
+
     /**
      * Compile the pattern into a list of matchable patterns.
      * 

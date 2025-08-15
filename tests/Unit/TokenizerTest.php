@@ -466,16 +466,16 @@ describe('begin/end', function () {
         expect($tokens)->toEqualCanonicalizing([
             [
                 new Token(['source.test', 'meta.block.test', 'keyword.control.test', 'keyword.control.begin.test'], 'begin', 0, 5),
-                new Token(['source.test', 'meta.block.test'], "\n", 5, 5),
+                new Token(['source.test', 'meta.block.test'], "\n", 5, 6),
             ],
             [
                 new Token(['source.test', 'meta.block.test'], '    ', 0, 4),
                 new Token(['source.test', 'meta.block.test', 'entity.name.test', 'entity.name.foo.test'], 'foo', 4, 7),
-                new Token(['source.test', 'meta.block.test'], "\n", 7, 7),
+                new Token(['source.test', 'meta.block.test'], "\n", 7, 8),
             ],
             [
                 new Token(['source.test', 'meta.block.test', 'keyword.control.test', 'keyword.control.end.test'], 'end', 0, 3),
-                new Token(['source.test'], "\n", 3, 3),
+                new Token(['source.test'], "\n", 3, 4),
             ],
         ]);
     });
@@ -506,7 +506,7 @@ describe('begin/end', function () {
                 new Token(['source.test', 'meta.block.test', 'meta.begin.end.block.test', 'entity.name.test'], 'foo', 6, 9),
                 new Token(['source.test', 'meta.block.test', 'meta.begin.end.block.test'], ' ', 9, 10),
                 new Token(['source.test', 'meta.block.test'], 'end', 10, 13),
-                new Token(['source.test'], "\n", 13, 13),
+                new Token(['source.test'], "\n", 13, 14),
             ],
         ]);
     });
@@ -533,7 +533,7 @@ describe('begin/end', function () {
                 new Token(['source.test', 'meta.block.test'], 'begin', 0, 5),
                 new Token(['source.test', 'meta.block.test'], ' ', 5, 6),
                 new Token(['source.test', 'meta.block.test'], 'end', 6, 9),
-                new Token(['source.test'], " foo\n", 9, 13),
+                new Token(['source.test'], " foo\n", 9, 14),
             ]
         ]);
     });
@@ -562,7 +562,7 @@ describe('begin/end', function () {
                 new Token(['source.test', 'meta.block.test', 'entity.name.test'], 'foo', 6, 9),
                 new Token(['source.test', 'meta.block.test'], ' ', 9, 10),
                 new Token(['source.test', 'meta.block.test'], 'end', 10, 13),
-                new Token(['source.test'], " foo\n", 13, 17),
+                new Token(['source.test'], " foo\n", 13, 18),
             ]
         ]);
     });
