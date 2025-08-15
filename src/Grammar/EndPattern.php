@@ -42,7 +42,7 @@ class EndPattern implements PatternInterface
     public function compile(ParsedGrammar $grammar, GrammarRepositoryInterface $grammars, bool $allowA, bool $allowG): array
     {
         $compiled = [
-            [$this, $this->end->get($allowA, $allowG)],
+            [$this, $this->end->get($allowA, $allowG, $this->begin->matches)],
         ];
 
         foreach ($this->patterns as $pattern) {

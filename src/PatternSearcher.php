@@ -40,8 +40,8 @@ class PatternSearcher
         $bestPattern = null;
 
         foreach ($patterns as [$pattern, $regex]) {
-            if (! mb_ereg_search_init($subject, $regex)) {
-                throw new GenericPatternException($regex, "Failed to initialize regex search for pattern: $pattern");
+            if (! @mb_ereg_search_init($subject, $regex)) {
+                continue;
             }
 
             mb_ereg_search_setpos(0);
