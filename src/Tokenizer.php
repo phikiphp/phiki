@@ -11,6 +11,7 @@ use Phiki\Grammar\Grammar;
 use Phiki\Grammar\MatchedPattern;
 use Phiki\Grammar\MatchPattern;
 use Phiki\Grammar\ParsedGrammar;
+use Phiki\Grammar\WhilePattern;
 use Phiki\Token\Token;
 
 class Tokenizer
@@ -71,15 +72,9 @@ class Tokenizer
         $lineLength = strlen($lineText);
         $anchorPosition = -1;
 
-        // FIXME: Implement while condition checking.
-        // if ($checkWhileConditions) {
-        //     $whileCheckResult = $this->checkWhileConditions($grammar, $lineText, $isFirstLine, $linePos, $stack, $lineTokens);
-
-        //     $stack = $whileCheckResult->stack;
-        //     $linePos = $whileCheckResult->linePos;
-        //     $isFirstLine = $whileCheckResult->isFirstLine;
-        //     $anchorPosition = $whileCheckResult->anchorPosition;
-        // }
+        if ($checkWhileConditions) {
+            $this->checkWhileConditions($grammar, $lineText, $isFirstLine, $linePos, $stack, $lineTokens, $anchorPosition);
+        }
 
         $stop = false;
 
@@ -308,7 +303,46 @@ class Tokenizer
      */
     protected function matchRule(ParsedGrammar $grammar, string $lineText, bool $isFirstLine, int $linePos, StateStack &$stack, int $anchorPosition): ?MatchedPattern
     {
-        return new PatternSearcher($stack->pattern, $grammar, $this->environment->getGrammarRepository(), $stack->endRule, $isFirstLine, $linePos === $anchorPosition)
+        return new PatternSearcher($stack->pattern, $grammar, $this->environment->getGrammarRepository(), $isFirstLine, $linePos === $anchorPosition)
             ->findNextMatch($lineText, $linePos);
+    }
+
+    /**
+     * Check while conditions on the stack.
+     */
+    protected function checkWhileConditions(ParsedGrammar $grammar, string $lineText, bool &$isFirstLine, int &$linePos, StateStack &$stack, LineTokens $lineTokens, int &$anchorPosition): void
+    {
+        $anchorPosition = $stack->beginRuleCapturedEOL ? 0 : -1;
+
+        $whileRules = [];
+
+        // Find all of the while patterns in the stack.
+        for ($node = $stack; $node; $node = $node->pop()) {
+            if ($node->pattern instanceof WhilePattern) {
+                $whileRules[] = new WhileStackElement($node, $node->pattern);
+            }
+        }
+
+        // Process and check each while pattern.
+        for ($whileRule = array_pop($whileRules); $whileRule; $whileRule = array_pop($whileRules)) {
+            $searcher = new PatternSearcher($whileRule->rule, $grammar, $this->environment->getGrammarRepository(), $isFirstLine, $linePos === $anchorPosition);
+            $r = $searcher->findNextMatch($lineText, $linePos, while: true);
+
+            if (! $r) {
+                $stack = $whileRule->stack->pop();
+                break;
+            }
+
+            if (count($r->matches) > 0) {
+                $lineTokens->produce($whileRule->stack, $r->offset());
+                $this->handleCaptures($grammar, $lineText, $isFirstLine, $whileRule->stack, $lineTokens, $whileRule->rule->captures(), $r->matches);
+                $lineTokens->produce($whileRule->stack, $r->end());
+                $anchorPosition = $r->end();
+                if ($r->end() > $linePos) {
+                    $linePos = $r->end();
+                    $isFirstLine = false;
+                }
+            }
+        }
     }
 }

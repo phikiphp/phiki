@@ -8,6 +8,7 @@ use Phiki\Exceptions\FailedToSetSearchPositionException;
 use Phiki\Exceptions\GenericPatternException;
 use Phiki\Grammar\MatchedPattern;
 use Phiki\Grammar\ParsedGrammar;
+use Phiki\Grammar\WhilePattern;
 use ValueError;
 
 class PatternSearcher
@@ -19,7 +20,6 @@ class PatternSearcher
         protected PatternInterface $pattern,
         protected ParsedGrammar $grammar,
         protected GrammarRepositoryInterface $grammars,
-        protected string | null $endRule,
         protected bool $allowA, 
         protected bool $allowG,
     ) {}
@@ -27,9 +27,12 @@ class PatternSearcher
     /**
      * Find the next closest match in the given text.
      */
-    public function findNextMatch(string $lineText, int $linePos): ?MatchedPattern
+    public function findNextMatch(string $lineText, int $linePos, bool $while = false): ?MatchedPattern
     {
-        $patterns = $this->pattern->compile($this->grammar, $this->grammars, $this->allowA, $this->allowG);
+        $patterns = $while && $this->pattern instanceof WhilePattern
+            ? [
+                [$this->pattern, $this->pattern->while->get($this->allowA, $this->allowG)]
+            ] : $this->pattern->compile($this->grammar, $this->grammars, $this->allowA, $this->allowG);
         $subject = mb_substr($lineText, $linePos);
         $bestLocation = null;
         $bestLength = null;

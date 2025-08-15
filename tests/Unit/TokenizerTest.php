@@ -593,3 +593,53 @@ describe('scopes', function () {
         ]);
     });
 });
+
+describe('while', function () {
+    it('correctly processes while patterns', function () {
+        $tokens = tokenize(
+            <<<'MARKDOWN'
+            > first line
+            > second line
+            > third line
+            MARKDOWN,
+            [
+                'patterns' => [
+                    [
+                        'begin' => '(^|\\G)[ ]{0,3}(>) ?',
+                        'captures' => [
+                            '2' => [
+                                'name' => 'punctuation.definition.quote.begin.test',
+                            ],
+                        ],
+                        'name' => 'markup.quote.block.test',
+                        'patterns' => [
+                            [
+                                'match' => '.*',
+                                'name' => 'markup.quote.block.line.test',
+                            ]
+                        ],
+                        'while' => '(^|\\G)\\s*(>) ?',
+                    ]
+                ],
+            ]
+        );
+
+        expect($tokens)->toEqualCanonicalizing([
+            [
+                new Token(['source.test', 'markup.quote.block.test', 'punctuation.definition.quote.begin.test'], '>', 0, 1),
+                new Token(['source.test', 'markup.quote.block.test'], ' ', 1, 2),
+                new Token(['source.test', 'markup.quote.block.test', 'markup.quote.block.line.test'], "first line\n", 2, 13),
+            ],
+            [
+                new Token(['source.test', 'markup.quote.block.test', 'punctuation.definition.quote.begin.test'], '>', 0, 1),
+                new Token(['source.test', 'markup.quote.block.test'], ' ', 1, 2),
+                new Token(['source.test', 'markup.quote.block.test', 'markup.quote.block.line.test'], "second line\n", 2, 14),
+            ],
+            [
+                new Token(['source.test', 'markup.quote.block.test', 'punctuation.definition.quote.begin.test'], '>', 0, 1),
+                new Token(['source.test', 'markup.quote.block.test'], ' ', 1, 2),
+                new Token(['source.test', 'markup.quote.block.test', 'markup.quote.block.line.test'], "third line\n", 2, 13),
+            ]
+        ]);
+    });
+});
