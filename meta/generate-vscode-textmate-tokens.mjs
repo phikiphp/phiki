@@ -1,6 +1,6 @@
 import fs from 'node:fs'
 import path from 'node:path'
-import vsctm from 'vscode-textmate'
+import vsctm from '../vscode-textmate/release/main.js'
 import oniguruma from 'vscode-oniguruma'
 
 const args = process.argv.slice(2);

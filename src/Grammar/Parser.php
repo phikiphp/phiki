@@ -150,6 +150,15 @@ class Parser
             $result[$index] = $this->capture($capture, strval($index));
         }
 
+        $captureIndices = array_keys($result);
+        $maxCaptureIdx = $captureIndices === [] ? 0 : max(array_keys($result));
+
+        for ($i = 0; $i <= $maxCaptureIdx; $i++) {
+            if (! isset($result[$i])) {
+                $result[$i] = null;
+            }
+        }
+
         return $result;
     }
 

@@ -64,6 +64,10 @@ $input = $_GET['input'] ?? '';
                     <?= (new Phiki)->codeToHtml($input, $grammar, $theme) ?>
                 </div>
             </div>
+
+            <div>
+                <?php dump((new Phiki)->codeToTokens($input, $grammar, $theme)) ?>
+            </div>
         </form>
     </body>
 </body>
