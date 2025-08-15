@@ -588,7 +588,7 @@ describe('scopes', function () {
         expect($tokens)->toEqualCanonicalizing([
             [
                 new Token(['source.test', 'entity.name.test', 'entity.name.foo.test'], 'foo', 0, 3),
-                new Token(['source.test'], "\n", 3, 3),
+                new Token(['source.test'], "\n", 3, 4),
             ],
         ]);
     });

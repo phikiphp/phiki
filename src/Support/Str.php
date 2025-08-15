@@ -5,7 +5,7 @@ namespace Phiki\Support;
 /** @internal */
 class Str
 {
-    const CAPTURING_REGEX_SOURCE = "/\$(\d+)|\${(\d+):\/(downcase|upcase)}/";
+    const CAPTURING_REGEX_SOURCE = '/\$(\d+)|\${(\d+):\/(downcase|upcase)}/';
 
     public static function studly(string $value): string
     {
@@ -55,7 +55,7 @@ class Str
                 $result = substr($result, 1);
             }
 
-            return match ($matches[3]) {
+            return match ($matches[3] ?? null) {
                 'downcase' => strtolower($result),
                 'upcase' => strtoupper($result),
                 default => $result,
