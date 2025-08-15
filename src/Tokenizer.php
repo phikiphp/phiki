@@ -205,7 +205,7 @@ class Tokenizer
      */
     protected function handleCaptures(ParsedGrammar $grammar, string $lineText, bool $isFirstLine, StateStack $stack, LineTokens $lineTokens, ?array $captures, array $matches): void
     {
-        if ($captures === null || count($captures) === 0) {
+        if ($captures === null || count(array_filter($captures)) === 0) {
             return;
         }
 
