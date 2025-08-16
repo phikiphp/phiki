@@ -6,10 +6,6 @@ This section contains all of the necessary steps to upgrade Phiki from `v1.x` to
 
 ## High impact
 
-### Minimum PHP version increased to PHP 8.4
-
-To keep up to date with the latest and greatest in PHP, the minimum version required for Phiki 2.x is PHP 8.4 or greater.
-
 ### Grammar changes
 
 In order to improve Phiki's reliabilty when it comes to processing input text and outputting accurate HTML, we've made the decision to strip back the grammars that Phiki ships with.
