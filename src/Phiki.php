@@ -9,6 +9,7 @@ use Phiki\Grammar\Grammar;
 use Phiki\Grammar\ParsedGrammar;
 use Phiki\Support\Arr;
 use Phiki\Support\Str;
+use Phiki\TextMate\Tokenizer;
 use Phiki\Theme\ParsedTheme;
 use Phiki\Theme\Theme;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Phiki;
+namespace Phiki\TextMate;
 
 use Phiki\Environment\Environment;
 use Phiki\Grammar\BeginEndPattern;

@@ -2,7 +2,7 @@
 
 use Phiki\Environment\Environment;
 use Phiki\Grammar\ParsedGrammar;
-use Phiki\Tokenizer;
+use Phiki\TextMate\Tokenizer;
 
 function tokenize(string $input, array $grammar): array
 {

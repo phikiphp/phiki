@@ -1,6 +1,6 @@
 <?php
 
-namespace Phiki;
+namespace Phiki\TextMate;
 
 use Phiki\Grammar\WhilePattern;
 
