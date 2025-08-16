@@ -32,6 +32,9 @@ Phiki is already a large and complex codebase so the slimmer we can make it, the
 
 These classes were for internal use only so hopefully they won't affect your userland code.
 
-### `Phiki\Tokenizer` namespace change
+### Class namespaces changes and removals
 
-The `Tokenizer` class was previously found at `Phiki\Tokenizer`. As part of the new tokenizer system, we've moved this into a new namespace `Phiki\TextMate\Tokenizer` since it now uses multiple classes and would otherwise make the root namespace a mess.
+A handful of classes have been moved.
+
+* `Phiki\Tokenizer` -> `Phiki\TextMate\Tokenizer`
+* `Phiki\Highlighter` -> `Phiki\Highlighting\Highlighter`
