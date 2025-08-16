@@ -44,7 +44,9 @@ class PatternSearcher
                 continue;
             }
 
-            mb_ereg_search_setpos(0);
+            if (! mb_ereg_search_setpos(0)) {
+                throw new FailedToSetSearchPositionException();
+            }
 
             $result = mb_ereg_search_pos();
 

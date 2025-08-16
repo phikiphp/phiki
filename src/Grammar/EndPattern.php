@@ -2,10 +2,10 @@
 
 namespace Phiki\Grammar;
 
-use Illuminate\Support\Str;
 use Phiki\Contracts\GrammarRepositoryInterface;
 use Phiki\Contracts\PatternInterface;
 use Phiki\Support\Regex;
+use Phiki\Support\Str;
 
 class EndPattern implements PatternInterface
 {

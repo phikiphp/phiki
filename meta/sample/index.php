@@ -66,7 +66,7 @@ $input = $_GET['input'] ?? '';
             </div>
 
             <div>
-                <?php dump((new Phiki)->codeToTokens($input, $grammar, $theme)) ?>
+                <?php dump((new Phiki)->codeToTokens($input, $grammar)) ?>
             </div>
         </form>
     </body>

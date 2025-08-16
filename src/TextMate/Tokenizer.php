@@ -113,6 +113,7 @@ class Tokenizer
                 // To prevent infinite loops, we need to see whether or not we've advanced between the last match
                 // and this one. We can do this by comparing the enter position of the stack and parent stack.
                 $popped = clone $stack;
+                // @phpstan-ignore-next-line parameterByRef.type
                 $stack = $stack->pop();
                 $anchorPosition = $popped->anchorPos;
 
@@ -153,6 +154,7 @@ class Tokenizer
                     $stack = $stack->withContentNameScopesList($contentNameScopesList)->withEndRule($rule->pattern->createEndPattern($rule));
 
                     if (! $hasAdvanced && $beforePush->hasSameRuleAs($stack)) {
+                        // @phpstan-ignore-next-line parameterByRef.type
                         $stack = $stack->pop();
                         $lineTokens->produce($stack, $lineLength);
                         $stop = true;
@@ -170,6 +172,7 @@ class Tokenizer
                     $stack = $stack->withContentNameScopesList($contentNameScopesList)->withEndRule($rule->pattern->createWhilePattern($rule));
 
                     if (! $hasAdvanced && $beforePush->hasSameRuleAs($stack)) {
+                        // @phpstan-ignore-next-line parameterByRef.type
                         $stack = $stack->pop();
                         $lineTokens->produce($stack, $lineLength);
                         $stop = true;
@@ -180,6 +183,7 @@ class Tokenizer
 
                     $lineTokens->produce($stack, $rule->end());
 
+                    // @phpstan-ignore-next-line parameterByRef.type
                     $stack = $stack->pop();
 
                     if (! $hasAdvanced) {
@@ -321,7 +325,7 @@ class Tokenizer
         $scopes = $stack->contentNameScopesList->getScopeNames();
         $len = count($injections);
 
-        usort($injections, fn (Injection $a, Injection $b) => ($a->getPrefix($scopes)?->value ?? 0) <=> ($b->getPrefix($scopes)?->value ?? 0));
+        usort($injections, fn (Injection $a, Injection $b) => ($a->getPrefix($scopes)->value ?? 0) <=> ($b->getPrefix($scopes)->value ?? 0));
 
         for ($i = 0; $i < $len; $i++) {
             $injection = $injections[$i];
@@ -380,6 +384,7 @@ class Tokenizer
             $r = $searcher->findNextMatch($lineText, $linePos, while: true);
 
             if (! $r) {
+                // @phpstan-ignore-next-line parameterByRef.type
                 $stack = $whileRule->stack->pop();
                 break;
             }

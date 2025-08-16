@@ -3,6 +3,7 @@
 namespace Phiki\TextMate;
 
 use Phiki\Contracts\PatternInterface;
+use Phiki\Exceptions\IndeterminateStateException;
 use Phiki\Grammar\EndPattern;
 use Phiki\Grammar\WhilePattern;
 

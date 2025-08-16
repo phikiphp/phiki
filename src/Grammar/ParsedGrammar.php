@@ -9,7 +9,7 @@ final class ParsedGrammar implements PatternInterface
 {
     /**
      * @param  PatternInterface[]  $patterns
-     * @param  array<string, Pattern>  $repository
+     * @param  array<string, PatternInterface>  $repository
      * @param  Injections\Injection[]  $injections
      */
     public function __construct(
