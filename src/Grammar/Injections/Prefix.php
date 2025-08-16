@@ -2,8 +2,8 @@
 
 namespace Phiki\Grammar\Injections;
 
-enum Prefix
+enum Prefix: int
 {
-    case Left;
-    case Right;
+    case Left = -1;
+    case Right = 1;
 }

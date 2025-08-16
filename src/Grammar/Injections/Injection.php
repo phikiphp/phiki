@@ -2,10 +2,12 @@
 
 namespace Phiki\Grammar\Injections;
 
+use Phiki\Contracts\GrammarRepositoryInterface;
 use Phiki\Contracts\InjectionMatcherInterface;
 use Phiki\Contracts\PatternInterface;
+use Phiki\Grammar\ParsedGrammar;
 
-class Injection implements InjectionMatcherInterface
+class Injection implements PatternInterface, InjectionMatcherInterface
 {
     public function __construct(
         public Selector $selector,
@@ -25,5 +27,15 @@ class Injection implements InjectionMatcherInterface
     public function matches(array $scopes): bool
     {
         return $this->selector->matches($scopes);
+    }
+
+    public function getScopeName(array $captures): ?string
+    {
+        return $this->pattern->getScopeName($captures);
+    }
+
+    public function compile(ParsedGrammar $grammar, GrammarRepositoryInterface $grammars, bool $allowA, bool $allowG): array
+    {
+        return $this->pattern->compile($grammar, $grammars, $allowA, $allowG);
     }
 }

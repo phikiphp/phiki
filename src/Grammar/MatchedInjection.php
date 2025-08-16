@@ -3,12 +3,14 @@
 namespace Phiki\Grammar;
 
 use Phiki\Grammar\Injections\Injection;
+use Phiki\Grammar\Injections\Prefix;
 
 class MatchedInjection
 {
     public function __construct(
         public Injection $injection,
         public MatchedPattern $matchedPattern,
+        public ?Prefix $prefix,
     ) {}
 
     /**

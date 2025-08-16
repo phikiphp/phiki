@@ -13,6 +13,9 @@ use Phiki\Grammar\MatchPattern;
 use Phiki\Grammar\ParsedGrammar;
 use Phiki\Grammar\WhilePattern;
 use Phiki\Token\Token;
+use Phiki\Grammar\Injections\Injection;
+use Phiki\Grammar\Injections\Prefix;
+use Phiki\Grammar\MatchedInjection;
 
 class Tokenizer
 {
@@ -271,31 +274,28 @@ class Tokenizer
     {
         $matchResult = $this->matchRule($grammar, $lineText, $isFirstLine, $linePos, $stack, $anchorPosition);
 
+        if (! $grammar->hasInjections()) {
+            return $matchResult;
+        }
+
+        $injectionResult = $this->matchInjections($grammar->getInjections(), $grammar, $lineText, $isFirstLine, $linePos, $stack, $anchorPosition);
+
+        if (! $injectionResult) {
+            return $matchResult;
+        }
+
+        if (! $matchResult) {
+            return $injectionResult->matchedPattern;
+        }
+
+        $matchResultScore = $matchResult->offset();
+        $injectionResultScore = $injectionResult->offset();
+
+        if ($injectionResultScore < $matchResultScore || ($injectionResult->prefix === Prefix::Left && $injectionResultScore === $matchResultScore)) {
+            return $injectionResult->matchedPattern;
+        }
+
         return $matchResult;
-
-        // FIXME: Add support for injections.
-        // if (! $grammar->hasInjections()) {
-        //     return $matchResult;
-        // }
-
-        // $injectionResult = $this->matchInjections($grammar->getInjections(), $grammar, $lineText, $isFirstLine, $linePos, $stack, $anchorPosition);
-
-        // if (! $injectionResult) {
-        //     return $matchResult;
-        // }
-
-        // if (! $matchResult) {
-        //     return $injectionResult;
-        // }
-
-        // $matchResultScore = $matchResult->offset();
-        // $injectionResultScore = $injectionResult->offset();
-
-        // if ($injectionResultScore < $matchResultScore || ($injectionResult->priorityMatch && $injectionResultScore === $matchResultScore)) {
-        //     return $injectionResult;
-        // }
-
-        // return $matchResult;
     }
 
     /**
@@ -305,6 +305,57 @@ class Tokenizer
     {
         return new PatternSearcher($stack->pattern, $grammar, $this->environment->getGrammarRepository(), $isFirstLine, $linePos === $anchorPosition)
             ->findNextMatch($lineText, $linePos);
+    }
+
+    /**
+     * Try to match an injection.
+     * 
+     * @param array<Injection> $injections
+     */
+    protected function matchInjections(array $injections, ParsedGrammar $grammar, string $lineText, bool $isFirstLine, int $linePos, StateStack $stack, int $anchorPosition): ?MatchedInjection
+    {
+        $bestMatchRating = PHP_INT_MAX;
+        $bestMatchedInjection = null;
+        $bestMatchedPattern = null;
+
+        $scopes = $stack->contentNameScopesList->getScopeNames();
+        $len = count($injections);
+
+        usort($injections, fn (Injection $a, Injection $b) => ($a->getPrefix($scopes)?->value ?? 0) <=> ($b->getPrefix($scopes)?->value ?? 0));
+
+        for ($i = 0; $i < $len; $i++) {
+            $injection = $injections[$i];
+
+            if (! $injection->matches($scopes)) {
+                continue;
+            }
+
+            $searcher = new PatternSearcher($injection, $grammar, $this->environment->getGrammarRepository(), $isFirstLine, $linePos === $anchorPosition);
+            $matched = $searcher->findNextMatch($lineText, $linePos);
+
+            if (! $matched) {
+                continue;
+            }
+
+            $matchRating = $matched->offset();
+            if ($matchRating >= $bestMatchRating) {
+                continue;
+            }
+
+            $bestMatchRating = $matchRating;
+            $bestMatchedInjection = $injection;
+            $bestMatchedPattern = $matched;
+
+            if ($bestMatchRating === $linePos) {
+                break;
+            }
+        }
+
+        if ($bestMatchedInjection === null) {
+            return null;
+        }
+
+        return new MatchedInjection($bestMatchedInjection, $bestMatchedPattern, $bestMatchedInjection->getPrefix($scopes));
     }
 
     /**
