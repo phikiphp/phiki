@@ -307,7 +307,7 @@ class Tokenizer
      */
     protected function matchRule(ParsedGrammar $grammar, string $lineText, bool $isFirstLine, int $linePos, StateStack &$stack, int $anchorPosition): ?MatchedPattern
     {
-        return new PatternSearcher($stack->pattern, $grammar, $this->environment->getGrammarRepository(), $isFirstLine, $linePos === $anchorPosition)
+        return (new PatternSearcher($stack->pattern, $grammar, $this->environment->getGrammarRepository(), $isFirstLine, $linePos === $anchorPosition))
             ->findNextMatch($lineText, $linePos);
     }
 
