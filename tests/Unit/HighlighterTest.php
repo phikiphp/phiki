@@ -1,6 +1,6 @@
 <?php
 
-use Phiki\Highlighter;
+use Phiki\Highlighting\Highlighter;
 use Phiki\Theme\ParsedTheme;
 
 describe('Highlighter', function () {

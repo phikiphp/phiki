@@ -1,6 +1,6 @@
 <?php
 
-namespace Phiki;
+namespace Phiki\Highlighting;
 
 use Phiki\Theme\ParsedTheme;
 use Phiki\Token\HighlightedToken;
