@@ -35,3 +35,7 @@ The `Phiki\Grammar\DefaultGrammars` and `Phiki\Theme\DefaultThemes` classes have
 Phiki is already a large and complex codebase so the slimmer we can make it, the better.
 
 These classes were for internal use only so hopefully they won't affect your userland code.
+
+### `Phiki\Tokenizer` namespace change
+
+The `Tokenizer` class was previously found at `Phiki\Tokenizer`. As part of the new tokenizer system, we've moved this into a new namespace `Phiki\TextMate\Tokenizer` since it now uses multiple classes and would otherwise make the root namespace a mess.
