@@ -13,4 +13,18 @@ class ParsedTheme
         public array $colors = [],
         public array $tokenColors = [],
     ) {}
+
+    public function match(array $scopes): ?TokenSettings
+    {
+        return null;
+    }
+
+    public function base(): TokenSettings
+    {
+        return new TokenSettings(
+            $this->colors['editor.background'] ?? null,
+            $this->colors['editor.foreground'] ?? null,
+            null,
+        );
+    }
 }

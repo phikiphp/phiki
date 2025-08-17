@@ -16,7 +16,22 @@ readonly class Highlighter
 
     public function highlight(array $tokens): array
     {
-        // FIXME: Implement new highlighting logic.
-        return $tokens;
+        $highlightedTokens = [];
+
+        foreach ($tokens as $i => $line) {
+            foreach ($line as $token) {
+                $settings = [];
+
+                foreach ($this->themes as $id => $theme) {
+                    if ($matched = $theme->match($token->scopes)) {
+                        $settings[$id] = $matched;
+                    }
+                }
+
+                $highlightedTokens[$i][] = new HighlightedToken($token, $settings);
+            }
+        }
+
+        return $highlightedTokens;
     }
 }
