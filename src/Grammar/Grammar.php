@@ -7,6 +7,7 @@ use Phiki\Contracts\GrammarRepositoryInterface;
 enum Grammar: string
 {
     case Txt = 'txt';
+    case Antlers = 'antlers';
     case Abap = 'abap';
     case Actionscript_3 = 'actionscript-3';
     case Ada = 'ada';
@@ -447,6 +448,7 @@ enum Grammar: string
             self::Yaml => ["yml"],
             self::Zenscript => [],
             self::Zig => [],
+            self::Antlers => [],
             self::Txt => [],
         };
     }
@@ -672,6 +674,7 @@ enum Grammar: string
             self::Yaml => 'source.yaml',
             self::Zenscript => 'source.zenscript',
             self::Zig => 'source.zig',
+            self::Antlers => 'text.html.statamic',
             self::Txt => 'text.plain'
         };
     }
