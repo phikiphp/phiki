@@ -35,6 +35,16 @@ class Str
         return self::trimFirst(self::trimLast($subject, $needle), $needle);
     }
 
+    public static function startsWithScope(string $subject, string $scope): bool
+    {
+        return $subject === $scope || str_starts_with($subject, trim($scope, '.') . '.');
+    }
+
+    public static function dotCount(string $subject): int
+    {
+        return substr_count($subject, '.');
+    }
+
     /**
      * Replace capture references in a scope name with their corresponding capture values.
      * 

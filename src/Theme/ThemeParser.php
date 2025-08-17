@@ -28,11 +28,7 @@ class ThemeParser
         $tokenColors = array_map(function (array $tokenColor) use ($name) {
             $scope = [];
 
-            if (! isset($tokenColor['scope'])) {
-                throw new InvalidThemeException("Token colors in theme `{$name}` must have a `scope` property.");
-            }
-
-            foreach (Arr::wrap($tokenColor['scope']) as $part) {
+            foreach (Arr::wrap($tokenColor['scope'] ?? []) as $part) {
                 // Remove leading and trailing whitespace and commas in case of author errors.
                 $part = trim(trim($part), ',');
 
@@ -50,8 +46,8 @@ class ThemeParser
             }
 
             return new TokenColor($scope, new TokenSettings(
-                $tokenColor['settings']['foreground'] ?? null,
                 $tokenColor['settings']['background'] ?? null,
+                $tokenColor['settings']['foreground'] ?? null,
                 $tokenColor['settings']['fontStyle'] ?? null
             ));
         }, $theme['tokenColors']);

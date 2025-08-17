@@ -12,6 +12,41 @@ class TokenSettings
         public ?string $fontStyle,
     ) {}
 
+    /**
+     * Take an array of token settings and flatten them into a single TokenSettings instance
+     * without overriding values set by previous items in the array.
+     * 
+     * @param array<TokenSettings> $settings
+     */
+    public static function flatten(array $settings): TokenSettings
+    {
+        $flattened = [
+            'background' => null,
+            'foreground' => null,
+            'fontStyle' => null,
+        ];
+
+        foreach ($settings as $setting) {
+            if (! isset($flattened['background']) && isset($setting->background)) {
+                $flattened['background'] = $setting->background;
+            }
+
+            if (! isset($flattened['foreground']) && isset($setting->foreground)) {
+                $flattened['foreground'] = $setting->foreground;
+            }
+
+            if (! isset($flattened['fontStyle']) && isset($setting->fontStyle)) {
+                $flattened['fontStyle'] = $setting->fontStyle;
+            }
+        }
+
+        return new TokenSettings(
+            $flattened['background'],
+            $flattened['foreground'],
+            $flattened['fontStyle']
+        );
+    }
+
     public function toCssVarString(string $prefix): string
     {
         $styles = $this->toStyleArray();

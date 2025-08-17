@@ -3,6 +3,7 @@
 namespace Phiki\Theme;
 
 use Phiki\Support\Arr;
+use Phiki\Support\Str;
 
 class Scope
 {
@@ -23,7 +24,7 @@ class Scope
         // from the token start with the scope from the object, saving some additional processing.
         if (count($this->names) === 1) {
             foreach ($reversed as $scope) {
-                if (! str_starts_with($scope, $this->names[0])) {
+                if (! Str::startsWithScope($scope, $this->names[0])) {
                     continue;
                 }
 
@@ -31,12 +32,12 @@ class Scope
                 // should be used to highlight the token among a set of other scope matches.
                 //
                 // My interpretation of TextMate's specificity rules is that it should be based on:
-                //    a. the length of the matching scope selector
+                //    a. the dot count of the matching scope selector
                 //    b. how deep it is in the token's scope hierarchy
                 // To keep track of that info, we can return a result object that stores it all
                 // and then once we've found all matching scopes for a token, we can sort them
                 // based on those rules with some precedence logic too.
-                return new ScopeMatchResult(length: strlen($this->names[0]), depth: $valuesToKeys[$scope]);
+                return new ScopeMatchResult(length: Str::dotCount($this->names[0]), depth: $valuesToKeys[$scope]);
             }
             
             return false;
@@ -77,13 +78,13 @@ class Scope
         $matchingScopeIndex = 0;
 
         foreach ($reversed as $index => $scope) {
-            if (! str_starts_with($scope, $lastScopeSelector)) {
+            if (! Str::startsWithScope($scope, $lastScopeSelector)) {
                 continue;
             }
 
             $matchingScope = $scope;
             $matchingScopeDepth = $valuesToKeys[$scope];
-            $matchingScopeLength = strlen($lastScopeSelector);
+            $matchingScopeLength = Str::dotCount($lastScopeSelector);
             $matchingScopeIndex = $index;
 
             // We've found a matching scope so we can break out of the loop as we don't need to do any more checks.
@@ -108,7 +109,7 @@ class Scope
                 // If we find a matching ancestral scope that starts with the scope name,
                 // we can store the index of it so we can chop off the scopes we don't need to check
                 // and then break out of the loop.
-                if (str_starts_with($ancestralScope, $scopeName)) {
+                if (Str::startsWithScope($ancestralScope, $scopeName)) {
                     $matchedAncestralScopeIndex = $index;
                     break;
                 }

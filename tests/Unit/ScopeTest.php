@@ -25,7 +25,7 @@ it('returns the specificity of the matching scope', function () {
     $result = $scope->matches(['text.html.blade.php', 'meta.tag']);
     expect($result)
         ->toBeInstanceOf(ScopeMatchResult::class)
-        ->length->toBe(8)
+        ->length->toBe(1) // 'meta.tag' only has 1 dot
         ->depth->toBe(1); // 'meta.tag' has 8 characters
 });
 
@@ -36,7 +36,7 @@ it('returns true if a scope selector with two names matches', function () {
 
     expect($result)
         ->toBeInstanceOf(ScopeMatchResult::class)
-        ->length->toBe(8) // 'meta.tag' has 8 characters
+        ->length->toBe(1) // 'meta.tag' only contains 1 dot
         ->depth->toBe(2) // 'meta.tag' is the third scope in the token (0 based index)
         ->ancestral->toBe(1); // 'text.html.blade' is a single ancestor scope in the selector
 });
@@ -55,7 +55,7 @@ it('returns true if a complex scope selector matches', function () {
 
     expect($result)
         ->toBeInstanceOf(ScopeMatchResult::class)
-        ->length->toBe(8) // 'meta.tag' has 8 characters
+        ->length->toBe(1) // 'meta.tag' only contains 1 dot
         ->depth->toBe(2) // 'meta.tag' is the third scope in the token (0 based index)
         ->ancestral->toBe(2); // 'text.html.blade' and 'meta.directive' are both ancestors in the selector
 });
