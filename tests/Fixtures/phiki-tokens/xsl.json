@@ -1,0 +1,1138 @@
+[
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "<?xml version=\"1.0\"?>\n",
+            "start": 0,
+            "end": 22
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "<xsl:stylesheet version=\"1.0\"\n",
+            "start": 0,
+            "end": 30
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "                   xmlns:xsl=\"http:\/\/www.w3.org\/1999\/XSL\/Transform\"\n",
+            "start": 0,
+            "end": 68
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "                   xmlns:myNS=\"http:\/\/devedge.netscape.com\/2002\/de\">\n",
+            "start": 0,
+            "end": 69
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "  <xsl:output method=\"html\" \/>\n",
+            "start": 0,
+            "end": 31
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "text.xml.xsl",
+                "meta.tag.xml.template",
+                "punctuation.definition.tag.xml"
+            ],
+            "text": "<",
+            "start": 2,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "text.xml.xsl",
+                "meta.tag.xml.template",
+                "entity.name.tag.namespace.xml"
+            ],
+            "text": "xsl",
+            "start": 3,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "text.xml.xsl",
+                "meta.tag.xml.template",
+                "entity.name.tag.xml",
+                "punctuation.separator.namespace.xml"
+            ],
+            "text": ":",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "text.xml.xsl",
+                "meta.tag.xml.template",
+                "entity.name.tag.localname.xml"
+            ],
+            "text": "template",
+            "start": 7,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "text.xml.xsl",
+                "meta.tag.xml.template"
+            ],
+            "text": " ",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "text.xml.xsl",
+                "meta.tag.xml.template",
+                "entity.other.attribute-name.localname.xml"
+            ],
+            "text": "match",
+            "start": 16,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "text.xml.xsl",
+                "meta.tag.xml.template"
+            ],
+            "text": "=",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "text.xml.xsl",
+                "meta.tag.xml.template",
+                "string.quoted.double.xml",
+                "punctuation.definition.string.begin.xml"
+            ],
+            "text": "\"",
+            "start": 22,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "text.xml.xsl",
+                "meta.tag.xml.template",
+                "string.quoted.double.xml"
+            ],
+            "text": "\/",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "text.xml.xsl",
+                "meta.tag.xml.template",
+                "string.quoted.double.xml",
+                "punctuation.definition.string.end.xml"
+            ],
+            "text": "\"",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "text.xml.xsl",
+                "meta.tag.xml.template",
+                "punctuation.definition.tag.xml"
+            ],
+            "text": ">",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "\n",
+            "start": 26,
+            "end": 27
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "    <html>\n",
+            "start": 0,
+            "end": 11
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "      <head>\n",
+            "start": 0,
+            "end": 13
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "        <title>\n",
+            "start": 0,
+            "end": 16
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "          <xsl:value-of select=\"\/myNS:Article\/myNS:Title\"\/>\n",
+            "start": 0,
+            "end": 60
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "        <\/title>\n",
+            "start": 0,
+            "end": 17
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "        <style>\n",
+            "start": 0,
+            "end": 16
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "          .myBox {margin:10px 155px 0 50px; border: 1px dotted #639ACE; padding:0 5px 0 5px;}\n",
+            "start": 0,
+            "end": 94
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "        <\/style>\n",
+            "start": 0,
+            "end": 17
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "      <\/head>\n",
+            "start": 0,
+            "end": 14
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "      <body>\n",
+            "start": 0,
+            "end": 13
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "        <p class=\"myBox\">\n",
+            "start": 0,
+            "end": 26
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "          <span class=\"title\">\n",
+            "start": 0,
+            "end": 31
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "            <xsl:value-of select=\"\/myNS:Article\/myNS:Title\"\/>\n",
+            "start": 0,
+            "end": 62
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "          <\/span> <br \/>\n",
+            "start": 0,
+            "end": 25
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "          Authors:   <br \/>\n",
+            "start": 0,
+            "end": 28
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "            <xsl:apply-templates select=\"\/myNS:Article\/myNS:Authors\/myNS:Author\"\/>\n",
+            "start": 0,
+            "end": 83
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "          <\/p>\n",
+            "start": 0,
+            "end": 15
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "        <p class=\"myBox\">\n",
+            "start": 0,
+            "end": 26
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "          <xsl:apply-templates select=\"\/\/myNS:Body\"\/>\n",
+            "start": 0,
+            "end": 54
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "        <\/p>\n",
+            "start": 0,
+            "end": 13
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "      <\/body>\n",
+            "start": 0,
+            "end": 14
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "    <\/html>\n",
+            "start": 0,
+            "end": 12
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "  <\/xsl:template>\n",
+            "start": 0,
+            "end": 18
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "text.xml.xsl",
+                "meta.tag.xml.template",
+                "punctuation.definition.tag.xml"
+            ],
+            "text": "<",
+            "start": 2,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "text.xml.xsl",
+                "meta.tag.xml.template",
+                "entity.name.tag.namespace.xml"
+            ],
+            "text": "xsl",
+            "start": 3,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "text.xml.xsl",
+                "meta.tag.xml.template",
+                "entity.name.tag.xml",
+                "punctuation.separator.namespace.xml"
+            ],
+            "text": ":",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "text.xml.xsl",
+                "meta.tag.xml.template",
+                "entity.name.tag.localname.xml"
+            ],
+            "text": "template",
+            "start": 7,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "text.xml.xsl",
+                "meta.tag.xml.template"
+            ],
+            "text": " ",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "text.xml.xsl",
+                "meta.tag.xml.template",
+                "entity.other.attribute-name.localname.xml"
+            ],
+            "text": "match",
+            "start": 16,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "text.xml.xsl",
+                "meta.tag.xml.template"
+            ],
+            "text": "=",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "text.xml.xsl",
+                "meta.tag.xml.template",
+                "string.quoted.double.xml",
+                "punctuation.definition.string.begin.xml"
+            ],
+            "text": "\"",
+            "start": 22,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "text.xml.xsl",
+                "meta.tag.xml.template",
+                "string.quoted.double.xml"
+            ],
+            "text": "myNS:Author",
+            "start": 23,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "text.xml.xsl",
+                "meta.tag.xml.template",
+                "string.quoted.double.xml",
+                "punctuation.definition.string.end.xml"
+            ],
+            "text": "\"",
+            "start": 34,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "text.xml.xsl",
+                "meta.tag.xml.template",
+                "punctuation.definition.tag.xml"
+            ],
+            "text": ">",
+            "start": 35,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "\n",
+            "start": 36,
+            "end": 37
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "     --   <xsl:value-of select=\".\" \/>\n",
+            "start": 0,
+            "end": 38
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "    <xsl:if test=\"@company\">\n",
+            "start": 0,
+            "end": 29
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "     ::   <b>  <xsl:value-of select=\"@company\" \/>  <\/b>\n",
+            "start": 0,
+            "end": 56
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "    <\/xsl:if>\n",
+            "start": 0,
+            "end": 14
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "    <br \/>\n",
+            "start": 0,
+            "end": 11
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "  <\/xsl:template>\n",
+            "start": 0,
+            "end": 18
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "text.xml.xsl",
+                "meta.tag.xml.template",
+                "punctuation.definition.tag.xml"
+            ],
+            "text": "<",
+            "start": 2,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "text.xml.xsl",
+                "meta.tag.xml.template",
+                "entity.name.tag.namespace.xml"
+            ],
+            "text": "xsl",
+            "start": 3,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "text.xml.xsl",
+                "meta.tag.xml.template",
+                "entity.name.tag.xml",
+                "punctuation.separator.namespace.xml"
+            ],
+            "text": ":",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "text.xml.xsl",
+                "meta.tag.xml.template",
+                "entity.name.tag.localname.xml"
+            ],
+            "text": "template",
+            "start": 7,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "text.xml.xsl",
+                "meta.tag.xml.template"
+            ],
+            "text": " ",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "text.xml.xsl",
+                "meta.tag.xml.template",
+                "entity.other.attribute-name.localname.xml"
+            ],
+            "text": "match",
+            "start": 16,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "text.xml.xsl",
+                "meta.tag.xml.template"
+            ],
+            "text": "=",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "text.xml.xsl",
+                "meta.tag.xml.template",
+                "string.quoted.double.xml",
+                "punctuation.definition.string.begin.xml"
+            ],
+            "text": "\"",
+            "start": 22,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "text.xml.xsl",
+                "meta.tag.xml.template",
+                "string.quoted.double.xml"
+            ],
+            "text": "myNS:Body",
+            "start": 23,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "text.xml.xsl",
+                "meta.tag.xml.template",
+                "string.quoted.double.xml",
+                "punctuation.definition.string.end.xml"
+            ],
+            "text": "\"",
+            "start": 32,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "text.xml.xsl",
+                "meta.tag.xml.template",
+                "punctuation.definition.tag.xml"
+            ],
+            "text": ">",
+            "start": 33,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "\n",
+            "start": 34,
+            "end": 35
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "    <xsl:copy>\n",
+            "start": 0,
+            "end": 15
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "      <xsl:apply-templates select=\"@*|node()\"\/>\n",
+            "start": 0,
+            "end": 48
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "    <\/xsl:copy>\n",
+            "start": 0,
+            "end": 16
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "  <\/xsl:template>\n",
+            "start": 0,
+            "end": 18
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "text.xml.xsl",
+                "meta.tag.xml.template",
+                "punctuation.definition.tag.xml"
+            ],
+            "text": "<",
+            "start": 2,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "text.xml.xsl",
+                "meta.tag.xml.template",
+                "entity.name.tag.namespace.xml"
+            ],
+            "text": "xsl",
+            "start": 3,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "text.xml.xsl",
+                "meta.tag.xml.template",
+                "entity.name.tag.xml",
+                "punctuation.separator.namespace.xml"
+            ],
+            "text": ":",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "text.xml.xsl",
+                "meta.tag.xml.template",
+                "entity.name.tag.localname.xml"
+            ],
+            "text": "template",
+            "start": 7,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "text.xml.xsl",
+                "meta.tag.xml.template"
+            ],
+            "text": " ",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "text.xml.xsl",
+                "meta.tag.xml.template",
+                "entity.other.attribute-name.localname.xml"
+            ],
+            "text": "match",
+            "start": 16,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "text.xml.xsl",
+                "meta.tag.xml.template"
+            ],
+            "text": "=",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "text.xml.xsl",
+                "meta.tag.xml.template",
+                "string.quoted.double.xml",
+                "punctuation.definition.string.begin.xml"
+            ],
+            "text": "\"",
+            "start": 22,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "text.xml.xsl",
+                "meta.tag.xml.template",
+                "string.quoted.double.xml"
+            ],
+            "text": "@*|node()",
+            "start": 23,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "text.xml.xsl",
+                "meta.tag.xml.template",
+                "string.quoted.double.xml",
+                "punctuation.definition.string.end.xml"
+            ],
+            "text": "\"",
+            "start": 32,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "text.xml.xsl",
+                "meta.tag.xml.template",
+                "punctuation.definition.tag.xml"
+            ],
+            "text": ">",
+            "start": 33,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "\n",
+            "start": 34,
+            "end": 35
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "      <xsl:copy>\n",
+            "start": 0,
+            "end": 17
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "        <xsl:apply-templates select=\"@*|node()\"\/>\n",
+            "start": 0,
+            "end": 50
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "      <\/xsl:copy>\n",
+            "start": 0,
+            "end": 18
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "  <\/xsl:template>\n",
+            "start": 0,
+            "end": 18
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "<\/xsl:stylesheet>\n",
+            "start": 0,
+            "end": 18
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "<!-- https:\/\/developer.mozilla.org\/en-US\/docs\/Web\/XSLT\/XSLT_JS_interface_in_Gecko\/Basic_Example -->\n",
+            "start": 0,
+            "end": 100
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.xml.xsl"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ]
+]

@@ -83,11 +83,12 @@ class PatternSearcher
         // search grid for subsequent matches.
         $substr = mb_substr($lineText, $bestLocation, $bestLength);
         $keyToIndexMap = array_flip(array_keys($bestMatches));
+        $wellFormedMatches = [];
 
         foreach ($bestMatches as $key => $match) {
             // The first match is the full match, so we can just use the start position.
             if ($key === 0) {
-                $bestMatches[$key] = [$match, $bestLocation];
+                $wellFormedMatches[$key] = [$match, $bestLocation];
                 continue;
             }
 
@@ -96,7 +97,7 @@ class PatternSearcher
             // If the capture group is empty, we need to use the same format as PCRE's PREG_OFFSET_CAPTURE,
             // which is an array with an empty match and -1 as the offset.
             if (! $match) {
-                $bestMatches[$key] = ["", -1];
+                $wellFormedMatches[$key] = ["", -1];
 
                 continue;
             }
@@ -107,9 +108,9 @@ class PatternSearcher
             $pos = mb_strpos($substr, $match);
 
             // We can then store the value in the matches array with the adjusted position.
-            $bestMatches[$key] = [$match, $bestLocation + $pos];
+            $wellFormedMatches[$key] = [$match, $bestLocation + $pos];
         }
 
-        return new MatchedPattern($bestPattern, $bestMatches);
+        return new MatchedPattern($bestPattern, $wellFormedMatches);
     }
 }

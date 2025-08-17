@@ -1,0 +1,1727 @@
+[
+    [
+        {
+            "scopes": [
+                "source.fnl",
+                "comment.line.semicolon.fennel"
+            ],
+            "text": ";",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "comment.line.semicolon.fennel"
+            ],
+            "text": "; Sample: read the state of the keyboard and move the player accordingly",
+            "start": 1,
+            "end": 73
+        },
+        {
+            "scopes": [
+                "source.fnl"
+            ],
+            "text": "\n",
+            "start": 73,
+            "end": 74
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "punctuation.paren.open.fennel"
+            ],
+            "text": "(",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "keyword.special.fennel"
+            ],
+            "text": "local",
+            "start": 1,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel"
+            ],
+            "text": " ",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "variable.other.fennel"
+            ],
+            "text": "dirs",
+            "start": 7,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel"
+            ],
+            "text": " ",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "table.fennel",
+                "punctuation.table.bracket.open.fennel"
+            ],
+            "text": "{",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "table.fennel",
+                "constant.keyword.fennel"
+            ],
+            "text": ":up",
+            "start": 13,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "table.fennel"
+            ],
+            "text": " ",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "table.fennel",
+                "meta.vector.fennel",
+                "punctuation.vector.bracket.open.fennel"
+            ],
+            "text": "[",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "table.fennel",
+                "meta.vector.fennel",
+                "constant.numeric.integer.fennel"
+            ],
+            "text": "0",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "table.fennel",
+                "meta.vector.fennel"
+            ],
+            "text": " ",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "table.fennel",
+                "meta.vector.fennel",
+                "constant.numeric.integer.fennel"
+            ],
+            "text": "-1",
+            "start": 20,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "table.fennel",
+                "meta.vector.fennel",
+                "punctuation.vector.bracket.close.fennel"
+            ],
+            "text": "]",
+            "start": 22,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "table.fennel"
+            ],
+            "text": " ",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "table.fennel",
+                "constant.keyword.fennel"
+            ],
+            "text": ":down",
+            "start": 24,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "table.fennel"
+            ],
+            "text": " ",
+            "start": 29,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "table.fennel",
+                "meta.vector.fennel",
+                "punctuation.vector.bracket.open.fennel"
+            ],
+            "text": "[",
+            "start": 30,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "table.fennel",
+                "meta.vector.fennel",
+                "constant.numeric.integer.fennel"
+            ],
+            "text": "0",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "table.fennel",
+                "meta.vector.fennel"
+            ],
+            "text": " ",
+            "start": 32,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "table.fennel",
+                "meta.vector.fennel",
+                "constant.numeric.integer.fennel"
+            ],
+            "text": "1",
+            "start": 33,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "table.fennel",
+                "meta.vector.fennel",
+                "punctuation.vector.bracket.close.fennel"
+            ],
+            "text": "]",
+            "start": 34,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "table.fennel"
+            ],
+            "text": " ",
+            "start": 35,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "table.fennel",
+                "constant.keyword.fennel"
+            ],
+            "text": ":left",
+            "start": 36,
+            "end": 41
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "table.fennel"
+            ],
+            "text": " ",
+            "start": 41,
+            "end": 42
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "table.fennel",
+                "meta.vector.fennel",
+                "punctuation.vector.bracket.open.fennel"
+            ],
+            "text": "[",
+            "start": 42,
+            "end": 43
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "table.fennel",
+                "meta.vector.fennel",
+                "constant.numeric.integer.fennel"
+            ],
+            "text": "-1",
+            "start": 43,
+            "end": 45
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "table.fennel",
+                "meta.vector.fennel"
+            ],
+            "text": " ",
+            "start": 45,
+            "end": 46
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "table.fennel",
+                "meta.vector.fennel",
+                "constant.numeric.integer.fennel"
+            ],
+            "text": "0",
+            "start": 46,
+            "end": 47
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "table.fennel",
+                "meta.vector.fennel",
+                "punctuation.vector.bracket.close.fennel"
+            ],
+            "text": "]",
+            "start": 47,
+            "end": 48
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "table.fennel"
+            ],
+            "text": " ",
+            "start": 48,
+            "end": 49
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "table.fennel",
+                "constant.keyword.fennel"
+            ],
+            "text": ":right",
+            "start": 49,
+            "end": 55
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "table.fennel"
+            ],
+            "text": " ",
+            "start": 55,
+            "end": 56
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "table.fennel",
+                "meta.vector.fennel",
+                "punctuation.vector.bracket.open.fennel"
+            ],
+            "text": "[",
+            "start": 56,
+            "end": 57
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "table.fennel",
+                "meta.vector.fennel",
+                "constant.numeric.integer.fennel"
+            ],
+            "text": "1",
+            "start": 57,
+            "end": 58
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "table.fennel",
+                "meta.vector.fennel"
+            ],
+            "text": " ",
+            "start": 58,
+            "end": 59
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "table.fennel",
+                "meta.vector.fennel",
+                "constant.numeric.integer.fennel"
+            ],
+            "text": "0",
+            "start": 59,
+            "end": 60
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "table.fennel",
+                "meta.vector.fennel",
+                "punctuation.vector.bracket.close.fennel"
+            ],
+            "text": "]",
+            "start": 60,
+            "end": 61
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "table.fennel",
+                "punctuation.table.bracket.close.fennel"
+            ],
+            "text": "}",
+            "start": 61,
+            "end": 62
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "punctuation.paren.close.fennel"
+            ],
+            "text": ")",
+            "start": 62,
+            "end": 63
+        },
+        {
+            "scopes": [
+                "source.fnl"
+            ],
+            "text": "\n",
+            "start": 63,
+            "end": 64
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.fnl"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "punctuation.paren.open.fennel"
+            ],
+            "text": "(",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "keyword.special.fennel"
+            ],
+            "text": "each",
+            "start": 1,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel"
+            ],
+            "text": " ",
+            "start": 5,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "punctuation.vector.bracket.open.fennel"
+            ],
+            "text": "[",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "variable.other.fennel"
+            ],
+            "text": "key",
+            "start": 7,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "meta.vector.fennel"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "meta.vector.fennel",
+                "punctuation.vector.bracket.open.fennel"
+            ],
+            "text": "[",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "meta.vector.fennel",
+                "variable.other.fennel"
+            ],
+            "text": "dx",
+            "start": 12,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "meta.vector.fennel"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "meta.vector.fennel",
+                "variable.other.fennel"
+            ],
+            "text": "dy",
+            "start": 15,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "meta.vector.fennel",
+                "punctuation.vector.bracket.close.fennel"
+            ],
+            "text": "]",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "meta.vector.fennel"
+            ],
+            "text": " ",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "sexp.fennel",
+                "punctuation.paren.open.fennel"
+            ],
+            "text": "(",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "sexp.fennel",
+                "support.function.fennel"
+            ],
+            "text": "pairs",
+            "start": 20,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "sexp.fennel"
+            ],
+            "text": " ",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "sexp.fennel",
+                "variable.other.fennel"
+            ],
+            "text": "dirs",
+            "start": 26,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "sexp.fennel",
+                "punctuation.paren.close.fennel"
+            ],
+            "text": ")",
+            "start": 30,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "punctuation.vector.bracket.close.fennel"
+            ],
+            "text": "]",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel"
+            ],
+            "text": "\n",
+            "start": 32,
+            "end": 33
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "punctuation.paren.open.fennel"
+            ],
+            "text": "(",
+            "start": 2,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "keyword.special.fennel"
+            ],
+            "text": "when",
+            "start": 3,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel"
+            ],
+            "text": " ",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "punctuation.paren.open.fennel"
+            ],
+            "text": "(",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "entity.name.function.symbol.fennel"
+            ],
+            "text": "love.keyboard.isDown",
+            "start": 9,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel"
+            ],
+            "text": " ",
+            "start": 29,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "variable.other.fennel"
+            ],
+            "text": "key",
+            "start": 30,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "punctuation.paren.close.fennel"
+            ],
+            "text": ")",
+            "start": 33,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel"
+            ],
+            "text": "\n",
+            "start": 34,
+            "end": 35
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "punctuation.paren.open.fennel"
+            ],
+            "text": "(",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "keyword.special.fennel"
+            ],
+            "text": "let",
+            "start": 5,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel"
+            ],
+            "text": " ",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "punctuation.vector.bracket.open.fennel"
+            ],
+            "text": "[",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "meta.vector.fennel",
+                "punctuation.vector.bracket.open.fennel"
+            ],
+            "text": "[",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "meta.vector.fennel",
+                "variable.other.fennel"
+            ],
+            "text": "px",
+            "start": 11,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "meta.vector.fennel"
+            ],
+            "text": " ",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "meta.vector.fennel",
+                "variable.other.fennel"
+            ],
+            "text": "py",
+            "start": 14,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "meta.vector.fennel",
+                "punctuation.vector.bracket.close.fennel"
+            ],
+            "text": "]",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "meta.vector.fennel"
+            ],
+            "text": " ",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "variable.other.fennel"
+            ],
+            "text": "player",
+            "start": 18,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "meta.vector.fennel"
+            ],
+            "text": "\n",
+            "start": 24,
+            "end": 25
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "meta.vector.fennel"
+            ],
+            "text": "          ",
+            "start": 0,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "variable.other.fennel"
+            ],
+            "text": "x",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "meta.vector.fennel"
+            ],
+            "text": " ",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "sexp.fennel",
+                "punctuation.paren.open.fennel"
+            ],
+            "text": "(",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "sexp.fennel",
+                "keyword.special.fennel"
+            ],
+            "text": "+",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "sexp.fennel"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "sexp.fennel",
+                "variable.other.fennel"
+            ],
+            "text": "px",
+            "start": 15,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "sexp.fennel"
+            ],
+            "text": " ",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "punctuation.paren.open.fennel"
+            ],
+            "text": "(",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "keyword.special.fennel"
+            ],
+            "text": "*",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "sexp.fennel",
+                "sexp.fennel"
+            ],
+            "text": " ",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "variable.other.fennel"
+            ],
+            "text": "dx",
+            "start": 21,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "sexp.fennel",
+                "sexp.fennel"
+            ],
+            "text": " ",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "entity.name.function.symbol.fennel"
+            ],
+            "text": "player.speed",
+            "start": 24,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "sexp.fennel",
+                "sexp.fennel"
+            ],
+            "text": " ",
+            "start": 36,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "variable.other.fennel"
+            ],
+            "text": "dt",
+            "start": 37,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "punctuation.paren.close.fennel"
+            ],
+            "text": ")",
+            "start": 39,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "sexp.fennel",
+                "punctuation.paren.close.fennel"
+            ],
+            "text": ")",
+            "start": 40,
+            "end": 41
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "meta.vector.fennel"
+            ],
+            "text": "\n",
+            "start": 41,
+            "end": 42
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "meta.vector.fennel"
+            ],
+            "text": "          ",
+            "start": 0,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "variable.other.fennel"
+            ],
+            "text": "y",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "meta.vector.fennel"
+            ],
+            "text": " ",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "sexp.fennel",
+                "punctuation.paren.open.fennel"
+            ],
+            "text": "(",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "sexp.fennel",
+                "keyword.special.fennel"
+            ],
+            "text": "+",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "sexp.fennel"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "sexp.fennel",
+                "variable.other.fennel"
+            ],
+            "text": "py",
+            "start": 15,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "sexp.fennel"
+            ],
+            "text": " ",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "punctuation.paren.open.fennel"
+            ],
+            "text": "(",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "keyword.special.fennel"
+            ],
+            "text": "*",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "sexp.fennel",
+                "sexp.fennel"
+            ],
+            "text": " ",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "variable.other.fennel"
+            ],
+            "text": "dy",
+            "start": 21,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "sexp.fennel",
+                "sexp.fennel"
+            ],
+            "text": " ",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "entity.name.function.symbol.fennel"
+            ],
+            "text": "player.speed",
+            "start": 24,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "sexp.fennel",
+                "sexp.fennel"
+            ],
+            "text": " ",
+            "start": 36,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "variable.other.fennel"
+            ],
+            "text": "dt",
+            "start": 37,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "punctuation.paren.close.fennel"
+            ],
+            "text": ")",
+            "start": 39,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "sexp.fennel",
+                "punctuation.paren.close.fennel"
+            ],
+            "text": ")",
+            "start": 40,
+            "end": 41
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "meta.vector.fennel",
+                "punctuation.vector.bracket.close.fennel"
+            ],
+            "text": "]",
+            "start": 41,
+            "end": 42
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel"
+            ],
+            "text": "\n",
+            "start": 42,
+            "end": 43
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel"
+            ],
+            "text": "      ",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "punctuation.paren.open.fennel"
+            ],
+            "text": "(",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "entity.name.function.method.fennel"
+            ],
+            "text": "world:move",
+            "start": 7,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel"
+            ],
+            "text": " ",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "variable.other.fennel"
+            ],
+            "text": "player",
+            "start": 18,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel"
+            ],
+            "text": " ",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "variable.other.fennel"
+            ],
+            "text": "x",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel"
+            ],
+            "text": " ",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "variable.other.fennel"
+            ],
+            "text": "y",
+            "start": 27,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "punctuation.paren.close.fennel"
+            ],
+            "text": ")",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "sexp.fennel",
+                "punctuation.paren.close.fennel"
+            ],
+            "text": ")",
+            "start": 29,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "sexp.fennel",
+                "punctuation.paren.close.fennel"
+            ],
+            "text": ")",
+            "start": 30,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "sexp.fennel",
+                "punctuation.paren.close.fennel"
+            ],
+            "text": ")",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.fnl"
+            ],
+            "text": "\n",
+            "start": 32,
+            "end": 33
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.fnl"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.fnl",
+                "comment.line.semicolon.fennel"
+            ],
+            "text": ";",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.fnl",
+                "comment.line.semicolon.fennel"
+            ],
+            "text": "; From https:\/\/fennel-lang.org\/",
+            "start": 1,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.fnl"
+            ],
+            "text": "\n",
+            "start": 32,
+            "end": 33
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.fnl"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ]
+]

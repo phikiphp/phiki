@@ -1,0 +1,999 @@
+[
+    [
+        {
+            "scopes": [
+                "source.perl",
+                "comment.line.number-sign.perl",
+                "punctuation.definition.comment.perl"
+            ],
+            "text": "#",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.perl",
+                "comment.line.number-sign.perl"
+            ],
+            "text": "!\/usr\/bin\/perl",
+            "start": 1,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.perl",
+                "comment.line.number-sign.perl"
+            ],
+            "text": "\n",
+            "start": 15,
+            "end": 16
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.perl",
+                "keyword.control.perl"
+            ],
+            "text": "use",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.perl"
+            ],
+            "text": " strict;\n",
+            "start": 3,
+            "end": 12
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.perl",
+                "keyword.control.perl"
+            ],
+            "text": "use",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.perl"
+            ],
+            "text": " warnings;\n",
+            "start": 3,
+            "end": 14
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.perl"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.perl",
+                "comment.line.number-sign.perl",
+                "punctuation.definition.comment.perl"
+            ],
+            "text": "#",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.perl",
+                "comment.line.number-sign.perl"
+            ],
+            "text": " first, create your message",
+            "start": 1,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.perl",
+                "comment.line.number-sign.perl"
+            ],
+            "text": "\n",
+            "start": 28,
+            "end": 29
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.perl",
+                "keyword.control.perl"
+            ],
+            "text": "use",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.perl"
+            ],
+            "text": " Email::MIME;\n",
+            "start": 3,
+            "end": 17
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.perl",
+                "storage.modifier.perl"
+            ],
+            "text": "my",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.perl"
+            ],
+            "text": " ",
+            "start": 2,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.perl",
+                "variable.other.readwrite.global.perl",
+                "punctuation.definition.variable.perl"
+            ],
+            "text": "$",
+            "start": 3,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.perl",
+                "variable.other.readwrite.global.perl"
+            ],
+            "text": "message",
+            "start": 4,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.perl"
+            ],
+            "text": " = Email::MIME",
+            "start": 11,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.perl",
+                "keyword.operator.comparison.perl"
+            ],
+            "text": "->",
+            "start": 25,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.perl"
+            ],
+            "text": "create(\n",
+            "start": 27,
+            "end": 35
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.perl"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.perl",
+                "constant.other.key.perl"
+            ],
+            "text": "header_str",
+            "start": 2,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.perl"
+            ],
+            "text": " ",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.perl",
+                "keyword.operator.comparison.perl"
+            ],
+            "text": "=>",
+            "start": 13,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.perl"
+            ],
+            "text": " [\n",
+            "start": 15,
+            "end": 18
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.perl",
+                "meta.leading-tabs",
+                "meta.odd-tab"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.perl",
+                "constant.other.key.perl"
+            ],
+            "text": "From",
+            "start": 4,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.perl"
+            ],
+            "text": "    ",
+            "start": 8,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.perl",
+                "keyword.operator.comparison.perl"
+            ],
+            "text": "=>",
+            "start": 12,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.perl"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.perl",
+                "string.quoted.single.perl",
+                "punctuation.definition.string.begin.perl"
+            ],
+            "text": "'",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.perl",
+                "string.quoted.single.perl"
+            ],
+            "text": "you@example.com",
+            "start": 16,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.perl",
+                "string.quoted.single.perl",
+                "punctuation.definition.string.end.perl"
+            ],
+            "text": "'",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.perl"
+            ],
+            "text": ",\n",
+            "start": 32,
+            "end": 34
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.perl",
+                "meta.leading-tabs",
+                "meta.odd-tab"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.perl",
+                "constant.other.key.perl"
+            ],
+            "text": "To",
+            "start": 4,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.perl"
+            ],
+            "text": "      ",
+            "start": 6,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.perl",
+                "keyword.operator.comparison.perl"
+            ],
+            "text": "=>",
+            "start": 12,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.perl"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.perl",
+                "string.quoted.single.perl",
+                "punctuation.definition.string.begin.perl"
+            ],
+            "text": "'",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.perl",
+                "string.quoted.single.perl"
+            ],
+            "text": "friend@example.com",
+            "start": 16,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.perl",
+                "string.quoted.single.perl",
+                "punctuation.definition.string.end.perl"
+            ],
+            "text": "'",
+            "start": 34,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.perl"
+            ],
+            "text": ",\n",
+            "start": 35,
+            "end": 37
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.perl",
+                "meta.leading-tabs",
+                "meta.odd-tab"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.perl",
+                "constant.other.key.perl"
+            ],
+            "text": "Subject",
+            "start": 4,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.perl"
+            ],
+            "text": " ",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.perl",
+                "keyword.operator.comparison.perl"
+            ],
+            "text": "=>",
+            "start": 12,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.perl"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.perl",
+                "string.quoted.single.perl",
+                "punctuation.definition.string.begin.perl"
+            ],
+            "text": "'",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.perl",
+                "string.quoted.single.perl"
+            ],
+            "text": "Happy birthday!",
+            "start": 16,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.perl",
+                "string.quoted.single.perl",
+                "punctuation.definition.string.end.perl"
+            ],
+            "text": "'",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.perl"
+            ],
+            "text": ",\n",
+            "start": 32,
+            "end": 34
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.perl"
+            ],
+            "text": "  ],\n",
+            "start": 0,
+            "end": 5
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.perl"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.perl",
+                "constant.other.key.perl"
+            ],
+            "text": "attributes",
+            "start": 2,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.perl"
+            ],
+            "text": " ",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.perl",
+                "keyword.operator.comparison.perl"
+            ],
+            "text": "=>",
+            "start": 13,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.perl"
+            ],
+            "text": " {\n",
+            "start": 15,
+            "end": 18
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.perl",
+                "meta.leading-tabs",
+                "meta.odd-tab"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.perl",
+                "constant.other.key.perl"
+            ],
+            "text": "encoding",
+            "start": 4,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.perl"
+            ],
+            "text": " ",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.perl",
+                "keyword.operator.comparison.perl"
+            ],
+            "text": "=>",
+            "start": 13,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.perl"
+            ],
+            "text": " ",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.perl",
+                "string.quoted.single.perl",
+                "punctuation.definition.string.begin.perl"
+            ],
+            "text": "'",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.perl",
+                "string.quoted.single.perl"
+            ],
+            "text": "quoted-printable",
+            "start": 17,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.perl",
+                "string.quoted.single.perl",
+                "punctuation.definition.string.end.perl"
+            ],
+            "text": "'",
+            "start": 33,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.perl"
+            ],
+            "text": ",\n",
+            "start": 34,
+            "end": 36
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.perl",
+                "meta.leading-tabs",
+                "meta.odd-tab"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.perl",
+                "constant.other.key.perl"
+            ],
+            "text": "charset",
+            "start": 4,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.perl"
+            ],
+            "text": "  ",
+            "start": 11,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.perl",
+                "keyword.operator.comparison.perl"
+            ],
+            "text": "=>",
+            "start": 13,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.perl"
+            ],
+            "text": " ",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.perl",
+                "string.quoted.single.perl",
+                "punctuation.definition.string.begin.perl"
+            ],
+            "text": "'",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.perl",
+                "string.quoted.single.perl"
+            ],
+            "text": "ISO-8859-1",
+            "start": 17,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.perl",
+                "string.quoted.single.perl",
+                "punctuation.definition.string.end.perl"
+            ],
+            "text": "'",
+            "start": 27,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.perl"
+            ],
+            "text": ",\n",
+            "start": 28,
+            "end": 30
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.perl"
+            ],
+            "text": "  },\n",
+            "start": 0,
+            "end": 5
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.perl"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.perl",
+                "constant.other.key.perl"
+            ],
+            "text": "body_str",
+            "start": 2,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.perl"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.perl",
+                "keyword.operator.comparison.perl"
+            ],
+            "text": "=>",
+            "start": 11,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.perl"
+            ],
+            "text": " ",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.perl",
+                "string.quoted.double.perl",
+                "punctuation.definition.string.begin.perl"
+            ],
+            "text": "\"",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.perl",
+                "string.quoted.double.perl"
+            ],
+            "text": "Happy birthday to you!",
+            "start": 15,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.perl",
+                "string.quoted.double.perl",
+                "constant.character.escape.perl"
+            ],
+            "text": "\\n",
+            "start": 37,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.perl",
+                "string.quoted.double.perl",
+                "punctuation.definition.string.end.perl"
+            ],
+            "text": "\"",
+            "start": 39,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.perl"
+            ],
+            "text": ",\n",
+            "start": 40,
+            "end": 42
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.perl"
+            ],
+            "text": ");\n",
+            "start": 0,
+            "end": 3
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.perl"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.perl",
+                "comment.line.number-sign.perl",
+                "punctuation.definition.comment.perl"
+            ],
+            "text": "#",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.perl",
+                "comment.line.number-sign.perl"
+            ],
+            "text": " send the message",
+            "start": 1,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.perl",
+                "comment.line.number-sign.perl"
+            ],
+            "text": "\n",
+            "start": 18,
+            "end": 19
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.perl",
+                "keyword.control.perl"
+            ],
+            "text": "use",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.perl"
+            ],
+            "text": " Email::Sender::Simple ",
+            "start": 3,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.perl",
+                "string.quoted.other.q-paren.perl",
+                "punctuation.definition.string.begin.perl"
+            ],
+            "text": "qw(",
+            "start": 26,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.perl",
+                "string.quoted.other.q-paren.perl"
+            ],
+            "text": "sendmail",
+            "start": 29,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.perl",
+                "string.quoted.other.q-paren.perl",
+                "punctuation.definition.string.end.perl"
+            ],
+            "text": ")",
+            "start": 37,
+            "end": 38
+        },
+        {
+            "scopes": [
+                "source.perl"
+            ],
+            "text": ";\n",
+            "start": 38,
+            "end": 40
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.perl"
+            ],
+            "text": "sendmail(",
+            "start": 0,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.perl",
+                "variable.other.readwrite.global.perl",
+                "punctuation.definition.variable.perl"
+            ],
+            "text": "$",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.perl",
+                "variable.other.readwrite.global.perl"
+            ],
+            "text": "message",
+            "start": 10,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.perl"
+            ],
+            "text": ");\n",
+            "start": 17,
+            "end": 20
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.perl"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.perl",
+                "comment.line.number-sign.perl",
+                "punctuation.definition.comment.perl"
+            ],
+            "text": "#",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.perl",
+                "comment.line.number-sign.perl"
+            ],
+            "text": " From https:\/\/learn.perl.org\/examples\/email.html",
+            "start": 1,
+            "end": 49
+        },
+        {
+            "scopes": [
+                "source.perl",
+                "comment.line.number-sign.perl"
+            ],
+            "text": "\n",
+            "start": 49,
+            "end": 50
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.perl"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ]
+]

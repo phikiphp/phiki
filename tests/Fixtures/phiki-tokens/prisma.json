@@ -1,0 +1,2160 @@
+[
+    [
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "storage.type.config.prisma"
+            ],
+            "text": "datasource",
+            "start": 0,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "entity.name.type.config.prisma"
+            ],
+            "text": "db",
+            "start": 11,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": " ",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "punctuation.definition.tag.prisma"
+            ],
+            "text": "{",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "\n",
+            "start": 15,
+            "end": 16
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "variable.other.assignment.prisma"
+            ],
+            "text": "provider",
+            "start": 2,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "keyword.operator.terraform"
+            ],
+            "text": "=",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": " ",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "unnamed",
+                "string.quoted.double.start.prisma"
+            ],
+            "text": "\"",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "unnamed",
+                "string.quoted.double.prisma"
+            ],
+            "text": "postgresql",
+            "start": 14,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "unnamed",
+                "string.quoted.double.end.prisma"
+            ],
+            "text": "\"",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "\n",
+            "start": 25,
+            "end": 26
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "variable.other.assignment.prisma"
+            ],
+            "text": "url",
+            "start": 2,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "      ",
+            "start": 5,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "keyword.operator.terraform"
+            ],
+            "text": "=",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": " ",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "source.prisma.functional",
+                "support.function.functional.prisma"
+            ],
+            "text": "env",
+            "start": 13,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "source.prisma.functional",
+                "punctuation.definition.tag.prisma"
+            ],
+            "text": "(",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "source.prisma.functional",
+                "unnamed",
+                "string.quoted.double.start.prisma"
+            ],
+            "text": "\"",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "source.prisma.functional",
+                "unnamed",
+                "string.quoted.double.prisma"
+            ],
+            "text": "DATABASE_URL",
+            "start": 18,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "source.prisma.functional",
+                "unnamed",
+                "string.quoted.double.end.prisma"
+            ],
+            "text": "\"",
+            "start": 30,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "source.prisma.functional",
+                "punctuation.definition.tag.prisma"
+            ],
+            "text": ")",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "\n",
+            "start": 32,
+            "end": 33
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "}",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.prisma"
+            ],
+            "text": "\n",
+            "start": 1,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.prisma"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "storage.type.config.prisma"
+            ],
+            "text": "generator",
+            "start": 0,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": " ",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "entity.name.type.config.prisma"
+            ],
+            "text": "client",
+            "start": 10,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": " ",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "punctuation.definition.tag.prisma"
+            ],
+            "text": "{",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "\n",
+            "start": 18,
+            "end": 19
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "variable.other.assignment.prisma"
+            ],
+            "text": "provider",
+            "start": 2,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "keyword.operator.terraform"
+            ],
+            "text": "=",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": " ",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "unnamed",
+                "string.quoted.double.start.prisma"
+            ],
+            "text": "\"",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "unnamed",
+                "string.quoted.double.prisma"
+            ],
+            "text": "prisma-client-js",
+            "start": 14,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "unnamed",
+                "string.quoted.double.end.prisma"
+            ],
+            "text": "\"",
+            "start": 30,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "\n",
+            "start": 31,
+            "end": 32
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "}",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.prisma"
+            ],
+            "text": "\n",
+            "start": 1,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.prisma"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.prisma",
+                "comment.prisma"
+            ],
+            "text": "\/\/\/",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "comment.prisma"
+            ],
+            "text": " Post including an author and content.",
+            "start": 3,
+            "end": 41
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "comment.prisma"
+            ],
+            "text": "\n",
+            "start": 41,
+            "end": 42
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "storage.type.model.prisma"
+            ],
+            "text": "model",
+            "start": 0,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": " ",
+            "start": 5,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "entity.name.type.model.prisma"
+            ],
+            "text": "Post",
+            "start": 6,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "punctuation.definition.tag.prisma"
+            ],
+            "text": "{",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "\n",
+            "start": 12,
+            "end": 13
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "variable.other.assignment.prisma"
+            ],
+            "text": "id",
+            "start": 2,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "        ",
+            "start": 4,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "support.type.primitive.prisma"
+            ],
+            "text": "Int",
+            "start": 12,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "         ",
+            "start": 15,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "source.prisma.attribute.with_arguments",
+                "entity.name.function.attribute.prisma"
+            ],
+            "text": "@default",
+            "start": 24,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "source.prisma.attribute.with_arguments",
+                "punctuation.definition.tag.prisma"
+            ],
+            "text": "(",
+            "start": 32,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "source.prisma.attribute.with_arguments",
+                "source.prisma.functional",
+                "support.function.functional.prisma"
+            ],
+            "text": "autoincrement",
+            "start": 33,
+            "end": 46
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "source.prisma.attribute.with_arguments",
+                "source.prisma.functional",
+                "punctuation.definition.tag.prisma"
+            ],
+            "text": "(",
+            "start": 46,
+            "end": 47
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "source.prisma.attribute.with_arguments",
+                "source.prisma.functional",
+                "punctuation.definition.tag.prisma"
+            ],
+            "text": ")",
+            "start": 47,
+            "end": 48
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "source.prisma.attribute.with_arguments",
+                "punctuation.definition.tag.prisma"
+            ],
+            "text": ")",
+            "start": 48,
+            "end": 49
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": " ",
+            "start": 49,
+            "end": 50
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "source.prisma.attribute",
+                "entity.name.function.attribute.prisma"
+            ],
+            "text": "@id",
+            "start": 50,
+            "end": 53
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "\n",
+            "start": 53,
+            "end": 54
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "variable.other.assignment.prisma"
+            ],
+            "text": "content",
+            "start": 2,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "   ",
+            "start": 9,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "support.type.primitive.prisma"
+            ],
+            "text": "String",
+            "start": 12,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "keyword.operator.optional_type.prisma"
+            ],
+            "text": "?",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "\n",
+            "start": 19,
+            "end": 20
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "variable.other.assignment.prisma"
+            ],
+            "text": "published",
+            "start": 2,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": " ",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "support.type.primitive.prisma"
+            ],
+            "text": "Boolean",
+            "start": 12,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "     ",
+            "start": 19,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "source.prisma.attribute.with_arguments",
+                "entity.name.function.attribute.prisma"
+            ],
+            "text": "@default",
+            "start": 24,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "source.prisma.attribute.with_arguments",
+                "punctuation.definition.tag.prisma"
+            ],
+            "text": "(",
+            "start": 32,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "source.prisma.attribute.with_arguments",
+                "constant.language.boolean.prisma"
+            ],
+            "text": "false",
+            "start": 33,
+            "end": 38
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "source.prisma.attribute.with_arguments",
+                "punctuation.definition.tag.prisma"
+            ],
+            "text": ")",
+            "start": 38,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "\n",
+            "start": 39,
+            "end": 40
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "variable.other.assignment.prisma"
+            ],
+            "text": "author",
+            "start": 2,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "    ",
+            "start": 8,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "variable.language.relations.prisma"
+            ],
+            "text": "User",
+            "start": 12,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "keyword.operator.optional_type.prisma"
+            ],
+            "text": "?",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "       ",
+            "start": 17,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "source.prisma.attribute.with_arguments",
+                "entity.name.function.attribute.prisma"
+            ],
+            "text": "@relation",
+            "start": 24,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "source.prisma.attribute.with_arguments",
+                "punctuation.definition.tag.prisma"
+            ],
+            "text": "(",
+            "start": 33,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "source.prisma.attribute.with_arguments",
+                "variable.parameter.key.prisma"
+            ],
+            "text": "fields",
+            "start": 34,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "source.prisma.attribute.with_arguments",
+                "punctuation.definition.separator.key-value.prisma"
+            ],
+            "text": ":",
+            "start": 40,
+            "end": 41
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "source.prisma.attribute.with_arguments"
+            ],
+            "text": " ",
+            "start": 41,
+            "end": 42
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "source.prisma.attribute.with_arguments",
+                "source.prisma.array"
+            ],
+            "text": "[",
+            "start": 42,
+            "end": 43
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "source.prisma.attribute.with_arguments",
+                "source.prisma.array",
+                "support.constant.constant.prisma"
+            ],
+            "text": "authorId",
+            "start": 43,
+            "end": 51
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "source.prisma.attribute.with_arguments",
+                "source.prisma.array"
+            ],
+            "text": "]",
+            "start": 51,
+            "end": 52
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "source.prisma.attribute.with_arguments"
+            ],
+            "text": ", ",
+            "start": 52,
+            "end": 54
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "source.prisma.attribute.with_arguments",
+                "variable.parameter.key.prisma"
+            ],
+            "text": "references",
+            "start": 54,
+            "end": 64
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "source.prisma.attribute.with_arguments",
+                "punctuation.definition.separator.key-value.prisma"
+            ],
+            "text": ":",
+            "start": 64,
+            "end": 65
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "source.prisma.attribute.with_arguments"
+            ],
+            "text": " ",
+            "start": 65,
+            "end": 66
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "source.prisma.attribute.with_arguments",
+                "source.prisma.array"
+            ],
+            "text": "[",
+            "start": 66,
+            "end": 67
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "source.prisma.attribute.with_arguments",
+                "source.prisma.array",
+                "support.constant.constant.prisma"
+            ],
+            "text": "id",
+            "start": 67,
+            "end": 69
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "source.prisma.attribute.with_arguments",
+                "source.prisma.array"
+            ],
+            "text": "]",
+            "start": 69,
+            "end": 70
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "source.prisma.attribute.with_arguments",
+                "punctuation.definition.tag.prisma"
+            ],
+            "text": ")",
+            "start": 70,
+            "end": 71
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "\n",
+            "start": 71,
+            "end": 72
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "variable.other.assignment.prisma"
+            ],
+            "text": "authorId",
+            "start": 2,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "  ",
+            "start": 10,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "support.type.primitive.prisma"
+            ],
+            "text": "Int",
+            "start": 12,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "keyword.operator.optional_type.prisma"
+            ],
+            "text": "?",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "\n",
+            "start": 16,
+            "end": 17
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "punctuation.definition.tag.prisma"
+            ],
+            "text": "}",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.prisma"
+            ],
+            "text": "\n",
+            "start": 1,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.prisma"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.prisma",
+                "comment.prisma"
+            ],
+            "text": "\/\/",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "comment.prisma"
+            ],
+            "text": " Documentation for this model.",
+            "start": 2,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "comment.prisma"
+            ],
+            "text": "\n",
+            "start": 32,
+            "end": 33
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "storage.type.model.prisma"
+            ],
+            "text": "model",
+            "start": 0,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": " ",
+            "start": 5,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "entity.name.type.model.prisma"
+            ],
+            "text": "User",
+            "start": 6,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "punctuation.definition.tag.prisma"
+            ],
+            "text": "{",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "\n",
+            "start": 12,
+            "end": 13
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "variable.other.assignment.prisma"
+            ],
+            "text": "id",
+            "start": 2,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "    ",
+            "start": 4,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "support.type.primitive.prisma"
+            ],
+            "text": "Int",
+            "start": 8,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "     ",
+            "start": 11,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "source.prisma.attribute.with_arguments",
+                "entity.name.function.attribute.prisma"
+            ],
+            "text": "@default",
+            "start": 16,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "source.prisma.attribute.with_arguments",
+                "punctuation.definition.tag.prisma"
+            ],
+            "text": "(",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "source.prisma.attribute.with_arguments",
+                "source.prisma.functional",
+                "support.function.functional.prisma"
+            ],
+            "text": "autoincrement",
+            "start": 25,
+            "end": 38
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "source.prisma.attribute.with_arguments",
+                "source.prisma.functional",
+                "punctuation.definition.tag.prisma"
+            ],
+            "text": "(",
+            "start": 38,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "source.prisma.attribute.with_arguments",
+                "source.prisma.functional",
+                "punctuation.definition.tag.prisma"
+            ],
+            "text": ")",
+            "start": 39,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "source.prisma.attribute.with_arguments",
+                "punctuation.definition.tag.prisma"
+            ],
+            "text": ")",
+            "start": 40,
+            "end": 41
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": " ",
+            "start": 41,
+            "end": 42
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "source.prisma.attribute",
+                "entity.name.function.attribute.prisma"
+            ],
+            "text": "@id",
+            "start": 42,
+            "end": 45
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "\n",
+            "start": 45,
+            "end": 46
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "variable.other.assignment.prisma"
+            ],
+            "text": "email",
+            "start": 2,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": " ",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "support.type.primitive.prisma"
+            ],
+            "text": "String",
+            "start": 8,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "  ",
+            "start": 14,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "source.prisma.attribute",
+                "entity.name.function.attribute.prisma"
+            ],
+            "text": "@unique",
+            "start": 16,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "\n",
+            "start": 23,
+            "end": 24
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "variable.other.assignment.prisma"
+            ],
+            "text": "name",
+            "start": 2,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "  ",
+            "start": 6,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "support.type.primitive.prisma"
+            ],
+            "text": "String",
+            "start": 8,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "keyword.operator.optional_type.prisma"
+            ],
+            "text": "?",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "\n",
+            "start": 15,
+            "end": 16
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "variable.other.assignment.prisma"
+            ],
+            "text": "posts",
+            "start": 2,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": " ",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "variable.language.relations.prisma"
+            ],
+            "text": "Post",
+            "start": 8,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "keyword.operator.list_type.prisma"
+            ],
+            "text": "[]",
+            "start": 12,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "\n",
+            "start": 14,
+            "end": 15
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "variable.other.assignment.prisma"
+            ],
+            "text": "specialName",
+            "start": 2,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": " ",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "variable.language.relations.prisma"
+            ],
+            "text": "UserName",
+            "start": 14,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "\n",
+            "start": 22,
+            "end": 23
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "variable.other.assignment.prisma"
+            ],
+            "text": "test",
+            "start": 2,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": " ",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "variable.language.relations.prisma"
+            ],
+            "text": "Test",
+            "start": 7,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "\n",
+            "start": 11,
+            "end": 12
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "punctuation.definition.tag.prisma"
+            ],
+            "text": "}",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.prisma"
+            ],
+            "text": "\n",
+            "start": 1,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.prisma"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.prisma",
+                "comment.prisma"
+            ],
+            "text": "\/\/\/",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "comment.prisma"
+            ],
+            "text": " This is an enum specifying the UserName.",
+            "start": 3,
+            "end": 44
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "comment.prisma"
+            ],
+            "text": "\n",
+            "start": 44,
+            "end": 45
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "storage.type.enum.prisma"
+            ],
+            "text": "enum",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": " ",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "entity.name.type.enum.prisma"
+            ],
+            "text": "UserName",
+            "start": 5,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": " ",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "punctuation.definition.tag.prisma"
+            ],
+            "text": "{",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "\n",
+            "start": 15,
+            "end": 16
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "variable.other.assignment.prisma"
+            ],
+            "text": "Fred",
+            "start": 4,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "\n",
+            "start": 8,
+            "end": 9
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "variable.other.assignment.prisma"
+            ],
+            "text": "Eric",
+            "start": 4,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "\n",
+            "start": 8,
+            "end": 9
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "punctuation.definition.tag.prisma"
+            ],
+            "text": "}",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.prisma"
+            ],
+            "text": "\n",
+            "start": 1,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.prisma"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.prisma",
+                "comment.prisma"
+            ],
+            "text": "\/\/",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "comment.prisma"
+            ],
+            "text": " This is a test enum.",
+            "start": 2,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "comment.prisma"
+            ],
+            "text": "\n",
+            "start": 23,
+            "end": 24
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "storage.type.enum.prisma"
+            ],
+            "text": "enum",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": " ",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "entity.name.type.enum.prisma"
+            ],
+            "text": "Test",
+            "start": 5,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": " ",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "punctuation.definition.tag.prisma"
+            ],
+            "text": "{",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "\n",
+            "start": 11,
+            "end": 12
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "variable.other.assignment.prisma"
+            ],
+            "text": "TestUno",
+            "start": 2,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "\n",
+            "start": 9,
+            "end": 10
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "variable.other.assignment.prisma"
+            ],
+            "text": "TestDue",
+            "start": 2,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source"
+            ],
+            "text": "\n",
+            "start": 9,
+            "end": 10
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.prisma",
+                "source.prisma.embedded.source",
+                "punctuation.definition.tag.prisma"
+            ],
+            "text": "}",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.prisma"
+            ],
+            "text": "\n",
+            "start": 1,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.prisma"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.prisma",
+                "comment.prisma"
+            ],
+            "text": "\/\/",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "comment.prisma"
+            ],
+            "text": " taken from https:\/\/github.com\/prisma\/language-tools\/blob\/master\/packages\/vscode\/testFixture\/hover.prisma",
+            "start": 2,
+            "end": 107
+        },
+        {
+            "scopes": [
+                "source.prisma",
+                "comment.prisma"
+            ],
+            "text": "\n",
+            "start": 107,
+            "end": 108
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.prisma"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ]
+]

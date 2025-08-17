@@ -61,6 +61,10 @@ class Str
 
             $result = $capture[0];
 
+            if ($result === '') {
+                return '';
+            }
+
             while ($result[0] === '.') {
                 $result = substr($result, 1);
             }

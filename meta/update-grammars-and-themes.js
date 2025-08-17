@@ -9,10 +9,16 @@ console.log("Updating grammars...");
 const cases = {}
 const aliases = {}
 const scopeNames = {}
+const exclusions = ["source.bicep", "source.svelte", "text.xml"];
 
 grammars.forEach(grammar => {
     if (grammar.injectTo) {
         console.warn(`Skipping grammar ${grammar.name} as it is an injection grammar.`);
+        return;
+    }
+
+    if (exclusions.includes(grammar.scopeName)) {
+        console.warn(`Skipping grammar ${grammar.name} as it is in the exclusions list.`);
         return;
     }
     

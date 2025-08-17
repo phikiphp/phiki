@@ -1,0 +1,414 @@
+[
+    [
+        {
+            "scopes": [
+                "source.sparql",
+                "keyword.operator.turtle"
+            ],
+            "text": "PREFIX ",
+            "start": 0,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.sparql",
+                "constant.complex.turtle",
+                "storage.type.PNAME_NS.turtle"
+            ],
+            "text": "foaf:",
+            "start": 7,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.sparql"
+            ],
+            "text": " ",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.sparql",
+                "entity.name.type.iriref.turtle"
+            ],
+            "text": "<http:\/\/xmlns.com\/foaf\/0.1\/>",
+            "start": 13,
+            "end": 41
+        },
+        {
+            "scopes": [
+                "source.sparql"
+            ],
+            "text": "\n",
+            "start": 41,
+            "end": 42
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.sparql",
+                "keyword.control.sparql"
+            ],
+            "text": "SELECT",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.sparql"
+            ],
+            "text": " ",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.sparql",
+                "constant.variable.sparql.turtle"
+            ],
+            "text": "?name",
+            "start": 7,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.sparql"
+            ],
+            "text": " (",
+            "start": 12,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.sparql",
+                "support.function.sparql"
+            ],
+            "text": "COUNT",
+            "start": 14,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.sparql"
+            ],
+            "text": "(",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.sparql",
+                "constant.variable.sparql.turtle"
+            ],
+            "text": "?friend",
+            "start": 20,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.sparql"
+            ],
+            "text": ") ",
+            "start": 27,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.sparql",
+                "keyword.control.sparql"
+            ],
+            "text": "AS",
+            "start": 29,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.sparql"
+            ],
+            "text": " ",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.sparql",
+                "constant.variable.sparql.turtle"
+            ],
+            "text": "?count",
+            "start": 32,
+            "end": 38
+        },
+        {
+            "scopes": [
+                "source.sparql"
+            ],
+            "text": ")\n",
+            "start": 38,
+            "end": 40
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.sparql",
+                "keyword.control.sparql"
+            ],
+            "text": "WHERE",
+            "start": 0,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.sparql"
+            ],
+            "text": " { \n",
+            "start": 5,
+            "end": 9
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.sparql"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.sparql",
+                "constant.variable.sparql.turtle"
+            ],
+            "text": "?person",
+            "start": 4,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.sparql"
+            ],
+            "text": " ",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.sparql",
+                "constant.complex.turtle",
+                "storage.type.PNAME_NS.turtle"
+            ],
+            "text": "foaf:",
+            "start": 12,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.sparql",
+                "constant.complex.turtle",
+                "support.variable.PN_LOCAL.turtle"
+            ],
+            "text": "name",
+            "start": 17,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.sparql"
+            ],
+            "text": " ",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.sparql",
+                "constant.variable.sparql.turtle"
+            ],
+            "text": "?name",
+            "start": 22,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.sparql"
+            ],
+            "text": " . \n",
+            "start": 27,
+            "end": 31
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.sparql"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.sparql",
+                "constant.variable.sparql.turtle"
+            ],
+            "text": "?person",
+            "start": 4,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.sparql"
+            ],
+            "text": " ",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.sparql",
+                "constant.complex.turtle",
+                "storage.type.PNAME_NS.turtle"
+            ],
+            "text": "foaf:",
+            "start": 12,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.sparql",
+                "constant.complex.turtle",
+                "support.variable.PN_LOCAL.turtle"
+            ],
+            "text": "knows",
+            "start": 17,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.sparql"
+            ],
+            "text": " ",
+            "start": 22,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.sparql",
+                "constant.variable.sparql.turtle"
+            ],
+            "text": "?friend",
+            "start": 23,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.sparql"
+            ],
+            "text": " . \n",
+            "start": 30,
+            "end": 34
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.sparql"
+            ],
+            "text": "} ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.sparql",
+                "keyword.control.sparql"
+            ],
+            "text": "GROUP",
+            "start": 2,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.sparql"
+            ],
+            "text": " ",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.sparql",
+                "keyword.control.sparql"
+            ],
+            "text": "BY",
+            "start": 8,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.sparql"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.sparql",
+                "constant.variable.sparql.turtle"
+            ],
+            "text": "?person",
+            "start": 11,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.sparql"
+            ],
+            "text": " ",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.sparql",
+                "constant.variable.sparql.turtle"
+            ],
+            "text": "?name",
+            "start": 19,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.sparql"
+            ],
+            "text": "\n",
+            "start": 24,
+            "end": 25
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.sparql"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.sparql",
+                "comment.line.number-sign.turtle"
+            ],
+            "text": "# From https:\/\/www.w3.org\/TR\/sparql11-overview\/#sparql11-query\n",
+            "start": 0,
+            "end": 63
+        }
+    ]
+]

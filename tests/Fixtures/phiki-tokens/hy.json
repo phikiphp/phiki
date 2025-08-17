@@ -1,0 +1,517 @@
+[
+    [
+        {
+            "scopes": [
+                "source.hy"
+            ],
+            "text": "(",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.hy",
+                "keyword.control.hy"
+            ],
+            "text": "setv",
+            "start": 1,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.hy"
+            ],
+            "text": " ",
+            "start": 5,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.hy",
+                "variable.other.hy"
+            ],
+            "text": "foobar",
+            "start": 6,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.hy"
+            ],
+            "text": " (",
+            "start": 12,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.hy",
+                "keyword.control.hy"
+            ],
+            "text": "+",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.hy"
+            ],
+            "text": " ",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.hy",
+                "constant.numeric.hy"
+            ],
+            "text": "2",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.hy"
+            ],
+            "text": " ",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.hy",
+                "constant.numeric.hy"
+            ],
+            "text": "2",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.hy"
+            ],
+            "text": "))\n",
+            "start": 19,
+            "end": 22
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hy"
+            ],
+            "text": "(",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.hy",
+                "keyword.control.hy"
+            ],
+            "text": "setv",
+            "start": 1,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.hy"
+            ],
+            "text": " [",
+            "start": 5,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.hy",
+                "variable.other.hy"
+            ],
+            "text": "tim",
+            "start": 7,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.hy"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.hy",
+                "variable.other.hy"
+            ],
+            "text": "eric",
+            "start": 11,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.hy"
+            ],
+            "text": "] [",
+            "start": 15,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.hy",
+                "string.quoted.double.hy"
+            ],
+            "text": "\"",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.hy",
+                "string.quoted.double.hy"
+            ],
+            "text": "jim\" \"derrick\"])\n",
+            "start": 19,
+            "end": 36
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hy",
+                "string.quoted.double.hy"
+            ],
+            "text": "(setv  alpha \"a\"  beta \"b\")\n",
+            "start": 0,
+            "end": 28
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hy",
+                "string.quoted.double.hy"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hy",
+                "string.quoted.double.hy"
+            ],
+            "text": "(sorted \"abcBC\"\n",
+            "start": 0,
+            "end": 16
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hy",
+                "string.quoted.double.hy"
+            ],
+            "text": "  :key (fn [x] (.lower x)))\n",
+            "start": 0,
+            "end": 28
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hy",
+                "string.quoted.double.hy"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hy",
+                "string.quoted.double.hy"
+            ],
+            "text": "(defn test [a b [c \"x\"] #* d]\n",
+            "start": 0,
+            "end": 30
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hy",
+                "string.quoted.double.hy"
+            ],
+            "text": "  [a b c d])\n",
+            "start": 0,
+            "end": 13
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hy",
+                "string.quoted.double.hy"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hy",
+                "string.quoted.double.hy"
+            ],
+            "text": "(with [o (open \"file.txt\" \"rt\")]\n",
+            "start": 0,
+            "end": 33
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hy",
+                "string.quoted.double.hy"
+            ],
+            "text": "  (setv buffer [])\n",
+            "start": 0,
+            "end": 19
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hy",
+                "string.quoted.double.hy"
+            ],
+            "text": "  (while (< (len buffer) 10)\n",
+            "start": 0,
+            "end": 29
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hy",
+                "string.quoted.double.hy"
+            ],
+            "text": "    (.append buffer (next o))))\n",
+            "start": 0,
+            "end": 32
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hy",
+                "string.quoted.double.hy"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hy",
+                "string.quoted.double.hy"
+            ],
+            "text": "(lfor\n",
+            "start": 0,
+            "end": 6
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hy",
+                "string.quoted.double.hy"
+            ],
+            "text": "  x (range 3)\n",
+            "start": 0,
+            "end": 14
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hy",
+                "string.quoted.double.hy"
+            ],
+            "text": "  y (range 3)\n",
+            "start": 0,
+            "end": 14
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hy",
+                "string.quoted.double.hy"
+            ],
+            "text": "  :if (= (+ x y) 3)\n",
+            "start": 0,
+            "end": 20
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hy",
+                "string.quoted.double.hy"
+            ],
+            "text": "  (* x y))\n",
+            "start": 0,
+            "end": 11
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hy",
+                "string.quoted.double.hy"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hy",
+                "string.quoted.double.hy"
+            ],
+            "text": "(defmacro do-while [test #* body]\n",
+            "start": 0,
+            "end": 34
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hy",
+                "string.quoted.double.hy"
+            ],
+            "text": "  `(do\n",
+            "start": 0,
+            "end": 7
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hy",
+                "string.quoted.double.hy"
+            ],
+            "text": "    ~@body\n",
+            "start": 0,
+            "end": 11
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hy",
+                "string.quoted.double.hy"
+            ],
+            "text": "    (while ~test\n",
+            "start": 0,
+            "end": 17
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hy",
+                "string.quoted.double.hy"
+            ],
+            "text": "      ~@body)))\n",
+            "start": 0,
+            "end": 16
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hy",
+                "string.quoted.double.hy"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hy",
+                "string.quoted.double.hy"
+            ],
+            "text": "(setv x 0)\n",
+            "start": 0,
+            "end": 11
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hy",
+                "string.quoted.double.hy"
+            ],
+            "text": "(do-while x\n",
+            "start": 0,
+            "end": 12
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hy",
+                "string.quoted.double.hy"
+            ],
+            "text": "  (print \"Printed once.\"))\n",
+            "start": 0,
+            "end": 27
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hy",
+                "string.quoted.double.hy"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hy",
+                "string.quoted.double.hy"
+            ],
+            "text": ";; From https:\/\/hylang.org\/\n",
+            "start": 0,
+            "end": 28
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hy",
+                "string.quoted.double.hy"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ]
+]

@@ -1,0 +1,2402 @@
+[
+    [
+        {
+            "scopes": [
+                "source.vhdl",
+                "comment.line.double-dash.vhdl"
+            ],
+            "text": "-- dual_port_RAM_visualTest.vhd\n",
+            "start": 0,
+            "end": 32
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.vhdl"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.vhdl",
+                "comment.line.double-dash.vhdl"
+            ],
+            "text": "-- created by   :   Meher Krishna Patel\n",
+            "start": 0,
+            "end": 40
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.vhdl",
+                "comment.line.double-dash.vhdl"
+            ],
+            "text": "-- date         :   26-Dec-16\n",
+            "start": 0,
+            "end": 30
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.vhdl"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.vhdl",
+                "comment.line.double-dash.vhdl"
+            ],
+            "text": "-- Functionality:\n",
+            "start": 0,
+            "end": 18
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.vhdl"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "comment.line.double-dash.vhdl"
+            ],
+            "text": "-- store and retrieve data from dual port RAM\n",
+            "start": 2,
+            "end": 48
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.vhdl"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.vhdl",
+                "comment.line.double-dash.vhdl"
+            ],
+            "text": "-- ports:\n",
+            "start": 0,
+            "end": 10
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.vhdl"
+            ],
+            "text": "   ",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "comment.line.double-dash.vhdl"
+            ],
+            "text": "-- Write Enable (we) : SW[16]\n",
+            "start": 3,
+            "end": 33
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.vhdl"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "comment.line.double-dash.vhdl"
+            ],
+            "text": "-- Address (addr_wr)    : SW[15-14]\n",
+            "start": 4,
+            "end": 40
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.vhdl"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "comment.line.double-dash.vhdl"
+            ],
+            "text": "-- Address (addr_rd)    : SW[13-12]\n",
+            "start": 4,
+            "end": 40
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.vhdl"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "comment.line.double-dash.vhdl"
+            ],
+            "text": "-- din                      : SW[2:0]\n",
+            "start": 4,
+            "end": 42
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.vhdl"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "comment.line.double-dash.vhdl"
+            ],
+            "text": "-- dout                 : LEDR\n",
+            "start": 4,
+            "end": 35
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.vhdl"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.vhdl",
+                "keyword.language.vhdl"
+            ],
+            "text": "use",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.vhdl"
+            ],
+            "text": " ",
+            "start": 3,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "standard.library.language.vhdl"
+            ],
+            "text": "ieee",
+            "start": 4,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "punctuation.vhdl"
+            ],
+            "text": ".",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "standard.library.language.vhdl"
+            ],
+            "text": "numeric_std",
+            "start": 9,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "punctuation.vhdl"
+            ],
+            "text": ".",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "keyword.language.vhdl"
+            ],
+            "text": "all",
+            "start": 21,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "punctuation.vhdl"
+            ],
+            "text": ";",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "keyword.language.vhdl"
+            ],
+            "text": "library",
+            "start": 25,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.vhdl"
+            ],
+            "text": " ",
+            "start": 32,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "standard.library.language.vhdl"
+            ],
+            "text": "ieee",
+            "start": 33,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "punctuation.vhdl"
+            ],
+            "text": ";",
+            "start": 37,
+            "end": 38
+        },
+        {
+            "scopes": [
+                "source.vhdl"
+            ],
+            "text": "\n",
+            "start": 38,
+            "end": 39
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.vhdl",
+                "keyword.language.vhdl"
+            ],
+            "text": "use",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.vhdl"
+            ],
+            "text": " ",
+            "start": 3,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "standard.library.language.vhdl"
+            ],
+            "text": "ieee",
+            "start": 4,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "punctuation.vhdl"
+            ],
+            "text": ".",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "standard.library.language.vhdl"
+            ],
+            "text": "std_logic_1164",
+            "start": 9,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "punctuation.vhdl"
+            ],
+            "text": ".",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "keyword.language.vhdl"
+            ],
+            "text": "all",
+            "start": 24,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "punctuation.vhdl"
+            ],
+            "text": ";",
+            "start": 27,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.vhdl"
+            ],
+            "text": "\n",
+            "start": 28,
+            "end": 29
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.vhdl",
+                "keyword.language.vhdl"
+            ],
+            "text": "use",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.vhdl"
+            ],
+            "text": " ",
+            "start": 3,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "standard.library.language.vhdl"
+            ],
+            "text": "ieee",
+            "start": 4,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "punctuation.vhdl"
+            ],
+            "text": ".",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "standard.library.language.vhdl"
+            ],
+            "text": "numeric_std",
+            "start": 9,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "punctuation.vhdl"
+            ],
+            "text": ".",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "keyword.language.vhdl"
+            ],
+            "text": "all",
+            "start": 21,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "punctuation.vhdl"
+            ],
+            "text": ";",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.vhdl"
+            ],
+            "text": "\n",
+            "start": 25,
+            "end": 26
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.vhdl"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.vhdl",
+                "keyword.language.vhdl"
+            ],
+            "text": "entity",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.vhdl"
+            ],
+            "text": " ",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "entity.name.type.entity.begin.vhdl"
+            ],
+            "text": "dual_port_RAM_visualTest",
+            "start": 7,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.vhdl"
+            ],
+            "text": " ",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "keyword.language.vhdl"
+            ],
+            "text": "is",
+            "start": 32,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.vhdl"
+            ],
+            "text": "\n",
+            "start": 34,
+            "end": 35
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.vhdl"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "keyword.language.vhdl"
+            ],
+            "text": "generic",
+            "start": 4,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.vhdl"
+            ],
+            "text": " ",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "punctuation.vhdl"
+            ],
+            "text": "(",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.vhdl"
+            ],
+            "text": "\n",
+            "start": 13,
+            "end": 14
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.vhdl"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl"
+            ],
+            "text": "ADDR_WIDTH ",
+            "start": 8,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl",
+                "punctuation.vhdl"
+            ],
+            "text": ":",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl"
+            ],
+            "text": " ",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl",
+                "support.type.std.standard.vhdl"
+            ],
+            "text": "integer",
+            "start": 21,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl"
+            ],
+            "text": " ",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl",
+                "keyword.operator.vhdl"
+            ],
+            "text": ":=",
+            "start": 29,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl"
+            ],
+            "text": " ",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl",
+                "constant.numeric.integer.vhdl"
+            ],
+            "text": "2",
+            "start": 32,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl",
+                "punctuation.vhdl"
+            ],
+            "text": ";",
+            "start": 33,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.vhdl"
+            ],
+            "text": "\n",
+            "start": 34,
+            "end": 35
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.vhdl"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl"
+            ],
+            "text": "DATA_WIDTH ",
+            "start": 8,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl",
+                "punctuation.vhdl"
+            ],
+            "text": ":",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl"
+            ],
+            "text": " ",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl",
+                "support.type.std.standard.vhdl"
+            ],
+            "text": "integer",
+            "start": 21,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl"
+            ],
+            "text": " ",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl",
+                "keyword.operator.vhdl"
+            ],
+            "text": ":=",
+            "start": 29,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl"
+            ],
+            "text": " ",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl",
+                "constant.numeric.integer.vhdl"
+            ],
+            "text": "3",
+            "start": 32,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl"
+            ],
+            "text": "\n",
+            "start": 33,
+            "end": 34
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl",
+                "punctuation.vhdl"
+            ],
+            "text": ")",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "punctuation.vhdl"
+            ],
+            "text": ";",
+            "start": 5,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.vhdl"
+            ],
+            "text": "\n",
+            "start": 6,
+            "end": 7
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.vhdl"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.vhdl"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "keyword.language.vhdl"
+            ],
+            "text": "port",
+            "start": 4,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "punctuation.vhdl"
+            ],
+            "text": "(",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.vhdl"
+            ],
+            "text": "\n",
+            "start": 9,
+            "end": 10
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.vhdl"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl"
+            ],
+            "text": "CLOCK_50",
+            "start": 8,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl",
+                "punctuation.vhdl"
+            ],
+            "text": ":",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl"
+            ],
+            "text": " ",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl",
+                "keyword.language.vhdl"
+            ],
+            "text": "in",
+            "start": 18,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl"
+            ],
+            "text": " ",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl",
+                "support.type.ieee.std_logic_1164.vhdl"
+            ],
+            "text": "std_logic",
+            "start": 21,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl",
+                "punctuation.vhdl"
+            ],
+            "text": ";",
+            "start": 30,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.vhdl"
+            ],
+            "text": "\n",
+            "start": 31,
+            "end": 32
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.vhdl"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl"
+            ],
+            "text": "SW ",
+            "start": 8,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl",
+                "punctuation.vhdl"
+            ],
+            "text": ":",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl"
+            ],
+            "text": " ",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl",
+                "keyword.language.vhdl"
+            ],
+            "text": "in",
+            "start": 13,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl"
+            ],
+            "text": " ",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl",
+                "support.type.ieee.std_logic_1164.vhdl"
+            ],
+            "text": "std_logic_vector",
+            "start": 16,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl",
+                "punctuation.vhdl"
+            ],
+            "text": "(",
+            "start": 32,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl",
+                "constant.numeric.integer.vhdl"
+            ],
+            "text": "16",
+            "start": 33,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl"
+            ],
+            "text": " ",
+            "start": 35,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl",
+                "keyword.language.vhdl"
+            ],
+            "text": "downto",
+            "start": 36,
+            "end": 42
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl"
+            ],
+            "text": " ",
+            "start": 42,
+            "end": 43
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl",
+                "constant.numeric.integer.vhdl"
+            ],
+            "text": "0",
+            "start": 43,
+            "end": 44
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl",
+                "punctuation.vhdl"
+            ],
+            "text": ")",
+            "start": 44,
+            "end": 45
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl",
+                "punctuation.vhdl"
+            ],
+            "text": ";",
+            "start": 45,
+            "end": 46
+        },
+        {
+            "scopes": [
+                "source.vhdl"
+            ],
+            "text": "\n",
+            "start": 46,
+            "end": 47
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.vhdl"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl"
+            ],
+            "text": "LEDR ",
+            "start": 8,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl",
+                "punctuation.vhdl"
+            ],
+            "text": ":",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl",
+                "keyword.language.vhdl"
+            ],
+            "text": "out",
+            "start": 15,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl"
+            ],
+            "text": " ",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl",
+                "support.type.ieee.std_logic_1164.vhdl"
+            ],
+            "text": "std_logic_vector",
+            "start": 19,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl",
+                "punctuation.vhdl"
+            ],
+            "text": "(",
+            "start": 35,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl"
+            ],
+            "text": "DATA_WIDTH",
+            "start": 36,
+            "end": 46
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl",
+                "keyword.operator.vhdl"
+            ],
+            "text": "-",
+            "start": 46,
+            "end": 47
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl",
+                "constant.numeric.integer.vhdl"
+            ],
+            "text": "1",
+            "start": 47,
+            "end": 48
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl"
+            ],
+            "text": " ",
+            "start": 48,
+            "end": 49
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl",
+                "keyword.language.vhdl"
+            ],
+            "text": "downto",
+            "start": 49,
+            "end": 55
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl"
+            ],
+            "text": " ",
+            "start": 55,
+            "end": 56
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl",
+                "constant.numeric.integer.vhdl"
+            ],
+            "text": "0",
+            "start": 56,
+            "end": 57
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl",
+                "punctuation.vhdl"
+            ],
+            "text": ")",
+            "start": 57,
+            "end": 58
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl"
+            ],
+            "text": "\n",
+            "start": 58,
+            "end": 59
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "source.vhdl",
+                "punctuation.vhdl"
+            ],
+            "text": ")",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "punctuation.vhdl"
+            ],
+            "text": ";",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.vhdl"
+            ],
+            "text": "\n",
+            "start": 10,
+            "end": 11
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.vhdl",
+                "keyword.language.vhdl"
+            ],
+            "text": "end",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.vhdl"
+            ],
+            "text": " ",
+            "start": 3,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "entity.name.type.entity.end.vhdl"
+            ],
+            "text": "dual_port_RAM_visualTest",
+            "start": 4,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "punctuation.vhdl"
+            ],
+            "text": ";",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.vhdl"
+            ],
+            "text": "\n",
+            "start": 29,
+            "end": 30
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.vhdl"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "keyword.language.vhdl",
+                "entity.name.type.architecture.begin.vhdl"
+            ],
+            "text": "arch",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "keyword.language.vhdl"
+            ],
+            "text": "itecture",
+            "start": 4,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture"
+            ],
+            "text": " arch ",
+            "start": 12,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "keyword.language.vhdl"
+            ],
+            "text": "of",
+            "start": 18,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture"
+            ],
+            "text": " ",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "entity.name.type.entity.reference.vhdl"
+            ],
+            "text": "dual_port_RAM_visualTest",
+            "start": 21,
+            "end": 45
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture"
+            ],
+            "text": " ",
+            "start": 45,
+            "end": 46
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "keyword.language.vhdl"
+            ],
+            "text": "is",
+            "start": 46,
+            "end": 48
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture"
+            ],
+            "text": "\n",
+            "start": 48,
+            "end": 49
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "keyword.language.vhdl"
+            ],
+            "text": "begin",
+            "start": 0,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture"
+            ],
+            "text": "\n",
+            "start": 5,
+            "end": 6
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "entity.name.section.entity_instantiation.vhdl"
+            ],
+            "text": "dual_port_RAM_test",
+            "start": 4,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "punctuation.vhdl"
+            ],
+            "text": ":",
+            "start": 22,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture"
+            ],
+            "text": " ",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "keyword.language.vhdl"
+            ],
+            "text": "entity",
+            "start": 24,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture"
+            ],
+            "text": " ",
+            "start": 30,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "entity.name.tag.library.reference.vhdl"
+            ],
+            "text": "work",
+            "start": 31,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "punctuation.vhdl"
+            ],
+            "text": ".",
+            "start": 35,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture"
+            ],
+            "text": "dual_port_RAM",
+            "start": 36,
+            "end": 49
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture"
+            ],
+            "text": "\n",
+            "start": 49,
+            "end": 50
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "keyword.language.vhdl"
+            ],
+            "text": "port",
+            "start": 4,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture"
+            ],
+            "text": " ",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "keyword.language.vhdl"
+            ],
+            "text": "map",
+            "start": 9,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture"
+            ],
+            "text": " ",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "punctuation.vhdl"
+            ],
+            "text": "(",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl"
+            ],
+            "text": "clk",
+            "start": 14,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl",
+                "keyword.operator.vhdl"
+            ],
+            "text": "=",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl",
+                "keyword.operator.vhdl"
+            ],
+            "text": ">",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl"
+            ],
+            "text": "CLOCK_50",
+            "start": 19,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl",
+                "punctuation.vhdl"
+            ],
+            "text": ",",
+            "start": 27,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture"
+            ],
+            "text": " ",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl"
+            ],
+            "text": "we",
+            "start": 29,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl",
+                "keyword.operator.vhdl"
+            ],
+            "text": "=",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl",
+                "keyword.operator.vhdl"
+            ],
+            "text": ">",
+            "start": 32,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl"
+            ],
+            "text": "SW",
+            "start": 33,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl",
+                "punctuation.vhdl"
+            ],
+            "text": "(",
+            "start": 35,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl",
+                "constant.numeric.integer.vhdl"
+            ],
+            "text": "16",
+            "start": 36,
+            "end": 38
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl",
+                "punctuation.vhdl"
+            ],
+            "text": ")",
+            "start": 38,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl",
+                "punctuation.vhdl"
+            ],
+            "text": ",",
+            "start": 39,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture"
+            ],
+            "text": "\n",
+            "start": 40,
+            "end": 41
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture"
+            ],
+            "text": "                    ",
+            "start": 0,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl"
+            ],
+            "text": "addr_wr ",
+            "start": 20,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl",
+                "keyword.operator.vhdl"
+            ],
+            "text": "=",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl",
+                "keyword.operator.vhdl"
+            ],
+            "text": ">",
+            "start": 29,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl"
+            ],
+            "text": " SW",
+            "start": 30,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl",
+                "punctuation.vhdl"
+            ],
+            "text": "(",
+            "start": 33,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl",
+                "constant.numeric.integer.vhdl"
+            ],
+            "text": "15",
+            "start": 34,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl"
+            ],
+            "text": " ",
+            "start": 36,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl",
+                "keyword.language.vhdl"
+            ],
+            "text": "downto",
+            "start": 37,
+            "end": 43
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl"
+            ],
+            "text": " ",
+            "start": 43,
+            "end": 44
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl",
+                "constant.numeric.integer.vhdl"
+            ],
+            "text": "14",
+            "start": 44,
+            "end": 46
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl",
+                "punctuation.vhdl"
+            ],
+            "text": ")",
+            "start": 46,
+            "end": 47
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl",
+                "punctuation.vhdl"
+            ],
+            "text": ",",
+            "start": 47,
+            "end": 48
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture"
+            ],
+            "text": "\n",
+            "start": 48,
+            "end": 49
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture"
+            ],
+            "text": "                    ",
+            "start": 0,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl"
+            ],
+            "text": "addr_rd ",
+            "start": 20,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl",
+                "keyword.operator.vhdl"
+            ],
+            "text": "=",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl",
+                "keyword.operator.vhdl"
+            ],
+            "text": ">",
+            "start": 29,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl"
+            ],
+            "text": " SW",
+            "start": 30,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl",
+                "punctuation.vhdl"
+            ],
+            "text": "(",
+            "start": 33,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl",
+                "constant.numeric.integer.vhdl"
+            ],
+            "text": "13",
+            "start": 34,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl"
+            ],
+            "text": " ",
+            "start": 36,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl",
+                "keyword.language.vhdl"
+            ],
+            "text": "downto",
+            "start": 37,
+            "end": 43
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl"
+            ],
+            "text": " ",
+            "start": 43,
+            "end": 44
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl",
+                "constant.numeric.integer.vhdl"
+            ],
+            "text": "12",
+            "start": 44,
+            "end": 46
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl",
+                "punctuation.vhdl"
+            ],
+            "text": ")",
+            "start": 46,
+            "end": 47
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl",
+                "punctuation.vhdl"
+            ],
+            "text": ",",
+            "start": 47,
+            "end": 48
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture"
+            ],
+            "text": "\n",
+            "start": 48,
+            "end": 49
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture"
+            ],
+            "text": "                    ",
+            "start": 0,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl"
+            ],
+            "text": "din ",
+            "start": 20,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl",
+                "keyword.operator.vhdl"
+            ],
+            "text": "=",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl",
+                "keyword.operator.vhdl"
+            ],
+            "text": ">",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl"
+            ],
+            "text": " SW",
+            "start": 26,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl",
+                "punctuation.vhdl"
+            ],
+            "text": "(",
+            "start": 29,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl",
+                "constant.numeric.integer.vhdl"
+            ],
+            "text": "2",
+            "start": 30,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl"
+            ],
+            "text": " ",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl",
+                "keyword.language.vhdl"
+            ],
+            "text": "downto",
+            "start": 32,
+            "end": 38
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl"
+            ],
+            "text": " ",
+            "start": 38,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl",
+                "constant.numeric.integer.vhdl"
+            ],
+            "text": "0",
+            "start": 39,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl",
+                "punctuation.vhdl"
+            ],
+            "text": ")",
+            "start": 40,
+            "end": 41
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl",
+                "punctuation.vhdl"
+            ],
+            "text": ",",
+            "start": 41,
+            "end": 42
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture"
+            ],
+            "text": "\n",
+            "start": 42,
+            "end": 43
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture"
+            ],
+            "text": "                    ",
+            "start": 0,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl"
+            ],
+            "text": "dout ",
+            "start": 20,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl",
+                "keyword.operator.vhdl"
+            ],
+            "text": "=",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl",
+                "keyword.operator.vhdl"
+            ],
+            "text": ">",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl"
+            ],
+            "text": "LEDR",
+            "start": 27,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "source.vhdl",
+                "punctuation.vhdl"
+            ],
+            "text": ")",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "punctuation.vhdl"
+            ],
+            "text": ";",
+            "start": 32,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture"
+            ],
+            "text": "\n",
+            "start": 33,
+            "end": 34
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "keyword.language.vhdl"
+            ],
+            "text": "end",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture"
+            ],
+            "text": " ",
+            "start": 3,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "support.block.architecture",
+                "entity.name.type.architecture.end.vhdl"
+            ],
+            "text": "arch",
+            "start": 4,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.vhdl",
+                "punctuation.vhdl"
+            ],
+            "text": ";",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.vhdl"
+            ],
+            "text": "\n",
+            "start": 9,
+            "end": 10
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.vhdl"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.vhdl",
+                "comment.line.double-dash.vhdl"
+            ],
+            "text": "-- From https:\/\/vhdlguide.readthedocs.io\/en\/latest\/vhdl\/dex.html\n",
+            "start": 0,
+            "end": 65
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.vhdl"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ]
+]

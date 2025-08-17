@@ -1,0 +1,1232 @@
+[
+    [
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "keyword.control.tell.applescript"
+            ],
+            "text": "tell",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript"
+            ],
+            "text": " ",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "support.class.built-in.applescript"
+            ],
+            "text": "application",
+            "start": 5,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript"
+            ],
+            "text": " ",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "string.quoted.double.application-name.applescript",
+                "punctuation.definition.string.applescript"
+            ],
+            "text": "\"",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "string.quoted.double.application-name.applescript"
+            ],
+            "text": "Address Book",
+            "start": 18,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "string.quoted.double.application-name.applescript",
+                "punctuation.definition.string.applescript"
+            ],
+            "text": "\"",
+            "start": 30,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript"
+            ],
+            "text": "\n",
+            "start": 31,
+            "end": 32
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.statement.set.applescript",
+                "keyword.control.def.set.applescript"
+            ],
+            "text": "set",
+            "start": 4,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.statement.set.applescript"
+            ],
+            "text": " ",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.statement.set.applescript",
+                "variable.other.readwrite.set.applescript"
+            ],
+            "text": "bDayList",
+            "start": 8,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.statement.set.applescript"
+            ],
+            "text": " ",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.statement.set.applescript",
+                "keyword.control.def.set.applescript"
+            ],
+            "text": "to",
+            "start": 17,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.statement.set.applescript"
+            ],
+            "text": " ",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.statement.set.applescript",
+                "support.function.built-in.property.applescript"
+            ],
+            "text": "name",
+            "start": 20,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.statement.set.applescript"
+            ],
+            "text": " ",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.statement.set.applescript",
+                "keyword.other.applescript"
+            ],
+            "text": "of",
+            "start": 25,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.statement.set.applescript"
+            ],
+            "text": " ",
+            "start": 27,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.statement.set.applescript",
+                "keyword.operator.reference.applescript"
+            ],
+            "text": "every",
+            "start": 28,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.statement.set.applescript"
+            ],
+            "text": " person ",
+            "start": 33,
+            "end": 41
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.statement.set.applescript",
+                "keyword.operator.reference.applescript"
+            ],
+            "text": "whose",
+            "start": 41,
+            "end": 46
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.statement.set.applescript"
+            ],
+            "text": " birth ",
+            "start": 46,
+            "end": 53
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.statement.set.applescript",
+                "support.class.built-in.applescript"
+            ],
+            "text": "date",
+            "start": 53,
+            "end": 57
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.statement.set.applescript"
+            ],
+            "text": " ",
+            "start": 57,
+            "end": 58
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.statement.set.applescript",
+                "keyword.operator.word.applescript"
+            ],
+            "text": "is not",
+            "start": 58,
+            "end": 64
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.statement.set.applescript"
+            ],
+            "text": " ",
+            "start": 64,
+            "end": 65
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.statement.set.applescript",
+                "constant.language.null.applescript"
+            ],
+            "text": "missing value",
+            "start": 65,
+            "end": 78
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript"
+            ],
+            "text": "\n",
+            "start": 78,
+            "end": 79
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "support.function.built-in.command.applescript"
+            ],
+            "text": "choose from list",
+            "start": 4,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript"
+            ],
+            "text": " bDayList ",
+            "start": 20,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "keyword.other.applescript"
+            ],
+            "text": "with",
+            "start": 30,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript"
+            ],
+            "text": " prompt ",
+            "start": 34,
+            "end": 42
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "string.quoted.double.applescript",
+                "punctuation.definition.string.applescript"
+            ],
+            "text": "\"",
+            "start": 42,
+            "end": 43
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "string.quoted.double.applescript"
+            ],
+            "text": "Whose birthday would you like?",
+            "start": 43,
+            "end": 73
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "string.quoted.double.applescript",
+                "punctuation.definition.string.applescript"
+            ],
+            "text": "\"",
+            "start": 73,
+            "end": 74
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript"
+            ],
+            "text": "\n",
+            "start": 74,
+            "end": 75
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript",
+                "keyword.control.if.applescript"
+            ],
+            "text": "if",
+            "start": 4,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript"
+            ],
+            "text": " ",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript",
+                "keyword.other.applescript"
+            ],
+            "text": "the",
+            "start": 7,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript",
+                "constant.other.miscellaneous.applescript"
+            ],
+            "text": "result",
+            "start": 11,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript"
+            ],
+            "text": " ",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript",
+                "keyword.operator.word.applescript"
+            ],
+            "text": "is not",
+            "start": 18,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript"
+            ],
+            "text": " ",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript",
+                "constant.language.boolean.applescript"
+            ],
+            "text": "false",
+            "start": 25,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript"
+            ],
+            "text": " ",
+            "start": 30,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript",
+                "keyword.control.then.applescript"
+            ],
+            "text": "then",
+            "start": 31,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript"
+            ],
+            "text": "\n",
+            "start": 35,
+            "end": 36
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript",
+                "meta.statement.set.applescript",
+                "keyword.control.def.set.applescript"
+            ],
+            "text": "set",
+            "start": 8,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript",
+                "meta.statement.set.applescript"
+            ],
+            "text": " ",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript",
+                "meta.statement.set.applescript",
+                "variable.other.readwrite.set.applescript"
+            ],
+            "text": "aName",
+            "start": 12,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript",
+                "meta.statement.set.applescript"
+            ],
+            "text": " ",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript",
+                "meta.statement.set.applescript",
+                "keyword.control.def.set.applescript"
+            ],
+            "text": "to",
+            "start": 18,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript",
+                "meta.statement.set.applescript"
+            ],
+            "text": " ",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript",
+                "meta.statement.set.applescript",
+                "support.function.built-in.property.applescript"
+            ],
+            "text": "item",
+            "start": 21,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript",
+                "meta.statement.set.applescript"
+            ],
+            "text": " ",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript",
+                "meta.statement.set.applescript",
+                "constant.numeric.applescript"
+            ],
+            "text": "1",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript",
+                "meta.statement.set.applescript"
+            ],
+            "text": " ",
+            "start": 27,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript",
+                "meta.statement.set.applescript",
+                "keyword.other.applescript"
+            ],
+            "text": "of",
+            "start": 28,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript",
+                "meta.statement.set.applescript"
+            ],
+            "text": " ",
+            "start": 30,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript",
+                "meta.statement.set.applescript",
+                "keyword.other.applescript"
+            ],
+            "text": "the",
+            "start": 31,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript",
+                "meta.statement.set.applescript"
+            ],
+            "text": " ",
+            "start": 34,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript",
+                "meta.statement.set.applescript",
+                "constant.other.miscellaneous.applescript"
+            ],
+            "text": "result",
+            "start": 35,
+            "end": 41
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript"
+            ],
+            "text": "\n",
+            "start": 41,
+            "end": 42
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript",
+                "meta.statement.set.applescript",
+                "keyword.control.def.set.applescript"
+            ],
+            "text": "set",
+            "start": 8,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript",
+                "meta.statement.set.applescript"
+            ],
+            "text": " ",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript",
+                "meta.statement.set.applescript",
+                "variable.other.readwrite.set.applescript"
+            ],
+            "text": "theBirthday",
+            "start": 12,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript",
+                "meta.statement.set.applescript"
+            ],
+            "text": " ",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript",
+                "meta.statement.set.applescript",
+                "keyword.control.def.set.applescript"
+            ],
+            "text": "to",
+            "start": 24,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript",
+                "meta.statement.set.applescript"
+            ],
+            "text": " birth ",
+            "start": 26,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript",
+                "meta.statement.set.applescript",
+                "support.class.built-in.applescript"
+            ],
+            "text": "date",
+            "start": 33,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript",
+                "meta.statement.set.applescript"
+            ],
+            "text": " ",
+            "start": 37,
+            "end": 38
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript",
+                "meta.statement.set.applescript",
+                "keyword.other.applescript"
+            ],
+            "text": "of",
+            "start": 38,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript",
+                "meta.statement.set.applescript"
+            ],
+            "text": " person ",
+            "start": 40,
+            "end": 48
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript",
+                "meta.statement.set.applescript",
+                "keyword.operator.reference.applescript"
+            ],
+            "text": "named",
+            "start": 48,
+            "end": 53
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript",
+                "meta.statement.set.applescript"
+            ],
+            "text": " aName",
+            "start": 53,
+            "end": 59
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript"
+            ],
+            "text": "\n",
+            "start": 59,
+            "end": 60
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript",
+                "support.function.built-in.command.applescript"
+            ],
+            "text": "display dialog",
+            "start": 8,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript"
+            ],
+            "text": " aName ",
+            "start": 22,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript",
+                "keyword.operator.arithmetic.applescript"
+            ],
+            "text": "&",
+            "start": 29,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript"
+            ],
+            "text": " ",
+            "start": 30,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript",
+                "string.quoted.double.applescript",
+                "punctuation.definition.string.applescript"
+            ],
+            "text": "\"",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript",
+                "string.quoted.double.applescript"
+            ],
+            "text": "'s birthday is ",
+            "start": 32,
+            "end": 47
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript",
+                "string.quoted.double.applescript",
+                "punctuation.definition.string.applescript"
+            ],
+            "text": "\"",
+            "start": 47,
+            "end": 48
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript"
+            ],
+            "text": " ",
+            "start": 48,
+            "end": 49
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript",
+                "keyword.operator.arithmetic.applescript"
+            ],
+            "text": "&",
+            "start": 49,
+            "end": 50
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript"
+            ],
+            "text": " ",
+            "start": 50,
+            "end": 51
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript",
+                "support.function.built-in.property.applescript"
+            ],
+            "text": "date string",
+            "start": 51,
+            "end": 62
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript"
+            ],
+            "text": " ",
+            "start": 62,
+            "end": 63
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript",
+                "keyword.other.applescript"
+            ],
+            "text": "of",
+            "start": 63,
+            "end": 65
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript"
+            ],
+            "text": " theBirthday\n",
+            "start": 65,
+            "end": 78
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "meta.block.if.applescript",
+                "keyword.control.end.applescript"
+            ],
+            "text": "end if",
+            "start": 4,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript"
+            ],
+            "text": "\n",
+            "start": 10,
+            "end": 11
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.applescript",
+                "meta.block.tell.application.generic.applescript",
+                "keyword.control.tell.applescript"
+            ],
+            "text": "end tell",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.applescript"
+            ],
+            "text": "\n",
+            "start": 8,
+            "end": 9
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.applescript"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.applescript",
+                "comment.line.double-dash.applescript",
+                "punctuation.definition.comment.applescript"
+            ],
+            "text": "--",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "comment.line.double-dash.applescript"
+            ],
+            "text": " From https:\/\/developer.apple.com\/library\/archive\/documentation\/AppleScript\/Conceptual\/AppleScriptLangGuide\/reference\/ASLR_cmds.html",
+            "start": 2,
+            "end": 134
+        },
+        {
+            "scopes": [
+                "source.applescript",
+                "comment.line.double-dash.applescript"
+            ],
+            "text": "\n",
+            "start": 134,
+            "end": 135
+        }
+    ]
+]

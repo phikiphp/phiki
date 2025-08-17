@@ -1,0 +1,1614 @@
+[
+    [
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": "(with-test (:name :aprof-instance :skipped-on (",
+            "start": 0,
+            "end": 47
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "support.function.f.sideeffects.commonlisp"
+            ],
+            "text": "not",
+            "start": 47,
+            "end": 50
+        },
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": " :immobile-space))\n",
+            "start": 50,
+            "end": 69
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": "(",
+            "start": 2,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "keyword.control.commonlisp"
+            ],
+            "text": "let",
+            "start": 3,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": " (seen-this seen-that)\n",
+            "start": 6,
+            "end": 29
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": "    (",
+            "start": 0,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "storage.type.function.m.nosideeffects.commonlisp"
+            ],
+            "text": "dolist",
+            "start": 5,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": " (line (split-string\n",
+            "start": 11,
+            "end": 32
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": "                   (",
+            "start": 0,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "storage.type.function.m.sideeffects.commonlisp"
+            ],
+            "text": "with-output-to-string",
+            "start": 20,
+            "end": 41
+        },
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": " (s)\n",
+            "start": 41,
+            "end": 46
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": "                     (sb-aprof:aprof-run #'make-structs :stream s))\n",
+            "start": 0,
+            "end": 68
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": "                   ",
+            "start": 0,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "constant.character.escape.commonlisp"
+            ],
+            "text": "#\\newline",
+            "start": 19,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": "))\n",
+            "start": 28,
+            "end": 31
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": "      (",
+            "start": 0,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "storage.type.function.m.nosideeffects.commonlisp"
+            ],
+            "text": "when",
+            "start": 7,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": " (",
+            "start": 11,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "support.function.f.sideeffects.commonlisp"
+            ],
+            "text": "search",
+            "start": 13,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": " ",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "string.quoted.double.commonlisp",
+                "punctuation.definition.string.begin.commonlisp"
+            ],
+            "text": "\"",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "string.quoted.double.commonlisp"
+            ],
+            "text": "THIS-STRUCT",
+            "start": 21,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "string.quoted.double.commonlisp",
+                "punctuation.definition.string.end.commonlisp"
+            ],
+            "text": "\"",
+            "start": 32,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": " line) (",
+            "start": 33,
+            "end": 41
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "storage.type.function.specialform.commonlisp"
+            ],
+            "text": "setq",
+            "start": 41,
+            "end": 45
+        },
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": " seen-this t))\n",
+            "start": 45,
+            "end": 60
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": "      (",
+            "start": 0,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "storage.type.function.m.nosideeffects.commonlisp"
+            ],
+            "text": "when",
+            "start": 7,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": " (",
+            "start": 11,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "support.function.f.sideeffects.commonlisp"
+            ],
+            "text": "search",
+            "start": 13,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": " ",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "string.quoted.double.commonlisp",
+                "punctuation.definition.string.begin.commonlisp"
+            ],
+            "text": "\"",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "string.quoted.double.commonlisp"
+            ],
+            "text": "THAT-STRUCT",
+            "start": 21,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "string.quoted.double.commonlisp",
+                "punctuation.definition.string.end.commonlisp"
+            ],
+            "text": "\"",
+            "start": 32,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": " line) (",
+            "start": 33,
+            "end": 41
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "storage.type.function.specialform.commonlisp"
+            ],
+            "text": "setq",
+            "start": 41,
+            "end": 45
+        },
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": " seen-that t)))\n",
+            "start": 45,
+            "end": 61
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": "    (",
+            "start": 0,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "storage.type.function.m.nosideeffects.commonlisp"
+            ],
+            "text": "assert",
+            "start": 5,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": " (",
+            "start": 11,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "storage.type.function.m.nosideeffects.commonlisp"
+            ],
+            "text": "and",
+            "start": 13,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": " seen-this seen-that))))\n",
+            "start": 16,
+            "end": 41
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": "(",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "storage.type.function.defname.commonlisp"
+            ],
+            "text": "defun",
+            "start": 1,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": " ",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "entity.name.function.commonlisp"
+            ],
+            "text": "m",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "entity.name.function.commonlisp"
+            ],
+            "text": "y",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "entity.name.function.commonlisp"
+            ],
+            "text": "-",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "entity.name.function.commonlisp"
+            ],
+            "text": "l",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "entity.name.function.commonlisp"
+            ],
+            "text": "i",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "entity.name.function.commonlisp"
+            ],
+            "text": "s",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "entity.name.function.commonlisp"
+            ],
+            "text": "t",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": " (",
+            "start": 14,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "keyword.other.lambdalist.commonlisp"
+            ],
+            "text": "&rest",
+            "start": 16,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": " x)\n",
+            "start": 21,
+            "end": 25
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": "  (",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "storage.type.function.symbol.commonlisp"
+            ],
+            "text": "declare",
+            "start": 3,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": " (",
+            "start": 10,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "storage.type.function.declaration.commonlisp"
+            ],
+            "text": "optimize",
+            "start": 12,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": " sb-c::instrument-consing))\n",
+            "start": 20,
+            "end": 48
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": "  x)\n",
+            "start": 0,
+            "end": 5
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": "(",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "support.function.f.sideeffects.commonlisp"
+            ],
+            "text": "compile",
+            "start": 1,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": " 'my-list)\n",
+            "start": 8,
+            "end": 19
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": "#+nil\n",
+            "start": 0,
+            "end": 6
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": "(",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "keyword.control.commonlisp"
+            ],
+            "text": "let",
+            "start": 1,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": " ((l (sb-impl::%hash-table-alist sb-c::*checkgen-used-types*)))\n",
+            "start": 4,
+            "end": 68
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": "  (",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "support.function.f.sideeffects.commonlisp"
+            ],
+            "text": "format",
+            "start": 3,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": " t ",
+            "start": 9,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "string.quoted.double.commonlisp",
+                "punctuation.definition.string.begin.commonlisp"
+            ],
+            "text": "\"",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "string.quoted.double.commonlisp",
+                "entity.name.variable.commonlisp"
+            ],
+            "text": "~",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "string.quoted.double.commonlisp",
+                "entity.name.variable.commonlisp"
+            ],
+            "text": "&",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "string.quoted.double.commonlisp"
+            ],
+            "text": "Types needed by checkgen: ('+' = has internal error number)",
+            "start": 15,
+            "end": 74
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "string.quoted.double.commonlisp",
+                "entity.name.variable.commonlisp"
+            ],
+            "text": "~",
+            "start": 74,
+            "end": 75
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "string.quoted.double.commonlisp",
+                "entity.name.variable.commonlisp"
+            ],
+            "text": "%",
+            "start": 75,
+            "end": 76
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "string.quoted.double.commonlisp",
+                "punctuation.definition.string.end.commonlisp"
+            ],
+            "text": "\"",
+            "start": 76,
+            "end": 77
+        },
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": ")\n",
+            "start": 77,
+            "end": 79
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": "  (",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "storage.type.function.specialform.commonlisp"
+            ],
+            "text": "setq",
+            "start": 3,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": " l (",
+            "start": 7,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "support.function.f.sideeffects.commonlisp"
+            ],
+            "text": "sort",
+            "start": 11,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": " l #'",
+            "start": 15,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "support.function.f.sideeffects.commonlisp"
+            ],
+            "text": ">",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": " :key #'",
+            "start": 21,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "support.function.accessor.commonlisp"
+            ],
+            "text": "cadr",
+            "start": 29,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": "))\n",
+            "start": 33,
+            "end": 36
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": "  (",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "storage.type.function.m.nosideeffects.commonlisp"
+            ],
+            "text": "loop",
+            "start": 3,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": " for (type-spec ",
+            "start": 7,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "variable.other.constant.dot.commonlisp"
+            ],
+            "text": ".",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": " (",
+            "start": 24,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "support.function.f.sideeffects.commonlisp"
+            ],
+            "text": "count",
+            "start": 26,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": " ",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "variable.other.constant.dot.commonlisp"
+            ],
+            "text": ".",
+            "start": 32,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": " interr-p)) in l\n",
+            "start": 33,
+            "end": 50
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "storage.type.function.m.nosideeffects.commonlisp"
+            ],
+            "text": "do",
+            "start": 8,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": " (",
+            "start": 10,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "support.function.f.sideeffects.commonlisp"
+            ],
+            "text": "format",
+            "start": 12,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": " t ",
+            "start": 18,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "string.quoted.double.commonlisp",
+                "punctuation.definition.string.begin.commonlisp"
+            ],
+            "text": "\"",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "string.quoted.double.commonlisp",
+                "storage.type.function.formattedstring.commonlisp"
+            ],
+            "text": "~",
+            "start": 22,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "string.quoted.double.commonlisp",
+                "storage.type.function.formattedstring.commonlisp"
+            ],
+            "text": ":",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "string.quoted.double.commonlisp",
+                "storage.type.function.formattedstring.commonlisp"
+            ],
+            "text": "[",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "string.quoted.double.commonlisp"
+            ],
+            "text": " ",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "string.quoted.double.commonlisp",
+                "storage.type.function.formattedstring.commonlisp"
+            ],
+            "text": "~",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "string.quoted.double.commonlisp",
+                "storage.type.function.formattedstring.commonlisp"
+            ],
+            "text": ";",
+            "start": 27,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "string.quoted.double.commonlisp"
+            ],
+            "text": "+",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "string.quoted.double.commonlisp",
+                "storage.type.function.formattedstring.commonlisp"
+            ],
+            "text": "~",
+            "start": 29,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "string.quoted.double.commonlisp",
+                "storage.type.function.formattedstring.commonlisp"
+            ],
+            "text": "]",
+            "start": 30,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "string.quoted.double.commonlisp"
+            ],
+            "text": " ",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "string.quoted.double.commonlisp",
+                "entity.name.variable.commonlisp"
+            ],
+            "text": "~",
+            "start": 32,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "string.quoted.double.commonlisp",
+                "variable.other.constant.formattedstring.commonlisp"
+            ],
+            "text": "5",
+            "start": 33,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "string.quoted.double.commonlisp",
+                "entity.name.variable.commonlisp"
+            ],
+            "text": "D",
+            "start": 34,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "string.quoted.double.commonlisp"
+            ],
+            "text": " ",
+            "start": 35,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "string.quoted.double.commonlisp",
+                "entity.name.variable.commonlisp"
+            ],
+            "text": "~",
+            "start": 36,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "string.quoted.double.commonlisp",
+                "entity.name.variable.commonlisp"
+            ],
+            "text": "S",
+            "start": 37,
+            "end": 38
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "string.quoted.double.commonlisp",
+                "entity.name.variable.commonlisp"
+            ],
+            "text": "~",
+            "start": 38,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "string.quoted.double.commonlisp",
+                "entity.name.variable.commonlisp"
+            ],
+            "text": "%",
+            "start": 39,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "string.quoted.double.commonlisp",
+                "punctuation.definition.string.end.commonlisp"
+            ],
+            "text": "\"",
+            "start": 40,
+            "end": 41
+        },
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": " interr-p ",
+            "start": 41,
+            "end": 51
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "support.function.f.sideeffects.commonlisp"
+            ],
+            "text": "count",
+            "start": 51,
+            "end": 56
+        },
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": " type-spec))\n",
+            "start": 56,
+            "end": 69
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": "  (",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "support.function.f.sideeffects.commonlisp"
+            ],
+            "text": "format",
+            "start": 3,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": " t ",
+            "start": 9,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "string.quoted.double.commonlisp",
+                "punctuation.definition.string.begin.commonlisp"
+            ],
+            "text": "\"",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "string.quoted.double.commonlisp",
+                "entity.name.variable.commonlisp"
+            ],
+            "text": "~",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "string.quoted.double.commonlisp",
+                "entity.name.variable.commonlisp"
+            ],
+            "text": "&",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "string.quoted.double.commonlisp"
+            ],
+            "text": "Error numbers not used by checkgen:",
+            "start": 15,
+            "end": 50
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "string.quoted.double.commonlisp",
+                "entity.name.variable.commonlisp"
+            ],
+            "text": "~",
+            "start": 50,
+            "end": 51
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "string.quoted.double.commonlisp",
+                "entity.name.variable.commonlisp"
+            ],
+            "text": "%",
+            "start": 51,
+            "end": 52
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "string.quoted.double.commonlisp",
+                "punctuation.definition.string.end.commonlisp"
+            ],
+            "text": "\"",
+            "start": 52,
+            "end": 53
+        },
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": ")\n",
+            "start": 53,
+            "end": 55
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": "  (",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "storage.type.function.m.nosideeffects.commonlisp"
+            ],
+            "text": "loop",
+            "start": 3,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": " for (spec ",
+            "start": 7,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "support.class.commonlisp"
+            ],
+            "text": "symbol",
+            "start": 18,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": ") across sb-c:+backend-internal-errors+\n",
+            "start": 24,
+            "end": 64
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "storage.type.function.m.nosideeffects.commonlisp"
+            ],
+            "text": "when",
+            "start": 8,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": " (",
+            "start": 12,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "storage.type.function.m.nosideeffects.commonlisp"
+            ],
+            "text": "and",
+            "start": 14,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": " (",
+            "start": 17,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "support.function.f.sideeffects.commonlisp"
+            ],
+            "text": "not",
+            "start": 19,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": " (",
+            "start": 22,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "support.function.f.sideeffects.commonlisp"
+            ],
+            "text": "stringp",
+            "start": 24,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": " spec))\n",
+            "start": 31,
+            "end": 39
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": "                  (",
+            "start": 0,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "support.function.f.sideeffects.commonlisp"
+            ],
+            "text": "not",
+            "start": 19,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": " (",
+            "start": 22,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "support.function.accessor.commonlisp"
+            ],
+            "text": "gethash",
+            "start": 24,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": " spec sb-c::*checkgen-used-types*)))\n",
+            "start": 31,
+            "end": 68
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": "          ",
+            "start": 0,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "storage.type.function.m.nosideeffects.commonlisp"
+            ],
+            "text": "do",
+            "start": 10,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": " (",
+            "start": 12,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "support.function.f.sideeffects.commonlisp"
+            ],
+            "text": "format",
+            "start": 14,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": " t ",
+            "start": 20,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "string.quoted.double.commonlisp",
+                "punctuation.definition.string.begin.commonlisp"
+            ],
+            "text": "\"",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "string.quoted.double.commonlisp"
+            ],
+            "text": "       ",
+            "start": 24,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "string.quoted.double.commonlisp",
+                "entity.name.variable.commonlisp"
+            ],
+            "text": "~",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "string.quoted.double.commonlisp",
+                "entity.name.variable.commonlisp"
+            ],
+            "text": "S",
+            "start": 32,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "string.quoted.double.commonlisp",
+                "entity.name.variable.commonlisp"
+            ],
+            "text": "~",
+            "start": 33,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "string.quoted.double.commonlisp",
+                "entity.name.variable.commonlisp"
+            ],
+            "text": "%",
+            "start": 34,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "string.quoted.double.commonlisp",
+                "punctuation.definition.string.end.commonlisp"
+            ],
+            "text": "\"",
+            "start": 35,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": " spec)))\n",
+            "start": 36,
+            "end": 45
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.commonlisp",
+                "comment.line.semicolon.commonlisp",
+                "punctuation.definition.comment.commonlisp"
+            ],
+            "text": ";",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "comment.line.semicolon.commonlisp"
+            ],
+            "text": "; From https:\/\/github.com\/qingpeng9802\/vscode-common-lisp\/blob\/master\/syntaxes\/fixtures\/cases\/demo.lsp",
+            "start": 1,
+            "end": 103
+        },
+        {
+            "scopes": [
+                "source.commonlisp",
+                "comment.line.semicolon.commonlisp"
+            ],
+            "text": "\n",
+            "start": 103,
+            "end": 104
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.commonlisp"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ]
+]

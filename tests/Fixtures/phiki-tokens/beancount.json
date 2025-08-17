@@ -1,0 +1,790 @@
+[
+    [
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "constant.numeric.date.year.beancount"
+            ],
+            "text": "2012",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "punctuation.separator.beancount"
+            ],
+            "text": "-",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "constant.numeric.date.month.beancount"
+            ],
+            "text": "11",
+            "start": 5,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount"
+            ],
+            "text": "-",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "constant.numeric.date.day.beancount"
+            ],
+            "text": "03",
+            "start": 8,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "support.function.directive.beancount"
+            ],
+            "text": "*",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount"
+            ],
+            "text": " ",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "string.quoted.tiers.beancount"
+            ],
+            "text": "\"Transfer to pay credit card\"",
+            "start": 13,
+            "end": 42
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount"
+            ],
+            "text": "\n",
+            "start": 42,
+            "end": 43
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "meta.posting.beancount"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "meta.posting.beancount",
+                "meta.account.beancount",
+                "variable.language.beancount"
+            ],
+            "text": "Assets",
+            "start": 2,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "meta.posting.beancount",
+                "meta.account.beancount",
+                "punctuation.separator.beancount"
+            ],
+            "text": ":",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "meta.posting.beancount",
+                "meta.account.beancount",
+                "variable.other.account.beancount"
+            ],
+            "text": "MyBank:Checking",
+            "start": 9,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "meta.posting.beancount",
+                "meta.account.beancount"
+            ],
+            "text": " ",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "meta.posting.beancount"
+            ],
+            "text": "           ",
+            "start": 25,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "meta.posting.beancount",
+                "meta.amount.beancount",
+                "keyword.operator.modifier.beancount"
+            ],
+            "text": "-",
+            "start": 36,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "meta.posting.beancount",
+                "meta.amount.beancount",
+                "constant.numeric.currency.beancount"
+            ],
+            "text": "400.00",
+            "start": 37,
+            "end": 43
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "meta.posting.beancount",
+                "meta.amount.beancount"
+            ],
+            "text": " ",
+            "start": 43,
+            "end": 44
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "meta.posting.beancount",
+                "meta.amount.beancount",
+                "entity.name.type.commodity.beancount"
+            ],
+            "text": "USD",
+            "start": 44,
+            "end": 47
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "meta.posting.beancount"
+            ],
+            "text": "\n",
+            "start": 47,
+            "end": 48
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "meta.posting.beancount"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "meta.posting.beancount",
+                "meta.account.beancount",
+                "variable.language.beancount"
+            ],
+            "text": "Liabilities",
+            "start": 2,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "meta.posting.beancount",
+                "meta.account.beancount",
+                "punctuation.separator.beancount"
+            ],
+            "text": ":",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "meta.posting.beancount",
+                "meta.account.beancount",
+                "variable.other.account.beancount"
+            ],
+            "text": "CreditCard",
+            "start": 14,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "meta.posting.beancount",
+                "meta.account.beancount"
+            ],
+            "text": " ",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "meta.posting.beancount"
+            ],
+            "text": "            ",
+            "start": 25,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "meta.posting.beancount",
+                "meta.amount.beancount",
+                "constant.numeric.currency.beancount"
+            ],
+            "text": "400.00",
+            "start": 37,
+            "end": 43
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "meta.posting.beancount",
+                "meta.amount.beancount"
+            ],
+            "text": " ",
+            "start": 43,
+            "end": 44
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "meta.posting.beancount",
+                "meta.amount.beancount",
+                "entity.name.type.commodity.beancount"
+            ],
+            "text": "USD",
+            "start": 44,
+            "end": 47
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "meta.posting.beancount"
+            ],
+            "text": "\n",
+            "start": 47,
+            "end": 48
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.beancount"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "constant.numeric.date.year.beancount"
+            ],
+            "text": "2012",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "punctuation.separator.beancount"
+            ],
+            "text": "-",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "constant.numeric.date.month.beancount"
+            ],
+            "text": "11",
+            "start": 5,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount"
+            ],
+            "text": "-",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "constant.numeric.date.day.beancount"
+            ],
+            "text": "03",
+            "start": 8,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "support.function.directive.beancount"
+            ],
+            "text": "*",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount"
+            ],
+            "text": " ",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "string.quoted.tiers.beancount"
+            ],
+            "text": "\"Transfer to account in Canada\"",
+            "start": 13,
+            "end": 44
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount"
+            ],
+            "text": "\n",
+            "start": 44,
+            "end": 45
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "meta.posting.beancount"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "meta.posting.beancount",
+                "meta.account.beancount",
+                "variable.language.beancount"
+            ],
+            "text": "Assets",
+            "start": 2,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "meta.posting.beancount",
+                "meta.account.beancount",
+                "punctuation.separator.beancount"
+            ],
+            "text": ":",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "meta.posting.beancount",
+                "meta.account.beancount",
+                "variable.other.account.beancount"
+            ],
+            "text": "MyBank:Checking",
+            "start": 9,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "meta.posting.beancount",
+                "meta.account.beancount"
+            ],
+            "text": " ",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "meta.posting.beancount"
+            ],
+            "text": "           ",
+            "start": 25,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "meta.posting.beancount",
+                "meta.amount.beancount",
+                "keyword.operator.modifier.beancount"
+            ],
+            "text": "-",
+            "start": 36,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "meta.posting.beancount",
+                "meta.amount.beancount",
+                "constant.numeric.currency.beancount"
+            ],
+            "text": "400.00",
+            "start": 37,
+            "end": 43
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "meta.posting.beancount",
+                "meta.amount.beancount"
+            ],
+            "text": " ",
+            "start": 43,
+            "end": 44
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "meta.posting.beancount",
+                "meta.amount.beancount",
+                "entity.name.type.commodity.beancount"
+            ],
+            "text": "USD",
+            "start": 44,
+            "end": 47
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "meta.posting.beancount"
+            ],
+            "text": " ",
+            "start": 47,
+            "end": 48
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "meta.posting.beancount",
+                "meta.price.beancount",
+                "keyword.operator.assignment.beancount"
+            ],
+            "text": "@",
+            "start": 48,
+            "end": 49
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "meta.posting.beancount",
+                "meta.price.beancount"
+            ],
+            "text": " ",
+            "start": 49,
+            "end": 50
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "meta.posting.beancount",
+                "meta.price.beancount",
+                "meta.amount.beancount",
+                "constant.numeric.currency.beancount"
+            ],
+            "text": "1.09",
+            "start": 50,
+            "end": 54
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "meta.posting.beancount",
+                "meta.price.beancount",
+                "meta.amount.beancount"
+            ],
+            "text": " ",
+            "start": 54,
+            "end": 55
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "meta.posting.beancount",
+                "meta.price.beancount",
+                "meta.amount.beancount",
+                "entity.name.type.commodity.beancount"
+            ],
+            "text": "CAD",
+            "start": 55,
+            "end": 58
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "meta.posting.beancount"
+            ],
+            "text": "\n",
+            "start": 58,
+            "end": 59
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "meta.posting.beancount"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "meta.posting.beancount",
+                "meta.account.beancount",
+                "variable.language.beancount"
+            ],
+            "text": "Assets",
+            "start": 2,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "meta.posting.beancount",
+                "meta.account.beancount",
+                "punctuation.separator.beancount"
+            ],
+            "text": ":",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "meta.posting.beancount",
+                "meta.account.beancount",
+                "variable.other.account.beancount"
+            ],
+            "text": "FR:SocGen:Checking",
+            "start": 9,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "meta.posting.beancount",
+                "meta.account.beancount"
+            ],
+            "text": " ",
+            "start": 27,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "meta.posting.beancount"
+            ],
+            "text": "         ",
+            "start": 28,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "meta.posting.beancount",
+                "meta.amount.beancount",
+                "constant.numeric.currency.beancount"
+            ],
+            "text": "436.01",
+            "start": 37,
+            "end": 43
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "meta.posting.beancount",
+                "meta.amount.beancount"
+            ],
+            "text": " ",
+            "start": 43,
+            "end": 44
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "meta.posting.beancount",
+                "meta.amount.beancount",
+                "entity.name.type.commodity.beancount"
+            ],
+            "text": "CAD",
+            "start": 44,
+            "end": 47
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "meta.posting.beancount"
+            ],
+            "text": "\n",
+            "start": 47,
+            "end": 48
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.beancount"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.beancount",
+                "comment.line.beancount"
+            ],
+            "text": "; https:\/\/beancount.github.io\/docs\/beancount_language_syntax.html#costs-and-prices\n",
+            "start": 0,
+            "end": 83
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.beancount"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ]
+]

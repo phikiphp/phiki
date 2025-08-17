@@ -1,0 +1,1966 @@
+[
+    [
+        {
+            "scopes": [
+                "source.cypher",
+                "keyword.control.clause.cypher"
+            ],
+            "text": "UNWIND",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.cypher"
+            ],
+            "text": " [\n",
+            "start": 6,
+            "end": 9
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cypher"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "keyword.control.properties_literal.cypher"
+            ],
+            "text": "{",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": " ",
+            "start": 5,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "variable.other.identifier.cypher"
+            ],
+            "text": "title",
+            "start": 6,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "keyword.control.properties_literal.seperator.cypher"
+            ],
+            "text": ":",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": " ",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "string.quoted.double.cypher"
+            ],
+            "text": "\"",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "string.quoted.double.cypher"
+            ],
+            "text": "Cypher Basics I",
+            "start": 14,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "string.quoted.double.cypher"
+            ],
+            "text": "\"",
+            "start": 29,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "keyword.control.properties_literal.seperator.cypher"
+            ],
+            "text": ",",
+            "start": 30,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": "\n",
+            "start": 31,
+            "end": 32
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": "      ",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "variable.other.identifier.cypher"
+            ],
+            "text": "created",
+            "start": 6,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "keyword.control.properties_literal.seperator.cypher"
+            ],
+            "text": ":",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "variable.other.identifier.cypher"
+            ],
+            "text": "datetime",
+            "start": 15,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": "(",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "string.quoted.double.cypher"
+            ],
+            "text": "\"",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "string.quoted.double.cypher"
+            ],
+            "text": "2019-06-01T18:40:32.142+0100",
+            "start": 25,
+            "end": 53
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "string.quoted.double.cypher"
+            ],
+            "text": "\"",
+            "start": 53,
+            "end": 54
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": ")",
+            "start": 54,
+            "end": 55
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "keyword.control.properties_literal.seperator.cypher"
+            ],
+            "text": ",",
+            "start": 55,
+            "end": 56
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": "\n",
+            "start": 56,
+            "end": 57
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": "      ",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "variable.other.identifier.cypher"
+            ],
+            "text": "datePublished",
+            "start": 6,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "keyword.control.properties_literal.seperator.cypher"
+            ],
+            "text": ":",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": " ",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "variable.other.identifier.cypher"
+            ],
+            "text": "date",
+            "start": 21,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": "(",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "string.quoted.double.cypher"
+            ],
+            "text": "\"",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "string.quoted.double.cypher"
+            ],
+            "text": "2019-06-01",
+            "start": 27,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "string.quoted.double.cypher"
+            ],
+            "text": "\"",
+            "start": 37,
+            "end": 38
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": ")",
+            "start": 38,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "keyword.control.properties_literal.seperator.cypher"
+            ],
+            "text": ",",
+            "start": 39,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": "\n",
+            "start": 40,
+            "end": 41
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": "      ",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "variable.other.identifier.cypher"
+            ],
+            "text": "readingTime",
+            "start": 6,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "keyword.control.properties_literal.seperator.cypher"
+            ],
+            "text": ":",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": " {",
+            "start": 18,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "variable.other.identifier.cypher"
+            ],
+            "text": "minutes",
+            "start": 20,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "keyword.control.properties_literal.seperator.cypher"
+            ],
+            "text": ":",
+            "start": 27,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": " ",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "constant.numeric.cypher"
+            ],
+            "text": "2",
+            "start": 29,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "keyword.control.properties_literal.seperator.cypher"
+            ],
+            "text": ",",
+            "start": 30,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": " ",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "variable.other.identifier.cypher"
+            ],
+            "text": "seconds",
+            "start": 32,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "keyword.control.properties_literal.seperator.cypher"
+            ],
+            "text": ":",
+            "start": 39,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": " ",
+            "start": 40,
+            "end": 41
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "constant.numeric.cypher"
+            ],
+            "text": "15",
+            "start": 41,
+            "end": 43
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "keyword.control.properties_literal.cypher"
+            ],
+            "text": "}",
+            "start": 43,
+            "end": 44
+        },
+        {
+            "scopes": [
+                "source.cypher"
+            ],
+            "text": " },\n",
+            "start": 44,
+            "end": 48
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cypher"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "keyword.control.properties_literal.cypher"
+            ],
+            "text": "{",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": " ",
+            "start": 5,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "variable.other.identifier.cypher"
+            ],
+            "text": "title",
+            "start": 6,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "keyword.control.properties_literal.seperator.cypher"
+            ],
+            "text": ":",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": " ",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "string.quoted.double.cypher"
+            ],
+            "text": "\"",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "string.quoted.double.cypher"
+            ],
+            "text": "Cypher Basics II",
+            "start": 14,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "string.quoted.double.cypher"
+            ],
+            "text": "\"",
+            "start": 30,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "keyword.control.properties_literal.seperator.cypher"
+            ],
+            "text": ",",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": "\n",
+            "start": 32,
+            "end": 33
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": "      ",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "variable.other.identifier.cypher"
+            ],
+            "text": "created",
+            "start": 6,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "keyword.control.properties_literal.seperator.cypher"
+            ],
+            "text": ":",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "variable.other.identifier.cypher"
+            ],
+            "text": "datetime",
+            "start": 15,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": "(",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "string.quoted.double.cypher"
+            ],
+            "text": "\"",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "string.quoted.double.cypher"
+            ],
+            "text": "2019-06-02T10:23:32.122+0100",
+            "start": 25,
+            "end": 53
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "string.quoted.double.cypher"
+            ],
+            "text": "\"",
+            "start": 53,
+            "end": 54
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": ")",
+            "start": 54,
+            "end": 55
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "keyword.control.properties_literal.seperator.cypher"
+            ],
+            "text": ",",
+            "start": 55,
+            "end": 56
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": "\n",
+            "start": 56,
+            "end": 57
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": "      ",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "variable.other.identifier.cypher"
+            ],
+            "text": "datePublished",
+            "start": 6,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "keyword.control.properties_literal.seperator.cypher"
+            ],
+            "text": ":",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": " ",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "variable.other.identifier.cypher"
+            ],
+            "text": "date",
+            "start": 21,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": "(",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "string.quoted.double.cypher"
+            ],
+            "text": "\"",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "string.quoted.double.cypher"
+            ],
+            "text": "2019-06-02",
+            "start": 27,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "string.quoted.double.cypher"
+            ],
+            "text": "\"",
+            "start": 37,
+            "end": 38
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": ")",
+            "start": 38,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "keyword.control.properties_literal.seperator.cypher"
+            ],
+            "text": ",",
+            "start": 39,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": "\n",
+            "start": 40,
+            "end": 41
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": "      ",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "variable.other.identifier.cypher"
+            ],
+            "text": "readingTime",
+            "start": 6,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "keyword.control.properties_literal.seperator.cypher"
+            ],
+            "text": ":",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": " {",
+            "start": 18,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "variable.other.identifier.cypher"
+            ],
+            "text": "minutes",
+            "start": 20,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "keyword.control.properties_literal.seperator.cypher"
+            ],
+            "text": ":",
+            "start": 27,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": " ",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "constant.numeric.cypher"
+            ],
+            "text": "2",
+            "start": 29,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "keyword.control.properties_literal.seperator.cypher"
+            ],
+            "text": ",",
+            "start": 30,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": " ",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "variable.other.identifier.cypher"
+            ],
+            "text": "seconds",
+            "start": 32,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "keyword.control.properties_literal.seperator.cypher"
+            ],
+            "text": ":",
+            "start": 39,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": " ",
+            "start": 40,
+            "end": 41
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "constant.numeric.cypher"
+            ],
+            "text": "30",
+            "start": 41,
+            "end": 43
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "keyword.control.properties_literal.cypher"
+            ],
+            "text": "}",
+            "start": 43,
+            "end": 44
+        },
+        {
+            "scopes": [
+                "source.cypher"
+            ],
+            "text": " },\n",
+            "start": 44,
+            "end": 48
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cypher"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "keyword.control.properties_literal.cypher"
+            ],
+            "text": "{",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": " ",
+            "start": 5,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "variable.other.identifier.cypher"
+            ],
+            "text": "title",
+            "start": 6,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "keyword.control.properties_literal.seperator.cypher"
+            ],
+            "text": ":",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": " ",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "string.quoted.double.cypher"
+            ],
+            "text": "\"",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "string.quoted.double.cypher"
+            ],
+            "text": "Dates, Datetimes, and Durations in Neo4j",
+            "start": 14,
+            "end": 54
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "string.quoted.double.cypher"
+            ],
+            "text": "\"",
+            "start": 54,
+            "end": 55
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "keyword.control.properties_literal.seperator.cypher"
+            ],
+            "text": ",",
+            "start": 55,
+            "end": 56
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": "\n",
+            "start": 56,
+            "end": 57
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": "      ",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "variable.other.identifier.cypher"
+            ],
+            "text": "created",
+            "start": 6,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "keyword.control.properties_literal.seperator.cypher"
+            ],
+            "text": ":",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "variable.other.identifier.cypher"
+            ],
+            "text": "datetime",
+            "start": 15,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": "()",
+            "start": 23,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "keyword.control.properties_literal.seperator.cypher"
+            ],
+            "text": ",",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": "\n",
+            "start": 26,
+            "end": 27
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": "      ",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "variable.other.identifier.cypher"
+            ],
+            "text": "datePublished",
+            "start": 6,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "keyword.control.properties_literal.seperator.cypher"
+            ],
+            "text": ":",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": " ",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "variable.other.identifier.cypher"
+            ],
+            "text": "date",
+            "start": 21,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": "()",
+            "start": 25,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "keyword.control.properties_literal.seperator.cypher"
+            ],
+            "text": ",",
+            "start": 27,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": "\n",
+            "start": 28,
+            "end": 29
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": "      ",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "variable.other.identifier.cypher"
+            ],
+            "text": "readingTime",
+            "start": 6,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "keyword.control.properties_literal.seperator.cypher"
+            ],
+            "text": ":",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": " {",
+            "start": 18,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "variable.other.identifier.cypher"
+            ],
+            "text": "minutes",
+            "start": 20,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "keyword.control.properties_literal.seperator.cypher"
+            ],
+            "text": ":",
+            "start": 27,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": " ",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "constant.numeric.cypher"
+            ],
+            "text": "3",
+            "start": 29,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "keyword.control.properties_literal.seperator.cypher"
+            ],
+            "text": ",",
+            "start": 30,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": " ",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "variable.other.identifier.cypher"
+            ],
+            "text": "seconds",
+            "start": 32,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "keyword.control.properties_literal.seperator.cypher"
+            ],
+            "text": ":",
+            "start": 39,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": " ",
+            "start": 40,
+            "end": 41
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "constant.numeric.cypher"
+            ],
+            "text": "30",
+            "start": 41,
+            "end": 43
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "keyword.control.properties_literal.cypher"
+            ],
+            "text": "}",
+            "start": 43,
+            "end": 44
+        },
+        {
+            "scopes": [
+                "source.cypher"
+            ],
+            "text": " }\n",
+            "start": 44,
+            "end": 47
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cypher"
+            ],
+            "text": "] ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "keyword.control.clause.cypher"
+            ],
+            "text": "AS",
+            "start": 2,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.cypher"
+            ],
+            "text": " ",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "variable.other.identifier.cypher"
+            ],
+            "text": "articleProperties",
+            "start": 5,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.cypher"
+            ],
+            "text": "\n",
+            "start": 22,
+            "end": 23
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cypher"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cypher",
+                "keyword.data.definition.cypher"
+            ],
+            "text": "CREATE",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.cypher"
+            ],
+            "text": " (",
+            "start": 6,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "variable.other.identifier.cypher"
+            ],
+            "text": "article",
+            "start": 8,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.cypher"
+            ],
+            "text": ":",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "variable.other.identifier.cypher"
+            ],
+            "text": "Article",
+            "start": 16,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.cypher"
+            ],
+            "text": " ",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "keyword.control.properties_literal.cypher"
+            ],
+            "text": "{",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "variable.other.identifier.cypher"
+            ],
+            "text": "title",
+            "start": 25,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "keyword.control.properties_literal.seperator.cypher"
+            ],
+            "text": ":",
+            "start": 30,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": " ",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "variable.other.identifier.cypher"
+            ],
+            "text": "articleProperties",
+            "start": 32,
+            "end": 49
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher"
+            ],
+            "text": ".",
+            "start": 49,
+            "end": 50
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "variable.other.identifier.cypher"
+            ],
+            "text": "title",
+            "start": 50,
+            "end": 55
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "source.cypher",
+                "keyword.control.properties_literal.cypher"
+            ],
+            "text": "}",
+            "start": 55,
+            "end": 56
+        },
+        {
+            "scopes": [
+                "source.cypher"
+            ],
+            "text": ")\n",
+            "start": 56,
+            "end": 58
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cypher",
+                "keyword.data.definition.cypher"
+            ],
+            "text": "SET",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.cypher"
+            ],
+            "text": " ",
+            "start": 3,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "variable.other.identifier.cypher"
+            ],
+            "text": "article",
+            "start": 4,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.cypher"
+            ],
+            "text": ".",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "variable.other.identifier.cypher"
+            ],
+            "text": "created",
+            "start": 12,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.cypher"
+            ],
+            "text": " ",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "keyword.operator.compare.cypher"
+            ],
+            "text": "=",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.cypher"
+            ],
+            "text": " ",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "variable.other.identifier.cypher"
+            ],
+            "text": "articleProperties",
+            "start": 22,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.cypher"
+            ],
+            "text": ".",
+            "start": 39,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "variable.other.identifier.cypher"
+            ],
+            "text": "created",
+            "start": 40,
+            "end": 47
+        },
+        {
+            "scopes": [
+                "source.cypher"
+            ],
+            "text": ",\n",
+            "start": 47,
+            "end": 49
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cypher"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "variable.other.identifier.cypher"
+            ],
+            "text": "article",
+            "start": 4,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.cypher"
+            ],
+            "text": ".",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "variable.other.identifier.cypher"
+            ],
+            "text": "datePublished",
+            "start": 12,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.cypher"
+            ],
+            "text": " ",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "keyword.operator.compare.cypher"
+            ],
+            "text": "=",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.cypher"
+            ],
+            "text": " ",
+            "start": 27,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "variable.other.identifier.cypher"
+            ],
+            "text": "articleProperties",
+            "start": 28,
+            "end": 45
+        },
+        {
+            "scopes": [
+                "source.cypher"
+            ],
+            "text": ".",
+            "start": 45,
+            "end": 46
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "variable.other.identifier.cypher"
+            ],
+            "text": "datePublished",
+            "start": 46,
+            "end": 59
+        },
+        {
+            "scopes": [
+                "source.cypher"
+            ],
+            "text": ",\n",
+            "start": 59,
+            "end": 61
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cypher"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "variable.other.identifier.cypher"
+            ],
+            "text": "article",
+            "start": 4,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.cypher"
+            ],
+            "text": ".",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "variable.other.identifier.cypher"
+            ],
+            "text": "readingTime",
+            "start": 12,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.cypher"
+            ],
+            "text": " ",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "keyword.operator.compare.cypher"
+            ],
+            "text": "=",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.cypher"
+            ],
+            "text": " ",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "variable.other.identifier.cypher"
+            ],
+            "text": "duration",
+            "start": 26,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.cypher"
+            ],
+            "text": "(",
+            "start": 34,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "variable.other.identifier.cypher"
+            ],
+            "text": "articleProperties",
+            "start": 35,
+            "end": 52
+        },
+        {
+            "scopes": [
+                "source.cypher"
+            ],
+            "text": ".",
+            "start": 52,
+            "end": 53
+        },
+        {
+            "scopes": [
+                "source.cypher",
+                "variable.other.identifier.cypher"
+            ],
+            "text": "readingTime",
+            "start": 53,
+            "end": 64
+        },
+        {
+            "scopes": [
+                "source.cypher"
+            ],
+            "text": ")\n",
+            "start": 64,
+            "end": 66
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cypher"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cypher",
+                "comment.line.double-slash.cypher"
+            ],
+            "text": "\/\/ https:\/\/neo4j.com\/developer\/cypher\/dates-datetimes-durations\/\n",
+            "start": 0,
+            "end": 65
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cypher"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ]
+]

@@ -1,0 +1,1202 @@
+[
+    [
+        {
+            "scopes": [
+                "source.nextflow"
+            ],
+            "text": "\/*\n",
+            "start": 0,
+            "end": 3
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow"
+            ],
+            "text": " * The following pipeline parameters specify the reference genomes\n",
+            "start": 0,
+            "end": 67
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow"
+            ],
+            "text": " * and read pairs and can be provided as command line options\n",
+            "start": 0,
+            "end": 62
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow"
+            ],
+            "text": " *\/\n",
+            "start": 0,
+            "end": 4
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow"
+            ],
+            "text": "params.reads = \"$baseDir\/data\/ggal\/ggal_gut_{1,2}.fq\"\n",
+            "start": 0,
+            "end": 54
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow"
+            ],
+            "text": "params.transcriptome = \"$baseDir\/data\/ggal\/ggal_1_48850000_49020000.Ggal71.500bpflank.fa\"\n",
+            "start": 0,
+            "end": 90
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow"
+            ],
+            "text": "params.outdir = \"results\"\n",
+            "start": 0,
+            "end": 26
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow"
+            ],
+            "text": " \n",
+            "start": 0,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow",
+                "workflow.nextflow",
+                "keyword.nextflow"
+            ],
+            "text": "workflow",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.nextflow",
+                "workflow.nextflow"
+            ],
+            "text": " {",
+            "start": 8,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.nextflow",
+                "workflow.nextflow"
+            ],
+            "text": "\n",
+            "start": 10,
+            "end": 11
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow",
+                "workflow.nextflow"
+            ],
+            "text": "    read_pairs_ch = channel.fromFilePairs( params.reads, checkIfExists: true )\n",
+            "start": 0,
+            "end": 79
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow",
+                "workflow.nextflow"
+            ],
+            "text": " \n",
+            "start": 0,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow",
+                "workflow.nextflow"
+            ],
+            "text": "    INDEX(params.transcriptome)\n",
+            "start": 0,
+            "end": 32
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow",
+                "workflow.nextflow"
+            ],
+            "text": "    FASTQC(read_pairs_ch)\n",
+            "start": 0,
+            "end": 26
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow",
+                "workflow.nextflow"
+            ],
+            "text": "    QUANT(INDEX.out, read_pairs_ch)\n",
+            "start": 0,
+            "end": 36
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow",
+                "workflow.nextflow"
+            ],
+            "text": "}",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.nextflow"
+            ],
+            "text": "\n",
+            "start": 1,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow"
+            ],
+            "text": " \n",
+            "start": 0,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow",
+                "keyword.nextflow"
+            ],
+            "text": "process",
+            "start": 0,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": " ",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow",
+                "entity.name.function.nextflow"
+            ],
+            "text": "INDEX",
+            "start": 8,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": " {",
+            "start": 13,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": "\n",
+            "start": 15,
+            "end": 16
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": "    tag \"$transcriptome.simpleName\"\n",
+            "start": 0,
+            "end": 36
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": " \n",
+            "start": 0,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow",
+                "constant.block.nextflow"
+            ],
+            "text": "input:",
+            "start": 4,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": "\n",
+            "start": 10,
+            "end": 11
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow",
+                "entity.name.function.nextflow"
+            ],
+            "text": "path ",
+            "start": 4,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": "transcriptome\n",
+            "start": 9,
+            "end": 23
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": " \n",
+            "start": 0,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow",
+                "constant.block.nextflow"
+            ],
+            "text": "output:",
+            "start": 4,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": "\n",
+            "start": 11,
+            "end": 12
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow",
+                "entity.name.function.nextflow"
+            ],
+            "text": "path ",
+            "start": 4,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": "'index'\n",
+            "start": 9,
+            "end": 17
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": " \n",
+            "start": 0,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow",
+                "constant.block.nextflow"
+            ],
+            "text": "script:",
+            "start": 4,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": "\n",
+            "start": 11,
+            "end": 12
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": "    \"\"\"\n",
+            "start": 0,
+            "end": 8
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": "    salmon index --threads $task.cpus -t $transcriptome -i index\n",
+            "start": 0,
+            "end": 65
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": "    \"\"\"\n",
+            "start": 0,
+            "end": 8
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": "}",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.nextflow"
+            ],
+            "text": "\n",
+            "start": 1,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow"
+            ],
+            "text": " \n",
+            "start": 0,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow",
+                "keyword.nextflow"
+            ],
+            "text": "process",
+            "start": 0,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": " ",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow",
+                "entity.name.function.nextflow"
+            ],
+            "text": "FASTQC",
+            "start": 8,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": " {",
+            "start": 14,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": "\n",
+            "start": 16,
+            "end": 17
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": "    tag \"FASTQC on $sample_id\"\n",
+            "start": 0,
+            "end": 31
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": "    publishDir params.outdir\n",
+            "start": 0,
+            "end": 29
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": " \n",
+            "start": 0,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow",
+                "constant.block.nextflow"
+            ],
+            "text": "input:",
+            "start": 4,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": "\n",
+            "start": 10,
+            "end": 11
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow",
+                "entity.name.function.nextflow"
+            ],
+            "text": "tuple ",
+            "start": 4,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow",
+                "entity.name.function.nextflow"
+            ],
+            "text": "val(",
+            "start": 10,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": "sample_id), ",
+            "start": 14,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow",
+                "entity.name.function.nextflow"
+            ],
+            "text": "path(",
+            "start": 26,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": "reads)\n",
+            "start": 31,
+            "end": 38
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": " \n",
+            "start": 0,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow",
+                "constant.block.nextflow"
+            ],
+            "text": "output:",
+            "start": 4,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": "\n",
+            "start": 11,
+            "end": 12
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow",
+                "entity.name.function.nextflow"
+            ],
+            "text": "path ",
+            "start": 4,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": "\"fastqc_${sample_id",
+            "start": 9,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": "}",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.nextflow"
+            ],
+            "text": "_logs\"\n",
+            "start": 29,
+            "end": 36
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow"
+            ],
+            "text": " \n",
+            "start": 0,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow"
+            ],
+            "text": "    script:\n",
+            "start": 0,
+            "end": 12
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow"
+            ],
+            "text": "    \"\"\"\n",
+            "start": 0,
+            "end": 8
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow"
+            ],
+            "text": "    fastqc.sh \"$sample_id\" \"$reads\"\n",
+            "start": 0,
+            "end": 36
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow"
+            ],
+            "text": "    \"\"\"\n",
+            "start": 0,
+            "end": 8
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow"
+            ],
+            "text": "}\n",
+            "start": 0,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow"
+            ],
+            "text": " \n",
+            "start": 0,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow",
+                "keyword.nextflow"
+            ],
+            "text": "process",
+            "start": 0,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": " ",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow",
+                "entity.name.function.nextflow"
+            ],
+            "text": "QUANT",
+            "start": 8,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": " {",
+            "start": 13,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": "\n",
+            "start": 15,
+            "end": 16
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": "    tag \"$pair_id\"\n",
+            "start": 0,
+            "end": 19
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": "    publishDir params.outdir\n",
+            "start": 0,
+            "end": 29
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": " \n",
+            "start": 0,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow",
+                "constant.block.nextflow"
+            ],
+            "text": "input:",
+            "start": 4,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": "\n",
+            "start": 10,
+            "end": 11
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow",
+                "entity.name.function.nextflow"
+            ],
+            "text": "path ",
+            "start": 4,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": "index\n",
+            "start": 9,
+            "end": 15
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow",
+                "entity.name.function.nextflow"
+            ],
+            "text": "tuple ",
+            "start": 4,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow",
+                "entity.name.function.nextflow"
+            ],
+            "text": "val(",
+            "start": 10,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": "pair_id), ",
+            "start": 14,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow",
+                "entity.name.function.nextflow"
+            ],
+            "text": "path(",
+            "start": 24,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": "reads)\n",
+            "start": 29,
+            "end": 36
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": " \n",
+            "start": 0,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow",
+                "constant.block.nextflow"
+            ],
+            "text": "output:",
+            "start": 4,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": "\n",
+            "start": 11,
+            "end": 12
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow",
+                "entity.name.function.nextflow"
+            ],
+            "text": "path ",
+            "start": 4,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": "pair_id\n",
+            "start": 9,
+            "end": 17
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": " \n",
+            "start": 0,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow",
+                "constant.block.nextflow"
+            ],
+            "text": "script:",
+            "start": 4,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": "\n",
+            "start": 11,
+            "end": 12
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": "    \"\"\"\n",
+            "start": 0,
+            "end": 8
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": "    salmon quant --threads $task.cpus --libType=U -i $index -1 ${reads[0]",
+            "start": 0,
+            "end": 73
+        },
+        {
+            "scopes": [
+                "source.nextflow",
+                "process.nextflow"
+            ],
+            "text": "}",
+            "start": 73,
+            "end": 74
+        },
+        {
+            "scopes": [
+                "source.nextflow"
+            ],
+            "text": " -2 ${reads[1]} -o $pair_id\n",
+            "start": 74,
+            "end": 102
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow"
+            ],
+            "text": "    \"\"\"\n",
+            "start": 0,
+            "end": 8
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nextflow"
+            ],
+            "text": "}\n",
+            "start": 0,
+            "end": 2
+        }
+    ]
+]

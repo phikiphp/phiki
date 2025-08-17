@@ -1,0 +1,812 @@
+[
+    [
+        {
+            "scopes": [
+                "source.objcpp",
+                "meta.preprocessor.include.objcpp",
+                "keyword.control.directive.include.objcpp",
+                "punctuation.definition.directive.objcpp"
+            ],
+            "text": "#",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.objcpp",
+                "meta.preprocessor.include.objcpp",
+                "keyword.control.directive.include.objcpp"
+            ],
+            "text": "include",
+            "start": 1,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.objcpp",
+                "meta.preprocessor.include.objcpp"
+            ],
+            "text": " ",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.objcpp",
+                "meta.preprocessor.include.objcpp",
+                "string.quoted.other.lt-gt.include.objcpp",
+                "punctuation.definition.string.begin.objcpp"
+            ],
+            "text": "<",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.objcpp",
+                "meta.preprocessor.include.objcpp",
+                "string.quoted.other.lt-gt.include.objcpp"
+            ],
+            "text": "stdio.h",
+            "start": 10,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.objcpp",
+                "meta.preprocessor.include.objcpp",
+                "string.quoted.other.lt-gt.include.objcpp",
+                "punctuation.definition.string.end.objcpp"
+            ],
+            "text": ">",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.objcpp"
+            ],
+            "text": "\n",
+            "start": 18,
+            "end": 19
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.objcpp",
+                "meta.preprocessor.include.objcpp",
+                "keyword.control.directive.include.objcpp",
+                "punctuation.definition.directive.objcpp"
+            ],
+            "text": "#",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.objcpp",
+                "meta.preprocessor.include.objcpp",
+                "keyword.control.directive.include.objcpp"
+            ],
+            "text": "include",
+            "start": 1,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.objcpp",
+                "meta.preprocessor.include.objcpp"
+            ],
+            "text": " ",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.objcpp",
+                "meta.preprocessor.include.objcpp",
+                "string.quoted.other.lt-gt.include.objcpp",
+                "punctuation.definition.string.begin.objcpp"
+            ],
+            "text": "<",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.objcpp",
+                "meta.preprocessor.include.objcpp",
+                "string.quoted.other.lt-gt.include.objcpp"
+            ],
+            "text": "Block.h",
+            "start": 10,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.objcpp",
+                "meta.preprocessor.include.objcpp",
+                "string.quoted.other.lt-gt.include.objcpp",
+                "punctuation.definition.string.end.objcpp"
+            ],
+            "text": ">",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.objcpp"
+            ],
+            "text": "\n",
+            "start": 18,
+            "end": 19
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.objcpp",
+                "keyword.other.typedef.objcpp"
+            ],
+            "text": "typedef",
+            "start": 0,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.objcpp"
+            ],
+            "text": " int (^IntBlock)()",
+            "start": 7,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.objcpp",
+                "punctuation.terminator.statement.objcpp"
+            ],
+            "text": ";",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.objcpp"
+            ],
+            "text": "\n",
+            "start": 26,
+            "end": 27
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.objcpp"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.objcpp"
+            ],
+            "text": "IntBlock ",
+            "start": 0,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.objcpp",
+                "meta.function.objcpp"
+            ],
+            "text": "MakeCounter(int start, int increment)",
+            "start": 9,
+            "end": 46
+        },
+        {
+            "scopes": [
+                "source.objcpp"
+            ],
+            "text": " {\n",
+            "start": 46,
+            "end": 49
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.objcpp"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.objcpp",
+                "storage.modifier.objcpp"
+            ],
+            "text": "__block",
+            "start": 2,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.objcpp"
+            ],
+            "text": " int i = start",
+            "start": 9,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.objcpp",
+                "punctuation.terminator.statement.objcpp"
+            ],
+            "text": ";",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.objcpp"
+            ],
+            "text": "\n",
+            "start": 24,
+            "end": 25
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.objcpp"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.objcpp"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.objcpp",
+                "keyword.control.objcpp"
+            ],
+            "text": "return",
+            "start": 2,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.objcpp"
+            ],
+            "text": " ",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.objcpp",
+                "meta.function.objcpp"
+            ],
+            "text": "Block_copy( ^ {\n",
+            "start": 9,
+            "end": 25
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.objcpp",
+                "meta.function.objcpp"
+            ],
+            "text": "    int ret = i;\n",
+            "start": 0,
+            "end": 17
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.objcpp",
+                "meta.function.objcpp"
+            ],
+            "text": "    i += increment;\n",
+            "start": 0,
+            "end": 20
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.objcpp",
+                "meta.function.objcpp"
+            ],
+            "text": "    return ret;\n",
+            "start": 0,
+            "end": 16
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.objcpp",
+                "meta.function.objcpp"
+            ],
+            "text": "  })",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.objcpp",
+                "punctuation.terminator.statement.objcpp"
+            ],
+            "text": ";",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.objcpp"
+            ],
+            "text": "\n",
+            "start": 5,
+            "end": 6
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.objcpp"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.objcpp"
+            ],
+            "text": "}\n",
+            "start": 0,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.objcpp"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.objcpp"
+            ],
+            "text": "int ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.objcpp",
+                "meta.function.objcpp"
+            ],
+            "text": "main(void)",
+            "start": 4,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.objcpp"
+            ],
+            "text": " {\n",
+            "start": 14,
+            "end": 17
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.objcpp"
+            ],
+            "text": "  IntBlock mycounter = ",
+            "start": 0,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.objcpp",
+                "meta.function.objcpp"
+            ],
+            "text": "MakeCounter(5, 2)",
+            "start": 23,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.objcpp",
+                "punctuation.terminator.statement.objcpp"
+            ],
+            "text": ";",
+            "start": 40,
+            "end": 41
+        },
+        {
+            "scopes": [
+                "source.objcpp"
+            ],
+            "text": "\n",
+            "start": 41,
+            "end": 42
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.objcpp"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.objcpp",
+                "meta.function.objcpp"
+            ],
+            "text": "printf(\"First call: %d\\n\", mycounter()",
+            "start": 2,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.objcpp"
+            ],
+            "text": ")",
+            "start": 40,
+            "end": 41
+        },
+        {
+            "scopes": [
+                "source.objcpp",
+                "punctuation.terminator.statement.objcpp"
+            ],
+            "text": ";",
+            "start": 41,
+            "end": 42
+        },
+        {
+            "scopes": [
+                "source.objcpp"
+            ],
+            "text": "\n",
+            "start": 42,
+            "end": 43
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.objcpp"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.objcpp",
+                "meta.function.objcpp"
+            ],
+            "text": "printf(\"Second call: %d\\n\", mycounter()",
+            "start": 2,
+            "end": 41
+        },
+        {
+            "scopes": [
+                "source.objcpp"
+            ],
+            "text": ")",
+            "start": 41,
+            "end": 42
+        },
+        {
+            "scopes": [
+                "source.objcpp",
+                "punctuation.terminator.statement.objcpp"
+            ],
+            "text": ";",
+            "start": 42,
+            "end": 43
+        },
+        {
+            "scopes": [
+                "source.objcpp"
+            ],
+            "text": "\n",
+            "start": 43,
+            "end": 44
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.objcpp"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.objcpp",
+                "meta.function.objcpp"
+            ],
+            "text": "printf(\"Third call: %d\\n\", mycounter()",
+            "start": 2,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.objcpp"
+            ],
+            "text": ")",
+            "start": 40,
+            "end": 41
+        },
+        {
+            "scopes": [
+                "source.objcpp",
+                "punctuation.terminator.statement.objcpp"
+            ],
+            "text": ";",
+            "start": 41,
+            "end": 42
+        },
+        {
+            "scopes": [
+                "source.objcpp"
+            ],
+            "text": "\n",
+            "start": 42,
+            "end": 43
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.objcpp"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.objcpp"
+            ],
+            "text": "  \/* because it was copied",
+            "start": 0,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.objcpp",
+                "punctuation.separator.delimiter.objcpp"
+            ],
+            "text": ",",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.objcpp"
+            ],
+            "text": " it must also be released *\/\n",
+            "start": 27,
+            "end": 56
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.objcpp"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.objcpp",
+                "meta.function.objcpp"
+            ],
+            "text": "Block_release(mycounter)",
+            "start": 2,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.objcpp",
+                "punctuation.terminator.statement.objcpp"
+            ],
+            "text": ";",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.objcpp"
+            ],
+            "text": "\n",
+            "start": 27,
+            "end": 28
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.objcpp"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.objcpp"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.objcpp",
+                "keyword.control.objcpp"
+            ],
+            "text": "return",
+            "start": 2,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.objcpp"
+            ],
+            "text": " 0",
+            "start": 8,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.objcpp",
+                "punctuation.terminator.statement.objcpp"
+            ],
+            "text": ";",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.objcpp"
+            ],
+            "text": "\n",
+            "start": 11,
+            "end": 12
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.objcpp"
+            ],
+            "text": "}\n",
+            "start": 0,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.objcpp"
+            ],
+            "text": "\/* Output:\n",
+            "start": 0,
+            "end": 11
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.objcpp"
+            ],
+            "text": "  First call: 5\n",
+            "start": 0,
+            "end": 16
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.objcpp"
+            ],
+            "text": "  Second call: 7\n",
+            "start": 0,
+            "end": 17
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.objcpp"
+            ],
+            "text": "  Third call: 9\n",
+            "start": 0,
+            "end": 16
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.objcpp"
+            ],
+            "text": "*\/\n",
+            "start": 0,
+            "end": 3
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.objcpp"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.objcpp"
+            ],
+            "text": "\/\/ From https:\/\/en.wikipedia.org\/wiki\/Objective-C\n",
+            "start": 0,
+            "end": 50
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.objcpp"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ]
+]

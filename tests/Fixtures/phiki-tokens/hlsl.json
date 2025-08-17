@@ -1,0 +1,477 @@
+[
+    [
+        {
+            "scopes": [
+                "source.hlsl",
+                "storage.type.structured.hlsl"
+            ],
+            "text": "struct",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.hlsl"
+            ],
+            "text": " VS_OUTPUT\n",
+            "start": 6,
+            "end": 17
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hlsl"
+            ],
+            "text": "{\n",
+            "start": 0,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hlsl"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.hlsl",
+                "storage.type.basic.hlsl"
+            ],
+            "text": "float4",
+            "start": 4,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.hlsl"
+            ],
+            "text": " Position   : SV_POSITION;\n",
+            "start": 10,
+            "end": 37
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hlsl"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.hlsl",
+                "storage.type.basic.hlsl"
+            ],
+            "text": "float4",
+            "start": 4,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.hlsl"
+            ],
+            "text": " Diffuse    : COLOR0;\n",
+            "start": 10,
+            "end": 32
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hlsl"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.hlsl",
+                "storage.type.basic.hlsl"
+            ],
+            "text": "float2",
+            "start": 4,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.hlsl"
+            ],
+            "text": " TextureUV  : TEXCOORD0;\n",
+            "start": 10,
+            "end": 35
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hlsl"
+            ],
+            "text": "};\n",
+            "start": 0,
+            "end": 3
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hlsl"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hlsl"
+            ],
+            "text": "VS_OUTPUT ",
+            "start": 0,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.hlsl",
+                "support.function.hlsl"
+            ],
+            "text": "RenderSceneVS",
+            "start": 10,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.hlsl"
+            ],
+            "text": "( ",
+            "start": 23,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.hlsl",
+                "storage.type.basic.hlsl"
+            ],
+            "text": "float4",
+            "start": 25,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.hlsl"
+            ],
+            "text": " vPos : POSITION,\n",
+            "start": 31,
+            "end": 49
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hlsl"
+            ],
+            "text": "                         ",
+            "start": 0,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.hlsl",
+                "storage.type.basic.hlsl"
+            ],
+            "text": "float3",
+            "start": 25,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.hlsl"
+            ],
+            "text": " vNormal : NORMAL,\n",
+            "start": 31,
+            "end": 50
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hlsl"
+            ],
+            "text": "                         ",
+            "start": 0,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.hlsl",
+                "storage.type.basic.hlsl"
+            ],
+            "text": "float2",
+            "start": 25,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.hlsl"
+            ],
+            "text": " vTexCoord0 : TEXCOORD,\n",
+            "start": 31,
+            "end": 55
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hlsl"
+            ],
+            "text": "                         ",
+            "start": 0,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.hlsl",
+                "storage.modifier.hlsl"
+            ],
+            "text": "uniform",
+            "start": 25,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.hlsl"
+            ],
+            "text": " ",
+            "start": 32,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.hlsl",
+                "storage.type.basic.hlsl"
+            ],
+            "text": "int",
+            "start": 33,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.hlsl"
+            ],
+            "text": " nNumLights,\n",
+            "start": 36,
+            "end": 49
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hlsl"
+            ],
+            "text": "                         ",
+            "start": 0,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.hlsl",
+                "storage.modifier.hlsl"
+            ],
+            "text": "uniform",
+            "start": 25,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.hlsl"
+            ],
+            "text": " ",
+            "start": 32,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.hlsl",
+                "storage.type.basic.hlsl"
+            ],
+            "text": "bool",
+            "start": 33,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.hlsl"
+            ],
+            "text": " bTexture,\n",
+            "start": 37,
+            "end": 48
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hlsl"
+            ],
+            "text": "                         ",
+            "start": 0,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.hlsl",
+                "storage.modifier.hlsl"
+            ],
+            "text": "uniform",
+            "start": 25,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.hlsl"
+            ],
+            "text": " ",
+            "start": 32,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.hlsl",
+                "storage.type.basic.hlsl"
+            ],
+            "text": "bool",
+            "start": 33,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.hlsl"
+            ],
+            "text": " bAnimate )\n",
+            "start": 37,
+            "end": 49
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hlsl"
+            ],
+            "text": "{\n",
+            "start": 0,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hlsl"
+            ],
+            "text": "    VS_OUTPUT Output;\n",
+            "start": 0,
+            "end": 22
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hlsl"
+            ],
+            "text": "    ...\n",
+            "start": 0,
+            "end": 8
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hlsl"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.hlsl",
+                "keyword.control.hlsl"
+            ],
+            "text": "return",
+            "start": 4,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.hlsl"
+            ],
+            "text": " Output;\n",
+            "start": 10,
+            "end": 19
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hlsl"
+            ],
+            "text": "}\n",
+            "start": 0,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hlsl"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hlsl",
+                "comment.line.double-slash.hlsl"
+            ],
+            "text": "\/\/",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.hlsl",
+                "comment.line.double-slash.hlsl"
+            ],
+            "text": " From https:\/\/learn.microsoft.com\/en-us\/windows\/win32\/direct3dhlsl\/dx-graphics-hlsl-function-syntax",
+            "start": 2,
+            "end": 101
+        },
+        {
+            "scopes": [
+                "source.hlsl"
+            ],
+            "text": "\n",
+            "start": 101,
+            "end": 102
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hlsl"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ]
+]

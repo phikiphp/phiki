@@ -1,0 +1,6709 @@
+[
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "comment.line.number-sign.talon"
+            ],
+            "text": "# Compound of action(select, clear, copy, cut, paste, etc.)\n",
+            "start": 0,
+            "end": 60
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "comment.line.number-sign.talon"
+            ],
+            "text": "# and modifier(word, line, etc.) commands for editing text.\n",
+            "start": 0,
+            "end": 60
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "comment.line.number-sign.talon"
+            ],
+            "text": "# eg: \"select line\", \"clear all\"\n",
+            "start": 0,
+            "end": 33
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "<user.edit_action>",
+            "start": 0,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": " ",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "<user.edit_modifier>",
+            "start": 19,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 39,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": " ",
+            "start": 40,
+            "end": 41
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "user",
+            "start": 41,
+            "end": 45
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 45,
+            "end": 46
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "edit_command",
+            "start": 46,
+            "end": 58
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 58,
+            "end": 59
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "e",
+            "start": 59,
+            "end": 60
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "d",
+            "start": 60,
+            "end": 61
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "i",
+            "start": 61,
+            "end": 62
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "t",
+            "start": 62,
+            "end": 63
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "_",
+            "start": 63,
+            "end": 64
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "a",
+            "start": 64,
+            "end": 65
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "c",
+            "start": 65,
+            "end": 66
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "t",
+            "start": 66,
+            "end": 67
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "i",
+            "start": 67,
+            "end": 68
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "o",
+            "start": 68,
+            "end": 69
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "n",
+            "start": 69,
+            "end": 70
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ",",
+            "start": 70,
+            "end": 71
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon"
+            ],
+            "text": " ",
+            "start": 71,
+            "end": 72
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "e",
+            "start": 72,
+            "end": 73
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "d",
+            "start": 73,
+            "end": 74
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "i",
+            "start": 74,
+            "end": 75
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "t",
+            "start": 75,
+            "end": 76
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "_",
+            "start": 76,
+            "end": 77
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "m",
+            "start": 77,
+            "end": 78
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "o",
+            "start": 78,
+            "end": 79
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "d",
+            "start": 79,
+            "end": 80
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "i",
+            "start": 80,
+            "end": 81
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "f",
+            "start": 81,
+            "end": 82
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "i",
+            "start": 82,
+            "end": 83
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "e",
+            "start": 83,
+            "end": 84
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "r",
+            "start": 84,
+            "end": 85
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 85,
+            "end": 86
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 86,
+            "end": 87
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "comment.line.number-sign.talon"
+            ],
+            "text": "# Zoom\n",
+            "start": 0,
+            "end": 7
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "zoom in",
+            "start": 0,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": " ",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "edit",
+            "start": 9,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "zoom_in",
+            "start": 14,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 22,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 23,
+            "end": 24
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "zoom out",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": " ",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "edit",
+            "start": 10,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "zoom_out",
+            "start": 15,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 25,
+            "end": 26
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "zoom reset",
+            "start": 0,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": " ",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "edit",
+            "start": 12,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "zoom_reset",
+            "start": 17,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 27,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 29,
+            "end": 30
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "comment.line.number-sign.talon"
+            ],
+            "text": "# Searching\n",
+            "start": 0,
+            "end": 12
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "find it",
+            "start": 0,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": " ",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "edit",
+            "start": 9,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "find",
+            "start": 14,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 20,
+            "end": 21
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "next one",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": " ",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "edit",
+            "start": 10,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "find_next",
+            "start": 15,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 26,
+            "end": 27
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "comment.line.number-sign.talon"
+            ],
+            "text": "# Navigation\n",
+            "start": 0,
+            "end": 13
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "comment.line.number-sign.talon"
+            ],
+            "text": "# The reason for these spoken forms is that \"page up\" and \"page down\"\n",
+            "start": 0,
+            "end": 70
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "comment.line.number-sign.talon"
+            ],
+            "text": "#are globally defined as keys.\n",
+            "start": 0,
+            "end": 31
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "scroll up",
+            "start": 0,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "edit",
+            "start": 11,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "page_up",
+            "start": 16,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 25,
+            "end": 26
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "scroll down",
+            "start": 0,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": " ",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "edit",
+            "start": 13,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "page_down",
+            "start": 18,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 27,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 29,
+            "end": 30
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "comment.line.number-sign.talon"
+            ],
+            "text": "# go left, go left left down, go 5 left 2 down\n",
+            "start": 0,
+            "end": 47
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "comment.line.number-sign.talon"
+            ],
+            "text": "# go word left, go 2 words right\n",
+            "start": 0,
+            "end": 33
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "go ",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "<user.navigation_step>",
+            "start": 3,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "+",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": " ",
+            "start": 27,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "user",
+            "start": 28,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 32,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "perform_navigation_steps",
+            "start": 33,
+            "end": 57
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 57,
+            "end": 58
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "n",
+            "start": 58,
+            "end": 59
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "a",
+            "start": 59,
+            "end": 60
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "v",
+            "start": 60,
+            "end": 61
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "i",
+            "start": 61,
+            "end": 62
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "g",
+            "start": 62,
+            "end": 63
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "a",
+            "start": 63,
+            "end": 64
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "t",
+            "start": 64,
+            "end": 65
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "i",
+            "start": 65,
+            "end": 66
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "o",
+            "start": 66,
+            "end": 67
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "n",
+            "start": 67,
+            "end": 68
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "_",
+            "start": 68,
+            "end": 69
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "s",
+            "start": 69,
+            "end": 70
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "t",
+            "start": 70,
+            "end": 71
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "e",
+            "start": 71,
+            "end": 72
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "p",
+            "start": 72,
+            "end": 73
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon",
+                "constant.numeric.talon",
+                "keyword.operator.talon"
+            ],
+            "text": "_",
+            "start": 73,
+            "end": 74
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon",
+                "constant.numeric.talon"
+            ],
+            "text": "list",
+            "start": 74,
+            "end": 78
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 78,
+            "end": 79
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 79,
+            "end": 80
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "go line start ",
+            "start": 0,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": "|",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": " head",
+            "start": 15,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": " ",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "edit",
+            "start": 22,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "line_start",
+            "start": 27,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 37,
+            "end": 38
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 38,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 39,
+            "end": 40
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "go line end ",
+            "start": 0,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": "|",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": " tail",
+            "start": 13,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": " ",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "edit",
+            "start": 20,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "line_end",
+            "start": 25,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 33,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 34,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 35,
+            "end": 36
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "go way left",
+            "start": 0,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 12,
+            "end": 13
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "edit",
+            "start": 4,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "line_start",
+            "start": 9,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 21,
+            "end": 22
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "edit",
+            "start": 4,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "line_start",
+            "start": 9,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 21,
+            "end": 22
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "go way right",
+            "start": 0,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": " ",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "edit",
+            "start": 14,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "line_end",
+            "start": 19,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 27,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 29,
+            "end": 30
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "go way up",
+            "start": 0,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "edit",
+            "start": 11,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "file_start",
+            "start": 16,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 27,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 28,
+            "end": 29
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "go way down",
+            "start": 0,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": " ",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "edit",
+            "start": 13,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "file_end",
+            "start": 18,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 27,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 28,
+            "end": 29
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "go top",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": " ",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "edit",
+            "start": 8,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "file_start",
+            "start": 13,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 25,
+            "end": 26
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "go bottom",
+            "start": 0,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "edit",
+            "start": 11,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "file_end",
+            "start": 16,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 26,
+            "end": 27
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "go page up",
+            "start": 0,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": " ",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "edit",
+            "start": 12,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "page_up",
+            "start": 17,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 26,
+            "end": 27
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "go page down",
+            "start": 0,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": " ",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "edit",
+            "start": 14,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "page_down",
+            "start": 19,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 29,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 30,
+            "end": 31
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "comment.line.number-sign.talon"
+            ],
+            "text": "# Selecting\n",
+            "start": 0,
+            "end": 12
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "select left",
+            "start": 0,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": " ",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "edit",
+            "start": 13,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "extend_left",
+            "start": 18,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 29,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 30,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 31,
+            "end": 32
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "select right",
+            "start": 0,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": " ",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "edit",
+            "start": 14,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "extend_right",
+            "start": 19,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 32,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 33,
+            "end": 34
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "select up",
+            "start": 0,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "edit",
+            "start": 11,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "extend_line_up",
+            "start": 16,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 30,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 32,
+            "end": 33
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "select down",
+            "start": 0,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": " ",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "edit",
+            "start": 13,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "extend_line_down",
+            "start": 18,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 34,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 35,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 36,
+            "end": 37
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "select word left",
+            "start": 0,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": " ",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "edit",
+            "start": 18,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 22,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "extend_word_left",
+            "start": 23,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 39,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 40,
+            "end": 41
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 41,
+            "end": 42
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "select word right",
+            "start": 0,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": " ",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "edit",
+            "start": 19,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "extend_word_right",
+            "start": 24,
+            "end": 41
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 41,
+            "end": 42
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 42,
+            "end": 43
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 43,
+            "end": 44
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "comment.line.number-sign.talon"
+            ],
+            "text": "# Indentation\n",
+            "start": 0,
+            "end": 14
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "indent [more]",
+            "start": 0,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "edit",
+            "start": 15,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "indent_more",
+            "start": 20,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 32,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 33,
+            "end": 34
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "indent less ",
+            "start": 1,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": "|",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": " out dent",
+            "start": 14,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": " ",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "edit",
+            "start": 26,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 30,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "indent_less",
+            "start": 31,
+            "end": 42
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 42,
+            "end": 43
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 43,
+            "end": 44
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 44,
+            "end": 45
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "comment.line.number-sign.talon"
+            ],
+            "text": "# Delete\n",
+            "start": 0,
+            "end": 9
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "clear left",
+            "start": 0,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": " ",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "edit",
+            "start": 12,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "delete",
+            "start": 17,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 25,
+            "end": 26
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "clear right",
+            "start": 0,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": " ",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "user",
+            "start": 13,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "delete_right",
+            "start": 18,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 30,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 32,
+            "end": 33
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "clear up",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 9,
+            "end": 10
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "edit",
+            "start": 4,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "extend_line_up",
+            "start": 9,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 25,
+            "end": 26
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "edit",
+            "start": 4,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "delete",
+            "start": 9,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 17,
+            "end": 18
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "clear down",
+            "start": 0,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 11,
+            "end": 12
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "edit",
+            "start": 4,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "extend_line_down",
+            "start": 9,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 27,
+            "end": 28
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "edit",
+            "start": 4,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "delete",
+            "start": 9,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 17,
+            "end": 18
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "clear word left",
+            "start": 0,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 16,
+            "end": 17
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "edit",
+            "start": 4,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "extend_word_left",
+            "start": 9,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 27,
+            "end": 28
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "edit",
+            "start": 4,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "delete",
+            "start": 9,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 17,
+            "end": 18
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "clear word right",
+            "start": 0,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 17,
+            "end": 18
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "edit",
+            "start": 4,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "extend_word_right",
+            "start": 9,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 27,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 28,
+            "end": 29
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "edit",
+            "start": 4,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "delete",
+            "start": 9,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 17,
+            "end": 18
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "comment.line.number-sign.talon"
+            ],
+            "text": "# Copy\n",
+            "start": 0,
+            "end": 7
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "copy that",
+            "start": 0,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "edit",
+            "start": 11,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "copy",
+            "start": 16,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 22,
+            "end": 23
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "copy word left",
+            "start": 0,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": " ",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "user",
+            "start": 16,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "copy_word_left",
+            "start": 21,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 35,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 36,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 37,
+            "end": 38
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "copy word right",
+            "start": 0,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": " ",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "user",
+            "start": 17,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "copy_word_right",
+            "start": 22,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 37,
+            "end": 38
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 38,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 39,
+            "end": 40
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "comment.line.number-sign.talon"
+            ],
+            "text": "# Cut\n",
+            "start": 0,
+            "end": 6
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "cut that",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": " ",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "edit",
+            "start": 10,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "cut",
+            "start": 15,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 20,
+            "end": 21
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "cut word left",
+            "start": 0,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "user",
+            "start": 15,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "cut_word_left",
+            "start": 20,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 33,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 34,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 35,
+            "end": 36
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "cut word right",
+            "start": 0,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": " ",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "user",
+            "start": 16,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "cut_word_right",
+            "start": 21,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 35,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 36,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 37,
+            "end": 38
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "comment.line.number-sign.talon"
+            ],
+            "text": "# Paste\n",
+            "start": 0,
+            "end": 8
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "pace ",
+            "start": 1,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": "|",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": " paste",
+            "start": 7,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": " that",
+            "start": 14,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": " ",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "edit",
+            "start": 21,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "paste",
+            "start": 26,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 32,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 33,
+            "end": 34
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "pace ",
+            "start": 1,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": "|",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": " paste",
+            "start": 7,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": " enter",
+            "start": 14,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 21,
+            "end": 22
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "edit",
+            "start": 4,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "paste",
+            "start": 9,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 16,
+            "end": 17
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "key",
+            "start": 4,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.function.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.function.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "enter",
+            "start": 8,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.function.talon",
+                "punctuation.definition.parameters.key.talon"
+            ],
+            "text": ")",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 14,
+            "end": 15
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "paste match",
+            "start": 0,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": " ",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "edit",
+            "start": 13,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "paste_match_style",
+            "start": 18,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 35,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 36,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 37,
+            "end": 38
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "comment.line.number-sign.talon"
+            ],
+            "text": "# Duplication\n",
+            "start": 0,
+            "end": 14
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "clone that",
+            "start": 0,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": " ",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "edit",
+            "start": 12,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "selection_clone",
+            "start": 17,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 32,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 33,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 34,
+            "end": 35
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "clone line",
+            "start": 0,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": " ",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "edit",
+            "start": 12,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "line_clone",
+            "start": 17,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 27,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 29,
+            "end": 30
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "comment.line.number-sign.talon"
+            ],
+            "text": "# Insert new line\n",
+            "start": 0,
+            "end": 18
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "new line above",
+            "start": 0,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": " ",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "edit",
+            "start": 16,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "line_insert_up",
+            "start": 21,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 35,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 36,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 37,
+            "end": 38
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "new line below ",
+            "start": 0,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": "|",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": " slap",
+            "start": 16,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": " ",
+            "start": 22,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "edit",
+            "start": 23,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 27,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "line_insert_down",
+            "start": 28,
+            "end": 44
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 44,
+            "end": 45
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 45,
+            "end": 46
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 46,
+            "end": 47
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "comment.line.number-sign.talon"
+            ],
+            "text": "# Insert padding with optional symbols\n",
+            "start": 0,
+            "end": 39
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "pad ",
+            "start": 1,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": "|",
+            "start": 5,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": " padding",
+            "start": 6,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": " ",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "user",
+            "start": 17,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "insert_between",
+            "start": 22,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 36,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "string.quoted.double.talon",
+                "punctuation.definition.string.begin.talon"
+            ],
+            "text": "\"",
+            "start": 37,
+            "end": 38
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "string.quoted.double.talon"
+            ],
+            "text": " ",
+            "start": 38,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "string.quoted.double.talon",
+                "punctuation.definition.string.end.talon"
+            ],
+            "text": "\"",
+            "start": 39,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ",",
+            "start": 40,
+            "end": 41
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon"
+            ],
+            "text": " ",
+            "start": 41,
+            "end": 42
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "string.quoted.double.talon",
+                "punctuation.definition.string.begin.talon"
+            ],
+            "text": "\"",
+            "start": 42,
+            "end": 43
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "string.quoted.double.talon"
+            ],
+            "text": " ",
+            "start": 43,
+            "end": 44
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "string.quoted.double.talon",
+                "punctuation.definition.string.end.talon"
+            ],
+            "text": "\"",
+            "start": 44,
+            "end": 45
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 45,
+            "end": 46
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 46,
+            "end": 47
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "pad ",
+            "start": 1,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": "|",
+            "start": 5,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": " padding",
+            "start": 6,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": " ",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "<user.symbol_key>",
+            "start": 16,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "+",
+            "start": 33,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 34,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 35,
+            "end": 36
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "insert",
+            "start": 4,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "string.quoted.double.talon",
+                "punctuation.definition.string.begin.talon"
+            ],
+            "text": "\"",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "string.quoted.double.talon"
+            ],
+            "text": " ",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "string.quoted.double.talon",
+                "punctuation.definition.string.end.talon"
+            ],
+            "text": "\"",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 15,
+            "end": 16
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "user",
+            "start": 4,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "insert_many",
+            "start": 9,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "s",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "y",
+            "start": 22,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "m",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "b",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "o",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "l",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "_",
+            "start": 27,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "k",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "e",
+            "start": 29,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon"
+            ],
+            "text": "y",
+            "start": 30,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon",
+                "constant.numeric.talon",
+                "keyword.operator.talon"
+            ],
+            "text": "_",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "variable.parameter.talon",
+                "constant.numeric.talon"
+            ],
+            "text": "list",
+            "start": 32,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 36,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 37,
+            "end": 38
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "insert",
+            "start": 4,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "string.quoted.double.talon",
+                "punctuation.definition.string.begin.talon"
+            ],
+            "text": "\"",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "string.quoted.double.talon"
+            ],
+            "text": " ",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "string.quoted.double.talon",
+                "punctuation.definition.string.end.talon"
+            ],
+            "text": "\"",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 15,
+            "end": 16
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "comment.line.number-sign.talon"
+            ],
+            "text": "# Undo\/redo\n",
+            "start": 0,
+            "end": 12
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "undo that",
+            "start": 0,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "edit",
+            "start": 11,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "undo",
+            "start": 16,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 22,
+            "end": 23
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "redo that",
+            "start": 0,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "edit",
+            "start": 11,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "redo",
+            "start": 16,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 22,
+            "end": 23
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "comment.line.number-sign.talon"
+            ],
+            "text": "# Save\n",
+            "start": 0,
+            "end": 7
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "file save",
+            "start": 0,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "edit",
+            "start": 11,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "save",
+            "start": 16,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 22,
+            "end": 23
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "file save all",
+            "start": 0,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "edit",
+            "start": 15,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "save_all",
+            "start": 20,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 29,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 30,
+            "end": 31
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "entity.name.tag.talon"
+            ],
+            "text": "[go] line mid",
+            "start": 0,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": ":",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "user",
+            "start": 15,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon",
+                "punctuation.separator.talon"
+            ],
+            "text": ".",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "entity.name.function.talon"
+            ],
+            "text": "line_middle",
+            "start": 20,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.begin.talon"
+            ],
+            "text": "(",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.talon",
+                "variable.parameter.talon",
+                "punctuation.definition.parameters.end.talon"
+            ],
+            "text": ")",
+            "start": 32,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 33,
+            "end": 34
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon",
+                "comment.line.number-sign.talon"
+            ],
+            "text": "# From https:\/\/github.com\/talonhub\/community\/blob\/main\/core\/edit\/edit.talon\n",
+            "start": 0,
+            "end": 76
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.talon"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ]
+]

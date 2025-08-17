@@ -1,0 +1,1289 @@
+[
+    [
+        {
+            "scopes": [
+                "source.powershell",
+                "comment.line.powershell",
+                "punctuation.definition.comment.powershell"
+            ],
+            "text": "#",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "comment.line.powershell"
+            ],
+            "text": "#",
+            "start": 1,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "comment.line.powershell"
+            ],
+            "text": " Define the service name in a variable",
+            "start": 2,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "comment.line.powershell"
+            ],
+            "text": "\n",
+            "start": 40,
+            "end": 41
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.powershell",
+                "variable.other.readwrite.powershell",
+                "punctuation.definition.variable.powershell"
+            ],
+            "text": "$",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "variable.other.readwrite.powershell"
+            ],
+            "text": "ServiceName",
+            "start": 1,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.powershell"
+            ],
+            "text": " ",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "keyword.operator.assignment.powershell"
+            ],
+            "text": "=",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.powershell"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "string.quoted.single.powershell",
+                "punctuation.definition.string.begin.powershell"
+            ],
+            "text": "'",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "string.quoted.single.powershell"
+            ],
+            "text": "EventLog",
+            "start": 16,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "string.quoted.single.powershell",
+                "punctuation.definition.string.end.powershell"
+            ],
+            "text": "'",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.powershell"
+            ],
+            "text": "\n",
+            "start": 25,
+            "end": 26
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.powershell"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.powershell",
+                "comment.line.powershell",
+                "punctuation.definition.comment.powershell"
+            ],
+            "text": "#",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "comment.line.powershell"
+            ],
+            "text": "#",
+            "start": 1,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "comment.line.powershell"
+            ],
+            "text": " Read the service from Windows to return a service object",
+            "start": 2,
+            "end": 59
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "comment.line.powershell"
+            ],
+            "text": "\n",
+            "start": 59,
+            "end": 60
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.powershell",
+                "variable.other.readwrite.powershell",
+                "punctuation.definition.variable.powershell"
+            ],
+            "text": "$",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "variable.other.readwrite.powershell"
+            ],
+            "text": "ServiceInfo",
+            "start": 1,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.powershell"
+            ],
+            "text": " ",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "keyword.operator.assignment.powershell"
+            ],
+            "text": "=",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.powershell"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "support.function.powershell"
+            ],
+            "text": "Get-Service",
+            "start": 15,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.powershell"
+            ],
+            "text": " ",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "keyword.operator.assignment.powershell"
+            ],
+            "text": "-",
+            "start": 27,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.powershell"
+            ],
+            "text": "Name ",
+            "start": 28,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "variable.other.readwrite.powershell",
+                "punctuation.definition.variable.powershell"
+            ],
+            "text": "$",
+            "start": 33,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "variable.other.readwrite.powershell"
+            ],
+            "text": "ServiceName",
+            "start": 34,
+            "end": 45
+        },
+        {
+            "scopes": [
+                "source.powershell"
+            ],
+            "text": "\n",
+            "start": 45,
+            "end": 46
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.powershell"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.powershell",
+                "comment.line.powershell",
+                "punctuation.definition.comment.powershell"
+            ],
+            "text": "#",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "comment.line.powershell"
+            ],
+            "text": "#",
+            "start": 1,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "comment.line.powershell"
+            ],
+            "text": " If the server is not running (ne)",
+            "start": 2,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "comment.line.powershell"
+            ],
+            "text": "\n",
+            "start": 36,
+            "end": 37
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.powershell",
+                "keyword.control.powershell"
+            ],
+            "text": "if",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.powershell"
+            ],
+            "text": " ",
+            "start": 2,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.group.simple.subexpression.powershell",
+                "punctuation.section.group.begin.powershell"
+            ],
+            "text": "(",
+            "start": 3,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.group.simple.subexpression.powershell",
+                "variable.other.readwrite.powershell",
+                "punctuation.definition.variable.powershell"
+            ],
+            "text": "$",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.group.simple.subexpression.powershell",
+                "variable.other.readwrite.powershell"
+            ],
+            "text": "ServiceInfo",
+            "start": 5,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.group.simple.subexpression.powershell",
+                "variable.other.readwrite.powershell",
+                "variable.other.member.powershell"
+            ],
+            "text": ".Status",
+            "start": 16,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.group.simple.subexpression.powershell"
+            ],
+            "text": " ",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.group.simple.subexpression.powershell",
+                "keyword.operator.comparison.powershell"
+            ],
+            "text": "-ne",
+            "start": 24,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.group.simple.subexpression.powershell"
+            ],
+            "text": " ",
+            "start": 27,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.group.simple.subexpression.powershell",
+                "string.quoted.single.powershell",
+                "punctuation.definition.string.begin.powershell"
+            ],
+            "text": "'",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.group.simple.subexpression.powershell",
+                "string.quoted.single.powershell"
+            ],
+            "text": "Running",
+            "start": 29,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.group.simple.subexpression.powershell",
+                "string.quoted.single.powershell",
+                "punctuation.definition.string.end.powershell"
+            ],
+            "text": "'",
+            "start": 36,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.group.simple.subexpression.powershell",
+                "punctuation.section.group.end.powershell"
+            ],
+            "text": ")",
+            "start": 37,
+            "end": 38
+        },
+        {
+            "scopes": [
+                "source.powershell"
+            ],
+            "text": " ",
+            "start": 38,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell",
+                "punctuation.section.braces.begin.powershell"
+            ],
+            "text": "{",
+            "start": 39,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell"
+            ],
+            "text": "\n",
+            "start": 40,
+            "end": 41
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell"
+            ],
+            "text": "\t",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell",
+                "comment.line.powershell",
+                "punctuation.definition.comment.powershell"
+            ],
+            "text": "#",
+            "start": 1,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell",
+                "comment.line.powershell"
+            ],
+            "text": "#",
+            "start": 2,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell",
+                "comment.line.powershell"
+            ],
+            "text": " Write to the console that the service is not running",
+            "start": 3,
+            "end": 56
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell",
+                "comment.line.powershell"
+            ],
+            "text": "\n",
+            "start": 56,
+            "end": 57
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell"
+            ],
+            "text": "\t",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell",
+                "support.function.powershell"
+            ],
+            "text": "Write-Host",
+            "start": 1,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell"
+            ],
+            "text": " ",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell",
+                "string.quoted.single.powershell",
+                "punctuation.definition.string.begin.powershell"
+            ],
+            "text": "'",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell",
+                "string.quoted.single.powershell"
+            ],
+            "text": "Service is not started, starting service",
+            "start": 13,
+            "end": 53
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell",
+                "string.quoted.single.powershell",
+                "punctuation.definition.string.end.powershell"
+            ],
+            "text": "'",
+            "start": 53,
+            "end": 54
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell"
+            ],
+            "text": "\n",
+            "start": 54,
+            "end": 55
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell"
+            ],
+            "text": "\t",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell",
+                "comment.line.powershell",
+                "punctuation.definition.comment.powershell"
+            ],
+            "text": "#",
+            "start": 1,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell",
+                "comment.line.powershell"
+            ],
+            "text": "#",
+            "start": 2,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell",
+                "comment.line.powershell"
+            ],
+            "text": " Start the service",
+            "start": 3,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell",
+                "comment.line.powershell"
+            ],
+            "text": "\n",
+            "start": 21,
+            "end": 22
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell"
+            ],
+            "text": "\t",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell",
+                "support.function.powershell"
+            ],
+            "text": "Start-Service",
+            "start": 1,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell",
+                "keyword.operator.assignment.powershell"
+            ],
+            "text": "-",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell"
+            ],
+            "text": "Name ",
+            "start": 16,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell",
+                "variable.other.readwrite.powershell",
+                "punctuation.definition.variable.powershell"
+            ],
+            "text": "$",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell",
+                "variable.other.readwrite.powershell"
+            ],
+            "text": "ServiceName",
+            "start": 22,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell"
+            ],
+            "text": "\n",
+            "start": 33,
+            "end": 34
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell"
+            ],
+            "text": "\t",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell",
+                "comment.line.powershell",
+                "punctuation.definition.comment.powershell"
+            ],
+            "text": "#",
+            "start": 1,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell",
+                "comment.line.powershell"
+            ],
+            "text": "#",
+            "start": 2,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell",
+                "comment.line.powershell"
+            ],
+            "text": " Update the $ServiceInfo object to reflect the new state",
+            "start": 3,
+            "end": 59
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell",
+                "comment.line.powershell"
+            ],
+            "text": "\n",
+            "start": 59,
+            "end": 60
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell"
+            ],
+            "text": "\t",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell",
+                "variable.other.readwrite.powershell",
+                "punctuation.definition.variable.powershell"
+            ],
+            "text": "$",
+            "start": 1,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell",
+                "variable.other.readwrite.powershell"
+            ],
+            "text": "ServiceInfo",
+            "start": 2,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell",
+                "variable.other.readwrite.powershell",
+                "variable.other.member.powershell"
+            ],
+            "text": ".Refresh",
+            "start": 13,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell",
+                "meta.group.simple.subexpression.powershell",
+                "punctuation.section.group.begin.powershell"
+            ],
+            "text": "(",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell",
+                "meta.group.simple.subexpression.powershell",
+                "punctuation.section.group.end.powershell"
+            ],
+            "text": ")",
+            "start": 22,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell"
+            ],
+            "text": "\n",
+            "start": 23,
+            "end": 24
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell"
+            ],
+            "text": "\t",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell",
+                "comment.line.powershell",
+                "punctuation.definition.comment.powershell"
+            ],
+            "text": "#",
+            "start": 1,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell",
+                "comment.line.powershell"
+            ],
+            "text": "#",
+            "start": 2,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell",
+                "comment.line.powershell"
+            ],
+            "text": " Write to the console the Status property which indicates the state of the service",
+            "start": 3,
+            "end": 85
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell",
+                "comment.line.powershell"
+            ],
+            "text": "\n",
+            "start": 85,
+            "end": 86
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell"
+            ],
+            "text": "\t",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell",
+                "support.function.powershell"
+            ],
+            "text": "Write-Host",
+            "start": 1,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell"
+            ],
+            "text": " ",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell",
+                "variable.other.readwrite.powershell",
+                "punctuation.definition.variable.powershell"
+            ],
+            "text": "$",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell",
+                "variable.other.readwrite.powershell"
+            ],
+            "text": "ServiceInfo",
+            "start": 13,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell",
+                "variable.other.readwrite.powershell",
+                "variable.other.member.powershell"
+            ],
+            "text": ".Status",
+            "start": 24,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell"
+            ],
+            "text": "\n",
+            "start": 31,
+            "end": 32
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell",
+                "punctuation.section.braces.end.powershell"
+            ],
+            "text": "}",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.powershell"
+            ],
+            "text": " ",
+            "start": 1,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "keyword.control.powershell"
+            ],
+            "text": "else",
+            "start": 2,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.powershell"
+            ],
+            "text": " ",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell",
+                "punctuation.section.braces.begin.powershell"
+            ],
+            "text": "{",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell"
+            ],
+            "text": " ",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell",
+                "comment.line.powershell",
+                "punctuation.definition.comment.powershell"
+            ],
+            "text": "#",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell",
+                "comment.line.powershell"
+            ],
+            "text": "#",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell",
+                "comment.line.powershell"
+            ],
+            "text": " If the Status is anything but Running",
+            "start": 11,
+            "end": 49
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell",
+                "comment.line.powershell"
+            ],
+            "text": "\n",
+            "start": 49,
+            "end": 50
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell"
+            ],
+            "text": "\t",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell",
+                "comment.line.powershell",
+                "punctuation.definition.comment.powershell"
+            ],
+            "text": "#",
+            "start": 1,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell",
+                "comment.line.powershell"
+            ],
+            "text": "#",
+            "start": 2,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell",
+                "comment.line.powershell"
+            ],
+            "text": " Write to the console the service is already running",
+            "start": 3,
+            "end": 55
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell",
+                "comment.line.powershell"
+            ],
+            "text": "\n",
+            "start": 55,
+            "end": 56
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell"
+            ],
+            "text": "\t",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell",
+                "support.function.powershell"
+            ],
+            "text": "Write-Host",
+            "start": 1,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell"
+            ],
+            "text": " ",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell",
+                "string.quoted.single.powershell",
+                "punctuation.definition.string.begin.powershell"
+            ],
+            "text": "'",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell",
+                "string.quoted.single.powershell"
+            ],
+            "text": "The service is already running.",
+            "start": 13,
+            "end": 44
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell",
+                "string.quoted.single.powershell",
+                "punctuation.definition.string.end.powershell"
+            ],
+            "text": "'",
+            "start": 44,
+            "end": 45
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell"
+            ],
+            "text": "\n",
+            "start": 45,
+            "end": 46
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.powershell",
+                "meta.scriptblock.powershell",
+                "punctuation.section.braces.end.powershell"
+            ],
+            "text": "}",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.powershell"
+            ],
+            "text": "\n",
+            "start": 1,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.powershell"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.powershell",
+                "comment.line.powershell",
+                "punctuation.definition.comment.powershell"
+            ],
+            "text": "#",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "comment.line.powershell"
+            ],
+            "text": "#",
+            "start": 1,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "comment.line.powershell"
+            ],
+            "text": " From https:\/\/adamtheautomator.com\/powershell-script-examples\/",
+            "start": 2,
+            "end": 64
+        },
+        {
+            "scopes": [
+                "source.powershell",
+                "comment.line.powershell"
+            ],
+            "text": "\n",
+            "start": 64,
+            "end": 65
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.powershell"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ]
+]

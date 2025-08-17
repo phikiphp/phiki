@@ -1,0 +1,1657 @@
+[
+    [
+        {
+            "scopes": [
+                "source.powerquery",
+                "comment.line.double-slash.powerquery"
+            ],
+            "text": "\/\/ Transforms a table into markdown syntax\n",
+            "start": 0,
+            "end": 43
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.powerquery",
+                "punctuation.section.parens.begin.powerquery"
+            ],
+            "text": "(",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "entity.name.powerquery"
+            ],
+            "text": "Table",
+            "start": 1,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": " ",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "keyword.other.powerquery"
+            ],
+            "text": "as",
+            "start": 7,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": " ",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "storage.type.powerquery"
+            ],
+            "text": "table",
+            "start": 10,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "punctuation.section.parens.end.powerquery"
+            ],
+            "text": ")",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": " ",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "keyword.operator.function.powerquery"
+            ],
+            "text": "=>",
+            "start": 17,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": "\n",
+            "start": 19,
+            "end": 20
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "keyword.other.powerquery"
+            ],
+            "text": "let",
+            "start": 4,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": "\n",
+            "start": 7,
+            "end": 8
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "entity.name.powerquery"
+            ],
+            "text": "Source",
+            "start": 4,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "keyword.operator.assignment-or-comparison.powerquery"
+            ],
+            "text": "=",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": " ",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "entity.name.powerquery"
+            ],
+            "text": "Table",
+            "start": 13,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "punctuation.separator.powerquery"
+            ],
+            "text": ",",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": "\n",
+            "start": 19,
+            "end": 20
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "entity.name.powerquery"
+            ],
+            "text": "TableValues",
+            "start": 4,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": " ",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "keyword.operator.assignment-or-comparison.powerquery"
+            ],
+            "text": "=",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": " ",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "entity.name.powerquery"
+            ],
+            "text": "Table",
+            "start": 18,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": ".AddColumn",
+            "start": 23,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "punctuation.section.parens.begin.powerquery"
+            ],
+            "text": "(",
+            "start": 33,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": "\n",
+            "start": 34,
+            "end": 35
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "entity.name.powerquery"
+            ],
+            "text": "Source",
+            "start": 8,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "punctuation.separator.powerquery"
+            ],
+            "text": ",",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": " ",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "string.quoted.double.powerquery",
+                "punctuation.definition.string.begin.powerquery"
+            ],
+            "text": "\"",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "string.quoted.double.powerquery"
+            ],
+            "text": "Custom",
+            "start": 17,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "string.quoted.double.powerquery",
+                "punctuation.definition.string.end.powerquery"
+            ],
+            "text": "\"",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "punctuation.separator.powerquery"
+            ],
+            "text": ",",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": " ",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "keyword.other.powerquery"
+            ],
+            "text": "each",
+            "start": 26,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": " ",
+            "start": 30,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "entity.name.powerquery"
+            ],
+            "text": "Text",
+            "start": 31,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": ".Combine",
+            "start": 35,
+            "end": 43
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "punctuation.section.parens.begin.powerquery"
+            ],
+            "text": "(",
+            "start": 43,
+            "end": 44
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "entity.name.powerquery"
+            ],
+            "text": "Record",
+            "start": 44,
+            "end": 50
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": ".FieldValues",
+            "start": 50,
+            "end": 62
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "punctuation.section.parens.begin.powerquery"
+            ],
+            "text": "(",
+            "start": 62,
+            "end": 63
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "keyword.operator.implicitvariable.powerquery"
+            ],
+            "text": "_",
+            "start": 63,
+            "end": 64
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "punctuation.section.parens.end.powerquery"
+            ],
+            "text": ")",
+            "start": 64,
+            "end": 65
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "punctuation.separator.powerquery"
+            ],
+            "text": ",",
+            "start": 65,
+            "end": 66
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": " ",
+            "start": 66,
+            "end": 67
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "string.quoted.double.powerquery",
+                "punctuation.definition.string.begin.powerquery"
+            ],
+            "text": "\"",
+            "start": 67,
+            "end": 68
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "string.quoted.double.powerquery"
+            ],
+            "text": " | ",
+            "start": 68,
+            "end": 71
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "string.quoted.double.powerquery",
+                "punctuation.definition.string.end.powerquery"
+            ],
+            "text": "\"",
+            "start": 71,
+            "end": 72
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "punctuation.section.parens.end.powerquery"
+            ],
+            "text": ")",
+            "start": 72,
+            "end": 73
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": "\n",
+            "start": 73,
+            "end": 74
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "punctuation.section.parens.end.powerquery"
+            ],
+            "text": ")",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "punctuation.separator.powerquery"
+            ],
+            "text": ",",
+            "start": 5,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": "\n",
+            "start": 6,
+            "end": 7
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "entity.name.powerquery"
+            ],
+            "text": "HyphenLine",
+            "start": 4,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "keyword.operator.assignment-or-comparison.powerquery"
+            ],
+            "text": "=",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": " ",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "entity.name.powerquery"
+            ],
+            "text": "Text",
+            "start": 17,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": ".Combine",
+            "start": 21,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "punctuation.section.parens.begin.powerquery"
+            ],
+            "text": "(",
+            "start": 29,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": "\n",
+            "start": 30,
+            "end": 31
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": "      ",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "entity.name.powerquery"
+            ],
+            "text": "List",
+            "start": 6,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": ".Transform",
+            "start": 10,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "punctuation.section.parens.begin.powerquery"
+            ],
+            "text": "(",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": "\n",
+            "start": 21,
+            "end": 22
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "entity.name.powerquery"
+            ],
+            "text": "Table",
+            "start": 8,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": ".ColumnNames",
+            "start": 13,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "punctuation.section.parens.begin.powerquery"
+            ],
+            "text": "(",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "entity.name.powerquery"
+            ],
+            "text": "Source",
+            "start": 26,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "punctuation.section.parens.end.powerquery"
+            ],
+            "text": ")",
+            "start": 32,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "punctuation.separator.powerquery"
+            ],
+            "text": ",",
+            "start": 33,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": " ",
+            "start": 34,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "keyword.other.powerquery"
+            ],
+            "text": "each",
+            "start": 35,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": " ",
+            "start": 39,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "entity.name.powerquery"
+            ],
+            "text": "Text",
+            "start": 40,
+            "end": 44
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": ".Repeat",
+            "start": 44,
+            "end": 51
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "punctuation.section.parens.begin.powerquery"
+            ],
+            "text": "(",
+            "start": 51,
+            "end": 52
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "string.quoted.double.powerquery",
+                "punctuation.definition.string.begin.powerquery"
+            ],
+            "text": "\"",
+            "start": 52,
+            "end": 53
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "string.quoted.double.powerquery"
+            ],
+            "text": "-",
+            "start": 53,
+            "end": 54
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "string.quoted.double.powerquery",
+                "punctuation.definition.string.end.powerquery"
+            ],
+            "text": "\"",
+            "start": 54,
+            "end": 55
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "punctuation.separator.powerquery"
+            ],
+            "text": ",",
+            "start": 55,
+            "end": 56
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": " ",
+            "start": 56,
+            "end": 57
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "entity.name.powerquery"
+            ],
+            "text": "Text",
+            "start": 57,
+            "end": 61
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": ".Length",
+            "start": 61,
+            "end": 68
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "punctuation.section.parens.begin.powerquery"
+            ],
+            "text": "(",
+            "start": 68,
+            "end": 69
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "keyword.operator.implicitvariable.powerquery"
+            ],
+            "text": "_",
+            "start": 69,
+            "end": 70
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "punctuation.section.parens.end.powerquery"
+            ],
+            "text": ")",
+            "start": 70,
+            "end": 71
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "punctuation.section.parens.end.powerquery"
+            ],
+            "text": ")",
+            "start": 71,
+            "end": 72
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": "\n",
+            "start": 72,
+            "end": 73
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": "      ",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "punctuation.section.parens.end.powerquery"
+            ],
+            "text": ")",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "punctuation.separator.powerquery"
+            ],
+            "text": ",",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": "\n",
+            "start": 8,
+            "end": 9
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": "      ",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "string.quoted.double.powerquery",
+                "punctuation.definition.string.begin.powerquery"
+            ],
+            "text": "\"",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "string.quoted.double.powerquery"
+            ],
+            "text": " | ",
+            "start": 7,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "string.quoted.double.powerquery",
+                "punctuation.definition.string.end.powerquery"
+            ],
+            "text": "\"",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": "\n",
+            "start": 11,
+            "end": 12
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "punctuation.section.parens.end.powerquery"
+            ],
+            "text": ")",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "punctuation.separator.powerquery"
+            ],
+            "text": ",",
+            "start": 5,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": "\n",
+            "start": 6,
+            "end": 7
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "entity.name.powerquery"
+            ],
+            "text": "CombineList",
+            "start": 4,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": " ",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "keyword.operator.assignment-or-comparison.powerquery"
+            ],
+            "text": "=",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": " ",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "entity.name.powerquery"
+            ],
+            "text": "List",
+            "start": 18,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": ".Combine",
+            "start": 22,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "punctuation.section.parens.begin.powerquery"
+            ],
+            "text": "(",
+            "start": 30,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": "\n",
+            "start": 31,
+            "end": 32
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": "      ",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "punctuation.section.braces.begin.powerquery"
+            ],
+            "text": "{",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "punctuation.section.braces.begin.powerquery"
+            ],
+            "text": "{",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "entity.name.powerquery"
+            ],
+            "text": "Text",
+            "start": 8,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": ".Combine",
+            "start": 12,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "punctuation.section.parens.begin.powerquery"
+            ],
+            "text": "(",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "entity.name.powerquery"
+            ],
+            "text": "Table",
+            "start": 21,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": ".ColumnNames",
+            "start": 26,
+            "end": 38
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "punctuation.section.parens.begin.powerquery"
+            ],
+            "text": "(",
+            "start": 38,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "entity.name.powerquery"
+            ],
+            "text": "Source",
+            "start": 39,
+            "end": 45
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "punctuation.section.parens.end.powerquery"
+            ],
+            "text": ")",
+            "start": 45,
+            "end": 46
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "punctuation.separator.powerquery"
+            ],
+            "text": ",",
+            "start": 46,
+            "end": 47
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": " ",
+            "start": 47,
+            "end": 48
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "string.quoted.double.powerquery",
+                "punctuation.definition.string.begin.powerquery"
+            ],
+            "text": "\"",
+            "start": 48,
+            "end": 49
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "string.quoted.double.powerquery"
+            ],
+            "text": " | ",
+            "start": 49,
+            "end": 52
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "string.quoted.double.powerquery",
+                "punctuation.definition.string.end.powerquery"
+            ],
+            "text": "\"",
+            "start": 52,
+            "end": 53
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "punctuation.section.parens.end.powerquery"
+            ],
+            "text": ")",
+            "start": 53,
+            "end": 54
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "punctuation.section.braces.end.powerquery"
+            ],
+            "text": "}",
+            "start": 54,
+            "end": 55
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "punctuation.separator.powerquery"
+            ],
+            "text": ",",
+            "start": 55,
+            "end": 56
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": "\n",
+            "start": 56,
+            "end": 57
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": "      ",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "punctuation.section.braces.begin.powerquery"
+            ],
+            "text": "{",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "entity.name.powerquery"
+            ],
+            "text": "HyphenLine",
+            "start": 7,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "punctuation.section.braces.end.powerquery"
+            ],
+            "text": "}",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "punctuation.separator.powerquery"
+            ],
+            "text": ",",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": " ",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "entity.name.powerquery"
+            ],
+            "text": "TableValues",
+            "start": 20,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "punctuation.section.brackets.begin.powerquery"
+            ],
+            "text": "[",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "meta.recordexpression.powerquery",
+                "entity.name.powerquery"
+            ],
+            "text": "Custom",
+            "start": 32,
+            "end": 38
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "punctuation.section.brackets.end.powerquery"
+            ],
+            "text": "]",
+            "start": 38,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "punctuation.section.braces.end.powerquery"
+            ],
+            "text": "}",
+            "start": 39,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": "\n",
+            "start": 40,
+            "end": 41
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "punctuation.section.parens.end.powerquery"
+            ],
+            "text": ")",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "punctuation.separator.powerquery"
+            ],
+            "text": ",",
+            "start": 5,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": "\n",
+            "start": 6,
+            "end": 7
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "entity.name.powerquery"
+            ],
+            "text": "TransferToMarkdown",
+            "start": 4,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": " ",
+            "start": 22,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "keyword.operator.assignment-or-comparison.powerquery"
+            ],
+            "text": "=",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": " ",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "entity.name.powerquery"
+            ],
+            "text": "Text",
+            "start": 25,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": ".Combine",
+            "start": 29,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "punctuation.section.parens.begin.powerquery"
+            ],
+            "text": "(",
+            "start": 37,
+            "end": 38
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "entity.name.powerquery"
+            ],
+            "text": "CombineList",
+            "start": 38,
+            "end": 49
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "punctuation.separator.powerquery"
+            ],
+            "text": ",",
+            "start": 49,
+            "end": 50
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": " ",
+            "start": 50,
+            "end": 51
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "string.quoted.double.powerquery",
+                "punctuation.definition.string.begin.powerquery"
+            ],
+            "text": "\"",
+            "start": 51,
+            "end": 52
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "string.quoted.double.powerquery",
+                "constant.character.escapesequence.powerquery",
+                "punctuation.definition.escapesequence.begin.powerquery"
+            ],
+            "text": "#(",
+            "start": 52,
+            "end": 54
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "string.quoted.double.powerquery",
+                "constant.character.escapesequence.powerquery"
+            ],
+            "text": "lf",
+            "start": 54,
+            "end": 56
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "string.quoted.double.powerquery",
+                "constant.character.escapesequence.powerquery",
+                "punctuation.definition.escapesequence.end.powerquery"
+            ],
+            "text": ")",
+            "start": 56,
+            "end": 57
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "string.quoted.double.powerquery",
+                "punctuation.definition.string.end.powerquery"
+            ],
+            "text": "\"",
+            "start": 57,
+            "end": 58
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "punctuation.section.parens.end.powerquery"
+            ],
+            "text": ")",
+            "start": 58,
+            "end": 59
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": "\n",
+            "start": 59,
+            "end": 60
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "keyword.other.powerquery"
+            ],
+            "text": "in",
+            "start": 2,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": "\n",
+            "start": 4,
+            "end": 5
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.powerquery",
+                "entity.name.powerquery"
+            ],
+            "text": "TransferToMarkdown",
+            "start": 4,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": "\n",
+            "start": 22,
+            "end": 23
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.powerquery",
+                "comment.line.double-slash.powerquery"
+            ],
+            "text": "\/\/ From https:\/\/github.com\/mogulargmbh\/powerquerysnippets\/blob\/main\/snippets\/Table_ToMarkdown.pq\n",
+            "start": 0,
+            "end": 97
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.powerquery"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ]
+]

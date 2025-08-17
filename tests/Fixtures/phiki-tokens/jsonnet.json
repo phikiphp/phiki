@@ -1,0 +1,1577 @@
+[
+    [
+        {
+            "scopes": [
+                "source.jsonnet",
+                "comment.block.jsonnet"
+            ],
+            "text": "\/*",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "comment.block.jsonnet"
+            ],
+            "text": " A C-style comment. ",
+            "start": 2,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "comment.block.jsonnet"
+            ],
+            "text": "*\/",
+            "start": 22,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": "\n",
+            "start": 24,
+            "end": 25
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.jsonnet",
+                "comment.block.jsonnet"
+            ],
+            "text": "# A Python-style comment.\n",
+            "start": 0,
+            "end": 26
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": "{\n",
+            "start": 0,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "variable.parameter.jsonnet"
+            ],
+            "text": "cocktails:",
+            "start": 2,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": " {\n",
+            "start": 12,
+            "end": 15
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "comment.line.jsonnet"
+            ],
+            "text": "\/\/ Ingredient quantities are in fl oz.\n",
+            "start": 4,
+            "end": 43
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.double.jsonnet"
+            ],
+            "text": "'",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.double.jsonnet"
+            ],
+            "text": "Tom Collins",
+            "start": 5,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.double.jsonnet"
+            ],
+            "text": "'",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "keyword.operator.jsonnet"
+            ],
+            "text": ":",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": " {\n",
+            "start": 18,
+            "end": 21
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": "      ",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "variable.parameter.jsonnet"
+            ],
+            "text": "ingredients:",
+            "start": 6,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": " [\n",
+            "start": 18,
+            "end": 21
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": "        { ",
+            "start": 0,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "variable.parameter.jsonnet"
+            ],
+            "text": "kind:",
+            "start": 10,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": " ",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.double.jsonnet"
+            ],
+            "text": "\"",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.double.jsonnet"
+            ],
+            "text": "Farmer's Gin",
+            "start": 17,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.double.jsonnet"
+            ],
+            "text": "\"",
+            "start": 29,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": ", ",
+            "start": 30,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "variable.parameter.jsonnet"
+            ],
+            "text": "qty:",
+            "start": 32,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": " ",
+            "start": 36,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "constant.numeric.jsonnet"
+            ],
+            "text": "1",
+            "start": 37,
+            "end": 38
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "constant.numeric.jsonnet"
+            ],
+            "text": ".5",
+            "start": 38,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": " },\n",
+            "start": 40,
+            "end": 44
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": "        { ",
+            "start": 0,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "variable.parameter.jsonnet"
+            ],
+            "text": "kind:",
+            "start": 10,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": " ",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.double.jsonnet"
+            ],
+            "text": "'",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.double.jsonnet"
+            ],
+            "text": "Lemon",
+            "start": 17,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.double.jsonnet"
+            ],
+            "text": "'",
+            "start": 22,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": ", ",
+            "start": 23,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "variable.parameter.jsonnet"
+            ],
+            "text": "qty:",
+            "start": 25,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": " ",
+            "start": 29,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "constant.numeric.jsonnet"
+            ],
+            "text": "1",
+            "start": 30,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": " },\n",
+            "start": 31,
+            "end": 35
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": "        { ",
+            "start": 0,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "variable.parameter.jsonnet"
+            ],
+            "text": "kind:",
+            "start": 10,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": " ",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.double.jsonnet"
+            ],
+            "text": "'",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.double.jsonnet"
+            ],
+            "text": "Simple Syrup",
+            "start": 17,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.double.jsonnet"
+            ],
+            "text": "'",
+            "start": 29,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": ", ",
+            "start": 30,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "variable.parameter.jsonnet"
+            ],
+            "text": "qty:",
+            "start": 32,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": " ",
+            "start": 36,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "constant.numeric.jsonnet"
+            ],
+            "text": "0",
+            "start": 37,
+            "end": 38
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "constant.numeric.jsonnet"
+            ],
+            "text": ".5",
+            "start": 38,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": " },\n",
+            "start": 40,
+            "end": 44
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": "        { ",
+            "start": 0,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "variable.parameter.jsonnet"
+            ],
+            "text": "kind:",
+            "start": 10,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": " ",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.double.jsonnet"
+            ],
+            "text": "'",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.double.jsonnet"
+            ],
+            "text": "Soda",
+            "start": 17,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.double.jsonnet"
+            ],
+            "text": "'",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": ", ",
+            "start": 22,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "variable.parameter.jsonnet"
+            ],
+            "text": "qty:",
+            "start": 24,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": " ",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "constant.numeric.jsonnet"
+            ],
+            "text": "2",
+            "start": 29,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": " },\n",
+            "start": 30,
+            "end": 34
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": "        { ",
+            "start": 0,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "variable.parameter.jsonnet"
+            ],
+            "text": "kind:",
+            "start": 10,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": " ",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.double.jsonnet"
+            ],
+            "text": "'",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.double.jsonnet"
+            ],
+            "text": "Angostura",
+            "start": 17,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.double.jsonnet"
+            ],
+            "text": "'",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": ", ",
+            "start": 27,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "variable.parameter.jsonnet"
+            ],
+            "text": "qty:",
+            "start": 29,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": " ",
+            "start": 33,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.double.jsonnet"
+            ],
+            "text": "'",
+            "start": 34,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.double.jsonnet"
+            ],
+            "text": "dash",
+            "start": 35,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.double.jsonnet"
+            ],
+            "text": "'",
+            "start": 39,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": " },\n",
+            "start": 40,
+            "end": 44
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": "      ],\n",
+            "start": 0,
+            "end": 9
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": "      ",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "variable.parameter.jsonnet"
+            ],
+            "text": "garnish:",
+            "start": 6,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.double.jsonnet"
+            ],
+            "text": "'",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.double.jsonnet"
+            ],
+            "text": "Maraschino Cherry",
+            "start": 16,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.double.jsonnet"
+            ],
+            "text": "'",
+            "start": 33,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": ",\n",
+            "start": 34,
+            "end": 36
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": "      ",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "variable.parameter.jsonnet"
+            ],
+            "text": "served:",
+            "start": 6,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": " ",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.double.jsonnet"
+            ],
+            "text": "'",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.double.jsonnet"
+            ],
+            "text": "Tall",
+            "start": 15,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.double.jsonnet"
+            ],
+            "text": "'",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": ",\n",
+            "start": 20,
+            "end": 22
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": "      ",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "variable.parameter.jsonnet"
+            ],
+            "text": "description:",
+            "start": 6,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": " ",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.triple.jsonnet"
+            ],
+            "text": "|||",
+            "start": 19,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.triple.jsonnet"
+            ],
+            "text": "\n",
+            "start": 22,
+            "end": 23
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.triple.jsonnet"
+            ],
+            "text": "        The Tom Collins is essentially gin and\n",
+            "start": 0,
+            "end": 47
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.triple.jsonnet"
+            ],
+            "text": "        lemonade.  The bitters add complexity.\n",
+            "start": 0,
+            "end": 47
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.triple.jsonnet"
+            ],
+            "text": "      ",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.triple.jsonnet"
+            ],
+            "text": "|||",
+            "start": 6,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": ",\n",
+            "start": 9,
+            "end": 11
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": "    },\n",
+            "start": 0,
+            "end": 7
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "variable.parameter.jsonnet"
+            ],
+            "text": "Manhattan:",
+            "start": 4,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": " {\n",
+            "start": 14,
+            "end": 17
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": "      ",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "variable.parameter.jsonnet"
+            ],
+            "text": "ingredients:",
+            "start": 6,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": " [\n",
+            "start": 18,
+            "end": 21
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": "        { ",
+            "start": 0,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "variable.parameter.jsonnet"
+            ],
+            "text": "kind:",
+            "start": 10,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": " ",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.double.jsonnet"
+            ],
+            "text": "'",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.double.jsonnet"
+            ],
+            "text": "Rye",
+            "start": 17,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.double.jsonnet"
+            ],
+            "text": "'",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": ", ",
+            "start": 21,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "variable.parameter.jsonnet"
+            ],
+            "text": "qty:",
+            "start": 23,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": " ",
+            "start": 27,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "constant.numeric.jsonnet"
+            ],
+            "text": "2",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "constant.numeric.jsonnet"
+            ],
+            "text": ".5",
+            "start": 29,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": " },\n",
+            "start": 31,
+            "end": 35
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": "        { ",
+            "start": 0,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "variable.parameter.jsonnet"
+            ],
+            "text": "kind:",
+            "start": 10,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": " ",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.double.jsonnet"
+            ],
+            "text": "'",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.double.jsonnet"
+            ],
+            "text": "Sweet Red Vermouth",
+            "start": 17,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.double.jsonnet"
+            ],
+            "text": "'",
+            "start": 35,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": ", ",
+            "start": 36,
+            "end": 38
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "variable.parameter.jsonnet"
+            ],
+            "text": "qty:",
+            "start": 38,
+            "end": 42
+        },
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": " ",
+            "start": 42,
+            "end": 43
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "constant.numeric.jsonnet"
+            ],
+            "text": "1",
+            "start": 43,
+            "end": 44
+        },
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": " },\n",
+            "start": 44,
+            "end": 48
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": "        { ",
+            "start": 0,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "variable.parameter.jsonnet"
+            ],
+            "text": "kind:",
+            "start": 10,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": " ",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.double.jsonnet"
+            ],
+            "text": "'",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.double.jsonnet"
+            ],
+            "text": "Angostura",
+            "start": 17,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.double.jsonnet"
+            ],
+            "text": "'",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": ", ",
+            "start": 27,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "variable.parameter.jsonnet"
+            ],
+            "text": "qty:",
+            "start": 29,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": " ",
+            "start": 33,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.double.jsonnet"
+            ],
+            "text": "'",
+            "start": 34,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.double.jsonnet"
+            ],
+            "text": "dash",
+            "start": 35,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.double.jsonnet"
+            ],
+            "text": "'",
+            "start": 39,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": " },\n",
+            "start": 40,
+            "end": 44
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": "      ],\n",
+            "start": 0,
+            "end": 9
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": "      ",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "variable.parameter.jsonnet"
+            ],
+            "text": "garnish:",
+            "start": 6,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.double.jsonnet"
+            ],
+            "text": "'",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.double.jsonnet"
+            ],
+            "text": "Maraschino Cherry",
+            "start": 16,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.double.jsonnet"
+            ],
+            "text": "'",
+            "start": 33,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": ",\n",
+            "start": 34,
+            "end": 36
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": "      ",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "variable.parameter.jsonnet"
+            ],
+            "text": "served:",
+            "start": 6,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": " ",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.double.jsonnet"
+            ],
+            "text": "'",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.double.jsonnet"
+            ],
+            "text": "Straight Up",
+            "start": 15,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.double.jsonnet"
+            ],
+            "text": "'",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": ",\n",
+            "start": 27,
+            "end": 29
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": "      ",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "variable.parameter.jsonnet"
+            ],
+            "text": "description:",
+            "start": 6,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": " @",
+            "start": 18,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.double.jsonnet"
+            ],
+            "text": "'",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.double.jsonnet"
+            ],
+            "text": "A clear ",
+            "start": 21,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.double.jsonnet",
+                "invalid.illegal.jsonnet"
+            ],
+            "text": "\\ ",
+            "start": 29,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.double.jsonnet"
+            ],
+            "text": "red drink.",
+            "start": 31,
+            "end": 41
+        },
+        {
+            "scopes": [
+                "source.jsonnet",
+                "string.quoted.double.jsonnet"
+            ],
+            "text": "'",
+            "start": 41,
+            "end": 42
+        },
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": ",\n",
+            "start": 42,
+            "end": 44
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": "    },\n",
+            "start": 0,
+            "end": 7
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": "  },\n",
+            "start": 0,
+            "end": 5
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": "}\n",
+            "start": 0,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.jsonnet",
+                "comment.block.jsonnet"
+            ],
+            "text": "# From https:\/\/jsonnet.org\/learning\/tutorial.html\n",
+            "start": 0,
+            "end": 50
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.jsonnet"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ]
+]

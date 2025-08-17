@@ -1,0 +1,747 @@
+[
+    [
+        {
+            "scopes": [
+                "source.apacheconf",
+                "comment.line.hash.ini"
+            ],
+            "text": "# Apache httpd v2.4 minimal configuration\n",
+            "start": 0,
+            "end": 42
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.apacheconf",
+                "comment.line.hash.ini"
+            ],
+            "text": "# see https:\/\/wiki.apache.org\/httpd\/Minimal_Config for documentation\n",
+            "start": 0,
+            "end": 69
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.apacheconf"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.apacheconf",
+                "keyword.core.apacheconf"
+            ],
+            "text": "ServerRoot",
+            "start": 0,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.apacheconf"
+            ],
+            "text": " ${GITPOD_REPO_ROOT}\n",
+            "start": 10,
+            "end": 31
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.apacheconf"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.apacheconf",
+                "keyword.mpm.apacheconf"
+            ],
+            "text": "PidFile",
+            "start": 0,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.apacheconf"
+            ],
+            "text": " ${APACHE_PID_FILE}\n",
+            "start": 7,
+            "end": 27
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.apacheconf",
+                "keyword.mpm.apacheconf"
+            ],
+            "text": "User",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.apacheconf"
+            ],
+            "text": " ${APACHE_RUN_USER}\n",
+            "start": 4,
+            "end": 24
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.apacheconf",
+                "keyword.mpm.apacheconf"
+            ],
+            "text": "Group",
+            "start": 0,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.apacheconf"
+            ],
+            "text": " ${APACHE_RUN_GROUP}\n",
+            "start": 5,
+            "end": 26
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.apacheconf"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.apacheconf",
+                "comment.line.hash.ini"
+            ],
+            "text": "# Modules as installed\/activated via apt-get\n",
+            "start": 0,
+            "end": 45
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.apacheconf",
+                "keyword.core.apacheconf"
+            ],
+            "text": "IncludeOptional",
+            "start": 0,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.apacheconf"
+            ],
+            "text": " \/etc\/apache2\/mods-enabled\/*.load\n",
+            "start": 15,
+            "end": 49
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.apacheconf",
+                "keyword.core.apacheconf"
+            ],
+            "text": "IncludeOptional",
+            "start": 0,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.apacheconf"
+            ],
+            "text": " \/etc\/apache2\/mods-enabled\/*.conf\n",
+            "start": 15,
+            "end": 49
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.apacheconf"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.apacheconf",
+                "comment.line.hash.ini"
+            ],
+            "text": "# Configure hostname and port for server\n",
+            "start": 0,
+            "end": 41
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.apacheconf",
+                "keyword.core.apacheconf"
+            ],
+            "text": "ServerName",
+            "start": 0,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.apacheconf"
+            ],
+            "text": " ${APACHE_SERVER_NAME}\n",
+            "start": 10,
+            "end": 33
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.apacheconf",
+                "keyword.mpm.apacheconf"
+            ],
+            "text": "Listen",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.apacheconf"
+            ],
+            "text": " *:",
+            "start": 6,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.apacheconf",
+                "constant.numeric.integer.decimal.apacheconf"
+            ],
+            "text": "8080",
+            "start": 9,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.apacheconf"
+            ],
+            "text": "\n",
+            "start": 13,
+            "end": 14
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.apacheconf"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.apacheconf",
+                "comment.line.hash.ini"
+            ],
+            "text": "# Configure Logging\n",
+            "start": 0,
+            "end": 20
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.apacheconf",
+                "keyword.log.apacheconf"
+            ],
+            "text": "LogFormat",
+            "start": 0,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.apacheconf"
+            ],
+            "text": " \"%h %l %u %t \\\"%r\\\" %>s %b\" common\n",
+            "start": 9,
+            "end": 45
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.apacheconf",
+                "keyword.log.apacheconf"
+            ],
+            "text": "CustomLog",
+            "start": 0,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.apacheconf"
+            ],
+            "text": " ${APACHE_LOG_DIR}\/access.log common\n",
+            "start": 9,
+            "end": 46
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.apacheconf",
+                "keyword.core.apacheconf"
+            ],
+            "text": "ErrorLog",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.apacheconf"
+            ],
+            "text": " ${APACHE_LOG_DIR}\/error.log\n",
+            "start": 8,
+            "end": 37
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.apacheconf"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.apacheconf",
+                "comment.line.hash.ini"
+            ],
+            "text": "# Never change this block\n",
+            "start": 0,
+            "end": 26
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.apacheconf",
+                "punctuation.definition.tag.apacheconf"
+            ],
+            "text": "<",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.apacheconf",
+                "entity.tag.apacheconf"
+            ],
+            "text": "Directory",
+            "start": 1,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.apacheconf"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.apacheconf",
+                "string.value.apacheconf"
+            ],
+            "text": "\/",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.apacheconf",
+                "punctuation.definition.tag.apacheconf"
+            ],
+            "text": ">",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.apacheconf"
+            ],
+            "text": "\n",
+            "start": 13,
+            "end": 14
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.apacheconf"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.apacheconf",
+                "keyword.core.apacheconf"
+            ],
+            "text": "AllowOverride",
+            "start": 4,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.apacheconf"
+            ],
+            "text": " None\n",
+            "start": 17,
+            "end": 23
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.apacheconf"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.apacheconf",
+                "keyword.core.apacheconf"
+            ],
+            "text": "Require",
+            "start": 4,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.apacheconf"
+            ],
+            "text": " all denied\n",
+            "start": 11,
+            "end": 23
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.apacheconf",
+                "punctuation.definition.tag.apacheconf"
+            ],
+            "text": "<\/",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.apacheconf",
+                "entity.tag.apacheconf"
+            ],
+            "text": "Directory",
+            "start": 2,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.apacheconf",
+                "punctuation.definition.tag.apacheconf"
+            ],
+            "text": ">",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.apacheconf"
+            ],
+            "text": "\n",
+            "start": 12,
+            "end": 13
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.apacheconf"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.apacheconf",
+                "comment.line.hash.ini"
+            ],
+            "text": "# Direcrory and files to be served\n",
+            "start": 0,
+            "end": 35
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.apacheconf",
+                "keyword.dir.apacheconf"
+            ],
+            "text": "DirectoryIndex",
+            "start": 0,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.apacheconf"
+            ],
+            "text": " index.html\n",
+            "start": 14,
+            "end": 26
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.apacheconf",
+                "keyword.core.apacheconf"
+            ],
+            "text": "DocumentRoot",
+            "start": 0,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.apacheconf"
+            ],
+            "text": " \"${GITPOD_REPO_ROOT}\/www\"\n",
+            "start": 12,
+            "end": 39
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.apacheconf",
+                "punctuation.definition.tag.apacheconf"
+            ],
+            "text": "<",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.apacheconf",
+                "entity.tag.apacheconf"
+            ],
+            "text": "Directory",
+            "start": 1,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.apacheconf"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.apacheconf",
+                "string.value.apacheconf"
+            ],
+            "text": "\"${GITPOD_REPO_ROOT}\/www\"",
+            "start": 11,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.apacheconf",
+                "punctuation.definition.tag.apacheconf"
+            ],
+            "text": ">",
+            "start": 36,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.apacheconf"
+            ],
+            "text": "\n",
+            "start": 37,
+            "end": 38
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.apacheconf"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.apacheconf",
+                "keyword.core.apacheconf"
+            ],
+            "text": "Require",
+            "start": 4,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.apacheconf"
+            ],
+            "text": " all granted\n",
+            "start": 11,
+            "end": 24
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.apacheconf",
+                "punctuation.definition.tag.apacheconf"
+            ],
+            "text": "<\/",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.apacheconf",
+                "entity.tag.apacheconf"
+            ],
+            "text": "Directory",
+            "start": 2,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.apacheconf",
+                "punctuation.definition.tag.apacheconf"
+            ],
+            "text": ">",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.apacheconf"
+            ],
+            "text": "\n",
+            "start": 12,
+            "end": 13
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.apacheconf"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.apacheconf",
+                "comment.line.hash.ini"
+            ],
+            "text": "# Include conf installed via apt-get\n",
+            "start": 0,
+            "end": 37
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.apacheconf",
+                "keyword.core.apacheconf"
+            ],
+            "text": "IncludeOptional",
+            "start": 0,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.apacheconf"
+            ],
+            "text": " \/etc\/apache2\/conf-enabled\/*.conf\n",
+            "start": 15,
+            "end": 49
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.apacheconf"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.apacheconf",
+                "comment.line.hash.ini"
+            ],
+            "text": "# https:\/\/github.com\/gitpod-io\/apache-example\/blob\/master\/apache\/apache.conf\n",
+            "start": 0,
+            "end": 77
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.apacheconf"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ]
+]

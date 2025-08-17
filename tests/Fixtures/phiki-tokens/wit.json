@@ -1,0 +1,4019 @@
+[
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.package-decl.wit",
+                "storage.modifier.package-decl.wit"
+            ],
+            "text": "package",
+            "start": 0,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.package-decl.wit"
+            ],
+            "text": " ",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.package-decl.wit",
+                "meta.id.package-decl.wit",
+                "meta.package-identifier.wit",
+                "entity.name.namespace.package-identifier.wit",
+                "entity.name.type.id.wit"
+            ],
+            "text": "local",
+            "start": 8,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.package-decl.wit",
+                "meta.id.package-decl.wit",
+                "meta.package-identifier.wit",
+                "keyword.operator.namespace.package-identifier.wit"
+            ],
+            "text": ":",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.package-decl.wit",
+                "meta.id.package-decl.wit",
+                "meta.package-identifier.wit",
+                "entity.name.type.package-identifier.wit",
+                "entity.name.type.id.wit"
+            ],
+            "text": "demo",
+            "start": 14,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.package-decl.wit",
+                "meta.id.package-decl.wit",
+                "meta.package-identifier.wit",
+                "entity.name.type.package-identifier.wit"
+            ],
+            "text": ";",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.package-decl.wit"
+            ],
+            "text": "\n",
+            "start": 19,
+            "end": 20
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "comment.line.double-slash.wit"
+            ],
+            "text": "\/\/ An example interface.\n",
+            "start": 0,
+            "end": 25
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "keyword.declaration.interface.interface-item.wit",
+                "storage.type.wit"
+            ],
+            "text": "interface",
+            "start": 0,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit"
+            ],
+            "text": " ",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "entity.name.type.id.interface-item.wit"
+            ],
+            "text": "shared",
+            "start": 10,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit"
+            ],
+            "text": " ",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "punctuation.brackets.curly.begin.wit"
+            ],
+            "text": "{",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "\n",
+            "start": 18,
+            "end": 19
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "comment.line.double-slash.wit"
+            ],
+            "text": "    \/\/ Examples of various types:\n",
+            "start": 0,
+            "end": 34
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.record-item.wit",
+                "keyword.declaration.record.record-item.wit"
+            ],
+            "text": "record",
+            "start": 4,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.record-item.wit"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.record-item.wit",
+                "entity.name.type.id.record-item.wit"
+            ],
+            "text": "metadata",
+            "start": 11,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.record-item.wit"
+            ],
+            "text": " ",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.record-item.wit",
+                "punctuation.brackets.curly.begin.wit"
+            ],
+            "text": "{",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.record-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "\n",
+            "start": 21,
+            "end": 22
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.record-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.record-item.wit",
+                "meta.record-fields.wit",
+                "variable.declaration.id.record-fields.wit"
+            ],
+            "text": "a",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.record-item.wit",
+                "meta.record-fields.wit",
+                "keyword.operator.key-value.wit"
+            ],
+            "text": ":",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.record-item.wit",
+                "meta.record-fields.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.record-item.wit",
+                "meta.record-fields.wit",
+                "entity.name.type.numeric.wit"
+            ],
+            "text": "u32",
+            "start": 11,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.record-item.wit",
+                "meta.record-fields.wit",
+                "punctuation.comma.wit"
+            ],
+            "text": ",",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.record-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "\n",
+            "start": 15,
+            "end": 16
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.record-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.record-item.wit",
+                "meta.record-fields.wit",
+                "variable.declaration.id.record-fields.wit"
+            ],
+            "text": "b",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.record-item.wit",
+                "meta.record-fields.wit",
+                "keyword.operator.key-value.wit"
+            ],
+            "text": ":",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.record-item.wit",
+                "meta.record-fields.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.record-item.wit",
+                "meta.record-fields.wit",
+                "entity.name.type.string.wit"
+            ],
+            "text": "string",
+            "start": 11,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.record-item.wit",
+                "meta.record-fields.wit",
+                "punctuation.comma.wit"
+            ],
+            "text": ",",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.record-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "\n",
+            "start": 18,
+            "end": 19
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.record-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.record-item.wit",
+                "punctuation.brackets.curly.end.wit"
+            ],
+            "text": "}",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "\n",
+            "start": 5,
+            "end": 6
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.enum-items.wit",
+                "keyword.other.enum.enum-items.wit"
+            ],
+            "text": "enum",
+            "start": 4,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.enum-items.wit"
+            ],
+            "text": " ",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.enum-items.wit",
+                "entity.name.type.id.enum-items.wit"
+            ],
+            "text": "errno",
+            "start": 9,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.enum-items.wit"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.enum-items.wit",
+                "punctuation.brackets.curly.begin.wit"
+            ],
+            "text": "{",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.enum-items.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "\n",
+            "start": 16,
+            "end": 17
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.enum-items.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.enum-items.wit",
+                "variable.other.enummember.id.enum-cases.wit"
+            ],
+            "text": "too-big",
+            "start": 8,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.enum-items.wit",
+                "punctuation.comma.wit"
+            ],
+            "text": ",",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.enum-items.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "\n",
+            "start": 16,
+            "end": 17
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.enum-items.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.enum-items.wit",
+                "variable.other.enummember.id.enum-cases.wit"
+            ],
+            "text": "too-small",
+            "start": 8,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.enum-items.wit",
+                "punctuation.comma.wit"
+            ],
+            "text": ",",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.enum-items.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "\n",
+            "start": 18,
+            "end": 19
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.enum-items.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.enum-items.wit",
+                "punctuation.brackets.curly.end.wit"
+            ],
+            "text": "}",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "\n",
+            "start": 5,
+            "end": 6
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "comment.line.double-slash.wit"
+            ],
+            "text": "    \/\/ Use `%` to name something after a keyword.\n",
+            "start": 0,
+            "end": 50
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.variant.wit",
+                "keyword.other.variant.wit",
+                "entity.name.type.id.variant.wit"
+            ],
+            "text": "variant",
+            "start": 4,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.variant.wit"
+            ],
+            "text": " %variant ",
+            "start": 11,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.variant.wit",
+                "punctuation.brackets.curly.begin.wit"
+            ],
+            "text": "{",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.variant.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "\n",
+            "start": 22,
+            "end": 23
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.variant.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.variant.wit",
+                "variable.other.enummember.id.enum-cases.wit"
+            ],
+            "text": "baby",
+            "start": 8,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.variant.wit",
+                "punctuation.comma.wit"
+            ],
+            "text": ",",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.variant.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "\n",
+            "start": 13,
+            "end": 14
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.variant.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.variant.wit",
+                "meta.variant-cases.wit",
+                "variable.other.enummember.id.variant-cases.wit"
+            ],
+            "text": "child",
+            "start": 8,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.variant.wit",
+                "meta.variant-cases.wit",
+                "punctuation.brackets.round.begin.wit"
+            ],
+            "text": "(",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.variant.wit",
+                "meta.variant-cases.wit",
+                "entity.name.type.numeric.wit"
+            ],
+            "text": "u32",
+            "start": 14,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.variant.wit",
+                "meta.variant-cases.wit",
+                "punctuation.brackets.round.end.wit"
+            ],
+            "text": ")",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.variant.wit",
+                "meta.variant-cases.wit",
+                "punctuation.comma.wit"
+            ],
+            "text": ",",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.variant.wit",
+                "comment.line.double-slash.wit"
+            ],
+            "text": " \/\/ optional type payload\n",
+            "start": 19,
+            "end": 45
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.variant.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.variant.wit",
+                "variable.other.enummember.id.enum-cases.wit"
+            ],
+            "text": "adult",
+            "start": 8,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.variant.wit",
+                "punctuation.comma.wit"
+            ],
+            "text": ",",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.variant.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "\n",
+            "start": 14,
+            "end": 15
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.variant.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.variant.wit",
+                "punctuation.brackets.curly.end.wit"
+            ],
+            "text": "}",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "\n",
+            "start": 5,
+            "end": 6
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.flags-items.wit",
+                "keyword.other.flags.flags-items.wit"
+            ],
+            "text": "flags",
+            "start": 4,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.flags-items.wit"
+            ],
+            "text": " ",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.flags-items.wit",
+                "entity.name.type.id.flags-items.wit"
+            ],
+            "text": "permissions",
+            "start": 10,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.flags-items.wit"
+            ],
+            "text": " ",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.flags-items.wit",
+                "punctuation.brackets.curly.begin.wit"
+            ],
+            "text": "{",
+            "start": 22,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.flags-items.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "\n",
+            "start": 23,
+            "end": 24
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.flags-items.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.flags-items.wit",
+                "variable.other.enummember.id.flags-fields.wit"
+            ],
+            "text": "read",
+            "start": 8,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.flags-items.wit",
+                "punctuation.comma.wit"
+            ],
+            "text": ",",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.flags-items.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "\n",
+            "start": 13,
+            "end": 14
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.flags-items.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.flags-items.wit",
+                "variable.other.enummember.id.flags-fields.wit"
+            ],
+            "text": "write",
+            "start": 8,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.flags-items.wit",
+                "punctuation.comma.wit"
+            ],
+            "text": ",",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.flags-items.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "\n",
+            "start": 14,
+            "end": 15
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.flags-items.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.flags-items.wit",
+                "punctuation.brackets.curly.end.wit"
+            ],
+            "text": "}",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "\n",
+            "start": 5,
+            "end": 6
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "keyword.other.resource.wit"
+            ],
+            "text": "resource",
+            "start": 4,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit"
+            ],
+            "text": " ",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "entity.name.type.id.resource.wit"
+            ],
+            "text": "blob",
+            "start": 13,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "punctuation.brackets.curly.begin.wit"
+            ],
+            "text": "{",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "\n",
+            "start": 19,
+            "end": 20
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.constructor-type.wit",
+                "keyword.other.constructor.constructor-type.wit"
+            ],
+            "text": "constructor",
+            "start": 8,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.constructor-type.wit",
+                "meta.param-list.wit",
+                "punctuation.brackets.round.begin.wit"
+            ],
+            "text": "(",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.constructor-type.wit",
+                "meta.param-list.wit",
+                "meta.named-type-list.wit",
+                "variable.parameter.id.named-type.wit"
+            ],
+            "text": "init",
+            "start": 20,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.constructor-type.wit",
+                "meta.param-list.wit",
+                "meta.named-type-list.wit",
+                "keyword.operator.key-value.wit"
+            ],
+            "text": ":",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.constructor-type.wit",
+                "meta.param-list.wit",
+                "meta.named-type-list.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.constructor-type.wit",
+                "meta.param-list.wit",
+                "meta.named-type-list.wit",
+                "meta.list.ty.wit",
+                "entity.name.type.list.wit"
+            ],
+            "text": "list",
+            "start": 26,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.constructor-type.wit",
+                "meta.param-list.wit",
+                "meta.named-type-list.wit",
+                "meta.list.ty.wit",
+                "punctuation.brackets.angle.begin.wit"
+            ],
+            "text": "<",
+            "start": 30,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.constructor-type.wit",
+                "meta.param-list.wit",
+                "meta.named-type-list.wit",
+                "meta.list.ty.wit",
+                "entity.name.type.numeric.wit"
+            ],
+            "text": "u8",
+            "start": 31,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.constructor-type.wit",
+                "meta.param-list.wit",
+                "meta.named-type-list.wit",
+                "meta.list.ty.wit",
+                "punctuation.brackets.angle.end.wit"
+            ],
+            "text": ">",
+            "start": 33,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.constructor-type.wit",
+                "meta.param-list.wit",
+                "punctuation.brackets.round.end.wit"
+            ],
+            "text": ")",
+            "start": 34,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.constructor-type.wit"
+            ],
+            "text": ";",
+            "start": 35,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.constructor-type.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "\n",
+            "start": 36,
+            "end": 37
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "entity.name.function.id.func-item.wit",
+                "meta.word.wit"
+            ],
+            "text": "write",
+            "start": 8,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "keyword.operator.key-value.wit"
+            ],
+            "text": ":",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "keyword.other.func.func-type.wit"
+            ],
+            "text": "func",
+            "start": 15,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.param-list.wit",
+                "punctuation.brackets.round.begin.wit"
+            ],
+            "text": "(",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.param-list.wit",
+                "meta.named-type-list.wit",
+                "variable.parameter.id.named-type.wit"
+            ],
+            "text": "bytes",
+            "start": 20,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.param-list.wit",
+                "meta.named-type-list.wit",
+                "keyword.operator.key-value.wit"
+            ],
+            "text": ":",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.param-list.wit",
+                "meta.named-type-list.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.param-list.wit",
+                "meta.named-type-list.wit",
+                "meta.list.ty.wit",
+                "entity.name.type.list.wit"
+            ],
+            "text": "list",
+            "start": 27,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.param-list.wit",
+                "meta.named-type-list.wit",
+                "meta.list.ty.wit",
+                "punctuation.brackets.angle.begin.wit"
+            ],
+            "text": "<",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.param-list.wit",
+                "meta.named-type-list.wit",
+                "meta.list.ty.wit",
+                "entity.name.type.numeric.wit"
+            ],
+            "text": "u8",
+            "start": 32,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.param-list.wit",
+                "meta.named-type-list.wit",
+                "meta.list.ty.wit",
+                "punctuation.brackets.angle.end.wit"
+            ],
+            "text": ">",
+            "start": 34,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.param-list.wit",
+                "punctuation.brackets.round.end.wit"
+            ],
+            "text": ")",
+            "start": 35,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit"
+            ],
+            "text": ";",
+            "start": 36,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "\n",
+            "start": 37,
+            "end": 38
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "entity.name.function.id.func-item.wit",
+                "meta.word.wit"
+            ],
+            "text": "read",
+            "start": 8,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "keyword.operator.key-value.wit"
+            ],
+            "text": ":",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "keyword.other.func.func-type.wit"
+            ],
+            "text": "func",
+            "start": 14,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.param-list.wit",
+                "punctuation.brackets.round.begin.wit"
+            ],
+            "text": "(",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.param-list.wit",
+                "meta.named-type-list.wit",
+                "variable.parameter.id.named-type.wit"
+            ],
+            "text": "n",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.param-list.wit",
+                "meta.named-type-list.wit",
+                "keyword.operator.key-value.wit"
+            ],
+            "text": ":",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.param-list.wit",
+                "meta.named-type-list.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.param-list.wit",
+                "meta.named-type-list.wit",
+                "entity.name.type.numeric.wit"
+            ],
+            "text": "u32",
+            "start": 22,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.param-list.wit",
+                "punctuation.brackets.round.end.wit"
+            ],
+            "text": ")",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.result-list.wit",
+                "keyword.operator.arrow.skinny.wit"
+            ],
+            "text": "->",
+            "start": 27,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.result-list.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 29,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.result-list.wit",
+                "meta.list.ty.wit",
+                "entity.name.type.list.wit"
+            ],
+            "text": "list",
+            "start": 30,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.result-list.wit",
+                "meta.list.ty.wit",
+                "punctuation.brackets.angle.begin.wit"
+            ],
+            "text": "<",
+            "start": 34,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.result-list.wit",
+                "meta.list.ty.wit",
+                "entity.name.type.numeric.wit"
+            ],
+            "text": "u8",
+            "start": 35,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.result-list.wit",
+                "meta.list.ty.wit",
+                "punctuation.brackets.angle.end.wit"
+            ],
+            "text": ">",
+            "start": 37,
+            "end": 38
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.result-list.wit"
+            ],
+            "text": ";",
+            "start": 38,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.result-list.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "\n",
+            "start": 39,
+            "end": 40
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "entity.name.function.id.func-item.wit",
+                "meta.word.wit"
+            ],
+            "text": "merge",
+            "start": 8,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "keyword.operator.key-value.wit"
+            ],
+            "text": ":",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "storage.modifier.static.func-item.wit"
+            ],
+            "text": "static ",
+            "start": 15,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "keyword.other.func.func-type.wit"
+            ],
+            "text": "func",
+            "start": 22,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.param-list.wit",
+                "punctuation.brackets.round.begin.wit"
+            ],
+            "text": "(",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.param-list.wit",
+                "meta.named-type-list.wit",
+                "variable.parameter.id.named-type.wit"
+            ],
+            "text": "lhs",
+            "start": 27,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.param-list.wit",
+                "meta.named-type-list.wit",
+                "keyword.operator.key-value.wit"
+            ],
+            "text": ":",
+            "start": 30,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.param-list.wit",
+                "meta.named-type-list.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.param-list.wit",
+                "meta.named-type-list.wit",
+                "meta.handle.ty.wit",
+                "entity.name.type.borrow.handle.wit"
+            ],
+            "text": "borrow",
+            "start": 32,
+            "end": 38
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.param-list.wit",
+                "meta.named-type-list.wit",
+                "meta.handle.ty.wit",
+                "punctuation.brackets.angle.begin.wit"
+            ],
+            "text": "<",
+            "start": 38,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.param-list.wit",
+                "meta.named-type-list.wit",
+                "meta.handle.ty.wit",
+                "entity.name.type.id.handle.wit"
+            ],
+            "text": "blob",
+            "start": 39,
+            "end": 43
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.param-list.wit",
+                "meta.named-type-list.wit",
+                "meta.handle.ty.wit",
+                "punctuation.brackets.angle.end.wit"
+            ],
+            "text": ">",
+            "start": 43,
+            "end": 44
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.param-list.wit",
+                "meta.named-type-list.wit",
+                "punctuation.comma.wit"
+            ],
+            "text": ",",
+            "start": 44,
+            "end": 45
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.param-list.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 45,
+            "end": 46
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.param-list.wit",
+                "meta.named-type-list.wit",
+                "variable.parameter.id.named-type.wit"
+            ],
+            "text": "rhs",
+            "start": 46,
+            "end": 49
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.param-list.wit",
+                "meta.named-type-list.wit",
+                "keyword.operator.key-value.wit"
+            ],
+            "text": ":",
+            "start": 49,
+            "end": 50
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.param-list.wit",
+                "meta.named-type-list.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 50,
+            "end": 51
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.param-list.wit",
+                "meta.named-type-list.wit",
+                "meta.handle.ty.wit",
+                "entity.name.type.borrow.handle.wit"
+            ],
+            "text": "borrow",
+            "start": 51,
+            "end": 57
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.param-list.wit",
+                "meta.named-type-list.wit",
+                "meta.handle.ty.wit",
+                "punctuation.brackets.angle.begin.wit"
+            ],
+            "text": "<",
+            "start": 57,
+            "end": 58
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.param-list.wit",
+                "meta.named-type-list.wit",
+                "meta.handle.ty.wit",
+                "entity.name.type.id.handle.wit"
+            ],
+            "text": "blob",
+            "start": 58,
+            "end": 62
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.param-list.wit",
+                "meta.named-type-list.wit",
+                "meta.handle.ty.wit",
+                "punctuation.brackets.angle.end.wit"
+            ],
+            "text": ">",
+            "start": 62,
+            "end": 63
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.param-list.wit",
+                "punctuation.brackets.round.end.wit"
+            ],
+            "text": ")",
+            "start": 63,
+            "end": 64
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 64,
+            "end": 65
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.result-list.wit",
+                "keyword.operator.arrow.skinny.wit"
+            ],
+            "text": "->",
+            "start": 65,
+            "end": 67
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.result-list.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 67,
+            "end": 68
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.result-list.wit",
+                "entity.name.type.id.wit"
+            ],
+            "text": "blob",
+            "start": 68,
+            "end": 72
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.result-list.wit"
+            ],
+            "text": ";",
+            "start": 72,
+            "end": 73
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.result-list.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "\n",
+            "start": 73,
+            "end": 74
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.resource-methods.wit",
+                "punctuation.brackets.curly.end.wit"
+            ],
+            "text": "}",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.resource-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "\n",
+            "start": 5,
+            "end": 6
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "punctuation.brackets.curly.end.wit"
+            ],
+            "text": "}",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "\n",
+            "start": 1,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "keyword.declaration.interface.interface-item.wit",
+                "storage.type.wit"
+            ],
+            "text": "interface",
+            "start": 0,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit"
+            ],
+            "text": " ",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "entity.name.type.id.interface-item.wit"
+            ],
+            "text": "dependent-interface",
+            "start": 10,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit"
+            ],
+            "text": " ",
+            "start": 29,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "punctuation.brackets.curly.begin.wit"
+            ],
+            "text": "{",
+            "start": 30,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "\n",
+            "start": 31,
+            "end": 32
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.use-item.wit",
+                "keyword.other.use.use-item.wit"
+            ],
+            "text": "use",
+            "start": 4,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.use-item.wit"
+            ],
+            "text": " ",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.use-item.wit",
+                "entity.name.namespace.id.use-path.wit"
+            ],
+            "text": "shared",
+            "start": 8,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.use-item.wit",
+                "keyword.operator.namespace-separator.use-item.wit"
+            ],
+            "text": ".",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.use-item.wit",
+                "punctuation.brackets.curly.begin.wit"
+            ],
+            "text": "{",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.use-item.wit",
+                "entity.name.type.declaration.use-names-item.use-item.wit"
+            ],
+            "text": "metadata",
+            "start": 16,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.use-item.wit",
+                "punctuation.brackets.curly.end.wit"
+            ],
+            "text": "}",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit"
+            ],
+            "text": ";",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "\n",
+            "start": 26,
+            "end": 27
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.type-item.wit",
+                "keyword.declaration.type.type-item.wit",
+                "storage.type.wit"
+            ],
+            "text": "type",
+            "start": 4,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.type-item.wit"
+            ],
+            "text": " ",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.type-item.wit",
+                "entity.name.type.id.type-item.wit"
+            ],
+            "text": "aliased-metadata",
+            "start": 9,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.type-item.wit"
+            ],
+            "text": " ",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.type-item.wit",
+                "punctuation.equal.wit"
+            ],
+            "text": "=",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.type-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 27,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.type-item.wit",
+                "entity.name.type.id.wit"
+            ],
+            "text": "metadata",
+            "start": 28,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.type-item.wit"
+            ],
+            "text": ";",
+            "start": 36,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.type-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "\n",
+            "start": 37,
+            "end": 38
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.func-item.wit",
+                "entity.name.function.id.func-item.wit",
+                "meta.word.wit"
+            ],
+            "text": "foo",
+            "start": 4,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.func-item.wit",
+                "keyword.operator.key-value.wit"
+            ],
+            "text": ":",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.func-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "keyword.other.func.func-type.wit"
+            ],
+            "text": "func",
+            "start": 9,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.param-list.wit",
+                "punctuation.brackets.round.begin.wit"
+            ],
+            "text": "(",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.param-list.wit",
+                "punctuation.brackets.round.end.wit"
+            ],
+            "text": ")",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.result-list.wit",
+                "keyword.operator.arrow.skinny.wit"
+            ],
+            "text": "->",
+            "start": 16,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.result-list.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.result-list.wit",
+                "entity.name.type.id.wit"
+            ],
+            "text": "aliased-metadata",
+            "start": 19,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.result-list.wit"
+            ],
+            "text": ";",
+            "start": 35,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.result-list.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "\n",
+            "start": 36,
+            "end": 37
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "punctuation.brackets.curly.end.wit"
+            ],
+            "text": "}",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "\n",
+            "start": 1,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "comment.line.double-slash.wit"
+            ],
+            "text": "\/\/ An example world.\n",
+            "start": 0,
+            "end": 21
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "keyword.declaration.world.world-item.wit",
+                "storage.type.wit"
+            ],
+            "text": "world",
+            "start": 0,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit"
+            ],
+            "text": " ",
+            "start": 5,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "entity.name.type.id.world-item.wit"
+            ],
+            "text": "my-world",
+            "start": 6,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "punctuation.brackets.curly.begin.wit"
+            ],
+            "text": "{",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "\n",
+            "start": 16,
+            "end": 17
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.import-item.wit",
+                "keyword.control.import.import-item.wit"
+            ],
+            "text": "import",
+            "start": 4,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.import-item.wit"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.import-item.wit",
+                "meta.id.import-item.wit",
+                "variable.other.constant.id.import-item.wit"
+            ],
+            "text": "host",
+            "start": 11,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.import-item.wit",
+                "meta.id.import-item.wit"
+            ],
+            "text": ":",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.import-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.import-item.wit",
+                "keyword.other.interface.interface-type.wit"
+            ],
+            "text": "interface",
+            "start": 17,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.import-item.wit"
+            ],
+            "text": " ",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.import-item.wit",
+                "ppunctuation.brackets.curly.begin.wit"
+            ],
+            "text": "{",
+            "start": 27,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.import-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "\n",
+            "start": 28,
+            "end": 29
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.import-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.import-item.wit",
+                "meta.func-item.wit",
+                "entity.name.function.id.func-item.wit",
+                "meta.word.wit"
+            ],
+            "text": "log",
+            "start": 8,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.import-item.wit",
+                "meta.func-item.wit",
+                "keyword.operator.key-value.wit"
+            ],
+            "text": ":",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.import-item.wit",
+                "meta.func-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.import-item.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "keyword.other.func.func-type.wit"
+            ],
+            "text": "func",
+            "start": 13,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.import-item.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.param-list.wit",
+                "punctuation.brackets.round.begin.wit"
+            ],
+            "text": "(",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.import-item.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.param-list.wit",
+                "meta.named-type-list.wit",
+                "variable.parameter.id.named-type.wit"
+            ],
+            "text": "param",
+            "start": 18,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.import-item.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.param-list.wit",
+                "meta.named-type-list.wit",
+                "keyword.operator.key-value.wit"
+            ],
+            "text": ":",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.import-item.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.param-list.wit",
+                "meta.named-type-list.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.import-item.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.param-list.wit",
+                "meta.named-type-list.wit",
+                "entity.name.type.string.wit"
+            ],
+            "text": "string",
+            "start": 25,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.import-item.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.param-list.wit",
+                "punctuation.brackets.round.end.wit"
+            ],
+            "text": ")",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.import-item.wit",
+                "meta.func-item.wit",
+                "meta.function.wit"
+            ],
+            "text": ";",
+            "start": 32,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.import-item.wit",
+                "meta.func-item.wit",
+                "meta.function.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "\n",
+            "start": 33,
+            "end": 34
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.import-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.import-item.wit",
+                "punctuation.brackets.curly.end.wit"
+            ],
+            "text": "}",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.import-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "\n",
+            "start": 5,
+            "end": 6
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.import-item.wit",
+                "keyword.control.import.import-item.wit"
+            ],
+            "text": "import",
+            "start": 4,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.import-item.wit"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.import-item.wit",
+                "meta.id.import-item.wit",
+                "variable.other.constant.id.import-item.wit"
+            ],
+            "text": "wasi",
+            "start": 11,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.import-item.wit",
+                "meta.id.import-item.wit"
+            ],
+            "text": ":",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.import-item.wit",
+                "meta.id.import-item.wit",
+                "variable.other.constant.id.import-item.wit"
+            ],
+            "text": "clocks",
+            "start": 16,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.import-item.wit",
+                "meta.id.import-item.wit"
+            ],
+            "text": "\/",
+            "start": 22,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.import-item.wit",
+                "meta.id.import-item.wit",
+                "variable.other.constant.id.import-item.wit"
+            ],
+            "text": "monotonic-clock",
+            "start": 23,
+            "end": 38
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.import-item.wit",
+                "meta.id.import-item.wit"
+            ],
+            "text": ";",
+            "start": 38,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.import-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "\n",
+            "start": 39,
+            "end": 40
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.export-item.wit",
+                "keyword.control.export.export-item.wit"
+            ],
+            "text": "export",
+            "start": 4,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.export-item.wit"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.export-item.wit",
+                "meta.id.export-item.wit",
+                "variable.other.constant.id.export-item.wit"
+            ],
+            "text": "wasi",
+            "start": 11,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.export-item.wit",
+                "meta.id.export-item.wit"
+            ],
+            "text": ":",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.export-item.wit",
+                "meta.id.export-item.wit",
+                "variable.other.constant.id.export-item.wit"
+            ],
+            "text": "cli",
+            "start": 16,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.export-item.wit",
+                "meta.id.export-item.wit"
+            ],
+            "text": "\/",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.export-item.wit",
+                "meta.id.export-item.wit",
+                "variable.other.constant.id.export-item.wit"
+            ],
+            "text": "run",
+            "start": 20,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.export-item.wit",
+                "meta.id.export-item.wit"
+            ],
+            "text": ";",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.export-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "\n",
+            "start": 24,
+            "end": 25
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.export-item.wit",
+                "keyword.control.export.export-item.wit"
+            ],
+            "text": "export",
+            "start": 4,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.export-item.wit"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.export-item.wit",
+                "meta.id.export-item.wit",
+                "variable.other.constant.id.export-item.wit"
+            ],
+            "text": "run",
+            "start": 11,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.export-item.wit",
+                "meta.id.export-item.wit"
+            ],
+            "text": ":",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.export-item.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.export-item.wit",
+                "meta.function.wit",
+                "keyword.other.func.func-type.wit"
+            ],
+            "text": "func",
+            "start": 16,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.export-item.wit",
+                "meta.function.wit",
+                "meta.param-list.wit",
+                "punctuation.brackets.round.begin.wit"
+            ],
+            "text": "(",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.export-item.wit",
+                "meta.function.wit",
+                "meta.param-list.wit",
+                "meta.named-type-list.wit",
+                "variable.parameter.id.named-type.wit"
+            ],
+            "text": "x",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.export-item.wit",
+                "meta.function.wit",
+                "meta.param-list.wit",
+                "meta.named-type-list.wit",
+                "keyword.operator.key-value.wit"
+            ],
+            "text": ":",
+            "start": 22,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.export-item.wit",
+                "meta.function.wit",
+                "meta.param-list.wit",
+                "meta.named-type-list.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.export-item.wit",
+                "meta.function.wit",
+                "meta.param-list.wit",
+                "meta.named-type-list.wit",
+                "entity.name.type.numeric.wit"
+            ],
+            "text": "u32",
+            "start": 24,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.export-item.wit",
+                "meta.function.wit",
+                "meta.param-list.wit",
+                "punctuation.brackets.round.end.wit"
+            ],
+            "text": ")",
+            "start": 27,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.export-item.wit",
+                "meta.function.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.export-item.wit",
+                "meta.function.wit",
+                "meta.result-list.wit",
+                "keyword.operator.arrow.skinny.wit"
+            ],
+            "text": "->",
+            "start": 29,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.export-item.wit",
+                "meta.function.wit",
+                "meta.result-list.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.export-item.wit",
+                "meta.function.wit",
+                "meta.result-list.wit",
+                "meta.list.ty.wit",
+                "entity.name.type.list.wit"
+            ],
+            "text": "list",
+            "start": 32,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.export-item.wit",
+                "meta.function.wit",
+                "meta.result-list.wit",
+                "meta.list.ty.wit",
+                "punctuation.brackets.angle.begin.wit"
+            ],
+            "text": "<",
+            "start": 36,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.export-item.wit",
+                "meta.function.wit",
+                "meta.result-list.wit",
+                "meta.list.ty.wit",
+                "entity.name.type.string.wit"
+            ],
+            "text": "string",
+            "start": 37,
+            "end": 43
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.export-item.wit",
+                "meta.function.wit",
+                "meta.result-list.wit",
+                "meta.list.ty.wit",
+                "punctuation.brackets.angle.end.wit"
+            ],
+            "text": ">",
+            "start": 43,
+            "end": 44
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.export-item.wit",
+                "meta.function.wit",
+                "meta.result-list.wit"
+            ],
+            "text": ";",
+            "start": 44,
+            "end": 45
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "meta.export-item.wit",
+                "meta.function.wit",
+                "meta.result-list.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "\n",
+            "start": 45,
+            "end": 46
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "punctuation.brackets.curly.end.wit"
+            ],
+            "text": "}",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "\n",
+            "start": 1,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "comment.line.double-slash.wit"
+            ],
+            "text": "\/\/ Mostly inspired by https:\/\/component-model.bytecodealliance.org\/design\/wit.html\n",
+            "start": 0,
+            "end": 83
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ]
+]

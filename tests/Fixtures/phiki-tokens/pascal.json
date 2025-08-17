@@ -1,0 +1,3487 @@
+[
+    [
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two",
+                "punctuation.definition.comment.pascal"
+            ],
+            "text": "{",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two"
+            ],
+            "text": "*****************************************************************************\n",
+            "start": 1,
+            "end": 79
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two"
+            ],
+            "text": " * A Pascal quicksort.\n",
+            "start": 0,
+            "end": 23
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two"
+            ],
+            "text": " *****************************************************************************",
+            "start": 0,
+            "end": 78
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two",
+                "punctuation.definition.comment.pascal"
+            ],
+            "text": "}",
+            "start": 78,
+            "end": 79
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 79,
+            "end": 80
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal",
+                "keyword.pascal"
+            ],
+            "text": "PROGRAM",
+            "start": 0,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": " Sort(input, output);\n",
+            "start": 7,
+            "end": 29
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "keyword.pascal"
+            ],
+            "text": "CONST",
+            "start": 4,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 9,
+            "end": 10
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two",
+                "punctuation.definition.comment.pascal"
+            ],
+            "text": "{",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two"
+            ],
+            "text": " Max array size. ",
+            "start": 9,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two",
+                "punctuation.definition.comment.pascal"
+            ],
+            "text": "}",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 27,
+            "end": 28
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "        MaxElts = ",
+            "start": 0,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "constant.numeric.pascal"
+            ],
+            "text": "50",
+            "start": 18,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": ";\n",
+            "start": 20,
+            "end": 22
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "keyword.pascal"
+            ],
+            "text": "TYPE",
+            "start": 4,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 8,
+            "end": 9
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two",
+                "punctuation.definition.comment.pascal"
+            ],
+            "text": "{",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two"
+            ],
+            "text": " Type of the element array. ",
+            "start": 9,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two",
+                "punctuation.definition.comment.pascal"
+            ],
+            "text": "}",
+            "start": 37,
+            "end": 38
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 38,
+            "end": 39
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "        IntArrType = ",
+            "start": 0,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "keyword.pascal"
+            ],
+            "text": "ARRAY",
+            "start": 21,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": " [",
+            "start": 26,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "constant.numeric.pascal"
+            ],
+            "text": "1",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "..MaxElts] ",
+            "start": 29,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "keyword.pascal"
+            ],
+            "text": "OF",
+            "start": 40,
+            "end": 42
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": " ",
+            "start": 42,
+            "end": 43
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "storage.support.type.pascal"
+            ],
+            "text": "Integer",
+            "start": 43,
+            "end": 50
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": ";\n",
+            "start": 50,
+            "end": 52
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "keyword.pascal"
+            ],
+            "text": "VAR",
+            "start": 4,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 7,
+            "end": 8
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two",
+                "punctuation.definition.comment.pascal"
+            ],
+            "text": "{",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two"
+            ],
+            "text": " Indexes, exchange temp, array size. ",
+            "start": 9,
+            "end": 46
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two",
+                "punctuation.definition.comment.pascal"
+            ],
+            "text": "}",
+            "start": 46,
+            "end": 47
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 47,
+            "end": 48
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "        i, j, tmp, size: ",
+            "start": 0,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "storage.support.type.pascal"
+            ],
+            "text": "integer",
+            "start": 25,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": ";\n",
+            "start": 32,
+            "end": 34
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two",
+                "punctuation.definition.comment.pascal"
+            ],
+            "text": "{",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two"
+            ],
+            "text": " Array of ints ",
+            "start": 9,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two",
+                "punctuation.definition.comment.pascal"
+            ],
+            "text": "}",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 25,
+            "end": 26
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "        arr: IntArrType;\n",
+            "start": 0,
+            "end": 25
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two",
+                "punctuation.definition.comment.pascal"
+            ],
+            "text": "{",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two"
+            ],
+            "text": " Read in the integers. ",
+            "start": 5,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two",
+                "punctuation.definition.comment.pascal"
+            ],
+            "text": "}",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 29,
+            "end": 30
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "meta.function.pascal",
+                "storage.type.function.pascal"
+            ],
+            "text": "PROCEDURE",
+            "start": 4,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "meta.function.pascal"
+            ],
+            "text": " ",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "meta.function.pascal",
+                "entity.name.function.pascal"
+            ],
+            "text": "ReadArr",
+            "start": 14,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "(",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "keyword.pascal"
+            ],
+            "text": "VAR",
+            "start": 22,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": " size: ",
+            "start": 25,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "storage.support.type.pascal"
+            ],
+            "text": "Integer",
+            "start": 32,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "; ",
+            "start": 39,
+            "end": 41
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "keyword.pascal"
+            ],
+            "text": "VAR",
+            "start": 41,
+            "end": 44
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": " a: IntArrType);\n",
+            "start": 44,
+            "end": 61
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "keyword.pascal"
+            ],
+            "text": "BEGIN",
+            "start": 8,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 13,
+            "end": 14
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "            size := ",
+            "start": 0,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "constant.numeric.pascal"
+            ],
+            "text": "1",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": ";\n",
+            "start": 21,
+            "end": 23
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "            ",
+            "start": 0,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "keyword.control.pascal"
+            ],
+            "text": "WHILE",
+            "start": 12,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": " ",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "keyword.pascal"
+            ],
+            "text": "NOT",
+            "start": 18,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": " eof ",
+            "start": 21,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "keyword.control.pascal"
+            ],
+            "text": "DO",
+            "start": 26,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": " ",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "keyword.pascal"
+            ],
+            "text": "BEGIN",
+            "start": 29,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 34,
+            "end": 35
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "                readln(a[size]);\n",
+            "start": 0,
+            "end": 33
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "                ",
+            "start": 0,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "keyword.pascal"
+            ],
+            "text": "IF",
+            "start": 16,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": " ",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "keyword.pascal"
+            ],
+            "text": "NOT",
+            "start": 19,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": " eof ",
+            "start": 22,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "keyword.pascal"
+            ],
+            "text": "THEN",
+            "start": 27,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 31,
+            "end": 32
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "                    size := size + ",
+            "start": 0,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "constant.numeric.pascal"
+            ],
+            "text": "1",
+            "start": 35,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 36,
+            "end": 37
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "            ",
+            "start": 0,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "keyword.pascal"
+            ],
+            "text": "END",
+            "start": 12,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 15,
+            "end": 16
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "keyword.pascal"
+            ],
+            "text": "END",
+            "start": 8,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": ";\n",
+            "start": 11,
+            "end": 13
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two",
+                "punctuation.definition.comment.pascal"
+            ],
+            "text": "{",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two"
+            ],
+            "text": " Use quicksort to sort the array of integers. ",
+            "start": 5,
+            "end": 51
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two",
+                "punctuation.definition.comment.pascal"
+            ],
+            "text": "}",
+            "start": 51,
+            "end": 52
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 52,
+            "end": 53
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "meta.function.pascal",
+                "storage.type.function.pascal"
+            ],
+            "text": "PROCEDURE",
+            "start": 4,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "meta.function.pascal"
+            ],
+            "text": " ",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "meta.function.pascal",
+                "entity.name.function.pascal"
+            ],
+            "text": "Quicksort",
+            "start": 14,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "(size: ",
+            "start": 23,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "storage.support.type.pascal"
+            ],
+            "text": "Integer",
+            "start": 30,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "; ",
+            "start": 37,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "keyword.pascal"
+            ],
+            "text": "VAR",
+            "start": 39,
+            "end": 42
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": " arr: IntArrType);\n",
+            "start": 42,
+            "end": 61
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two",
+                "punctuation.definition.comment.pascal"
+            ],
+            "text": "{",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two"
+            ],
+            "text": " This does the actual work of the quicksort.  It takes the\n",
+            "start": 9,
+            "end": 68
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two"
+            ],
+            "text": "          parameters which define the range of the array to work on,\n",
+            "start": 0,
+            "end": 69
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two"
+            ],
+            "text": "          and references the array as a global. ",
+            "start": 0,
+            "end": 48
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two",
+                "punctuation.definition.comment.pascal"
+            ],
+            "text": "}",
+            "start": 48,
+            "end": 49
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 49,
+            "end": 50
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "meta.function.pascal",
+                "storage.type.function.pascal"
+            ],
+            "text": "PROCEDURE",
+            "start": 8,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "meta.function.pascal"
+            ],
+            "text": " ",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "meta.function.pascal",
+                "entity.name.function.pascal"
+            ],
+            "text": "QuicksortRecur",
+            "start": 18,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "(start, stop: ",
+            "start": 32,
+            "end": 46
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "storage.support.type.pascal"
+            ],
+            "text": "integer",
+            "start": 46,
+            "end": 53
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": ");\n",
+            "start": 53,
+            "end": 56
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "            ",
+            "start": 0,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "keyword.pascal"
+            ],
+            "text": "VAR",
+            "start": 12,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 15,
+            "end": 16
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "                m: ",
+            "start": 0,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "storage.support.type.pascal"
+            ],
+            "text": "integer",
+            "start": 19,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": ";\n",
+            "start": 26,
+            "end": 28
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "                ",
+            "start": 0,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two",
+                "punctuation.definition.comment.pascal"
+            ],
+            "text": "{",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two"
+            ],
+            "text": " The location separating the high and low parts. ",
+            "start": 17,
+            "end": 66
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two",
+                "punctuation.definition.comment.pascal"
+            ],
+            "text": "}",
+            "start": 66,
+            "end": 67
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 67,
+            "end": 68
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "                splitpt: ",
+            "start": 0,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "storage.support.type.pascal"
+            ],
+            "text": "integer",
+            "start": 25,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": ";\n",
+            "start": 32,
+            "end": 34
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "            ",
+            "start": 0,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two",
+                "punctuation.definition.comment.pascal"
+            ],
+            "text": "{",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two"
+            ],
+            "text": " The quicksort split algorithm.  Takes the range, and\n",
+            "start": 13,
+            "end": 67
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two"
+            ],
+            "text": "              returns the split point. ",
+            "start": 0,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two",
+                "punctuation.definition.comment.pascal"
+            ],
+            "text": "}",
+            "start": 39,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 40,
+            "end": 41
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "            ",
+            "start": 0,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "meta.function.pascal",
+                "storage.type.function.pascal"
+            ],
+            "text": "FUNCTION",
+            "start": 12,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "meta.function.pascal"
+            ],
+            "text": " ",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "meta.function.pascal",
+                "entity.name.function.pascal"
+            ],
+            "text": "Split",
+            "start": 21,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "(start, stop: ",
+            "start": 26,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "storage.support.type.pascal"
+            ],
+            "text": "integer",
+            "start": 40,
+            "end": 47
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "): ",
+            "start": 47,
+            "end": 50
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "storage.support.type.pascal"
+            ],
+            "text": "integer",
+            "start": 50,
+            "end": 57
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": ";\n",
+            "start": 57,
+            "end": 59
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "                ",
+            "start": 0,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "keyword.pascal"
+            ],
+            "text": "VAR",
+            "start": 16,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 19,
+            "end": 20
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "                    left, right: ",
+            "start": 0,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "storage.support.type.pascal"
+            ],
+            "text": "integer",
+            "start": 33,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": ";       ",
+            "start": 40,
+            "end": 48
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two",
+                "punctuation.definition.comment.pascal"
+            ],
+            "text": "{",
+            "start": 48,
+            "end": 49
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two"
+            ],
+            "text": " Scan pointers. ",
+            "start": 49,
+            "end": 65
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two",
+                "punctuation.definition.comment.pascal"
+            ],
+            "text": "}",
+            "start": 65,
+            "end": 66
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 66,
+            "end": 67
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "                    pivot: ",
+            "start": 0,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "storage.support.type.pascal"
+            ],
+            "text": "integer",
+            "start": 27,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": ";             ",
+            "start": 34,
+            "end": 48
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two",
+                "punctuation.definition.comment.pascal"
+            ],
+            "text": "{",
+            "start": 48,
+            "end": 49
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two"
+            ],
+            "text": " Pivot value. ",
+            "start": 49,
+            "end": 63
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two",
+                "punctuation.definition.comment.pascal"
+            ],
+            "text": "}",
+            "start": 63,
+            "end": 64
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 64,
+            "end": 65
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "                ",
+            "start": 0,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two",
+                "punctuation.definition.comment.pascal"
+            ],
+            "text": "{",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two"
+            ],
+            "text": " Interchange the parameters. ",
+            "start": 17,
+            "end": 46
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two",
+                "punctuation.definition.comment.pascal"
+            ],
+            "text": "}",
+            "start": 46,
+            "end": 47
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 47,
+            "end": 48
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "                ",
+            "start": 0,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "meta.function.pascal",
+                "storage.type.function.pascal"
+            ],
+            "text": "PROCEDURE",
+            "start": 16,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "meta.function.pascal"
+            ],
+            "text": " ",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "meta.function.pascal",
+                "entity.name.function.pascal"
+            ],
+            "text": "swap",
+            "start": 26,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "(",
+            "start": 30,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "keyword.pascal"
+            ],
+            "text": "VAR",
+            "start": 31,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": " a, b: ",
+            "start": 34,
+            "end": 41
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "storage.support.type.pascal"
+            ],
+            "text": "integer",
+            "start": 41,
+            "end": 48
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": ");\n",
+            "start": 48,
+            "end": 51
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "                    ",
+            "start": 0,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "keyword.pascal"
+            ],
+            "text": "VAR",
+            "start": 20,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 23,
+            "end": 24
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "                        t: ",
+            "start": 0,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "storage.support.type.pascal"
+            ],
+            "text": "integer",
+            "start": 27,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": ";\n",
+            "start": 34,
+            "end": 36
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "                    ",
+            "start": 0,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "keyword.pascal"
+            ],
+            "text": "BEGIN",
+            "start": 20,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 25,
+            "end": 26
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "                        t := a;\n",
+            "start": 0,
+            "end": 32
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "                        a := b;\n",
+            "start": 0,
+            "end": 32
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "                        b := t\n",
+            "start": 0,
+            "end": 31
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "                    ",
+            "start": 0,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "keyword.pascal"
+            ],
+            "text": "END",
+            "start": 20,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": ";\n",
+            "start": 23,
+            "end": 25
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "                ",
+            "start": 0,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "keyword.pascal"
+            ],
+            "text": "BEGIN",
+            "start": 16,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": " ",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two",
+                "punctuation.definition.comment.pascal"
+            ],
+            "text": "{",
+            "start": 22,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two"
+            ],
+            "text": " Split ",
+            "start": 23,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two",
+                "punctuation.definition.comment.pascal"
+            ],
+            "text": "}",
+            "start": 30,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 31,
+            "end": 32
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "                    ",
+            "start": 0,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two",
+                "punctuation.definition.comment.pascal"
+            ],
+            "text": "{",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two"
+            ],
+            "text": " Set up the pointers for the hight and low sections, and\n",
+            "start": 21,
+            "end": 78
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two"
+            ],
+            "text": "                      get the pivot value. ",
+            "start": 0,
+            "end": 43
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two",
+                "punctuation.definition.comment.pascal"
+            ],
+            "text": "}",
+            "start": 43,
+            "end": 44
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 44,
+            "end": 45
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "                    pivot := arr[start];\n",
+            "start": 0,
+            "end": 41
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "                    left := start + ",
+            "start": 0,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "constant.numeric.pascal"
+            ],
+            "text": "1",
+            "start": 36,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": ";\n",
+            "start": 37,
+            "end": 39
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "                    right := stop;\n",
+            "start": 0,
+            "end": 35
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "                    ",
+            "start": 0,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two",
+                "punctuation.definition.comment.pascal"
+            ],
+            "text": "{",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two"
+            ],
+            "text": " Look for pairs out of place and swap 'em. ",
+            "start": 21,
+            "end": 64
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two",
+                "punctuation.definition.comment.pascal"
+            ],
+            "text": "}",
+            "start": 64,
+            "end": 65
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 65,
+            "end": 66
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "                    ",
+            "start": 0,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "keyword.control.pascal"
+            ],
+            "text": "WHILE",
+            "start": 20,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": " left <= right ",
+            "start": 25,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "keyword.control.pascal"
+            ],
+            "text": "DO",
+            "start": 40,
+            "end": 42
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": " ",
+            "start": 42,
+            "end": 43
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "keyword.pascal"
+            ],
+            "text": "BEGIN",
+            "start": 43,
+            "end": 48
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 48,
+            "end": 49
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "                        ",
+            "start": 0,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "keyword.control.pascal"
+            ],
+            "text": "WHILE",
+            "start": 24,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": " (left <= stop) ",
+            "start": 29,
+            "end": 45
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "keyword.operator.pascal"
+            ],
+            "text": "AND",
+            "start": 45,
+            "end": 48
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": " (arr[left] < pivot) ",
+            "start": 48,
+            "end": 69
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "keyword.control.pascal"
+            ],
+            "text": "DO",
+            "start": 69,
+            "end": 71
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 71,
+            "end": 72
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "                            left := left + ",
+            "start": 0,
+            "end": 43
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "constant.numeric.pascal"
+            ],
+            "text": "1",
+            "start": 43,
+            "end": 44
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": ";\n",
+            "start": 44,
+            "end": 46
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "                        ",
+            "start": 0,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "keyword.control.pascal"
+            ],
+            "text": "WHILE",
+            "start": 24,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": " (right > start) ",
+            "start": 29,
+            "end": 46
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "keyword.operator.pascal"
+            ],
+            "text": "AND",
+            "start": 46,
+            "end": 49
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": " (arr[right] >= pivot) ",
+            "start": 49,
+            "end": 72
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "keyword.control.pascal"
+            ],
+            "text": "DO",
+            "start": 72,
+            "end": 74
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 74,
+            "end": 75
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "                            right := right - ",
+            "start": 0,
+            "end": 45
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "constant.numeric.pascal"
+            ],
+            "text": "1",
+            "start": 45,
+            "end": 46
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": ";\n",
+            "start": 46,
+            "end": 48
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "                        ",
+            "start": 0,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "keyword.pascal"
+            ],
+            "text": "IF",
+            "start": 24,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": " left < right ",
+            "start": 26,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "keyword.pascal"
+            ],
+            "text": "THEN",
+            "start": 40,
+            "end": 44
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 44,
+            "end": 45
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "                            swap(arr[left], arr[right]);\n",
+            "start": 0,
+            "end": 57
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "                    ",
+            "start": 0,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "keyword.pascal"
+            ],
+            "text": "END",
+            "start": 20,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": ";\n",
+            "start": 23,
+            "end": 25
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "                    ",
+            "start": 0,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two",
+                "punctuation.definition.comment.pascal"
+            ],
+            "text": "{",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two"
+            ],
+            "text": " Put the pivot between the halves. ",
+            "start": 21,
+            "end": 56
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two",
+                "punctuation.definition.comment.pascal"
+            ],
+            "text": "}",
+            "start": 56,
+            "end": 57
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 57,
+            "end": 58
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "                    swap(arr[start], arr[right]);\n",
+            "start": 0,
+            "end": 50
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "                    ",
+            "start": 0,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two",
+                "punctuation.definition.comment.pascal"
+            ],
+            "text": "{",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two"
+            ],
+            "text": " This is how you return function values in pascal.\n",
+            "start": 21,
+            "end": 72
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two"
+            ],
+            "text": "                      Yeccch. ",
+            "start": 0,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two",
+                "punctuation.definition.comment.pascal"
+            ],
+            "text": "}",
+            "start": 30,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 31,
+            "end": 32
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "                    Split := right\n",
+            "start": 0,
+            "end": 35
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "                ",
+            "start": 0,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "keyword.pascal"
+            ],
+            "text": "END",
+            "start": 16,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": ";\n",
+            "start": 19,
+            "end": 21
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "            ",
+            "start": 0,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "keyword.pascal"
+            ],
+            "text": "BEGIN",
+            "start": 12,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": " ",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two",
+                "punctuation.definition.comment.pascal"
+            ],
+            "text": "{",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two"
+            ],
+            "text": " QuicksortRecur ",
+            "start": 19,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two",
+                "punctuation.definition.comment.pascal"
+            ],
+            "text": "}",
+            "start": 35,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 36,
+            "end": 37
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "                ",
+            "start": 0,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two",
+                "punctuation.definition.comment.pascal"
+            ],
+            "text": "{",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two"
+            ],
+            "text": " If there's anything to do... ",
+            "start": 17,
+            "end": 47
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two",
+                "punctuation.definition.comment.pascal"
+            ],
+            "text": "}",
+            "start": 47,
+            "end": 48
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 48,
+            "end": 49
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "                ",
+            "start": 0,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "keyword.pascal"
+            ],
+            "text": "IF",
+            "start": 16,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": " start < stop ",
+            "start": 18,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "keyword.pascal"
+            ],
+            "text": "THEN",
+            "start": 32,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": " ",
+            "start": 36,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "keyword.pascal"
+            ],
+            "text": "BEGIN",
+            "start": 37,
+            "end": 42
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 42,
+            "end": 43
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "                    splitpt := Split(start, stop);\n",
+            "start": 0,
+            "end": 51
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "                    QuicksortRecur(start, splitpt-",
+            "start": 0,
+            "end": 50
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "constant.numeric.pascal"
+            ],
+            "text": "1",
+            "start": 50,
+            "end": 51
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": ");\n",
+            "start": 51,
+            "end": 54
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "                    QuicksortRecur(splitpt+",
+            "start": 0,
+            "end": 43
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "constant.numeric.pascal"
+            ],
+            "text": "1",
+            "start": 43,
+            "end": 44
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": ", stop);\n",
+            "start": 44,
+            "end": 53
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "                ",
+            "start": 0,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "keyword.pascal"
+            ],
+            "text": "END",
+            "start": 16,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 19,
+            "end": 20
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "            ",
+            "start": 0,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "keyword.pascal"
+            ],
+            "text": "END",
+            "start": 12,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": ";\n",
+            "start": 15,
+            "end": 17
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "keyword.pascal"
+            ],
+            "text": "BEGIN",
+            "start": 8,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": " ",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two",
+                "punctuation.definition.comment.pascal"
+            ],
+            "text": "{",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two"
+            ],
+            "text": " Quicksort ",
+            "start": 15,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two",
+                "punctuation.definition.comment.pascal"
+            ],
+            "text": "}",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 27,
+            "end": 28
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "            QuicksortRecur(",
+            "start": 0,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "constant.numeric.pascal"
+            ],
+            "text": "1",
+            "start": 27,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": ", size)\n",
+            "start": 28,
+            "end": 36
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "keyword.pascal"
+            ],
+            "text": "END",
+            "start": 8,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": ";\n",
+            "start": 11,
+            "end": 13
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "keyword.pascal"
+            ],
+            "text": "BEGIN",
+            "start": 4,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 9,
+            "end": 10
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two",
+                "punctuation.definition.comment.pascal"
+            ],
+            "text": "{",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two"
+            ],
+            "text": " Read ",
+            "start": 9,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two",
+                "punctuation.definition.comment.pascal"
+            ],
+            "text": "}",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 16,
+            "end": 17
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "        ReadArr(size, arr);\n",
+            "start": 0,
+            "end": 28
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two",
+                "punctuation.definition.comment.pascal"
+            ],
+            "text": "{",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two"
+            ],
+            "text": " Sort the contents. ",
+            "start": 9,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two",
+                "punctuation.definition.comment.pascal"
+            ],
+            "text": "}",
+            "start": 29,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 30,
+            "end": 31
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "        Quicksort(size, arr);\n",
+            "start": 0,
+            "end": 30
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two",
+                "punctuation.definition.comment.pascal"
+            ],
+            "text": "{",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two"
+            ],
+            "text": " Print. ",
+            "start": 9,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two",
+                "punctuation.definition.comment.pascal"
+            ],
+            "text": "}",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 18,
+            "end": 19
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "keyword.control.pascal"
+            ],
+            "text": "FOR",
+            "start": 8,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": " i := ",
+            "start": 11,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "constant.numeric.pascal"
+            ],
+            "text": "1",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": " ",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "keyword.pascal"
+            ],
+            "text": "TO",
+            "start": 19,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": " size ",
+            "start": 21,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "keyword.control.pascal"
+            ],
+            "text": "DO",
+            "start": 27,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 29,
+            "end": 30
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "            writeln(arr[i])\n",
+            "start": 0,
+            "end": 28
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "keyword.pascal"
+            ],
+            "text": "END",
+            "start": 4,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": ".\n",
+            "start": 7,
+            "end": 9
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two",
+                "punctuation.definition.comment.pascal"
+            ],
+            "text": "{",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two"
+            ],
+            "text": " From http:\/\/sandbox.mc.edu\/~bennet\/cs404\/doc\/qsort_pas.html ",
+            "start": 1,
+            "end": 62
+        },
+        {
+            "scopes": [
+                "source.pascal",
+                "comment.block.pascal.two",
+                "punctuation.definition.comment.pascal"
+            ],
+            "text": "}",
+            "start": 62,
+            "end": 63
+        },
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 63,
+            "end": 64
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.pascal"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ]
+]

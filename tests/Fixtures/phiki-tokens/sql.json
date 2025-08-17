@@ -1,0 +1,795 @@
+[
+    [
+        {
+            "scopes": [
+                "source.sql",
+                "keyword.other.sql"
+            ],
+            "text": "USE",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.sql"
+            ],
+            "text": " AdventureWorks2022;\n",
+            "start": 3,
+            "end": 24
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.sql",
+                "keyword.other.sql"
+            ],
+            "text": "GO",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.sql"
+            ],
+            "text": "\n",
+            "start": 2,
+            "end": 3
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.sql",
+                "keyword.other.sql"
+            ],
+            "text": "IF",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.sql"
+            ],
+            "text": " ",
+            "start": 2,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.sql",
+                "support.function.metadata.sql"
+            ],
+            "text": "OBJECT_ID",
+            "start": 3,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.sql"
+            ],
+            "text": "(",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.sql",
+                "string.quoted.single.sql",
+                "punctuation.definition.string.begin.sql",
+                "punctuation.definition.string.end.sql"
+            ],
+            "text": "'",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.sql",
+                "string.quoted.single.sql"
+            ],
+            "text": "dbo.NewProducts'",
+            "start": 14,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.sql"
+            ],
+            "text": ", ",
+            "start": 30,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.sql",
+                "string.quoted.single.sql",
+                "punctuation.definition.string.begin.sql",
+                "punctuation.definition.string.end.sql"
+            ],
+            "text": "'",
+            "start": 32,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.sql",
+                "string.quoted.single.sql"
+            ],
+            "text": "U'",
+            "start": 33,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.sql"
+            ],
+            "text": ") ",
+            "start": 35,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.sql",
+                "keyword.other.DDL.create.II.sql"
+            ],
+            "text": "IS NOT NULL",
+            "start": 37,
+            "end": 48
+        },
+        {
+            "scopes": [
+                "source.sql"
+            ],
+            "text": "\n",
+            "start": 48,
+            "end": 49
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.sql",
+                "meta.drop.sql"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.sql",
+                "meta.drop.sql",
+                "keyword.other.create.sql"
+            ],
+            "text": "DROP",
+            "start": 4,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.sql",
+                "meta.drop.sql"
+            ],
+            "text": " ",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.sql",
+                "meta.drop.sql",
+                "keyword.other.sql"
+            ],
+            "text": "TABLE",
+            "start": 9,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.sql"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.sql",
+                "constant.other.database-name.sql"
+            ],
+            "text": "dbo",
+            "start": 15,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.sql"
+            ],
+            "text": ".",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.sql",
+                "constant.other.table-name.sql"
+            ],
+            "text": "NewProducts",
+            "start": 19,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.sql"
+            ],
+            "text": ";\n",
+            "start": 30,
+            "end": 32
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.sql",
+                "keyword.other.sql"
+            ],
+            "text": "GO",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.sql"
+            ],
+            "text": "\n",
+            "start": 2,
+            "end": 3
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.sql",
+                "meta.alter.sql",
+                "keyword.other.create.sql"
+            ],
+            "text": "ALTER",
+            "start": 0,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.sql",
+                "meta.alter.sql"
+            ],
+            "text": " ",
+            "start": 5,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.sql",
+                "meta.alter.sql",
+                "keyword.other.table.sql"
+            ],
+            "text": "DATABASE",
+            "start": 6,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.sql",
+                "meta.alter.sql"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.sql"
+            ],
+            "text": "AdventureWorks2022 ",
+            "start": 15,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.sql",
+                "keyword.other.DML.sql"
+            ],
+            "text": "SET",
+            "start": 34,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.sql"
+            ],
+            "text": " ",
+            "start": 37,
+            "end": 38
+        },
+        {
+            "scopes": [
+                "source.sql",
+                "keyword.other.sql"
+            ],
+            "text": "RECOVERY",
+            "start": 38,
+            "end": 46
+        },
+        {
+            "scopes": [
+                "source.sql"
+            ],
+            "text": " ",
+            "start": 46,
+            "end": 47
+        },
+        {
+            "scopes": [
+                "source.sql",
+                "keyword.other.sql"
+            ],
+            "text": "BULK_LOGGED",
+            "start": 47,
+            "end": 58
+        },
+        {
+            "scopes": [
+                "source.sql"
+            ],
+            "text": ";\n",
+            "start": 58,
+            "end": 60
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.sql",
+                "keyword.other.sql"
+            ],
+            "text": "GO",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.sql"
+            ],
+            "text": "\n",
+            "start": 2,
+            "end": 3
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.sql"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.sql",
+                "keyword.other.DML.sql"
+            ],
+            "text": "SELECT",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.sql"
+            ],
+            "text": " ",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.sql",
+                "keyword.operator.star.sql"
+            ],
+            "text": "*",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.sql"
+            ],
+            "text": " ",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.sql",
+                "keyword.other.sql"
+            ],
+            "text": "INTO",
+            "start": 9,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.sql"
+            ],
+            "text": " ",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.sql",
+                "constant.other.database-name.sql"
+            ],
+            "text": "dbo",
+            "start": 14,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.sql"
+            ],
+            "text": ".",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.sql",
+                "constant.other.table-name.sql"
+            ],
+            "text": "NewProducts",
+            "start": 18,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.sql"
+            ],
+            "text": "\n",
+            "start": 29,
+            "end": 30
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.sql",
+                "keyword.other.DML.sql"
+            ],
+            "text": "FROM",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.sql"
+            ],
+            "text": " ",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.sql",
+                "constant.other.database-name.sql",
+                "constant.other.table-name.sql"
+            ],
+            "text": "Product",
+            "start": 5,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.sql",
+                "constant.other.database-name.sql"
+            ],
+            "text": "ion",
+            "start": 12,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.sql"
+            ],
+            "text": ".Product",
+            "start": 15,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.sql"
+            ],
+            "text": "\n",
+            "start": 23,
+            "end": 24
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.sql",
+                "keyword.other.DML.sql"
+            ],
+            "text": "WHERE",
+            "start": 0,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.sql"
+            ],
+            "text": " ListPrice ",
+            "start": 5,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.sql",
+                "keyword.operator.comparison.sql"
+            ],
+            "text": ">",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.sql"
+            ],
+            "text": " $",
+            "start": 17,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.sql",
+                "constant.numeric.sql"
+            ],
+            "text": "25",
+            "start": 19,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.sql"
+            ],
+            "text": "\n",
+            "start": 21,
+            "end": 22
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.sql",
+                "keyword.other.DML.sql"
+            ],
+            "text": "AND",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.sql"
+            ],
+            "text": " ListPrice ",
+            "start": 3,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.sql",
+                "keyword.operator.comparison.sql"
+            ],
+            "text": "<",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.sql"
+            ],
+            "text": " $",
+            "start": 15,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.sql",
+                "constant.numeric.sql"
+            ],
+            "text": "100",
+            "start": 17,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.sql"
+            ],
+            "text": ";\n",
+            "start": 20,
+            "end": 22
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.sql",
+                "keyword.other.sql"
+            ],
+            "text": "GO",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.sql"
+            ],
+            "text": "\n",
+            "start": 2,
+            "end": 3
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.sql",
+                "meta.alter.sql",
+                "keyword.other.create.sql"
+            ],
+            "text": "ALTER",
+            "start": 0,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.sql",
+                "meta.alter.sql"
+            ],
+            "text": " ",
+            "start": 5,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.sql",
+                "meta.alter.sql",
+                "keyword.other.table.sql"
+            ],
+            "text": "DATABASE",
+            "start": 6,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.sql",
+                "meta.alter.sql"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.sql"
+            ],
+            "text": "AdventureWorks2022 ",
+            "start": 15,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.sql",
+                "keyword.other.DML.sql"
+            ],
+            "text": "SET",
+            "start": 34,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.sql"
+            ],
+            "text": " ",
+            "start": 37,
+            "end": 38
+        },
+        {
+            "scopes": [
+                "source.sql",
+                "keyword.other.sql"
+            ],
+            "text": "RECOVERY",
+            "start": 38,
+            "end": 46
+        },
+        {
+            "scopes": [
+                "source.sql"
+            ],
+            "text": " FULL;\n",
+            "start": 46,
+            "end": 53
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.sql",
+                "keyword.other.sql"
+            ],
+            "text": "GO",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.sql"
+            ],
+            "text": "\n",
+            "start": 2,
+            "end": 3
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.sql"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.sql",
+                "comment.line.double-dash.sql",
+                "punctuation.definition.comment.sql"
+            ],
+            "text": "--",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.sql",
+                "comment.line.double-dash.sql"
+            ],
+            "text": " From https:\/\/learn.microsoft.com\/en-us\/sql\/t-sql\/queries\/select-examples-transact-sql",
+            "start": 2,
+            "end": 88
+        },
+        {
+            "scopes": [
+                "source.sql",
+                "comment.line.double-dash.sql"
+            ],
+            "text": "\n",
+            "start": 88,
+            "end": 89
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.sql"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ]
+]

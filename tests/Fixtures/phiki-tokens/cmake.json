@@ -1,0 +1,477 @@
+[
+    [
+        {
+            "scopes": [
+                "source.cmake",
+                "comment.source.cmake"
+            ],
+            "text": "# Almost all CMake files should start with this\n",
+            "start": 0,
+            "end": 48
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cmake",
+                "comment.source.cmake"
+            ],
+            "text": "# You should always specify a range with the newest\n",
+            "start": 0,
+            "end": 52
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cmake",
+                "comment.source.cmake"
+            ],
+            "text": "# and oldest tested versions of CMake. This will ensure\n",
+            "start": 0,
+            "end": 56
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cmake",
+                "comment.source.cmake"
+            ],
+            "text": "# you pick up the best policies.\n",
+            "start": 0,
+            "end": 33
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cmake",
+                "keyword.cmake"
+            ],
+            "text": "cmake_minimum_required",
+            "start": 0,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.cmake"
+            ],
+            "text": "(",
+            "start": 22,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.cmake",
+                "entity.source.cmake"
+            ],
+            "text": "VERSION",
+            "start": 23,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.cmake"
+            ],
+            "text": " 3.1...3.23)\n",
+            "start": 30,
+            "end": 43
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cmake"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cmake",
+                "comment.source.cmake"
+            ],
+            "text": "# This is your project statement. You should always list languages;\n",
+            "start": 0,
+            "end": 68
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cmake",
+                "comment.source.cmake"
+            ],
+            "text": "# Listing the version is nice here since it sets lots of useful variables\n",
+            "start": 0,
+            "end": 74
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cmake",
+                "keyword.cmake"
+            ],
+            "text": "project",
+            "start": 0,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.cmake"
+            ],
+            "text": "(\n",
+            "start": 7,
+            "end": 9
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cmake"
+            ],
+            "text": "  ModernCMakeExample\n",
+            "start": 0,
+            "end": 21
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cmake"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.cmake",
+                "entity.source.cmake"
+            ],
+            "text": "VERSION",
+            "start": 2,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.cmake"
+            ],
+            "text": " 1.0\n",
+            "start": 9,
+            "end": 14
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cmake"
+            ],
+            "text": "  LANGUAGES CXX)\n",
+            "start": 0,
+            "end": 17
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cmake"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cmake",
+                "comment.source.cmake"
+            ],
+            "text": "# If you set any CMAKE_ variables, that can go here.\n",
+            "start": 0,
+            "end": 53
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cmake",
+                "comment.source.cmake"
+            ],
+            "text": "# (But usually don't do this, except maybe for C++ standard)\n",
+            "start": 0,
+            "end": 61
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cmake"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cmake",
+                "comment.source.cmake"
+            ],
+            "text": "# Find packages go here.\n",
+            "start": 0,
+            "end": 25
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cmake"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cmake",
+                "comment.source.cmake"
+            ],
+            "text": "# You should usually split this into folders, but this is a simple example\n",
+            "start": 0,
+            "end": 75
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cmake"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cmake",
+                "comment.source.cmake"
+            ],
+            "text": "# This is a \"default\" library, and will match the *** variable setting.\n",
+            "start": 0,
+            "end": 72
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cmake",
+                "comment.source.cmake"
+            ],
+            "text": "# Other common choices are STATIC, SHARED, and MODULE\n",
+            "start": 0,
+            "end": 54
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cmake",
+                "comment.source.cmake"
+            ],
+            "text": "# Including header files here helps IDEs but is not required.\n",
+            "start": 0,
+            "end": 62
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cmake",
+                "comment.source.cmake"
+            ],
+            "text": "# Output libname matches target name, with the usual extensions on your system\n",
+            "start": 0,
+            "end": 79
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cmake",
+                "keyword.cmake"
+            ],
+            "text": "add_library",
+            "start": 0,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.cmake"
+            ],
+            "text": "(MyLibExample simple_lib.cpp simple_lib.hpp)\n",
+            "start": 11,
+            "end": 56
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cmake"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cmake",
+                "comment.source.cmake"
+            ],
+            "text": "# Link each target with other targets or add options, etc.\n",
+            "start": 0,
+            "end": 59
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cmake"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cmake",
+                "comment.source.cmake"
+            ],
+            "text": "# Adding something we can run - Output name matches target name\n",
+            "start": 0,
+            "end": 64
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cmake",
+                "keyword.cmake"
+            ],
+            "text": "add_executable",
+            "start": 0,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.cmake"
+            ],
+            "text": "(MyExample simple_example.cpp)\n",
+            "start": 14,
+            "end": 45
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cmake"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cmake",
+                "comment.source.cmake"
+            ],
+            "text": "# Make sure you link your targets with this command. It can also link libraries and\n",
+            "start": 0,
+            "end": 84
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cmake",
+                "comment.source.cmake"
+            ],
+            "text": "# even flags, so linking a target that does not exist will not give a configure-time error.\n",
+            "start": 0,
+            "end": 92
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cmake",
+                "keyword.cmake"
+            ],
+            "text": "target_link_libraries",
+            "start": 0,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.cmake"
+            ],
+            "text": "(MyExample ",
+            "start": 21,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.cmake",
+                "entity.source.cmake"
+            ],
+            "text": "PRIVATE",
+            "start": 32,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.cmake"
+            ],
+            "text": " MyLibExample)\n",
+            "start": 39,
+            "end": 54
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cmake"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cmake",
+                "comment.source.cmake"
+            ],
+            "text": "# From https:\/\/cliutils.gitlab.io\/modern-cmake\/chapters\/basics\/example.html\n",
+            "start": 0,
+            "end": 76
+        }
+    ]
+]

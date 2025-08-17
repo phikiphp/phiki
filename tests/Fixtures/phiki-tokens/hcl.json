@@ -1,0 +1,918 @@
+[
+    [
+        {
+            "scopes": [
+                "source.hcl",
+                "variable.declaration.hcl",
+                "variable.other.readwrite.hcl"
+            ],
+            "text": "io_mode",
+            "start": 0,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "variable.declaration.hcl"
+            ],
+            "text": " ",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "variable.declaration.hcl",
+                "keyword.operator.assignment.hcl"
+            ],
+            "text": "=",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "variable.declaration.hcl"
+            ],
+            "text": " ",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "string.quoted.double.hcl",
+                "punctuation.definition.string.begin.hcl"
+            ],
+            "text": "\"",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "string.quoted.double.hcl"
+            ],
+            "text": "async",
+            "start": 11,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "string.quoted.double.hcl",
+                "punctuation.definition.string.end.hcl"
+            ],
+            "text": "\"",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.hcl"
+            ],
+            "text": "\n",
+            "start": 17,
+            "end": 18
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "entity.name.type.hcl"
+            ],
+            "text": "service",
+            "start": 0,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl"
+            ],
+            "text": " ",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "variable.other.enummember.hcl"
+            ],
+            "text": "\"http\"",
+            "start": 8,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "variable.other.enummember.hcl"
+            ],
+            "text": "\"web_proxy\"",
+            "start": 15,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl"
+            ],
+            "text": " ",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "punctuation.section.block.begin.hcl"
+            ],
+            "text": "{",
+            "start": 27,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl"
+            ],
+            "text": "\n",
+            "start": 28,
+            "end": 29
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "variable.declaration.hcl",
+                "variable.other.readwrite.hcl"
+            ],
+            "text": "listen_addr",
+            "start": 2,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "variable.declaration.hcl"
+            ],
+            "text": " ",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "variable.declaration.hcl",
+                "keyword.operator.assignment.hcl"
+            ],
+            "text": "=",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "variable.declaration.hcl"
+            ],
+            "text": " ",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "string.quoted.double.hcl",
+                "punctuation.definition.string.begin.hcl"
+            ],
+            "text": "\"",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "string.quoted.double.hcl"
+            ],
+            "text": "127.0.0.1:8080",
+            "start": 17,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "string.quoted.double.hcl",
+                "punctuation.definition.string.end.hcl"
+            ],
+            "text": "\"",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl"
+            ],
+            "text": "\n",
+            "start": 32,
+            "end": 33
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl"
+            ],
+            "text": "  \n",
+            "start": 0,
+            "end": 3
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "meta.block.hcl",
+                "entity.name.type.hcl"
+            ],
+            "text": "process",
+            "start": 2,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "meta.block.hcl"
+            ],
+            "text": " ",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "meta.block.hcl",
+                "variable.other.enummember.hcl"
+            ],
+            "text": "\"main\"",
+            "start": 10,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "meta.block.hcl"
+            ],
+            "text": " ",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "meta.block.hcl",
+                "punctuation.section.block.begin.hcl"
+            ],
+            "text": "{",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "meta.block.hcl"
+            ],
+            "text": "\n",
+            "start": 18,
+            "end": 19
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "meta.block.hcl"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "meta.block.hcl",
+                "variable.declaration.hcl",
+                "variable.other.readwrite.hcl"
+            ],
+            "text": "command",
+            "start": 4,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "meta.block.hcl",
+                "variable.declaration.hcl"
+            ],
+            "text": " ",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "meta.block.hcl",
+                "variable.declaration.hcl",
+                "keyword.operator.assignment.hcl"
+            ],
+            "text": "=",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "meta.block.hcl",
+                "variable.declaration.hcl"
+            ],
+            "text": " ",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "meta.block.hcl",
+                "punctuation.section.brackets.begin.hcl"
+            ],
+            "text": "[",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "meta.block.hcl",
+                "string.quoted.double.hcl",
+                "punctuation.definition.string.begin.hcl"
+            ],
+            "text": "\"",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "meta.block.hcl",
+                "string.quoted.double.hcl"
+            ],
+            "text": "\/usr\/local\/bin\/awesome-app",
+            "start": 16,
+            "end": 42
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "meta.block.hcl",
+                "string.quoted.double.hcl",
+                "punctuation.definition.string.end.hcl"
+            ],
+            "text": "\"",
+            "start": 42,
+            "end": 43
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "meta.block.hcl",
+                "punctuation.separator.hcl"
+            ],
+            "text": ",",
+            "start": 43,
+            "end": 44
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "meta.block.hcl"
+            ],
+            "text": " ",
+            "start": 44,
+            "end": 45
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "meta.block.hcl",
+                "string.quoted.double.hcl",
+                "punctuation.definition.string.begin.hcl"
+            ],
+            "text": "\"",
+            "start": 45,
+            "end": 46
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "meta.block.hcl",
+                "string.quoted.double.hcl"
+            ],
+            "text": "server",
+            "start": 46,
+            "end": 52
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "meta.block.hcl",
+                "string.quoted.double.hcl",
+                "punctuation.definition.string.end.hcl"
+            ],
+            "text": "\"",
+            "start": 52,
+            "end": 53
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "meta.block.hcl",
+                "punctuation.section.brackets.end.hcl"
+            ],
+            "text": "]",
+            "start": 53,
+            "end": 54
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "meta.block.hcl"
+            ],
+            "text": "\n",
+            "start": 54,
+            "end": 55
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "meta.block.hcl"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "meta.block.hcl",
+                "punctuation.section.block.end.hcl"
+            ],
+            "text": "}",
+            "start": 2,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl"
+            ],
+            "text": "\n",
+            "start": 3,
+            "end": 4
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "meta.block.hcl",
+                "entity.name.type.hcl"
+            ],
+            "text": "process",
+            "start": 2,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "meta.block.hcl"
+            ],
+            "text": " ",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "meta.block.hcl",
+                "variable.other.enummember.hcl"
+            ],
+            "text": "\"mgmt\"",
+            "start": 10,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "meta.block.hcl"
+            ],
+            "text": " ",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "meta.block.hcl",
+                "punctuation.section.block.begin.hcl"
+            ],
+            "text": "{",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "meta.block.hcl"
+            ],
+            "text": "\n",
+            "start": 18,
+            "end": 19
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "meta.block.hcl"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "meta.block.hcl",
+                "variable.declaration.hcl",
+                "variable.other.readwrite.hcl"
+            ],
+            "text": "command",
+            "start": 4,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "meta.block.hcl",
+                "variable.declaration.hcl"
+            ],
+            "text": " ",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "meta.block.hcl",
+                "variable.declaration.hcl",
+                "keyword.operator.assignment.hcl"
+            ],
+            "text": "=",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "meta.block.hcl",
+                "variable.declaration.hcl"
+            ],
+            "text": " ",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "meta.block.hcl",
+                "punctuation.section.brackets.begin.hcl"
+            ],
+            "text": "[",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "meta.block.hcl",
+                "string.quoted.double.hcl",
+                "punctuation.definition.string.begin.hcl"
+            ],
+            "text": "\"",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "meta.block.hcl",
+                "string.quoted.double.hcl"
+            ],
+            "text": "\/usr\/local\/bin\/awesome-app",
+            "start": 16,
+            "end": 42
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "meta.block.hcl",
+                "string.quoted.double.hcl",
+                "punctuation.definition.string.end.hcl"
+            ],
+            "text": "\"",
+            "start": 42,
+            "end": 43
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "meta.block.hcl",
+                "punctuation.separator.hcl"
+            ],
+            "text": ",",
+            "start": 43,
+            "end": 44
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "meta.block.hcl"
+            ],
+            "text": " ",
+            "start": 44,
+            "end": 45
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "meta.block.hcl",
+                "string.quoted.double.hcl",
+                "punctuation.definition.string.begin.hcl"
+            ],
+            "text": "\"",
+            "start": 45,
+            "end": 46
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "meta.block.hcl",
+                "string.quoted.double.hcl"
+            ],
+            "text": "mgmt",
+            "start": 46,
+            "end": 50
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "meta.block.hcl",
+                "string.quoted.double.hcl",
+                "punctuation.definition.string.end.hcl"
+            ],
+            "text": "\"",
+            "start": 50,
+            "end": 51
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "meta.block.hcl",
+                "punctuation.section.brackets.end.hcl"
+            ],
+            "text": "]",
+            "start": 51,
+            "end": 52
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "meta.block.hcl"
+            ],
+            "text": "\n",
+            "start": 52,
+            "end": 53
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "meta.block.hcl"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "meta.block.hcl",
+                "punctuation.section.block.end.hcl"
+            ],
+            "text": "}",
+            "start": 2,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl"
+            ],
+            "text": "\n",
+            "start": 3,
+            "end": 4
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl",
+                "meta.block.hcl",
+                "punctuation.section.block.end.hcl"
+            ],
+            "text": "}",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.hcl"
+            ],
+            "text": "\n",
+            "start": 1,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl",
+                "comment.line.number-sign.hcl",
+                "punctuation.definition.comment.hcl"
+            ],
+            "text": "#",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "comment.line.number-sign.hcl"
+            ],
+            "text": " From: https:\/\/github.com\/hashicorp\/hcl\/blob\/main\/README.md",
+            "start": 1,
+            "end": 60
+        },
+        {
+            "scopes": [
+                "source.hcl",
+                "comment.line.number-sign.hcl",
+                "punctuation.definition.comment.hcl"
+            ],
+            "text": "\n",
+            "start": 60,
+            "end": 61
+        }
+    ]
+]

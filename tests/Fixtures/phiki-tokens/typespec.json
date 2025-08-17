@@ -1,0 +1,3143 @@
+[
+    [
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.import-statement.typespec",
+                "keyword.other.tsp"
+            ],
+            "text": "import",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.import-statement.typespec"
+            ],
+            "text": " ",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.import-statement.typespec",
+                "string.quoted.double.tsp"
+            ],
+            "text": "\"",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.import-statement.typespec",
+                "string.quoted.double.tsp"
+            ],
+            "text": "@typespec\/http",
+            "start": 8,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.import-statement.typespec",
+                "string.quoted.double.tsp"
+            ],
+            "text": "\"",
+            "start": 22,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "punctuation.terminator.statement.tsp"
+            ],
+            "text": ";",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.tsp"
+            ],
+            "text": "\n",
+            "start": 24,
+            "end": 25
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tsp"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.using-statement.typespec",
+                "keyword.other.tsp"
+            ],
+            "text": "using",
+            "start": 0,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.using-statement.typespec"
+            ],
+            "text": " ",
+            "start": 5,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.using-statement.typespec",
+                "entity.name.type.tsp"
+            ],
+            "text": "TypeSpec",
+            "start": 6,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.using-statement.typespec",
+                "punctuation.accessor.tsp"
+            ],
+            "text": ".",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.using-statement.typespec",
+                "entity.name.type.tsp"
+            ],
+            "text": "Http",
+            "start": 15,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "punctuation.terminator.statement.tsp"
+            ],
+            "text": ";",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.tsp"
+            ],
+            "text": "\n",
+            "start": 20,
+            "end": 21
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.decorator.typespec",
+                "entity.name.tag.tsp",
+                "entity.name.tag.tsp"
+            ],
+            "text": "@",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.decorator.typespec",
+                "entity.name.tag.tsp"
+            ],
+            "text": "service",
+            "start": 1,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.decorator.typespec",
+                "meta.parenthesized-expression.typespec",
+                "punctuation.parenthesis.open.tsp"
+            ],
+            "text": "(",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.decorator.typespec",
+                "meta.parenthesized-expression.typespec",
+                "meta.model-expression.typespec",
+                "punctuation.curlybrace.open.tsp"
+            ],
+            "text": "{",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.decorator.typespec",
+                "meta.parenthesized-expression.typespec",
+                "meta.model-expression.typespec"
+            ],
+            "text": "\n",
+            "start": 10,
+            "end": 11
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.decorator.typespec",
+                "meta.parenthesized-expression.typespec",
+                "meta.model-expression.typespec"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.decorator.typespec",
+                "meta.parenthesized-expression.typespec",
+                "meta.model-expression.typespec",
+                "meta.model-property.typespec",
+                "variable.name.tsp"
+            ],
+            "text": "title",
+            "start": 2,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.decorator.typespec",
+                "meta.parenthesized-expression.typespec",
+                "meta.model-expression.typespec",
+                "meta.model-property.typespec",
+                "meta.type-annotation.typespec",
+                "keyword.operator.type.annotation.tsp"
+            ],
+            "text": ":",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.decorator.typespec",
+                "meta.parenthesized-expression.typespec",
+                "meta.model-expression.typespec",
+                "meta.model-property.typespec",
+                "meta.type-annotation.typespec"
+            ],
+            "text": " ",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.decorator.typespec",
+                "meta.parenthesized-expression.typespec",
+                "meta.model-expression.typespec",
+                "meta.model-property.typespec",
+                "meta.type-annotation.typespec",
+                "string.quoted.double.tsp"
+            ],
+            "text": "\"",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.decorator.typespec",
+                "meta.parenthesized-expression.typespec",
+                "meta.model-expression.typespec",
+                "meta.model-property.typespec",
+                "meta.type-annotation.typespec",
+                "string.quoted.double.tsp"
+            ],
+            "text": "Widget Service",
+            "start": 10,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.decorator.typespec",
+                "meta.parenthesized-expression.typespec",
+                "meta.model-expression.typespec",
+                "meta.model-property.typespec",
+                "meta.type-annotation.typespec",
+                "string.quoted.double.tsp"
+            ],
+            "text": "\"",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.decorator.typespec",
+                "meta.parenthesized-expression.typespec",
+                "meta.model-expression.typespec"
+            ],
+            "text": ",\n",
+            "start": 25,
+            "end": 27
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.decorator.typespec",
+                "meta.parenthesized-expression.typespec",
+                "meta.model-expression.typespec",
+                "punctuation.curlybrace.close.tsp"
+            ],
+            "text": "}",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.decorator.typespec",
+                "meta.parenthesized-expression.typespec",
+                "punctuation.parenthesis.close.tsp"
+            ],
+            "text": ")",
+            "start": 1,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.decorator.typespec"
+            ],
+            "text": "\n",
+            "start": 2,
+            "end": 3
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.namespace-statement.typespec",
+                "keyword.other.tsp"
+            ],
+            "text": "namespace",
+            "start": 0,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.namespace-statement.typespec"
+            ],
+            "text": " ",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.namespace-statement.typespec",
+                "meta.namespace-name.typespec",
+                "entity.name.type.tsp"
+            ],
+            "text": "DemoService",
+            "start": 10,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "punctuation.terminator.statement.tsp"
+            ],
+            "text": ";",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.tsp"
+            ],
+            "text": "\n",
+            "start": 22,
+            "end": 23
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tsp"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "keyword.other.tsp"
+            ],
+            "text": "model",
+            "start": 0,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec"
+            ],
+            "text": " ",
+            "start": 5,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "entity.name.type.tsp"
+            ],
+            "text": "Widget",
+            "start": 6,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec"
+            ],
+            "text": " ",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "punctuation.curlybrace.open.tsp"
+            ],
+            "text": "{",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec"
+            ],
+            "text": "\n",
+            "start": 14,
+            "end": 15
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "meta.decorator.typespec",
+                "entity.name.tag.tsp",
+                "entity.name.tag.tsp"
+            ],
+            "text": "@",
+            "start": 2,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "meta.decorator.typespec",
+                "entity.name.tag.tsp"
+            ],
+            "text": "visibility",
+            "start": 3,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "meta.decorator.typespec",
+                "meta.parenthesized-expression.typespec",
+                "punctuation.parenthesis.open.tsp"
+            ],
+            "text": "(",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "meta.decorator.typespec",
+                "meta.parenthesized-expression.typespec",
+                "string.quoted.double.tsp"
+            ],
+            "text": "\"",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "meta.decorator.typespec",
+                "meta.parenthesized-expression.typespec",
+                "string.quoted.double.tsp"
+            ],
+            "text": "read",
+            "start": 15,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "meta.decorator.typespec",
+                "meta.parenthesized-expression.typespec",
+                "string.quoted.double.tsp"
+            ],
+            "text": "\"",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "meta.decorator.typespec",
+                "meta.parenthesized-expression.typespec",
+                "punctuation.comma.tsp"
+            ],
+            "text": ",",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "meta.decorator.typespec",
+                "meta.parenthesized-expression.typespec"
+            ],
+            "text": " ",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "meta.decorator.typespec",
+                "meta.parenthesized-expression.typespec",
+                "string.quoted.double.tsp"
+            ],
+            "text": "\"",
+            "start": 22,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "meta.decorator.typespec",
+                "meta.parenthesized-expression.typespec",
+                "string.quoted.double.tsp"
+            ],
+            "text": "update",
+            "start": 23,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "meta.decorator.typespec",
+                "meta.parenthesized-expression.typespec",
+                "string.quoted.double.tsp"
+            ],
+            "text": "\"",
+            "start": 29,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "meta.decorator.typespec",
+                "meta.parenthesized-expression.typespec",
+                "punctuation.parenthesis.close.tsp"
+            ],
+            "text": ")",
+            "start": 30,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "meta.decorator.typespec"
+            ],
+            "text": "\n",
+            "start": 31,
+            "end": 32
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "meta.decorator.typespec"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "meta.decorator.typespec",
+                "entity.name.tag.tsp",
+                "entity.name.tag.tsp"
+            ],
+            "text": "@",
+            "start": 2,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "meta.decorator.typespec",
+                "entity.name.tag.tsp"
+            ],
+            "text": "path",
+            "start": 3,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "meta.decorator.typespec"
+            ],
+            "text": "\n",
+            "start": 7,
+            "end": 8
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "meta.decorator.typespec"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "meta.model-property.typespec",
+                "variable.name.tsp"
+            ],
+            "text": "id",
+            "start": 2,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "meta.model-property.typespec",
+                "meta.type-annotation.typespec",
+                "keyword.operator.type.annotation.tsp"
+            ],
+            "text": ":",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "meta.model-property.typespec",
+                "meta.type-annotation.typespec"
+            ],
+            "text": " ",
+            "start": 5,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "meta.model-property.typespec",
+                "meta.type-annotation.typespec",
+                "entity.name.type.tsp"
+            ],
+            "text": "string",
+            "start": 6,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "punctuation.terminator.statement.tsp"
+            ],
+            "text": ";",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec"
+            ],
+            "text": "\n",
+            "start": 13,
+            "end": 14
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "meta.model-property.typespec",
+                "variable.name.tsp"
+            ],
+            "text": "weight",
+            "start": 2,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "meta.model-property.typespec",
+                "meta.type-annotation.typespec",
+                "keyword.operator.type.annotation.tsp"
+            ],
+            "text": ":",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "meta.model-property.typespec",
+                "meta.type-annotation.typespec"
+            ],
+            "text": " ",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "meta.model-property.typespec",
+                "meta.type-annotation.typespec",
+                "entity.name.type.tsp"
+            ],
+            "text": "int32",
+            "start": 10,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "punctuation.terminator.statement.tsp"
+            ],
+            "text": ";",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec"
+            ],
+            "text": "\n",
+            "start": 16,
+            "end": 17
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "meta.model-property.typespec",
+                "variable.name.tsp"
+            ],
+            "text": "color",
+            "start": 2,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "meta.model-property.typespec",
+                "meta.type-annotation.typespec",
+                "keyword.operator.type.annotation.tsp"
+            ],
+            "text": ":",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "meta.model-property.typespec",
+                "meta.type-annotation.typespec"
+            ],
+            "text": " ",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "meta.model-property.typespec",
+                "meta.type-annotation.typespec",
+                "string.quoted.double.tsp"
+            ],
+            "text": "\"",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "meta.model-property.typespec",
+                "meta.type-annotation.typespec",
+                "string.quoted.double.tsp"
+            ],
+            "text": "red",
+            "start": 10,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "meta.model-property.typespec",
+                "meta.type-annotation.typespec",
+                "string.quoted.double.tsp"
+            ],
+            "text": "\"",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "meta.model-property.typespec",
+                "meta.type-annotation.typespec"
+            ],
+            "text": " | ",
+            "start": 14,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "meta.model-property.typespec",
+                "meta.type-annotation.typespec",
+                "string.quoted.double.tsp"
+            ],
+            "text": "\"",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "meta.model-property.typespec",
+                "meta.type-annotation.typespec",
+                "string.quoted.double.tsp"
+            ],
+            "text": "blue",
+            "start": 18,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "meta.model-property.typespec",
+                "meta.type-annotation.typespec",
+                "string.quoted.double.tsp"
+            ],
+            "text": "\"",
+            "start": 22,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "punctuation.terminator.statement.tsp"
+            ],
+            "text": ";",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec"
+            ],
+            "text": "\n",
+            "start": 24,
+            "end": 25
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "punctuation.curlybrace.close.tsp"
+            ],
+            "text": "}",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.tsp"
+            ],
+            "text": "\n",
+            "start": 1,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tsp"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.decorator.typespec",
+                "entity.name.tag.tsp",
+                "entity.name.tag.tsp"
+            ],
+            "text": "@",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.decorator.typespec",
+                "entity.name.tag.tsp"
+            ],
+            "text": "error",
+            "start": 1,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.decorator.typespec"
+            ],
+            "text": "\n",
+            "start": 6,
+            "end": 7
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "keyword.other.tsp"
+            ],
+            "text": "model",
+            "start": 0,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec"
+            ],
+            "text": " ",
+            "start": 5,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "entity.name.type.tsp"
+            ],
+            "text": "Error",
+            "start": 6,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec"
+            ],
+            "text": " ",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "punctuation.curlybrace.open.tsp"
+            ],
+            "text": "{",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec"
+            ],
+            "text": "\n",
+            "start": 13,
+            "end": 14
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "meta.model-property.typespec",
+                "variable.name.tsp"
+            ],
+            "text": "code",
+            "start": 2,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "meta.model-property.typespec",
+                "meta.type-annotation.typespec",
+                "keyword.operator.type.annotation.tsp"
+            ],
+            "text": ":",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "meta.model-property.typespec",
+                "meta.type-annotation.typespec"
+            ],
+            "text": " ",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "meta.model-property.typespec",
+                "meta.type-annotation.typespec",
+                "entity.name.type.tsp"
+            ],
+            "text": "int32",
+            "start": 8,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "punctuation.terminator.statement.tsp"
+            ],
+            "text": ";",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec"
+            ],
+            "text": "\n",
+            "start": 14,
+            "end": 15
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "meta.model-property.typespec",
+                "variable.name.tsp"
+            ],
+            "text": "message",
+            "start": 2,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "meta.model-property.typespec",
+                "meta.type-annotation.typespec",
+                "keyword.operator.type.annotation.tsp"
+            ],
+            "text": ":",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "meta.model-property.typespec",
+                "meta.type-annotation.typespec"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "meta.model-property.typespec",
+                "meta.type-annotation.typespec",
+                "entity.name.type.tsp"
+            ],
+            "text": "string",
+            "start": 11,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "punctuation.terminator.statement.tsp"
+            ],
+            "text": ";",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec"
+            ],
+            "text": "\n",
+            "start": 18,
+            "end": 19
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.model-statement.typespec",
+                "meta.model-expression.typespec",
+                "punctuation.curlybrace.close.tsp"
+            ],
+            "text": "}",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.tsp"
+            ],
+            "text": "\n",
+            "start": 1,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tsp"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.decorator.typespec",
+                "entity.name.tag.tsp",
+                "entity.name.tag.tsp"
+            ],
+            "text": "@",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.decorator.typespec",
+                "entity.name.tag.tsp"
+            ],
+            "text": "route",
+            "start": 1,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.decorator.typespec",
+                "meta.parenthesized-expression.typespec",
+                "punctuation.parenthesis.open.tsp"
+            ],
+            "text": "(",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.decorator.typespec",
+                "meta.parenthesized-expression.typespec",
+                "string.quoted.double.tsp"
+            ],
+            "text": "\"",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.decorator.typespec",
+                "meta.parenthesized-expression.typespec",
+                "string.quoted.double.tsp"
+            ],
+            "text": "\/widgets",
+            "start": 8,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.decorator.typespec",
+                "meta.parenthesized-expression.typespec",
+                "string.quoted.double.tsp"
+            ],
+            "text": "\"",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.decorator.typespec",
+                "meta.parenthesized-expression.typespec",
+                "punctuation.parenthesis.close.tsp"
+            ],
+            "text": ")",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.decorator.typespec"
+            ],
+            "text": "\n",
+            "start": 18,
+            "end": 19
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.decorator.typespec",
+                "entity.name.tag.tsp",
+                "entity.name.tag.tsp"
+            ],
+            "text": "@",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.decorator.typespec",
+                "entity.name.tag.tsp"
+            ],
+            "text": "tag",
+            "start": 1,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.decorator.typespec",
+                "meta.parenthesized-expression.typespec",
+                "punctuation.parenthesis.open.tsp"
+            ],
+            "text": "(",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.decorator.typespec",
+                "meta.parenthesized-expression.typespec",
+                "string.quoted.double.tsp"
+            ],
+            "text": "\"",
+            "start": 5,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.decorator.typespec",
+                "meta.parenthesized-expression.typespec",
+                "string.quoted.double.tsp"
+            ],
+            "text": "Widgets",
+            "start": 6,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.decorator.typespec",
+                "meta.parenthesized-expression.typespec",
+                "string.quoted.double.tsp"
+            ],
+            "text": "\"",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.decorator.typespec",
+                "meta.parenthesized-expression.typespec",
+                "punctuation.parenthesis.close.tsp"
+            ],
+            "text": ")",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.decorator.typespec"
+            ],
+            "text": "\n",
+            "start": 15,
+            "end": 16
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "keyword.other.tsp"
+            ],
+            "text": "interface",
+            "start": 0,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec"
+            ],
+            "text": " ",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "entity.name.type.tsp"
+            ],
+            "text": "Widgets",
+            "start": 10,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec"
+            ],
+            "text": " ",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "punctuation.curlybrace.open.tsp"
+            ],
+            "text": "{",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec"
+            ],
+            "text": "\n",
+            "start": 19,
+            "end": 20
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.decorator.typespec",
+                "entity.name.tag.tsp",
+                "entity.name.tag.tsp"
+            ],
+            "text": "@",
+            "start": 2,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.decorator.typespec",
+                "entity.name.tag.tsp"
+            ],
+            "text": "get",
+            "start": 3,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.decorator.typespec"
+            ],
+            "text": " ",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "entity.name.function.tsp"
+            ],
+            "text": "list",
+            "start": 7,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.operation-parameters.typespec",
+                "punctuation.parenthesis.open.tsp"
+            ],
+            "text": "(",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.operation-parameters.typespec",
+                "punctuation.parenthesis.close.tsp"
+            ],
+            "text": ")",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.type-annotation.typespec",
+                "keyword.operator.type.annotation.tsp"
+            ],
+            "text": ":",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.type-annotation.typespec"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.type-annotation.typespec",
+                "entity.name.type.tsp"
+            ],
+            "text": "Widget",
+            "start": 15,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.type-annotation.typespec",
+                "meta.tuple-expression.typespec",
+                "punctuation.squarebracket.open.tsp"
+            ],
+            "text": "[",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.type-annotation.typespec",
+                "meta.tuple-expression.typespec",
+                "punctuation.squarebracket.close.tsp"
+            ],
+            "text": "]",
+            "start": 22,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.type-annotation.typespec"
+            ],
+            "text": " | ",
+            "start": 23,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.type-annotation.typespec",
+                "entity.name.type.tsp"
+            ],
+            "text": "Error",
+            "start": 26,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "punctuation.terminator.statement.tsp"
+            ],
+            "text": ";",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec"
+            ],
+            "text": "\n",
+            "start": 32,
+            "end": 33
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.decorator.typespec",
+                "entity.name.tag.tsp",
+                "entity.name.tag.tsp"
+            ],
+            "text": "@",
+            "start": 2,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.decorator.typespec",
+                "entity.name.tag.tsp"
+            ],
+            "text": "get",
+            "start": 3,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.decorator.typespec"
+            ],
+            "text": " ",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "entity.name.function.tsp"
+            ],
+            "text": "read",
+            "start": 7,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.operation-parameters.typespec",
+                "punctuation.parenthesis.open.tsp"
+            ],
+            "text": "(",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.operation-parameters.typespec",
+                "meta.decorator.typespec",
+                "entity.name.tag.tsp",
+                "entity.name.tag.tsp"
+            ],
+            "text": "@",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.operation-parameters.typespec",
+                "meta.decorator.typespec",
+                "entity.name.tag.tsp"
+            ],
+            "text": "path",
+            "start": 13,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.operation-parameters.typespec",
+                "meta.decorator.typespec"
+            ],
+            "text": " ",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.operation-parameters.typespec",
+                "meta.model-property.typespec",
+                "variable.name.tsp"
+            ],
+            "text": "id",
+            "start": 18,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.operation-parameters.typespec",
+                "meta.model-property.typespec",
+                "meta.type-annotation.typespec",
+                "keyword.operator.type.annotation.tsp"
+            ],
+            "text": ":",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.operation-parameters.typespec",
+                "meta.model-property.typespec",
+                "meta.type-annotation.typespec"
+            ],
+            "text": " ",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.operation-parameters.typespec",
+                "meta.model-property.typespec",
+                "meta.type-annotation.typespec",
+                "entity.name.type.tsp"
+            ],
+            "text": "string",
+            "start": 22,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.operation-parameters.typespec",
+                "punctuation.parenthesis.close.tsp"
+            ],
+            "text": ")",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.type-annotation.typespec",
+                "keyword.operator.type.annotation.tsp"
+            ],
+            "text": ":",
+            "start": 29,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.type-annotation.typespec"
+            ],
+            "text": " ",
+            "start": 30,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.type-annotation.typespec",
+                "entity.name.type.tsp"
+            ],
+            "text": "Widget",
+            "start": 31,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.type-annotation.typespec"
+            ],
+            "text": " | ",
+            "start": 37,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.type-annotation.typespec",
+                "entity.name.type.tsp"
+            ],
+            "text": "Error",
+            "start": 40,
+            "end": 45
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "punctuation.terminator.statement.tsp"
+            ],
+            "text": ";",
+            "start": 45,
+            "end": 46
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec"
+            ],
+            "text": "\n",
+            "start": 46,
+            "end": 47
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.decorator.typespec",
+                "entity.name.tag.tsp",
+                "entity.name.tag.tsp"
+            ],
+            "text": "@",
+            "start": 2,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.decorator.typespec",
+                "entity.name.tag.tsp"
+            ],
+            "text": "post",
+            "start": 3,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.decorator.typespec"
+            ],
+            "text": " ",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "entity.name.function.tsp"
+            ],
+            "text": "create",
+            "start": 8,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.operation-parameters.typespec",
+                "punctuation.parenthesis.open.tsp"
+            ],
+            "text": "(",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.operation-parameters.typespec",
+                "meta.spread-operator.typespec",
+                "keyword.operator.spread.tsp"
+            ],
+            "text": "...",
+            "start": 15,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.operation-parameters.typespec",
+                "meta.spread-operator.typespec",
+                "entity.name.type.tsp"
+            ],
+            "text": "Widget",
+            "start": 18,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.operation-parameters.typespec",
+                "punctuation.parenthesis.close.tsp"
+            ],
+            "text": ")",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.type-annotation.typespec",
+                "keyword.operator.type.annotation.tsp"
+            ],
+            "text": ":",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.type-annotation.typespec"
+            ],
+            "text": " ",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.type-annotation.typespec",
+                "entity.name.type.tsp"
+            ],
+            "text": "Widget",
+            "start": 27,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.type-annotation.typespec"
+            ],
+            "text": " | ",
+            "start": 33,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.type-annotation.typespec",
+                "entity.name.type.tsp"
+            ],
+            "text": "Error",
+            "start": 36,
+            "end": 41
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "punctuation.terminator.statement.tsp"
+            ],
+            "text": ";",
+            "start": 41,
+            "end": 42
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec"
+            ],
+            "text": "\n",
+            "start": 42,
+            "end": 43
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.decorator.typespec",
+                "entity.name.tag.tsp",
+                "entity.name.tag.tsp"
+            ],
+            "text": "@",
+            "start": 2,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.decorator.typespec",
+                "entity.name.tag.tsp"
+            ],
+            "text": "patch",
+            "start": 3,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.decorator.typespec"
+            ],
+            "text": " ",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "entity.name.function.tsp"
+            ],
+            "text": "update",
+            "start": 9,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.operation-parameters.typespec",
+                "punctuation.parenthesis.open.tsp"
+            ],
+            "text": "(",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.operation-parameters.typespec",
+                "meta.spread-operator.typespec",
+                "keyword.operator.spread.tsp"
+            ],
+            "text": "...",
+            "start": 16,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.operation-parameters.typespec",
+                "meta.spread-operator.typespec",
+                "entity.name.type.tsp"
+            ],
+            "text": "Widget",
+            "start": 19,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.operation-parameters.typespec",
+                "punctuation.parenthesis.close.tsp"
+            ],
+            "text": ")",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.type-annotation.typespec",
+                "keyword.operator.type.annotation.tsp"
+            ],
+            "text": ":",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.type-annotation.typespec"
+            ],
+            "text": " ",
+            "start": 27,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.type-annotation.typespec",
+                "entity.name.type.tsp"
+            ],
+            "text": "Widget",
+            "start": 28,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.type-annotation.typespec"
+            ],
+            "text": " | ",
+            "start": 34,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.type-annotation.typespec",
+                "entity.name.type.tsp"
+            ],
+            "text": "Error",
+            "start": 37,
+            "end": 42
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "punctuation.terminator.statement.tsp"
+            ],
+            "text": ";",
+            "start": 42,
+            "end": 43
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec"
+            ],
+            "text": "\n",
+            "start": 43,
+            "end": 44
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.decorator.typespec",
+                "entity.name.tag.tsp",
+                "entity.name.tag.tsp"
+            ],
+            "text": "@",
+            "start": 2,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.decorator.typespec",
+                "entity.name.tag.tsp"
+            ],
+            "text": "delete",
+            "start": 3,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.decorator.typespec"
+            ],
+            "text": " ",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "entity.name.function.tsp"
+            ],
+            "text": "delete",
+            "start": 10,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.operation-parameters.typespec",
+                "punctuation.parenthesis.open.tsp"
+            ],
+            "text": "(",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.operation-parameters.typespec",
+                "meta.decorator.typespec",
+                "entity.name.tag.tsp",
+                "entity.name.tag.tsp"
+            ],
+            "text": "@",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.operation-parameters.typespec",
+                "meta.decorator.typespec",
+                "entity.name.tag.tsp"
+            ],
+            "text": "path",
+            "start": 18,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.operation-parameters.typespec",
+                "meta.decorator.typespec"
+            ],
+            "text": " ",
+            "start": 22,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.operation-parameters.typespec",
+                "meta.model-property.typespec",
+                "variable.name.tsp"
+            ],
+            "text": "id",
+            "start": 23,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.operation-parameters.typespec",
+                "meta.model-property.typespec",
+                "meta.type-annotation.typespec",
+                "keyword.operator.type.annotation.tsp"
+            ],
+            "text": ":",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.operation-parameters.typespec",
+                "meta.model-property.typespec",
+                "meta.type-annotation.typespec"
+            ],
+            "text": " ",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.operation-parameters.typespec",
+                "meta.model-property.typespec",
+                "meta.type-annotation.typespec",
+                "entity.name.type.tsp"
+            ],
+            "text": "string",
+            "start": 27,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.operation-parameters.typespec",
+                "punctuation.parenthesis.close.tsp"
+            ],
+            "text": ")",
+            "start": 33,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.type-annotation.typespec",
+                "keyword.operator.type.annotation.tsp"
+            ],
+            "text": ":",
+            "start": 34,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.type-annotation.typespec"
+            ],
+            "text": " ",
+            "start": 35,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.type-annotation.typespec",
+                "entity.name.type.tsp"
+            ],
+            "text": "void",
+            "start": 36,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.type-annotation.typespec"
+            ],
+            "text": " | ",
+            "start": 40,
+            "end": 43
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.type-annotation.typespec",
+                "entity.name.type.tsp"
+            ],
+            "text": "Error",
+            "start": 43,
+            "end": 48
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "punctuation.terminator.statement.tsp"
+            ],
+            "text": ";",
+            "start": 48,
+            "end": 49
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec"
+            ],
+            "text": "\n",
+            "start": 49,
+            "end": 50
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.decorator.typespec",
+                "entity.name.tag.tsp",
+                "entity.name.tag.tsp"
+            ],
+            "text": "@",
+            "start": 2,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.decorator.typespec",
+                "entity.name.tag.tsp"
+            ],
+            "text": "route",
+            "start": 3,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.decorator.typespec",
+                "meta.parenthesized-expression.typespec",
+                "punctuation.parenthesis.open.tsp"
+            ],
+            "text": "(",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.decorator.typespec",
+                "meta.parenthesized-expression.typespec",
+                "string.quoted.double.tsp"
+            ],
+            "text": "\"",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.decorator.typespec",
+                "meta.parenthesized-expression.typespec",
+                "string.quoted.double.tsp"
+            ],
+            "text": "{id}\/analyze",
+            "start": 10,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.decorator.typespec",
+                "meta.parenthesized-expression.typespec",
+                "string.quoted.double.tsp"
+            ],
+            "text": "\"",
+            "start": 22,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.decorator.typespec",
+                "meta.parenthesized-expression.typespec",
+                "punctuation.parenthesis.close.tsp"
+            ],
+            "text": ")",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.decorator.typespec"
+            ],
+            "text": " ",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.decorator.typespec",
+                "entity.name.tag.tsp",
+                "entity.name.tag.tsp"
+            ],
+            "text": "@",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.decorator.typespec",
+                "entity.name.tag.tsp"
+            ],
+            "text": "post",
+            "start": 26,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.decorator.typespec"
+            ],
+            "text": " ",
+            "start": 30,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "entity.name.function.tsp"
+            ],
+            "text": "analyze",
+            "start": 31,
+            "end": 38
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.operation-parameters.typespec",
+                "punctuation.parenthesis.open.tsp"
+            ],
+            "text": "(",
+            "start": 38,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.operation-parameters.typespec",
+                "meta.decorator.typespec",
+                "entity.name.tag.tsp",
+                "entity.name.tag.tsp"
+            ],
+            "text": "@",
+            "start": 39,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.operation-parameters.typespec",
+                "meta.decorator.typespec",
+                "entity.name.tag.tsp"
+            ],
+            "text": "path",
+            "start": 40,
+            "end": 44
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.operation-parameters.typespec",
+                "meta.decorator.typespec"
+            ],
+            "text": " ",
+            "start": 44,
+            "end": 45
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.operation-parameters.typespec",
+                "meta.model-property.typespec",
+                "variable.name.tsp"
+            ],
+            "text": "id",
+            "start": 45,
+            "end": 47
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.operation-parameters.typespec",
+                "meta.model-property.typespec",
+                "meta.type-annotation.typespec",
+                "keyword.operator.type.annotation.tsp"
+            ],
+            "text": ":",
+            "start": 47,
+            "end": 48
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.operation-parameters.typespec",
+                "meta.model-property.typespec",
+                "meta.type-annotation.typespec"
+            ],
+            "text": " ",
+            "start": 48,
+            "end": 49
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.operation-parameters.typespec",
+                "meta.model-property.typespec",
+                "meta.type-annotation.typespec",
+                "entity.name.type.tsp"
+            ],
+            "text": "string",
+            "start": 49,
+            "end": 55
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.operation-parameters.typespec",
+                "punctuation.parenthesis.close.tsp"
+            ],
+            "text": ")",
+            "start": 55,
+            "end": 56
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.type-annotation.typespec",
+                "keyword.operator.type.annotation.tsp"
+            ],
+            "text": ":",
+            "start": 56,
+            "end": 57
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.type-annotation.typespec"
+            ],
+            "text": " ",
+            "start": 57,
+            "end": 58
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.type-annotation.typespec",
+                "entity.name.type.tsp"
+            ],
+            "text": "string",
+            "start": 58,
+            "end": 64
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.type-annotation.typespec"
+            ],
+            "text": " | ",
+            "start": 64,
+            "end": 67
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "meta.interface-member.typespec",
+                "meta.type-annotation.typespec",
+                "entity.name.type.tsp"
+            ],
+            "text": "Error",
+            "start": 67,
+            "end": 72
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "punctuation.terminator.statement.tsp"
+            ],
+            "text": ";",
+            "start": 72,
+            "end": 73
+        },
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec"
+            ],
+            "text": "\n",
+            "start": 73,
+            "end": 74
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tsp",
+                "meta.interface-statement.typespec",
+                "meta.interface-body.typespec",
+                "punctuation.curlybrace.close.tsp"
+            ],
+            "text": "}",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.tsp"
+            ],
+            "text": "\n",
+            "start": 1,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tsp"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tsp",
+                "comment.line.double-slash.tsp"
+            ],
+            "text": "\/\/ From https:\/\/typespec.io\/playground\n",
+            "start": 0,
+            "end": 39
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tsp"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ]
+]

@@ -1,0 +1,2013 @@
+[
+    [
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.control.import.coq"
+            ],
+            "text": "From",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " Coq ",
+            "start": 4,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.control.import.coq"
+            ],
+            "text": "Require",
+            "start": 9,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " ",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.control.import.coq"
+            ],
+            "text": "Import",
+            "start": 17,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " ssreflect.\n",
+            "start": 23,
+            "end": 35
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.coq",
+                "comment.block.coq"
+            ],
+            "text": "(*",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "comment.block.coq"
+            ],
+            "text": " ensure proofs are well-structured ",
+            "start": 2,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "comment.block.coq"
+            ],
+            "text": "*)",
+            "start": 37,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": "\n",
+            "start": 39,
+            "end": 40
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.source.coq"
+            ],
+            "text": "Set",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " Default ",
+            "start": 3,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.source.coq"
+            ],
+            "text": "Goal",
+            "start": 12,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " Selector ",
+            "start": 16,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "string.quoted.double.coq",
+                "punctuation.definition.string.begin.coq"
+            ],
+            "text": "\"",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "string.quoted.double.coq"
+            ],
+            "text": "!",
+            "start": 27,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "string.quoted.double.coq",
+                "punctuation.definition.string.end.coq"
+            ],
+            "text": "\"",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": ".\n",
+            "start": 29,
+            "end": 31
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": "#[global] ",
+            "start": 0,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.control.import.coq"
+            ],
+            "text": "Open Scope",
+            "start": 10,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " general_if_scope.\n",
+            "start": 20,
+            "end": 39
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.source.coq"
+            ],
+            "text": "Module",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " list_playground.\n",
+            "start": 6,
+            "end": 24
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "comment.block.coq"
+            ],
+            "text": "(*",
+            "start": 2,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "comment.block.coq"
+            ],
+            "text": " Let's do a typical proof by induction: we'll define [list] as an inductive,\n",
+            "start": 4,
+            "end": 81
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.coq",
+                "comment.block.coq"
+            ],
+            "text": "     [app] (list append) as a recursive function, and prove that [app] is\n",
+            "start": 0,
+            "end": 74
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.coq",
+                "comment.block.coq"
+            ],
+            "text": "     associative. ",
+            "start": 0,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "comment.block.coq"
+            ],
+            "text": "*)",
+            "start": 18,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": "\n",
+            "start": 20,
+            "end": 21
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.source.coq"
+            ],
+            "text": "Inductive",
+            "start": 2,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " ",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "entity.name.type.coq"
+            ],
+            "text": "list",
+            "start": 12,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " (A",
+            "start": 16,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.operator.coq"
+            ],
+            "text": ":",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " ",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "support.type.coq"
+            ],
+            "text": "Type",
+            "start": 21,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": ") ",
+            "start": 25,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.operator.coq"
+            ],
+            "text": ":",
+            "start": 27,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.operator.coq"
+            ],
+            "text": "=",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": "\n",
+            "start": 29,
+            "end": 30
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.operator.coq"
+            ],
+            "text": "|",
+            "start": 2,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " ",
+            "start": 3,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "constant.language.constructor.gallina"
+            ],
+            "text": "nil",
+            "start": 4,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": "\n",
+            "start": 7,
+            "end": 8
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.operator.coq"
+            ],
+            "text": "|",
+            "start": 2,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " ",
+            "start": 3,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "constant.language.constructor.gallina"
+            ],
+            "text": "cons",
+            "start": 4,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " (x",
+            "start": 8,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.operator.coq"
+            ],
+            "text": ":",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " A) (l",
+            "start": 12,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.operator.coq"
+            ],
+            "text": ":",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " ",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "support.type.coq"
+            ],
+            "text": "list",
+            "start": 20,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " A).\n",
+            "start": 24,
+            "end": 29
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "comment.block.coq"
+            ],
+            "text": "(*",
+            "start": 2,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "comment.block.coq"
+            ],
+            "text": " Fix up implicit arguments. ",
+            "start": 4,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "comment.block.coq"
+            ],
+            "text": "*)",
+            "start": 32,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": "\n",
+            "start": 34,
+            "end": 35
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.source.coq"
+            ],
+            "text": "Arguments",
+            "start": 2,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " ",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "constant.language.constructor.gallina"
+            ],
+            "text": "nil",
+            "start": 12,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " ",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.operator.coq"
+            ],
+            "text": "{",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": "A",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.operator.coq"
+            ],
+            "text": "}",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": ".\n",
+            "start": 19,
+            "end": 21
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.source.coq"
+            ],
+            "text": "Arguments",
+            "start": 2,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " ",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "constant.language.constructor.gallina"
+            ],
+            "text": "cons",
+            "start": 12,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " ",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.operator.coq"
+            ],
+            "text": "{",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": "A",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.operator.coq"
+            ],
+            "text": "}",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " x l.\n",
+            "start": 20,
+            "end": 26
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.source.coq"
+            ],
+            "text": "Notation",
+            "start": 2,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "string.quoted.double.coq",
+                "punctuation.definition.string.begin.coq"
+            ],
+            "text": "\"",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "string.quoted.double.coq"
+            ],
+            "text": "[]",
+            "start": 12,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "string.quoted.double.coq",
+                "punctuation.definition.string.end.coq"
+            ],
+            "text": "\"",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " ",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.operator.coq"
+            ],
+            "text": ":",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.operator.coq"
+            ],
+            "text": "=",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " ",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "constant.language.constructor.gallina"
+            ],
+            "text": "nil",
+            "start": 19,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": ".\n",
+            "start": 22,
+            "end": 24
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.source.coq"
+            ],
+            "text": "Infix",
+            "start": 2,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " ",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "string.quoted.double.coq",
+                "punctuation.definition.string.begin.coq"
+            ],
+            "text": "\"",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "string.quoted.double.coq"
+            ],
+            "text": "::",
+            "start": 9,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "string.quoted.double.coq",
+                "punctuation.definition.string.end.coq"
+            ],
+            "text": "\"",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " ",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.operator.coq"
+            ],
+            "text": ":",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.operator.coq"
+            ],
+            "text": "=",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " ",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "constant.language.constructor.gallina"
+            ],
+            "text": "cons",
+            "start": 16,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": ".\n",
+            "start": 20,
+            "end": 22
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.source.coq"
+            ],
+            "text": "Fixpoint",
+            "start": 2,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "entity.name.function.coq"
+            ],
+            "text": "app",
+            "start": 11,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.operator.coq"
+            ],
+            "text": "{",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": "A",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.operator.coq"
+            ],
+            "text": "}",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " (l1 l2",
+            "start": 18,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.operator.coq"
+            ],
+            "text": ":",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " ",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "support.type.coq"
+            ],
+            "text": "list",
+            "start": 27,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " A)",
+            "start": 31,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.operator.coq"
+            ],
+            "text": ":",
+            "start": 34,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " ",
+            "start": 35,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "support.type.coq"
+            ],
+            "text": "list",
+            "start": 36,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " A ",
+            "start": 40,
+            "end": 43
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.operator.coq"
+            ],
+            "text": ":",
+            "start": 43,
+            "end": 44
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.operator.coq"
+            ],
+            "text": "=",
+            "start": 44,
+            "end": 45
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": "\n",
+            "start": 45,
+            "end": 46
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.control.gallina"
+            ],
+            "text": "match",
+            "start": 4,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " l1 ",
+            "start": 9,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.control.ltac"
+            ],
+            "text": "with",
+            "start": 13,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": "\n",
+            "start": 17,
+            "end": 18
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.operator.coq"
+            ],
+            "text": "|",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " [] ",
+            "start": 5,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.operator.coq"
+            ],
+            "text": "=",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.operator.coq"
+            ],
+            "text": ">",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " l2\n",
+            "start": 11,
+            "end": 15
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.operator.coq"
+            ],
+            "text": "|",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " x ",
+            "start": 5,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.operator.coq"
+            ],
+            "text": ":",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.operator.coq"
+            ],
+            "text": ":",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " l1 ",
+            "start": 10,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.operator.coq"
+            ],
+            "text": "=",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.operator.coq"
+            ],
+            "text": ">",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " x ",
+            "start": 16,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.operator.coq"
+            ],
+            "text": ":",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.operator.coq"
+            ],
+            "text": ":",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " app l1 l2\n",
+            "start": 21,
+            "end": 32
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.control.gallina"
+            ],
+            "text": "end",
+            "start": 4,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": ".\n",
+            "start": 7,
+            "end": 9
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.source.coq"
+            ],
+            "text": "Infix",
+            "start": 2,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " ",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "string.quoted.double.coq",
+                "punctuation.definition.string.begin.coq"
+            ],
+            "text": "\"",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "string.quoted.double.coq"
+            ],
+            "text": "++",
+            "start": 9,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "string.quoted.double.coq",
+                "punctuation.definition.string.end.coq"
+            ],
+            "text": "\"",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " ",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.operator.coq"
+            ],
+            "text": ":",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.operator.coq"
+            ],
+            "text": "=",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " app.\n",
+            "start": 15,
+            "end": 21
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.source.coq"
+            ],
+            "text": "Theorem",
+            "start": 2,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " ",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "entity.name.function.theorem.coq"
+            ],
+            "text": "app_assoc",
+            "start": 10,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " ",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.operator.coq"
+            ],
+            "text": "{",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": "A",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.operator.coq"
+            ],
+            "text": "}",
+            "start": 22,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " (l1 l2 l3",
+            "start": 23,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.operator.coq"
+            ],
+            "text": ":",
+            "start": 33,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " ",
+            "start": 34,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "support.type.coq"
+            ],
+            "text": "list",
+            "start": 35,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " A) ",
+            "start": 39,
+            "end": 43
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.operator.coq"
+            ],
+            "text": ":",
+            "start": 43,
+            "end": 44
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": "\n",
+            "start": 44,
+            "end": 45
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": "    (l1 ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.operator.coq"
+            ],
+            "text": "+",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.operator.coq"
+            ],
+            "text": "+",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " l2) ",
+            "start": 10,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.operator.coq"
+            ],
+            "text": "+",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.operator.coq"
+            ],
+            "text": "+",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " l3 ",
+            "start": 17,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.operator.coq"
+            ],
+            "text": "=",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " l1 ",
+            "start": 22,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.operator.coq"
+            ],
+            "text": "+",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.operator.coq"
+            ],
+            "text": "+",
+            "start": 27,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " (l2 ",
+            "start": 28,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.operator.coq"
+            ],
+            "text": "+",
+            "start": 33,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.operator.coq"
+            ],
+            "text": "+",
+            "start": 34,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " l3).\n",
+            "start": 35,
+            "end": 41
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.source.coq"
+            ],
+            "text": "Proof",
+            "start": 2,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": ".\n",
+            "start": 7,
+            "end": 9
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "support.function.builtin.ltac"
+            ],
+            "text": "induction",
+            "start": 4,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " l1 ",
+            "start": 13,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.control.ltac"
+            ],
+            "text": "as",
+            "start": 17,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " [",
+            "start": 19,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.operator.coq"
+            ],
+            "text": "|",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": "x l1]; ",
+            "start": 22,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "support.function.builtin.ltac"
+            ],
+            "text": "simpl",
+            "start": 29,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": ".\n",
+            "start": 34,
+            "end": 36
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.operator.coq"
+            ],
+            "text": "-",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " ",
+            "start": 5,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "support.function.builtin.ltac"
+            ],
+            "text": "reflexivity",
+            "start": 6,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": ".\n",
+            "start": 17,
+            "end": 19
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.operator.coq"
+            ],
+            "text": "-",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " ",
+            "start": 5,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.control.ltac"
+            ],
+            "text": "by",
+            "start": 6,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " ",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "support.function.builtin.ltac"
+            ],
+            "text": "rewrite",
+            "start": 9,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " IHl1.\n",
+            "start": 16,
+            "end": 23
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.source.coq"
+            ],
+            "text": "Qed",
+            "start": 2,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": ".\n",
+            "start": 5,
+            "end": 7
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.coq",
+                "keyword.source.coq"
+            ],
+            "text": "End",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": " list_playground.\n",
+            "start": 3,
+            "end": 21
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.coq"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ]
+]

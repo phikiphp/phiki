@@ -1,0 +1,853 @@
+[
+    [
+        {
+            "scopes": [
+                "source.awk",
+                "comment.line.number-sign.awk"
+            ],
+            "text": "#!\/bin\/awk -f\n",
+            "start": 0,
+            "end": 14
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.awk",
+                "constant.language.awk"
+            ],
+            "text": "BEGIN",
+            "start": 0,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": " ",
+            "start": 5,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": "{",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": "\n",
+            "start": 7,
+            "end": 8
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.awk",
+                "comment.line.number-sign.awk"
+            ],
+            "text": "# How many lines\n",
+            "start": 0,
+            "end": 17
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": "    lines",
+            "start": 0,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.awk",
+                "keyword.operator.assignment.awk"
+            ],
+            "text": "=",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.awk",
+                "constant.numeric.awk"
+            ],
+            "text": "0",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": ";\n",
+            "start": 11,
+            "end": 13
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": "    total",
+            "start": 0,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.awk",
+                "keyword.operator.assignment.awk"
+            ],
+            "text": "=",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.awk",
+                "constant.numeric.awk"
+            ],
+            "text": "0",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": ";\n",
+            "start": 11,
+            "end": 13
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": "}",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": "\n",
+            "start": 1,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": "{",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": "\n",
+            "start": 1,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.awk",
+                "comment.line.number-sign.awk"
+            ],
+            "text": "# this code is executed once for each line\n",
+            "start": 0,
+            "end": 43
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.awk",
+                "comment.line.number-sign.awk"
+            ],
+            "text": "# increase the number of files\n",
+            "start": 0,
+            "end": 31
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": "    lines",
+            "start": 0,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.awk",
+                "keyword.operator.assignment.awk"
+            ],
+            "text": "++",
+            "start": 9,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": ";\n",
+            "start": 11,
+            "end": 13
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.awk",
+                "comment.line.number-sign.awk"
+            ],
+            "text": "# increase the total size, which is field #1\n",
+            "start": 0,
+            "end": 45
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": "    total",
+            "start": 0,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.awk",
+                "keyword.operator.assignment.awk"
+            ],
+            "text": "+=",
+            "start": 9,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.awk",
+                "variable.language.awk"
+            ],
+            "text": "$1",
+            "start": 11,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": ";\n",
+            "start": 13,
+            "end": 15
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": "}",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": "\n",
+            "start": 1,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.awk",
+                "constant.language.awk"
+            ],
+            "text": "END",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": " ",
+            "start": 3,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": "{",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": "\n",
+            "start": 5,
+            "end": 6
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.awk",
+                "comment.line.number-sign.awk"
+            ],
+            "text": "# end, now output the total\n",
+            "start": 0,
+            "end": 28
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.awk",
+                "keyword.other.command.awk"
+            ],
+            "text": "print",
+            "start": 4,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": " lines ",
+            "start": 9,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.awk",
+                "string.quoted.double.awk",
+                "punctuation.definition.string.begin.awk"
+            ],
+            "text": "\"",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.awk",
+                "string.quoted.double.awk"
+            ],
+            "text": " lines read",
+            "start": 17,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.awk",
+                "string.quoted.double.awk",
+                "punctuation.definition.string.end.awk"
+            ],
+            "text": "\"",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": ";\n",
+            "start": 29,
+            "end": 31
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.awk",
+                "keyword.other.command.awk"
+            ],
+            "text": "print",
+            "start": 4,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": " ",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.awk",
+                "string.quoted.double.awk",
+                "punctuation.definition.string.begin.awk"
+            ],
+            "text": "\"",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.awk",
+                "string.quoted.double.awk"
+            ],
+            "text": "total is ",
+            "start": 11,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.awk",
+                "string.quoted.double.awk",
+                "punctuation.definition.string.end.awk"
+            ],
+            "text": "\"",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.awk",
+                "punctuation.separator.parameters.awk"
+            ],
+            "text": ",",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": " total;\n",
+            "start": 22,
+            "end": 30
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.awk",
+                "keyword.control.awk"
+            ],
+            "text": "if",
+            "start": 4,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": " ",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.awk",
+                "meta.brace.round.awk"
+            ],
+            "text": "(",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": "lines ",
+            "start": 8,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.awk",
+                "keyword.operator.comparison.awk"
+            ],
+            "text": ">",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": " ",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.awk",
+                "constant.numeric.awk"
+            ],
+            "text": "0",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": " ",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.awk",
+                "meta.brace.round.awk"
+            ],
+            "text": ")",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": " ",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": "{",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": "\n",
+            "start": 21,
+            "end": 22
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": "\t",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.awk",
+                "keyword.other.command.awk"
+            ],
+            "text": "print",
+            "start": 1,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": " ",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.awk",
+                "string.quoted.double.awk",
+                "punctuation.definition.string.begin.awk"
+            ],
+            "text": "\"",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.awk",
+                "string.quoted.double.awk"
+            ],
+            "text": "average is ",
+            "start": 8,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.awk",
+                "string.quoted.double.awk",
+                "punctuation.definition.string.end.awk"
+            ],
+            "text": "\"",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.awk",
+                "punctuation.separator.parameters.awk"
+            ],
+            "text": ",",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": " total",
+            "start": 21,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.awk",
+                "keyword.operator.arithmetic.awk"
+            ],
+            "text": "\/",
+            "start": 27,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": "lines;\n",
+            "start": 28,
+            "end": 35
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": "}",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": " ",
+            "start": 5,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.awk",
+                "keyword.control.awk"
+            ],
+            "text": "else",
+            "start": 6,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": "{",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": "\n",
+            "start": 12,
+            "end": 13
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": "\t",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.awk",
+                "keyword.other.command.awk"
+            ],
+            "text": "print",
+            "start": 1,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": " ",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.awk",
+                "string.quoted.double.awk",
+                "punctuation.definition.string.begin.awk"
+            ],
+            "text": "\"",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.awk",
+                "string.quoted.double.awk"
+            ],
+            "text": "average is 0",
+            "start": 8,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.awk",
+                "string.quoted.double.awk",
+                "punctuation.definition.string.end.awk"
+            ],
+            "text": "\"",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": ";\n",
+            "start": 21,
+            "end": 23
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": "}",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": "\n",
+            "start": 5,
+            "end": 6
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": "}",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": "\n",
+            "start": 1,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.awk"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.awk",
+                "comment.line.number-sign.awk"
+            ],
+            "text": "#From https:\/\/www.grymoire.com\/Unix\/Awk.html\n",
+            "start": 0,
+            "end": 45
+        }
+    ]
+]

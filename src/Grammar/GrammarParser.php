@@ -54,7 +54,7 @@ class GrammarParser
 
     protected function pattern(array $pattern): PatternInterface|false
     {
-        if (isset($pattern['match'])) {
+        if (isset($pattern['match']) && $pattern['match'] !== '') {
             return new MatchPattern(
                 new Regex($pattern['match']),
                 $pattern['name'] ?? null,
@@ -63,7 +63,7 @@ class GrammarParser
             );
         }
 
-        if (isset($pattern['begin'], $pattern['end'])) {
+        if (isset($pattern['begin'], $pattern['end']) && $pattern['begin'] !== '' && $pattern['end'] !== '') {
             return new BeginEndPattern(
                 new Regex($pattern['begin']),
                 new Regex($pattern['end']),

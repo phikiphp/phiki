@@ -44,14 +44,19 @@
     "scripts": {
         "sample": [
             "Composer\\Config::disableProcessTimeout",
-            "@php -S 127.0.0.1:8080 ./meta/sample/index.php"
+            "@php -S 127.0.0.1:8080 ./meta/sample/index.php -d memory_limit=-1"
         ],
         "sample:debug": [
             "Composer\\Config::disableProcessTimeout",
             "herd debug -S 127.0.0.1:8080 ./meta/sample/index.php"
         ],
         "vscode-textmate:tokens": "node meta/generate-vscode-textmate-tokens.js",
-        "update-grammars-and-themes": "node meta/update-grammars-and-themes.js",
+        "update-grammars-and-themes": [
+            "Composer\\Config::disableProcessTimeout",
+            "npm update",
+            "node meta/update-grammars-and-themes.js",
+            "php meta/generate-vscode-token-dumps.php"
+        ],
         "test": "@php -dmemory_limit=-1 vendor/bin/pest --enforce-time-limit --default-time-limit=1",
         "lint": "@php vendor/bin/phpstan"
     }

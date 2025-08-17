@@ -1,0 +1,1299 @@
+[
+    [
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.function.python",
+                "storage.type.function.python"
+            ],
+            "text": "def",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.function.python"
+            ],
+            "text": " ",
+            "start": 3,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.function.python",
+                "entity.name.function.python"
+            ],
+            "text": "softmax",
+            "start": 4,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.function.python",
+                "meta.function.parameters.python",
+                "punctuation.definition.parameters.begin.python"
+            ],
+            "text": "(",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.function.python",
+                "meta.function.parameters.python",
+                "variable.parameter.function.language.python"
+            ],
+            "text": "lst",
+            "start": 12,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.function.python",
+                "meta.function.parameters.python",
+                "punctuation.definition.parameters.end.python"
+            ],
+            "text": ")",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.function.python",
+                "punctuation.section.function.begin.python"
+            ],
+            "text": ":",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.mojo"
+            ],
+            "text": "\n",
+            "start": 17,
+            "end": 18
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.mojo"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.mojo"
+            ],
+            "text": "norm",
+            "start": 2,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.mojo"
+            ],
+            "text": " ",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "keyword.operator.assignment.python"
+            ],
+            "text": "=",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.mojo"
+            ],
+            "text": " ",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.mojo"
+            ],
+            "text": "np",
+            "start": 9,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.member.access.python",
+                "punctuation.separator.period.python"
+            ],
+            "text": ".",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.member.access.python",
+                "meta.function-call.python",
+                "meta.function-call.generic.python"
+            ],
+            "text": "exp",
+            "start": 12,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.member.access.python",
+                "meta.function-call.python",
+                "punctuation.definition.arguments.begin.python"
+            ],
+            "text": "(",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.member.access.python",
+                "meta.function-call.python",
+                "meta.function-call.arguments.python"
+            ],
+            "text": "lst",
+            "start": 16,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.member.access.python",
+                "meta.function-call.python",
+                "meta.function-call.arguments.python"
+            ],
+            "text": " ",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.member.access.python",
+                "meta.function-call.python",
+                "meta.function-call.arguments.python",
+                "keyword.operator.arithmetic.python"
+            ],
+            "text": "-",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.member.access.python",
+                "meta.function-call.python",
+                "meta.function-call.arguments.python"
+            ],
+            "text": " ",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.member.access.python",
+                "meta.function-call.python",
+                "meta.function-call.arguments.python"
+            ],
+            "text": "np",
+            "start": 22,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.member.access.python",
+                "meta.function-call.python",
+                "meta.function-call.arguments.python",
+                "meta.member.access.python",
+                "punctuation.separator.period.python"
+            ],
+            "text": ".",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.member.access.python",
+                "meta.function-call.python",
+                "meta.function-call.arguments.python",
+                "meta.member.access.python",
+                "meta.function-call.python",
+                "meta.function-call.generic.python"
+            ],
+            "text": "max",
+            "start": 25,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.member.access.python",
+                "meta.function-call.python",
+                "meta.function-call.arguments.python",
+                "meta.member.access.python",
+                "meta.function-call.python",
+                "punctuation.definition.arguments.begin.python"
+            ],
+            "text": "(",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.member.access.python",
+                "meta.function-call.python",
+                "meta.function-call.arguments.python",
+                "meta.member.access.python",
+                "meta.function-call.python",
+                "meta.function-call.arguments.python"
+            ],
+            "text": "lst",
+            "start": 29,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.member.access.python",
+                "meta.function-call.python",
+                "meta.function-call.arguments.python",
+                "meta.member.access.python",
+                "meta.function-call.python",
+                "punctuation.definition.arguments.end.python"
+            ],
+            "text": ")",
+            "start": 32,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.member.access.python",
+                "meta.function-call.python",
+                "punctuation.definition.arguments.end.python"
+            ],
+            "text": ")",
+            "start": 33,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.mojo"
+            ],
+            "text": "\n",
+            "start": 34,
+            "end": 35
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.mojo"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "keyword.control.flow.python"
+            ],
+            "text": "return",
+            "start": 2,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.mojo"
+            ],
+            "text": " ",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.mojo"
+            ],
+            "text": "norm",
+            "start": 9,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.mojo"
+            ],
+            "text": " ",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "keyword.operator.arithmetic.python"
+            ],
+            "text": "\/",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.mojo"
+            ],
+            "text": " ",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.mojo"
+            ],
+            "text": "norm",
+            "start": 16,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.member.access.python",
+                "punctuation.separator.period.python"
+            ],
+            "text": ".",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.member.access.python",
+                "meta.function-call.python",
+                "meta.function-call.generic.python"
+            ],
+            "text": "sum",
+            "start": 21,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.member.access.python",
+                "meta.function-call.python",
+                "punctuation.definition.arguments.begin.python"
+            ],
+            "text": "(",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.member.access.python",
+                "meta.function-call.python",
+                "punctuation.definition.arguments.end.python"
+            ],
+            "text": ")",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.mojo"
+            ],
+            "text": "\n",
+            "start": 26,
+            "end": 27
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.mojo"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.class.python",
+                "storage.type.class.python"
+            ],
+            "text": "struct",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.class.python"
+            ],
+            "text": " ",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.class.python",
+                "entity.name.type.class.python"
+            ],
+            "text": "NDArray",
+            "start": 7,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.class.python",
+                "punctuation.section.class.begin.python"
+            ],
+            "text": ":",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.mojo"
+            ],
+            "text": "\n",
+            "start": 15,
+            "end": 16
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.function.python"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.function.python",
+                "storage.type.function.python"
+            ],
+            "text": "def",
+            "start": 2,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.function.python"
+            ],
+            "text": " ",
+            "start": 5,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.function.python",
+                "support.function.builtin.python"
+            ],
+            "text": "max",
+            "start": 6,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.function.python",
+                "meta.function.parameters.python",
+                "punctuation.definition.parameters.begin.python"
+            ],
+            "text": "(",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.function.python",
+                "meta.function.parameters.python",
+                "variable.parameter.function.language.python",
+                "variable.parameter.function.language.special.self.python"
+            ],
+            "text": "self",
+            "start": 10,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.function.python",
+                "meta.function.parameters.python",
+                "punctuation.definition.parameters.end.python"
+            ],
+            "text": ")",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.function.python"
+            ],
+            "text": " ",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.function.python",
+                "punctuation.separator.annotation.result.python"
+            ],
+            "text": "->",
+            "start": 16,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.function.python"
+            ],
+            "text": " ",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.function.python"
+            ],
+            "text": "NDArray",
+            "start": 19,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.function.python",
+                "punctuation.section.function.begin.python"
+            ],
+            "text": ":",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.mojo"
+            ],
+            "text": "\n",
+            "start": 27,
+            "end": 28
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.mojo"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "keyword.control.flow.python"
+            ],
+            "text": "return",
+            "start": 4,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.mojo"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "variable.language.special.self.python"
+            ],
+            "text": "self",
+            "start": 11,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.member.access.python",
+                "punctuation.separator.period.python"
+            ],
+            "text": ".",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.member.access.python",
+                "meta.function-call.python",
+                "meta.function-call.generic.python"
+            ],
+            "text": "pmap",
+            "start": 16,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.member.access.python",
+                "meta.function-call.python",
+                "punctuation.definition.arguments.begin.python"
+            ],
+            "text": "(",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.member.access.python",
+                "meta.function-call.python",
+                "meta.function-call.arguments.python",
+                "constant.other.caps.python"
+            ],
+            "text": "SIMD",
+            "start": 21,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.member.access.python",
+                "meta.function-call.python",
+                "meta.function-call.arguments.python",
+                "meta.member.access.python",
+                "punctuation.separator.period.python"
+            ],
+            "text": ".",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.member.access.python",
+                "meta.function-call.python",
+                "meta.function-call.arguments.python",
+                "meta.member.access.python",
+                "meta.attribute.python"
+            ],
+            "text": "max",
+            "start": 26,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.member.access.python",
+                "meta.function-call.python",
+                "punctuation.definition.arguments.end.python"
+            ],
+            "text": ")",
+            "start": 29,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.mojo"
+            ],
+            "text": "\n",
+            "start": 30,
+            "end": 31
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.mojo"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.mojo",
+                "storage.type.class.python"
+            ],
+            "text": "struct",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.mojo"
+            ],
+            "text": " ",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.item-access.python",
+                "constant.other.caps.python"
+            ],
+            "text": "SIMD",
+            "start": 7,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.item-access.python",
+                "punctuation.definition.arguments.begin.python"
+            ],
+            "text": "[",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.item-access.python",
+                "meta.item-access.arguments.python",
+                "support.type.python"
+            ],
+            "text": "type",
+            "start": 12,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.item-access.python",
+                "meta.item-access.arguments.python",
+                "punctuation.separator.slice.python"
+            ],
+            "text": ":",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.item-access.python",
+                "meta.item-access.arguments.python"
+            ],
+            "text": " ",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.item-access.python",
+                "meta.item-access.arguments.python"
+            ],
+            "text": "DType",
+            "start": 18,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.item-access.python",
+                "meta.item-access.arguments.python",
+                "punctuation.separator.element.python"
+            ],
+            "text": ",",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.item-access.python",
+                "meta.item-access.arguments.python"
+            ],
+            "text": " ",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.item-access.python",
+                "meta.item-access.arguments.python"
+            ],
+            "text": "width",
+            "start": 25,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.item-access.python",
+                "meta.item-access.arguments.python",
+                "punctuation.separator.slice.python"
+            ],
+            "text": ":",
+            "start": 30,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.item-access.python",
+                "meta.item-access.arguments.python"
+            ],
+            "text": " ",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.item-access.python",
+                "meta.item-access.arguments.python"
+            ],
+            "text": "Int",
+            "start": 32,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.item-access.python",
+                "punctuation.definition.arguments.end.python"
+            ],
+            "text": "]",
+            "start": 35,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "punctuation.separator.colon.python"
+            ],
+            "text": ":",
+            "start": 36,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.mojo"
+            ],
+            "text": "\n",
+            "start": 37,
+            "end": 38
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.function.python"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.function.python",
+                "storage.type.function.python"
+            ],
+            "text": "def",
+            "start": 2,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.function.python"
+            ],
+            "text": " ",
+            "start": 5,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.function.python",
+                "support.function.builtin.python"
+            ],
+            "text": "max",
+            "start": 6,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.function.python",
+                "meta.function.parameters.python",
+                "punctuation.definition.parameters.begin.python"
+            ],
+            "text": "(",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.function.python",
+                "meta.function.parameters.python",
+                "variable.parameter.function.language.python",
+                "variable.parameter.function.language.special.self.python"
+            ],
+            "text": "self",
+            "start": 10,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.function.python",
+                "meta.function.parameters.python",
+                "punctuation.separator.parameters.python"
+            ],
+            "text": ",",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.function.python",
+                "meta.function.parameters.python"
+            ],
+            "text": " ",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.function.python",
+                "meta.function.parameters.python",
+                "variable.parameter.function.language.python"
+            ],
+            "text": "rhs",
+            "start": 16,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.function.python",
+                "meta.function.parameters.python",
+                "punctuation.separator.annotation.python"
+            ],
+            "text": ":",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.function.python",
+                "meta.function.parameters.python"
+            ],
+            "text": " ",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.function.python",
+                "meta.function.parameters.python"
+            ],
+            "text": "Self",
+            "start": 21,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.function.python",
+                "meta.function.parameters.python",
+                "punctuation.definition.parameters.end.python"
+            ],
+            "text": ")",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.function.python"
+            ],
+            "text": " ",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.function.python",
+                "punctuation.separator.annotation.result.python"
+            ],
+            "text": "->",
+            "start": 27,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.function.python"
+            ],
+            "text": " ",
+            "start": 29,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.function.python"
+            ],
+            "text": "Self",
+            "start": 30,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.function.python",
+                "punctuation.section.function.begin.python"
+            ],
+            "text": ":",
+            "start": 34,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.mojo"
+            ],
+            "text": "\n",
+            "start": 35,
+            "end": 36
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.mojo"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "keyword.control.flow.python"
+            ],
+            "text": "return",
+            "start": 4,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.mojo"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "punctuation.parenthesis.begin.python"
+            ],
+            "text": "(",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "variable.language.special.self.python"
+            ],
+            "text": "self",
+            "start": 12,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.mojo"
+            ],
+            "text": " ",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "keyword.operator.comparison.python"
+            ],
+            "text": ">=",
+            "start": 17,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.mojo"
+            ],
+            "text": " ",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.mojo"
+            ],
+            "text": "rhs",
+            "start": 20,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "punctuation.parenthesis.end.python"
+            ],
+            "text": ")",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.member.access.python",
+                "punctuation.separator.period.python"
+            ],
+            "text": ".",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.member.access.python",
+                "meta.function-call.python",
+                "meta.function-call.generic.python"
+            ],
+            "text": "select",
+            "start": 25,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.member.access.python",
+                "meta.function-call.python",
+                "punctuation.definition.arguments.begin.python"
+            ],
+            "text": "(",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.member.access.python",
+                "meta.function-call.python",
+                "meta.function-call.arguments.python",
+                "variable.language.special.self.python"
+            ],
+            "text": "self",
+            "start": 32,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.member.access.python",
+                "meta.function-call.python",
+                "meta.function-call.arguments.python",
+                "punctuation.separator.arguments.python"
+            ],
+            "text": ",",
+            "start": 36,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.member.access.python",
+                "meta.function-call.python",
+                "meta.function-call.arguments.python"
+            ],
+            "text": " ",
+            "start": 37,
+            "end": 38
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.member.access.python",
+                "meta.function-call.python",
+                "meta.function-call.arguments.python"
+            ],
+            "text": "rhs",
+            "start": 38,
+            "end": 41
+        },
+        {
+            "scopes": [
+                "source.mojo",
+                "meta.member.access.python",
+                "meta.function-call.python",
+                "punctuation.definition.arguments.end.python"
+            ],
+            "text": ")",
+            "start": 41,
+            "end": 42
+        },
+        {
+            "scopes": [
+                "source.mojo"
+            ],
+            "text": "\n",
+            "start": 42,
+            "end": 43
+        }
+    ]
+]

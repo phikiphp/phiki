@@ -1,0 +1,879 @@
+[
+    [
+        {
+            "scopes": [
+                "source.puppet",
+                "meta.definition.class.puppet",
+                "storage.type.puppet"
+            ],
+            "text": "class",
+            "start": 0,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.puppet",
+                "meta.definition.class.puppet"
+            ],
+            "text": " ",
+            "start": 5,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.puppet",
+                "meta.definition.class.puppet",
+                "entity.name.type.class.puppet"
+            ],
+            "text": "ntp::service",
+            "start": 6,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.puppet",
+                "meta.definition.class.puppet"
+            ],
+            "text": " ",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.puppet"
+            ],
+            "text": "{\n",
+            "start": 19,
+            "end": 21
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.puppet"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.puppet"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.puppet",
+                "keyword.control.puppet"
+            ],
+            "text": "if",
+            "start": 2,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.puppet"
+            ],
+            "text": " ! (",
+            "start": 4,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.puppet",
+                "variable.other.readwrite.global.puppet",
+                "punctuation.definition.variable.puppet"
+            ],
+            "text": "$",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.puppet",
+                "variable.other.readwrite.global.puppet"
+            ],
+            "text": "ntp::service_ensure",
+            "start": 9,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.puppet"
+            ],
+            "text": " in ",
+            "start": 28,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.puppet",
+                "meta.array.puppet",
+                "punctuation.definition.array.begin.puppet"
+            ],
+            "text": "[",
+            "start": 32,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.puppet",
+                "meta.array.puppet"
+            ],
+            "text": " ",
+            "start": 33,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.puppet",
+                "meta.array.puppet",
+                "string.quoted.single.puppet",
+                "punctuation.definition.string.begin.puppet"
+            ],
+            "text": "'",
+            "start": 34,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.puppet",
+                "meta.array.puppet",
+                "string.quoted.single.puppet"
+            ],
+            "text": "running",
+            "start": 35,
+            "end": 42
+        },
+        {
+            "scopes": [
+                "source.puppet",
+                "meta.array.puppet",
+                "string.quoted.single.puppet",
+                "punctuation.definition.string.end.puppet"
+            ],
+            "text": "'",
+            "start": 42,
+            "end": 43
+        },
+        {
+            "scopes": [
+                "source.puppet",
+                "meta.array.puppet"
+            ],
+            "text": ", ",
+            "start": 43,
+            "end": 45
+        },
+        {
+            "scopes": [
+                "source.puppet",
+                "meta.array.puppet",
+                "string.quoted.single.puppet",
+                "punctuation.definition.string.begin.puppet"
+            ],
+            "text": "'",
+            "start": 45,
+            "end": 46
+        },
+        {
+            "scopes": [
+                "source.puppet",
+                "meta.array.puppet",
+                "string.quoted.single.puppet"
+            ],
+            "text": "stopped",
+            "start": 46,
+            "end": 53
+        },
+        {
+            "scopes": [
+                "source.puppet",
+                "meta.array.puppet",
+                "string.quoted.single.puppet",
+                "punctuation.definition.string.end.puppet"
+            ],
+            "text": "'",
+            "start": 53,
+            "end": 54
+        },
+        {
+            "scopes": [
+                "source.puppet",
+                "meta.array.puppet"
+            ],
+            "text": " ",
+            "start": 54,
+            "end": 55
+        },
+        {
+            "scopes": [
+                "source.puppet",
+                "meta.array.puppet",
+                "punctuation.definition.array.end.puppet"
+            ],
+            "text": "]",
+            "start": 55,
+            "end": 56
+        },
+        {
+            "scopes": [
+                "source.puppet"
+            ],
+            "text": ") {\n",
+            "start": 56,
+            "end": 60
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.puppet"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.puppet",
+                "support.function.puppet"
+            ],
+            "text": "fail",
+            "start": 4,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.puppet"
+            ],
+            "text": "(",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.puppet",
+                "string.quoted.single.puppet",
+                "punctuation.definition.string.begin.puppet"
+            ],
+            "text": "'",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.puppet",
+                "string.quoted.single.puppet"
+            ],
+            "text": "service_ensure parameter must be running or stopped",
+            "start": 10,
+            "end": 61
+        },
+        {
+            "scopes": [
+                "source.puppet",
+                "string.quoted.single.puppet",
+                "punctuation.definition.string.end.puppet"
+            ],
+            "text": "'",
+            "start": 61,
+            "end": 62
+        },
+        {
+            "scopes": [
+                "source.puppet"
+            ],
+            "text": ")\n",
+            "start": 62,
+            "end": 64
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.puppet"
+            ],
+            "text": "  }\n",
+            "start": 0,
+            "end": 4
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.puppet"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.puppet"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.puppet",
+                "keyword.control.puppet"
+            ],
+            "text": "if",
+            "start": 2,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.puppet"
+            ],
+            "text": " ",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.puppet",
+                "variable.other.readwrite.global.puppet",
+                "punctuation.definition.variable.puppet"
+            ],
+            "text": "$",
+            "start": 5,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.puppet",
+                "variable.other.readwrite.global.puppet"
+            ],
+            "text": "ntp::service_manage",
+            "start": 6,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.puppet"
+            ],
+            "text": " == ",
+            "start": 25,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.puppet",
+                "meta.definition.resource.puppet",
+                "storage.type.puppet"
+            ],
+            "text": "true",
+            "start": 29,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.puppet"
+            ],
+            "text": " {\n",
+            "start": 33,
+            "end": 36
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.puppet",
+                "entity.name.section.puppet"
+            ],
+            "text": "    service { ",
+            "start": 0,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.puppet",
+                "entity.name.section.puppet",
+                "string.quoted.single.puppet",
+                "punctuation.definition.string.begin.puppet"
+            ],
+            "text": "'",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.puppet",
+                "entity.name.section.puppet",
+                "string.quoted.single.puppet"
+            ],
+            "text": "ntp",
+            "start": 15,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.puppet",
+                "entity.name.section.puppet",
+                "string.quoted.single.puppet",
+                "punctuation.definition.string.end.puppet"
+            ],
+            "text": "'",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.puppet"
+            ],
+            "text": ":",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.puppet"
+            ],
+            "text": "\n",
+            "start": 20,
+            "end": 21
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.puppet"
+            ],
+            "text": "      ",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.puppet",
+                "constant.other.key.puppet"
+            ],
+            "text": "ensure     ",
+            "start": 6,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.puppet",
+                "punctuation.separator.key-value.puppet"
+            ],
+            "text": "=>",
+            "start": 17,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.puppet"
+            ],
+            "text": " ",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.puppet",
+                "variable.other.readwrite.global.puppet",
+                "punctuation.definition.variable.puppet"
+            ],
+            "text": "$",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.puppet",
+                "variable.other.readwrite.global.puppet"
+            ],
+            "text": "ntp::service_ensure",
+            "start": 21,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.puppet"
+            ],
+            "text": ",\n",
+            "start": 40,
+            "end": 42
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.puppet"
+            ],
+            "text": "      ",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.puppet",
+                "constant.other.key.puppet"
+            ],
+            "text": "enable     ",
+            "start": 6,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.puppet",
+                "punctuation.separator.key-value.puppet"
+            ],
+            "text": "=>",
+            "start": 17,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.puppet"
+            ],
+            "text": " ",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.puppet",
+                "variable.other.readwrite.global.puppet",
+                "punctuation.definition.variable.puppet"
+            ],
+            "text": "$",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.puppet",
+                "variable.other.readwrite.global.puppet"
+            ],
+            "text": "ntp::service_enable",
+            "start": 21,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.puppet"
+            ],
+            "text": ",\n",
+            "start": 40,
+            "end": 42
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.puppet"
+            ],
+            "text": "      ",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.puppet",
+                "constant.other.key.puppet"
+            ],
+            "text": "name       ",
+            "start": 6,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.puppet",
+                "punctuation.separator.key-value.puppet"
+            ],
+            "text": "=>",
+            "start": 17,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.puppet"
+            ],
+            "text": " ",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.puppet",
+                "variable.other.readwrite.global.puppet",
+                "punctuation.definition.variable.puppet"
+            ],
+            "text": "$",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.puppet",
+                "variable.other.readwrite.global.puppet"
+            ],
+            "text": "ntp::service_name",
+            "start": 21,
+            "end": 38
+        },
+        {
+            "scopes": [
+                "source.puppet"
+            ],
+            "text": ",\n",
+            "start": 38,
+            "end": 40
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.puppet"
+            ],
+            "text": "      ",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.puppet",
+                "constant.other.key.puppet"
+            ],
+            "text": "provider   ",
+            "start": 6,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.puppet",
+                "punctuation.separator.key-value.puppet"
+            ],
+            "text": "=>",
+            "start": 17,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.puppet"
+            ],
+            "text": " ",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.puppet",
+                "variable.other.readwrite.global.puppet",
+                "punctuation.definition.variable.puppet"
+            ],
+            "text": "$",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.puppet",
+                "variable.other.readwrite.global.puppet"
+            ],
+            "text": "ntp::service_provider",
+            "start": 21,
+            "end": 42
+        },
+        {
+            "scopes": [
+                "source.puppet"
+            ],
+            "text": ",\n",
+            "start": 42,
+            "end": 44
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.puppet"
+            ],
+            "text": "      ",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.puppet",
+                "constant.other.key.puppet"
+            ],
+            "text": "hasstatus  ",
+            "start": 6,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.puppet",
+                "punctuation.separator.key-value.puppet"
+            ],
+            "text": "=>",
+            "start": 17,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.puppet"
+            ],
+            "text": " ",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.puppet",
+                "constant.language.puppet"
+            ],
+            "text": "true",
+            "start": 20,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.puppet"
+            ],
+            "text": ",\n",
+            "start": 24,
+            "end": 26
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.puppet"
+            ],
+            "text": "      ",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.puppet",
+                "constant.other.key.puppet"
+            ],
+            "text": "hasrestart ",
+            "start": 6,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.puppet",
+                "punctuation.separator.key-value.puppet"
+            ],
+            "text": "=>",
+            "start": 17,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.puppet"
+            ],
+            "text": " ",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.puppet",
+                "constant.language.puppet"
+            ],
+            "text": "true",
+            "start": 20,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.puppet"
+            ],
+            "text": ",\n",
+            "start": 24,
+            "end": 26
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.puppet"
+            ],
+            "text": "    }\n",
+            "start": 0,
+            "end": 6
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.puppet"
+            ],
+            "text": "  }\n",
+            "start": 0,
+            "end": 4
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.puppet"
+            ],
+            "text": "}\n",
+            "start": 0,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.puppet"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.puppet",
+                "meta.comment.full-line.puppet",
+                "comment.line.number-sign.puppet",
+                "punctuation.definition.comment.puppet"
+            ],
+            "text": "#",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.puppet",
+                "meta.comment.full-line.puppet",
+                "comment.line.number-sign.puppet"
+            ],
+            "text": " From https:\/\/www.puppet.com\/docs\/puppet\/8\/bgtm.html\n",
+            "start": 1,
+            "end": 54
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.puppet"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ]
+]

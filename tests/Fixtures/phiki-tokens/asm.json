@@ -1,0 +1,715 @@
+[
+    [
+        {
+            "scopes": [
+                "source.asm.x86_64",
+                "entity.name.section"
+            ],
+            "text": "segment .text",
+            "start": 0,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64"
+            ],
+            "text": "\t   ",
+            "start": 13,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64",
+                "comment.line"
+            ],
+            "text": ";code segment\n",
+            "start": 17,
+            "end": 31
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.asm.x86_64"
+            ],
+            "text": "   global_start    ",
+            "start": 0,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64",
+                "comment.line"
+            ],
+            "text": ";must be declared for linker \n",
+            "start": 19,
+            "end": 49
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.asm.x86_64"
+            ],
+            "text": "\t\n",
+            "start": 0,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.asm.x86_64",
+                "entity.name.function.asm.x86_64",
+                "entity.name.function.asm.x86_64"
+            ],
+            "text": "_start",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64",
+                "entity.name.function.asm.x86_64",
+                "punctuation.separator.asm.x86_64"
+            ],
+            "text": ":",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64"
+            ],
+            "text": "\t           ",
+            "start": 7,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64",
+                "comment.line"
+            ],
+            "text": ";tell linker entry point\n",
+            "start": 19,
+            "end": 44
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.asm.x86_64"
+            ],
+            "text": "   ",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64",
+                "keyword.operator.word.mnemonic.general-purpose.data-transfer.mov"
+            ],
+            "text": "mov",
+            "start": 3,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64"
+            ],
+            "text": " ",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64",
+                "constant.language.register.general-purpose.asm.x86_64"
+            ],
+            "text": "edx",
+            "start": 7,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64"
+            ],
+            "text": ",len\t   ",
+            "start": 10,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64",
+                "comment.line"
+            ],
+            "text": ";message length\n",
+            "start": 18,
+            "end": 34
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.asm.x86_64"
+            ],
+            "text": "   ",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64",
+                "keyword.operator.word.mnemonic.general-purpose.data-transfer.mov"
+            ],
+            "text": "mov",
+            "start": 3,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64"
+            ],
+            "text": " ",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64",
+                "constant.language.register.general-purpose.asm.x86_64"
+            ],
+            "text": "ecx",
+            "start": 7,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64"
+            ],
+            "text": ",msg     ",
+            "start": 10,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64",
+                "comment.line"
+            ],
+            "text": ";message to write\n",
+            "start": 19,
+            "end": 37
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.asm.x86_64"
+            ],
+            "text": "   ",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64",
+                "keyword.operator.word.mnemonic.general-purpose.data-transfer.mov"
+            ],
+            "text": "mov",
+            "start": 3,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64"
+            ],
+            "text": " ",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64",
+                "constant.language.register.general-purpose.asm.x86_64"
+            ],
+            "text": "ebx",
+            "start": 7,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64"
+            ],
+            "text": ",",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64",
+                "constant.numeric.decimal.asm.x86_64"
+            ],
+            "text": "1",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64"
+            ],
+            "text": "\t   ",
+            "start": 12,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64",
+                "comment.line"
+            ],
+            "text": ";file descriptor (stdout)\n",
+            "start": 16,
+            "end": 42
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.asm.x86_64"
+            ],
+            "text": "   ",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64",
+                "keyword.operator.word.mnemonic.general-purpose.data-transfer.mov"
+            ],
+            "text": "mov",
+            "start": 3,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64"
+            ],
+            "text": " ",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64",
+                "constant.language.register.general-purpose.asm.x86_64"
+            ],
+            "text": "eax",
+            "start": 7,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64"
+            ],
+            "text": ",",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64",
+                "constant.numeric.decimal.asm.x86_64"
+            ],
+            "text": "4",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64"
+            ],
+            "text": "\t   ",
+            "start": 12,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64",
+                "comment.line"
+            ],
+            "text": ";system call number (sys_write)\n",
+            "start": 16,
+            "end": 48
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.asm.x86_64"
+            ],
+            "text": "   ",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64",
+                "keyword.operator.word.mnemonic.general-purpose.control-transfer.other"
+            ],
+            "text": "int",
+            "start": 3,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64"
+            ],
+            "text": " ",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64",
+                "constant.numeric.hex.asm.x86_64"
+            ],
+            "text": "0x80",
+            "start": 7,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64"
+            ],
+            "text": "\t   ",
+            "start": 11,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64",
+                "comment.line"
+            ],
+            "text": ";call kernel\n",
+            "start": 15,
+            "end": 28
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.asm.x86_64"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.asm.x86_64"
+            ],
+            "text": "   ",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64",
+                "keyword.operator.word.mnemonic.general-purpose.data-transfer.mov"
+            ],
+            "text": "mov",
+            "start": 3,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64"
+            ],
+            "text": " ",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64",
+                "constant.language.register.general-purpose.asm.x86_64"
+            ],
+            "text": "eax",
+            "start": 7,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64"
+            ],
+            "text": ",",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64",
+                "constant.numeric.decimal.asm.x86_64"
+            ],
+            "text": "1",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64"
+            ],
+            "text": "       ",
+            "start": 12,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64",
+                "comment.line"
+            ],
+            "text": ";system call number (sys_exit)\n",
+            "start": 19,
+            "end": 50
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.asm.x86_64"
+            ],
+            "text": "   ",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64",
+                "keyword.operator.word.mnemonic.general-purpose.control-transfer.other"
+            ],
+            "text": "int",
+            "start": 3,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64"
+            ],
+            "text": " ",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64",
+                "constant.numeric.hex.asm.x86_64"
+            ],
+            "text": "0x80",
+            "start": 7,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64"
+            ],
+            "text": "\t   ",
+            "start": 11,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64",
+                "comment.line"
+            ],
+            "text": ";call kernel\n",
+            "start": 15,
+            "end": 28
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.asm.x86_64"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.asm.x86_64",
+                "entity.name.section"
+            ],
+            "text": "segment .data",
+            "start": 0,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64"
+            ],
+            "text": "      ",
+            "start": 13,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64",
+                "comment.line"
+            ],
+            "text": ";data segment\n",
+            "start": 19,
+            "end": 33
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.asm.x86_64"
+            ],
+            "text": "msg\t",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64",
+                "storage.type.asm.x86_64"
+            ],
+            "text": "db",
+            "start": 4,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64"
+            ],
+            "text": " ",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64",
+                "string.quoted.single.asm",
+                "punctuation.definition.string.begin.asm"
+            ],
+            "text": "'",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64",
+                "string.quoted.single.asm"
+            ],
+            "text": "Hello, world!",
+            "start": 8,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64",
+                "string.quoted.single.asm",
+                "punctuation.definition.string.end.asm"
+            ],
+            "text": "'",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64"
+            ],
+            "text": ",",
+            "start": 22,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64",
+                "constant.numeric.hex.asm.x86_64"
+            ],
+            "text": "0xa",
+            "start": 23,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64"
+            ],
+            "text": "   ",
+            "start": 26,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64",
+                "comment.line"
+            ],
+            "text": ";our dear string\n",
+            "start": 29,
+            "end": 46
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.asm.x86_64"
+            ],
+            "text": "len\t",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64",
+                "support.function.asm.x86_64"
+            ],
+            "text": "equ",
+            "start": 4,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64"
+            ],
+            "text": "\t$ - msg          ",
+            "start": 7,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.asm.x86_64",
+                "comment.line"
+            ],
+            "text": ";length of our dear string\n",
+            "start": 25,
+            "end": 52
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.asm.x86_64"
+            ],
+            "text": "\n",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.asm.x86_64",
+                "comment.line"
+            ],
+            "text": ";From https:\/\/www.tutorialspoint.com\/assembly_programming\/assembly_memory_segments.htm\n",
+            "start": 0,
+            "end": 87
+        }
+    ]
+]

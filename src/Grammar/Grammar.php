@@ -25,7 +25,6 @@ enum Grammar: string
     case Beancount = 'beancount';
     case Berry = 'berry';
     case Bibtex = 'bibtex';
-    case Bicep = 'bicep';
     case Blade = 'blade';
     case Bsl = 'bsl';
     case C = 'c';
@@ -187,7 +186,6 @@ enum Grammar: string
     case SshConfig = 'ssh-config';
     case Stata = 'stata';
     case Stylus = 'stylus';
-    case Svelte = 'svelte';
     case Swift = 'swift';
     case SystemVerilog = 'system-verilog';
     case Systemd = 'systemd';
@@ -222,7 +220,6 @@ enum Grammar: string
     case Wikitext = 'wikitext';
     case Wit = 'wit';
     case Wolfram = 'wolfram';
-    case Xml = 'xml';
     case Xsl = 'xsl';
     case Yaml = 'yaml';
     case Zenscript = 'zenscript';
@@ -250,7 +247,6 @@ enum Grammar: string
             self::Beancount => [],
             self::Berry => ["be"],
             self::Bibtex => [],
-            self::Bicep => [],
             self::Blade => [],
             self::Bsl => ["1c"],
             self::C => [],
@@ -412,7 +408,6 @@ enum Grammar: string
             self::SshConfig => [],
             self::Stata => [],
             self::Stylus => ["styl"],
-            self::Svelte => [],
             self::Swift => [],
             self::SystemVerilog => [],
             self::Systemd => [],
@@ -447,7 +442,6 @@ enum Grammar: string
             self::Wikitext => ["mediawiki","wiki"],
             self::Wit => [],
             self::Wolfram => ["wl"],
-            self::Xml => [],
             self::Xsl => [],
             self::Yaml => ["yml"],
             self::Zenscript => [],
@@ -477,7 +471,6 @@ enum Grammar: string
             self::Beancount => 'text.beancount',
             self::Berry => 'source.berry',
             self::Bibtex => 'text.bibtex',
-            self::Bicep => 'source.bicep',
             self::Blade => 'text.html.php.blade',
             self::Bsl => 'source.bsl',
             self::C => 'source.c',
@@ -639,7 +632,6 @@ enum Grammar: string
             self::SshConfig => 'source.ssh-config',
             self::Stata => 'source.stata',
             self::Stylus => 'source.stylus',
-            self::Svelte => 'source.svelte',
             self::Swift => 'source.swift',
             self::SystemVerilog => 'source.systemverilog',
             self::Systemd => 'source.systemd',
@@ -674,7 +666,6 @@ enum Grammar: string
             self::Wikitext => 'source.wikitext',
             self::Wit => 'source.wit',
             self::Wolfram => 'source.wolfram',
-            self::Xml => 'text.xml',
             self::Xsl => 'text.xml.xsl',
             self::Yaml => 'source.yaml',
             self::Zenscript => 'source.zenscript',
