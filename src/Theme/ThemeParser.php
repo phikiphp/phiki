@@ -25,7 +25,7 @@ class ThemeParser
             throw new InvalidThemeException("Theme `{$name}` must have a `tokenColors` property.");
         }
 
-        $tokenColors = array_map(function (array $tokenColor) use ($name) {
+        $tokenColors = array_map(function (array $tokenColor) {
             $scope = [];
 
             foreach (Arr::wrap($tokenColor['scope'] ?? []) as $part) {
