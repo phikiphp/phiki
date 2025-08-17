@@ -6,12 +6,14 @@ use Phiki\Contracts\GrammarRepositoryInterface;
 
 enum Grammar: string
 {
+    case Txt = 'txt';
     {cases}
 
     public function aliases(): array
     {
         return match ($this) {
             {aliases}
+            self::Txt => [],
         };
     }
 
@@ -19,6 +21,7 @@ enum Grammar: string
     {
         return match ($this) {
             {scopeNames}
+            self::Txt => 'text.plain'
         };
     }
 

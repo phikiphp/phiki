@@ -1,6 +1,9 @@
 parameters:
     level: 5
 
+    excludePaths:
+        - meta/stubs/*
+
     paths:
         - src
         - meta
