@@ -28,7 +28,7 @@ class ThemeRepository implements ThemeRepositoryInterface
             return $theme;
         }
 
-        $parser = new Parser;
+        $parser = new ThemeParser;
 
         return $this->themes[$name] = $parser->parse(json_decode(file_get_contents($theme), true));
     }
@@ -41,10 +41,5 @@ class ThemeRepository implements ThemeRepositoryInterface
     public function register(string $name, string|ParsedTheme $pathOrTheme): void
     {
         $this->themes[$name] = $pathOrTheme;
-    }
-
-    public function getAllThemeNames(): array
-    {
-        return array_keys($this->themes);
     }
 }

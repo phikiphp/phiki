@@ -59,7 +59,7 @@ final class ParsedGrammar implements PatternInterface
 
     public static function fromArray(array $grammar): ParsedGrammar
     {
-        $parser = new Parser;
+        $parser = new GrammarParser;
 
         return $parser->parse($grammar);
     }

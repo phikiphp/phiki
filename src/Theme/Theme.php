@@ -72,4 +72,9 @@ enum Theme: string
     {
         return $repository->get($this->value);
     }
+
+    public static function parse(array $theme): ParsedTheme
+    {
+        return (new ThemeParser)->parse($theme);
+    }
 }

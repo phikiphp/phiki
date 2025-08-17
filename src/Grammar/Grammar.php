@@ -128,7 +128,7 @@ enum Grammar: string
 
     public static function parse(array $grammar): ParsedGrammar
     {
-        return (new Parser)->parse($grammar);
+        return (new GrammarParser)->parse($grammar);
     }
 
     public function toParsedGrammar(GrammarRepositoryInterface $repository): ParsedGrammar

@@ -7,6 +7,7 @@ use Phiki\Generators\HtmlGenerator;
 use Phiki\Generators\TerminalGenerator;
 use Phiki\Grammar\Grammar;
 use Phiki\Grammar\ParsedGrammar;
+use Phiki\Highlighting\Highlighter;
 use Phiki\Support\Arr;
 use Phiki\Support\Str;
 use Phiki\TextMate\Tokenizer;

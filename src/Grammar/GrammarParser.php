@@ -18,7 +18,7 @@ use Phiki\Grammar\Injections\Scope;
 use Phiki\Grammar\Injections\Selector;
 use Phiki\Support\Regex;
 
-class Parser
+class GrammarParser
 {
     protected string $scopeName;
 

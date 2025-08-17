@@ -1,6 +1,7 @@
 <?php
 
 use Phiki\Theme\ParsedTheme;
+use Phiki\Theme\Theme;
 use Phiki\Theme\ThemeRepository;
 
 describe('ThemeRepository', function () {
@@ -34,12 +35,13 @@ describe('ThemeRepository', function () {
 
     it('can register a custom grammar using a grammar array', function () {
         $themeRepository = new ThemeRepository;
-        $themeRepository->register('example', ParsedTheme::fromArray([
+        $themeRepository->register('example', Theme::parse([
             'name' => 'example',
             'colors' => [
                 'editor.background' => '#000000',
                 'editor.foreground' => '#ffffff',
             ],
+            'tokenColors' => [],
         ]));
 
         $grammar = $themeRepository->get('example');

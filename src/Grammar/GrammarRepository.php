@@ -48,7 +48,7 @@ class GrammarRepository implements GrammarRepositoryInterface
             return $grammar;
         }
 
-        $parser = new Parser;
+        $parser = new GrammarParser;
 
         return $this->grammars[$name] = $parser->parse(json_decode(file_get_contents($grammar), true));
     }
@@ -75,11 +75,6 @@ class GrammarRepository implements GrammarRepositoryInterface
     public function register(string $name, string|ParsedGrammar $pathOrGrammar): void
     {
         $this->grammars[$name] = $pathOrGrammar;
-    }
-
-    public function getAllGrammarNames(): array
-    {
-        return array_keys($this->grammars);
     }
 
     public function addDetection(GrammarDetectionInterface $detection): void

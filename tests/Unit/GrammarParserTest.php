@@ -1,14 +1,14 @@
 <?php
 
-use Phiki\Grammar\Parser;
+use Phiki\Grammar\GrammarParser;
 
 describe('GrammarParser', function () {
     it('can be constructed', function () {
-        expect(new Parser)->toBeInstanceOf(Parser::class);
+        expect(new GrammarParser)->toBeInstanceOf(GrammarParser::class);
     });
 
     it('can parse a grammar file', function () {
-        $parser = new Parser;
+        $parser = new GrammarParser;
         $grammar = $parser->parse(json_decode(file_get_contents(__DIR__.'/../../resources/languages/php.json'), true));
 
         expect($grammar->scopeName)->toBe('source.php');
@@ -17,7 +17,7 @@ describe('GrammarParser', function () {
     });
 
     it('can parse a grammar file with injections', function () {
-        $parser = new Parser;
+        $parser = new GrammarParser;
         $grammar = $parser->parse(json_decode(file_get_contents(__DIR__.'/../../resources/languages/blade.json'), true));
 
         expect($grammar->scopeName)->toBe('text.html.php.blade');
@@ -26,7 +26,7 @@ describe('GrammarParser', function () {
     });
 
     it('marks injection patterns as injected ones', function () {
-        $parser = new Parser;
+        $parser = new GrammarParser;
         $grammar = $parser->parse(json_decode(file_get_contents(__DIR__.'/../../resources/languages/blade.json'), true));
 
         expect($grammar->scopeName)->toBe('text.html.php.blade');
