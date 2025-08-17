@@ -188,6 +188,7 @@ enum Grammar: string
     case SshConfig = 'ssh-config';
     case Stata = 'stata';
     case Stylus = 'stylus';
+    case Svelte = 'svelte';
     case Swift = 'swift';
     case SystemVerilog = 'system-verilog';
     case Systemd = 'systemd';
@@ -410,6 +411,7 @@ enum Grammar: string
             self::SshConfig => [],
             self::Stata => [],
             self::Stylus => ["styl"],
+            self::Svelte => [],
             self::Swift => [],
             self::SystemVerilog => [],
             self::Systemd => [],
@@ -636,6 +638,7 @@ enum Grammar: string
             self::SshConfig => 'source.ssh-config',
             self::Stata => 'source.stata',
             self::Stylus => 'source.stylus',
+            self::Svelte => 'source.svelte',
             self::Swift => 'source.swift',
             self::SystemVerilog => 'source.systemverilog',
             self::Systemd => 'source.systemd',

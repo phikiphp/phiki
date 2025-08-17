@@ -57,6 +57,10 @@
             "node meta/update-grammars-and-themes.js",
             "php meta/generate-vscode-token-dumps.php"
         ],
+        "update-grammars-and-themes:only": [
+            "Composer\\Config::disableProcessTimeout",
+            "node meta/update-grammars-and-themes.js"
+        ],
         "test": "@php -dmemory_limit=-1 vendor/bin/pest --enforce-time-limit --default-time-limit=1",
         "lint": "@php vendor/bin/phpstan"
     }
