@@ -41,14 +41,10 @@ class ParsedTheme
         // 3. If there's a tie, figure out how many ancestral matches there were and prefer the one with more ancestors.
         usort($matches, function (TokenColorMatchResult $a, TokenColorMatchResult $b): int {
             if ($a->scopeMatchResult->length !== $b->scopeMatchResult->length) {
-                return $b->scopeMatchResult->length <=> $a->scopeMatchResult->length;
+                return $b->scopeMatchResult->length - $a->scopeMatchResult->length;
             }
 
-            if ($b->scopeMatchResult->depth - $a->scopeMatchResult->depth !== 0) {
-                return $b->scopeMatchResult->depth <=> $a->scopeMatchResult->depth;
-            }
-
-            return $b->scopeMatchResult->ancestral <=> $a->scopeMatchResult->ancestral;
+            return $b->scopeMatchResult->ancestral - $a->scopeMatchResult->ancestral;
         });
 
         return TokenSettings::flatten(array_map(fn (TokenColorMatchResult $match) => $match->tokenColor->settings, $matches));
