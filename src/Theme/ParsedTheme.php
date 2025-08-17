@@ -36,10 +36,14 @@ class ParsedTheme
 
         // We need to sort the matches based on specificity.
         // The precedence logic based on `vscode-textmate` is:
-        // 1. The dot count of the matching scope selector -> more segments makes it more specific.
-        // 2. The depth of the match in the token's scope hierarchy -> deeper matches are more specific.
+        // 1. The depth of the match in the token's scope hierarchy -> deeper matches are more specific.
+        // 2. The dot count of the matching scope selector -> more segments makes it more specific.
         // 3. If there's a tie, figure out how many ancestral matches there were and prefer the one with more ancestors.
         usort($matches, function (TokenColorMatchResult $a, TokenColorMatchResult $b): int {
+            if ($a->scopeMatchResult->depth !== $b->scopeMatchResult->depth) {
+                return $b->scopeMatchResult->depth - $a->scopeMatchResult->depth;
+            }
+
             if ($a->scopeMatchResult->length !== $b->scopeMatchResult->length) {
                 return $b->scopeMatchResult->length - $a->scopeMatchResult->length;
             }

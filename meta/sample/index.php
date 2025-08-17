@@ -4,10 +4,21 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 use Phiki\Grammar\Grammar;
 use Phiki\Phiki;
 use Phiki\Theme\Theme;
+use Phiki\Token\Token;
 
 $grammar = Grammar::from($_GET['grammar'] ?? 'php');
 $theme = Theme::from($_GET['theme'] ?? 'github-light');
 $input = $_GET['input'] ?? '';
+$withVscodeTextmate = isset($_GET['with-vscode-textmate']) && $_GET['with-vscode-textmate'] === 'true';
+
+function generateVscodeTextmateTokens(string $input, Grammar $grammar): array
+{
+    $scopeName = $grammar->scopeName();
+    $output = shell_exec("node " . realpath(__DIR__ . '/../generate-vscode-textmate-tokens.mjs') . " " . escapeshellarg($input) . " " . escapeshellarg($scopeName));
+    $raw = json_decode($output, true);
+
+    return array_map(fn (array $line) => array_map(fn (array $token) => new Token($token['scopes'], $token['text'], $token['start'], $token['end']), $line), $raw);
+}
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +39,7 @@ $input = $_GET['input'] ?? '';
 
     <body class="flex-1 flex flex-col">
         <form class="flex flex-col gap-y-12 flex-1">
-            <div class="flex items-end gap-x-6">
+            <div class="flex gap-x-6">
                 <div class="flex flex-col gap-y-2">
                     <label for="grammar" class="text-sm font-medium">Grammar</label>
                     <select name="grammar" id="grammar" class="border border-neutral-300 h-10 w-64 rounded px-2">
@@ -53,7 +64,12 @@ $input = $_GET['input'] ?? '';
                     </select>
                 </div>
 
-                <button type="submit" class="h-10 px-4 bg-blue-500 border border-blue-600 hover:border-blue-700 text-white rounded hover:bg-blue-600 transition-colors">
+                <div class="flex items-center gap-x-2">
+                    <input type="checkbox" name="with-vscode-textmate" id="with-vscode-textmate" value="true" <?= $withVscodeTextmate ? 'checked' : '' ?>>
+                    <label for="with-vscode-textmate" class="text-sm font-medium">With <code>vscode-textmate</code> token dump</label>
+                </div>
+
+                <button type="submit" class="h-10 px-4 bg-blue-500 border border-blue-600 hover:border-blue-700 text-white rounded hover:bg-blue-600 transition-colors self-center">
                     Generate
                 </button>
             </div>
@@ -65,8 +81,15 @@ $input = $_GET['input'] ?? '';
                 </div>
             </div>
 
-            <div>
-                <?php dump((new Phiki)->codeToTokens($input, $grammar)) ?>
+            <div class="grid grid-cols-2 gap-x-12">
+                <!-- <div>
+                    <?php dump((new Phiki)->codeToTokens($input, $grammar)) ?>
+                    <?php dump((new Phiki)->codeToHighlightedTokens($input, $grammar, $theme)) ?>
+                </div> -->
+
+                <?php if ($withVscodeTextmate): ?>
+                    <?php dump(generateVscodeTextmateTokens($input, $grammar)) ?>
+                <?php endif; ?>
             </div>
         </form>
     </body>

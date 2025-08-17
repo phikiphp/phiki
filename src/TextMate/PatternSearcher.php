@@ -33,18 +33,17 @@ class PatternSearcher
             ? [
                 [$this->pattern, $this->pattern->while->get($this->allowA, $this->allowG)]
             ] : $this->pattern->compile($this->grammar, $this->grammars, $this->allowA, $this->allowG);
-        $subject = mb_substr($lineText, $linePos);
         $bestLocation = null;
         $bestLength = null;
         $bestMatches = null;
         $bestPattern = null;
 
         foreach ($patterns as [$pattern, $regex]) {
-            if (! @mb_ereg_search_init($subject, $regex)) {
+            if (! @mb_ereg_search_init($lineText, $regex)) {
                 continue;
             }
 
-            if (! mb_ereg_search_setpos(0)) {
+            if (! mb_ereg_search_setpos($linePos)) {
                 throw new FailedToSetSearchPositionException();
             }
 
@@ -82,13 +81,13 @@ class PatternSearcher
         // Since we know the start position and length of the match, we can
         // extract the relevant portion of the input string to reduce the
         // search grid for subsequent matches.
-        $substr = mb_substr($subject, $bestLocation, $bestLength);
+        $substr = mb_substr($lineText, $bestLocation, $bestLength);
         $keyToIndexMap = array_flip(array_keys($bestMatches));
 
         foreach ($bestMatches as $key => $match) {
             // The first match is the full match, so we can just use the start position.
             if ($key === 0) {
-                $bestMatches[$key] = [$match, $linePos + $bestLocation];
+                $bestMatches[$key] = [$match, $bestLocation];
                 continue;
             }
 
@@ -108,7 +107,7 @@ class PatternSearcher
             $pos = mb_strpos($substr, $match);
 
             // We can then store the value in the matches array with the adjusted position.
-            $bestMatches[$key] = [$match, $linePos + $bestLocation + $pos];
+            $bestMatches[$key] = [$match, $bestLocation + $pos];
         }
 
         return new MatchedPattern($bestPattern, $bestMatches);

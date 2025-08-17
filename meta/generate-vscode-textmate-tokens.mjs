@@ -1,6 +1,6 @@
 import fs from 'node:fs'
 import path from 'node:path'
-import vsctm from '../vscode-textmate/release/main.js'
+import vsctm from 'vscode-textmate'
 import oniguruma from 'vscode-oniguruma'
 
 const args = process.argv.slice(2);
@@ -12,6 +12,7 @@ if (args.length === 0) {
 
 const input = args[0];
 const scopeName = args[1];
+const quiet = args.includes('--quiet');
 
 const wasmBin = fs.readFileSync(
     path.join(import.meta.dirname, "../node_modules/vscode-oniguruma/release/onig.wasm")
@@ -48,7 +49,6 @@ const registry = new vsctm.Registry({
     onigLib: vscodeOnigurumaLib,
     loadGrammar: (scopeName) => {
         if (! grammars[scopeName]) {
-            console.log(`Unknown scope name: ${scopeName}`);
             return null;
         }
 
@@ -80,4 +80,6 @@ await registry.loadGrammar(scopeName).then(async (grammar) => {
     })
 })
 
-process.stdout.write(JSON.stringify(tokens, null, 4) + "\n")
+if (! quiet) {
+    process.stdout.write(JSON.stringify(tokens, null, 4) + "\n")
+}
