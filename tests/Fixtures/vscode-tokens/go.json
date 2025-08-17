@@ -1,0 +1,998 @@
+[
+    [
+        {
+            "scopes": [
+                "source.go",
+                "keyword.package.go"
+            ],
+            "text": "package",
+            "start": 0,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.go"
+            ],
+            "text": " ",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.go",
+                "entity.name.type.package.go"
+            ],
+            "text": "main",
+            "start": 8,
+            "end": 12
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.go"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.go",
+                "keyword.control.import.go"
+            ],
+            "text": "import",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.go"
+            ],
+            "text": " ",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.go",
+                "punctuation.definition.imports.begin.bracket.round.go"
+            ],
+            "text": "(",
+            "start": 7,
+            "end": 8
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.go"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.go",
+                "string.quoted.double.go",
+                "punctuation.definition.string.begin.go"
+            ],
+            "text": "\"",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.go",
+                "string.quoted.double.go"
+            ],
+            "text": "fmt",
+            "start": 5,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.go",
+                "string.quoted.double.go",
+                "punctuation.definition.string.end.go"
+            ],
+            "text": "\"",
+            "start": 8,
+            "end": 9
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.go"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.go",
+                "string.quoted.double.go",
+                "punctuation.definition.string.begin.go"
+            ],
+            "text": "\"",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.go",
+                "string.quoted.double.go"
+            ],
+            "text": "log",
+            "start": 5,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.go",
+                "string.quoted.double.go",
+                "punctuation.definition.string.end.go"
+            ],
+            "text": "\"",
+            "start": 8,
+            "end": 9
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.go"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.go",
+                "string.quoted.double.go",
+                "punctuation.definition.string.begin.go"
+            ],
+            "text": "\"",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.go",
+                "string.quoted.double.go"
+            ],
+            "text": "net/http",
+            "start": 5,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.go",
+                "string.quoted.double.go",
+                "punctuation.definition.string.end.go"
+            ],
+            "text": "\"",
+            "start": 13,
+            "end": 14
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.go"
+            ],
+            "text": ")",
+            "start": 0,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.go"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.go",
+                "keyword.function.go"
+            ],
+            "text": "func",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.go"
+            ],
+            "text": " ",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.go",
+                "entity.name.function.go"
+            ],
+            "text": "handler",
+            "start": 5,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.go",
+                "punctuation.definition.begin.bracket.round.go"
+            ],
+            "text": "(",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.go",
+                "variable.parameter.go"
+            ],
+            "text": "w",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.go"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.go",
+                "entity.name.type.go"
+            ],
+            "text": "http",
+            "start": 15,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.go",
+                "punctuation.other.period.go"
+            ],
+            "text": ".",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.go",
+                "entity.name.type.go"
+            ],
+            "text": "ResponseWriter",
+            "start": 20,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.go",
+                "punctuation.other.comma.go"
+            ],
+            "text": ",",
+            "start": 34,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.go"
+            ],
+            "text": " ",
+            "start": 35,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.go",
+                "variable.parameter.go"
+            ],
+            "text": "r",
+            "start": 36,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.go"
+            ],
+            "text": " ",
+            "start": 37,
+            "end": 38
+        },
+        {
+            "scopes": [
+                "source.go",
+                "keyword.operator.address.go"
+            ],
+            "text": "*",
+            "start": 38,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.go",
+                "entity.name.type.go"
+            ],
+            "text": "http",
+            "start": 39,
+            "end": 43
+        },
+        {
+            "scopes": [
+                "source.go",
+                "punctuation.other.period.go"
+            ],
+            "text": ".",
+            "start": 43,
+            "end": 44
+        },
+        {
+            "scopes": [
+                "source.go",
+                "entity.name.type.go"
+            ],
+            "text": "Request",
+            "start": 44,
+            "end": 51
+        },
+        {
+            "scopes": [
+                "source.go",
+                "punctuation.definition.end.bracket.round.go"
+            ],
+            "text": ")",
+            "start": 51,
+            "end": 52
+        },
+        {
+            "scopes": [
+                "source.go"
+            ],
+            "text": " ",
+            "start": 52,
+            "end": 53
+        },
+        {
+            "scopes": [
+                "source.go",
+                "punctuation.definition.begin.bracket.curly.go"
+            ],
+            "text": "{",
+            "start": 53,
+            "end": 54
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.go"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.go",
+                "variable.other.go"
+            ],
+            "text": "fmt",
+            "start": 4,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.go",
+                "punctuation.other.period.go"
+            ],
+            "text": ".",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.go",
+                "entity.name.function.support.go"
+            ],
+            "text": "Fprintf",
+            "start": 8,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.go",
+                "punctuation.definition.begin.bracket.round.go"
+            ],
+            "text": "(",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.go",
+                "variable.other.go"
+            ],
+            "text": "w",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.go",
+                "punctuation.other.comma.go"
+            ],
+            "text": ",",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.go"
+            ],
+            "text": " ",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.go",
+                "string.quoted.double.go",
+                "punctuation.definition.string.begin.go"
+            ],
+            "text": "\"",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.go",
+                "string.quoted.double.go"
+            ],
+            "text": "Hi there, I love ",
+            "start": 20,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.go",
+                "string.quoted.double.go",
+                "constant.other.placeholder.go"
+            ],
+            "text": "%s",
+            "start": 37,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.go",
+                "string.quoted.double.go"
+            ],
+            "text": "!",
+            "start": 39,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.go",
+                "string.quoted.double.go",
+                "punctuation.definition.string.end.go"
+            ],
+            "text": "\"",
+            "start": 40,
+            "end": 41
+        },
+        {
+            "scopes": [
+                "source.go",
+                "punctuation.other.comma.go"
+            ],
+            "text": ",",
+            "start": 41,
+            "end": 42
+        },
+        {
+            "scopes": [
+                "source.go"
+            ],
+            "text": " ",
+            "start": 42,
+            "end": 43
+        },
+        {
+            "scopes": [
+                "source.go",
+                "variable.other.go"
+            ],
+            "text": "r",
+            "start": 43,
+            "end": 44
+        },
+        {
+            "scopes": [
+                "source.go",
+                "punctuation.other.period.go"
+            ],
+            "text": ".",
+            "start": 44,
+            "end": 45
+        },
+        {
+            "scopes": [
+                "source.go",
+                "variable.other.go"
+            ],
+            "text": "URL",
+            "start": 45,
+            "end": 48
+        },
+        {
+            "scopes": [
+                "source.go",
+                "punctuation.other.period.go"
+            ],
+            "text": ".",
+            "start": 48,
+            "end": 49
+        },
+        {
+            "scopes": [
+                "source.go",
+                "variable.other.go"
+            ],
+            "text": "Path",
+            "start": 49,
+            "end": 53
+        },
+        {
+            "scopes": [
+                "source.go",
+                "punctuation.definition.begin.bracket.square.go"
+            ],
+            "text": "[",
+            "start": 53,
+            "end": 54
+        },
+        {
+            "scopes": [
+                "source.go",
+                "constant.numeric.decimal.go"
+            ],
+            "text": "1",
+            "start": 54,
+            "end": 55
+        },
+        {
+            "scopes": [
+                "source.go",
+                "punctuation.other.colon.go"
+            ],
+            "text": ":",
+            "start": 55,
+            "end": 56
+        },
+        {
+            "scopes": [
+                "source.go",
+                "punctuation.definition.end.bracket.square.go"
+            ],
+            "text": "]",
+            "start": 56,
+            "end": 57
+        },
+        {
+            "scopes": [
+                "source.go",
+                "punctuation.definition.end.bracket.round.go"
+            ],
+            "text": ")",
+            "start": 57,
+            "end": 58
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.go"
+            ],
+            "text": "}",
+            "start": 0,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.go"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.go",
+                "keyword.function.go"
+            ],
+            "text": "func",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.go"
+            ],
+            "text": " ",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.go",
+                "entity.name.function.go"
+            ],
+            "text": "main",
+            "start": 5,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.go",
+                "punctuation.definition.begin.bracket.round.go"
+            ],
+            "text": "(",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.go",
+                "punctuation.definition.end.bracket.round.go"
+            ],
+            "text": ")",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.go"
+            ],
+            "text": " ",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.go",
+                "punctuation.definition.begin.bracket.curly.go"
+            ],
+            "text": "{",
+            "start": 12,
+            "end": 13
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.go"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.go",
+                "variable.other.go"
+            ],
+            "text": "http",
+            "start": 4,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.go",
+                "punctuation.other.period.go"
+            ],
+            "text": ".",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.go",
+                "entity.name.function.support.go"
+            ],
+            "text": "HandleFunc",
+            "start": 9,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.go",
+                "punctuation.definition.begin.bracket.round.go"
+            ],
+            "text": "(",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.go",
+                "string.quoted.double.go",
+                "punctuation.definition.string.begin.go"
+            ],
+            "text": "\"",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.go",
+                "string.quoted.double.go"
+            ],
+            "text": "/",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.go",
+                "string.quoted.double.go",
+                "punctuation.definition.string.end.go"
+            ],
+            "text": "\"",
+            "start": 22,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.go",
+                "punctuation.other.comma.go"
+            ],
+            "text": ",",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.go"
+            ],
+            "text": " ",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.go",
+                "variable.other.go"
+            ],
+            "text": "handler",
+            "start": 25,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.go",
+                "punctuation.definition.end.bracket.round.go"
+            ],
+            "text": ")",
+            "start": 32,
+            "end": 33
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.go"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.go",
+                "variable.other.go"
+            ],
+            "text": "log",
+            "start": 4,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.go",
+                "punctuation.other.period.go"
+            ],
+            "text": ".",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.go",
+                "entity.name.function.support.go"
+            ],
+            "text": "Fatal",
+            "start": 8,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.go",
+                "punctuation.definition.begin.bracket.round.go"
+            ],
+            "text": "(",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.go",
+                "variable.other.go"
+            ],
+            "text": "http",
+            "start": 14,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.go",
+                "punctuation.other.period.go"
+            ],
+            "text": ".",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.go",
+                "entity.name.function.support.go"
+            ],
+            "text": "ListenAndServe",
+            "start": 19,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.go",
+                "punctuation.definition.begin.bracket.round.go"
+            ],
+            "text": "(",
+            "start": 33,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.go",
+                "string.quoted.double.go",
+                "punctuation.definition.string.begin.go"
+            ],
+            "text": "\"",
+            "start": 34,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.go",
+                "string.quoted.double.go"
+            ],
+            "text": ":8080",
+            "start": 35,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.go",
+                "string.quoted.double.go",
+                "punctuation.definition.string.end.go"
+            ],
+            "text": "\"",
+            "start": 40,
+            "end": 41
+        },
+        {
+            "scopes": [
+                "source.go",
+                "punctuation.other.comma.go"
+            ],
+            "text": ",",
+            "start": 41,
+            "end": 42
+        },
+        {
+            "scopes": [
+                "source.go"
+            ],
+            "text": " ",
+            "start": 42,
+            "end": 43
+        },
+        {
+            "scopes": [
+                "source.go",
+                "constant.language.null.go"
+            ],
+            "text": "nil",
+            "start": 43,
+            "end": 46
+        },
+        {
+            "scopes": [
+                "source.go",
+                "punctuation.definition.end.bracket.round.go"
+            ],
+            "text": ")",
+            "start": 46,
+            "end": 47
+        },
+        {
+            "scopes": [
+                "source.go",
+                "punctuation.definition.end.bracket.round.go"
+            ],
+            "text": ")",
+            "start": 47,
+            "end": 48
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.go"
+            ],
+            "text": "}",
+            "start": 0,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.go"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.go",
+                "comment.line.double-slash.go",
+                "punctuation.definition.comment.go"
+            ],
+            "text": "//",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.go",
+                "comment.line.double-slash.go"
+            ],
+            "text": " From https://golang.org/doc/articles/wiki/#tmp_3",
+            "start": 2,
+            "end": 51
+        }
+    ]
+]

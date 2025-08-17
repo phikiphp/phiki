@@ -1,0 +1,4173 @@
+[
+    [
+        {
+            "scopes": [
+                "source.c",
+                "meta.preprocessor.include.c",
+                "keyword.control.directive.include.c",
+                "punctuation.definition.directive.c"
+            ],
+            "text": "#",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.preprocessor.include.c",
+                "keyword.control.directive.include.c"
+            ],
+            "text": "include",
+            "start": 1,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.preprocessor.include.c"
+            ],
+            "text": " ",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.preprocessor.include.c",
+                "string.quoted.other.lt-gt.include.c",
+                "punctuation.definition.string.begin.c"
+            ],
+            "text": "<",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.preprocessor.include.c",
+                "string.quoted.other.lt-gt.include.c"
+            ],
+            "text": "stdio.h",
+            "start": 10,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.preprocessor.include.c",
+                "string.quoted.other.lt-gt.include.c",
+                "punctuation.definition.string.end.c"
+            ],
+            "text": ">",
+            "start": 17,
+            "end": 18
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.c",
+                "meta.preprocessor.macro.c",
+                "keyword.control.directive.define.c",
+                "punctuation.definition.directive.c"
+            ],
+            "text": "#",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.preprocessor.macro.c",
+                "keyword.control.directive.define.c"
+            ],
+            "text": "define",
+            "start": 1,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.preprocessor.macro.c"
+            ],
+            "text": " ",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.preprocessor.macro.c",
+                "entity.name.function.preprocessor.c"
+            ],
+            "text": "ARR_LEN",
+            "start": 8,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.preprocessor.macro.c"
+            ],
+            "text": " ",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.preprocessor.macro.c",
+                "constant.numeric.decimal.c"
+            ],
+            "text": "7",
+            "start": 16,
+            "end": 17
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.c",
+                "storage.type.built-in.primitive.c"
+            ],
+            "text": "void",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": " ",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "entity.name.function.c"
+            ],
+            "text": "qsort",
+            "start": 5,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.section.parameters.begin.bracket.round.c"
+            ],
+            "text": "(",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "storage.type.built-in.primitive.c"
+            ],
+            "text": "int",
+            "start": 11,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "variable.parameter.probably.c"
+            ],
+            "text": "v",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "storage.modifier.array.bracket.square.c"
+            ],
+            "text": "[]",
+            "start": 16,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.separator.delimiter.c"
+            ],
+            "text": ",",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": " ",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "storage.type.built-in.primitive.c"
+            ],
+            "text": "int",
+            "start": 20,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": " ",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "variable.parameter.probably.c"
+            ],
+            "text": "left",
+            "start": 24,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.separator.delimiter.c"
+            ],
+            "text": ",",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": " ",
+            "start": 29,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "storage.type.built-in.primitive.c"
+            ],
+            "text": "int",
+            "start": 30,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": " ",
+            "start": 33,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "variable.parameter.probably.c"
+            ],
+            "text": "right",
+            "start": 34,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.section.parameters.end.bracket.round.c"
+            ],
+            "text": ")",
+            "start": 39,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.c",
+                "punctuation.terminator.statement.c"
+            ],
+            "text": ";",
+            "start": 40,
+            "end": 41
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.c",
+                "storage.type.built-in.primitive.c"
+            ],
+            "text": "void",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": " ",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "entity.name.function.c"
+            ],
+            "text": "printArr",
+            "start": 5,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.section.parameters.begin.bracket.round.c"
+            ],
+            "text": "(",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "storage.type.built-in.primitive.c"
+            ],
+            "text": "int",
+            "start": 14,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": " ",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "variable.parameter.probably.c"
+            ],
+            "text": "v",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "storage.modifier.array.bracket.square.c"
+            ],
+            "text": "[]",
+            "start": 19,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.separator.delimiter.c"
+            ],
+            "text": ",",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": " ",
+            "start": 22,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "storage.type.built-in.primitive.c"
+            ],
+            "text": "int",
+            "start": 23,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": " ",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "variable.parameter.probably.c"
+            ],
+            "text": "len",
+            "start": 27,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.section.parameters.end.bracket.round.c"
+            ],
+            "text": ")",
+            "start": 30,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.c",
+                "punctuation.terminator.statement.c"
+            ],
+            "text": ";",
+            "start": 31,
+            "end": 32
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.c",
+                "storage.type.built-in.primitive.c"
+            ],
+            "text": "int",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": " ",
+            "start": 3,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "entity.name.function.c"
+            ],
+            "text": "main",
+            "start": 4,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.section.parameters.begin.bracket.round.c"
+            ],
+            "text": "(",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.section.parameters.end.bracket.round.c"
+            ],
+            "text": ")",
+            "start": 9,
+            "end": 10
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.c",
+                "meta.block.c",
+                "punctuation.section.block.begin.bracket.curly.c"
+            ],
+            "text": "{",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": "\t",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.c",
+                "storage.type.built-in.primitive.c"
+            ],
+            "text": "int",
+            "start": 1,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": " i",
+            "start": 4,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.c",
+                "punctuation.terminator.statement.c"
+            ],
+            "text": ";",
+            "start": 6,
+            "end": 7
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": "\t",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.c",
+                "storage.type.built-in.primitive.c"
+            ],
+            "text": "int",
+            "start": 1,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": " ",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.bracket.square.access.c",
+                "variable.object.c"
+            ],
+            "text": "v",
+            "start": 5,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.bracket.square.access.c",
+                "punctuation.definition.begin.bracket.square.c"
+            ],
+            "text": "[",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.bracket.square.access.c"
+            ],
+            "text": "ARR_LEN",
+            "start": 7,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.bracket.square.access.c",
+                "punctuation.definition.end.bracket.square.c"
+            ],
+            "text": "]",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": " ",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.c",
+                "keyword.operator.assignment.c"
+            ],
+            "text": "=",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": " ",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.block.c",
+                "punctuation.section.block.begin.bracket.curly.c"
+            ],
+            "text": "{",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.block.c"
+            ],
+            "text": " ",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.block.c",
+                "constant.numeric.decimal.c"
+            ],
+            "text": "4",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.block.c",
+                "punctuation.separator.delimiter.c"
+            ],
+            "text": ",",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.block.c"
+            ],
+            "text": " ",
+            "start": 22,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.block.c",
+                "constant.numeric.decimal.c"
+            ],
+            "text": "3",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.block.c",
+                "punctuation.separator.delimiter.c"
+            ],
+            "text": ",",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.block.c"
+            ],
+            "text": " ",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.block.c",
+                "constant.numeric.decimal.c"
+            ],
+            "text": "1",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.block.c",
+                "punctuation.separator.delimiter.c"
+            ],
+            "text": ",",
+            "start": 27,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.block.c"
+            ],
+            "text": " ",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.block.c",
+                "constant.numeric.decimal.c"
+            ],
+            "text": "7",
+            "start": 29,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.block.c",
+                "punctuation.separator.delimiter.c"
+            ],
+            "text": ",",
+            "start": 30,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.block.c"
+            ],
+            "text": " ",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.block.c",
+                "constant.numeric.decimal.c"
+            ],
+            "text": "9",
+            "start": 32,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.block.c",
+                "punctuation.separator.delimiter.c"
+            ],
+            "text": ",",
+            "start": 33,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.block.c"
+            ],
+            "text": " ",
+            "start": 34,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.block.c",
+                "constant.numeric.decimal.c"
+            ],
+            "text": "6",
+            "start": 35,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.block.c",
+                "punctuation.separator.delimiter.c"
+            ],
+            "text": ",",
+            "start": 36,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.block.c"
+            ],
+            "text": " ",
+            "start": 37,
+            "end": 38
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.block.c",
+                "constant.numeric.decimal.c"
+            ],
+            "text": "2",
+            "start": 38,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.block.c"
+            ],
+            "text": " ",
+            "start": 39,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.block.c",
+                "punctuation.section.block.end.bracket.curly.c"
+            ],
+            "text": "}",
+            "start": 40,
+            "end": 41
+        },
+        {
+            "scopes": [
+                "source.c",
+                "punctuation.terminator.statement.c"
+            ],
+            "text": ";",
+            "start": 41,
+            "end": 42
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": "\t",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "entity.name.function.c"
+            ],
+            "text": "printArr",
+            "start": 1,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.section.parameters.begin.bracket.round.c"
+            ],
+            "text": "(",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": "v",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.separator.delimiter.c"
+            ],
+            "text": ",",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": " ARR_LEN",
+            "start": 12,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.section.parameters.end.bracket.round.c"
+            ],
+            "text": ")",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.c",
+                "punctuation.terminator.statement.c"
+            ],
+            "text": ";",
+            "start": 21,
+            "end": 22
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": "\t",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "entity.name.function.c"
+            ],
+            "text": "qsort",
+            "start": 1,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.section.parameters.begin.bracket.round.c"
+            ],
+            "text": "(",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": "v",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.separator.delimiter.c"
+            ],
+            "text": ",",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": " ",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "constant.numeric.decimal.c"
+            ],
+            "text": "0",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.separator.delimiter.c"
+            ],
+            "text": ",",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": " ARR_LEN",
+            "start": 12,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "keyword.operator.c"
+            ],
+            "text": "-",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "constant.numeric.decimal.c"
+            ],
+            "text": "1",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.section.parameters.end.bracket.round.c"
+            ],
+            "text": ")",
+            "start": 22,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.c",
+                "punctuation.terminator.statement.c"
+            ],
+            "text": ";",
+            "start": 23,
+            "end": 24
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": "\t",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "entity.name.function.c"
+            ],
+            "text": "printArr",
+            "start": 1,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.section.parameters.begin.bracket.round.c"
+            ],
+            "text": "(",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": "v",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.separator.delimiter.c"
+            ],
+            "text": ",",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": " ARR_LEN",
+            "start": 12,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.section.parameters.end.bracket.round.c"
+            ],
+            "text": ")",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.c",
+                "punctuation.terminator.statement.c"
+            ],
+            "text": ";",
+            "start": 21,
+            "end": 22
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": "\t",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.c",
+                "keyword.control.c"
+            ],
+            "text": "return",
+            "start": 1,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": " ",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.c",
+                "constant.numeric.decimal.c"
+            ],
+            "text": "0",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.c",
+                "punctuation.terminator.statement.c"
+            ],
+            "text": ";",
+            "start": 9,
+            "end": 10
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": "}",
+            "start": 0,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.c",
+                "storage.type.built-in.primitive.c"
+            ],
+            "text": "void",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": " ",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "entity.name.function.c"
+            ],
+            "text": "qsort",
+            "start": 5,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.section.parameters.begin.bracket.round.c"
+            ],
+            "text": "(",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "storage.type.built-in.primitive.c"
+            ],
+            "text": "int",
+            "start": 11,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "variable.parameter.probably.c"
+            ],
+            "text": "v",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "storage.modifier.array.bracket.square.c"
+            ],
+            "text": "[]",
+            "start": 16,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.separator.delimiter.c"
+            ],
+            "text": ",",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": " ",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "storage.type.built-in.primitive.c"
+            ],
+            "text": "int",
+            "start": 20,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": " ",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "variable.parameter.probably.c"
+            ],
+            "text": "left",
+            "start": 24,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.separator.delimiter.c"
+            ],
+            "text": ",",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": " ",
+            "start": 29,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "storage.type.built-in.primitive.c"
+            ],
+            "text": "int",
+            "start": 30,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": " ",
+            "start": 33,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "variable.parameter.probably.c"
+            ],
+            "text": "right",
+            "start": 34,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.section.parameters.end.bracket.round.c"
+            ],
+            "text": ")",
+            "start": 39,
+            "end": 40
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.c",
+                "meta.block.c",
+                "punctuation.section.block.begin.bracket.curly.c"
+            ],
+            "text": "{",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": "\t",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.c",
+                "storage.type.built-in.primitive.c"
+            ],
+            "text": "int",
+            "start": 1,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": " i",
+            "start": 4,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.c",
+                "punctuation.separator.delimiter.c"
+            ],
+            "text": ",",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": " last",
+            "start": 7,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.c",
+                "punctuation.terminator.statement.c"
+            ],
+            "text": ";",
+            "start": 12,
+            "end": 13
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": "\t",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.c",
+                "storage.type.built-in.primitive.c"
+            ],
+            "text": "void",
+            "start": 1,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": " ",
+            "start": 5,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "entity.name.function.c"
+            ],
+            "text": "swap",
+            "start": 6,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.section.parameters.begin.bracket.round.c"
+            ],
+            "text": "(",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "storage.type.built-in.primitive.c"
+            ],
+            "text": "int",
+            "start": 11,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "variable.parameter.probably.c"
+            ],
+            "text": "v",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "storage.modifier.array.bracket.square.c"
+            ],
+            "text": "[]",
+            "start": 16,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.separator.delimiter.c"
+            ],
+            "text": ",",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": " ",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "storage.type.built-in.primitive.c"
+            ],
+            "text": "int",
+            "start": 20,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": " ",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "variable.parameter.probably.c"
+            ],
+            "text": "i",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.separator.delimiter.c"
+            ],
+            "text": ",",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": " ",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "storage.type.built-in.primitive.c"
+            ],
+            "text": "int",
+            "start": 27,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": " ",
+            "start": 30,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "variable.parameter.probably.c"
+            ],
+            "text": "j",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.section.parameters.end.bracket.round.c"
+            ],
+            "text": ")",
+            "start": 32,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.c",
+                "punctuation.terminator.statement.c"
+            ],
+            "text": ";",
+            "start": 33,
+            "end": 34
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": "\t",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.c",
+                "keyword.control.c"
+            ],
+            "text": "if",
+            "start": 1,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": " ",
+            "start": 3,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.parens.c",
+                "punctuation.section.parens.begin.bracket.round.c"
+            ],
+            "text": "(",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.parens.c"
+            ],
+            "text": "left ",
+            "start": 5,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.parens.c",
+                "keyword.operator.comparison.c"
+            ],
+            "text": ">=",
+            "start": 10,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.parens.c"
+            ],
+            "text": " right",
+            "start": 12,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.parens.c",
+                "punctuation.section.parens.end.bracket.round.c"
+            ],
+            "text": ")",
+            "start": 18,
+            "end": 19
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": "\t\t",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.c",
+                "keyword.control.c"
+            ],
+            "text": "return",
+            "start": 2,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.c",
+                "punctuation.terminator.statement.c"
+            ],
+            "text": ";",
+            "start": 8,
+            "end": 9
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": "\t",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "entity.name.function.c"
+            ],
+            "text": "swap",
+            "start": 1,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.section.parameters.begin.bracket.round.c"
+            ],
+            "text": "(",
+            "start": 5,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": "v",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.separator.delimiter.c"
+            ],
+            "text": ",",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": " left",
+            "start": 8,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.separator.delimiter.c"
+            ],
+            "text": ",",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.section.parens.begin.bracket.round.c"
+            ],
+            "text": "(",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": "left ",
+            "start": 16,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "keyword.operator.c"
+            ],
+            "text": "+",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": " right",
+            "start": 22,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.section.parens.end.bracket.round.c"
+            ],
+            "text": ")",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": " ",
+            "start": 29,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "keyword.operator.c"
+            ],
+            "text": "/",
+            "start": 30,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": " ",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "constant.numeric.decimal.c"
+            ],
+            "text": "2",
+            "start": 32,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.section.parameters.end.bracket.round.c"
+            ],
+            "text": ")",
+            "start": 33,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.c",
+                "punctuation.terminator.statement.c"
+            ],
+            "text": ";",
+            "start": 34,
+            "end": 35
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": "\tlast ",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.c",
+                "keyword.operator.assignment.c"
+            ],
+            "text": "=",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": " left",
+            "start": 7,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.c",
+                "punctuation.terminator.statement.c"
+            ],
+            "text": ";",
+            "start": 12,
+            "end": 13
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": "\t",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.c",
+                "keyword.control.c"
+            ],
+            "text": "for",
+            "start": 1,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": " ",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.parens.c",
+                "punctuation.section.parens.begin.bracket.round.c"
+            ],
+            "text": "(",
+            "start": 5,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.parens.c"
+            ],
+            "text": "i ",
+            "start": 6,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.parens.c",
+                "keyword.operator.assignment.c"
+            ],
+            "text": "=",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.parens.c"
+            ],
+            "text": " left",
+            "start": 9,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.parens.c",
+                "keyword.operator.c"
+            ],
+            "text": "+",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.parens.c",
+                "constant.numeric.decimal.c"
+            ],
+            "text": "1",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.parens.c",
+                "punctuation.terminator.statement.c"
+            ],
+            "text": ";",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.parens.c"
+            ],
+            "text": " i ",
+            "start": 17,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.parens.c",
+                "keyword.operator.comparison.c"
+            ],
+            "text": "<=",
+            "start": 20,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.parens.c"
+            ],
+            "text": " right",
+            "start": 22,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.parens.c",
+                "punctuation.terminator.statement.c"
+            ],
+            "text": ";",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.parens.c"
+            ],
+            "text": " i",
+            "start": 29,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.parens.c",
+                "keyword.operator.increment.c"
+            ],
+            "text": "++",
+            "start": 31,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.parens.c",
+                "punctuation.section.parens.end.bracket.round.c"
+            ],
+            "text": ")",
+            "start": 33,
+            "end": 34
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": "\t\t",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.c",
+                "keyword.control.c"
+            ],
+            "text": "if",
+            "start": 2,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": " ",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.parens.c",
+                "punctuation.section.parens.begin.bracket.round.c"
+            ],
+            "text": "(",
+            "start": 5,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.parens.c",
+                "meta.bracket.square.access.c",
+                "variable.object.c"
+            ],
+            "text": "v",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.parens.c",
+                "meta.bracket.square.access.c",
+                "punctuation.definition.begin.bracket.square.c"
+            ],
+            "text": "[",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.parens.c",
+                "meta.bracket.square.access.c"
+            ],
+            "text": "i",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.parens.c",
+                "meta.bracket.square.access.c",
+                "punctuation.definition.end.bracket.square.c"
+            ],
+            "text": "]",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.parens.c"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.parens.c",
+                "keyword.operator.comparison.c"
+            ],
+            "text": "<",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.parens.c"
+            ],
+            "text": " ",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.parens.c",
+                "meta.bracket.square.access.c",
+                "variable.object.c"
+            ],
+            "text": "v",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.parens.c",
+                "meta.bracket.square.access.c",
+                "punctuation.definition.begin.bracket.square.c"
+            ],
+            "text": "[",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.parens.c",
+                "meta.bracket.square.access.c"
+            ],
+            "text": "left",
+            "start": 15,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.parens.c",
+                "meta.bracket.square.access.c",
+                "punctuation.definition.end.bracket.square.c"
+            ],
+            "text": "]",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.parens.c",
+                "punctuation.section.parens.end.bracket.round.c"
+            ],
+            "text": ")",
+            "start": 20,
+            "end": 21
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": "\t\t\t",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "entity.name.function.c"
+            ],
+            "text": "swap",
+            "start": 3,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.section.parameters.begin.bracket.round.c"
+            ],
+            "text": "(",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": "v",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.separator.delimiter.c"
+            ],
+            "text": ",",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "keyword.operator.increment.c"
+            ],
+            "text": "++",
+            "start": 11,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": "last",
+            "start": 13,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.separator.delimiter.c"
+            ],
+            "text": ",",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": " i",
+            "start": 18,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.section.parameters.end.bracket.round.c"
+            ],
+            "text": ")",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.c",
+                "punctuation.terminator.statement.c"
+            ],
+            "text": ";",
+            "start": 21,
+            "end": 22
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": "\t",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "entity.name.function.c"
+            ],
+            "text": "swap",
+            "start": 1,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.section.parameters.begin.bracket.round.c"
+            ],
+            "text": "(",
+            "start": 5,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": "v",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.separator.delimiter.c"
+            ],
+            "text": ",",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": " left",
+            "start": 8,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.separator.delimiter.c"
+            ],
+            "text": ",",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": " last",
+            "start": 14,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.section.parameters.end.bracket.round.c"
+            ],
+            "text": ")",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.c",
+                "punctuation.terminator.statement.c"
+            ],
+            "text": ";",
+            "start": 20,
+            "end": 21
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": "\t",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "entity.name.function.c"
+            ],
+            "text": "qsort",
+            "start": 1,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.section.parameters.begin.bracket.round.c"
+            ],
+            "text": "(",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": "v",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.separator.delimiter.c"
+            ],
+            "text": ",",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": " left",
+            "start": 9,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.separator.delimiter.c"
+            ],
+            "text": ",",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": " last",
+            "start": 15,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "keyword.operator.c"
+            ],
+            "text": "-",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "constant.numeric.decimal.c"
+            ],
+            "text": "1",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.section.parameters.end.bracket.round.c"
+            ],
+            "text": ")",
+            "start": 22,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.c",
+                "punctuation.terminator.statement.c"
+            ],
+            "text": ";",
+            "start": 23,
+            "end": 24
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": "\t",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "entity.name.function.c"
+            ],
+            "text": "qsort",
+            "start": 1,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.section.parameters.begin.bracket.round.c"
+            ],
+            "text": "(",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": "v",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.separator.delimiter.c"
+            ],
+            "text": ",",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": " last",
+            "start": 9,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "keyword.operator.c"
+            ],
+            "text": "+",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "constant.numeric.decimal.c"
+            ],
+            "text": "1",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.separator.delimiter.c"
+            ],
+            "text": ",",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": " right",
+            "start": 17,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.section.parameters.end.bracket.round.c"
+            ],
+            "text": ")",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.c",
+                "punctuation.terminator.statement.c"
+            ],
+            "text": ";",
+            "start": 24,
+            "end": 25
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": "}",
+            "start": 0,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.c",
+                "storage.type.built-in.primitive.c"
+            ],
+            "text": "void",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": " ",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "entity.name.function.c"
+            ],
+            "text": "swap",
+            "start": 5,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.section.parameters.begin.bracket.round.c"
+            ],
+            "text": "(",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "storage.type.built-in.primitive.c"
+            ],
+            "text": "int",
+            "start": 10,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": " ",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "variable.parameter.probably.c"
+            ],
+            "text": "v",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "storage.modifier.array.bracket.square.c"
+            ],
+            "text": "[]",
+            "start": 15,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.separator.delimiter.c"
+            ],
+            "text": ",",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": " ",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "storage.type.built-in.primitive.c"
+            ],
+            "text": "int",
+            "start": 19,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": " ",
+            "start": 22,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "variable.parameter.probably.c"
+            ],
+            "text": "i",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.separator.delimiter.c"
+            ],
+            "text": ",",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": " ",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "storage.type.built-in.primitive.c"
+            ],
+            "text": "int",
+            "start": 26,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": " ",
+            "start": 29,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "variable.parameter.probably.c"
+            ],
+            "text": "j",
+            "start": 30,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.section.parameters.end.bracket.round.c"
+            ],
+            "text": ")",
+            "start": 31,
+            "end": 32
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.c",
+                "meta.block.c",
+                "punctuation.section.block.begin.bracket.curly.c"
+            ],
+            "text": "{",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": "\t",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.c",
+                "storage.type.built-in.primitive.c"
+            ],
+            "text": "int",
+            "start": 1,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": " temp",
+            "start": 4,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.c",
+                "punctuation.terminator.statement.c"
+            ],
+            "text": ";",
+            "start": 9,
+            "end": 10
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": "\ttemp ",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.c",
+                "keyword.operator.assignment.c"
+            ],
+            "text": "=",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": " ",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.bracket.square.access.c",
+                "variable.object.c"
+            ],
+            "text": "v",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.bracket.square.access.c",
+                "punctuation.definition.begin.bracket.square.c"
+            ],
+            "text": "[",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.bracket.square.access.c"
+            ],
+            "text": "i",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.bracket.square.access.c",
+                "punctuation.definition.end.bracket.square.c"
+            ],
+            "text": "]",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.c",
+                "punctuation.terminator.statement.c"
+            ],
+            "text": ";",
+            "start": 12,
+            "end": 13
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": "\t",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.bracket.square.access.c",
+                "variable.object.c"
+            ],
+            "text": "v",
+            "start": 1,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.bracket.square.access.c",
+                "punctuation.definition.begin.bracket.square.c"
+            ],
+            "text": "[",
+            "start": 2,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.bracket.square.access.c"
+            ],
+            "text": "i",
+            "start": 3,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.bracket.square.access.c",
+                "punctuation.definition.end.bracket.square.c"
+            ],
+            "text": "]",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": " ",
+            "start": 5,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.c",
+                "keyword.operator.assignment.c"
+            ],
+            "text": "=",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": " ",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.bracket.square.access.c",
+                "variable.object.c"
+            ],
+            "text": "v",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.bracket.square.access.c",
+                "punctuation.definition.begin.bracket.square.c"
+            ],
+            "text": "[",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.bracket.square.access.c"
+            ],
+            "text": "j",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.bracket.square.access.c",
+                "punctuation.definition.end.bracket.square.c"
+            ],
+            "text": "]",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.c",
+                "punctuation.terminator.statement.c"
+            ],
+            "text": ";",
+            "start": 12,
+            "end": 13
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": "\t",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.bracket.square.access.c",
+                "variable.object.c"
+            ],
+            "text": "v",
+            "start": 1,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.bracket.square.access.c",
+                "punctuation.definition.begin.bracket.square.c"
+            ],
+            "text": "[",
+            "start": 2,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.bracket.square.access.c"
+            ],
+            "text": "j",
+            "start": 3,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.bracket.square.access.c",
+                "punctuation.definition.end.bracket.square.c"
+            ],
+            "text": "]",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": " ",
+            "start": 5,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.c",
+                "keyword.operator.assignment.c"
+            ],
+            "text": "=",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": " temp",
+            "start": 7,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.c",
+                "punctuation.terminator.statement.c"
+            ],
+            "text": ";",
+            "start": 12,
+            "end": 13
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": "}",
+            "start": 0,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.c",
+                "storage.type.built-in.primitive.c"
+            ],
+            "text": "void",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": " ",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "entity.name.function.c"
+            ],
+            "text": "printArr",
+            "start": 5,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.section.parameters.begin.bracket.round.c"
+            ],
+            "text": "(",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "storage.type.built-in.primitive.c"
+            ],
+            "text": "int",
+            "start": 14,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": " ",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "variable.parameter.probably.c"
+            ],
+            "text": "v",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "storage.modifier.array.bracket.square.c"
+            ],
+            "text": "[]",
+            "start": 19,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.separator.delimiter.c"
+            ],
+            "text": ",",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": " ",
+            "start": 22,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "storage.type.built-in.primitive.c"
+            ],
+            "text": "int",
+            "start": 23,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": " ",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "variable.parameter.probably.c"
+            ],
+            "text": "len",
+            "start": 27,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.section.parameters.end.bracket.round.c"
+            ],
+            "text": ")",
+            "start": 30,
+            "end": 31
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.c",
+                "meta.block.c",
+                "punctuation.section.block.begin.bracket.curly.c"
+            ],
+            "text": "{",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": "\t",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.c",
+                "storage.type.built-in.primitive.c"
+            ],
+            "text": "int",
+            "start": 1,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": " i",
+            "start": 4,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.c",
+                "punctuation.terminator.statement.c"
+            ],
+            "text": ";",
+            "start": 6,
+            "end": 7
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": "\t",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.c",
+                "keyword.control.c"
+            ],
+            "text": "for",
+            "start": 1,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": " ",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.parens.c",
+                "punctuation.section.parens.begin.bracket.round.c"
+            ],
+            "text": "(",
+            "start": 5,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.parens.c"
+            ],
+            "text": "i ",
+            "start": 6,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.parens.c",
+                "keyword.operator.assignment.c"
+            ],
+            "text": "=",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.parens.c"
+            ],
+            "text": " ",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.parens.c",
+                "constant.numeric.decimal.c"
+            ],
+            "text": "0",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.parens.c",
+                "punctuation.terminator.statement.c"
+            ],
+            "text": ";",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.parens.c"
+            ],
+            "text": " i ",
+            "start": 12,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.parens.c",
+                "keyword.operator.comparison.c"
+            ],
+            "text": "<",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.parens.c"
+            ],
+            "text": " len",
+            "start": 16,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.parens.c",
+                "punctuation.terminator.statement.c"
+            ],
+            "text": ";",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.parens.c"
+            ],
+            "text": " i",
+            "start": 21,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.parens.c",
+                "keyword.operator.increment.c"
+            ],
+            "text": "++",
+            "start": 23,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.parens.c",
+                "punctuation.section.parens.end.bracket.round.c"
+            ],
+            "text": ")",
+            "start": 25,
+            "end": 26
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": "\t\t",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "entity.name.function.c"
+            ],
+            "text": "printf",
+            "start": 2,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.section.parameters.begin.bracket.round.c"
+            ],
+            "text": "(",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "string.quoted.double.c",
+                "punctuation.definition.string.begin.c"
+            ],
+            "text": "\"",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "string.quoted.double.c",
+                "constant.other.placeholder.c"
+            ],
+            "text": "%d",
+            "start": 10,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "string.quoted.double.c"
+            ],
+            "text": " ",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "string.quoted.double.c",
+                "punctuation.definition.string.end.c"
+            ],
+            "text": "\"",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.separator.delimiter.c"
+            ],
+            "text": ",",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c"
+            ],
+            "text": " ",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "meta.bracket.square.access.c",
+                "variable.object.c"
+            ],
+            "text": "v",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "meta.bracket.square.access.c",
+                "punctuation.definition.begin.bracket.square.c"
+            ],
+            "text": "[",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "meta.bracket.square.access.c"
+            ],
+            "text": "i",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "meta.bracket.square.access.c",
+                "punctuation.definition.end.bracket.square.c"
+            ],
+            "text": "]",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.section.parameters.end.bracket.round.c"
+            ],
+            "text": ")",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.c",
+                "punctuation.terminator.statement.c"
+            ],
+            "text": ";",
+            "start": 21,
+            "end": 22
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": "\t",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "entity.name.function.c"
+            ],
+            "text": "printf",
+            "start": 1,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.section.parameters.begin.bracket.round.c"
+            ],
+            "text": "(",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "string.quoted.double.c",
+                "punctuation.definition.string.begin.c"
+            ],
+            "text": "\"",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "string.quoted.double.c",
+                "constant.character.escape.c"
+            ],
+            "text": "\\n",
+            "start": 9,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "string.quoted.double.c",
+                "punctuation.definition.string.end.c"
+            ],
+            "text": "\"",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.c",
+                "meta.function.c",
+                "meta.function.definition.parameters.c",
+                "punctuation.section.parameters.end.bracket.round.c"
+            ],
+            "text": ")",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.c",
+                "punctuation.terminator.statement.c"
+            ],
+            "text": ";",
+            "start": 13,
+            "end": 14
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": "}",
+            "start": 0,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.c"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.c",
+                "comment.line.double-slash.c",
+                "punctuation.definition.comment.c"
+            ],
+            "text": "//",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.c",
+                "comment.line.double-slash.c"
+            ],
+            "text": " From https://github.com/Heatwave/The-C-Programming-Language-2nd-Edition/blob/master/chapter-4-functions-and-program-structure/8.qsort.c",
+            "start": 2,
+            "end": 138
+        }
+    ]
+]

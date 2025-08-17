@@ -1,0 +1,1843 @@
+[
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.package-decl.wit",
+                "storage.modifier.package-decl.wit"
+            ],
+            "text": "package",
+            "start": 0,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.package-decl.wit"
+            ],
+            "text": " ",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.package-decl.wit",
+                "meta.id.package-decl.wit",
+                "meta.package-identifier.wit",
+                "entity.name.namespace.package-identifier.wit",
+                "entity.name.type.id.wit"
+            ],
+            "text": "local",
+            "start": 8,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.package-decl.wit",
+                "meta.id.package-decl.wit",
+                "meta.package-identifier.wit",
+                "keyword.operator.namespace.package-identifier.wit"
+            ],
+            "text": ":",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.package-decl.wit",
+                "meta.id.package-decl.wit",
+                "meta.package-identifier.wit",
+                "entity.name.type.package-identifier.wit",
+                "entity.name.type.id.wit"
+            ],
+            "text": "demo",
+            "start": 14,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.package-decl.wit",
+                "meta.id.package-decl.wit",
+                "meta.package-identifier.wit",
+                "entity.name.type.package-identifier.wit"
+            ],
+            "text": ";",
+            "start": 18,
+            "end": 19
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "comment.line.double-slash.wit"
+            ],
+            "text": "// An example interface.",
+            "start": 0,
+            "end": 24
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "keyword.declaration.interface.interface-item.wit",
+                "storage.type.wit"
+            ],
+            "text": "interface",
+            "start": 0,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit"
+            ],
+            "text": " ",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "entity.name.type.id.interface-item.wit"
+            ],
+            "text": "shared",
+            "start": 10,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit"
+            ],
+            "text": " ",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "punctuation.brackets.curly.begin.wit"
+            ],
+            "text": "{",
+            "start": 17,
+            "end": 18
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "comment.line.double-slash.wit"
+            ],
+            "text": "    // Examples of various types:",
+            "start": 0,
+            "end": 33
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "record",
+            "start": 4,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "metadata",
+            "start": 11,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "{",
+            "start": 20,
+            "end": 21
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "a:",
+            "start": 8,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "u32,",
+            "start": 11,
+            "end": 15
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "b:",
+            "start": 8,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "string,",
+            "start": 11,
+            "end": 18
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "}",
+            "start": 4,
+            "end": 5
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "enum",
+            "start": 4,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "errno",
+            "start": 9,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "{",
+            "start": 15,
+            "end": 16
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "too-big,",
+            "start": 8,
+            "end": 16
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "too-small,",
+            "start": 8,
+            "end": 18
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "}",
+            "start": 4,
+            "end": 5
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "comment.line.double-slash.wit"
+            ],
+            "text": "    // Use `%` to name something after a keyword.",
+            "start": 0,
+            "end": 49
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "variant",
+            "start": 4,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "%variant",
+            "start": 12,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "{",
+            "start": 21,
+            "end": 22
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "baby,",
+            "start": 8,
+            "end": 13
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "child(u32),",
+            "start": 8,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "comment.line.double-slash.wit"
+            ],
+            "text": " // optional type payload",
+            "start": 19,
+            "end": 44
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "adult,",
+            "start": 8,
+            "end": 14
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "}",
+            "start": 4,
+            "end": 5
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "flags",
+            "start": 4,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "permissions",
+            "start": 10,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "{",
+            "start": 22,
+            "end": 23
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "read,",
+            "start": 8,
+            "end": 13
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "write,",
+            "start": 8,
+            "end": 14
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "}",
+            "start": 4,
+            "end": 5
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "resource",
+            "start": 4,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "blob",
+            "start": 13,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "{",
+            "start": 18,
+            "end": 19
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "constructor(init:",
+            "start": 8,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "list<u8>);",
+            "start": 26,
+            "end": 36
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "write:",
+            "start": 8,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "func(bytes:",
+            "start": 15,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "list<u8>);",
+            "start": 27,
+            "end": 37
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "read:",
+            "start": 8,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "func(n:",
+            "start": 14,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "u32)",
+            "start": 22,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "->",
+            "start": 27,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 29,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "list<u8>;",
+            "start": 30,
+            "end": 39
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "merge:",
+            "start": 8,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "static",
+            "start": 15,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "func(lhs:",
+            "start": 22,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "borrow<blob>,",
+            "start": 32,
+            "end": 45
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 45,
+            "end": 46
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "rhs:",
+            "start": 46,
+            "end": 50
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 50,
+            "end": 51
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "borrow<blob>)",
+            "start": 51,
+            "end": 64
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 64,
+            "end": 65
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "->",
+            "start": 65,
+            "end": 67
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 67,
+            "end": 68
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "blob;",
+            "start": 68,
+            "end": 73
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "}",
+            "start": 4,
+            "end": 5
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "}",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "keyword.declaration.interface.interface-item.wit",
+                "storage.type.wit"
+            ],
+            "text": "interface",
+            "start": 0,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit"
+            ],
+            "text": " ",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "entity.name.type.id.interface-item.wit"
+            ],
+            "text": "dependent-interface",
+            "start": 10,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit"
+            ],
+            "text": " ",
+            "start": 29,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.interface-item.wit",
+                "punctuation.brackets.curly.begin.wit"
+            ],
+            "text": "{",
+            "start": 30,
+            "end": 31
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "use",
+            "start": 4,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "shared.{metadata};",
+            "start": 8,
+            "end": 26
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "type",
+            "start": 4,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "aliased-metadata",
+            "start": 9,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "=",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 27,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "metadata;",
+            "start": 28,
+            "end": 37
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "foo:",
+            "start": 4,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "func()",
+            "start": 9,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "->",
+            "start": 16,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "aliased-metadata;",
+            "start": 19,
+            "end": 36
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "}",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "comment.line.double-slash.wit"
+            ],
+            "text": "// An example world.",
+            "start": 0,
+            "end": 20
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "keyword.declaration.world.world-item.wit",
+                "storage.type.wit"
+            ],
+            "text": "world",
+            "start": 0,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit"
+            ],
+            "text": " ",
+            "start": 5,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "entity.name.type.id.world-item.wit"
+            ],
+            "text": "my-world",
+            "start": 6,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.world-item.wit",
+                "punctuation.brackets.curly.begin.wit"
+            ],
+            "text": "{",
+            "start": 15,
+            "end": 16
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "import",
+            "start": 4,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "host:",
+            "start": 11,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "interface",
+            "start": 17,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "{",
+            "start": 27,
+            "end": 28
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "log:",
+            "start": 8,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "func(param:",
+            "start": 13,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "string);",
+            "start": 25,
+            "end": 33
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "}",
+            "start": 4,
+            "end": 5
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "import",
+            "start": 4,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "wasi:clocks/monotonic-clock;",
+            "start": 11,
+            "end": 39
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "export",
+            "start": 4,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "wasi:cli/run;",
+            "start": 11,
+            "end": 24
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "export",
+            "start": 4,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "run:",
+            "start": 11,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "func(x:",
+            "start": 16,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "u32)",
+            "start": 24,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "->",
+            "start": 29,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.wit",
+                "meta.whitespace.wit"
+            ],
+            "text": " ",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "list<string>;",
+            "start": 32,
+            "end": 45
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "}",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit",
+                "comment.line.double-slash.wit"
+            ],
+            "text": "// Mostly inspired by https://component-model.bytecodealliance.org/design/wit.html",
+            "start": 0,
+            "end": 82
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wit"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ]
+]

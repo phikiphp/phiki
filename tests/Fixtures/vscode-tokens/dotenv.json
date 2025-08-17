@@ -1,0 +1,357 @@
+[
+    [
+        {
+            "scopes": [
+                "source.dotenv",
+                "comment.line.dotenv"
+            ],
+            "text": "# This is a super secret env var",
+            "start": 0,
+            "end": 32
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.dotenv",
+                "variable.key.dotenv"
+            ],
+            "text": "MY_SECRET",
+            "start": 0,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.dotenv",
+                "keyword.operator.assignment.dotenv"
+            ],
+            "text": "=",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.dotenv",
+                "property.value.dotenv",
+                "string.quoted.double.dotenv"
+            ],
+            "text": "\"",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.dotenv",
+                "property.value.dotenv",
+                "string.quoted.double.dotenv"
+            ],
+            "text": "superSecret",
+            "start": 11,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.dotenv",
+                "property.value.dotenv",
+                "string.quoted.double.dotenv"
+            ],
+            "text": "\"",
+            "start": 22,
+            "end": 23
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.dotenv",
+                "variable.key.dotenv"
+            ],
+            "text": "MY_EXTENDED_SECRET",
+            "start": 0,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.dotenv",
+                "keyword.operator.assignment.dotenv"
+            ],
+            "text": "=",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.dotenv",
+                "property.value.dotenv",
+                "keyword.interpolation.begin.dotenv"
+            ],
+            "text": "${",
+            "start": 19,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.dotenv",
+                "property.value.dotenv",
+                "variable.interpolation.dotenv"
+            ],
+            "text": "MY_SECRET",
+            "start": 21,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.dotenv",
+                "property.value.dotenv",
+                "keyword.interpolation.end.dotenv"
+            ],
+            "text": "}",
+            "start": 30,
+            "end": 31
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.dotenv",
+                "variable.key.dotenv"
+            ],
+            "text": "MY_NOT_EXTENDED_SECRET",
+            "start": 0,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.dotenv",
+                "keyword.operator.assignment.dotenv"
+            ],
+            "text": "=",
+            "start": 22,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.dotenv",
+                "property.value.dotenv"
+            ],
+            "text": "$MY_SECRET",
+            "start": 23,
+            "end": 33
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.dotenv",
+                "variable.key.dotenv"
+            ],
+            "text": "MY_STRING_WITHOUT_QUOTES",
+            "start": 0,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.dotenv",
+                "keyword.operator.assignment.dotenv"
+            ],
+            "text": "=",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.dotenv",
+                "property.value.dotenv"
+            ],
+            "text": "helloWorld",
+            "start": 25,
+            "end": 35
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.dotenv",
+                "variable.key.dotenv"
+            ],
+            "text": "MY_NUMER",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.dotenv",
+                "keyword.operator.assignment.dotenv"
+            ],
+            "text": "=",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.dotenv",
+                "property.value.dotenv"
+            ],
+            "text": "1",
+            "start": 9,
+            "end": 10
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.dotenv"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.dotenv",
+                "variable.key.dotenv"
+            ],
+            "text": "EMPTY",
+            "start": 0,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.dotenv",
+                "keyword.operator.assignment.dotenv"
+            ],
+            "text": "=",
+            "start": 5,
+            "end": 6
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.dotenv"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.dotenv",
+                "variable.key.dotenv"
+            ],
+            "text": "IS_BOOLEAN",
+            "start": 0,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.dotenv",
+                "keyword.operator.assignment.dotenv"
+            ],
+            "text": "=",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.dotenv",
+                "property.value.dotenv"
+            ],
+            "text": "true",
+            "start": 11,
+            "end": 15
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.dotenv",
+                "variable.key.dotenv"
+            ],
+            "text": "IS_PYTHON_BOOLEAN",
+            "start": 0,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.dotenv",
+                "keyword.operator.assignment.dotenv"
+            ],
+            "text": "=",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.dotenv",
+                "property.value.dotenv"
+            ],
+            "text": "True",
+            "start": 18,
+            "end": 22
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.dotenv"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.dotenv",
+                "variable.key.dotenv"
+            ],
+            "text": "COMMENT_INLINE",
+            "start": 0,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.dotenv",
+                "keyword.operator.assignment.dotenv"
+            ],
+            "text": "=",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.dotenv",
+                "property.value.dotenv"
+            ],
+            "text": " ",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.dotenv",
+                "property.value.dotenv",
+                "comment.line.dotenv"
+            ],
+            "text": "# kinda cool",
+            "start": 16,
+            "end": 28
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.dotenv"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ]
+]

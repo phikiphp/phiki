@@ -1,0 +1,1848 @@
+[
+    [
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "meta.block.hcl",
+                "entity.name.type.terraform"
+            ],
+            "text": "resource",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "meta.block.hcl"
+            ],
+            "text": " ",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "meta.block.hcl",
+                "variable.other.enummember.hcl"
+            ],
+            "text": "\"aws_iam_role\"",
+            "start": 9,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "meta.block.hcl"
+            ],
+            "text": " ",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "meta.block.hcl",
+                "variable.other.enummember.hcl"
+            ],
+            "text": "\"example\"",
+            "start": 24,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "meta.block.hcl"
+            ],
+            "text": " ",
+            "start": 33,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "meta.block.hcl",
+                "punctuation.section.block.begin.hcl"
+            ],
+            "text": "{",
+            "start": 34,
+            "end": 35
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl.terraform"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "variable.declaration.hcl",
+                "variable.other.readwrite.hcl"
+            ],
+            "text": "name",
+            "start": 2,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "variable.declaration.hcl"
+            ],
+            "text": " ",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "variable.declaration.hcl",
+                "keyword.operator.assignment.hcl"
+            ],
+            "text": "=",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "variable.declaration.hcl"
+            ],
+            "text": " ",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "string.quoted.double.hcl",
+                "punctuation.definition.string.begin.hcl"
+            ],
+            "text": "\"",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "string.quoted.double.hcl"
+            ],
+            "text": "example",
+            "start": 10,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "string.quoted.double.hcl",
+                "punctuation.definition.string.end.hcl"
+            ],
+            "text": "\"",
+            "start": 17,
+            "end": 18
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl.terraform"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl.terraform"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "comment.line.number-sign.hcl",
+                "punctuation.definition.comment.hcl"
+            ],
+            "text": "#",
+            "start": 2,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "comment.line.number-sign.hcl"
+            ],
+            "text": " assume_role_policy is omitted for brevity in this example. Refer to the",
+            "start": 3,
+            "end": 75
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl.terraform"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "comment.line.number-sign.hcl",
+                "punctuation.definition.comment.hcl"
+            ],
+            "text": "#",
+            "start": 2,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "comment.line.number-sign.hcl"
+            ],
+            "text": " documentation for aws_iam_role for a complete example.",
+            "start": 3,
+            "end": 58
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl.terraform"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "variable.declaration.hcl",
+                "variable.other.readwrite.hcl"
+            ],
+            "text": "assume_role_policy",
+            "start": 2,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "variable.declaration.hcl"
+            ],
+            "text": " ",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "variable.declaration.hcl",
+                "keyword.operator.assignment.hcl"
+            ],
+            "text": "=",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "variable.declaration.hcl"
+            ],
+            "text": " ",
+            "start": 22,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "string.quoted.double.hcl",
+                "punctuation.definition.string.begin.hcl"
+            ],
+            "text": "\"",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "string.quoted.double.hcl"
+            ],
+            "text": "...",
+            "start": 24,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "string.quoted.double.hcl",
+                "punctuation.definition.string.end.hcl"
+            ],
+            "text": "\"",
+            "start": 27,
+            "end": 28
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl.terraform"
+            ],
+            "text": "}",
+            "start": 0,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl.terraform"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "meta.block.hcl",
+                "entity.name.type.terraform"
+            ],
+            "text": "resource",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "meta.block.hcl"
+            ],
+            "text": " ",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "meta.block.hcl",
+                "variable.other.enummember.hcl"
+            ],
+            "text": "\"aws_iam_instance_profile\"",
+            "start": 9,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "meta.block.hcl"
+            ],
+            "text": " ",
+            "start": 35,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "meta.block.hcl",
+                "variable.other.enummember.hcl"
+            ],
+            "text": "\"example\"",
+            "start": 36,
+            "end": 45
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "meta.block.hcl"
+            ],
+            "text": " ",
+            "start": 45,
+            "end": 46
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "meta.block.hcl",
+                "punctuation.section.block.begin.hcl"
+            ],
+            "text": "{",
+            "start": 46,
+            "end": 47
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl.terraform"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "comment.line.number-sign.hcl",
+                "punctuation.definition.comment.hcl"
+            ],
+            "text": "#",
+            "start": 2,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "comment.line.number-sign.hcl"
+            ],
+            "text": " Because this expression refers to the role, Terraform can infer",
+            "start": 3,
+            "end": 67
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl.terraform"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "comment.line.number-sign.hcl",
+                "punctuation.definition.comment.hcl"
+            ],
+            "text": "#",
+            "start": 2,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "comment.line.number-sign.hcl"
+            ],
+            "text": " automatically that the role must be created first.",
+            "start": 3,
+            "end": 54
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl.terraform"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "variable.declaration.hcl",
+                "variable.other.readwrite.hcl"
+            ],
+            "text": "role",
+            "start": 2,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "variable.declaration.hcl"
+            ],
+            "text": " ",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "variable.declaration.hcl",
+                "keyword.operator.assignment.hcl"
+            ],
+            "text": "=",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "variable.declaration.hcl"
+            ],
+            "text": " ",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform"
+            ],
+            "text": "aws_iam_role",
+            "start": 9,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "keyword.operator.accessor.hcl"
+            ],
+            "text": ".",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "variable.other.member.hcl"
+            ],
+            "text": "example",
+            "start": 22,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "keyword.operator.accessor.hcl"
+            ],
+            "text": ".",
+            "start": 29,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "variable.other.member.hcl"
+            ],
+            "text": "name",
+            "start": 30,
+            "end": 34
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl.terraform"
+            ],
+            "text": "}",
+            "start": 0,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl.terraform"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "meta.block.hcl",
+                "entity.name.type.terraform"
+            ],
+            "text": "resource",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "meta.block.hcl"
+            ],
+            "text": " ",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "meta.block.hcl",
+                "variable.other.enummember.hcl"
+            ],
+            "text": "\"aws_iam_role_policy\"",
+            "start": 9,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "meta.block.hcl"
+            ],
+            "text": " ",
+            "start": 30,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "meta.block.hcl",
+                "variable.other.enummember.hcl"
+            ],
+            "text": "\"example\"",
+            "start": 31,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "meta.block.hcl"
+            ],
+            "text": " ",
+            "start": 40,
+            "end": 41
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "meta.block.hcl",
+                "punctuation.section.block.begin.hcl"
+            ],
+            "text": "{",
+            "start": 41,
+            "end": 42
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl.terraform"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "variable.declaration.hcl",
+                "variable.other.readwrite.hcl"
+            ],
+            "text": "name",
+            "start": 2,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "variable.declaration.hcl"
+            ],
+            "text": "   ",
+            "start": 6,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "variable.declaration.hcl",
+                "keyword.operator.assignment.hcl"
+            ],
+            "text": "=",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "variable.declaration.hcl"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "string.quoted.double.hcl",
+                "punctuation.definition.string.begin.hcl"
+            ],
+            "text": "\"",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "string.quoted.double.hcl"
+            ],
+            "text": "example",
+            "start": 12,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "string.quoted.double.hcl",
+                "punctuation.definition.string.end.hcl"
+            ],
+            "text": "\"",
+            "start": 19,
+            "end": 20
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl.terraform"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "variable.declaration.hcl",
+                "variable.other.readwrite.hcl"
+            ],
+            "text": "role",
+            "start": 2,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "variable.declaration.hcl"
+            ],
+            "text": "   ",
+            "start": 6,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "variable.declaration.hcl",
+                "keyword.operator.assignment.hcl"
+            ],
+            "text": "=",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "variable.declaration.hcl"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform"
+            ],
+            "text": "aws_iam_role",
+            "start": 11,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "keyword.operator.accessor.hcl"
+            ],
+            "text": ".",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "variable.other.member.hcl"
+            ],
+            "text": "example",
+            "start": 24,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "keyword.operator.accessor.hcl"
+            ],
+            "text": ".",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "variable.other.member.hcl"
+            ],
+            "text": "name",
+            "start": 32,
+            "end": 36
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl.terraform"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "variable.declaration.hcl",
+                "variable.other.readwrite.hcl"
+            ],
+            "text": "policy",
+            "start": 2,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "variable.declaration.hcl"
+            ],
+            "text": " ",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "variable.declaration.hcl",
+                "keyword.operator.assignment.hcl"
+            ],
+            "text": "=",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "variable.declaration.hcl"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "meta.function-call.hcl",
+                "support.function.builtin.terraform"
+            ],
+            "text": "jsonencode",
+            "start": 11,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "meta.function-call.hcl",
+                "punctuation.section.parens.begin.hcl"
+            ],
+            "text": "(",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "meta.function-call.hcl",
+                "meta.braces.hcl",
+                "punctuation.section.braces.begin.hcl"
+            ],
+            "text": "{",
+            "start": 22,
+            "end": 23
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl.terraform"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "string.quoted.double.hcl",
+                "punctuation.definition.string.begin.hcl"
+            ],
+            "text": "\"",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "string.quoted.double.hcl"
+            ],
+            "text": "Statement",
+            "start": 5,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "string.quoted.double.hcl",
+                "punctuation.definition.string.end.hcl"
+            ],
+            "text": "\"",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform"
+            ],
+            "text": " = ",
+            "start": 15,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "punctuation.section.brackets.begin.hcl"
+            ],
+            "text": "[",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "meta.braces.hcl",
+                "punctuation.section.braces.begin.hcl"
+            ],
+            "text": "{",
+            "start": 19,
+            "end": 20
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl.terraform"
+            ],
+            "text": "      ",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "comment.line.number-sign.hcl",
+                "punctuation.definition.comment.hcl"
+            ],
+            "text": "#",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "comment.line.number-sign.hcl"
+            ],
+            "text": " This policy allows software running on the EC2 instance to",
+            "start": 7,
+            "end": 66
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl.terraform"
+            ],
+            "text": "      ",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "comment.line.number-sign.hcl",
+                "punctuation.definition.comment.hcl"
+            ],
+            "text": "#",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "comment.line.number-sign.hcl"
+            ],
+            "text": " access the S3 API.",
+            "start": 7,
+            "end": 26
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl.terraform"
+            ],
+            "text": "      ",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "string.quoted.double.hcl",
+                "punctuation.definition.string.begin.hcl"
+            ],
+            "text": "\"",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "string.quoted.double.hcl"
+            ],
+            "text": "Action",
+            "start": 7,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "string.quoted.double.hcl",
+                "punctuation.definition.string.end.hcl"
+            ],
+            "text": "\"",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform"
+            ],
+            "text": " = ",
+            "start": 14,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "string.quoted.double.hcl",
+                "punctuation.definition.string.begin.hcl"
+            ],
+            "text": "\"",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "string.quoted.double.hcl"
+            ],
+            "text": "s3:*",
+            "start": 18,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "string.quoted.double.hcl",
+                "punctuation.definition.string.end.hcl"
+            ],
+            "text": "\"",
+            "start": 22,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform"
+            ],
+            "text": ",",
+            "start": 23,
+            "end": 25
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl.terraform"
+            ],
+            "text": "      ",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "string.quoted.double.hcl",
+                "punctuation.definition.string.begin.hcl"
+            ],
+            "text": "\"",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "string.quoted.double.hcl"
+            ],
+            "text": "Effect",
+            "start": 7,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "string.quoted.double.hcl",
+                "punctuation.definition.string.end.hcl"
+            ],
+            "text": "\"",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform"
+            ],
+            "text": " = ",
+            "start": 14,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "string.quoted.double.hcl",
+                "punctuation.definition.string.begin.hcl"
+            ],
+            "text": "\"",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "string.quoted.double.hcl"
+            ],
+            "text": "Allow",
+            "start": 18,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "string.quoted.double.hcl",
+                "punctuation.definition.string.end.hcl"
+            ],
+            "text": "\"",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform"
+            ],
+            "text": ",",
+            "start": 24,
+            "end": 26
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl.terraform"
+            ],
+            "text": "    }],",
+            "start": 0,
+            "end": 8
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl.terraform"
+            ],
+            "text": "  })",
+            "start": 0,
+            "end": 5
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl.terraform"
+            ],
+            "text": "}",
+            "start": 0,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl.terraform"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "meta.block.hcl",
+                "entity.name.type.terraform"
+            ],
+            "text": "resource",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "meta.block.hcl"
+            ],
+            "text": " ",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "meta.block.hcl",
+                "variable.other.enummember.hcl"
+            ],
+            "text": "\"aws_instance\"",
+            "start": 9,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "meta.block.hcl"
+            ],
+            "text": " ",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "meta.block.hcl",
+                "variable.other.enummember.hcl"
+            ],
+            "text": "\"example\"",
+            "start": 24,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "meta.block.hcl"
+            ],
+            "text": " ",
+            "start": 33,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "meta.block.hcl",
+                "punctuation.section.block.begin.hcl"
+            ],
+            "text": "{",
+            "start": 34,
+            "end": 35
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl.terraform"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "variable.declaration.hcl",
+                "variable.other.readwrite.hcl"
+            ],
+            "text": "ami",
+            "start": 2,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "variable.declaration.hcl"
+            ],
+            "text": "           ",
+            "start": 5,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "variable.declaration.hcl",
+                "keyword.operator.assignment.hcl"
+            ],
+            "text": "=",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "variable.declaration.hcl"
+            ],
+            "text": " ",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "string.quoted.double.hcl",
+                "punctuation.definition.string.begin.hcl"
+            ],
+            "text": "\"",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "string.quoted.double.hcl"
+            ],
+            "text": "ami-a1b2c3d4",
+            "start": 19,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "string.quoted.double.hcl",
+                "punctuation.definition.string.end.hcl"
+            ],
+            "text": "\"",
+            "start": 31,
+            "end": 32
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl.terraform"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "variable.declaration.hcl",
+                "variable.other.readwrite.hcl"
+            ],
+            "text": "instance_type",
+            "start": 2,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "variable.declaration.hcl"
+            ],
+            "text": " ",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "variable.declaration.hcl",
+                "keyword.operator.assignment.hcl"
+            ],
+            "text": "=",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "variable.declaration.hcl"
+            ],
+            "text": " ",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "string.quoted.double.hcl",
+                "punctuation.definition.string.begin.hcl"
+            ],
+            "text": "\"",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "string.quoted.double.hcl"
+            ],
+            "text": "t2.micro",
+            "start": 19,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "string.quoted.double.hcl",
+                "punctuation.definition.string.end.hcl"
+            ],
+            "text": "\"",
+            "start": 27,
+            "end": 28
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl.terraform"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl.terraform"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "comment.line.number-sign.hcl",
+                "punctuation.definition.comment.hcl"
+            ],
+            "text": "#",
+            "start": 2,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "comment.line.number-sign.hcl"
+            ],
+            "text": " Terraform can infer from this that the instance profile must",
+            "start": 3,
+            "end": 64
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl.terraform"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "comment.line.number-sign.hcl",
+                "punctuation.definition.comment.hcl"
+            ],
+            "text": "#",
+            "start": 2,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "comment.line.number-sign.hcl"
+            ],
+            "text": " be created before the EC2 instance.",
+            "start": 3,
+            "end": 39
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl.terraform"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "variable.declaration.hcl",
+                "variable.other.readwrite.hcl"
+            ],
+            "text": "iam_instance_profile",
+            "start": 2,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "variable.declaration.hcl"
+            ],
+            "text": " ",
+            "start": 22,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "variable.declaration.hcl",
+                "keyword.operator.assignment.hcl"
+            ],
+            "text": "=",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "variable.declaration.hcl"
+            ],
+            "text": " ",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform"
+            ],
+            "text": "aws_iam_instance_profile",
+            "start": 25,
+            "end": 49
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "keyword.operator.accessor.hcl"
+            ],
+            "text": ".",
+            "start": 49,
+            "end": 50
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "variable.other.member.hcl"
+            ],
+            "text": "example",
+            "start": 50,
+            "end": 57
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl.terraform"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl.terraform"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "comment.line.number-sign.hcl",
+                "punctuation.definition.comment.hcl"
+            ],
+            "text": "#",
+            "start": 2,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "comment.line.number-sign.hcl"
+            ],
+            "text": " However, if software running in this EC2 instance needs access",
+            "start": 3,
+            "end": 66
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl.terraform"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "comment.line.number-sign.hcl",
+                "punctuation.definition.comment.hcl"
+            ],
+            "text": "#",
+            "start": 2,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "comment.line.number-sign.hcl"
+            ],
+            "text": " to the S3 API in order to boot properly, there is also a \"hidden\"",
+            "start": 3,
+            "end": 69
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl.terraform"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "comment.line.number-sign.hcl",
+                "punctuation.definition.comment.hcl"
+            ],
+            "text": "#",
+            "start": 2,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "comment.line.number-sign.hcl"
+            ],
+            "text": " dependency on the aws_iam_role_policy that Terraform cannot",
+            "start": 3,
+            "end": 63
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl.terraform"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "comment.line.number-sign.hcl",
+                "punctuation.definition.comment.hcl"
+            ],
+            "text": "#",
+            "start": 2,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "comment.line.number-sign.hcl"
+            ],
+            "text": " automatically infer, so it must be declared explicitly:",
+            "start": 3,
+            "end": 59
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl.terraform"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "variable.declaration.hcl",
+                "variable.other.readwrite.hcl"
+            ],
+            "text": "depends_on",
+            "start": 2,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "variable.declaration.hcl"
+            ],
+            "text": " ",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "variable.declaration.hcl",
+                "keyword.operator.assignment.hcl"
+            ],
+            "text": "=",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "variable.declaration.hcl"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "punctuation.section.brackets.begin.hcl"
+            ],
+            "text": "[",
+            "start": 15,
+            "end": 16
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl.terraform"
+            ],
+            "text": "    aws_iam_role_policy",
+            "start": 0,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "keyword.operator.accessor.hcl"
+            ],
+            "text": ".",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "variable.other.member.hcl"
+            ],
+            "text": "example",
+            "start": 24,
+            "end": 31
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl.terraform"
+            ],
+            "text": "  ]",
+            "start": 0,
+            "end": 4
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl.terraform"
+            ],
+            "text": "}",
+            "start": 0,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl.terraform"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl.terraform"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "comment.line.double-slash.hcl",
+                "punctuation.definition.comment.hcl"
+            ],
+            "text": "//",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.hcl.terraform",
+                "comment.line.double-slash.hcl"
+            ],
+            "text": " From https://developer.hashicorp.com/terraform/language/meta-arguments/depends_on",
+            "start": 2,
+            "end": 84
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hcl.terraform"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ]
+]

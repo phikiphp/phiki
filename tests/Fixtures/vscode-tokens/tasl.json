@@ -1,0 +1,480 @@
+[
+    [
+        {
+            "scopes": [
+                "source.tasl",
+                "comment.line.number-sign.tasl",
+                "punctuation.definition.comment.tasl"
+            ],
+            "text": "#",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.tasl",
+                "comment.line.number-sign.tasl"
+            ],
+            "text": " This is a tasl schema!",
+            "start": 1,
+            "end": 24
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tasl",
+                "keyword.control.tasl.namespace"
+            ],
+            "text": "namespace",
+            "start": 0,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.tasl"
+            ],
+            "text": " ",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.tasl",
+                "entity.name"
+            ],
+            "text": "s",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.tasl"
+            ],
+            "text": " ",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.tasl",
+                "markup.underline.link"
+            ],
+            "text": "http://schema.org/",
+            "start": 12,
+            "end": 30
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tasl"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tasl",
+                "comment.line.number-sign.tasl",
+                "punctuation.definition.comment.tasl"
+            ],
+            "text": "#",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.tasl",
+                "comment.line.number-sign.tasl"
+            ],
+            "text": " classes are like tables, except they",
+            "start": 1,
+            "end": 38
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tasl",
+                "comment.line.number-sign.tasl",
+                "punctuation.definition.comment.tasl"
+            ],
+            "text": "#",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.tasl",
+                "comment.line.number-sign.tasl"
+            ],
+            "text": " can be arbitrary algebraic data types,",
+            "start": 1,
+            "end": 40
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tasl",
+                "comment.line.number-sign.tasl",
+                "punctuation.definition.comment.tasl"
+            ],
+            "text": "#",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.tasl",
+                "comment.line.number-sign.tasl"
+            ],
+            "text": " not just columns of primitives.",
+            "start": 1,
+            "end": 33
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tasl",
+                "keyword.control.tasl.class"
+            ],
+            "text": "class",
+            "start": 0,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.tasl"
+            ],
+            "text": " ",
+            "start": 5,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.tasl",
+                "markup.bold",
+                "entity.name.class"
+            ],
+            "text": "s:Person",
+            "start": 6,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.tasl"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.tasl",
+                "keyword.operator.tasl.export"
+            ],
+            "text": "::",
+            "start": 15,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.tasl"
+            ],
+            "text": " ",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.tasl",
+                "punctuation.definition.block.tasl.product"
+            ],
+            "text": "{",
+            "start": 18,
+            "end": 19
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tasl"
+            ],
+            "text": "  s:name -> string",
+            "start": 0,
+            "end": 19
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tasl"
+            ],
+            "text": "  s:email -> ? uri",
+            "start": 0,
+            "end": 19
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tasl"
+            ],
+            "text": "  s:spouse -> ? * s:Person",
+            "start": 0,
+            "end": 27
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tasl"
+            ],
+            "text": "  s:gender -> [",
+            "start": 0,
+            "end": 16
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tasl"
+            ],
+            "text": "    s:Male",
+            "start": 0,
+            "end": 11
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tasl"
+            ],
+            "text": "    s:Female",
+            "start": 0,
+            "end": 13
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tasl"
+            ],
+            "text": "    s:value <- string",
+            "start": 0,
+            "end": 22
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tasl"
+            ],
+            "text": "  ]",
+            "start": 0,
+            "end": 4
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tasl"
+            ],
+            "text": "}",
+            "start": 0,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tasl"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tasl",
+                "comment.line.number-sign.tasl",
+                "punctuation.definition.comment.tasl"
+            ],
+            "text": "#",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.tasl",
+                "comment.line.number-sign.tasl"
+            ],
+            "text": " references are a primitive type that",
+            "start": 1,
+            "end": 38
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tasl",
+                "comment.line.number-sign.tasl",
+                "punctuation.definition.comment.tasl"
+            ],
+            "text": "#",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.tasl",
+                "comment.line.number-sign.tasl"
+            ],
+            "text": " point to other classes in the schema,",
+            "start": 1,
+            "end": 39
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tasl",
+                "comment.line.number-sign.tasl",
+                "punctuation.definition.comment.tasl"
+            ],
+            "text": "#",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.tasl",
+                "comment.line.number-sign.tasl"
+            ],
+            "text": " just like foreign keys.",
+            "start": 1,
+            "end": 25
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tasl",
+                "keyword.control.tasl.class"
+            ],
+            "text": "class",
+            "start": 0,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.tasl"
+            ],
+            "text": " ",
+            "start": 5,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.tasl",
+                "markup.bold",
+                "entity.name.class"
+            ],
+            "text": "s:Book",
+            "start": 6,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.tasl"
+            ],
+            "text": " ",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.tasl",
+                "keyword.operator.tasl.export"
+            ],
+            "text": "::",
+            "start": 13,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.tasl"
+            ],
+            "text": " ",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.tasl",
+                "punctuation.definition.block.tasl.product"
+            ],
+            "text": "{",
+            "start": 16,
+            "end": 17
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tasl"
+            ],
+            "text": "  s:name -> string",
+            "start": 0,
+            "end": 19
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tasl"
+            ],
+            "text": "  s:isbn -> uri",
+            "start": 0,
+            "end": 16
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tasl"
+            ],
+            "text": "  s:author -> * s:Person",
+            "start": 0,
+            "end": 25
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tasl"
+            ],
+            "text": "}",
+            "start": 0,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.tasl"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ]
+]

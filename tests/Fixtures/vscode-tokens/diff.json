@@ -1,0 +1,381 @@
+[
+    [
+        {
+            "scopes": [
+                "source.diff"
+            ],
+            "text": "$ cat file1.txt                                                                                                                            ",
+            "start": 0,
+            "end": 140
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.diff"
+            ],
+            "text": "cat                                                                                                                                              ",
+            "start": 0,
+            "end": 146
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.diff"
+            ],
+            "text": "mv                                                                                                                                               ",
+            "start": 0,
+            "end": 146
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.diff"
+            ],
+            "text": "comm                                                                                                                                             ",
+            "start": 0,
+            "end": 146
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.diff"
+            ],
+            "text": "cp ",
+            "start": 0,
+            "end": 4
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.diff"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.diff"
+            ],
+            "text": "$ cat file2.txt",
+            "start": 0,
+            "end": 16
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.diff"
+            ],
+            "text": "cat                                                                                                                                              ",
+            "start": 0,
+            "end": 146
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.diff"
+            ],
+            "text": "cp                                                                                                                                               ",
+            "start": 0,
+            "end": 146
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.diff"
+            ],
+            "text": "diff                                                                                                                                             ",
+            "start": 0,
+            "end": 146
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.diff"
+            ],
+            "text": "comm",
+            "start": 0,
+            "end": 5
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.diff"
+            ],
+            "text": "                                                                                                   ",
+            "start": 0,
+            "end": 100
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.diff"
+            ],
+            "text": "$ diff -c file1.txt file2.txt                                                                                                              ",
+            "start": 0,
+            "end": 140
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.diff",
+                "meta.diff.header.from-file",
+                "punctuation.definition.from-file.diff"
+            ],
+            "text": "***",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.diff",
+                "meta.diff.header.from-file"
+            ],
+            "text": " file1.txt   Thu Jan 11 08:52:37 2018                                                                                                         ",
+            "start": 3,
+            "end": 146
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.diff",
+                "meta.diff.header.from-file",
+                "punctuation.definition.from-file.diff"
+            ],
+            "text": "---",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.diff",
+                "meta.diff.header.from-file"
+            ],
+            "text": " file2.txt   Thu Jan 11 08:53:01 2018                                                                                                         ",
+            "start": 3,
+            "end": 146
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.diff"
+            ],
+            "text": "***************                                                                                                                                  ",
+            "start": 0,
+            "end": 146
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.diff",
+                "meta.diff.header.from-file",
+                "punctuation.definition.from-file.diff"
+            ],
+            "text": "***",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.diff",
+                "meta.diff.header.from-file"
+            ],
+            "text": " 1,4 ****                                                                                                                                     ",
+            "start": 3,
+            "end": 146
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.diff"
+            ],
+            "text": "  cat                                                                                                                                            ",
+            "start": 0,
+            "end": 146
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.diff",
+                "markup.deleted.diff",
+                "punctuation.definition.deleted.diff"
+            ],
+            "text": "-",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.diff",
+                "markup.deleted.diff"
+            ],
+            "text": " mv                                                                                                                                             ",
+            "start": 1,
+            "end": 146
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.diff",
+                "markup.deleted.diff",
+                "punctuation.definition.deleted.diff"
+            ],
+            "text": "-",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.diff",
+                "markup.deleted.diff"
+            ],
+            "text": " comm                                                                                                                                           ",
+            "start": 1,
+            "end": 146
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.diff"
+            ],
+            "text": "  cp                                                                                                                                             ",
+            "start": 0,
+            "end": 146
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.diff",
+                "meta.diff.header.from-file",
+                "punctuation.definition.from-file.diff"
+            ],
+            "text": "---",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.diff",
+                "meta.diff.header.from-file"
+            ],
+            "text": " 1,4 ----                                                                                                                                     ",
+            "start": 3,
+            "end": 146
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.diff"
+            ],
+            "text": "  cat                                                                                                                                            ",
+            "start": 0,
+            "end": 146
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.diff"
+            ],
+            "text": "  cp                                                                                                                                             ",
+            "start": 0,
+            "end": 146
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.diff",
+                "markup.inserted.diff",
+                "punctuation.definition.inserted.diff"
+            ],
+            "text": "+",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.diff",
+                "markup.inserted.diff"
+            ],
+            "text": " diff                                                                                                                                           ",
+            "start": 1,
+            "end": 146
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.diff",
+                "markup.inserted.diff",
+                "punctuation.definition.inserted.diff"
+            ],
+            "text": "+",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.diff",
+                "markup.inserted.diff"
+            ],
+            "text": " comm",
+            "start": 1,
+            "end": 7
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.diff"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.diff",
+                "comment.line.number-sign.diff",
+                "punctuation.definition.comment.diff"
+            ],
+            "text": "#",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.diff",
+                "comment.line.number-sign.diff"
+            ],
+            "text": " From https://www.geeksforgeeks.org/diff-command-linux-examples/",
+            "start": 1,
+            "end": 65
+        }
+    ]
+]

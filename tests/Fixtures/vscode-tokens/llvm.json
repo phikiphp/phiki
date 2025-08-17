@@ -1,0 +1,1820 @@
+[
+    [
+        {
+            "scopes": [
+                "source.llvm",
+                "storage.modifier.llvm"
+            ],
+            "text": "define",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " ",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "storage.modifier.llvm"
+            ],
+            "text": "dso_local",
+            "start": 7,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " ",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "storage.type.llvm"
+            ],
+            "text": "i32",
+            "start": 17,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " ",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "entity.name.function.llvm"
+            ],
+            "text": "@array_sum",
+            "start": 21,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": "(ptr ",
+            "start": 31,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "storage.modifier.llvm"
+            ],
+            "text": "nocapture",
+            "start": 36,
+            "end": 45
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " ",
+            "start": 45,
+            "end": 46
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "storage.modifier.llvm"
+            ],
+            "text": "noundef",
+            "start": 46,
+            "end": 53
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " ",
+            "start": 53,
+            "end": 54
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "storage.modifier.llvm"
+            ],
+            "text": "readonly",
+            "start": 54,
+            "end": 62
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " ",
+            "start": 62,
+            "end": 63
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "variable.llvm"
+            ],
+            "text": "%input",
+            "start": 63,
+            "end": 69
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": ", ",
+            "start": 69,
+            "end": 71
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "storage.type.llvm"
+            ],
+            "text": "i32",
+            "start": 71,
+            "end": 74
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " ",
+            "start": 74,
+            "end": 75
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "storage.modifier.llvm"
+            ],
+            "text": "noundef",
+            "start": 75,
+            "end": 82
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " ",
+            "start": 82,
+            "end": 83
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "variable.llvm"
+            ],
+            "text": "%length",
+            "start": 83,
+            "end": 90
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": ") ",
+            "start": 90,
+            "end": 92
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "storage.modifier.llvm"
+            ],
+            "text": "local_unnamed_addr",
+            "start": 92,
+            "end": 110
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " {",
+            "start": 110,
+            "end": 113
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.llvm",
+                "entity.name.label.llvm"
+            ],
+            "text": "entry:",
+            "start": 0,
+            "end": 6
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "variable.llvm"
+            ],
+            "text": "%cmp4",
+            "start": 2,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " = ",
+            "start": 7,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "keyword.instruction.llvm"
+            ],
+            "text": "icmp",
+            "start": 10,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "keyword.instruction.llvm"
+            ],
+            "text": "sgt",
+            "start": 15,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " ",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "storage.type.llvm"
+            ],
+            "text": "i32",
+            "start": 19,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " ",
+            "start": 22,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "variable.llvm"
+            ],
+            "text": "%length",
+            "start": 23,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": ", ",
+            "start": 30,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "constant.numeric.integer"
+            ],
+            "text": "0",
+            "start": 32,
+            "end": 33
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "keyword.instruction.llvm"
+            ],
+            "text": "br",
+            "start": 2,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " ",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "storage.type.llvm"
+            ],
+            "text": "i1",
+            "start": 5,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " ",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "variable.llvm"
+            ],
+            "text": "%cmp4",
+            "start": 8,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": ", ",
+            "start": 13,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "storage.type.llvm"
+            ],
+            "text": "label",
+            "start": 15,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " ",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "variable.llvm"
+            ],
+            "text": "%for.body.preheader",
+            "start": 21,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": ", ",
+            "start": 40,
+            "end": 42
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "storage.type.llvm"
+            ],
+            "text": "label",
+            "start": 42,
+            "end": 47
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " ",
+            "start": 47,
+            "end": 48
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "variable.llvm"
+            ],
+            "text": "%for.end",
+            "start": 48,
+            "end": 56
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.llvm",
+                "entity.name.label.llvm"
+            ],
+            "text": "for.body.preheader:",
+            "start": 0,
+            "end": 19
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "variable.llvm"
+            ],
+            "text": "%wide.trip.count",
+            "start": 2,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " = ",
+            "start": 18,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "keyword.instruction.llvm"
+            ],
+            "text": "zext",
+            "start": 21,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " nneg ",
+            "start": 25,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "storage.type.llvm"
+            ],
+            "text": "i32",
+            "start": 31,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " ",
+            "start": 34,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "variable.llvm"
+            ],
+            "text": "%length",
+            "start": 35,
+            "end": 42
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " ",
+            "start": 42,
+            "end": 43
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "storage.modifier.llvm"
+            ],
+            "text": "to",
+            "start": 43,
+            "end": 45
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " ",
+            "start": 45,
+            "end": 46
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "storage.type.llvm"
+            ],
+            "text": "i64",
+            "start": 46,
+            "end": 49
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "keyword.instruction.llvm"
+            ],
+            "text": "br",
+            "start": 2,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " ",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "storage.type.llvm"
+            ],
+            "text": "label",
+            "start": 5,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "variable.llvm"
+            ],
+            "text": "%for.body",
+            "start": 11,
+            "end": 20
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.llvm",
+                "entity.name.label.llvm"
+            ],
+            "text": "for.body:",
+            "start": 0,
+            "end": 9
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "variable.llvm"
+            ],
+            "text": "%indvars.iv",
+            "start": 2,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " = ",
+            "start": 13,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "keyword.instruction.llvm"
+            ],
+            "text": "phi",
+            "start": 16,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " ",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "storage.type.llvm"
+            ],
+            "text": "i64",
+            "start": 20,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " [ ",
+            "start": 23,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "constant.numeric.integer"
+            ],
+            "text": "0",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": ", ",
+            "start": 27,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "variable.llvm"
+            ],
+            "text": "%for.body.preheader",
+            "start": 29,
+            "end": 48
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " ], [ ",
+            "start": 48,
+            "end": 54
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "variable.llvm"
+            ],
+            "text": "%indvars.iv.next",
+            "start": 54,
+            "end": 70
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": ", ",
+            "start": 70,
+            "end": 72
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "variable.llvm"
+            ],
+            "text": "%for.body",
+            "start": 72,
+            "end": 81
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " ]",
+            "start": 81,
+            "end": 84
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "variable.llvm"
+            ],
+            "text": "%sum.06",
+            "start": 2,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " = ",
+            "start": 9,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "keyword.instruction.llvm"
+            ],
+            "text": "phi",
+            "start": 12,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " ",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "storage.type.llvm"
+            ],
+            "text": "i32",
+            "start": 16,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " [ ",
+            "start": 19,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "constant.numeric.integer"
+            ],
+            "text": "0",
+            "start": 22,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": ", ",
+            "start": 23,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "variable.llvm"
+            ],
+            "text": "%for.body.preheader",
+            "start": 25,
+            "end": 44
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " ], [ ",
+            "start": 44,
+            "end": 50
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "variable.llvm"
+            ],
+            "text": "%add",
+            "start": 50,
+            "end": 54
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": ", ",
+            "start": 54,
+            "end": 56
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "variable.llvm"
+            ],
+            "text": "%for.body",
+            "start": 56,
+            "end": 65
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " ]",
+            "start": 65,
+            "end": 68
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "variable.llvm"
+            ],
+            "text": "%arrayidx",
+            "start": 2,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " = ",
+            "start": 11,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "keyword.instruction.llvm"
+            ],
+            "text": "getelementptr",
+            "start": 14,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " ",
+            "start": 27,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "keyword.instruction.llvm"
+            ],
+            "text": "inbounds",
+            "start": 28,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " ",
+            "start": 36,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "storage.type.llvm"
+            ],
+            "text": "i32",
+            "start": 37,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": ", ptr ",
+            "start": 40,
+            "end": 46
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "variable.llvm"
+            ],
+            "text": "%input",
+            "start": 46,
+            "end": 52
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": ", ",
+            "start": 52,
+            "end": 54
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "storage.type.llvm"
+            ],
+            "text": "i64",
+            "start": 54,
+            "end": 57
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " ",
+            "start": 57,
+            "end": 58
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "variable.llvm"
+            ],
+            "text": "%indvars.iv",
+            "start": 58,
+            "end": 69
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "variable.llvm"
+            ],
+            "text": "%0",
+            "start": 2,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " = ",
+            "start": 4,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "keyword.instruction.llvm"
+            ],
+            "text": "load",
+            "start": 7,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " ",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "storage.type.llvm"
+            ],
+            "text": "i32",
+            "start": 12,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": ", ptr ",
+            "start": 15,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "variable.llvm"
+            ],
+            "text": "%arrayidx",
+            "start": 21,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": ", ",
+            "start": 30,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "storage.modifier.llvm"
+            ],
+            "text": "align",
+            "start": 32,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " ",
+            "start": 37,
+            "end": 38
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "constant.numeric.integer"
+            ],
+            "text": "4",
+            "start": 38,
+            "end": 39
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "variable.llvm"
+            ],
+            "text": "%add",
+            "start": 2,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " = ",
+            "start": 6,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "keyword.instruction.llvm"
+            ],
+            "text": "add",
+            "start": 9,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " ",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "keyword.instruction.llvm"
+            ],
+            "text": "nsw",
+            "start": 13,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " ",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "storage.type.llvm"
+            ],
+            "text": "i32",
+            "start": 17,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " ",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "variable.llvm"
+            ],
+            "text": "%0",
+            "start": 21,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": ", ",
+            "start": 23,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "variable.llvm"
+            ],
+            "text": "%sum.06",
+            "start": 25,
+            "end": 32
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "variable.llvm"
+            ],
+            "text": "%indvars.iv.next",
+            "start": 2,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " = ",
+            "start": 18,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "keyword.instruction.llvm"
+            ],
+            "text": "add",
+            "start": 21,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " ",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "keyword.instruction.llvm"
+            ],
+            "text": "nuw",
+            "start": 25,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " ",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "keyword.instruction.llvm"
+            ],
+            "text": "nsw",
+            "start": 29,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " ",
+            "start": 32,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "storage.type.llvm"
+            ],
+            "text": "i64",
+            "start": 33,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " ",
+            "start": 36,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "variable.llvm"
+            ],
+            "text": "%indvars.iv",
+            "start": 37,
+            "end": 48
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": ", ",
+            "start": 48,
+            "end": 50
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "constant.numeric.integer"
+            ],
+            "text": "1",
+            "start": 50,
+            "end": 51
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "variable.llvm"
+            ],
+            "text": "%exitcond.not",
+            "start": 2,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " = ",
+            "start": 15,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "keyword.instruction.llvm"
+            ],
+            "text": "icmp",
+            "start": 18,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " ",
+            "start": 22,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "keyword.instruction.llvm"
+            ],
+            "text": "eq",
+            "start": 23,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " ",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "storage.type.llvm"
+            ],
+            "text": "i64",
+            "start": 26,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " ",
+            "start": 29,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "variable.llvm"
+            ],
+            "text": "%indvars.iv.next",
+            "start": 30,
+            "end": 46
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": ", ",
+            "start": 46,
+            "end": 48
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "variable.llvm"
+            ],
+            "text": "%wide.trip.count",
+            "start": 48,
+            "end": 64
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "keyword.instruction.llvm"
+            ],
+            "text": "br",
+            "start": 2,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " ",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "storage.type.llvm"
+            ],
+            "text": "i1",
+            "start": 5,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " ",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "variable.llvm"
+            ],
+            "text": "%exitcond.not",
+            "start": 8,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": ", ",
+            "start": 21,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "storage.type.llvm"
+            ],
+            "text": "label",
+            "start": 23,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " ",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "variable.llvm"
+            ],
+            "text": "%for.end",
+            "start": 29,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": ", ",
+            "start": 37,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "storage.type.llvm"
+            ],
+            "text": "label",
+            "start": 39,
+            "end": 44
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " ",
+            "start": 44,
+            "end": 45
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "variable.llvm"
+            ],
+            "text": "%for.body",
+            "start": 45,
+            "end": 54
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.llvm",
+                "entity.name.label.llvm"
+            ],
+            "text": "for.end:",
+            "start": 0,
+            "end": 8
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "variable.llvm"
+            ],
+            "text": "%sum.0.lcssa",
+            "start": 2,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " = ",
+            "start": 14,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "keyword.instruction.llvm"
+            ],
+            "text": "phi",
+            "start": 17,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " ",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "storage.type.llvm"
+            ],
+            "text": "i32",
+            "start": 21,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " [ ",
+            "start": 24,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "constant.numeric.integer"
+            ],
+            "text": "0",
+            "start": 27,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": ", ",
+            "start": 28,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "variable.llvm"
+            ],
+            "text": "%entry",
+            "start": 30,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " ], [ ",
+            "start": 36,
+            "end": 42
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "variable.llvm"
+            ],
+            "text": "%add",
+            "start": 42,
+            "end": 46
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": ", ",
+            "start": 46,
+            "end": 48
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "variable.llvm"
+            ],
+            "text": "%for.body",
+            "start": 48,
+            "end": 57
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " ]",
+            "start": 57,
+            "end": 60
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "keyword.instruction.llvm"
+            ],
+            "text": "ret",
+            "start": 2,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " ",
+            "start": 5,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "storage.type.llvm"
+            ],
+            "text": "i32",
+            "start": 6,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": " ",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.llvm",
+                "variable.llvm"
+            ],
+            "text": "%sum.0.lcssa",
+            "start": 10,
+            "end": 22
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": "}",
+            "start": 0,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.llvm",
+                "comment.line.llvm"
+            ],
+            "text": "; From https://godbolt.org/z/vY4GMP3Wo",
+            "start": 0,
+            "end": 38
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.llvm"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ]
+]

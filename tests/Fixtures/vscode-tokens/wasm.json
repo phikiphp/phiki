@@ -1,0 +1,3333 @@
+[
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "(",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "storage.type.wat"
+            ],
+            "text": "module",
+            "start": 1,
+            "end": 7
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "comment.line.wat",
+                "punctuation.definition.comment.wat"
+            ],
+            "text": ";;",
+            "start": 1,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "comment.line.wat"
+            ],
+            "text": " add the $even_check function to the top of the module",
+            "start": 3,
+            "end": 57
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t(",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "entity.name.type.wat"
+            ],
+            "text": "func",
+            "start": 2,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "entity.name.function.wat"
+            ],
+            "text": "$even_check",
+            "start": 7,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " (",
+            "start": 18,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "storage.type.wat"
+            ],
+            "text": "param",
+            "start": 20,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "variable.other.wat"
+            ],
+            "text": "$n",
+            "start": 26,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "entity.name.type.wat"
+            ],
+            "text": "i32",
+            "start": 29,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": ") (",
+            "start": 32,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "storage.type.wat"
+            ],
+            "text": "result",
+            "start": 35,
+            "end": 41
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 41,
+            "end": 42
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "entity.name.type.wat"
+            ],
+            "text": "i32",
+            "start": 42,
+            "end": 45
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": ")",
+            "start": 45,
+            "end": 47
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t\t",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat",
+                "support.class.local.wat"
+            ],
+            "text": "local",
+            "start": 2,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat"
+            ],
+            "text": ".get",
+            "start": 7,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "variable.other.wat"
+            ],
+            "text": "$n",
+            "start": 12,
+            "end": 14
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t\t",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat",
+                "support.class.type.wat"
+            ],
+            "text": "i32",
+            "start": 2,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat"
+            ],
+            "text": ".const",
+            "start": 5,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "constant.numeric.float.wat"
+            ],
+            "text": "2",
+            "start": 12,
+            "end": 13
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t\t",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat",
+                "support.class.type.wat"
+            ],
+            "text": "i32",
+            "start": 2,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat"
+            ],
+            "text": ".rem_u",
+            "start": 5,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "comment.line.wat",
+                "punctuation.definition.comment.wat"
+            ],
+            "text": ";;",
+            "start": 12,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "comment.line.wat"
+            ],
+            "text": " if you take the remainder of a division by 2",
+            "start": 14,
+            "end": 59
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t\t",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat",
+                "support.class.type.wat"
+            ],
+            "text": "i32",
+            "start": 2,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat"
+            ],
+            "text": ".const",
+            "start": 5,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "constant.numeric.float.wat"
+            ],
+            "text": "0",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "comment.line.wat",
+                "punctuation.definition.comment.wat"
+            ],
+            "text": ";;",
+            "start": 14,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "comment.line.wat"
+            ],
+            "text": " even numbers will have a remainder 0",
+            "start": 16,
+            "end": 53
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t\t",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat",
+                "support.class.type.wat"
+            ],
+            "text": "i32",
+            "start": 2,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat"
+            ],
+            "text": ".eq",
+            "start": 5,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "comment.line.wat",
+                "punctuation.definition.comment.wat"
+            ],
+            "text": ";;",
+            "start": 9,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "comment.line.wat"
+            ],
+            "text": " $n % 2 == 0",
+            "start": 11,
+            "end": 23
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t)",
+            "start": 0,
+            "end": 3
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "comment.line.wat",
+                "punctuation.definition.comment.wat"
+            ],
+            "text": ";;",
+            "start": 1,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "comment.line.wat"
+            ],
+            "text": " add the $eq_2 function after $even_check",
+            "start": 3,
+            "end": 44
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t(",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "entity.name.type.wat"
+            ],
+            "text": "func",
+            "start": 2,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "entity.name.function.wat"
+            ],
+            "text": "$eq_2",
+            "start": 7,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " (",
+            "start": 12,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "storage.type.wat"
+            ],
+            "text": "param",
+            "start": 14,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "variable.other.wat"
+            ],
+            "text": "$n",
+            "start": 20,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 22,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "entity.name.type.wat"
+            ],
+            "text": "i32",
+            "start": 23,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": ") (",
+            "start": 26,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "storage.type.wat"
+            ],
+            "text": "result",
+            "start": 29,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 35,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "entity.name.type.wat"
+            ],
+            "text": "i32",
+            "start": 36,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": ")",
+            "start": 39,
+            "end": 41
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t\t",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat",
+                "support.class.local.wat"
+            ],
+            "text": "local",
+            "start": 2,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat"
+            ],
+            "text": ".get",
+            "start": 7,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "variable.other.wat"
+            ],
+            "text": "$n",
+            "start": 12,
+            "end": 14
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t\t",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat",
+                "support.class.type.wat"
+            ],
+            "text": "i32",
+            "start": 2,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat"
+            ],
+            "text": ".const",
+            "start": 5,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "constant.numeric.float.wat"
+            ],
+            "text": "2",
+            "start": 12,
+            "end": 13
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t\t",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat",
+                "support.class.type.wat"
+            ],
+            "text": "i32",
+            "start": 2,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat"
+            ],
+            "text": ".eq",
+            "start": 5,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "comment.line.wat",
+                "punctuation.definition.comment.wat"
+            ],
+            "text": ";;",
+            "start": 9,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "comment.line.wat"
+            ],
+            "text": " returns 1 if $n == 2",
+            "start": 11,
+            "end": 32
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t)",
+            "start": 0,
+            "end": 3
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "comment.line.wat",
+                "punctuation.definition.comment.wat"
+            ],
+            "text": ";;",
+            "start": 1,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "comment.line.wat"
+            ],
+            "text": " add $multiple_check after $eq_2",
+            "start": 3,
+            "end": 35
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t(",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "entity.name.type.wat"
+            ],
+            "text": "func",
+            "start": 2,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "entity.name.function.wat"
+            ],
+            "text": "$multiple_check",
+            "start": 7,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " (",
+            "start": 22,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "storage.type.wat"
+            ],
+            "text": "param",
+            "start": 24,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 29,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "variable.other.wat"
+            ],
+            "text": "$n",
+            "start": 30,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 32,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "entity.name.type.wat"
+            ],
+            "text": "i32",
+            "start": 33,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": ") (",
+            "start": 36,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "storage.type.wat"
+            ],
+            "text": "param",
+            "start": 39,
+            "end": 44
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 44,
+            "end": 45
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "variable.other.wat"
+            ],
+            "text": "$m",
+            "start": 45,
+            "end": 47
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 47,
+            "end": 48
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "entity.name.type.wat"
+            ],
+            "text": "i32",
+            "start": 48,
+            "end": 51
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": ") (",
+            "start": 51,
+            "end": 54
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "storage.type.wat"
+            ],
+            "text": "result",
+            "start": 54,
+            "end": 60
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 60,
+            "end": 61
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "entity.name.type.wat"
+            ],
+            "text": "i32",
+            "start": 61,
+            "end": 64
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": ")",
+            "start": 64,
+            "end": 66
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t\t",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat",
+                "support.class.local.wat"
+            ],
+            "text": "local",
+            "start": 2,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat"
+            ],
+            "text": ".get",
+            "start": 7,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "variable.other.wat"
+            ],
+            "text": "$n",
+            "start": 12,
+            "end": 14
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t\t",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat",
+                "support.class.local.wat"
+            ],
+            "text": "local",
+            "start": 2,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat"
+            ],
+            "text": ".get",
+            "start": 7,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "variable.other.wat"
+            ],
+            "text": "$m",
+            "start": 12,
+            "end": 14
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t\t",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat",
+                "support.class.type.wat"
+            ],
+            "text": "i32",
+            "start": 2,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat"
+            ],
+            "text": ".rem_u",
+            "start": 5,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "comment.line.wat",
+                "punctuation.definition.comment.wat"
+            ],
+            "text": ";;",
+            "start": 12,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "comment.line.wat"
+            ],
+            "text": " get the remainder of $n / $m",
+            "start": 14,
+            "end": 43
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t\t",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat",
+                "support.class.type.wat"
+            ],
+            "text": "i32",
+            "start": 2,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat"
+            ],
+            "text": ".const",
+            "start": 5,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "constant.numeric.float.wat"
+            ],
+            "text": "0",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "comment.line.wat",
+                "punctuation.definition.comment.wat"
+            ],
+            "text": ";;",
+            "start": 14,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "comment.line.wat"
+            ],
+            "text": " I want to know if the remainder is 0",
+            "start": 16,
+            "end": 53
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t\t",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat",
+                "support.class.type.wat"
+            ],
+            "text": "i32",
+            "start": 2,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat"
+            ],
+            "text": ".eq",
+            "start": 5,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "comment.line.wat",
+                "punctuation.definition.comment.wat"
+            ],
+            "text": ";;",
+            "start": 9,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "comment.line.wat"
+            ],
+            "text": " that will tell us if $n is a multiple of $m",
+            "start": 11,
+            "end": 55
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t)",
+            "start": 0,
+            "end": 3
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "comment.line.wat",
+                "punctuation.definition.comment.wat"
+            ],
+            "text": ";;",
+            "start": 1,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "comment.line.wat"
+            ],
+            "text": " add the is_prime exported function after $multiple_check",
+            "start": 3,
+            "end": 60
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t(",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "entity.name.type.wat"
+            ],
+            "text": "func",
+            "start": 2,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " (",
+            "start": 6,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "storage.type.wat"
+            ],
+            "text": "export",
+            "start": 8,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "string.quoted.double.wat",
+                "punctuation.definition.string.begin"
+            ],
+            "text": "\"",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "string.quoted.double.wat"
+            ],
+            "text": "is_prime",
+            "start": 16,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "string.quoted.double.wat",
+                "punctuation.definition.string.end"
+            ],
+            "text": "\"",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": ") (",
+            "start": 25,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "storage.type.wat"
+            ],
+            "text": "param",
+            "start": 28,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 33,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "variable.other.wat"
+            ],
+            "text": "$n",
+            "start": 34,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 36,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "entity.name.type.wat"
+            ],
+            "text": "i32",
+            "start": 37,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": ") (",
+            "start": 40,
+            "end": 43
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "storage.type.wat"
+            ],
+            "text": "result",
+            "start": 43,
+            "end": 49
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 49,
+            "end": 50
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "entity.name.type.wat"
+            ],
+            "text": "i32",
+            "start": 50,
+            "end": 53
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": ")",
+            "start": 53,
+            "end": 55
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t\t(",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "storage.type.wat"
+            ],
+            "text": "local",
+            "start": 3,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "variable.other.wat"
+            ],
+            "text": "$i",
+            "start": 9,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "entity.name.type.wat"
+            ],
+            "text": "i32",
+            "start": 12,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": ")",
+            "start": 15,
+            "end": 17
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t\t(",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.control.wat"
+            ],
+            "text": "if",
+            "start": 3,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " (",
+            "start": 5,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat",
+                "support.class.type.wat"
+            ],
+            "text": "i32",
+            "start": 7,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat"
+            ],
+            "text": ".eq",
+            "start": 10,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " (",
+            "start": 13,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat",
+                "support.class.local.wat"
+            ],
+            "text": "local",
+            "start": 15,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat"
+            ],
+            "text": ".get",
+            "start": 20,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "variable.other.wat"
+            ],
+            "text": "$n",
+            "start": 25,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": ") (",
+            "start": 27,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat",
+                "support.class.type.wat"
+            ],
+            "text": "i32",
+            "start": 30,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat"
+            ],
+            "text": ".const",
+            "start": 33,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 39,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "constant.numeric.float.wat"
+            ],
+            "text": "1",
+            "start": 40,
+            "end": 41
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": ")) ",
+            "start": 41,
+            "end": 44
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "comment.line.wat",
+                "punctuation.definition.comment.wat"
+            ],
+            "text": ";;",
+            "start": 44,
+            "end": 46
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "comment.line.wat"
+            ],
+            "text": " 1 is not prime",
+            "start": 46,
+            "end": 61
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t\t(",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.control.wat"
+            ],
+            "text": "then",
+            "start": 3,
+            "end": 7
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t\t\t",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat",
+                "support.class.type.wat"
+            ],
+            "text": "i32",
+            "start": 3,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat"
+            ],
+            "text": ".const",
+            "start": 6,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "constant.numeric.float.wat"
+            ],
+            "text": "0",
+            "start": 13,
+            "end": 14
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t\t\t",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.control.wat"
+            ],
+            "text": "return",
+            "start": 3,
+            "end": 9
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t\t))",
+            "start": 0,
+            "end": 5
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t\t(",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.control.wat"
+            ],
+            "text": "if",
+            "start": 3,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " (",
+            "start": 5,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.control.wat"
+            ],
+            "text": "call",
+            "start": 7,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "entity.name.function.wat"
+            ],
+            "text": "$eq_2",
+            "start": 12,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " (",
+            "start": 17,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat",
+                "support.class.local.wat"
+            ],
+            "text": "local",
+            "start": 19,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat"
+            ],
+            "text": ".get",
+            "start": 24,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "variable.other.wat"
+            ],
+            "text": "$n",
+            "start": 29,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": ")) ",
+            "start": 31,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "comment.line.wat",
+                "punctuation.definition.comment.wat"
+            ],
+            "text": ";;",
+            "start": 34,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "comment.line.wat"
+            ],
+            "text": " check to see if $n is 2",
+            "start": 36,
+            "end": 60
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t\t(",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.control.wat"
+            ],
+            "text": "then",
+            "start": 3,
+            "end": 7
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t\t\t",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat",
+                "support.class.type.wat"
+            ],
+            "text": "i32",
+            "start": 3,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat"
+            ],
+            "text": ".const",
+            "start": 6,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "constant.numeric.float.wat"
+            ],
+            "text": "1",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "comment.line.wat",
+                "punctuation.definition.comment.wat"
+            ],
+            "text": ";;",
+            "start": 15,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "comment.line.wat"
+            ],
+            "text": " 2 is prime",
+            "start": 17,
+            "end": 28
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t\t\t",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.control.wat"
+            ],
+            "text": "return",
+            "start": 3,
+            "end": 9
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t\t)",
+            "start": 0,
+            "end": 4
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t)",
+            "start": 0,
+            "end": 3
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t(",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.control.wat"
+            ],
+            "text": "block",
+            "start": 2,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "variable.other.wat"
+            ],
+            "text": "$not_prime",
+            "start": 8,
+            "end": 18
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t\t(",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.control.wat"
+            ],
+            "text": "call",
+            "start": 3,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "entity.name.function.wat"
+            ],
+            "text": "$even_check",
+            "start": 8,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " (",
+            "start": 19,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat",
+                "support.class.local.wat"
+            ],
+            "text": "local",
+            "start": 21,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat"
+            ],
+            "text": ".get",
+            "start": 26,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 30,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "variable.other.wat"
+            ],
+            "text": "$n",
+            "start": 31,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "))",
+            "start": 33,
+            "end": 36
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t\t",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.control.wat"
+            ],
+            "text": "br_if",
+            "start": 2,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "variable.other.wat"
+            ],
+            "text": "$not_prime",
+            "start": 8,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "comment.line.wat",
+                "punctuation.definition.comment.wat"
+            ],
+            "text": ";;",
+            "start": 19,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "comment.line.wat"
+            ],
+            "text": " even numbers are not prime (except 2)",
+            "start": 21,
+            "end": 59
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t\t(",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat",
+                "support.class.local.wat"
+            ],
+            "text": "local",
+            "start": 3,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat"
+            ],
+            "text": ".set",
+            "start": 8,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "variable.other.wat"
+            ],
+            "text": "$i",
+            "start": 13,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " (",
+            "start": 15,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat",
+                "support.class.type.wat"
+            ],
+            "text": "i32",
+            "start": 17,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat"
+            ],
+            "text": ".const",
+            "start": 20,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "constant.numeric.float.wat"
+            ],
+            "text": "1",
+            "start": 27,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "))",
+            "start": 28,
+            "end": 31
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t\t(",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.control.wat"
+            ],
+            "text": "loop",
+            "start": 3,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "variable.other.wat"
+            ],
+            "text": "$prime_test_loop",
+            "start": 8,
+            "end": 24
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t\t\t(",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat",
+                "support.class.local.wat"
+            ],
+            "text": "local",
+            "start": 4,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat"
+            ],
+            "text": ".tee",
+            "start": 9,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "variable.other.wat"
+            ],
+            "text": "$i",
+            "start": 14,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " (",
+            "start": 16,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat",
+                "support.class.type.wat"
+            ],
+            "text": "i32",
+            "start": 18,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat"
+            ],
+            "text": ".add",
+            "start": 21,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " (",
+            "start": 25,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat",
+                "support.class.local.wat"
+            ],
+            "text": "local",
+            "start": 27,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat"
+            ],
+            "text": ".get",
+            "start": 32,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 36,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "variable.other.wat"
+            ],
+            "text": "$i",
+            "start": 37,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": ") (",
+            "start": 39,
+            "end": 42
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat",
+                "support.class.type.wat"
+            ],
+            "text": "i32",
+            "start": 42,
+            "end": 45
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat"
+            ],
+            "text": ".const",
+            "start": 45,
+            "end": 51
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 51,
+            "end": 52
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "constant.numeric.float.wat"
+            ],
+            "text": "2",
+            "start": 52,
+            "end": 53
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": ") ) ) ",
+            "start": 53,
+            "end": 59
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "comment.line.wat",
+                "punctuation.definition.comment.wat"
+            ],
+            "text": ";;",
+            "start": 59,
+            "end": 61
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "comment.line.wat"
+            ],
+            "text": " $i += 2",
+            "start": 61,
+            "end": 69
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t\t\t",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat",
+                "support.class.local.wat"
+            ],
+            "text": "local",
+            "start": 3,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat"
+            ],
+            "text": ".get",
+            "start": 8,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "variable.other.wat"
+            ],
+            "text": "$n",
+            "start": 13,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "comment.line.wat",
+                "punctuation.definition.comment.wat"
+            ],
+            "text": ";;",
+            "start": 16,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "comment.line.wat"
+            ],
+            "text": " stack = [$n, $i]",
+            "start": 18,
+            "end": 35
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t\t\t",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat",
+                "support.class.type.wat"
+            ],
+            "text": "i32",
+            "start": 3,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat"
+            ],
+            "text": ".ge_u",
+            "start": 6,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "comment.line.wat",
+                "punctuation.definition.comment.wat"
+            ],
+            "text": ";;",
+            "start": 12,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "comment.line.wat"
+            ],
+            "text": " $i >= $n",
+            "start": 14,
+            "end": 23
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t\t\t",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.control.wat"
+            ],
+            "text": "if",
+            "start": 3,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 5,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "comment.line.wat",
+                "punctuation.definition.comment.wat"
+            ],
+            "text": ";;",
+            "start": 6,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "comment.line.wat"
+            ],
+            "text": " if $i >= $n, $n is prime",
+            "start": 8,
+            "end": 33
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t\t\t\t",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat",
+                "support.class.type.wat"
+            ],
+            "text": "i32",
+            "start": 4,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat"
+            ],
+            "text": ".const",
+            "start": 7,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "constant.numeric.float.wat"
+            ],
+            "text": "1",
+            "start": 14,
+            "end": 15
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t\t\t",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.control.wat"
+            ],
+            "text": "return",
+            "start": 3,
+            "end": 9
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t\t\t",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.control.wat"
+            ],
+            "text": "end",
+            "start": 3,
+            "end": 6
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t\t\t(",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.control.wat"
+            ],
+            "text": "call",
+            "start": 4,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "entity.name.function.wat"
+            ],
+            "text": "$multiple_check",
+            "start": 9,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " (",
+            "start": 24,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat",
+                "support.class.local.wat"
+            ],
+            "text": "local",
+            "start": 26,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat"
+            ],
+            "text": ".get",
+            "start": 31,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 35,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "variable.other.wat"
+            ],
+            "text": "$n",
+            "start": 36,
+            "end": 38
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": ") (",
+            "start": 38,
+            "end": 41
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat",
+                "support.class.local.wat"
+            ],
+            "text": "local",
+            "start": 41,
+            "end": 46
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat"
+            ],
+            "text": ".get",
+            "start": 46,
+            "end": 50
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 50,
+            "end": 51
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "variable.other.wat"
+            ],
+            "text": "$i",
+            "start": 51,
+            "end": 53
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "))",
+            "start": 53,
+            "end": 56
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t\t\t",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.control.wat"
+            ],
+            "text": "br_if",
+            "start": 3,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "variable.other.wat"
+            ],
+            "text": "$not_prime",
+            "start": 9,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "comment.line.wat",
+                "punctuation.definition.comment.wat"
+            ],
+            "text": ";;",
+            "start": 20,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "comment.line.wat"
+            ],
+            "text": " if $n is a multiple of $i this is not prime",
+            "start": 22,
+            "end": 66
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t\t\t",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.control.wat"
+            ],
+            "text": "br",
+            "start": 3,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 5,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "variable.other.wat"
+            ],
+            "text": "$prime_test_loop",
+            "start": 6,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 22,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "comment.line.wat",
+                "punctuation.definition.comment.wat"
+            ],
+            "text": ";;",
+            "start": 23,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "comment.line.wat"
+            ],
+            "text": " branch back to top of loop",
+            "start": 25,
+            "end": 52
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t\t\t) ",
+            "start": 0,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "comment.line.wat",
+                "punctuation.definition.comment.wat"
+            ],
+            "text": ";;",
+            "start": 5,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "comment.line.wat"
+            ],
+            "text": " end of $prime_test_loop loop",
+            "start": 7,
+            "end": 36
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "\t\t) ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "comment.line.wat",
+                "punctuation.definition.comment.wat"
+            ],
+            "text": ";;",
+            "start": 4,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "comment.line.wat"
+            ],
+            "text": " end of $not_prime block",
+            "start": 6,
+            "end": 30
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat",
+                "support.class.type.wat"
+            ],
+            "text": "i32",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "keyword.operator.word.wat"
+            ],
+            "text": ".const",
+            "start": 3,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "constant.numeric.float.wat"
+            ],
+            "text": "0",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " ",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "comment.line.wat",
+                "punctuation.definition.comment.wat"
+            ],
+            "text": ";;",
+            "start": 12,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "comment.line.wat"
+            ],
+            "text": " return false",
+            "start": 14,
+            "end": 27
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": " )",
+            "start": 0,
+            "end": 3
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": ") ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "comment.line.wat",
+                "punctuation.definition.comment.wat"
+            ],
+            "text": ";;",
+            "start": 2,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "comment.line.wat"
+            ],
+            "text": " end of module",
+            "start": 4,
+            "end": 18
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat",
+                "comment.line.wat",
+                "punctuation.definition.comment.wat"
+            ],
+            "text": ";;",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.wat",
+                "comment.line.wat"
+            ],
+            "text": " From https://github.com/battlelinegames/ArtOfWasm/blob/main/Chapter3/is_prime.wat",
+            "start": 2,
+            "end": 84
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.wat"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ]
+]

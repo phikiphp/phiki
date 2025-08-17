@@ -1,0 +1,3097 @@
+[
+    [
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": "user",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "      www www",
+            "start": 5,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "punctuation.terminator.nginx"
+            ],
+            "text": ";",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "  ",
+            "start": 19,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "comment.line.number-sign"
+            ],
+            "text": "## Default: nobody",
+            "start": 21,
+            "end": 39
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": "worker_",
+            "start": 0,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": "processes",
+            "start": 7,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": " ",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "constant.numeric.nginx"
+            ],
+            "text": "5",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "punctuation.terminator.nginx"
+            ],
+            "text": ";",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "  ",
+            "start": 20,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "comment.line.number-sign"
+            ],
+            "text": "## Default: 1",
+            "start": 22,
+            "end": 35
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": "error_",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": "log",
+            "start": 6,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": " logs/error.log",
+            "start": 10,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "punctuation.terminator.nginx"
+            ],
+            "text": ";",
+            "start": 25,
+            "end": 26
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": "pid",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 3,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "       logs/nginx.pid",
+            "start": 4,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "punctuation.terminator.nginx"
+            ],
+            "text": ";",
+            "start": 25,
+            "end": 26
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": "worker_",
+            "start": 0,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": "rlimit_nofile",
+            "start": 7,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "constant.numeric.nginx"
+            ],
+            "text": "8192",
+            "start": 21,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "punctuation.terminator.nginx"
+            ],
+            "text": ";",
+            "start": 25,
+            "end": 26
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx",
+                "meta.context.events.nginx",
+                "storage.type.directive.context.nginx"
+            ],
+            "text": "events",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "meta.context.events.nginx"
+            ],
+            "text": " {",
+            "start": 6,
+            "end": 8
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": " ",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 1,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": "worker_",
+            "start": 2,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": "connections",
+            "start": 9,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": " ",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "constant.numeric.nginx"
+            ],
+            "text": "4096",
+            "start": 22,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "punctuation.terminator.nginx"
+            ],
+            "text": ";",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "  ",
+            "start": 27,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "comment.line.number-sign"
+            ],
+            "text": "## Default: 1024",
+            "start": 29,
+            "end": 45
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "}",
+            "start": 0,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx",
+                "meta.context.http.nginx",
+                "storage.type.directive.context.nginx"
+            ],
+            "text": "http",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "meta.context.http.nginx"
+            ],
+            "text": " {",
+            "start": 4,
+            "end": 6
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": " ",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 1,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": "include",
+            "start": 2,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "   conf/mime.types",
+            "start": 10,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "punctuation.terminator.nginx"
+            ],
+            "text": ";",
+            "start": 28,
+            "end": 29
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": " ",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 1,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": "include",
+            "start": 2,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "   /etc/nginx/proxy.conf",
+            "start": 10,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "punctuation.terminator.nginx"
+            ],
+            "text": ";",
+            "start": 34,
+            "end": 35
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": " ",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 1,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": "include",
+            "start": 2,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "   /etc/nginx/fastcgi.conf",
+            "start": 10,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "punctuation.terminator.nginx"
+            ],
+            "text": ";",
+            "start": 36,
+            "end": 37
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": " ",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 1,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": "index",
+            "start": 2,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "   index.html index.htm index.php",
+            "start": 8,
+            "end": 41
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "punctuation.terminator.nginx"
+            ],
+            "text": ";",
+            "start": 41,
+            "end": 42
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": " ",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 1,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": "default_type",
+            "start": 2,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "application/octet-stream",
+            "start": 15,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "punctuation.terminator.nginx"
+            ],
+            "text": ";",
+            "start": 39,
+            "end": 40
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": " ",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 1,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": "log_",
+            "start": 2,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": "format",
+            "start": 6,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "  ",
+            "start": 13,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "constant.language.nginx"
+            ],
+            "text": "main",
+            "start": 15,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": " ",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "string.quoted.single.nginx"
+            ],
+            "text": "'",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "string.quoted.single.nginx",
+                "punctuation.definition.variable.nginx"
+            ],
+            "text": "$",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "string.quoted.single.nginx",
+                "variable.other.nginx"
+            ],
+            "text": "remote_addr",
+            "start": 22,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "string.quoted.single.nginx"
+            ],
+            "text": " - ",
+            "start": 33,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "string.quoted.single.nginx",
+                "punctuation.definition.variable.nginx"
+            ],
+            "text": "$",
+            "start": 36,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "string.quoted.single.nginx",
+                "variable.other.nginx"
+            ],
+            "text": "remote_user",
+            "start": 37,
+            "end": 48
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "string.quoted.single.nginx"
+            ],
+            "text": " [",
+            "start": 48,
+            "end": 50
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "string.quoted.single.nginx",
+                "punctuation.definition.variable.nginx"
+            ],
+            "text": "$",
+            "start": 50,
+            "end": 51
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "string.quoted.single.nginx",
+                "variable.other.nginx"
+            ],
+            "text": "time_local",
+            "start": 51,
+            "end": 61
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "string.quoted.single.nginx"
+            ],
+            "text": "]  ",
+            "start": 61,
+            "end": 64
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "string.quoted.single.nginx",
+                "punctuation.definition.variable.nginx"
+            ],
+            "text": "$",
+            "start": 64,
+            "end": 65
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "string.quoted.single.nginx",
+                "variable.other.nginx"
+            ],
+            "text": "status",
+            "start": 65,
+            "end": 71
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "string.quoted.single.nginx"
+            ],
+            "text": " ",
+            "start": 71,
+            "end": 72
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "string.quoted.single.nginx"
+            ],
+            "text": "'",
+            "start": 72,
+            "end": 73
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "    '\"$request\" $",
+            "start": 0,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.unknown.nginx"
+            ],
+            "text": "body_bytes_sent",
+            "start": 17,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": " ",
+            "start": 32,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "string.quoted.double.nginx"
+            ],
+            "text": "\"",
+            "start": 33,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "string.quoted.double.nginx",
+                "punctuation.definition.variable.nginx"
+            ],
+            "text": "$",
+            "start": 34,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "string.quoted.double.nginx",
+                "variable.other.nginx"
+            ],
+            "text": "http_referer",
+            "start": 35,
+            "end": 47
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "string.quoted.double.nginx"
+            ],
+            "text": "\"",
+            "start": 47,
+            "end": 48
+        },
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": " ",
+            "start": 48,
+            "end": 49
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "string.quoted.single.nginx"
+            ],
+            "text": "'",
+            "start": 49,
+            "end": 50
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "    '\"$http_user_agent\" \"$http_x_forwarded_for\"';",
+            "start": 0,
+            "end": 50
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": " ",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 1,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": "access_log",
+            "start": 2,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "  logs/access.log  ",
+            "start": 13,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "constant.language.nginx"
+            ],
+            "text": "main",
+            "start": 32,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "punctuation.terminator.nginx"
+            ],
+            "text": ";",
+            "start": 36,
+            "end": 37
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": " ",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 1,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": "sendfile",
+            "start": 2,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "    ",
+            "start": 11,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "constant.language.nginx"
+            ],
+            "text": "on",
+            "start": 15,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "punctuation.terminator.nginx"
+            ],
+            "text": ";",
+            "start": 17,
+            "end": 18
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": " ",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 1,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": "tcp_",
+            "start": 2,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": "nopush",
+            "start": 6,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "  ",
+            "start": 13,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "constant.language.nginx"
+            ],
+            "text": "on",
+            "start": 15,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "punctuation.terminator.nginx"
+            ],
+            "text": ";",
+            "start": 17,
+            "end": 18
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": " ",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 1,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": "server_",
+            "start": 2,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": "names_hash_bucket_size",
+            "start": 9,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "constant.numeric.nginx"
+            ],
+            "text": "128",
+            "start": 32,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "punctuation.terminator.nginx"
+            ],
+            "text": ";",
+            "start": 35,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": " ",
+            "start": 36,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "comment.line.number-sign"
+            ],
+            "text": "# this seems to be required for some vhosts",
+            "start": 37,
+            "end": 80
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "meta.context.server.nginx",
+                "storage.type.directive.context.nginx"
+            ],
+            "text": "server",
+            "start": 2,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "meta.context.server.nginx"
+            ],
+            "text": " {",
+            "start": 8,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "meta.context.server.nginx"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "meta.context.server.nginx",
+                "comment.line.number-sign"
+            ],
+            "text": "# php/fastcgi",
+            "start": 11,
+            "end": 24
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "   ",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 3,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": "listen",
+            "start": 4,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "      ",
+            "start": 11,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "constant.numeric.nginx"
+            ],
+            "text": "80",
+            "start": 17,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "punctuation.terminator.nginx"
+            ],
+            "text": ";",
+            "start": 19,
+            "end": 20
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "   ",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 3,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": "server_",
+            "start": 4,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": "name",
+            "start": 11,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": " domain1.com www.domain1.com",
+            "start": 16,
+            "end": 44
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "punctuation.terminator.nginx"
+            ],
+            "text": ";",
+            "start": 44,
+            "end": 45
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "   ",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 3,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": "access_log",
+            "start": 4,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "  logs/domain1.access.log  ",
+            "start": 15,
+            "end": 42
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "constant.language.nginx"
+            ],
+            "text": "main",
+            "start": 42,
+            "end": 46
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "punctuation.terminator.nginx"
+            ],
+            "text": ";",
+            "start": 46,
+            "end": 47
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "   ",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 3,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": "root",
+            "start": 4,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "        html",
+            "start": 9,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "punctuation.terminator.nginx"
+            ],
+            "text": ";",
+            "start": 21,
+            "end": 22
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "meta.context.location.nginx",
+                "storage.type.directive.context.nginx"
+            ],
+            "text": "location",
+            "start": 4,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "meta.context.location.nginx"
+            ],
+            "text": " ",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "meta.context.location.nginx",
+                "keyword.operator.nginx"
+            ],
+            "text": "~",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "meta.context.location.nginx"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "meta.context.location.nginx",
+                "string.regexp.nginx"
+            ],
+            "text": "\\.php$ ",
+            "start": 15,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "meta.context.location.nginx"
+            ],
+            "text": "{",
+            "start": 22,
+            "end": 23
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "     ",
+            "start": 0,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 5,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": "fastcgi_",
+            "start": 6,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": "pass",
+            "start": 14,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "  127.0.0.1:1025",
+            "start": 19,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "punctuation.terminator.nginx"
+            ],
+            "text": ";",
+            "start": 35,
+            "end": 36
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "    }",
+            "start": 0,
+            "end": 6
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "  }",
+            "start": 0,
+            "end": 4
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "meta.context.server.nginx",
+                "storage.type.directive.context.nginx"
+            ],
+            "text": "server",
+            "start": 2,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "meta.context.server.nginx"
+            ],
+            "text": " {",
+            "start": 8,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "meta.context.server.nginx"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "meta.context.server.nginx",
+                "comment.line.number-sign"
+            ],
+            "text": "# simple reverse-proxy",
+            "start": 11,
+            "end": 33
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "   ",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 3,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": "listen",
+            "start": 4,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "      ",
+            "start": 11,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "constant.numeric.nginx"
+            ],
+            "text": "80",
+            "start": 17,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "punctuation.terminator.nginx"
+            ],
+            "text": ";",
+            "start": 19,
+            "end": 20
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "   ",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 3,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": "server_",
+            "start": 4,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": "name",
+            "start": 11,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": " domain2.com www.domain2.com",
+            "start": 16,
+            "end": 44
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "punctuation.terminator.nginx"
+            ],
+            "text": ";",
+            "start": 44,
+            "end": 45
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "   ",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 3,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": "access_log",
+            "start": 4,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "  logs/domain2.access.log  ",
+            "start": 15,
+            "end": 42
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "constant.language.nginx"
+            ],
+            "text": "main",
+            "start": 42,
+            "end": 46
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "punctuation.terminator.nginx"
+            ],
+            "text": ";",
+            "start": 46,
+            "end": 47
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "comment.line.number-sign"
+            ],
+            "text": "# serve static files",
+            "start": 4,
+            "end": 24
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "meta.context.location.nginx",
+                "storage.type.directive.context.nginx"
+            ],
+            "text": "location",
+            "start": 4,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "meta.context.location.nginx"
+            ],
+            "text": " ",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "meta.context.location.nginx",
+                "keyword.operator.nginx"
+            ],
+            "text": "~",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "meta.context.location.nginx"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "meta.context.location.nginx",
+                "string.regexp.nginx"
+            ],
+            "text": "^/(images|javascript|js|css|flash|media|static)/  ",
+            "start": 15,
+            "end": 65
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "meta.context.location.nginx"
+            ],
+            "text": "{",
+            "start": 65,
+            "end": 66
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "     ",
+            "start": 0,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 5,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": "root",
+            "start": 6,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "   /var/www/virtual/big.server.com/htdocs",
+            "start": 11,
+            "end": 52
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "punctuation.terminator.nginx"
+            ],
+            "text": ";",
+            "start": 52,
+            "end": 53
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "     ",
+            "start": 0,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 5,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": "expires",
+            "start": 6,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "constant.numeric.nginx"
+            ],
+            "text": "30d",
+            "start": 14,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "punctuation.terminator.nginx"
+            ],
+            "text": ";",
+            "start": 17,
+            "end": 18
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "    }",
+            "start": 0,
+            "end": 6
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "comment.line.number-sign"
+            ],
+            "text": "# pass requests for dynamic content to rails/turbogears/zope, et al",
+            "start": 4,
+            "end": 71
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "meta.context.location.nginx",
+                "storage.type.directive.context.nginx"
+            ],
+            "text": "location",
+            "start": 4,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "meta.context.location.nginx"
+            ],
+            "text": " ",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "meta.context.location.nginx",
+                "entity.name.context.location.nginx"
+            ],
+            "text": "/ ",
+            "start": 13,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "meta.context.location.nginx"
+            ],
+            "text": "{",
+            "start": 15,
+            "end": 16
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "     ",
+            "start": 0,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 5,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": "proxy_",
+            "start": 6,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": "pass",
+            "start": 12,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "     http://127.0.0.1:8080",
+            "start": 17,
+            "end": 43
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "punctuation.terminator.nginx"
+            ],
+            "text": ";",
+            "start": 43,
+            "end": 44
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "    }",
+            "start": 0,
+            "end": 6
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "  }",
+            "start": 0,
+            "end": 4
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "meta.context.upstream.nginx",
+                "storage.type.directive.context.nginx"
+            ],
+            "text": "upstream",
+            "start": 2,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "meta.context.upstream.nginx"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "meta.context.upstream.nginx",
+                "entity.name.context.location.nginx"
+            ],
+            "text": "big_server_com ",
+            "start": 11,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "meta.context.upstream.nginx"
+            ],
+            "text": "{",
+            "start": 26,
+            "end": 27
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": "server",
+            "start": 4,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "127.0.0.3:8000",
+            "start": 11,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": " ",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "variable.parameter.nginx"
+            ],
+            "text": "weight",
+            "start": 26,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.operator.nginx"
+            ],
+            "text": "=",
+            "start": 32,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "constant.numeric.nginx"
+            ],
+            "text": "5",
+            "start": 33,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": ";",
+            "start": 34,
+            "end": 35
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": "server",
+            "start": 4,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "127.0.0.3:8001",
+            "start": 11,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": " ",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "variable.parameter.nginx"
+            ],
+            "text": "weight",
+            "start": 26,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.operator.nginx"
+            ],
+            "text": "=",
+            "start": 32,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "constant.numeric.nginx"
+            ],
+            "text": "5",
+            "start": 33,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": ";",
+            "start": 34,
+            "end": 35
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": "server",
+            "start": 4,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "192.168.0.1:8000",
+            "start": 11,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": ";",
+            "start": 27,
+            "end": 28
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": "server",
+            "start": 4,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "192.168.0.1:8001",
+            "start": 11,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": ";",
+            "start": 27,
+            "end": 28
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "  }",
+            "start": 0,
+            "end": 4
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "meta.context.server.nginx",
+                "storage.type.directive.context.nginx"
+            ],
+            "text": "server",
+            "start": 2,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "meta.context.server.nginx"
+            ],
+            "text": " {",
+            "start": 8,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "meta.context.server.nginx"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "meta.context.server.nginx",
+                "comment.line.number-sign"
+            ],
+            "text": "# simple load balancing",
+            "start": 11,
+            "end": 34
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "   ",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 3,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": "listen",
+            "start": 4,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "         ",
+            "start": 11,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "constant.numeric.nginx"
+            ],
+            "text": "80",
+            "start": 20,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "punctuation.terminator.nginx"
+            ],
+            "text": ";",
+            "start": 22,
+            "end": 23
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "   ",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 3,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": "server_",
+            "start": 4,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": "name",
+            "start": 11,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "    big.server.com",
+            "start": 16,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "punctuation.terminator.nginx"
+            ],
+            "text": ";",
+            "start": 34,
+            "end": 35
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "   ",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 3,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": "access_log",
+            "start": 4,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "     logs/big.server.access.log ",
+            "start": 15,
+            "end": 47
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "constant.language.nginx"
+            ],
+            "text": "main",
+            "start": 47,
+            "end": 51
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "punctuation.terminator.nginx"
+            ],
+            "text": ";",
+            "start": 51,
+            "end": 52
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "meta.context.location.nginx",
+                "storage.type.directive.context.nginx"
+            ],
+            "text": "location",
+            "start": 4,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "meta.context.location.nginx"
+            ],
+            "text": " ",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "meta.context.location.nginx",
+                "entity.name.context.location.nginx"
+            ],
+            "text": "/ ",
+            "start": 13,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "meta.context.location.nginx"
+            ],
+            "text": "{",
+            "start": 15,
+            "end": 16
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "     ",
+            "start": 0,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 5,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": "proxy_",
+            "start": 6,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": "pass",
+            "start": 12,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "keyword.directive.nginx"
+            ],
+            "text": " ",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "     http://big_server_com",
+            "start": 17,
+            "end": 43
+        },
+        {
+            "scopes": [
+                "source.nginx",
+                "punctuation.terminator.nginx"
+            ],
+            "text": ";",
+            "start": 43,
+            "end": 44
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "    }",
+            "start": 0,
+            "end": 6
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "  }",
+            "start": 0,
+            "end": 4
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "}",
+            "start": 0,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx",
+                "comment.line.number-sign"
+            ],
+            "text": "# From https://www.nginx.com/resources/wiki/start/topics/examples/full/",
+            "start": 0,
+            "end": 71
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.nginx"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ]
+]

@@ -1,0 +1,3621 @@
+[
+    [
+        {
+            "scopes": [
+                "source.cobol",
+                "constant.numeric.cobol"
+            ],
+            "text": "      ",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "comment.line.cobol.fixed"
+            ],
+            "text": "******************************************************************",
+            "start": 6,
+            "end": 72
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol",
+                "constant.numeric.cobol"
+            ],
+            "text": "      ",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "comment.line.cobol.fixed"
+            ],
+            "text": "* Author: Bryan Flood",
+            "start": 6,
+            "end": 27
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol",
+                "constant.numeric.cobol"
+            ],
+            "text": "      ",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "comment.line.cobol.fixed"
+            ],
+            "text": "* Date: 25/10/2018",
+            "start": 6,
+            "end": 24
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol",
+                "constant.numeric.cobol"
+            ],
+            "text": "      ",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "comment.line.cobol.fixed"
+            ],
+            "text": "* Purpose: Compute Fibonacci Numbers",
+            "start": 6,
+            "end": 42
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol",
+                "constant.numeric.cobol"
+            ],
+            "text": "      ",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "comment.line.cobol.fixed"
+            ],
+            "text": "* Tectonics: cobc",
+            "start": 6,
+            "end": 23
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol",
+                "constant.numeric.cobol"
+            ],
+            "text": "      ",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "comment.line.cobol.fixed"
+            ],
+            "text": "******************************************************************",
+            "start": 6,
+            "end": 72
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "       ",
+            "start": 0,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.identifiers.cobol"
+            ],
+            "text": "IDENTIFICATION DIVISION",
+            "start": 7,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": ".",
+            "start": 30,
+            "end": 32
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "       ",
+            "start": 0,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.verb.cobol"
+            ],
+            "text": "PROGRAM-ID",
+            "start": 7,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": ". ",
+            "start": 17,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "entity.name.function.cobol"
+            ],
+            "text": "FIB",
+            "start": 19,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": ".",
+            "start": 22,
+            "end": 24
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "       ",
+            "start": 0,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.identifiers.cobol"
+            ],
+            "text": "DATA DIVISION",
+            "start": 7,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": ".",
+            "start": 20,
+            "end": 22
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "       ",
+            "start": 0,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.identifiers.cobol"
+            ],
+            "text": "FILE SECTION",
+            "start": 7,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": ".",
+            "start": 19,
+            "end": 21
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "       ",
+            "start": 0,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.identifiers.cobol"
+            ],
+            "text": "WORKING-STORAGE SECTION",
+            "start": 7,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": ".",
+            "start": 30,
+            "end": 32
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "       ",
+            "start": 0,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "constant.numeric.cobol"
+            ],
+            "text": "01",
+            "start": 7,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "  ",
+            "start": 9,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "N0",
+            "start": 11,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "             ",
+            "start": 13,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "storage.type.cobol"
+            ],
+            "text": "BINARY-C-LONG",
+            "start": 26,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 39,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.identifers.cobol"
+            ],
+            "text": "VALUE",
+            "start": 40,
+            "end": 45
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 45,
+            "end": 46
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "constant.numeric.cobol"
+            ],
+            "text": "0",
+            "start": 46,
+            "end": 47
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": ".",
+            "start": 47,
+            "end": 49
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "       ",
+            "start": 0,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "constant.numeric.cobol"
+            ],
+            "text": "01",
+            "start": 7,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "  ",
+            "start": 9,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "N1",
+            "start": 11,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "             ",
+            "start": 13,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "storage.type.cobol"
+            ],
+            "text": "BINARY-C-LONG",
+            "start": 26,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 39,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.identifers.cobol"
+            ],
+            "text": "VALUE",
+            "start": 40,
+            "end": 45
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 45,
+            "end": 46
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "constant.numeric.cobol"
+            ],
+            "text": "1",
+            "start": 46,
+            "end": 47
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": ".",
+            "start": 47,
+            "end": 49
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "       ",
+            "start": 0,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "constant.numeric.cobol"
+            ],
+            "text": "01",
+            "start": 7,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "  ",
+            "start": 9,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "SWAP",
+            "start": 11,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "           ",
+            "start": 15,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "storage.type.cobol"
+            ],
+            "text": "BINARY-C-LONG",
+            "start": 26,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 39,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.identifers.cobol"
+            ],
+            "text": "VALUE",
+            "start": 40,
+            "end": 45
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 45,
+            "end": 46
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "constant.numeric.cobol"
+            ],
+            "text": "1",
+            "start": 46,
+            "end": 47
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": ".",
+            "start": 47,
+            "end": 49
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "       ",
+            "start": 0,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "constant.numeric.cobol"
+            ],
+            "text": "01",
+            "start": 7,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "  ",
+            "start": 9,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "RESULT",
+            "start": 11,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "         ",
+            "start": 17,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "storage.type.picture8.cobol"
+            ],
+            "text": "PIC Z",
+            "start": 26,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "(",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "constant.numeric.cobol"
+            ],
+            "text": "20",
+            "start": 32,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": ")",
+            "start": 34,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "constant.numeric.cobol"
+            ],
+            "text": "9",
+            "start": 35,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": ".",
+            "start": 36,
+            "end": 38
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "       ",
+            "start": 0,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "constant.numeric.cobol"
+            ],
+            "text": "01",
+            "start": 7,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "  ",
+            "start": 9,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "I",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "              ",
+            "start": 12,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "storage.type.cobol"
+            ],
+            "text": "BINARY-C-LONG",
+            "start": 26,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 39,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.identifers.cobol"
+            ],
+            "text": "VALUE",
+            "start": 40,
+            "end": 45
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 45,
+            "end": 46
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "constant.numeric.cobol"
+            ],
+            "text": "0",
+            "start": 46,
+            "end": 47
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": ".",
+            "start": 47,
+            "end": 49
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "       ",
+            "start": 0,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "constant.numeric.cobol"
+            ],
+            "text": "01",
+            "start": 7,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "  ",
+            "start": 9,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "I-MAX",
+            "start": 11,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "          ",
+            "start": 16,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "storage.type.cobol"
+            ],
+            "text": "BINARY-C-LONG",
+            "start": 26,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 39,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.identifers.cobol"
+            ],
+            "text": "VALUE",
+            "start": 40,
+            "end": 45
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 45,
+            "end": 46
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "constant.numeric.cobol"
+            ],
+            "text": "0",
+            "start": 46,
+            "end": 47
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": ".",
+            "start": 47,
+            "end": 49
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "       ",
+            "start": 0,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "constant.numeric.cobol"
+            ],
+            "text": "01",
+            "start": 7,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "  ",
+            "start": 9,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "LARGEST-N",
+            "start": 11,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "      ",
+            "start": 20,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "storage.type.cobol"
+            ],
+            "text": "BINARY-C-LONG",
+            "start": 26,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 39,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.identifers.cobol"
+            ],
+            "text": "VALUE",
+            "start": 40,
+            "end": 45
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 45,
+            "end": 46
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "constant.numeric.cobol"
+            ],
+            "text": "92",
+            "start": 46,
+            "end": 48
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": ".",
+            "start": 48,
+            "end": 50
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "       ",
+            "start": 0,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.identifiers.cobol"
+            ],
+            "text": "PROCEDURE DIVISION",
+            "start": 7,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": ".",
+            "start": 25,
+            "end": 27
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol",
+                "constant.numeric.cobol"
+            ],
+            "text": "      ",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "comment.line.cobol.fixed"
+            ],
+            "text": "*>  THIS IS WHERE THE LABELS GET CALLED",
+            "start": 6,
+            "end": 45
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "           ",
+            "start": 0,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.control.cobol"
+            ],
+            "text": "PERFORM",
+            "start": 11,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "MAIN",
+            "start": 19,
+            "end": 23
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "           ",
+            "start": 0,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.control.cobol"
+            ],
+            "text": "PERFORM",
+            "start": 11,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "ENDFIB",
+            "start": 19,
+            "end": 25
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "           ",
+            "start": 0,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.control.cobol"
+            ],
+            "text": "GOBACK",
+            "start": 11,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": ".",
+            "start": 17,
+            "end": 19
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol",
+                "constant.numeric.cobol"
+            ],
+            "text": "      ",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "comment.line.cobol.fixed"
+            ],
+            "text": "*>  THIS ACCEPTS INPUT AND DETERMINES THE OUTPUT USING A EVAL STMT",
+            "start": 6,
+            "end": 72
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "       ",
+            "start": 0,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "MAIN",
+            "start": 7,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": ".",
+            "start": 11,
+            "end": 13
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "            ",
+            "start": 0,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.verb.cobol"
+            ],
+            "text": "DISPLAY",
+            "start": 12,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "string.quoted.double.cobol",
+                "punctuation.definition.string.begin.cobol"
+            ],
+            "text": "\"",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "string.quoted.double.cobol"
+            ],
+            "text": "ENTER N TO GENERATE THE FIBONACCI SEQUENCE",
+            "start": 21,
+            "end": 63
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "string.quoted.double.cobol",
+                "punctuation.definition.string.end.cobol"
+            ],
+            "text": "\"",
+            "start": 63,
+            "end": 64
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "            ",
+            "start": 0,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.verb.cobol"
+            ],
+            "text": "ACCEPT",
+            "start": 12,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "I-MAX",
+            "start": 19,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": ".",
+            "start": 24,
+            "end": 26
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "            ",
+            "start": 0,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.control.cobol"
+            ],
+            "text": "EVALUATE",
+            "start": 12,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "constant.language.cobol"
+            ],
+            "text": "TRUE",
+            "start": 21,
+            "end": 25
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "              ",
+            "start": 0,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.control.cobol"
+            ],
+            "text": "WHEN",
+            "start": 14,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "I-MAX",
+            "start": 19,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.operator.cobol"
+            ],
+            "text": ">",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "LARGEST-N",
+            "start": 27,
+            "end": 36
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "                 ",
+            "start": 0,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.control.cobol"
+            ],
+            "text": "PERFORM",
+            "start": 17,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "INVALIDN",
+            "start": 25,
+            "end": 33
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "              ",
+            "start": 0,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.control.cobol"
+            ],
+            "text": "WHEN",
+            "start": 14,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "I-MAX",
+            "start": 19,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.operator.cobol"
+            ],
+            "text": ">",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "constant.numeric.cobol"
+            ],
+            "text": "2",
+            "start": 27,
+            "end": 28
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "                 ",
+            "start": 0,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.control.cobol"
+            ],
+            "text": "PERFORM",
+            "start": 17,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "CASEGREATERTHAN2",
+            "start": 25,
+            "end": 41
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "              ",
+            "start": 0,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.control.cobol"
+            ],
+            "text": "WHEN",
+            "start": 14,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "I-MAX",
+            "start": 19,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.operator.cobol"
+            ],
+            "text": "=",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "constant.numeric.cobol"
+            ],
+            "text": "2",
+            "start": 27,
+            "end": 28
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "                 ",
+            "start": 0,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.control.cobol"
+            ],
+            "text": "PERFORM",
+            "start": 17,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "CASE2",
+            "start": 25,
+            "end": 30
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "              ",
+            "start": 0,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.control.cobol"
+            ],
+            "text": "WHEN",
+            "start": 14,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "I-MAX",
+            "start": 19,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.operator.cobol"
+            ],
+            "text": "=",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "constant.numeric.cobol"
+            ],
+            "text": "1",
+            "start": 27,
+            "end": 28
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "                 ",
+            "start": 0,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.control.cobol"
+            ],
+            "text": "PERFORM",
+            "start": 17,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "CASE1",
+            "start": 25,
+            "end": 30
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "              ",
+            "start": 0,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.control.cobol"
+            ],
+            "text": "WHEN",
+            "start": 14,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "I-MAX",
+            "start": 19,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.operator.cobol"
+            ],
+            "text": "=",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "constant.numeric.cobol"
+            ],
+            "text": "0",
+            "start": 27,
+            "end": 28
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "                 ",
+            "start": 0,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.control.cobol"
+            ],
+            "text": "PERFORM",
+            "start": 17,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "CASE0",
+            "start": 25,
+            "end": 30
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "              ",
+            "start": 0,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.control.cobol"
+            ],
+            "text": "WHEN OTHER",
+            "start": 14,
+            "end": 24
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "                 ",
+            "start": 0,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.control.cobol"
+            ],
+            "text": "PERFORM",
+            "start": 17,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "INVALIDN",
+            "start": 25,
+            "end": 33
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "            ",
+            "start": 0,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.control.cobol"
+            ],
+            "text": "END-EVALUATE",
+            "start": 12,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": ".",
+            "start": 24,
+            "end": 26
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "            ",
+            "start": 0,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.identifiers.cobol"
+            ],
+            "text": "STOP RUN",
+            "start": 12,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": ".",
+            "start": 20,
+            "end": 22
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "       ",
+            "start": 0,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "comment.line.modern"
+            ],
+            "text": "*>  THE CASE FOR WHEN N = 0",
+            "start": 7,
+            "end": 34
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "       ",
+            "start": 0,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "CASE0",
+            "start": 7,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": ".",
+            "start": 12,
+            "end": 14
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "           ",
+            "start": 0,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.verb.cobol"
+            ],
+            "text": "MOVE",
+            "start": 11,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "N0",
+            "start": 16,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.identifers.cobol"
+            ],
+            "text": "TO",
+            "start": 19,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "RESULT",
+            "start": 22,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": ".",
+            "start": 28,
+            "end": 30
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "           ",
+            "start": 0,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.verb.cobol"
+            ],
+            "text": "DISPLAY",
+            "start": 11,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "RESULT",
+            "start": 19,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": ".",
+            "start": 25,
+            "end": 27
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol",
+                "constant.numeric.cobol"
+            ],
+            "text": "      ",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "comment.line.cobol.fixed"
+            ],
+            "text": "*>  THE CASE FOR WHEN N = 1",
+            "start": 6,
+            "end": 33
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "       ",
+            "start": 0,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "CASE1",
+            "start": 7,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": ".",
+            "start": 12,
+            "end": 14
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "           ",
+            "start": 0,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.control.cobol"
+            ],
+            "text": "PERFORM",
+            "start": 11,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "CASE0",
+            "start": 19,
+            "end": 24
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "           ",
+            "start": 0,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.verb.cobol"
+            ],
+            "text": "MOVE",
+            "start": 11,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "N1",
+            "start": 16,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.identifers.cobol"
+            ],
+            "text": "TO",
+            "start": 19,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "RESULT",
+            "start": 22,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": ".",
+            "start": 28,
+            "end": 30
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "           ",
+            "start": 0,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.verb.cobol"
+            ],
+            "text": "DISPLAY",
+            "start": 11,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "RESULT",
+            "start": 19,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": ".",
+            "start": 25,
+            "end": 27
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol",
+                "constant.numeric.cobol"
+            ],
+            "text": "      ",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "comment.line.cobol.fixed"
+            ],
+            "text": "*>  THE CASE FOR WHEN N = 2",
+            "start": 6,
+            "end": 33
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "       ",
+            "start": 0,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "CASE2",
+            "start": 7,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": ".",
+            "start": 12,
+            "end": 14
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "           ",
+            "start": 0,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.control.cobol"
+            ],
+            "text": "PERFORM",
+            "start": 11,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "CASE1",
+            "start": 19,
+            "end": 24
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "           ",
+            "start": 0,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.verb.cobol"
+            ],
+            "text": "MOVE",
+            "start": 11,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "N1",
+            "start": 16,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.identifers.cobol"
+            ],
+            "text": "TO",
+            "start": 19,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "RESULT",
+            "start": 22,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": ".",
+            "start": 28,
+            "end": 30
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "           ",
+            "start": 0,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.verb.cobol"
+            ],
+            "text": "DISPLAY",
+            "start": 11,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "RESULT",
+            "start": 19,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": ".",
+            "start": 25,
+            "end": 27
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol",
+                "constant.numeric.cobol"
+            ],
+            "text": "      ",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "comment.line.cobol.fixed"
+            ],
+            "text": "*>  THE CASE FOR WHEN N > 2",
+            "start": 6,
+            "end": 33
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "       ",
+            "start": 0,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "CASEGREATERTHAN2",
+            "start": 7,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": ".",
+            "start": 23,
+            "end": 25
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "           ",
+            "start": 0,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.control.cobol"
+            ],
+            "text": "PERFORM",
+            "start": 11,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "CASE1",
+            "start": 19,
+            "end": 24
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "           ",
+            "start": 0,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.control.cobol"
+            ],
+            "text": "PERFORM",
+            "start": 11,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.otherverb.cobol"
+            ],
+            "text": "VARYING",
+            "start": 19,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "I",
+            "start": 27,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.identifers.cobol"
+            ],
+            "text": "FROM",
+            "start": 29,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 33,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "constant.numeric.cobol"
+            ],
+            "text": "1",
+            "start": 34,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 35,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.identifers.cobol"
+            ],
+            "text": "BY",
+            "start": 36,
+            "end": 38
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 38,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "constant.numeric.cobol"
+            ],
+            "text": "1",
+            "start": 39,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 40,
+            "end": 41
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.otherverb.cobol"
+            ],
+            "text": "UNTIL",
+            "start": 41,
+            "end": 46
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 46,
+            "end": 47
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "I",
+            "start": 47,
+            "end": 48
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 48,
+            "end": 49
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.operator.cobol"
+            ],
+            "text": "=",
+            "start": 49,
+            "end": 50
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 50,
+            "end": 51
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "I-MAX",
+            "start": 51,
+            "end": 56
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "                   ",
+            "start": 0,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.verb.cobol"
+            ],
+            "text": "ADD",
+            "start": 19,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 22,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "N0",
+            "start": 23,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.identifers.cobol"
+            ],
+            "text": "TO",
+            "start": 26,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "N1",
+            "start": 29,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.otherverb.cobol"
+            ],
+            "text": "GIVING",
+            "start": 32,
+            "end": 38
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 38,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "SWAP",
+            "start": 39,
+            "end": 43
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "                   ",
+            "start": 0,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.verb.cobol"
+            ],
+            "text": "MOVE",
+            "start": 19,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "N1",
+            "start": 24,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.identifers.cobol"
+            ],
+            "text": "TO",
+            "start": 27,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 29,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "N0",
+            "start": 30,
+            "end": 32
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "                   ",
+            "start": 0,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.verb.cobol"
+            ],
+            "text": "MOVE",
+            "start": 19,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "SWAP",
+            "start": 24,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.identifers.cobol"
+            ],
+            "text": "TO",
+            "start": 29,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "N1",
+            "start": 32,
+            "end": 34
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "                   ",
+            "start": 0,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.verb.cobol"
+            ],
+            "text": "MOVE",
+            "start": 19,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "SWAP",
+            "start": 24,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.identifers.cobol"
+            ],
+            "text": "TO",
+            "start": 29,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "RESULT",
+            "start": 32,
+            "end": 38
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "                   ",
+            "start": 0,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.verb.cobol"
+            ],
+            "text": "DISPLAY",
+            "start": 19,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "RESULT",
+            "start": 27,
+            "end": 33
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "            ",
+            "start": 0,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.control.cobol"
+            ],
+            "text": "END-PERFORM",
+            "start": 12,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": ".",
+            "start": 23,
+            "end": 25
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol",
+                "constant.numeric.cobol"
+            ],
+            "text": "      ",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "comment.line.cobol.fixed"
+            ],
+            "text": "*>  PROVIDE ERROR FOR INVALID INPUT",
+            "start": 6,
+            "end": 41
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "       ",
+            "start": 0,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "INVALIDN",
+            "start": 7,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": ".",
+            "start": 15,
+            "end": 17
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "           ",
+            "start": 0,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.verb.cobol"
+            ],
+            "text": "DISPLAY",
+            "start": 11,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "string.quoted.single.cobol",
+                "punctuation.definition.string.begin.cobol"
+            ],
+            "text": "'",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "string.quoted.single.cobol"
+            ],
+            "text": "INVALID N VALUE. THE PROGRAM WILL NOW END",
+            "start": 20,
+            "end": 61
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "string.quoted.single.cobol",
+                "punctuation.definition.string.end.cobol"
+            ],
+            "text": "'",
+            "start": 61,
+            "end": 62
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": ".",
+            "start": 62,
+            "end": 64
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol",
+                "constant.numeric.cobol"
+            ],
+            "text": "      ",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "comment.line.cobol.fixed"
+            ],
+            "text": "*>  END THE PROGRAM WITH A MESSAGE",
+            "start": 6,
+            "end": 40
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "       ",
+            "start": 0,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "meta.symbol.cobol"
+            ],
+            "text": "ENDFIB",
+            "start": 7,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": ".",
+            "start": 13,
+            "end": 15
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "           ",
+            "start": 0,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.verb.cobol"
+            ],
+            "text": "DISPLAY",
+            "start": 11,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "string.quoted.double.cobol",
+                "punctuation.definition.string.begin.cobol"
+            ],
+            "text": "\"",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "string.quoted.double.cobol"
+            ],
+            "text": "THE PROGRAM HAS COMPLETED AND WILL NOW END",
+            "start": 20,
+            "end": 62
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "string.quoted.double.cobol",
+                "punctuation.definition.string.end.cobol"
+            ],
+            "text": "\"",
+            "start": 62,
+            "end": 63
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": ".",
+            "start": 63,
+            "end": 65
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "       ",
+            "start": 0,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "keyword.verb.cobol"
+            ],
+            "text": "END PROGRAM",
+            "start": 7,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": " ",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.cobol",
+                "entity.name.function.cobol"
+            ],
+            "text": "FIB",
+            "start": 19,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": ".",
+            "start": 22,
+            "end": 24
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol",
+                "comment.line.cobol.fixed"
+            ],
+            "text": "*> From https://github.com/KnowledgePending/COBOL-Fibonacci-Sequence/blob/master/fib.cbl",
+            "start": 0,
+            "end": 88
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.cobol"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ]
+]

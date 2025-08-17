@@ -1,0 +1,1836 @@
+[
+    [
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "comment.line.semicolon.emacs.lisp",
+                "punctuation.definition.comment.emacs.lisp"
+            ],
+            "text": ";",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "comment.line.semicolon.emacs.lisp"
+            ],
+            "text": ";; cdl.el --- Common Data Language (CDL) utility functions for GNU Emacs ",
+            "start": 1,
+            "end": 74
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "comment.line.semicolon.emacs.lisp",
+                "meta.modeline.emacs.lisp",
+                "punctuation.definition.modeline.begin.emacs.lisp"
+            ],
+            "text": "-*-",
+            "start": 74,
+            "end": 77
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "comment.line.semicolon.emacs.lisp",
+                "meta.modeline.emacs.lisp"
+            ],
+            "text": " ",
+            "start": 77,
+            "end": 78
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "comment.line.semicolon.emacs.lisp",
+                "meta.modeline.emacs.lisp",
+                "meta.modeline.variable.emacs.lisp",
+                "variable.assignment.modeline.emacs.lisp"
+            ],
+            "text": "lexical-binding",
+            "start": 78,
+            "end": 93
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "comment.line.semicolon.emacs.lisp",
+                "meta.modeline.emacs.lisp",
+                "meta.modeline.variable.emacs.lisp",
+                "punctuation.separator.key-value.emacs.lisp"
+            ],
+            "text": ":",
+            "start": 93,
+            "end": 94
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "comment.line.semicolon.emacs.lisp",
+                "meta.modeline.emacs.lisp",
+                "meta.modeline.variable.emacs.lisp"
+            ],
+            "text": " ",
+            "start": 94,
+            "end": 95
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "comment.line.semicolon.emacs.lisp",
+                "meta.modeline.emacs.lisp",
+                "meta.modeline.variable.emacs.lisp",
+                "string.other.modeline.emacs.lisp"
+            ],
+            "text": "t",
+            "start": 95,
+            "end": 96
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "comment.line.semicolon.emacs.lisp",
+                "meta.modeline.emacs.lisp",
+                "meta.modeline.variable.emacs.lisp"
+            ],
+            "text": " ",
+            "start": 96,
+            "end": 97
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "comment.line.semicolon.emacs.lisp",
+                "meta.modeline.emacs.lisp",
+                "punctuation.definition.modeline.end.emacs.lisp"
+            ],
+            "text": "-*-",
+            "start": 97,
+            "end": 100
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.emacs.lisp"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "comment.line.semicolon.emacs.lisp",
+                "punctuation.definition.comment.emacs.lisp"
+            ],
+            "text": ";",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "comment.line.semicolon.emacs.lisp"
+            ],
+            "text": "; Copyright (C) 1993, 2001-2024 Free Software Foundation, Inc.",
+            "start": 1,
+            "end": 63
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.emacs.lisp"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "comment.line.semicolon.emacs.lisp",
+                "punctuation.definition.comment.emacs.lisp"
+            ],
+            "text": ";",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "comment.line.semicolon.emacs.lisp"
+            ],
+            "text": "; Author: Ata Etemadi <ATAE@spva.physics.imperial.ac.uk>",
+            "start": 1,
+            "end": 57
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "comment.line.semicolon.emacs.lisp",
+                "punctuation.definition.comment.emacs.lisp"
+            ],
+            "text": ";",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "comment.line.semicolon.emacs.lisp"
+            ],
+            "text": "; Maintainer: emacs-devel@gnu.org",
+            "start": 1,
+            "end": 34
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "comment.line.semicolon.emacs.lisp",
+                "punctuation.definition.comment.emacs.lisp"
+            ],
+            "text": ";",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "comment.line.semicolon.emacs.lisp"
+            ],
+            "text": "; Keywords: data",
+            "start": 1,
+            "end": 17
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.emacs.lisp"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "comment.line.semicolon.emacs.lisp",
+                "punctuation.definition.comment.emacs.lisp"
+            ],
+            "text": ";",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "comment.line.semicolon.emacs.lisp"
+            ],
+            "text": ";; Commentary:",
+            "start": 1,
+            "end": 15
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.emacs.lisp"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "comment.line.semicolon.emacs.lisp",
+                "punctuation.definition.comment.emacs.lisp"
+            ],
+            "text": ";",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "comment.line.semicolon.emacs.lisp"
+            ],
+            "text": ";; Code:",
+            "start": 1,
+            "end": 9
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.emacs.lisp"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.function.definition.emacs.lisp",
+                "punctuation.section.expression.begin.emacs.lisp"
+            ],
+            "text": "(",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.function.definition.emacs.lisp",
+                "storage.type.defun.function.emacs.lisp"
+            ],
+            "text": "defun",
+            "start": 1,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.function.definition.emacs.lisp"
+            ],
+            "text": " ",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.function.definition.emacs.lisp",
+                "entity.function.name.emacs.lisp"
+            ],
+            "text": "cdl-get-file",
+            "start": 7,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.function.definition.emacs.lisp",
+                "meta.argument-list.expression.emacs.lisp",
+                "punctuation.section.expression.begin.emacs.lisp"
+            ],
+            "text": " (",
+            "start": 19,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.function.definition.emacs.lisp",
+                "meta.argument-list.expression.emacs.lisp",
+                "variable.parameter.emacs.lisp"
+            ],
+            "text": "filename",
+            "start": 21,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.function.definition.emacs.lisp",
+                "meta.argument-list.expression.emacs.lisp",
+                "punctuation.section.expression.end.emacs.lisp"
+            ],
+            "text": ")",
+            "start": 29,
+            "end": 30
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.emacs.lisp"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "string.quoted.double.emacs.lisp",
+                "punctuation.definition.string.begin.emacs.lisp"
+            ],
+            "text": "\"",
+            "start": 2,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "string.quoted.double.emacs.lisp"
+            ],
+            "text": "Run file through ncdump and insert result into buffer after point.",
+            "start": 3,
+            "end": 69
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "string.quoted.double.emacs.lisp",
+                "punctuation.definition.string.end.emacs.lisp"
+            ],
+            "text": "\"",
+            "start": 69,
+            "end": 70
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.emacs.lisp"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "punctuation.section.expression.begin.emacs.lisp"
+            ],
+            "text": "(",
+            "start": 2,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "storage.modifier.interactive.function.emacs.lisp"
+            ],
+            "text": "interactive",
+            "start": 3,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "string.quoted.double.emacs.lisp",
+                "punctuation.definition.string.begin.emacs.lisp"
+            ],
+            "text": "\"",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "string.quoted.double.emacs.lisp"
+            ],
+            "text": "fCDF file: ",
+            "start": 16,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "string.quoted.double.emacs.lisp",
+                "punctuation.definition.string.end.emacs.lisp"
+            ],
+            "text": "\"",
+            "start": 27,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "punctuation.section.expression.end.emacs.lisp"
+            ],
+            "text": ")",
+            "start": 28,
+            "end": 29
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.emacs.lisp"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.string-formatting.expression.emacs.lisp",
+                "punctuation.section.expression.begin.emacs.lisp"
+            ],
+            "text": "(",
+            "start": 2,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.string-formatting.expression.emacs.lisp",
+                "support.function.message.emacs.lisp"
+            ],
+            "text": "message",
+            "start": 3,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.string-formatting.expression.emacs.lisp"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.string-formatting.expression.emacs.lisp",
+                "punctuation.definition.string.begin.emacs.lisp"
+            ],
+            "text": "\"",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.string-formatting.expression.emacs.lisp",
+                "string.quoted.double.emacs.lisp"
+            ],
+            "text": "ncdump in progress...",
+            "start": 12,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.string-formatting.expression.emacs.lisp",
+                "punctuation.definition.string.end.emacs.lisp"
+            ],
+            "text": "\"",
+            "start": 33,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.string-formatting.expression.emacs.lisp",
+                "punctuation.section.expression.end.emacs.lisp"
+            ],
+            "text": ")",
+            "start": 34,
+            "end": 35
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.emacs.lisp"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "punctuation.section.expression.begin.emacs.lisp"
+            ],
+            "text": "(",
+            "start": 2,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "storage.binding.emacs.lisp"
+            ],
+            "text": "let",
+            "start": 3,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp"
+            ],
+            "text": " ",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "punctuation.section.expression.begin.emacs.lisp"
+            ],
+            "text": "(",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "punctuation.section.expression.begin.emacs.lisp"
+            ],
+            "text": "(",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "meta.expression.emacs.lisp"
+            ],
+            "text": "start ",
+            "start": 9,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "punctuation.section.expression.begin.emacs.lisp"
+            ],
+            "text": "(",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "support.function.emacs.lisp"
+            ],
+            "text": "point",
+            "start": 16,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "punctuation.section.expression.end.emacs.lisp"
+            ],
+            "text": ")",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "punctuation.section.expression.end.emacs.lisp"
+            ],
+            "text": ")",
+            "start": 22,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "punctuation.section.expression.end.emacs.lisp"
+            ],
+            "text": ")",
+            "start": 23,
+            "end": 24
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.emacs.lisp"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "punctuation.section.expression.begin.emacs.lisp"
+            ],
+            "text": "(",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "support.function.emacs.lisp"
+            ],
+            "text": "call-process",
+            "start": 5,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp"
+            ],
+            "text": "  ",
+            "start": 17,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "string.quoted.double.emacs.lisp",
+                "punctuation.definition.string.begin.emacs.lisp"
+            ],
+            "text": "\"",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "string.quoted.double.emacs.lisp"
+            ],
+            "text": "ncdump",
+            "start": 20,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "string.quoted.double.emacs.lisp",
+                "punctuation.definition.string.end.emacs.lisp"
+            ],
+            "text": "\"",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp"
+            ],
+            "text": " ",
+            "start": 27,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "constant.language.nil.emacs.lisp"
+            ],
+            "text": "nil",
+            "start": 28,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp"
+            ],
+            "text": " ",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "constant.boolean.true.emacs.lisp"
+            ],
+            "text": "t",
+            "start": 32,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp"
+            ],
+            "text": " ",
+            "start": 33,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "constant.language.nil.emacs.lisp"
+            ],
+            "text": "nil",
+            "start": 34,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp"
+            ],
+            "text": " ",
+            "start": 37,
+            "end": 38
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "punctuation.section.expression.begin.emacs.lisp"
+            ],
+            "text": "(",
+            "start": 38,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "support.function.emacs.lisp"
+            ],
+            "text": "expand-file-name",
+            "start": 39,
+            "end": 55
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "meta.expression.emacs.lisp"
+            ],
+            "text": " filename",
+            "start": 55,
+            "end": 64
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "punctuation.section.expression.end.emacs.lisp"
+            ],
+            "text": ")",
+            "start": 64,
+            "end": 65
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "punctuation.section.expression.end.emacs.lisp"
+            ],
+            "text": ")",
+            "start": 65,
+            "end": 66
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.emacs.lisp"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "punctuation.section.expression.begin.emacs.lisp"
+            ],
+            "text": "(",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "support.function.emacs.lisp"
+            ],
+            "text": "goto-char",
+            "start": 5,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp"
+            ],
+            "text": " start",
+            "start": 14,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "punctuation.section.expression.end.emacs.lisp"
+            ],
+            "text": ")",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp"
+            ],
+            "text": ")",
+            "start": 21,
+            "end": 23
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.emacs.lisp"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.string-formatting.expression.emacs.lisp",
+                "punctuation.section.expression.begin.emacs.lisp"
+            ],
+            "text": "(",
+            "start": 2,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.string-formatting.expression.emacs.lisp",
+                "support.function.message.emacs.lisp"
+            ],
+            "text": "message",
+            "start": 3,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.string-formatting.expression.emacs.lisp"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.string-formatting.expression.emacs.lisp",
+                "punctuation.definition.string.begin.emacs.lisp"
+            ],
+            "text": "\"",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.string-formatting.expression.emacs.lisp",
+                "string.quoted.double.emacs.lisp"
+            ],
+            "text": "ncdump in progress...done",
+            "start": 12,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.string-formatting.expression.emacs.lisp",
+                "punctuation.definition.string.end.emacs.lisp"
+            ],
+            "text": "\"",
+            "start": 37,
+            "end": 38
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.string-formatting.expression.emacs.lisp",
+                "punctuation.section.expression.end.emacs.lisp"
+            ],
+            "text": ")",
+            "start": 38,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp"
+            ],
+            "text": ")",
+            "start": 39,
+            "end": 41
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.emacs.lisp"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.function.definition.emacs.lisp",
+                "punctuation.section.expression.begin.emacs.lisp"
+            ],
+            "text": "(",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.function.definition.emacs.lisp",
+                "storage.type.defun.function.emacs.lisp"
+            ],
+            "text": "defun",
+            "start": 1,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.function.definition.emacs.lisp"
+            ],
+            "text": " ",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.function.definition.emacs.lisp",
+                "entity.function.name.emacs.lisp"
+            ],
+            "text": "cdl-put-region",
+            "start": 7,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.function.definition.emacs.lisp",
+                "meta.argument-list.expression.emacs.lisp",
+                "punctuation.section.expression.begin.emacs.lisp"
+            ],
+            "text": " (",
+            "start": 21,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.function.definition.emacs.lisp",
+                "meta.argument-list.expression.emacs.lisp",
+                "variable.parameter.emacs.lisp"
+            ],
+            "text": "filename",
+            "start": 23,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.function.definition.emacs.lisp",
+                "meta.argument-list.expression.emacs.lisp"
+            ],
+            "text": " ",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.function.definition.emacs.lisp",
+                "meta.argument-list.expression.emacs.lisp",
+                "variable.parameter.emacs.lisp"
+            ],
+            "text": "start",
+            "start": 32,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.function.definition.emacs.lisp",
+                "meta.argument-list.expression.emacs.lisp"
+            ],
+            "text": " ",
+            "start": 37,
+            "end": 38
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.function.definition.emacs.lisp",
+                "meta.argument-list.expression.emacs.lisp",
+                "variable.parameter.emacs.lisp"
+            ],
+            "text": "end",
+            "start": 38,
+            "end": 41
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.function.definition.emacs.lisp",
+                "meta.argument-list.expression.emacs.lisp",
+                "punctuation.section.expression.end.emacs.lisp"
+            ],
+            "text": ")",
+            "start": 41,
+            "end": 42
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.emacs.lisp"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "string.quoted.double.emacs.lisp",
+                "punctuation.definition.string.begin.emacs.lisp"
+            ],
+            "text": "\"",
+            "start": 2,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "string.quoted.double.emacs.lisp"
+            ],
+            "text": "Run region through ncgen and write results into a file.",
+            "start": 3,
+            "end": 58
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "string.quoted.double.emacs.lisp",
+                "punctuation.definition.string.end.emacs.lisp"
+            ],
+            "text": "\"",
+            "start": 58,
+            "end": 59
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.emacs.lisp"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "punctuation.section.expression.begin.emacs.lisp"
+            ],
+            "text": "(",
+            "start": 2,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "storage.modifier.interactive.function.emacs.lisp"
+            ],
+            "text": "interactive",
+            "start": 3,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "string.quoted.double.emacs.lisp",
+                "punctuation.definition.string.begin.emacs.lisp"
+            ],
+            "text": "\"",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "string.quoted.double.emacs.lisp"
+            ],
+            "text": "FNew CDF file: ",
+            "start": 16,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "string.quoted.double.emacs.lisp",
+                "constant.escape.character.emacs.lisp",
+                "punctuation.escape.backslash.emacs.lisp"
+            ],
+            "text": "\\",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "string.quoted.double.emacs.lisp",
+                "constant.escape.character.emacs.lisp"
+            ],
+            "text": "n",
+            "start": 32,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "string.quoted.double.emacs.lisp"
+            ],
+            "text": "r",
+            "start": 33,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "string.quoted.double.emacs.lisp",
+                "punctuation.definition.string.end.emacs.lisp"
+            ],
+            "text": "\"",
+            "start": 34,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "punctuation.section.expression.end.emacs.lisp"
+            ],
+            "text": ")",
+            "start": 35,
+            "end": 36
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.emacs.lisp"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.string-formatting.expression.emacs.lisp",
+                "punctuation.section.expression.begin.emacs.lisp"
+            ],
+            "text": "(",
+            "start": 2,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.string-formatting.expression.emacs.lisp",
+                "support.function.message.emacs.lisp"
+            ],
+            "text": "message",
+            "start": 3,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.string-formatting.expression.emacs.lisp"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.string-formatting.expression.emacs.lisp",
+                "punctuation.definition.string.begin.emacs.lisp"
+            ],
+            "text": "\"",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.string-formatting.expression.emacs.lisp",
+                "string.quoted.double.emacs.lisp"
+            ],
+            "text": "ncgen in progress...",
+            "start": 12,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.string-formatting.expression.emacs.lisp",
+                "punctuation.definition.string.end.emacs.lisp"
+            ],
+            "text": "\"",
+            "start": 32,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.string-formatting.expression.emacs.lisp",
+                "punctuation.section.expression.end.emacs.lisp"
+            ],
+            "text": ")",
+            "start": 33,
+            "end": 34
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.emacs.lisp"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "punctuation.section.expression.begin.emacs.lisp"
+            ],
+            "text": "(",
+            "start": 2,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "support.function.emacs.lisp"
+            ],
+            "text": "call-process-region",
+            "start": 3,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp"
+            ],
+            "text": " start end ",
+            "start": 22,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "string.quoted.double.emacs.lisp",
+                "punctuation.definition.string.begin.emacs.lisp"
+            ],
+            "text": "\"",
+            "start": 33,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "string.quoted.double.emacs.lisp"
+            ],
+            "text": "ncgen",
+            "start": 34,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "string.quoted.double.emacs.lisp",
+                "punctuation.definition.string.end.emacs.lisp"
+            ],
+            "text": "\"",
+            "start": 39,
+            "end": 40
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.emacs.lisp"
+            ],
+            "text": "                       ",
+            "start": 0,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "constant.language.nil.emacs.lisp"
+            ],
+            "text": "nil",
+            "start": 23,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp"
+            ],
+            "text": " ",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "constant.language.nil.emacs.lisp"
+            ],
+            "text": "nil",
+            "start": 27,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp"
+            ],
+            "text": " ",
+            "start": 30,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "constant.language.nil.emacs.lisp"
+            ],
+            "text": "nil",
+            "start": 31,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp"
+            ],
+            "text": " ",
+            "start": 34,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "string.quoted.double.emacs.lisp",
+                "punctuation.definition.string.begin.emacs.lisp"
+            ],
+            "text": "\"",
+            "start": 35,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "string.quoted.double.emacs.lisp"
+            ],
+            "text": "-o",
+            "start": 36,
+            "end": 38
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "string.quoted.double.emacs.lisp",
+                "punctuation.definition.string.end.emacs.lisp"
+            ],
+            "text": "\"",
+            "start": 38,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp"
+            ],
+            "text": " ",
+            "start": 39,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "punctuation.section.expression.begin.emacs.lisp"
+            ],
+            "text": "(",
+            "start": 40,
+            "end": 41
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "support.function.emacs.lisp"
+            ],
+            "text": "expand-file-name",
+            "start": 41,
+            "end": 57
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp"
+            ],
+            "text": " filename",
+            "start": 57,
+            "end": 66
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "punctuation.section.expression.end.emacs.lisp"
+            ],
+            "text": ")",
+            "start": 66,
+            "end": 67
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp"
+            ],
+            "text": ")",
+            "start": 67,
+            "end": 69
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.emacs.lisp"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.string-formatting.expression.emacs.lisp",
+                "punctuation.section.expression.begin.emacs.lisp"
+            ],
+            "text": "(",
+            "start": 2,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.string-formatting.expression.emacs.lisp",
+                "support.function.message.emacs.lisp"
+            ],
+            "text": "message",
+            "start": 3,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.string-formatting.expression.emacs.lisp"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.string-formatting.expression.emacs.lisp",
+                "punctuation.definition.string.begin.emacs.lisp"
+            ],
+            "text": "\"",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.string-formatting.expression.emacs.lisp",
+                "string.quoted.double.emacs.lisp"
+            ],
+            "text": "ncgen in progress...done",
+            "start": 12,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.string-formatting.expression.emacs.lisp",
+                "punctuation.definition.string.end.emacs.lisp"
+            ],
+            "text": "\"",
+            "start": 36,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.string-formatting.expression.emacs.lisp",
+                "punctuation.section.expression.end.emacs.lisp"
+            ],
+            "text": ")",
+            "start": 37,
+            "end": 38
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp"
+            ],
+            "text": ")",
+            "start": 38,
+            "end": 40
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.emacs.lisp"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "punctuation.section.expression.begin.emacs.lisp"
+            ],
+            "text": "(",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "support.function.emacs.lisp"
+            ],
+            "text": "provide",
+            "start": 1,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp"
+            ],
+            "text": " ",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "constant.other.symbol.emacs.lisp",
+                "punctuation.definition.quote.emacs.lisp"
+            ],
+            "text": "'",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "constant.other.symbol.emacs.lisp"
+            ],
+            "text": "cdl",
+            "start": 10,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "meta.expression.emacs.lisp",
+                "punctuation.section.expression.end.emacs.lisp"
+            ],
+            "text": ")",
+            "start": 13,
+            "end": 14
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.emacs.lisp"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "comment.line.semicolon.emacs.lisp",
+                "punctuation.definition.comment.emacs.lisp"
+            ],
+            "text": ";",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "comment.line.semicolon.emacs.lisp"
+            ],
+            "text": ";; cdl.el ends here",
+            "start": 1,
+            "end": 20
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.emacs.lisp"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "comment.line.semicolon.emacs.lisp",
+                "punctuation.definition.comment.emacs.lisp"
+            ],
+            "text": ";",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.emacs.lisp",
+                "comment.line.semicolon.emacs.lisp"
+            ],
+            "text": "; From https://git.savannah.gnu.org/cgit/emacs.git/tree/lisp/cdl.el",
+            "start": 1,
+            "end": 68
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.emacs.lisp"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ]
+]

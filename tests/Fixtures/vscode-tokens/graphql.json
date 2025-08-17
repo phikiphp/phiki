@@ -1,0 +1,456 @@
+[
+    [
+        {
+            "scopes": [
+                "source.graphql",
+                "keyword.operation.graphql"
+            ],
+            "text": "query",
+            "start": 0,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.graphql",
+                "meta.brace.round.graphql"
+            ],
+            "text": "(",
+            "start": 5,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.graphql",
+                "meta.variables.graphql",
+                "variable.parameter.graphql"
+            ],
+            "text": "$number_of_repos",
+            "start": 6,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.graphql",
+                "meta.variables.graphql",
+                "punctuation.colon.graphql"
+            ],
+            "text": ":",
+            "start": 22,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.graphql",
+                "meta.variables.graphql",
+                "support.type.builtin.graphql"
+            ],
+            "text": "Int",
+            "start": 23,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.graphql",
+                "meta.variables.graphql",
+                "keyword.operator.nulltype.graphql"
+            ],
+            "text": "!",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.graphql",
+                "meta.brace.round.graphql"
+            ],
+            "text": ")",
+            "start": 27,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.graphql",
+                "meta.selectionset.graphql"
+            ],
+            "text": " ",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.graphql",
+                "meta.selectionset.graphql",
+                "punctuation.operation.graphql"
+            ],
+            "text": "{",
+            "start": 29,
+            "end": 30
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.graphql"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.graphql",
+                "entity.name.function.graphql"
+            ],
+            "text": "viewer",
+            "start": 2,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.graphql",
+                "meta.selectionset.graphql"
+            ],
+            "text": " ",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.graphql",
+                "meta.selectionset.graphql",
+                "punctuation.operation.graphql"
+            ],
+            "text": "{",
+            "start": 9,
+            "end": 10
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.graphql"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.graphql",
+                "entity.name.function.graphql"
+            ],
+            "text": "name",
+            "start": 4,
+            "end": 8
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.graphql"
+            ],
+            "text": "     ",
+            "start": 0,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.graphql",
+                "entity.name.function.graphql"
+            ],
+            "text": "repositories",
+            "start": 5,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.graphql",
+                "meta.brace.round.graphql"
+            ],
+            "text": "(",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.graphql",
+                "meta.variables.graphql",
+                "variable.parameter.graphql"
+            ],
+            "text": "last",
+            "start": 18,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.graphql",
+                "meta.variables.graphql",
+                "punctuation.colon.graphql"
+            ],
+            "text": ":",
+            "start": 22,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.graphql",
+                "meta.variables.graphql"
+            ],
+            "text": " $",
+            "start": 23,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.graphql",
+                "meta.variables.graphql",
+                "support.type.graphql"
+            ],
+            "text": "number_of_repos",
+            "start": 25,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.graphql",
+                "meta.brace.round.graphql"
+            ],
+            "text": ")",
+            "start": 40,
+            "end": 41
+        },
+        {
+            "scopes": [
+                "source.graphql",
+                "meta.selectionset.graphql"
+            ],
+            "text": " ",
+            "start": 41,
+            "end": 42
+        },
+        {
+            "scopes": [
+                "source.graphql",
+                "meta.selectionset.graphql",
+                "punctuation.operation.graphql"
+            ],
+            "text": "{",
+            "start": 42,
+            "end": 43
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.graphql"
+            ],
+            "text": "       ",
+            "start": 0,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.graphql",
+                "entity.name.function.graphql"
+            ],
+            "text": "nodes",
+            "start": 7,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.graphql",
+                "meta.selectionset.graphql"
+            ],
+            "text": " ",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.graphql",
+                "meta.selectionset.graphql",
+                "punctuation.operation.graphql"
+            ],
+            "text": "{",
+            "start": 13,
+            "end": 14
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.graphql"
+            ],
+            "text": "         ",
+            "start": 0,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.graphql",
+                "entity.name.function.graphql"
+            ],
+            "text": "name",
+            "start": 9,
+            "end": 13
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.graphql"
+            ],
+            "text": "       }",
+            "start": 0,
+            "end": 9
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.graphql"
+            ],
+            "text": "     }",
+            "start": 0,
+            "end": 7
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.graphql"
+            ],
+            "text": "   }",
+            "start": 0,
+            "end": 5
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.graphql"
+            ],
+            "text": "}",
+            "start": 0,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.graphql",
+                "entity.name.function.graphql"
+            ],
+            "text": "variables",
+            "start": 0,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.graphql",
+                "meta.selectionset.graphql"
+            ],
+            "text": " ",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.graphql",
+                "meta.selectionset.graphql",
+                "punctuation.operation.graphql"
+            ],
+            "text": "{",
+            "start": 10,
+            "end": 11
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.graphql"
+            ],
+            "text": "   ",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.graphql",
+                "comment.line.graphql.js",
+                "punctuation.whitespace.comment.leading.graphql"
+            ],
+            "text": "\"",
+            "start": 3,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.graphql",
+                "comment.line.graphql.js"
+            ],
+            "text": "number_of_repos",
+            "start": 4,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.graphql",
+                "comment.line.graphql.js"
+            ],
+            "text": "\"",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.graphql"
+            ],
+            "text": ": 3",
+            "start": 20,
+            "end": 24
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.graphql"
+            ],
+            "text": "}",
+            "start": 0,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.graphql"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.graphql",
+                "comment.line.graphql.js"
+            ],
+            "text": "# From https://docs.github.com/en/graphql/guides/forming-calls-with-graphql",
+            "start": 0,
+            "end": 75
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.graphql"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ]
+]

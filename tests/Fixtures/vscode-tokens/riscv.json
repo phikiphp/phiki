@@ -1,0 +1,1111 @@
+[
+    [
+        {
+            "scopes": [
+                "source.riscv",
+                "comment.line.number-sign.riscv",
+                "punctuation.definition.comment.riscv"
+            ],
+            "text": "#",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.riscv",
+                "comment.line.number-sign.riscv",
+                "punctuation.definition.comment.riscv"
+            ],
+            "text": "#",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "comment.line.number-sign.riscv"
+            ],
+            "text": " Risc-V Assembler program to print \"Hello World!\"",
+            "start": 1,
+            "end": 50
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.riscv",
+                "comment.line.number-sign.riscv",
+                "punctuation.definition.comment.riscv"
+            ],
+            "text": "#",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "comment.line.number-sign.riscv"
+            ],
+            "text": " to stdout.",
+            "start": 1,
+            "end": 12
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.riscv",
+                "comment.line.number-sign.riscv",
+                "punctuation.definition.comment.riscv"
+            ],
+            "text": "#",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.riscv",
+                "comment.line.number-sign.riscv",
+                "punctuation.definition.comment.riscv"
+            ],
+            "text": "#",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "comment.line.number-sign.riscv"
+            ],
+            "text": " a0-a2 - parameters to linux function services",
+            "start": 1,
+            "end": 47
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.riscv",
+                "comment.line.number-sign.riscv",
+                "punctuation.definition.comment.riscv"
+            ],
+            "text": "#",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "comment.line.number-sign.riscv"
+            ],
+            "text": " a7 - linux function number",
+            "start": 1,
+            "end": 28
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.riscv",
+                "comment.line.number-sign.riscv",
+                "punctuation.definition.comment.riscv"
+            ],
+            "text": "#",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.riscv"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.riscv",
+                "storage.modifier.riscv"
+            ],
+            "text": ".global",
+            "start": 0,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.riscv"
+            ],
+            "text": " _start      ",
+            "start": 7,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "comment.line.number-sign.riscv",
+                "punctuation.definition.comment.riscv"
+            ],
+            "text": "#",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "comment.line.number-sign.riscv"
+            ],
+            "text": " Provide program starting address to linker",
+            "start": 21,
+            "end": 64
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.riscv"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.riscv",
+                "comment.line.number-sign.riscv",
+                "punctuation.definition.comment.riscv"
+            ],
+            "text": "#",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "comment.line.number-sign.riscv"
+            ],
+            "text": " Setup the parameters to print hello world",
+            "start": 1,
+            "end": 43
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.riscv",
+                "comment.line.number-sign.riscv",
+                "punctuation.definition.comment.riscv"
+            ],
+            "text": "#",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "comment.line.number-sign.riscv"
+            ],
+            "text": " and then call Linux to do it.",
+            "start": 1,
+            "end": 31
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.riscv"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.riscv",
+                "meta.function.label.riscv",
+                "entity.name.function.label.riscv"
+            ],
+            "text": "_start",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "meta.function.label.riscv"
+            ],
+            "text": ":",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.riscv"
+            ],
+            "text": " ",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "support.function.riscv"
+            ],
+            "text": "addi",
+            "start": 8,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.riscv"
+            ],
+            "text": "  ",
+            "start": 12,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "variable.other.register.usable.by-name.riscv",
+                "punctuation.definition.variable.riscv"
+            ],
+            "text": "a0",
+            "start": 14,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.riscv"
+            ],
+            "text": ", ",
+            "start": 16,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "variable.other.register.usable.by-number.riscv",
+                "punctuation.definition.variable.riscv"
+            ],
+            "text": "x0",
+            "start": 18,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.riscv"
+            ],
+            "text": ", ",
+            "start": 20,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "constant.numeric.integer.riscv"
+            ],
+            "text": "1",
+            "start": 22,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.riscv"
+            ],
+            "text": "      ",
+            "start": 23,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "comment.line.number-sign.riscv",
+                "punctuation.definition.comment.riscv"
+            ],
+            "text": "#",
+            "start": 29,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "comment.line.number-sign.riscv"
+            ],
+            "text": " 1 = StdOut",
+            "start": 30,
+            "end": 41
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.riscv"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "support.function.pseudo.riscv"
+            ],
+            "text": "la",
+            "start": 8,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.riscv"
+            ],
+            "text": "    ",
+            "start": 10,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "variable.other.register.usable.by-name.riscv",
+                "punctuation.definition.variable.riscv"
+            ],
+            "text": "a1",
+            "start": 14,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.riscv"
+            ],
+            "text": ", helloworld ",
+            "start": 16,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "comment.line.number-sign.riscv",
+                "punctuation.definition.comment.riscv"
+            ],
+            "text": "#",
+            "start": 29,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "comment.line.number-sign.riscv"
+            ],
+            "text": " load address of helloworld",
+            "start": 30,
+            "end": 57
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.riscv"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "support.function.riscv"
+            ],
+            "text": "addi",
+            "start": 8,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.riscv"
+            ],
+            "text": "  ",
+            "start": 12,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "variable.other.register.usable.by-name.riscv",
+                "punctuation.definition.variable.riscv"
+            ],
+            "text": "a2",
+            "start": 14,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.riscv"
+            ],
+            "text": ", ",
+            "start": 16,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "variable.other.register.usable.by-number.riscv",
+                "punctuation.definition.variable.riscv"
+            ],
+            "text": "x0",
+            "start": 18,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.riscv"
+            ],
+            "text": ", ",
+            "start": 20,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "constant.numeric.integer.riscv"
+            ],
+            "text": "13",
+            "start": 22,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.riscv"
+            ],
+            "text": "     ",
+            "start": 24,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "comment.line.number-sign.riscv",
+                "punctuation.definition.comment.riscv"
+            ],
+            "text": "#",
+            "start": 29,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "comment.line.number-sign.riscv"
+            ],
+            "text": " length of our string",
+            "start": 30,
+            "end": 51
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.riscv"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "support.function.riscv"
+            ],
+            "text": "addi",
+            "start": 8,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.riscv"
+            ],
+            "text": "  ",
+            "start": 12,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "variable.other.register.usable.by-name.riscv",
+                "punctuation.definition.variable.riscv"
+            ],
+            "text": "a7",
+            "start": 14,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.riscv"
+            ],
+            "text": ", ",
+            "start": 16,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "variable.other.register.usable.by-number.riscv",
+                "punctuation.definition.variable.riscv"
+            ],
+            "text": "x0",
+            "start": 18,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.riscv"
+            ],
+            "text": ", ",
+            "start": 20,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "constant.numeric.integer.riscv"
+            ],
+            "text": "64",
+            "start": 22,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.riscv"
+            ],
+            "text": "     ",
+            "start": 24,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "comment.line.number-sign.riscv",
+                "punctuation.definition.comment.riscv"
+            ],
+            "text": "#",
+            "start": 29,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "comment.line.number-sign.riscv"
+            ],
+            "text": " linux write system call",
+            "start": 30,
+            "end": 54
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.riscv"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "support.function.riscv.privileged"
+            ],
+            "text": "ecall",
+            "start": 8,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.riscv"
+            ],
+            "text": "                ",
+            "start": 13,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "comment.line.number-sign.riscv",
+                "punctuation.definition.comment.riscv"
+            ],
+            "text": "#",
+            "start": 29,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "comment.line.number-sign.riscv"
+            ],
+            "text": " Call linux to output the string",
+            "start": 30,
+            "end": 62
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.riscv"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.riscv",
+                "comment.line.number-sign.riscv",
+                "punctuation.definition.comment.riscv"
+            ],
+            "text": "#",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "comment.line.number-sign.riscv"
+            ],
+            "text": " Setup the parameters to exit the program",
+            "start": 1,
+            "end": 42
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.riscv",
+                "comment.line.number-sign.riscv",
+                "punctuation.definition.comment.riscv"
+            ],
+            "text": "#",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "comment.line.number-sign.riscv"
+            ],
+            "text": " and then call Linux to do it.",
+            "start": 1,
+            "end": 31
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.riscv"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.riscv"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "support.function.riscv"
+            ],
+            "text": "addi",
+            "start": 8,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.riscv"
+            ],
+            "text": "    ",
+            "start": 12,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "variable.other.register.usable.by-name.riscv",
+                "punctuation.definition.variable.riscv"
+            ],
+            "text": "a0",
+            "start": 16,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.riscv"
+            ],
+            "text": ", ",
+            "start": 18,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "variable.other.register.usable.by-number.riscv",
+                "punctuation.definition.variable.riscv"
+            ],
+            "text": "x0",
+            "start": 20,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.riscv"
+            ],
+            "text": ", ",
+            "start": 22,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "constant.numeric.integer.riscv"
+            ],
+            "text": "0",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.riscv"
+            ],
+            "text": "   ",
+            "start": 25,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "comment.line.number-sign.riscv",
+                "punctuation.definition.comment.riscv"
+            ],
+            "text": "#",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "comment.line.number-sign.riscv"
+            ],
+            "text": " Use 0 return code",
+            "start": 29,
+            "end": 47
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.riscv"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "support.function.riscv"
+            ],
+            "text": "addi",
+            "start": 8,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.riscv"
+            ],
+            "text": "    ",
+            "start": 12,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "variable.other.register.usable.by-name.riscv",
+                "punctuation.definition.variable.riscv"
+            ],
+            "text": "a7",
+            "start": 16,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.riscv"
+            ],
+            "text": ", ",
+            "start": 18,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "variable.other.register.usable.by-number.riscv",
+                "punctuation.definition.variable.riscv"
+            ],
+            "text": "x0",
+            "start": 20,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.riscv"
+            ],
+            "text": ", ",
+            "start": 22,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "constant.numeric.integer.riscv"
+            ],
+            "text": "93",
+            "start": 24,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.riscv"
+            ],
+            "text": "  ",
+            "start": 26,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "comment.line.number-sign.riscv",
+                "punctuation.definition.comment.riscv"
+            ],
+            "text": "#",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "comment.line.number-sign.riscv"
+            ],
+            "text": " Service command code 93 terminates",
+            "start": 29,
+            "end": 64
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.riscv"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "support.function.riscv.privileged"
+            ],
+            "text": "ecall",
+            "start": 8,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.riscv"
+            ],
+            "text": "               ",
+            "start": 13,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "comment.line.number-sign.riscv",
+                "punctuation.definition.comment.riscv"
+            ],
+            "text": "#",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "comment.line.number-sign.riscv"
+            ],
+            "text": " Call linux to terminate the program",
+            "start": 29,
+            "end": 65
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.riscv"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.riscv",
+                "storage.type.riscv"
+            ],
+            "text": ".data",
+            "start": 0,
+            "end": 5
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.riscv",
+                "meta.function.label.riscv",
+                "entity.name.function.label.riscv"
+            ],
+            "text": "helloworld",
+            "start": 0,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "meta.function.label.riscv"
+            ],
+            "text": ":",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.riscv"
+            ],
+            "text": "      ",
+            "start": 11,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "storage.type.riscv"
+            ],
+            "text": ".ascii",
+            "start": 17,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.riscv"
+            ],
+            "text": " ",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "string.quoted.double.riscv",
+                "punctuation.definition.string.begin.riscv"
+            ],
+            "text": "\"",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "string.quoted.double.riscv"
+            ],
+            "text": "Hello World!",
+            "start": 25,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "string.quoted.double.riscv",
+                "constant.character.escape.riscv"
+            ],
+            "text": "\\n",
+            "start": 37,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "string.quoted.double.riscv",
+                "punctuation.definition.string.end.riscv"
+            ],
+            "text": "\"",
+            "start": 39,
+            "end": 40
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.riscv"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.riscv",
+                "comment.line.number-sign.riscv",
+                "punctuation.definition.comment.riscv"
+            ],
+            "text": "#",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.riscv",
+                "comment.line.number-sign.riscv"
+            ],
+            "text": " From https://smist08.wordpress.com/2019/09/07/risc-v-assembly-language-hello-world/",
+            "start": 1,
+            "end": 85
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.riscv"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ]
+]

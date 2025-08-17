@@ -1,0 +1,551 @@
+[
+    [
+        {
+            "scopes": [
+                "source.hjson",
+                "meta.structure.dictionary.hjson",
+                "punctuation.definition.dictionary.begin.hjson"
+            ],
+            "text": "{",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hjson",
+                "comment.line.double-slash"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.hjson",
+                "comment.line.double-slash",
+                "punctuation.definition.comment.hjson"
+            ],
+            "text": "//",
+            "start": 2,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.hjson",
+                "comment.line.double-slash"
+            ],
+            "text": " use #, // or /**/ comments,",
+            "start": 4,
+            "end": 33
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hjson",
+                "comment.line.double-slash"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.hjson",
+                "comment.line.double-slash",
+                "punctuation.definition.comment.hjson"
+            ],
+            "text": "//",
+            "start": 2,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.hjson",
+                "comment.line.double-slash"
+            ],
+            "text": " omit quotes for keys",
+            "start": 4,
+            "end": 26
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hjson"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.hjson",
+                "string.quoted.none.hjson"
+            ],
+            "text": "key: 1",
+            "start": 2,
+            "end": 8
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hjson",
+                "comment.line.double-slash"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.hjson",
+                "comment.line.double-slash",
+                "punctuation.definition.comment.hjson"
+            ],
+            "text": "//",
+            "start": 2,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.hjson",
+                "comment.line.double-slash"
+            ],
+            "text": " omit quotes for strings",
+            "start": 4,
+            "end": 29
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hjson"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.hjson",
+                "string.quoted.none.hjson"
+            ],
+            "text": "contains: everything on this line",
+            "start": 2,
+            "end": 35
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hjson",
+                "comment.line.double-slash"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.hjson",
+                "comment.line.double-slash",
+                "punctuation.definition.comment.hjson"
+            ],
+            "text": "//",
+            "start": 2,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.hjson",
+                "comment.line.double-slash"
+            ],
+            "text": " omit commas at the end of a line",
+            "start": 4,
+            "end": 38
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hjson"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.hjson",
+                "string.quoted.none.hjson"
+            ],
+            "text": "cool: {",
+            "start": 2,
+            "end": 9
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hjson"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.hjson",
+                "string.quoted.none.hjson"
+            ],
+            "text": "foo: 1",
+            "start": 4,
+            "end": 10
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hjson"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.hjson",
+                "string.quoted.none.hjson"
+            ],
+            "text": "bar: 2",
+            "start": 4,
+            "end": 10
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hjson"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.hjson",
+                "invalid.illegal.excess-characters.hjson"
+            ],
+            "text": "}",
+            "start": 2,
+            "end": 3
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hjson",
+                "comment.line.double-slash"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.hjson",
+                "comment.line.double-slash",
+                "punctuation.definition.comment.hjson"
+            ],
+            "text": "//",
+            "start": 2,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.hjson",
+                "comment.line.double-slash"
+            ],
+            "text": " allow trailing commas",
+            "start": 4,
+            "end": 27
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hjson"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.hjson",
+                "string.quoted.none.hjson"
+            ],
+            "text": "list: [",
+            "start": 2,
+            "end": 9
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hjson"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.hjson",
+                "string.quoted.none.hjson"
+            ],
+            "text": "1,",
+            "start": 4,
+            "end": 6
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hjson"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.hjson",
+                "string.quoted.none.hjson"
+            ],
+            "text": "2,",
+            "start": 4,
+            "end": 6
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hjson"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.hjson",
+                "invalid.illegal.excess-characters.hjson"
+            ],
+            "text": "]",
+            "start": 2,
+            "end": 3
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hjson",
+                "comment.line.double-slash"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.hjson",
+                "comment.line.double-slash",
+                "punctuation.definition.comment.hjson"
+            ],
+            "text": "//",
+            "start": 2,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.hjson",
+                "comment.line.double-slash"
+            ],
+            "text": " and use multiline strings",
+            "start": 4,
+            "end": 31
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hjson"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.hjson",
+                "string.quoted.none.hjson"
+            ],
+            "text": "realist:",
+            "start": 2,
+            "end": 10
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hjson"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.hjson",
+                "string.quoted.multiline.hjson",
+                "punctuation.definition.string.begin.hjson"
+            ],
+            "text": "'''",
+            "start": 4,
+            "end": 7
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hjson"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.hjson",
+                "string.quoted.none.hjson"
+            ],
+            "text": "My half empty glass,",
+            "start": 4,
+            "end": 24
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hjson"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.hjson",
+                "string.quoted.none.hjson"
+            ],
+            "text": "I will fill your empty half.",
+            "start": 4,
+            "end": 32
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hjson"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.hjson",
+                "string.quoted.none.hjson"
+            ],
+            "text": "Now you are half full.",
+            "start": 4,
+            "end": 26
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hjson"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.hjson",
+                "string.quoted.multiline.hjson",
+                "punctuation.definition.string.begin.hjson"
+            ],
+            "text": "'''",
+            "start": 4,
+            "end": 7
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hjson",
+                "comment.line.double-slash"
+            ],
+            "text": "  ",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.hjson",
+                "comment.line.double-slash",
+                "punctuation.definition.comment.hjson"
+            ],
+            "text": "//",
+            "start": 2,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.hjson",
+                "comment.line.double-slash"
+            ],
+            "text": " From: https://hjson.github.io/",
+            "start": 4,
+            "end": 36
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hjson",
+                "invalid.illegal.excess-characters.hjson"
+            ],
+            "text": "}",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.hjson"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ]
+]

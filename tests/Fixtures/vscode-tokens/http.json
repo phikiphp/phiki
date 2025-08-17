@@ -1,0 +1,767 @@
+[
+    [
+        {
+            "scopes": [
+                "source.http",
+                "comment.line.double-slash.http"
+            ],
+            "text": "// Basic authentication",
+            "start": 0,
+            "end": 23
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.http",
+                "http.requestline",
+                "keyword.control.http"
+            ],
+            "text": "GET",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.http",
+                "http.requestline"
+            ],
+            "text": " ",
+            "start": 3,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.http",
+                "http.requestline",
+                "const.language.http"
+            ],
+            "text": "http://example.com",
+            "start": 4,
+            "end": 22
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.http",
+                "http.headers",
+                "entity.name.tag.http"
+            ],
+            "text": "Authorization",
+            "start": 0,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.http",
+                "http.headers",
+                "keyword.other.http"
+            ],
+            "text": ":",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.http",
+                "http.headers"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.http",
+                "http.headers",
+                "string.other.http"
+            ],
+            "text": "Basic username password",
+            "start": 15,
+            "end": 38
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.http"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.http",
+                "comment.line.sharp.http"
+            ],
+            "text": "###",
+            "start": 0,
+            "end": 3
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.http"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.http",
+                "comment.line.double-slash.http"
+            ],
+            "text": "// Digest authentication",
+            "start": 0,
+            "end": 24
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.http",
+                "http.requestline",
+                "keyword.control.http"
+            ],
+            "text": "GET",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.http",
+                "http.requestline"
+            ],
+            "text": " ",
+            "start": 3,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.http",
+                "http.requestline",
+                "const.language.http"
+            ],
+            "text": "http://example.com",
+            "start": 4,
+            "end": 22
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.http",
+                "http.headers",
+                "entity.name.tag.http"
+            ],
+            "text": "Authorization",
+            "start": 0,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.http",
+                "http.headers",
+                "keyword.other.http"
+            ],
+            "text": ":",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.http",
+                "http.headers"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.http",
+                "http.headers",
+                "string.other.http"
+            ],
+            "text": "Digest username password",
+            "start": 15,
+            "end": 39
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.http"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.http",
+                "comment.line.double-slash.http"
+            ],
+            "text": "// The request body is provided in place",
+            "start": 0,
+            "end": 40
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.http",
+                "http.requestline",
+                "keyword.control.http"
+            ],
+            "text": "POST",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.http",
+                "http.requestline"
+            ],
+            "text": " ",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.http",
+                "http.requestline",
+                "const.language.http"
+            ],
+            "text": "https://example.com:8080/api/html/post",
+            "start": 5,
+            "end": 43
+        },
+        {
+            "scopes": [
+                "source.http",
+                "http.requestline"
+            ],
+            "text": " ",
+            "start": 43,
+            "end": 44
+        },
+        {
+            "scopes": [
+                "source.http",
+                "http.requestline",
+                "http.version",
+                "keyword.other.http"
+            ],
+            "text": "HTTP",
+            "start": 44,
+            "end": 48
+        },
+        {
+            "scopes": [
+                "source.http",
+                "http.requestline",
+                "http.version"
+            ],
+            "text": "/",
+            "start": 48,
+            "end": 49
+        },
+        {
+            "scopes": [
+                "source.http",
+                "http.requestline",
+                "http.version",
+                "constant.numeric.http"
+            ],
+            "text": "1.1",
+            "start": 49,
+            "end": 52
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.http",
+                "http.headers",
+                "entity.name.tag.http"
+            ],
+            "text": "Content-Type",
+            "start": 0,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.http",
+                "http.headers",
+                "keyword.other.http"
+            ],
+            "text": ":",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.http",
+                "http.headers"
+            ],
+            "text": " ",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.http",
+                "http.headers",
+                "string.other.http"
+            ],
+            "text": "application/json",
+            "start": 14,
+            "end": 30
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.http",
+                "http.headers",
+                "entity.name.tag.http"
+            ],
+            "text": "Cookie",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.http",
+                "http.headers",
+                "keyword.other.http"
+            ],
+            "text": ":",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.http",
+                "http.headers"
+            ],
+            "text": " ",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.http",
+                "http.headers",
+                "string.other.http"
+            ],
+            "text": "key=first-value",
+            "start": 8,
+            "end": 23
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.http"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.http",
+                "http.request.body.json",
+                "meta.structure.dictionary.json",
+                "punctuation.definition.dictionary.begin.json"
+            ],
+            "text": "{",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.http",
+                "http.request.body.json",
+                "meta.structure.dictionary.json"
+            ],
+            "text": " ",
+            "start": 1,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.http",
+                "http.request.body.json",
+                "meta.structure.dictionary.json",
+                "string.json",
+                "support.type.property-name.json",
+                "punctuation.support.type.property-name.begin.json"
+            ],
+            "text": "\"",
+            "start": 2,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.http",
+                "http.request.body.json",
+                "meta.structure.dictionary.json",
+                "string.json",
+                "support.type.property-name.json"
+            ],
+            "text": "key",
+            "start": 3,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.http",
+                "http.request.body.json",
+                "meta.structure.dictionary.json",
+                "string.json",
+                "support.type.property-name.json",
+                "punctuation.support.type.property-name.end.json"
+            ],
+            "text": "\"",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.http",
+                "http.request.body.json",
+                "meta.structure.dictionary.json"
+            ],
+            "text": " ",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.http",
+                "http.request.body.json",
+                "meta.structure.dictionary.json",
+                "meta.structure.dictionary.value.json",
+                "punctuation.separator.dictionary.key-value.json"
+            ],
+            "text": ":",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.http",
+                "http.request.body.json",
+                "meta.structure.dictionary.json",
+                "meta.structure.dictionary.value.json"
+            ],
+            "text": " ",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.http",
+                "http.request.body.json",
+                "meta.structure.dictionary.json",
+                "meta.structure.dictionary.value.json",
+                "string.quoted.double.json",
+                "punctuation.definition.string.begin.json"
+            ],
+            "text": "\"",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.http",
+                "http.request.body.json",
+                "meta.structure.dictionary.json",
+                "meta.structure.dictionary.value.json",
+                "string.quoted.double.json"
+            ],
+            "text": "value",
+            "start": 11,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.http",
+                "http.request.body.json",
+                "meta.structure.dictionary.json",
+                "meta.structure.dictionary.value.json",
+                "string.quoted.double.json",
+                "punctuation.definition.string.end.json"
+            ],
+            "text": "\"",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.http",
+                "http.request.body.json",
+                "meta.structure.dictionary.json",
+                "meta.structure.dictionary.value.json",
+                "punctuation.separator.dictionary.pair.json"
+            ],
+            "text": ",",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.http",
+                "http.request.body.json",
+                "meta.structure.dictionary.json"
+            ],
+            "text": " ",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.http",
+                "http.request.body.json",
+                "meta.structure.dictionary.json",
+                "string.json",
+                "support.type.property-name.json",
+                "punctuation.support.type.property-name.begin.json"
+            ],
+            "text": "\"",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.http",
+                "http.request.body.json",
+                "meta.structure.dictionary.json",
+                "string.json",
+                "support.type.property-name.json"
+            ],
+            "text": "list",
+            "start": 20,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.http",
+                "http.request.body.json",
+                "meta.structure.dictionary.json",
+                "string.json",
+                "support.type.property-name.json",
+                "punctuation.support.type.property-name.end.json"
+            ],
+            "text": "\"",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.http",
+                "http.request.body.json",
+                "meta.structure.dictionary.json",
+                "meta.structure.dictionary.value.json",
+                "punctuation.separator.dictionary.key-value.json"
+            ],
+            "text": ":",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.http",
+                "http.request.body.json",
+                "meta.structure.dictionary.json",
+                "meta.structure.dictionary.value.json"
+            ],
+            "text": " ",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.http",
+                "http.request.body.json",
+                "meta.structure.dictionary.json",
+                "meta.structure.dictionary.value.json",
+                "meta.structure.array.json",
+                "punctuation.definition.array.begin.json"
+            ],
+            "text": "[",
+            "start": 27,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.http",
+                "http.request.body.json",
+                "meta.structure.dictionary.json",
+                "meta.structure.dictionary.value.json",
+                "meta.structure.array.json",
+                "constant.numeric.json"
+            ],
+            "text": "1",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.http",
+                "http.request.body.json",
+                "meta.structure.dictionary.json",
+                "meta.structure.dictionary.value.json",
+                "meta.structure.array.json",
+                "punctuation.separator.array.json"
+            ],
+            "text": ",",
+            "start": 29,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.http",
+                "http.request.body.json",
+                "meta.structure.dictionary.json",
+                "meta.structure.dictionary.value.json",
+                "meta.structure.array.json"
+            ],
+            "text": " ",
+            "start": 30,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.http",
+                "http.request.body.json",
+                "meta.structure.dictionary.json",
+                "meta.structure.dictionary.value.json",
+                "meta.structure.array.json",
+                "constant.numeric.json"
+            ],
+            "text": "2",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.http",
+                "http.request.body.json",
+                "meta.structure.dictionary.json",
+                "meta.structure.dictionary.value.json",
+                "meta.structure.array.json",
+                "punctuation.separator.array.json"
+            ],
+            "text": ",",
+            "start": 32,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.http",
+                "http.request.body.json",
+                "meta.structure.dictionary.json",
+                "meta.structure.dictionary.value.json",
+                "meta.structure.array.json"
+            ],
+            "text": " ",
+            "start": 33,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.http",
+                "http.request.body.json",
+                "meta.structure.dictionary.json",
+                "meta.structure.dictionary.value.json",
+                "meta.structure.array.json",
+                "constant.numeric.json"
+            ],
+            "text": "3",
+            "start": 34,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.http",
+                "http.request.body.json",
+                "meta.structure.dictionary.json",
+                "meta.structure.dictionary.value.json",
+                "meta.structure.array.json",
+                "punctuation.definition.array.end.json"
+            ],
+            "text": "]",
+            "start": 35,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.http",
+                "http.request.body.json",
+                "meta.structure.dictionary.json",
+                "meta.structure.dictionary.value.json"
+            ],
+            "text": " ",
+            "start": 36,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.http",
+                "http.request.body.json",
+                "meta.structure.dictionary.json",
+                "punctuation.definition.dictionary.end.json"
+            ],
+            "text": "}",
+            "start": 37,
+            "end": 38
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.http"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.http",
+                "comment.line.double-slash.http"
+            ],
+            "text": "// From https://www.jetbrains.com/help/idea/exploring-http-syntax.html#use-multipart-form-data",
+            "start": 0,
+            "end": 94
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.http"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ]
+]

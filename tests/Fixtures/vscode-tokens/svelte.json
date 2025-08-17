@@ -1,0 +1,1903 @@
+[
+    [
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.script.svelte",
+                "meta.tag.start.svelte",
+                "punctuation.definition.tag.begin.svelte"
+            ],
+            "text": "<",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.script.svelte",
+                "meta.tag.start.svelte",
+                "entity.name.tag.svelte"
+            ],
+            "text": "script",
+            "start": 1,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.script.svelte",
+                "meta.tag.start.svelte",
+                "punctuation.definition.tag.end.svelte"
+            ],
+            "text": ">",
+            "start": 7,
+            "end": 8
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.svelte"
+            ],
+            "text": "\tlet files;",
+            "start": 0,
+            "end": 12
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.svelte"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.svelte"
+            ],
+            "text": "\t$: if (files) ",
+            "start": 0,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "punctuation.section.embedded.begin.svelte"
+            ],
+            "text": "{",
+            "start": 15,
+            "end": 16
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.svelte"
+            ],
+            "text": "\t\t// Note that `files` is of type `FileList`, not an Array:",
+            "start": 0,
+            "end": 60
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.svelte"
+            ],
+            "text": "\t\t// https://developer.mozilla.org/en-US/docs/Web/API/FileList",
+            "start": 0,
+            "end": 63
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.svelte"
+            ],
+            "text": "\t\tconsole.log(files);",
+            "start": 0,
+            "end": 22
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.svelte"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.svelte"
+            ],
+            "text": "\t\tfor (const file of files) ",
+            "start": 0,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "punctuation.section.embedded.begin.svelte"
+            ],
+            "text": "{",
+            "start": 28,
+            "end": 29
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.svelte"
+            ],
+            "text": "\t\t\tconsole.log(`$",
+            "start": 0,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "punctuation.section.embedded.begin.svelte"
+            ],
+            "text": "{",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.embedded.expression.svelte",
+                "source.ts",
+                "variable.other.object.ts"
+            ],
+            "text": "file",
+            "start": 18,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.embedded.expression.svelte",
+                "source.ts",
+                "punctuation.accessor.ts"
+            ],
+            "text": ".",
+            "start": 22,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.embedded.expression.svelte",
+                "source.ts",
+                "variable.other.property.ts"
+            ],
+            "text": "name",
+            "start": 23,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "punctuation.section.embedded.end.svelte"
+            ],
+            "text": "}",
+            "start": 27,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "text.svelte"
+            ],
+            "text": ": $",
+            "start": 28,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "punctuation.section.embedded.begin.svelte"
+            ],
+            "text": "{",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.embedded.expression.svelte",
+                "source.ts",
+                "variable.other.object.ts"
+            ],
+            "text": "file",
+            "start": 32,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.embedded.expression.svelte",
+                "source.ts",
+                "punctuation.accessor.ts"
+            ],
+            "text": ".",
+            "start": 36,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.embedded.expression.svelte",
+                "source.ts",
+                "variable.other.property.ts"
+            ],
+            "text": "size",
+            "start": 37,
+            "end": 41
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "punctuation.section.embedded.end.svelte"
+            ],
+            "text": "}",
+            "start": 41,
+            "end": 42
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "text.svelte"
+            ],
+            "text": " bytes`);",
+            "start": 42,
+            "end": 52
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.svelte"
+            ],
+            "text": "\t\t}",
+            "start": 0,
+            "end": 3
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.svelte"
+            ],
+            "text": "\t}",
+            "start": 0,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.scope.tag.script.svelte",
+                "meta.tag.end.svelte",
+                "punctuation.definition.tag.begin.svelte"
+            ],
+            "text": "</",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.scope.tag.script.svelte",
+                "meta.tag.end.svelte",
+                "entity.name.tag.svelte"
+            ],
+            "text": "script",
+            "start": 2,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.scope.tag.script.svelte",
+                "meta.tag.end.svelte",
+                "punctuation.definition.tag.end.svelte"
+            ],
+            "text": ">",
+            "start": 8,
+            "end": 9
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.svelte"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.scope.tag.label.svelte",
+                "meta.tag.start.svelte",
+                "punctuation.definition.tag.begin.svelte"
+            ],
+            "text": "<",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.scope.tag.label.svelte",
+                "meta.tag.start.svelte",
+                "entity.name.tag.svelte"
+            ],
+            "text": "label",
+            "start": 1,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.scope.tag.label.svelte",
+                "meta.tag.start.svelte"
+            ],
+            "text": " ",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.scope.tag.label.svelte",
+                "meta.tag.start.svelte",
+                "meta.attribute.for.svelte",
+                "entity.other.attribute-name.svelte"
+            ],
+            "text": "for",
+            "start": 7,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.scope.tag.label.svelte",
+                "meta.tag.start.svelte",
+                "meta.attribute.for.svelte",
+                "punctuation.separator.key-value.svelte"
+            ],
+            "text": "=",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.scope.tag.label.svelte",
+                "meta.tag.start.svelte",
+                "meta.attribute.for.svelte",
+                "string.quoted.svelte",
+                "punctuation.definition.string.begin.svelte"
+            ],
+            "text": "\"",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.scope.tag.label.svelte",
+                "meta.tag.start.svelte",
+                "meta.attribute.for.svelte",
+                "string.quoted.svelte"
+            ],
+            "text": "avatar",
+            "start": 12,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.scope.tag.label.svelte",
+                "meta.tag.start.svelte",
+                "meta.attribute.for.svelte",
+                "string.quoted.svelte",
+                "punctuation.definition.string.end.svelte"
+            ],
+            "text": "\"",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.scope.tag.label.svelte",
+                "meta.tag.start.svelte",
+                "punctuation.definition.tag.end.svelte"
+            ],
+            "text": ">",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "text.svelte"
+            ],
+            "text": "Upload a picture:",
+            "start": 20,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.scope.tag.label.svelte",
+                "meta.tag.end.svelte",
+                "punctuation.definition.tag.begin.svelte"
+            ],
+            "text": "</",
+            "start": 37,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.scope.tag.label.svelte",
+                "meta.tag.end.svelte",
+                "entity.name.tag.svelte"
+            ],
+            "text": "label",
+            "start": 39,
+            "end": 44
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.scope.tag.label.svelte",
+                "meta.tag.end.svelte",
+                "punctuation.definition.tag.end.svelte"
+            ],
+            "text": ">",
+            "start": 44,
+            "end": 45
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte",
+                "punctuation.definition.tag.begin.svelte"
+            ],
+            "text": "<",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte",
+                "entity.name.tag.svelte"
+            ],
+            "text": "input",
+            "start": 1,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte"
+            ],
+            "text": " ",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte",
+                "meta.attribute.accept.svelte",
+                "entity.other.attribute-name.svelte"
+            ],
+            "text": "accept",
+            "start": 7,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte",
+                "meta.attribute.accept.svelte",
+                "punctuation.separator.key-value.svelte"
+            ],
+            "text": "=",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte",
+                "meta.attribute.accept.svelte",
+                "string.quoted.svelte",
+                "punctuation.definition.string.begin.svelte"
+            ],
+            "text": "\"",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte",
+                "meta.attribute.accept.svelte",
+                "string.quoted.svelte"
+            ],
+            "text": "image/png, image/jpeg",
+            "start": 15,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte",
+                "meta.attribute.accept.svelte",
+                "string.quoted.svelte",
+                "punctuation.definition.string.end.svelte"
+            ],
+            "text": "\"",
+            "start": 36,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte"
+            ],
+            "text": " ",
+            "start": 37,
+            "end": 38
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte",
+                "meta.directive.bind.svelte",
+                "keyword.control.svelte"
+            ],
+            "text": "bind",
+            "start": 38,
+            "end": 42
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte",
+                "meta.directive.bind.svelte",
+                "punctuation.definition.keyword.svelte"
+            ],
+            "text": ":",
+            "start": 42,
+            "end": 43
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte",
+                "meta.directive.bind.svelte",
+                "variable.parameter.svelte"
+            ],
+            "text": "files",
+            "start": 43,
+            "end": 48
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte"
+            ],
+            "text": " ",
+            "start": 48,
+            "end": 49
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte",
+                "meta.attribute.id.svelte",
+                "entity.other.attribute-name.svelte"
+            ],
+            "text": "id",
+            "start": 49,
+            "end": 51
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte",
+                "meta.attribute.id.svelte",
+                "punctuation.separator.key-value.svelte"
+            ],
+            "text": "=",
+            "start": 51,
+            "end": 52
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte",
+                "meta.attribute.id.svelte",
+                "string.quoted.svelte",
+                "punctuation.definition.string.begin.svelte"
+            ],
+            "text": "\"",
+            "start": 52,
+            "end": 53
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte",
+                "meta.attribute.id.svelte",
+                "string.quoted.svelte"
+            ],
+            "text": "avatar",
+            "start": 53,
+            "end": 59
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte",
+                "meta.attribute.id.svelte",
+                "string.quoted.svelte",
+                "punctuation.definition.string.end.svelte"
+            ],
+            "text": "\"",
+            "start": 59,
+            "end": 60
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte"
+            ],
+            "text": " ",
+            "start": 60,
+            "end": 61
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte",
+                "meta.attribute.name.svelte",
+                "entity.other.attribute-name.svelte"
+            ],
+            "text": "name",
+            "start": 61,
+            "end": 65
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte",
+                "meta.attribute.name.svelte",
+                "punctuation.separator.key-value.svelte"
+            ],
+            "text": "=",
+            "start": 65,
+            "end": 66
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte",
+                "meta.attribute.name.svelte",
+                "string.quoted.svelte",
+                "punctuation.definition.string.begin.svelte"
+            ],
+            "text": "\"",
+            "start": 66,
+            "end": 67
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte",
+                "meta.attribute.name.svelte",
+                "string.quoted.svelte"
+            ],
+            "text": "avatar",
+            "start": 67,
+            "end": 73
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte",
+                "meta.attribute.name.svelte",
+                "string.quoted.svelte",
+                "punctuation.definition.string.end.svelte"
+            ],
+            "text": "\"",
+            "start": 73,
+            "end": 74
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte"
+            ],
+            "text": " ",
+            "start": 74,
+            "end": 75
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte",
+                "meta.attribute.type.svelte",
+                "entity.other.attribute-name.svelte"
+            ],
+            "text": "type",
+            "start": 75,
+            "end": 79
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte",
+                "meta.attribute.type.svelte",
+                "punctuation.separator.key-value.svelte"
+            ],
+            "text": "=",
+            "start": 79,
+            "end": 80
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte",
+                "meta.attribute.type.svelte",
+                "string.quoted.svelte",
+                "punctuation.definition.string.begin.svelte"
+            ],
+            "text": "\"",
+            "start": 80,
+            "end": 81
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte",
+                "meta.attribute.type.svelte",
+                "string.quoted.svelte"
+            ],
+            "text": "file",
+            "start": 81,
+            "end": 85
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte",
+                "meta.attribute.type.svelte",
+                "string.quoted.svelte",
+                "punctuation.definition.string.end.svelte"
+            ],
+            "text": "\"",
+            "start": 85,
+            "end": 86
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte"
+            ],
+            "text": " ",
+            "start": 86,
+            "end": 87
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte",
+                "punctuation.definition.tag.begin.svelte"
+            ],
+            "text": "/>",
+            "start": 87,
+            "end": 89
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.svelte"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.scope.tag.label.svelte",
+                "meta.tag.start.svelte",
+                "punctuation.definition.tag.begin.svelte"
+            ],
+            "text": "<",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.scope.tag.label.svelte",
+                "meta.tag.start.svelte",
+                "entity.name.tag.svelte"
+            ],
+            "text": "label",
+            "start": 1,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.scope.tag.label.svelte",
+                "meta.tag.start.svelte"
+            ],
+            "text": " ",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.scope.tag.label.svelte",
+                "meta.tag.start.svelte",
+                "meta.attribute.for.svelte",
+                "entity.other.attribute-name.svelte"
+            ],
+            "text": "for",
+            "start": 7,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.scope.tag.label.svelte",
+                "meta.tag.start.svelte",
+                "meta.attribute.for.svelte",
+                "punctuation.separator.key-value.svelte"
+            ],
+            "text": "=",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.scope.tag.label.svelte",
+                "meta.tag.start.svelte",
+                "meta.attribute.for.svelte",
+                "string.quoted.svelte",
+                "punctuation.definition.string.begin.svelte"
+            ],
+            "text": "\"",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.scope.tag.label.svelte",
+                "meta.tag.start.svelte",
+                "meta.attribute.for.svelte",
+                "string.quoted.svelte"
+            ],
+            "text": "many",
+            "start": 12,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.scope.tag.label.svelte",
+                "meta.tag.start.svelte",
+                "meta.attribute.for.svelte",
+                "string.quoted.svelte",
+                "punctuation.definition.string.end.svelte"
+            ],
+            "text": "\"",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.scope.tag.label.svelte",
+                "meta.tag.start.svelte",
+                "punctuation.definition.tag.end.svelte"
+            ],
+            "text": ">",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "text.svelte"
+            ],
+            "text": "Upload multiple files of any type:",
+            "start": 18,
+            "end": 52
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.scope.tag.label.svelte",
+                "meta.tag.end.svelte",
+                "punctuation.definition.tag.begin.svelte"
+            ],
+            "text": "</",
+            "start": 52,
+            "end": 54
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.scope.tag.label.svelte",
+                "meta.tag.end.svelte",
+                "entity.name.tag.svelte"
+            ],
+            "text": "label",
+            "start": 54,
+            "end": 59
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.scope.tag.label.svelte",
+                "meta.tag.end.svelte",
+                "punctuation.definition.tag.end.svelte"
+            ],
+            "text": ">",
+            "start": 59,
+            "end": 60
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte",
+                "punctuation.definition.tag.begin.svelte"
+            ],
+            "text": "<",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte",
+                "entity.name.tag.svelte"
+            ],
+            "text": "input",
+            "start": 1,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte"
+            ],
+            "text": " ",
+            "start": 6,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte",
+                "meta.directive.bind.svelte",
+                "keyword.control.svelte"
+            ],
+            "text": "bind",
+            "start": 7,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte",
+                "meta.directive.bind.svelte",
+                "punctuation.definition.keyword.svelte"
+            ],
+            "text": ":",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte",
+                "meta.directive.bind.svelte",
+                "variable.parameter.svelte"
+            ],
+            "text": "files",
+            "start": 12,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte"
+            ],
+            "text": " ",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte",
+                "meta.attribute.id.svelte",
+                "entity.other.attribute-name.svelte"
+            ],
+            "text": "id",
+            "start": 18,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte",
+                "meta.attribute.id.svelte",
+                "punctuation.separator.key-value.svelte"
+            ],
+            "text": "=",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte",
+                "meta.attribute.id.svelte",
+                "string.quoted.svelte",
+                "punctuation.definition.string.begin.svelte"
+            ],
+            "text": "\"",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte",
+                "meta.attribute.id.svelte",
+                "string.quoted.svelte"
+            ],
+            "text": "many",
+            "start": 22,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte",
+                "meta.attribute.id.svelte",
+                "string.quoted.svelte",
+                "punctuation.definition.string.end.svelte"
+            ],
+            "text": "\"",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte"
+            ],
+            "text": " ",
+            "start": 27,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte",
+                "meta.attribute.multiple.svelte",
+                "entity.other.attribute-name.svelte"
+            ],
+            "text": "multiple",
+            "start": 28,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte"
+            ],
+            "text": " ",
+            "start": 36,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte",
+                "meta.attribute.type.svelte",
+                "entity.other.attribute-name.svelte"
+            ],
+            "text": "type",
+            "start": 37,
+            "end": 41
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte",
+                "meta.attribute.type.svelte",
+                "punctuation.separator.key-value.svelte"
+            ],
+            "text": "=",
+            "start": 41,
+            "end": 42
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte",
+                "meta.attribute.type.svelte",
+                "string.quoted.svelte",
+                "punctuation.definition.string.begin.svelte"
+            ],
+            "text": "\"",
+            "start": 42,
+            "end": 43
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte",
+                "meta.attribute.type.svelte",
+                "string.quoted.svelte"
+            ],
+            "text": "file",
+            "start": 43,
+            "end": 47
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte",
+                "meta.attribute.type.svelte",
+                "string.quoted.svelte",
+                "punctuation.definition.string.end.svelte"
+            ],
+            "text": "\"",
+            "start": 47,
+            "end": 48
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte"
+            ],
+            "text": " ",
+            "start": 48,
+            "end": 49
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.tag.void.svelte",
+                "punctuation.definition.tag.begin.svelte"
+            ],
+            "text": "/>",
+            "start": 49,
+            "end": 51
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.svelte"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.special.if.svelte",
+                "meta.special.start.svelte",
+                "punctuation.definition.block.begin.svelte"
+            ],
+            "text": "{",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.special.if.svelte",
+                "meta.special.start.svelte",
+                "punctuation.definition.keyword.svelte"
+            ],
+            "text": "#",
+            "start": 1,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.special.if.svelte",
+                "meta.special.start.svelte",
+                "keyword.control.conditional.svelte"
+            ],
+            "text": "if",
+            "start": 2,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.special.if.svelte",
+                "meta.special.start.svelte",
+                "meta.embedded.expression.svelte",
+                "source.ts"
+            ],
+            "text": " ",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.special.if.svelte",
+                "meta.special.start.svelte",
+                "meta.embedded.expression.svelte",
+                "source.ts",
+                "variable.other.readwrite.ts"
+            ],
+            "text": "files",
+            "start": 5,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.special.if.svelte",
+                "meta.special.start.svelte",
+                "punctuation.definition.block.end.svelte"
+            ],
+            "text": "}",
+            "start": 10,
+            "end": 11
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.svelte"
+            ],
+            "text": "\t",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.scope.tag.h2.svelte",
+                "meta.tag.start.svelte",
+                "punctuation.definition.tag.begin.svelte"
+            ],
+            "text": "<",
+            "start": 1,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.scope.tag.h2.svelte",
+                "meta.tag.start.svelte",
+                "entity.name.tag.svelte"
+            ],
+            "text": "h2",
+            "start": 2,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.scope.tag.h2.svelte",
+                "meta.tag.start.svelte",
+                "punctuation.definition.tag.end.svelte"
+            ],
+            "text": ">",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "text.svelte"
+            ],
+            "text": "Selected files:",
+            "start": 5,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.scope.tag.h2.svelte",
+                "meta.tag.end.svelte",
+                "punctuation.definition.tag.begin.svelte"
+            ],
+            "text": "</",
+            "start": 20,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.scope.tag.h2.svelte",
+                "meta.tag.end.svelte",
+                "entity.name.tag.svelte"
+            ],
+            "text": "h2",
+            "start": 22,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.scope.tag.h2.svelte",
+                "meta.tag.end.svelte",
+                "punctuation.definition.tag.end.svelte"
+            ],
+            "text": ">",
+            "start": 24,
+            "end": 25
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.svelte"
+            ],
+            "text": "\t",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.special.each.svelte",
+                "meta.special.start.svelte",
+                "punctuation.definition.block.begin.svelte"
+            ],
+            "text": "{",
+            "start": 1,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.special.each.svelte",
+                "meta.special.start.svelte",
+                "punctuation.definition.keyword.svelte"
+            ],
+            "text": "#",
+            "start": 2,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.special.each.svelte",
+                "meta.special.start.svelte",
+                "keyword.control.svelte"
+            ],
+            "text": "each",
+            "start": 3,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.special.each.svelte",
+                "meta.special.start.svelte"
+            ],
+            "text": " ",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.special.each.svelte",
+                "meta.special.start.svelte",
+                "meta.embedded.expression.svelte",
+                "source.ts",
+                "meta.function-call.ts",
+                "variable.other.object.ts"
+            ],
+            "text": "Array",
+            "start": 8,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.special.each.svelte",
+                "meta.special.start.svelte",
+                "meta.embedded.expression.svelte",
+                "source.ts",
+                "meta.function-call.ts",
+                "punctuation.accessor.ts"
+            ],
+            "text": ".",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.special.each.svelte",
+                "meta.special.start.svelte",
+                "meta.embedded.expression.svelte",
+                "source.ts",
+                "meta.function-call.ts",
+                "entity.name.function.ts"
+            ],
+            "text": "from",
+            "start": 14,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.special.each.svelte",
+                "meta.special.start.svelte",
+                "meta.embedded.expression.svelte",
+                "source.ts",
+                "meta.brace.round.ts"
+            ],
+            "text": "(",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.special.each.svelte",
+                "meta.special.start.svelte",
+                "meta.embedded.expression.svelte",
+                "source.ts",
+                "variable.other.readwrite.ts"
+            ],
+            "text": "files",
+            "start": 19,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.special.each.svelte",
+                "meta.special.start.svelte",
+                "meta.embedded.expression.svelte",
+                "source.ts",
+                "meta.brace.round.ts"
+            ],
+            "text": ")",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.special.each.svelte",
+                "meta.special.start.svelte"
+            ],
+            "text": " ",
+            "start": 25,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.special.each.svelte",
+                "meta.special.start.svelte",
+                "keyword.control.as.svelte"
+            ],
+            "text": "as",
+            "start": 26,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.special.each.svelte",
+                "meta.special.start.svelte",
+                "meta.embedded.expression.svelte",
+                "source.ts"
+            ],
+            "text": " ",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.special.each.svelte",
+                "meta.special.start.svelte",
+                "meta.embedded.expression.svelte",
+                "source.ts",
+                "variable.other.readwrite.ts"
+            ],
+            "text": "file",
+            "start": 29,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.special.each.svelte",
+                "meta.special.start.svelte",
+                "punctuation.definition.block.end.svelte"
+            ],
+            "text": "}",
+            "start": 33,
+            "end": 34
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.svelte"
+            ],
+            "text": "\t\t",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.scope.tag.p.svelte",
+                "meta.tag.start.svelte",
+                "punctuation.definition.tag.begin.svelte"
+            ],
+            "text": "<",
+            "start": 2,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.scope.tag.p.svelte",
+                "meta.tag.start.svelte",
+                "entity.name.tag.svelte"
+            ],
+            "text": "p",
+            "start": 3,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.scope.tag.p.svelte",
+                "meta.tag.start.svelte",
+                "punctuation.definition.tag.end.svelte"
+            ],
+            "text": ">",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "punctuation.section.embedded.begin.svelte"
+            ],
+            "text": "{",
+            "start": 5,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.embedded.expression.svelte",
+                "source.ts",
+                "variable.other.object.ts"
+            ],
+            "text": "file",
+            "start": 6,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.embedded.expression.svelte",
+                "source.ts",
+                "punctuation.accessor.ts"
+            ],
+            "text": ".",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.embedded.expression.svelte",
+                "source.ts",
+                "variable.other.property.ts"
+            ],
+            "text": "name",
+            "start": 11,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "punctuation.section.embedded.end.svelte"
+            ],
+            "text": "}",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "text.svelte"
+            ],
+            "text": " (",
+            "start": 16,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "punctuation.section.embedded.begin.svelte"
+            ],
+            "text": "{",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.embedded.expression.svelte",
+                "source.ts",
+                "variable.other.object.ts"
+            ],
+            "text": "file",
+            "start": 19,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.embedded.expression.svelte",
+                "source.ts",
+                "punctuation.accessor.ts"
+            ],
+            "text": ".",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.embedded.expression.svelte",
+                "source.ts",
+                "variable.other.property.ts"
+            ],
+            "text": "size",
+            "start": 24,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "punctuation.section.embedded.end.svelte"
+            ],
+            "text": "}",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "text.svelte"
+            ],
+            "text": " bytes)",
+            "start": 29,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.scope.tag.p.svelte",
+                "meta.tag.end.svelte",
+                "punctuation.definition.tag.begin.svelte"
+            ],
+            "text": "</",
+            "start": 36,
+            "end": 38
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.scope.tag.p.svelte",
+                "meta.tag.end.svelte",
+                "entity.name.tag.svelte"
+            ],
+            "text": "p",
+            "start": 38,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.scope.tag.p.svelte",
+                "meta.tag.end.svelte",
+                "punctuation.definition.tag.end.svelte"
+            ],
+            "text": ">",
+            "start": 39,
+            "end": 40
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.svelte"
+            ],
+            "text": "\t",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.special.each.svelte",
+                "meta.special.end.svelte",
+                "punctuation.definition.block.begin.svelte"
+            ],
+            "text": "{",
+            "start": 1,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.special.each.svelte",
+                "meta.special.end.svelte",
+                "punctuation.definition.keyword.svelte"
+            ],
+            "text": "/",
+            "start": 2,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.special.each.svelte",
+                "meta.special.end.svelte",
+                "keyword.control.svelte"
+            ],
+            "text": "each",
+            "start": 3,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.special.each.svelte",
+                "meta.special.end.svelte",
+                "punctuation.definition.block.end.svelte"
+            ],
+            "text": "}",
+            "start": 7,
+            "end": 8
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.special.if.svelte",
+                "meta.special.end.svelte",
+                "punctuation.definition.block.begin.svelte"
+            ],
+            "text": "{",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.special.if.svelte",
+                "meta.special.end.svelte",
+                "punctuation.definition.keyword.svelte"
+            ],
+            "text": "/",
+            "start": 1,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.special.if.svelte",
+                "meta.special.end.svelte",
+                "keyword.control.conditional.svelte"
+            ],
+            "text": "if",
+            "start": 2,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.special.if.svelte",
+                "meta.special.end.svelte",
+                "punctuation.definition.block.end.svelte"
+            ],
+            "text": "}",
+            "start": 4,
+            "end": 5
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.svelte"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.svelte"
+            ],
+            "text": "// From https://svelte.dev/examples/file-inputs",
+            "start": 0,
+            "end": 48
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.svelte"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ]
+]

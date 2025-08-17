@@ -6,11 +6,12 @@ import oniguruma from 'vscode-oniguruma'
 const args = process.argv.slice(2);
 
 if (args.length === 0) {
-    console.error("Usage: node generate-vscode-textmate-tokens.js <input> <scopeName>");
+    console.error("Usage: node generate-vscode-textmate-tokens.js <input> <scopeName> [--file] [--quiet]");
     process.exit(1);
 }
 
-const input = args[0];
+const file = args.includes('--file');
+const input = file ? fs.readFileSync(args[0], { encoding: 'utf-8' }) : args[0];
 const scopeName = args[1];
 const quiet = args.includes('--quiet');
 
@@ -29,11 +30,11 @@ const vscodeOnigurumaLib = oniguruma.loadWASM(wasmBin).then(() => {
     };
 });
 
-const grammarFiles = fs.readdirSync(path.join(import.meta.dirname, "../resources/languages"))
+const grammarFiles = fs.readdirSync(path.join(import.meta.dirname, "../resources/grammars"))
 const grammars = {}
 
 grammarFiles.forEach(file => {
-    const filePath = path.join(import.meta.dirname, "../resources/languages", file);
+    const filePath = path.join(import.meta.dirname, "../resources/grammars", file);
     const contents = fs.readFileSync(filePath, 'utf8');
     const grammar = vsctm.parseRawGrammar(contents, file);
 

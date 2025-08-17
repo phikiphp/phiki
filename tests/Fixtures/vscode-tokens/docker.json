@@ -1,0 +1,496 @@
+[
+    [
+        {
+            "scopes": [
+                "source.dockerfile",
+                "comment.line.number-sign.dockerfile",
+                "punctuation.definition.comment.dockerfile"
+            ],
+            "text": "#",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.dockerfile",
+                "comment.line.number-sign.dockerfile"
+            ],
+            "text": " syntax=docker/dockerfile:1",
+            "start": 1,
+            "end": 29
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.dockerfile",
+                "keyword.other.special-method.dockerfile"
+            ],
+            "text": "FROM",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.dockerfile"
+            ],
+            "text": " mcr.microsoft.com/dotnet/sdk:5.0 ",
+            "start": 4,
+            "end": 38
+        },
+        {
+            "scopes": [
+                "source.dockerfile",
+                "keyword.other.special-method.dockerfile"
+            ],
+            "text": "AS",
+            "start": 38,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.dockerfile"
+            ],
+            "text": " build-env",
+            "start": 40,
+            "end": 51
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.dockerfile",
+                "keyword.other.special-method.dockerfile"
+            ],
+            "text": "WORKDIR",
+            "start": 0,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.dockerfile"
+            ],
+            "text": " ",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.dockerfile"
+            ],
+            "text": "/app",
+            "start": 8,
+            "end": 13
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.dockerfile"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.dockerfile",
+                "comment.line.number-sign.dockerfile",
+                "punctuation.definition.comment.dockerfile"
+            ],
+            "text": "#",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.dockerfile",
+                "comment.line.number-sign.dockerfile"
+            ],
+            "text": " Copy csproj and restore as distinct layers",
+            "start": 1,
+            "end": 45
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.dockerfile",
+                "keyword.other.special-method.dockerfile"
+            ],
+            "text": "COPY",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.dockerfile"
+            ],
+            "text": " ",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.dockerfile"
+            ],
+            "text": "*.csproj ./",
+            "start": 5,
+            "end": 17
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.dockerfile",
+                "keyword.other.special-method.dockerfile"
+            ],
+            "text": "RUN",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.dockerfile"
+            ],
+            "text": " ",
+            "start": 3,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.dockerfile"
+            ],
+            "text": "dotnet restore",
+            "start": 4,
+            "end": 19
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.dockerfile"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.dockerfile",
+                "comment.line.number-sign.dockerfile",
+                "punctuation.definition.comment.dockerfile"
+            ],
+            "text": "#",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.dockerfile",
+                "comment.line.number-sign.dockerfile"
+            ],
+            "text": " Copy everything else and build",
+            "start": 1,
+            "end": 33
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.dockerfile",
+                "keyword.other.special-method.dockerfile"
+            ],
+            "text": "COPY",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.dockerfile"
+            ],
+            "text": " ",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.dockerfile"
+            ],
+            "text": "../engine/examples ./",
+            "start": 5,
+            "end": 27
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.dockerfile",
+                "keyword.other.special-method.dockerfile"
+            ],
+            "text": "RUN",
+            "start": 0,
+            "end": 3
+        },
+        {
+            "scopes": [
+                "source.dockerfile"
+            ],
+            "text": " ",
+            "start": 3,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.dockerfile"
+            ],
+            "text": "dotnet publish -c Release -o out",
+            "start": 4,
+            "end": 37
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.dockerfile"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.dockerfile",
+                "comment.line.number-sign.dockerfile",
+                "punctuation.definition.comment.dockerfile"
+            ],
+            "text": "#",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.dockerfile",
+                "comment.line.number-sign.dockerfile"
+            ],
+            "text": " Build runtime image",
+            "start": 1,
+            "end": 22
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.dockerfile",
+                "keyword.other.special-method.dockerfile"
+            ],
+            "text": "FROM",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.dockerfile"
+            ],
+            "text": " ",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.dockerfile"
+            ],
+            "text": "mcr.microsoft.com/dotnet/aspnet:3.1",
+            "start": 5,
+            "end": 41
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.dockerfile",
+                "keyword.other.special-method.dockerfile"
+            ],
+            "text": "WORKDIR",
+            "start": 0,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.dockerfile"
+            ],
+            "text": " ",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.dockerfile"
+            ],
+            "text": "/app",
+            "start": 8,
+            "end": 13
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.dockerfile",
+                "keyword.other.special-method.dockerfile"
+            ],
+            "text": "COPY",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.dockerfile"
+            ],
+            "text": " ",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.dockerfile"
+            ],
+            "text": "--from=build-env /app/out .",
+            "start": 5,
+            "end": 33
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.dockerfile",
+                "keyword.other.special-method.dockerfile"
+            ],
+            "text": "ENTRYPOINT",
+            "start": 0,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.dockerfile"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.dockerfile"
+            ],
+            "text": "[",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.dockerfile",
+                "string.quoted.double.dockerfile"
+            ],
+            "text": "\"",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.dockerfile",
+                "string.quoted.double.dockerfile"
+            ],
+            "text": "dotnet",
+            "start": 13,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.dockerfile",
+                "string.quoted.double.dockerfile"
+            ],
+            "text": "\"",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.dockerfile"
+            ],
+            "text": ", ",
+            "start": 20,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.dockerfile",
+                "string.quoted.double.dockerfile"
+            ],
+            "text": "\"",
+            "start": 22,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.dockerfile",
+                "string.quoted.double.dockerfile"
+            ],
+            "text": "aspnetapp.dll",
+            "start": 23,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.dockerfile",
+                "string.quoted.double.dockerfile"
+            ],
+            "text": "\"",
+            "start": 36,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.dockerfile"
+            ],
+            "text": "]",
+            "start": 37,
+            "end": 39
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.dockerfile"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.dockerfile",
+                "comment.line.number-sign.dockerfile",
+                "punctuation.definition.comment.dockerfile"
+            ],
+            "text": "#",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "source.dockerfile",
+                "comment.line.number-sign.dockerfile"
+            ],
+            "text": " From https://docs.docker.com/samples/dotnetcore/",
+            "start": 1,
+            "end": 51
+        }
+    ]
+]

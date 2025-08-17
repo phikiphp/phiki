@@ -1,0 +1,263 @@
+[
+    [
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "constant.numeric.date.year.beancount"
+            ],
+            "text": "2012",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "punctuation.separator.beancount"
+            ],
+            "text": "-",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "constant.numeric.date.month.beancount"
+            ],
+            "text": "11",
+            "start": 5,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "punctuation.separator.beancount"
+            ],
+            "text": "-",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "constant.numeric.date.day.beancount"
+            ],
+            "text": "03",
+            "start": 8,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "support.function.directive.beancount"
+            ],
+            "text": "*",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount"
+            ],
+            "text": " ",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "string.quoted.tiers.beancount"
+            ],
+            "text": "\"Transfer to pay credit card\"",
+            "start": 13,
+            "end": 42
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.beancount"
+            ],
+            "text": "  Assets:MyBank:Checking            -400.00 USD",
+            "start": 0,
+            "end": 48
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.beancount"
+            ],
+            "text": "  Liabilities:CreditCard             400.00 USD",
+            "start": 0,
+            "end": 48
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.beancount"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "constant.numeric.date.year.beancount"
+            ],
+            "text": "2012",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "punctuation.separator.beancount"
+            ],
+            "text": "-",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "constant.numeric.date.month.beancount"
+            ],
+            "text": "11",
+            "start": 5,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "punctuation.separator.beancount"
+            ],
+            "text": "-",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "constant.numeric.date.day.beancount"
+            ],
+            "text": "03",
+            "start": 8,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "support.function.directive.beancount"
+            ],
+            "text": "*",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount"
+            ],
+            "text": " ",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "text.beancount",
+                "meta.directive.transaction.beancount",
+                "string.quoted.tiers.beancount"
+            ],
+            "text": "\"Transfer to account in Canada\"",
+            "start": 13,
+            "end": 44
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.beancount"
+            ],
+            "text": "  Assets:MyBank:Checking            -400.00 USD @ 1.09 CAD",
+            "start": 0,
+            "end": 59
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.beancount"
+            ],
+            "text": "  Assets:FR:SocGen:Checking          436.01 CAD",
+            "start": 0,
+            "end": 48
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.beancount"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.beancount",
+                "comment.line.beancount"
+            ],
+            "text": "; https://beancount.github.io/docs/beancount_language_syntax.html#costs-and-prices",
+            "start": 0,
+            "end": 82
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.beancount"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ]
+]

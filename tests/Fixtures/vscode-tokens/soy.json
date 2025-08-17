@@ -1,0 +1,474 @@
+[
+    [
+        {
+            "scopes": [
+                "text.html.soy",
+                "comment.block.documentation.soy"
+            ],
+            "text": "/*",
+            "start": 0,
+            "end": 2
+        },
+        {
+            "scopes": [
+                "text.html.soy",
+                "comment.block.documentation.soy"
+            ],
+            "text": "*",
+            "start": 2,
+            "end": 4
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.html.soy"
+            ],
+            "text": " * Private helper for demoCallWithoutParams, demoCallWithParams, and demoCallWithParamBlock.",
+            "start": 0,
+            "end": 93
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.html.soy"
+            ],
+            "text": " * Reports on a trip.",
+            "start": 0,
+            "end": 22
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.html.soy"
+            ],
+            "text": " */",
+            "start": 0,
+            "end": 4
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.html.soy"
+            ],
+            "text": "{",
+            "start": 0,
+            "end": 1
+        },
+        {
+            "scopes": [
+                "text.html.soy",
+                "storage.type.soy"
+            ],
+            "text": "template",
+            "start": 1,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "text.html.soy"
+            ],
+            "text": " ",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "text.html.soy",
+                "entity.name.function.soy"
+            ],
+            "text": "tripReport_",
+            "start": 10,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "text.html.soy"
+            ],
+            "text": " ",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "text.html.soy",
+                "storage.other.attribute.soy"
+            ],
+            "text": "visibility",
+            "start": 22,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "text.html.soy"
+            ],
+            "text": "=",
+            "start": 32,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "text.html.soy",
+                "string.double.quoted.soy"
+            ],
+            "text": "\"private\"",
+            "start": 33,
+            "end": 42
+        },
+        {
+            "scopes": [
+                "text.html.soy"
+            ],
+            "text": " ",
+            "start": 42,
+            "end": 43
+        },
+        {
+            "scopes": [
+                "text.html.soy",
+                "storage.other.attribute.soy"
+            ],
+            "text": "kind",
+            "start": 43,
+            "end": 47
+        },
+        {
+            "scopes": [
+                "text.html.soy"
+            ],
+            "text": "=",
+            "start": 47,
+            "end": 48
+        },
+        {
+            "scopes": [
+                "text.html.soy",
+                "string.double.quoted.soy"
+            ],
+            "text": "\"text\"",
+            "start": 48,
+            "end": 54
+        },
+        {
+            "scopes": [
+                "text.html.soy"
+            ],
+            "text": "}",
+            "start": 54,
+            "end": 56
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.html.soy"
+            ],
+            "text": "  {@param? name: string|null}           ",
+            "start": 0,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "text.html.soy",
+                "comment.block.documentation.soy"
+            ],
+            "text": "/*",
+            "start": 40,
+            "end": 42
+        },
+        {
+            "scopes": [
+                "text.html.soy",
+                "comment.block.documentation.soy"
+            ],
+            "text": "* The name of the person who took a trip (optional). ",
+            "start": 42,
+            "end": 95
+        },
+        {
+            "scopes": [
+                "text.html.soy",
+                "comment.block.documentation.soy"
+            ],
+            "text": "*/",
+            "start": 95,
+            "end": 97
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.html.soy"
+            ],
+            "text": "  {@param? destination: string|null}    ",
+            "start": 0,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "text.html.soy",
+                "comment.block.documentation.soy"
+            ],
+            "text": "/*",
+            "start": 40,
+            "end": 42
+        },
+        {
+            "scopes": [
+                "text.html.soy",
+                "comment.block.documentation.soy"
+            ],
+            "text": "* The destination of the trip (optional). ",
+            "start": 42,
+            "end": 84
+        },
+        {
+            "scopes": [
+                "text.html.soy",
+                "comment.block.documentation.soy"
+            ],
+            "text": "*/",
+            "start": 84,
+            "end": 86
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.html.soy",
+                "comment.line.double-slash.soy"
+            ],
+            "text": "  // Note: The template name demonstrates the good practice of adding a trailing underscore to",
+            "start": 0,
+            "end": 94
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.html.soy",
+                "comment.line.double-slash.soy"
+            ],
+            "text": "  // private templates (template that should never be called from hand-written code).",
+            "start": 0,
+            "end": 85
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.html.soy"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.html.soy"
+            ],
+            "text": "  {if !$name}",
+            "start": 0,
+            "end": 14
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.html.soy",
+                "comment.line.double-slash.soy"
+            ],
+            "text": "    // Note: The message below demonstrates that the 'desc' attribute can be left empty. However,",
+            "start": 0,
+            "end": 97
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.html.soy",
+                "comment.line.double-slash.soy"
+            ],
+            "text": "    // this is not recommended except for the simplest messages, otherwise you risk confusing some",
+            "start": 0,
+            "end": 98
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.html.soy",
+                "comment.line.double-slash.soy"
+            ],
+            "text": "    // translators and getting poor translations.",
+            "start": 0,
+            "end": 49
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.html.soy"
+            ],
+            "text": "    {msg desc=\"\"}",
+            "start": 0,
+            "end": 18
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.html.soy"
+            ],
+            "text": "      A trip was taken.",
+            "start": 0,
+            "end": 24
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.html.soy"
+            ],
+            "text": "    {/msg}",
+            "start": 0,
+            "end": 11
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.html.soy"
+            ],
+            "text": "  {elseif !$destination}",
+            "start": 0,
+            "end": 25
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.html.soy"
+            ],
+            "text": "    {msg desc=\"Example: Alice took a trip.\"}",
+            "start": 0,
+            "end": 45
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.html.soy"
+            ],
+            "text": "      {$name} took a trip.",
+            "start": 0,
+            "end": 27
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.html.soy"
+            ],
+            "text": "    {/msg}",
+            "start": 0,
+            "end": 11
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.html.soy"
+            ],
+            "text": "  {else}",
+            "start": 0,
+            "end": 9
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.html.soy"
+            ],
+            "text": "    {msg desc=\"Example: Alice took a trip to wonderland.\"}",
+            "start": 0,
+            "end": 59
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.html.soy"
+            ],
+            "text": "      {$name} took a trip to {$destination}.",
+            "start": 0,
+            "end": 45
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.html.soy"
+            ],
+            "text": "    {/msg}",
+            "start": 0,
+            "end": 11
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.html.soy"
+            ],
+            "text": "  {/if}",
+            "start": 0,
+            "end": 8
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.html.soy"
+            ],
+            "text": "{/template}",
+            "start": 0,
+            "end": 12
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.html.soy"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.html.soy",
+                "comment.line.double-slash.soy"
+            ],
+            "text": "// From https://github.com/google/closure-templates/blob/master/examples/features.soy",
+            "start": 0,
+            "end": 85
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "text.html.soy"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ]
+]

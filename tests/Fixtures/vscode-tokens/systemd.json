@@ -1,0 +1,381 @@
+[
+    [
+        {
+            "scopes": [
+                "source.systemd",
+                "entity.name.section"
+            ],
+            "text": "[Unit]",
+            "start": 0,
+            "end": 6
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.systemd",
+                "meta.config-entry.systemd",
+                "entity.name.tag"
+            ],
+            "text": "Description",
+            "start": 0,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.systemd",
+                "meta.config-entry.systemd",
+                "keyword.operator.assignment"
+            ],
+            "text": "=",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.systemd",
+                "meta.config-entry.systemd"
+            ],
+            "text": "Emacs text editor",
+            "start": 12,
+            "end": 29
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.systemd",
+                "meta.config-entry.systemd",
+                "entity.name.tag"
+            ],
+            "text": "Documentation",
+            "start": 0,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.systemd",
+                "meta.config-entry.systemd",
+                "keyword.operator.assignment"
+            ],
+            "text": "=",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.systemd",
+                "meta.config-entry.systemd"
+            ],
+            "text": "info:emacs man:emacs(1) https://gnu.org/software/emacs/",
+            "start": 14,
+            "end": 69
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.systemd"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.systemd",
+                "entity.name.section"
+            ],
+            "text": "[Service]",
+            "start": 0,
+            "end": 9
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.systemd",
+                "meta.config-entry.systemd",
+                "entity.name.tag"
+            ],
+            "text": "Type",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.systemd",
+                "meta.config-entry.systemd",
+                "keyword.operator.assignment"
+            ],
+            "text": "=",
+            "start": 4,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.systemd",
+                "meta.config-entry.systemd",
+                "constant.language"
+            ],
+            "text": "notify",
+            "start": 5,
+            "end": 11
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.systemd",
+                "meta.config-entry.systemd",
+                "entity.name.tag"
+            ],
+            "text": "ExecStart",
+            "start": 0,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.systemd",
+                "meta.config-entry.systemd",
+                "keyword.operator.assignment"
+            ],
+            "text": "=",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.systemd",
+                "meta.config-entry.systemd"
+            ],
+            "text": "/usr/bin/emacs --fg-daemon",
+            "start": 10,
+            "end": 36
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.systemd"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.systemd",
+                "comment.line.number-sign"
+            ],
+            "text": "# Emacs will exit with status 15 after having received SIGTERM, which",
+            "start": 0,
+            "end": 70
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.systemd",
+                "comment.line.number-sign"
+            ],
+            "text": "# is the default \"KillSignal\" value systemd uses to stop services.",
+            "start": 0,
+            "end": 67
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.systemd",
+                "meta.config-entry.systemd",
+                "entity.name.tag"
+            ],
+            "text": "SuccessExitStatus",
+            "start": 0,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.systemd",
+                "meta.config-entry.systemd",
+                "keyword.operator.assignment"
+            ],
+            "text": "=",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.systemd",
+                "meta.config-entry.systemd",
+                "constant.numeric"
+            ],
+            "text": "15",
+            "start": 18,
+            "end": 20
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.systemd"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.systemd",
+                "comment.line.number-sign"
+            ],
+            "text": "# The location of the SSH auth socket varies by distribution, and some",
+            "start": 0,
+            "end": 71
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.systemd",
+                "comment.line.number-sign"
+            ],
+            "text": "# set it from PAM, so don't override by default.",
+            "start": 0,
+            "end": 49
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.systemd",
+                "comment.line.number-sign"
+            ],
+            "text": "# Environment=SSH_AUTH_SOCK=%t/keyring/ssh",
+            "start": 0,
+            "end": 43
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.systemd",
+                "meta.config-entry.systemd",
+                "entity.name.tag"
+            ],
+            "text": "Restart",
+            "start": 0,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.systemd",
+                "meta.config-entry.systemd",
+                "keyword.operator.assignment"
+            ],
+            "text": "=",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.systemd",
+                "meta.config-entry.systemd",
+                "constant.language"
+            ],
+            "text": "on-failure",
+            "start": 8,
+            "end": 18
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.systemd"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.systemd",
+                "entity.name.section"
+            ],
+            "text": "[Install]",
+            "start": 0,
+            "end": 9
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.systemd",
+                "meta.config-entry.systemd",
+                "entity.name.tag"
+            ],
+            "text": "WantedBy",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.systemd",
+                "meta.config-entry.systemd",
+                "keyword.operator.assignment"
+            ],
+            "text": "=",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.systemd",
+                "meta.config-entry.systemd"
+            ],
+            "text": "default.target",
+            "start": 9,
+            "end": 23
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.systemd"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.systemd",
+                "comment.line.number-sign"
+            ],
+            "text": "# From https://git.savannah.gnu.org/cgit/emacs.git/tree/etc/emacs.service",
+            "start": 0,
+            "end": 74
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.systemd"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ]
+]

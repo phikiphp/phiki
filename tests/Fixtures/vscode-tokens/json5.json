@@ -1,0 +1,1499 @@
+[
+    [
+        {
+            "scopes": [
+                "source.json5",
+                "comment.single.json5"
+            ],
+            "text": "// This file is written in JSON5 syntax, naturally, but npm needs a regular",
+            "start": 0,
+            "end": 75
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.json5",
+                "comment.single.json5"
+            ],
+            "text": "// JSON file, so compile via `npm run build`. Be sure to keep both in sync!",
+            "start": 0,
+            "end": 75
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.json5",
+                "meta.structure.dictionary.json5",
+                "punctuation.definition.dictionary.begin.json5"
+            ],
+            "text": "{",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": "    name: ",
+            "start": 0,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5",
+                "punctuation.definition.string.begin.json5"
+            ],
+            "text": "'",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5"
+            ],
+            "text": "json5",
+            "start": 11,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5",
+                "punctuation.definition.string.end.json5"
+            ],
+            "text": "'",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": ",",
+            "start": 17,
+            "end": 19
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": "    version: ",
+            "start": 0,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5",
+                "punctuation.definition.string.begin.json5"
+            ],
+            "text": "'",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5"
+            ],
+            "text": "0.5.0",
+            "start": 14,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5",
+                "punctuation.definition.string.end.json5"
+            ],
+            "text": "'",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": ",",
+            "start": 20,
+            "end": 22
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": "    description: ",
+            "start": 0,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5",
+                "punctuation.definition.string.begin.json5"
+            ],
+            "text": "'",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5"
+            ],
+            "text": "JSON for the ES5 era.",
+            "start": 18,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5",
+                "punctuation.definition.string.end.json5"
+            ],
+            "text": "'",
+            "start": 39,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": ",",
+            "start": 40,
+            "end": 42
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": "    keywords: ",
+            "start": 0,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "meta.structure.array.json5",
+                "punctuation.definition.array.begin.json5"
+            ],
+            "text": "[",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "meta.structure.array.json5",
+                "string.quoted.json5",
+                "punctuation.definition.string.begin.json5"
+            ],
+            "text": "'",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "meta.structure.array.json5",
+                "string.quoted.json5"
+            ],
+            "text": "json",
+            "start": 16,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "meta.structure.array.json5",
+                "string.quoted.json5",
+                "punctuation.definition.string.end.json5"
+            ],
+            "text": "'",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "meta.structure.array.json5",
+                "punctuation.separator.array.json5"
+            ],
+            "text": ",",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "meta.structure.array.json5"
+            ],
+            "text": " ",
+            "start": 22,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "meta.structure.array.json5",
+                "string.quoted.json5",
+                "punctuation.definition.string.begin.json5"
+            ],
+            "text": "'",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "meta.structure.array.json5",
+                "string.quoted.json5"
+            ],
+            "text": "es5",
+            "start": 24,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "meta.structure.array.json5",
+                "string.quoted.json5",
+                "punctuation.definition.string.end.json5"
+            ],
+            "text": "'",
+            "start": 27,
+            "end": 28
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "meta.structure.array.json5",
+                "punctuation.definition.array.end.json5"
+            ],
+            "text": "]",
+            "start": 28,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": ",",
+            "start": 29,
+            "end": 31
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": "    author: ",
+            "start": 0,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5",
+                "punctuation.definition.string.begin.json5"
+            ],
+            "text": "'",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5"
+            ],
+            "text": "Aseem Kishore <aseem.kishore@gmail.com>",
+            "start": 13,
+            "end": 52
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5",
+                "punctuation.definition.string.end.json5"
+            ],
+            "text": "'",
+            "start": 52,
+            "end": 53
+        },
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": ",",
+            "start": 53,
+            "end": 55
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": "    contributors: ",
+            "start": 0,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "meta.structure.array.json5",
+                "punctuation.definition.array.begin.json5"
+            ],
+            "text": "[",
+            "start": 18,
+            "end": 19
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "comment.single.json5"
+            ],
+            "text": "// TODO: Should we remove this section in favor of GitHub's list?",
+            "start": 8,
+            "end": 73
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "comment.single.json5"
+            ],
+            "text": "// https://github.com/aseemk/json5/contributors",
+            "start": 8,
+            "end": 55
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5",
+                "punctuation.definition.string.begin.json5"
+            ],
+            "text": "'",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5"
+            ],
+            "text": "Max Nanasy <max.nanasy@gmail.com>",
+            "start": 9,
+            "end": 42
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5",
+                "punctuation.definition.string.end.json5"
+            ],
+            "text": "'",
+            "start": 42,
+            "end": 43
+        },
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": ",",
+            "start": 43,
+            "end": 45
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5",
+                "punctuation.definition.string.begin.json5"
+            ],
+            "text": "'",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5"
+            ],
+            "text": "Andrew Eisenberg <andrew@eisenberg.as>",
+            "start": 9,
+            "end": 47
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5",
+                "punctuation.definition.string.end.json5"
+            ],
+            "text": "'",
+            "start": 47,
+            "end": 48
+        },
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": ",",
+            "start": 48,
+            "end": 50
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5",
+                "punctuation.definition.string.begin.json5"
+            ],
+            "text": "'",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5"
+            ],
+            "text": "Jordan Tucker <jordanbtucker@gmail.com>",
+            "start": 9,
+            "end": 48
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5",
+                "punctuation.definition.string.end.json5"
+            ],
+            "text": "'",
+            "start": 48,
+            "end": 49
+        },
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": ",",
+            "start": 49,
+            "end": 51
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": "    ],",
+            "start": 0,
+            "end": 7
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": "    main: ",
+            "start": 0,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5",
+                "punctuation.definition.string.begin.json5"
+            ],
+            "text": "'",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5"
+            ],
+            "text": "lib/json5.js",
+            "start": 11,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5",
+                "punctuation.definition.string.end.json5"
+            ],
+            "text": "'",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": ",",
+            "start": 24,
+            "end": 26
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": "    bin: ",
+            "start": 0,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5",
+                "punctuation.definition.string.begin.json5"
+            ],
+            "text": "'",
+            "start": 9,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5"
+            ],
+            "text": "lib/cli.js",
+            "start": 10,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5",
+                "punctuation.definition.string.end.json5"
+            ],
+            "text": "'",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": ",",
+            "start": 21,
+            "end": 23
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": "    files: ",
+            "start": 0,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "meta.structure.array.json5",
+                "punctuation.definition.array.begin.json5"
+            ],
+            "text": "[",
+            "start": 11,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "meta.structure.array.json5",
+                "string.quoted.json5",
+                "punctuation.definition.string.begin.json5"
+            ],
+            "text": "\"",
+            "start": 12,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "meta.structure.array.json5",
+                "string.quoted.json5"
+            ],
+            "text": "lib/",
+            "start": 13,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "meta.structure.array.json5",
+                "string.quoted.json5",
+                "punctuation.definition.string.end.json5"
+            ],
+            "text": "\"",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "meta.structure.array.json5",
+                "punctuation.definition.array.end.json5"
+            ],
+            "text": "]",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": ",",
+            "start": 19,
+            "end": 21
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": "    dependencies: ",
+            "start": 0,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "meta.structure.dictionary.json5",
+                "punctuation.definition.dictionary.begin.json5"
+            ],
+            "text": "{",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "meta.structure.dictionary.json5",
+                "punctuation.definition.dictionary.end.json5"
+            ],
+            "text": "}",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": ",",
+            "start": 20,
+            "end": 22
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": "    devDependencies: ",
+            "start": 0,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "meta.structure.dictionary.json5",
+                "punctuation.definition.dictionary.begin.json5"
+            ],
+            "text": "{",
+            "start": 21,
+            "end": 22
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": "        gulp: ",
+            "start": 0,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5",
+                "punctuation.definition.string.begin.json5"
+            ],
+            "text": "\"",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5"
+            ],
+            "text": "^3.9.1",
+            "start": 15,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5",
+                "punctuation.definition.string.end.json5"
+            ],
+            "text": "\"",
+            "start": 21,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": ",",
+            "start": 22,
+            "end": 24
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5",
+                "punctuation.definition.string.begin.json5"
+            ],
+            "text": "'",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5"
+            ],
+            "text": "gulp-jshint",
+            "start": 9,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5",
+                "punctuation.definition.string.end.json5"
+            ],
+            "text": "'",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": ": ",
+            "start": 21,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5",
+                "punctuation.definition.string.begin.json5"
+            ],
+            "text": "\"",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5"
+            ],
+            "text": "^2.0.0",
+            "start": 24,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5",
+                "punctuation.definition.string.end.json5"
+            ],
+            "text": "\"",
+            "start": 30,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": ",",
+            "start": 31,
+            "end": 33
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": "        jshint: ",
+            "start": 0,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5",
+                "punctuation.definition.string.begin.json5"
+            ],
+            "text": "\"",
+            "start": 16,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5"
+            ],
+            "text": "^2.9.1",
+            "start": 17,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5",
+                "punctuation.definition.string.end.json5"
+            ],
+            "text": "\"",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": ",",
+            "start": 24,
+            "end": 26
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5",
+                "punctuation.definition.string.begin.json5"
+            ],
+            "text": "'",
+            "start": 8,
+            "end": 9
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5"
+            ],
+            "text": "jshint-stylish",
+            "start": 9,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5",
+                "punctuation.definition.string.end.json5"
+            ],
+            "text": "'",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": ": ",
+            "start": 24,
+            "end": 26
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5",
+                "punctuation.definition.string.begin.json5"
+            ],
+            "text": "\"",
+            "start": 26,
+            "end": 27
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5"
+            ],
+            "text": "^2.1.0",
+            "start": 27,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5",
+                "punctuation.definition.string.end.json5"
+            ],
+            "text": "\"",
+            "start": 33,
+            "end": 34
+        },
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": ",",
+            "start": 34,
+            "end": 36
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": "        mocha: ",
+            "start": 0,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5",
+                "punctuation.definition.string.begin.json5"
+            ],
+            "text": "\"",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5"
+            ],
+            "text": "^2.4.5",
+            "start": 16,
+            "end": 22
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5",
+                "punctuation.definition.string.end.json5"
+            ],
+            "text": "\"",
+            "start": 22,
+            "end": 23
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": "    },",
+            "start": 0,
+            "end": 7
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": "    scripts: ",
+            "start": 0,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "meta.structure.dictionary.json5",
+                "punctuation.definition.dictionary.begin.json5"
+            ],
+            "text": "{",
+            "start": 13,
+            "end": 14
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": "        build: ",
+            "start": 0,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5",
+                "punctuation.definition.string.begin.json5"
+            ],
+            "text": "'",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5"
+            ],
+            "text": "node ./lib/cli.js -c package.json5",
+            "start": 16,
+            "end": 50
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5",
+                "punctuation.definition.string.end.json5"
+            ],
+            "text": "'",
+            "start": 50,
+            "end": 51
+        },
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": ",",
+            "start": 51,
+            "end": 53
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": "        test: ",
+            "start": 0,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5",
+                "punctuation.definition.string.begin.json5"
+            ],
+            "text": "'",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5"
+            ],
+            "text": "mocha --ui exports --reporter spec",
+            "start": 15,
+            "end": 49
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5",
+                "punctuation.definition.string.end.json5"
+            ],
+            "text": "'",
+            "start": 49,
+            "end": 50
+        },
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": ",",
+            "start": 50,
+            "end": 52
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": "            ",
+            "start": 0,
+            "end": 12
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "comment.single.json5"
+            ],
+            "text": "// TODO: Would it be better to define these in a mocha.opts file?",
+            "start": 12,
+            "end": 77
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": "    },",
+            "start": 0,
+            "end": 7
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": "    homepage: ",
+            "start": 0,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5",
+                "punctuation.definition.string.begin.json5"
+            ],
+            "text": "'",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5"
+            ],
+            "text": "http://json5.org/",
+            "start": 15,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5",
+                "punctuation.definition.string.end.json5"
+            ],
+            "text": "'",
+            "start": 32,
+            "end": 33
+        },
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": ",",
+            "start": 33,
+            "end": 35
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": "    license: ",
+            "start": 0,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5",
+                "punctuation.definition.string.begin.json5"
+            ],
+            "text": "'",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5"
+            ],
+            "text": "MIT",
+            "start": 14,
+            "end": 17
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5",
+                "punctuation.definition.string.end.json5"
+            ],
+            "text": "'",
+            "start": 17,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": ",",
+            "start": 18,
+            "end": 20
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": "    repository: ",
+            "start": 0,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "meta.structure.dictionary.json5",
+                "punctuation.definition.dictionary.begin.json5"
+            ],
+            "text": "{",
+            "start": 16,
+            "end": 17
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": "        type: ",
+            "start": 0,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5",
+                "punctuation.definition.string.begin.json5"
+            ],
+            "text": "'",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5"
+            ],
+            "text": "git",
+            "start": 15,
+            "end": 18
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5",
+                "punctuation.definition.string.end.json5"
+            ],
+            "text": "'",
+            "start": 18,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": ",",
+            "start": 19,
+            "end": 21
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": "        url: ",
+            "start": 0,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5",
+                "punctuation.definition.string.begin.json5"
+            ],
+            "text": "'",
+            "start": 13,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5"
+            ],
+            "text": "https://github.com/aseemk/json5.git",
+            "start": 14,
+            "end": 49
+        },
+        {
+            "scopes": [
+                "source.json5",
+                "string.quoted.json5",
+                "punctuation.definition.string.end.json5"
+            ],
+            "text": "'",
+            "start": 49,
+            "end": 50
+        },
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": ",",
+            "start": 50,
+            "end": 52
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": "    },",
+            "start": 0,
+            "end": 7
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": "}",
+            "start": 0,
+            "end": 2
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.json5",
+                "comment.single.json5"
+            ],
+            "text": "// From https://github.com/mrmlnc/vscode-json5/blob/master/syntaxes/json5.json",
+            "start": 0,
+            "end": 78
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.json5"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ]
+]

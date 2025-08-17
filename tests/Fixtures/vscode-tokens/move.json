@@ -1,0 +1,977 @@
+[
+    [
+        {
+            "scopes": [
+                "source.move",
+                "meta.module.move",
+                "storage.modifier.type.move"
+            ],
+            "text": "module",
+            "start": 0,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.move",
+                "meta.module.move",
+                "constant.other.move"
+            ],
+            "text": " 0xCAFE",
+            "start": 6,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.move",
+                "meta.module.move"
+            ],
+            "text": "::",
+            "start": 13,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.move",
+                "meta.module.move",
+                "entity.name.type.move"
+            ],
+            "text": "BasicCoin",
+            "start": 15,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.move",
+                "meta.module.move"
+            ],
+            "text": " ",
+            "start": 24,
+            "end": 25
+        },
+        {
+            "scopes": [
+                "source.move",
+                "meta.module.move",
+                "meta.module_scope.move"
+            ],
+            "text": "{",
+            "start": 25,
+            "end": 26
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.move"
+            ],
+            "text": "     ",
+            "start": 0,
+            "end": 5
+        },
+        {
+            "scopes": [
+                "source.move",
+                "comment.line.double-slash.move"
+            ],
+            "text": "//",
+            "start": 5,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.move",
+                "comment.line.double-slash.move"
+            ],
+            "text": " Only included in compilation for testing. Similar to #[cfg(testing)]",
+            "start": 7,
+            "end": 76
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.move"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.move",
+                "comment.line.double-slash.move"
+            ],
+            "text": "//",
+            "start": 4,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.move",
+                "comment.line.double-slash.move"
+            ],
+            "text": " in Rust. Imports the `Signer` module from the MoveStdlib package.",
+            "start": 6,
+            "end": 72
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.move"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.move",
+                "support.constant.annotation.move"
+            ],
+            "text": "#[",
+            "start": 4,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.move",
+                "support.constant.annotation.move"
+            ],
+            "text": "test_only",
+            "start": 6,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.move",
+                "support.constant.annotation.move"
+            ],
+            "text": "]",
+            "start": 15,
+            "end": 16
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.move"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.move",
+                "meta.import.move",
+                "storage.modifier.type.move"
+            ],
+            "text": "use",
+            "start": 4,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.move",
+                "meta.import.move"
+            ],
+            "text": " ",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.move",
+                "meta.import.move",
+                "meta.entity.name.type.module.move"
+            ],
+            "text": "std",
+            "start": 8,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.move",
+                "meta.import.move"
+            ],
+            "text": "::",
+            "start": 11,
+            "end": 13
+        },
+        {
+            "scopes": [
+                "source.move",
+                "meta.import.move",
+                "meta.entity.name.type.module.move"
+            ],
+            "text": "signer",
+            "start": 13,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.move",
+                "meta.import.move"
+            ],
+            "text": ";",
+            "start": 19,
+            "end": 20
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.move"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.move"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.move",
+                "meta.struct.move",
+                "storage.modifier.type.move"
+            ],
+            "text": "struct",
+            "start": 4,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.move",
+                "meta.struct.move"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.move",
+                "meta.struct.move",
+                "entity.name.type.struct.move"
+            ],
+            "text": "Coin",
+            "start": 11,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.move",
+                "meta.struct.move"
+            ],
+            "text": " ",
+            "start": 15,
+            "end": 16
+        },
+        {
+            "scopes": [
+                "source.move",
+                "meta.struct.move",
+                "keyword.control.ability.has.move"
+            ],
+            "text": "has",
+            "start": 16,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.move",
+                "meta.struct.move"
+            ],
+            "text": " ",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.move",
+                "meta.struct.move",
+                "support.type.ability.move"
+            ],
+            "text": "key",
+            "start": 20,
+            "end": 23
+        },
+        {
+            "scopes": [
+                "source.move",
+                "meta.struct.move"
+            ],
+            "text": " ",
+            "start": 23,
+            "end": 24
+        },
+        {
+            "scopes": [
+                "source.move",
+                "meta.struct.move",
+                "meta.struct.body.move"
+            ],
+            "text": "{",
+            "start": 24,
+            "end": 25
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.move"
+            ],
+            "text": "        value: u64,",
+            "start": 0,
+            "end": 20
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.move"
+            ],
+            "text": "    }",
+            "start": 0,
+            "end": 6
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.move"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.move"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.move",
+                "storage.modifier.visibility.public.move"
+            ],
+            "text": "public",
+            "start": 4,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.move"
+            ],
+            "text": " ",
+            "start": 10,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.move",
+                "meta.fun_signature.move",
+                "storage.modifier.fun.move"
+            ],
+            "text": "fun",
+            "start": 11,
+            "end": 14
+        },
+        {
+            "scopes": [
+                "source.move",
+                "meta.fun_signature.move",
+                "meta.function_name.move"
+            ],
+            "text": " ",
+            "start": 14,
+            "end": 15
+        },
+        {
+            "scopes": [
+                "source.move",
+                "meta.fun_signature.move",
+                "meta.function_name.move",
+                "entity.name.function.move"
+            ],
+            "text": "mint",
+            "start": 15,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.move",
+                "meta.fun_signature.move",
+                "meta.parentheses.move"
+            ],
+            "text": "(",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.move",
+                "meta.fun_signature.move",
+                "meta.parentheses.move"
+            ],
+            "text": "account: ",
+            "start": 20,
+            "end": 29
+        },
+        {
+            "scopes": [
+                "source.move",
+                "meta.fun_signature.move",
+                "meta.parentheses.move",
+                "support.type.primitives.move"
+            ],
+            "text": "signer",
+            "start": 29,
+            "end": 35
+        },
+        {
+            "scopes": [
+                "source.move",
+                "meta.fun_signature.move",
+                "meta.parentheses.move"
+            ],
+            "text": ", value: ",
+            "start": 35,
+            "end": 44
+        },
+        {
+            "scopes": [
+                "source.move",
+                "meta.fun_signature.move",
+                "meta.parentheses.move",
+                "support.type.primitives.move"
+            ],
+            "text": "u64",
+            "start": 44,
+            "end": 47
+        },
+        {
+            "scopes": [
+                "source.move",
+                "meta.fun_signature.move",
+                "meta.parentheses.move"
+            ],
+            "text": ")",
+            "start": 47,
+            "end": 48
+        },
+        {
+            "scopes": [
+                "source.move",
+                "meta.fun_signature.move"
+            ],
+            "text": " ",
+            "start": 48,
+            "end": 49
+        },
+        {
+            "scopes": [
+                "source.move",
+                "meta.block.move"
+            ],
+            "text": "{",
+            "start": 49,
+            "end": 50
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.move"
+            ],
+            "text": "        move_to(&account, Coin ",
+            "start": 0,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.move",
+                "meta.block.move"
+            ],
+            "text": "{",
+            "start": 31,
+            "end": 32
+        },
+        {
+            "scopes": [
+                "source.move",
+                "meta.block.move"
+            ],
+            "text": " value ",
+            "start": 32,
+            "end": 39
+        },
+        {
+            "scopes": [
+                "source.move",
+                "meta.block.move"
+            ],
+            "text": "}",
+            "start": 39,
+            "end": 40
+        },
+        {
+            "scopes": [
+                "source.move"
+            ],
+            "text": ")",
+            "start": 40,
+            "end": 42
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.move"
+            ],
+            "text": "    }",
+            "start": 0,
+            "end": 6
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.move"
+            ],
+            "text": "",
+            "start": 0,
+            "end": 1
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.move"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.move",
+                "comment.line.double-slash.move"
+            ],
+            "text": "//",
+            "start": 4,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.move",
+                "comment.line.double-slash.move"
+            ],
+            "text": " Declare a unit test. It takes a signer called `account` with an",
+            "start": 6,
+            "end": 70
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.move"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.move",
+                "comment.line.double-slash.move"
+            ],
+            "text": "//",
+            "start": 4,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.move",
+                "comment.line.double-slash.move"
+            ],
+            "text": " address value of `0xC0FFEE`.",
+            "start": 6,
+            "end": 35
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.move"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.move",
+                "support.constant.annotation.move"
+            ],
+            "text": "#[",
+            "start": 4,
+            "end": 6
+        },
+        {
+            "scopes": [
+                "source.move",
+                "support.constant.annotation.move"
+            ],
+            "text": "test(",
+            "start": 6,
+            "end": 11
+        },
+        {
+            "scopes": [
+                "source.move",
+                "support.constant.annotation.move",
+                "meta.annotation.name.move"
+            ],
+            "text": "account ",
+            "start": 11,
+            "end": 19
+        },
+        {
+            "scopes": [
+                "source.move",
+                "support.constant.annotation.move",
+                "meta.annotation.value.move"
+            ],
+            "text": "=",
+            "start": 19,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.move",
+                "support.constant.annotation.move",
+                "meta.annotation.value.move"
+            ],
+            "text": " ",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.move",
+                "support.constant.annotation.move",
+                "meta.annotation.value.move",
+                "support.constant.address.base16.move"
+            ],
+            "text": "@0xC0FFEE",
+            "start": 21,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.move",
+                "support.constant.annotation.move",
+                "meta.annotation.value.move"
+            ],
+            "text": ")",
+            "start": 30,
+            "end": 31
+        },
+        {
+            "scopes": [
+                "source.move",
+                "support.constant.annotation.move"
+            ],
+            "text": "]",
+            "start": 31,
+            "end": 32
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.move"
+            ],
+            "text": "    ",
+            "start": 0,
+            "end": 4
+        },
+        {
+            "scopes": [
+                "source.move",
+                "meta.fun_signature.move",
+                "storage.modifier.fun.move"
+            ],
+            "text": "fun",
+            "start": 4,
+            "end": 7
+        },
+        {
+            "scopes": [
+                "source.move",
+                "meta.fun_signature.move",
+                "meta.function_name.move"
+            ],
+            "text": " ",
+            "start": 7,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.move",
+                "meta.fun_signature.move",
+                "meta.function_name.move",
+                "entity.name.function.move"
+            ],
+            "text": "test_mint_10",
+            "start": 8,
+            "end": 20
+        },
+        {
+            "scopes": [
+                "source.move",
+                "meta.fun_signature.move",
+                "meta.parentheses.move"
+            ],
+            "text": "(",
+            "start": 20,
+            "end": 21
+        },
+        {
+            "scopes": [
+                "source.move",
+                "meta.fun_signature.move",
+                "meta.parentheses.move"
+            ],
+            "text": "account: ",
+            "start": 21,
+            "end": 30
+        },
+        {
+            "scopes": [
+                "source.move",
+                "meta.fun_signature.move",
+                "meta.parentheses.move",
+                "support.type.primitives.move"
+            ],
+            "text": "signer",
+            "start": 30,
+            "end": 36
+        },
+        {
+            "scopes": [
+                "source.move",
+                "meta.fun_signature.move",
+                "meta.parentheses.move"
+            ],
+            "text": ")",
+            "start": 36,
+            "end": 37
+        },
+        {
+            "scopes": [
+                "source.move",
+                "meta.fun_signature.move"
+            ],
+            "text": " ",
+            "start": 37,
+            "end": 38
+        },
+        {
+            "scopes": [
+                "source.move",
+                "meta.fun_signature.move",
+                "storage.modifier"
+            ],
+            "text": "acquires",
+            "start": 38,
+            "end": 46
+        },
+        {
+            "scopes": [
+                "source.move",
+                "meta.fun_signature.move"
+            ],
+            "text": " ",
+            "start": 46,
+            "end": 47
+        },
+        {
+            "scopes": [
+                "source.move",
+                "meta.fun_signature.move",
+                "entity.name.type.use.move"
+            ],
+            "text": "Coin",
+            "start": 47,
+            "end": 51
+        },
+        {
+            "scopes": [
+                "source.move",
+                "meta.fun_signature.move"
+            ],
+            "text": " ",
+            "start": 51,
+            "end": 52
+        },
+        {
+            "scopes": [
+                "source.move",
+                "meta.block.move"
+            ],
+            "text": "{",
+            "start": 52,
+            "end": 53
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.move"
+            ],
+            "text": "        let addr = signer::address_of(&account);",
+            "start": 0,
+            "end": 49
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.move"
+            ],
+            "text": "        mint(account, 10);",
+            "start": 0,
+            "end": 27
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.move"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.move",
+                "comment.line.double-slash.move"
+            ],
+            "text": "//",
+            "start": 8,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.move",
+                "comment.line.double-slash.move"
+            ],
+            "text": " Make sure there is a `Coin` resource under `addr` with a value of `10`.",
+            "start": 10,
+            "end": 82
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.move"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.move",
+                "comment.line.double-slash.move"
+            ],
+            "text": "//",
+            "start": 8,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.move",
+                "comment.line.double-slash.move"
+            ],
+            "text": " We can access this resource and its value since we are in the",
+            "start": 10,
+            "end": 72
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.move"
+            ],
+            "text": "        ",
+            "start": 0,
+            "end": 8
+        },
+        {
+            "scopes": [
+                "source.move",
+                "comment.line.double-slash.move"
+            ],
+            "text": "//",
+            "start": 8,
+            "end": 10
+        },
+        {
+            "scopes": [
+                "source.move",
+                "comment.line.double-slash.move"
+            ],
+            "text": " same module that defined the `Coin` resource.",
+            "start": 10,
+            "end": 56
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.move"
+            ],
+            "text": "        assert!(borrow_global<Coin>(addr).value == 10, 0);",
+            "start": 0,
+            "end": 59
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.move"
+            ],
+            "text": "    }",
+            "start": 0,
+            "end": 6
+        }
+    ],
+    [
+        {
+            "scopes": [
+                "source.move"
+            ],
+            "text": "}",
+            "start": 0,
+            "end": 2
+        }
+    ]
+]
