@@ -47,4 +47,15 @@ final class Arr
     {
         return array_filter(array_map($callback, $array));
     }
+
+    public static function any(array $array, callable $callback): bool
+    {
+        foreach ($array as $value) {
+            if ($callback($value)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
