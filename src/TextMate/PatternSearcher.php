@@ -9,6 +9,8 @@ use Phiki\Exceptions\GenericPatternException;
 use Phiki\Grammar\MatchedPattern;
 use Phiki\Grammar\ParsedGrammar;
 use Phiki\Grammar\WhilePattern;
+use Phiki\Support\Warnings;
+use Throwable;
 use ValueError;
 
 class PatternSearcher
@@ -39,7 +41,7 @@ class PatternSearcher
         $bestPattern = null;
 
         foreach ($patterns as [$pattern, $regex]) {
-            if (! mb_ereg_search_init($lineText, $regex)) {
+            if (! @mb_ereg_search_init($lineText, $regex)) {
                 continue;
             }
 
