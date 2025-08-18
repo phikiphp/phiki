@@ -24,6 +24,8 @@ class GrammarParser
 
     protected bool $injection = false;
 
+    protected int $id = 0;
+
     public function parse(array $grammar): ParsedGrammar
     {
         if (! isset($grammar['scopeName'])) {
@@ -56,6 +58,7 @@ class GrammarParser
     {
         if (isset($pattern['match']) && $pattern['match'] !== '') {
             return new MatchPattern(
+                $this->id(),
                 new Regex($pattern['match']),
                 $pattern['name'] ?? null,
                 $this->captures($pattern['captures'] ?? []),
@@ -65,6 +68,7 @@ class GrammarParser
 
         if (isset($pattern['begin'], $pattern['end']) && $pattern['begin'] !== '' && $pattern['end'] !== '') {
             return new BeginEndPattern(
+                $this->id(),
                 new Regex($pattern['begin']),
                 new Regex($pattern['end']),
                 $pattern['name'] ?? null,
@@ -79,6 +83,7 @@ class GrammarParser
 
         if (isset($pattern['begin'], $pattern['while'])) {
             return new BeginWhilePattern(
+                $this->id(),
                 new Regex($pattern['begin']),
                 new Regex($pattern['while']),
                 $pattern['name'] ?? null,
@@ -95,6 +100,7 @@ class GrammarParser
         // to be graceful and treat a standalone begin as a match.
         if (isset($pattern['begin']) && ! isset($pattern['end']) && ! isset($pattern['while'])) {
             return new MatchPattern(
+                $this->id(),
                 new Regex($pattern['begin']),
                 $pattern['name'] ?? null,
                 $this->captures($pattern['beginCaptures'] ?? $pattern['captures'] ?? []),
@@ -115,15 +121,15 @@ class GrammarParser
                 [$reference, $scopeName] = [null, $pattern['include']];
             }
 
-            return new IncludePattern($reference, $scopeName, injection: $this->injection);
+            return new IncludePattern($this->id(), $reference, $scopeName, injection: $this->injection);
         }
 
         if (isset($pattern['patterns'])) {
-            return new CollectionPattern($this->patterns($pattern['patterns']), injection: $this->injection);
+            return new CollectionPattern($this->id(), $this->patterns($pattern['patterns']), injection: $this->injection);
         }
 
         if (array_is_list($pattern)) {
-            return new CollectionPattern($this->patterns($pattern), injection: $this->injection);
+            return new CollectionPattern($this->id(), $this->patterns($pattern), injection: $this->injection);
         }
 
         return false;
@@ -165,10 +171,10 @@ class GrammarParser
     protected function capture(array|string $capture, string $index): Capture
     {
         if (is_string($capture)) {
-            return new Capture($index, $capture, []);
+            return new Capture($this->id(), $index, $capture, new CollectionPattern($this->id(), [], $this->injection));
         }
 
-        return new Capture($index, $capture['name'] ?? null, $this->patterns($capture['patterns'] ?? []));
+        return new Capture($this->id(), $index, $capture['name'] ?? null, new CollectionPattern($this->id(), $this->patterns($capture['patterns'] ?? []), $this->injection));
     }
 
     protected function injection(string $selector, array $injection): Injection
@@ -210,7 +216,7 @@ class GrammarParser
 
         $this->injection = false;
 
-        return new Injection($selector, $pattern);
+        return new Injection($this->id(), $selector, $pattern);
     }
 
     protected function selector(InjectionSelectorParserInputInterface $input): Selector
@@ -338,5 +344,10 @@ class GrammarParser
         } while ($input->current() === '.');
 
         return new Scope($parts);
+    }
+
+    protected function id(): int
+    {
+        return ++$this->id;
     }
 }

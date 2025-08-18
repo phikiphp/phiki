@@ -9,14 +9,15 @@ use Phiki\Support\Str;
 class Capture implements PatternInterface
 {
     public function __construct(
+        public int $id,
         public string $index,
         public ?string $name,
-        public array $patterns = [],
+        public CollectionPattern $pattern,
     ) {}
 
     public function retokenizeCapturedWithRule(): bool
     {
-        return count($this->patterns) > 0;
+        return count($this->pattern->patterns) > 0;
     }
 
     public function getScopeName(array $captures): ?string
@@ -30,12 +31,11 @@ class Capture implements PatternInterface
 
     public function compile(ParsedGrammar $grammar, GrammarRepositoryInterface $grammars, bool $allowA, bool $allowG): array
     {
-        $compiled = [];
+        return $this->pattern->compile($grammar, $grammars, $allowA, $allowG);
+    }
 
-        foreach ($this->patterns as $pattern) {
-            $compiled = array_merge($compiled, $pattern->compile($grammar, $grammars, $allowA, $allowG));
-        }
-
-        return $compiled;
+    public function getId(): int
+    {
+        return $this->id;
     }
 }

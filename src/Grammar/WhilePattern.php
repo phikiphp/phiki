@@ -10,6 +10,7 @@ use Phiki\Support\Str;
 class WhilePattern implements PatternInterface
 {
     public function __construct(
+        public int $id,
         public MatchedPattern $begin,
         public Regex $while,
         public ?string $name,
@@ -48,5 +49,10 @@ class WhilePattern implements PatternInterface
         }
 
         return $compiled;
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
     }
 }

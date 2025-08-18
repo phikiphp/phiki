@@ -11,6 +11,7 @@ use Phiki\Support\Str;
 class BeginEndPattern implements PatternInterface, HasContentNameInterface
 {
     public function __construct(
+        public int $id,
         public Regex $begin,
         public Regex $end,
         public ?string $name,
@@ -63,6 +64,7 @@ class BeginEndPattern implements PatternInterface, HasContentNameInterface
     public function createEndPattern(MatchedPattern $matched): EndPattern
     {
         return new EndPattern(
+            id: $this->id,
             begin: $matched,
             end: $this->end,
             name: $this->name,
@@ -72,5 +74,10 @@ class BeginEndPattern implements PatternInterface, HasContentNameInterface
             patterns: $this->patterns,
             injection: $this->injection,
         );
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
     }
 }

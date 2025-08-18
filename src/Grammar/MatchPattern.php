@@ -13,6 +13,7 @@ class MatchPattern implements PatternInterface
      * @param  Capture[]  $captures
      */
     public function __construct(
+        public int $id,
         public Regex $match,
         public ?string $name,
         public array $captures = [],
@@ -38,5 +39,10 @@ class MatchPattern implements PatternInterface
         return [
             [$this, $this->match->get($allowA, $allowG)],
         ];
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
     }
 }

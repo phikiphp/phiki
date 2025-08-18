@@ -63,4 +63,9 @@ final class ParsedGrammar implements PatternInterface
 
         return $parser->parse($grammar);
     }
+
+    public function getId(): int
+    {
+        return 0;
+    }
 }

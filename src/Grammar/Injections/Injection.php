@@ -10,6 +10,7 @@ use Phiki\Grammar\ParsedGrammar;
 class Injection implements PatternInterface, InjectionMatcherInterface
 {
     public function __construct(
+        public int $id,
         public Selector $selector,
         public PatternInterface $pattern,
     ) {}
@@ -37,5 +38,10 @@ class Injection implements PatternInterface, InjectionMatcherInterface
     public function compile(ParsedGrammar $grammar, GrammarRepositoryInterface $grammars, bool $allowA, bool $allowG): array
     {
         return $this->pattern->compile($grammar, $grammars, $allowA, $allowG);
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
     }
 }

@@ -97,7 +97,7 @@ class StateStack
         $el = $this;
 
         while ($el !== null && $el->enterPos === $other->enterPos) {
-            if ($el->pattern === $other->pattern) {
+            if ($el->pattern->getId() === $other->pattern->getId()) {
                 return true;
             }
 

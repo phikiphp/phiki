@@ -1,4 +1,7 @@
 <?php
+
+set_time_limit(2);
+
 require_once __DIR__ . '/../../vendor/autoload.php';
 
 use Phiki\Grammar\Grammar;

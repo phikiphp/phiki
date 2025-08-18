@@ -19,4 +19,9 @@ interface PatternInterface
      * @return array<array{ 0: PatternInterface, 1: string }>
      */
     public function compile(ParsedGrammar $grammar, GrammarRepositoryInterface $grammars, bool $allowA, bool $allowG): array;
+
+    /**
+     * Get the ID of the pattern.
+     */
+    public function getId(): int;
 }

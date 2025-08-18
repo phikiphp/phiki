@@ -10,6 +10,7 @@ use Phiki\Support\Str;
 class EndPattern implements PatternInterface
 {
     public function __construct(
+        public int $id,
         public MatchedPattern $begin,
         public Regex $end,
         public ?string $name,
@@ -50,5 +51,10 @@ class EndPattern implements PatternInterface
         }
 
         return $compiled;
-    }   
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
 }

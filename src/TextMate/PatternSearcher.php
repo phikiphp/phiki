@@ -39,7 +39,7 @@ class PatternSearcher
         $bestPattern = null;
 
         foreach ($patterns as [$pattern, $regex]) {
-            if (! @mb_ereg_search_init($lineText, $regex)) {
+            if (! mb_ereg_search_init($lineText, $regex)) {
                 continue;
             }
 

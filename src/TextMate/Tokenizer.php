@@ -82,12 +82,6 @@ class Tokenizer
         $stop = false;
 
         while (! $stop) {
-            if ($linePos >= $lineLength) {
-                // If we've reached the end of the line, we can produce any remaining tokens and stop processing.
-                $lineTokens->produce($stack, $lineLength);
-                break;
-            }
-
             // Find the next matching rule or injection.
             $rule = $this->matchRuleOrInjections($grammar, $lineText, $isFirstLine, $linePos, $stack, $anchorPosition);
 
@@ -256,7 +250,7 @@ class Tokenizer
             if ($captureRule->retokenizeCapturedWithRule()) {
                 $scopeName = $captureRule->getScopeName($matches);
                 $nameScopesList = $stack->contentNameScopesList->push($scopeName);
-                $stackClone = $stack->push(new CollectionPattern($captureRule->patterns), $match[1], -1, false, null, $nameScopesList, $nameScopesList);
+                $stackClone = $stack->push($captureRule->pattern, $match[1], -1, false, null, $nameScopesList, $nameScopesList);
                 $this->tokenizeString($grammar, mb_substr($lineText, 0, strlen($match[0]) + $match[1]), $isFirstLine && $match[1] === 0, $match[1], $stackClone, $lineTokens, false);
                 continue;
             }

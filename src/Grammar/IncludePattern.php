@@ -9,6 +9,7 @@ use Phiki\Exceptions\UnrecognisedGrammarException;
 class IncludePattern implements PatternInterface
 {
     public function __construct(
+        public int $id,
         public ?string $reference,
         public ?string $scopeName,
         public bool $injection = false,
@@ -48,5 +49,10 @@ class IncludePattern implements PatternInterface
         }
 
         return $resolved->compile($grammar, $grammars, $allowA, $allowG);
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
     }
 }

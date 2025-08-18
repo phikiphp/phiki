@@ -11,6 +11,7 @@ use Phiki\Support\Str;
 class BeginWhilePattern implements PatternInterface, HasContentNameInterface
 {
     public function __construct(
+        public int $id,
         public Regex $begin,
         public Regex $while,
         public ?string $name,
@@ -60,6 +61,7 @@ class BeginWhilePattern implements PatternInterface, HasContentNameInterface
     public function createWhilePattern(MatchedPattern $matched): WhilePattern
     {
         return new WhilePattern(
+            $this->id,
             $matched,
             $this->while,
             $this->name,
@@ -69,5 +71,10 @@ class BeginWhilePattern implements PatternInterface, HasContentNameInterface
             $this->patterns,
             $this->injection
         );
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
     }
 }

@@ -11,6 +11,7 @@ class CollectionPattern implements PatternInterface
      * @param  PatternInterface[]  $patterns
      */
     public function __construct(
+        public int $id,
         public array $patterns,
         public bool $injection = false,
     ) {}
@@ -34,5 +35,10 @@ class CollectionPattern implements PatternInterface
         }
 
         return $compiled;
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
     }
 }
