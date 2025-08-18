@@ -223,6 +223,7 @@ enum Grammar: string
     case Wikitext = 'wikitext';
     case Wit = 'wit';
     case Wolfram = 'wolfram';
+    case Xml = 'xml';
     case Xsl = 'xsl';
     case Yaml = 'yaml';
     case Zenscript = 'zenscript';
@@ -446,6 +447,7 @@ enum Grammar: string
             self::Wikitext => ["mediawiki","wiki"],
             self::Wit => [],
             self::Wolfram => ["wl"],
+            self::Xml => [],
             self::Xsl => [],
             self::Yaml => ["yml"],
             self::Zenscript => [],
@@ -673,6 +675,7 @@ enum Grammar: string
             self::Wikitext => 'source.wikitext',
             self::Wit => 'source.wit',
             self::Wolfram => 'source.wolfram',
+            self::Xml => 'text.xml',
             self::Xsl => 'text.xml.xsl',
             self::Yaml => 'source.yaml',
             self::Zenscript => 'source.zenscript',

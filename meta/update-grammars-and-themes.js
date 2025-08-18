@@ -9,7 +9,7 @@ console.log("Updating grammars...");
 const cases = {}
 const aliases = {}
 const scopeNames = {}
-const exclusions = ["source.bicep", "text.xml"];
+const exclusions = ["source.bicep"];
 
 grammars.forEach(grammar => {
     if (grammar.injectTo) {

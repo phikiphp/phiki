@@ -156,8 +156,8 @@ class GrammarParser
             $result[$index] = $this->capture($capture, strval($index));
         }
 
-        $captureIndices = array_keys($result);
-        $maxCaptureIdx = $captureIndices === [] ? 0 : max(array_keys($result));
+        $captureIndices = array_filter(array_keys($result), fn ($index) => is_numeric($index));
+        $maxCaptureIdx = $captureIndices === [] ? 0 : max($captureIndices);
 
         for ($i = 0; $i <= $maxCaptureIdx; $i++) {
             if (! isset($result[$i])) {
