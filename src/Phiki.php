@@ -4,6 +4,7 @@ namespace Phiki;
 
 use Phiki\Environment\Environment;
 use Phiki\Generators\HtmlGenerator;
+use Phiki\Generators\PendingHtmlOutput;
 use Phiki\Generators\TerminalGenerator;
 use Phiki\Grammar\Grammar;
 use Phiki\Grammar\ParsedGrammar;
@@ -24,29 +25,20 @@ class Phiki
         $this->environment->validate();
     }
 
-    public function detectGrammar(string $code): Grammar|string|null
-    {
-        $detectors = $this->environment->getGrammarRepository()->detections();
-
-        foreach ($detectors as $detector) {
-            $pattern = '/'.implode('|', array_map(fn (string $pattern) => Str::trimOnce($pattern, '/'), $detector->getPatterns())).'/';
-
-            if (preg_match_all($pattern, $code, $_) !== 1) {
-                continue;
-            }
-
-            return $detector->getGrammar();
-        }
-
-        return null;
-    }
-
     public function codeToTokens(string $code, string|Grammar|ParsedGrammar $grammar): array
     {
-        $grammar = $grammar instanceof ParsedGrammar ? $grammar : $this->environment->resolveGrammar($grammar);
+        $grammar = $this->environment->resolveGrammar($grammar);
         $tokenizer = new Tokenizer($grammar, $this->environment);
 
         return $tokenizer->tokenize($code);
+    }
+
+    public function tokensToHighlightedTokens(array $tokens, string|array|Theme $theme): array
+    {
+        $themes = $this->wrapThemes($theme);
+        $highlighter = new Highlighter($themes);
+
+        return $highlighter->highlight($tokens);
     }
 
     public function codeToHighlightedTokens(string $code, string|Grammar $grammar, string|array|Theme $theme): array
@@ -62,20 +54,13 @@ class Phiki
      * @param  bool  $withGutter  Include a gutter in the generated HTML. The gutter typically contains line numbers and helps provide context for the code.
      * @param  bool  $withWrapper  Wrap the generated HTML in an additional `<div>` so that it can be styled with CSS. Useful for avoiding overflow issues.
      */
-    public function codeToHtml(string $code, string|Grammar $grammar, string|array|Theme $theme, bool $withGutter = false, bool $withWrapper = false): string
+    public function codeToHtml(string $code, string|Grammar $grammar, string|array|Theme $theme, bool $withGutter = false, bool $withWrapper = false): PendingHtmlOutput
     {
-        $tokens = $this->codeToHighlightedTokens($code, $grammar, $theme);
-        $generator = new HtmlGenerator(
-            match (true) {
-                is_string($grammar) => $grammar,
-                default => $this->environment->resolveGrammar($grammar)->name,
-            },
-            $this->wrapThemes($theme),
-            $withGutter,
-            $withWrapper,
-        );
-
-        return $generator->generate($tokens);
+        return (new PendingHtmlOutput($code, $this->environment->resolveGrammar($grammar), $this->wrapThemes($theme)))
+            ->generateTokensUsing(fn (string $code, ParsedGrammar $grammar) => $this->codeToTokens($code, $grammar))
+            ->highlightTokensUsing(fn (array $tokens, array $themes) => $this->tokensToHighlightedTokens($tokens, $themes))
+            ->withGutter($withGutter)
+            ->withWrapper($withWrapper);
     }
 
     protected function wrapThemes(string|array|Theme $themes): array
@@ -84,6 +69,6 @@ class Phiki
             $themes = ['default' => $themes];
         }
 
-        return Arr::map($themes, fn (string|Theme $theme): ParsedTheme => $this->environment->resolveTheme($theme));
+        return Arr::map($themes, fn (string|Theme|ParsedTheme $theme): ParsedTheme => $this->environment->resolveTheme($theme));
     }
 }

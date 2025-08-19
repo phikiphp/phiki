@@ -65,11 +65,12 @@ class Environment
         return $this->grammarRepository;
     }
 
-    public function resolveGrammar(string|Grammar $grammar): ParsedGrammar
+    public function resolveGrammar(string|Grammar|ParsedGrammar $grammar): ParsedGrammar
     {
         return match (true) {
             is_string($grammar) => $this->grammarRepository->get($grammar),
             $grammar instanceof Grammar => $grammar->toParsedGrammar($this->grammarRepository),
+            $grammar instanceof ParsedGrammar => $grammar,
         };
     }
 
@@ -78,11 +79,12 @@ class Environment
         return $this->themeRepository;
     }
 
-    public function resolveTheme(string|Theme $theme): ParsedTheme
+    public function resolveTheme(string|Theme|ParsedTheme $theme): ParsedTheme
     {
         return match (true) {
             is_string($theme) => $this->themeRepository->get($theme),
             $theme instanceof Theme => $theme->toParsedTheme($this->themeRepository),
+            $theme instanceof ParsedTheme => $theme,
         };
     }
 

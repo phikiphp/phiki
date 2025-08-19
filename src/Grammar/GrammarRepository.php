@@ -2,11 +2,8 @@
 
 namespace Phiki\Grammar;
 
-use Phiki\Contracts\GrammarDetectionInterface;
 use Phiki\Contracts\GrammarRepositoryInterface;
 use Phiki\Exceptions\UnrecognisedGrammarException;
-use Phiki\Grammar\Detections\JavaScript;
-use Phiki\Grammar\Detections\Php;
 
 class GrammarRepository implements GrammarRepositoryInterface
 {
@@ -15,8 +12,6 @@ class GrammarRepository implements GrammarRepositoryInterface
     protected array $scopesToGrammar = [];
 
     protected array $aliases = [];
-
-    protected array $detections = [];
 
     public function __construct()
     {
@@ -28,11 +23,6 @@ class GrammarRepository implements GrammarRepositoryInterface
                 $this->aliases[$alias] = $grammar->value;
             }
         }
-
-        $this->detections = [
-            new JavaScript,
-            new Php,
-        ];  
     }
 
     public function get(string $name): ParsedGrammar
@@ -75,15 +65,5 @@ class GrammarRepository implements GrammarRepositoryInterface
     public function register(string $name, string|ParsedGrammar $pathOrGrammar): void
     {
         $this->grammars[$name] = $pathOrGrammar;
-    }
-
-    public function addDetection(GrammarDetectionInterface $detection): void
-    {
-        $this->detections[] = $detection;
-    }
-
-    public function detections(): array
-    {
-        return $this->detections;
     }
 }

@@ -26,26 +26,6 @@ it('registers renderers', function () {
         ->toContain('<span class="token" style="color: #b392f0;">A</span>');
 });
 
-it('auto detects grammar if not provided', function () {
-    $environment = new Environment;
-
-    $environment
-        ->addExtension(new CommonMarkCoreExtension)
-        ->addExtension(new PhikiExtension('github-dark'));
-
-    $markdown = new MarkdownConverter($environment);
-    $generated = $markdown->convert(<<<'MD'
-    ```
-    <?php
-
-    echo "Hello, world!";
-    ```
-    MD)->getContent();
-
-    expect($generated)
-        ->toContain('data-language="php"');
-});
-
 it('can be configured using environment config array', function () {
     $environment = new Environment([
         'phiki' => [

@@ -27,15 +27,15 @@ class CodeBlockRenderer implements NodeRendererInterface
         }
 
         $code = rtrim($node->getLiteral(), "\n");
-        $grammar = $this->detectGrammar($node, $code);
+        $grammar = $this->detectGrammar($node);
 
-        return $this->phiki->codeToHtml($code, $grammar, $this->theme, $this->withGutter, $this->withWrapper);
+        return $this->phiki->codeToHtml($code, $grammar, $this->theme, $this->withGutter, $this->withWrapper)->toString();
     }
 
-    protected function detectGrammar(FencedCode $node, string $code): Grammar|string
+    protected function detectGrammar(FencedCode $node): Grammar|string
     {
         if (! isset($node->getInfoWords()[0]) || $node->getInfoWords()[0] === '') {
-            return $this->phiki->detectGrammar($code) ?? 'txt';
+            return 'txt';
         }
 
         preg_match('/[a-zA-Z]+/', $node->getInfoWords()[0], $matches);
