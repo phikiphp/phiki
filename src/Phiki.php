@@ -50,9 +50,6 @@ class Phiki
         return $highlighter->highlight($tokens);
     }
 
-    /**
-     * @param  bool  $withGutter  Include a gutter in the generated HTML. The gutter typically contains line numbers and helps provide context for the code.
-     */
     public function codeToHtml(string $code, string|Grammar $grammar, string|array|Theme $theme): PendingHtmlOutput
     {
         return (new PendingHtmlOutput($code, $this->environment->resolveGrammar($grammar), $this->wrapThemes($theme)))
