@@ -29,7 +29,7 @@ class CodeBlockRenderer implements NodeRendererInterface
         $code = rtrim($node->getLiteral(), "\n");
         $grammar = $this->detectGrammar($node);
 
-        return $this->phiki->codeToHtml($code, $grammar, $this->theme, $this->withGutter, $this->withWrapper)->toString();
+        return $this->phiki->codeToHtml($code, $grammar, $this->theme)->withGutter($this->withGutter)->withWrapper($this->withWrapper)->toString();
     }
 
     protected function detectGrammar(FencedCode $node): Grammar|string

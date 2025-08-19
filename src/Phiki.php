@@ -54,13 +54,11 @@ class Phiki
      * @param  bool  $withGutter  Include a gutter in the generated HTML. The gutter typically contains line numbers and helps provide context for the code.
      * @param  bool  $withWrapper  Wrap the generated HTML in an additional `<div>` so that it can be styled with CSS. Useful for avoiding overflow issues.
      */
-    public function codeToHtml(string $code, string|Grammar $grammar, string|array|Theme $theme, bool $withGutter = false, bool $withWrapper = false): PendingHtmlOutput
+    public function codeToHtml(string $code, string|Grammar $grammar, string|array|Theme $theme): PendingHtmlOutput
     {
         return (new PendingHtmlOutput($code, $this->environment->resolveGrammar($grammar), $this->wrapThemes($theme)))
             ->generateTokensUsing(fn (string $code, ParsedGrammar $grammar) => $this->codeToTokens($code, $grammar))
-            ->highlightTokensUsing(fn (array $tokens, array $themes) => $this->tokensToHighlightedTokens($tokens, $themes))
-            ->withGutter($withGutter)
-            ->withWrapper($withWrapper);
+            ->highlightTokensUsing(fn (array $tokens, array $themes) => $this->tokensToHighlightedTokens($tokens, $themes));
     }
 
     protected function wrapThemes(string|array|Theme $themes): array
