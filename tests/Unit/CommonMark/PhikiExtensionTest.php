@@ -31,7 +31,6 @@ it('can be configured using environment config array', function () {
         'phiki' => [
             'theme' => Theme::GithubLight,
             'with_gutter' => false,
-            'with_wrapper' => false,
         ],
     ]);
 

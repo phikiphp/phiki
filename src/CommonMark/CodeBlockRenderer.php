@@ -17,7 +17,6 @@ class CodeBlockRenderer implements NodeRendererInterface
         private string|array|Theme $theme,
         private Phiki $phiki = new Phiki,
         private bool $withGutter = false,
-        private bool $withWrapper = false,
     ) {}
 
     public function render(Node $node, ChildNodeRendererInterface $childRenderer)
@@ -29,7 +28,7 @@ class CodeBlockRenderer implements NodeRendererInterface
         $code = rtrim($node->getLiteral(), "\n");
         $grammar = $this->detectGrammar($node);
 
-        return $this->phiki->codeToHtml($code, $grammar, $this->theme)->withGutter($this->withGutter)->withWrapper($this->withWrapper)->toString();
+        return $this->phiki->codeToHtml($code, $grammar, $this->theme)->withGutter($this->withGutter)->toString();
     }
 
     protected function detectGrammar(FencedCode $node): Grammar|string

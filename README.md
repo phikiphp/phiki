@@ -68,14 +68,6 @@ $output = $converter->convert(<<<'MD'
     MD);
 ```
 
-Phiki also allows you to wrap the generated `<pre>` element in an additional `<div>`. This is especially useful when trying to avoid issues with the CSS `overflow` property, as you can position things relative to the wrapping element instead of the code block itself.
-
-```php
-$environment
-    ->addExtension(new CommonMarkCoreExtension)
-    ->addExtension(new PhikiExtension('github-dark', withWrapper: true));
-```
-
 ### Laravel
 
 If you're using Laravel's `Str::markdown()` or `str()->markdown()` methods, you can use the same CommonMark extension by passing it through to the method.

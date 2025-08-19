@@ -13,8 +13,6 @@ class PendingHtmlOutput implements Stringable
 {
     protected bool $withGutter = false;
 
-    protected bool $withWrapper = false;
-
     protected ?Closure $generateTokensUsing = null;
 
     protected ?Closure $highlightTokensUsing = null;
@@ -55,13 +53,6 @@ class PendingHtmlOutput implements Stringable
         return $this;
     }
 
-    public function withWrapper(bool $withWrapper = true): self
-    {
-        $this->withWrapper = $withWrapper;
-
-        return $this;
-    }
-
     public function toString(): string
     {
         return $this->__toString();
@@ -69,7 +60,7 @@ class PendingHtmlOutput implements Stringable
 
     public function __toString(): string
     {
-        return (new HtmlGenerator($this->grammar->name, $this->themes, $this->withGutter, $this->withWrapper))
+        return (new HtmlGenerator($this->grammar->name, $this->themes, $this->withGutter))
             ->generate(call_user_func(
                 $this->highlightTokensUsing,
                 call_user_func($this->generateTokensUsing, $this->code, $this->grammar),

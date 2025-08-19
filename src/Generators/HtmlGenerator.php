@@ -15,30 +15,11 @@ class HtmlGenerator implements OutputGeneratorInterface
         protected ?string $grammarName,
         protected array $themes,
         protected bool $withGutter = false,
-        protected bool $withWrapper = false,
     ) {}
 
     public function generate(array $tokens): string
     {
-        return $this->withWrapper ? $this->buildWrapper($tokens) : $this->buildPre($tokens);
-    }
-
-    private function buildWrapper($tokens): string
-    {
-        $wrapperStyles = [$this->getDefaultTheme()->base()->toStyleString()];
-
-        foreach ($this->themes as $id => $theme) {
-            if ($id !== $this->getDefaultThemeId()) {
-                $wrapperStyles[] = $theme->base()->toCssVarString($id);
-            }
-        }
-
-        return sprintf(
-            '<div class="phiki-wrapper"%s style="%s">%s</div>',
-            $this->grammarName ? " data-language=\"$this->grammarName\"" : null,
-            implode(';', $wrapperStyles),
-            $this->buildPre($tokens)
-        );
+        return $this->buildPre($tokens);
     }
 
     private function buildPre($tokens): string
