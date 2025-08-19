@@ -2,11 +2,15 @@
 
 namespace Phiki\Generators;
 
-use Phiki\Contracts\OutputGeneratorInterface;
+use Phiki\Phast\ClassList;
+use Phiki\Phast\Element;
+use Phiki\Phast\Root;
+use Phiki\Phast\Text;
 use Phiki\Support\Arr;
 use Phiki\Theme\ParsedTheme;
+use Phiki\Token\HighlightedToken;
 
-class HtmlGenerator implements OutputGeneratorInterface
+class HtmlGenerator
 {
     /**
      * @param  array<string, ParsedTheme>  $themes
@@ -17,23 +21,26 @@ class HtmlGenerator implements OutputGeneratorInterface
         protected bool $withGutter = false,
     ) {}
 
-    public function generate(array $tokens): string
+    /**
+     * @param array<array<int, HighlightedToken>> $tokens
+     */
+    public function generate(array $tokens): Root
     {
-        return $this->buildPre($tokens);
-    }
-
-    private function buildPre($tokens): string
-    {
-        $preClasses = array_filter([
-            'phiki',
-            $this->grammarName ? "language-$this->grammarName" : null,
-            $this->getDefaultTheme()->name,
-            count($this->themes) > 1 ? 'phiki-themes' : null,
+        $root = new Root([
+            $pre = new Element('pre')
         ]);
+
+        $pre->properties->set('class', $preClasses = (new ClassList)
+            ->add(
+                'phiki',
+                $this->grammarName ? "language-$this->grammarName" : '',
+                $this->getDefaultTheme()->name,
+                count($this->themes) > 1 ? 'phiki-themes' : ''
+            ));
 
         foreach ($this->themes as $theme) {
             if ($theme !== $this->getDefaultTheme()) {
-                $preClasses[] = $theme->name;
+                $preClasses->add($theme->name);
             }
         }
 
@@ -45,72 +52,52 @@ class HtmlGenerator implements OutputGeneratorInterface
             }
         }
 
-        return sprintf(
-            '<pre class="%s"%s style="%s">%s</pre>',
-            implode(' ', $preClasses),
-            $this->grammarName ? " data-language=\"$this->grammarName\"" : null,
-            implode(';', $preStyles),
-            $this->buildCode($tokens)
-        );
-    }
-
-    private function buildCode(array $tokens): string
-    {
-        $output = [];
-
-        foreach ($tokens as $i => $line) {
-            $output[] = $this->buildLine($line, $i);
+        if ($this->grammarName) {
+            $pre->properties->set('data-language', $this->grammarName);
         }
+        
+        $pre->properties->set('style', implode(';', $preStyles));
 
-        return '<code>'.implode($output).'</code>';
-    }
+        $pre->children[] = $code = new Element('code');
 
-    private function buildLine(array $line, int $index): string
-    {
-        $output = [];
+        foreach ($tokens as $index => $lineTokens) {
+            $code->children[] = $line = new Element('span');
 
-        if ($this->withGutter) {
-            $output[] = $this->buildLineNumber($index + 1);
-        }
+            $line->properties->set('class', new ClassList(['line']));
 
-        foreach ($line as $token) {
-            $output[] = $this->buildToken($token);
-        }
+            if ($this->withGutter) {
+                $line->children[] = $gutter = new Element('span');
 
-        return '<span class="line">'.implode($output).'</span>';
-    }
+                $gutter->properties->set('class', new ClassList(['line-number']));
 
-    private function buildLineNumber(int $lineNumber): string
-    {
-        $lineNumberColor = $this->getDefaultTheme()->colors['editorLineNumber.foreground'] ?? null;
+                $lineNumberColor = $this->getDefaultTheme()->colors['editorLineNumber.foreground'] ?? null;
 
-        $lineNumberStyles = $lineNumberColor ? "color: $lineNumberColor; " : null;
-        $lineNumberStyles .= '-webkit-user-select: none; user-select: none;';
+                $gutter->properties->set('style', implode(';', array_filter([
+                    $lineNumberColor ? "color: $lineNumberColor" : null,
+                    '-webkit-user-select: none',
+                ])));
 
-        return sprintf(
-            '<span class="line-number" style="%s">%2d</span>',
-            $lineNumberStyles,
-            $lineNumber
-        );
-    }
+                $gutter->children[] = new Text(sprintf('%2d', $index + 1));
+            }
 
-    private function buildToken(object $token): string
-    {
-        $tokenStyles = [($token->settings[$this->getDefaultThemeId()] ?? null)?->toStyleString()];
+            foreach ($lineTokens as $token) {
+                $line->children[] = $span = new Element('span');
 
-        foreach ($token->settings as $id => $settings) {
-            if ($id !== $this->getDefaultThemeId()) {
-                $tokenStyles[] = $settings->toCssVarString($id);
+                $tokenStyles = [($token->settings[$this->getDefaultThemeId()] ?? null)?->toStyleString()];
+
+                foreach ($token->settings as $id => $settings) {
+                    if ($id !== $this->getDefaultThemeId()) {
+                        $tokenStyles[] = $settings->toCssVarString($id);
+                    }
+                }
+
+                $span->properties->set('class', new ClassList(['token']));
+                $span->properties->set('style', implode(';', array_filter($tokenStyles)));
+                $span->children[] = new Text(htmlspecialchars($token->token->text));
             }
         }
 
-        $styleString = implode(';', array_filter($tokenStyles));
-
-        return sprintf(
-            '<span class="token"%s>%s</span>',
-            $styleString ? " style=\"$styleString\"" : null,
-            htmlspecialchars($token->token->text)
-        );
+        return $root;
     }
 
     private function getDefaultTheme(): ParsedTheme

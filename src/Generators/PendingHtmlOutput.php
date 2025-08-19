@@ -65,6 +65,7 @@ class PendingHtmlOutput implements Stringable
                 $this->highlightTokensUsing,
                 call_user_func($this->generateTokensUsing, $this->code, $this->grammar),
                 $this->themes,
-            ));
+            ))
+            ->__toString();
     }
 }
