@@ -73,19 +73,19 @@ class PendingHtmlOutput implements Stringable
         return $this->__toString();
     }
 
-    protected function callTransformerMethod(string $method, mixed $arg): mixed
+    protected function callTransformerMethod(string $method, mixed ...$args): mixed
     {
         if ($this->transformers === []) {
-            return $arg;
+            return $args;
         }
 
         foreach ($this->transformers as $transformer) {
             if (method_exists($transformer, $method)) {
-                $arg = $transformer->{$method}($arg);
+                $args[0] = $transformer->{$method}(...$args);
             }
         }
 
-        return $arg;
+        return $args;
     }
 
     private function getDefaultTheme(): ParsedTheme
@@ -100,9 +100,9 @@ class PendingHtmlOutput implements Stringable
 
     public function __toString(): string
     {
-        $code = $this->callTransformerMethod('preprocess', $this->code);
-        $tokens = $this->callTransformerMethod('tokens', call_user_func($this->generateTokensUsing, $code, $this->grammar));
-        $highlightedTokens = $this->callTransformerMethod('highlighted', call_user_func($this->highlightTokensUsing, $tokens, $this->themes));
+        [$code] = $this->callTransformerMethod('preprocess', $this->code);
+        [$tokens] = $this->callTransformerMethod('tokens', call_user_func($this->generateTokensUsing, $code, $this->grammar));
+        [$highlightedTokens] = $this->callTransformerMethod('highlighted', call_user_func($this->highlightTokensUsing, $tokens, $this->themes));
 
         $pre = new Element('pre');
 
@@ -155,7 +155,7 @@ class PendingHtmlOutput implements Stringable
                 $gutter->children[] = new Text(sprintf('%2d', $index + 1));
             }
 
-            foreach ($lineTokens as $token) {
+            foreach ($lineTokens as $j => $token) {
                 $span = new Element('span');
 
                 $tokenStyles = [($token->settings[$this->getDefaultThemeId()] ?? null)?->toStyleString()];
@@ -170,18 +170,24 @@ class PendingHtmlOutput implements Stringable
                 $span->properties->set('style', implode(';', array_filter($tokenStyles)));
                 $span->children[] = new Text(htmlspecialchars($token->token->text));
 
-                $line->children[] = $this->callTransformerMethod('token', $span);
+                [$span, ] = $this->callTransformerMethod('token', $span, $token, $j, $index);
+
+                $line->children[] = $span;
             }
 
-            $code->children[] = $this->callTransformerMethod('line', $line);
+            [$line, ] = $this->callTransformerMethod('line', $line, $index);
+
+            $code->children[] = $line;
         }
 
-        $pre->children[] = $this->callTransformerMethod('code', $code);
-        $pre = $this->callTransformerMethod('pre', $pre);
-        $root = $this->callTransformerMethod('root', new Root([$pre]));
+        [$code] = $this->callTransformerMethod('code', $code);
 
-        $html = $root->__toString();
+        $pre->children[] = $code;
 
-        return $this->callTransformerMethod('postprocess', $html);
+        [$pre] = $this->callTransformerMethod('pre', $pre);
+        [$root] = $this->callTransformerMethod('root', new Root([$pre]));
+        [$html] = $this->callTransformerMethod('postprocess', $root->__toString());
+
+        return $html;
     }
 }

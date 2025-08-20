@@ -5,6 +5,7 @@ namespace Phiki\Tests\Fixtures;
 use Phiki\Contracts\TransformerInterface;
 use Phiki\Phast\Root;
 use Phiki\Phast\Element;
+use Phiki\Token\HighlightedToken;
 
 class UselessTransformer implements TransformerInterface
 {
@@ -75,11 +76,11 @@ class UselessTransformer implements TransformerInterface
         return $line;
     }
 
-    public function token(Element $token, int $index, int $line): Element
+    public function token(Element $span, HighlightedToken $token, int $index, int $line): Element
     {
         $this->token = true;
 
-        return $token;
+        return $span;
     }
 
     public function postprocess(string $html): string

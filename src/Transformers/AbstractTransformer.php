@@ -73,9 +73,9 @@ class AbstractTransformer implements TransformerInterface
     /**
      * Modify the <span> for each token.
      */
-    public function token(Element $token, int $index, int $line): Element
+    public function token(Element $span, HighlightedToken $token, int $index, int $line): Element
     {
-        return $token;
+        return $span;
     }
 
     /**

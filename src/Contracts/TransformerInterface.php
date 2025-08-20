@@ -51,7 +51,7 @@ interface TransformerInterface
     /**
      * Modify the <span> for each token.
      */
-    public function token(Element $token, int $index, int $line): Element;
+    public function token(Element $span, HighlightedToken $token, int $index, int $line): Element;
 
     /**
      * Modify the HTML output after the AST has been converted.
