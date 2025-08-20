@@ -64,10 +64,12 @@ class AbstractTransformer implements TransformerInterface
 
     /**
      * Modify the <span> for each line.
+     * 
+     * @param array<int, HighlightedToken> $tokens
      */
-    public function line(Element $line, int $index): Element
+    public function line(Element $span, array $tokens, int $index): Element
     {
-        return $line;
+        return $span;
     }
 
     /**

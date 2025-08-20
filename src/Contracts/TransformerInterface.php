@@ -45,8 +45,10 @@ interface TransformerInterface
 
     /**
      * Modify the <span> for each line.
+     * 
+     * @param array<int, HighlightedToken> $line
      */
-    public function line(Element $line, int $index): Element;
+    public function line(Element $span, array $line, int $index): Element;
 
     /**
      * Modify the <span> for each token.

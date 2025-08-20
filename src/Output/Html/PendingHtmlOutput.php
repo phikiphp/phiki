@@ -175,7 +175,7 @@ class PendingHtmlOutput implements Stringable
                 $line->children[] = $span;
             }
 
-            [$line, ] = $this->callTransformerMethod('line', $line, $index);
+            [$line, ] = $this->callTransformerMethod('line', $line, $lineTokens, $index);
 
             $code->children[] = $line;
         }
