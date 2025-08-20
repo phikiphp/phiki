@@ -3,7 +3,7 @@
 namespace Phiki;
 
 use Phiki\Environment\Environment;
-use Phiki\Generators\PendingHtmlOutput;
+use Phiki\Output\Html\PendingHtmlOutput;
 use Phiki\Grammar\Grammar;
 use Phiki\Grammar\ParsedGrammar;
 use Phiki\Highlighting\Highlighter;

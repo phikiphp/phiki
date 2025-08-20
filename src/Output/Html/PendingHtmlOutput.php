@@ -1,0 +1,188 @@
+<?php
+
+namespace Phiki\Output\Html;
+
+use Closure;
+use Phiki\Contracts\TransformerInterface;
+use Phiki\Generators\HtmlGenerator;
+use Phiki\Grammar\ParsedGrammar;
+use Phiki\Phast\ClassList;
+use Phiki\Phast\Element;
+use Phiki\Phast\Root;
+use Phiki\Phast\Text;
+use Phiki\Support\Arr;
+use Phiki\Theme\ParsedTheme;
+use Phiki\Token\HighlightedToken;
+use Phiki\Token\Token;
+use Stringable;
+
+class PendingHtmlOutput implements Stringable
+{
+    protected bool $withGutter = false;
+
+    protected ?Closure $generateTokensUsing = null;
+
+    protected ?Closure $highlightTokensUsing = null;
+
+    protected array $transformers = [];
+
+    /**
+     * @param  array<string, ParsedTheme>  $themes
+     */
+    public function __construct(
+        protected string $code,
+        protected ParsedGrammar $grammar,
+        protected array $themes,
+    ) {}
+
+    /**
+     * @param  Closure(string $code, ParsedGrammar $grammar): array<int, array<Token>>  $callback
+     */
+    public function generateTokensUsing(Closure $callback): self
+    {
+        $this->generateTokensUsing = $callback;
+
+        return $this;
+    }
+
+    /**
+     * @param  Closure(array<int, array<Token>> $tokens, array<string, ParsedTheme> $theme): array<int, array<HighlightedToken>>  $callback
+     */
+    public function highlightTokensUsing(Closure $callback): self
+    {
+        $this->highlightTokensUsing = $callback;
+
+        return $this;
+    }
+
+    public function withGutter(bool $withGutter = true): self
+    {
+        $this->withGutter = $withGutter;
+
+        return $this;
+    }
+
+    public function transformer(TransformerInterface $transformer): self
+    {
+        $this->transformers[] = $transformer;
+
+        return $this;
+    }
+
+    public function toString(): string
+    {
+        return $this->__toString();
+    }
+
+    protected function callTransformerMethod(string $method, mixed $arg): mixed
+    {
+        if ($this->transformers === []) {
+            return $arg;
+        }
+
+        foreach ($this->transformers as $transformer) {
+            if (method_exists($transformer, $method)) {
+                $arg = $transformer->{$method}($arg);
+            }
+        }
+
+        return $arg;
+    }
+
+    private function getDefaultTheme(): ParsedTheme
+    {
+        return Arr::first($this->themes);
+    }
+
+    private function getDefaultThemeId(): string
+    {
+        return Arr::firstKey($this->themes);
+    }
+
+    public function __toString(): string
+    {
+        $code = $this->callTransformerMethod('preprocess', $this->code);
+        $tokens = $this->callTransformerMethod('tokens', call_user_func($this->generateTokensUsing, $code, $this->grammar));
+        $highlightedTokens = $this->callTransformerMethod('highlighted', call_user_func($this->highlightTokensUsing, $tokens, $this->themes));
+
+        $pre = new Element('pre');
+
+        $pre->properties->set('class', $preClasses = (new ClassList)
+            ->add(
+                'phiki',
+                $this->grammar->name ? "language-{$this->grammar->name}" : '',
+                $this->getDefaultTheme()->name,
+                count($this->themes) > 1 ? 'phiki-themes' : ''
+            ));
+
+        foreach ($this->themes as $theme) {
+            if ($theme !== $this->getDefaultTheme()) {
+                $preClasses->add($theme->name);
+            }
+        }
+
+        $preStyles = [$this->getDefaultTheme()->base()->toStyleString()];
+
+        foreach ($this->themes as $id => $theme) {
+            if ($id !== $this->getDefaultThemeId()) {
+                $preStyles[] = $theme->base()->toCssVarString($id);
+            }
+        }
+
+        if ($this->grammar->name) {
+            $pre->properties->set('data-language', $this->grammar->name);
+        }
+
+        $pre->properties->set('style', implode(';', $preStyles));
+
+        $code = new Element('code');
+
+        foreach ($highlightedTokens as $index => $lineTokens) {
+            $line = new Element('span');
+            $line->properties->set('class', new ClassList(['line']));
+
+            if ($this->withGutter) {
+                $line->children[] = $gutter = new Element('span');
+
+                $gutter->properties->set('class', new ClassList(['line-number']));
+
+                $lineNumberColor = $this->getDefaultTheme()->colors['editorLineNumber.foreground'] ?? null;
+
+                $gutter->properties->set('style', implode(';', array_filter([
+                    $lineNumberColor ? "color: $lineNumberColor" : null,
+                    '-webkit-user-select: none',
+                ])));
+
+                $gutter->children[] = new Text(sprintf('%2d', $index + 1));
+            }
+
+            foreach ($lineTokens as $token) {
+                $span = new Element('span');
+
+                $tokenStyles = [($token->settings[$this->getDefaultThemeId()] ?? null)?->toStyleString()];
+
+                foreach ($token->settings as $id => $settings) {
+                    if ($id !== $this->getDefaultThemeId()) {
+                        $tokenStyles[] = $settings->toCssVarString($id);
+                    }
+                }
+
+                $span->properties->set('class', new ClassList(['token']));
+                $span->properties->set('style', implode(';', array_filter($tokenStyles)));
+                $span->children[] = new Text(htmlspecialchars($token->token->text));
+
+                $line->children[] = $this->callTransformerMethod('token', $span);
+            }
+
+            $code->children[] = $this->callTransformerMethod('line', $line);
+        }
+
+        $pre->children[] = $this->callTransformerMethod('code', $code);
+        $pre = $this->callTransformerMethod('pre', $pre);
+        $root = $this->callTransformerMethod('root', new Root([$pre]));
+
+        $html = $root->__toString();
+
+        return $this->callTransformerMethod('postprocess', $html);
+    }
+}
