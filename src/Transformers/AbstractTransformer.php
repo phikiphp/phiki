@@ -65,7 +65,7 @@ class AbstractTransformer implements TransformerInterface
     /**
      * Modify the <span> for each line.
      */
-    public function line(Element $line): Element
+    public function line(Element $line, int $index): Element
     {
         return $line;
     }
@@ -73,7 +73,7 @@ class AbstractTransformer implements TransformerInterface
     /**
      * Modify the <span> for each token.
      */
-    public function token(Element $token): Element
+    public function token(Element $token, int $index, int $line): Element
     {
         return $token;
     }

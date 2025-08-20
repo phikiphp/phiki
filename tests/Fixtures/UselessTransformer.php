@@ -68,14 +68,14 @@ class UselessTransformer implements TransformerInterface
         return $code;
     }
 
-    public function line(Element $line): Element
+    public function line(Element $line, int $index): Element
     {
         $this->line = true;
 
         return $line;
     }
 
-    public function token(Element $token): Element
+    public function token(Element $token, int $index, int $line): Element
     {
         $this->token = true;
 
