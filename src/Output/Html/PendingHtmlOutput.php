@@ -4,7 +4,6 @@ namespace Phiki\Output\Html;
 
 use Closure;
 use Phiki\Contracts\TransformerInterface;
-use Phiki\Generators\HtmlGenerator;
 use Phiki\Grammar\ParsedGrammar;
 use Phiki\Phast\ClassList;
 use Phiki\Phast\Element;
