@@ -5,6 +5,7 @@ namespace Phiki\Output\Html;
 use Closure;
 use Phiki\Contracts\TransformerInterface;
 use Phiki\Decorations\Decoration;
+use Phiki\Decorations\DecorationTransformer;
 use Phiki\Grammar\ParsedGrammar;
 use Phiki\Phast\ClassList;
 use Phiki\Phast\Element;
@@ -24,8 +25,14 @@ class PendingHtmlOutput implements Stringable
 
     protected ?Closure $highlightTokensUsing = null;
 
+    /**
+     * @var array<int, TransformerInterface>
+     */
     protected array $transformers = [];
 
+    /**
+     * @var array<int, Decoration>
+     */
     protected array $decorations = [];
 
     /**
@@ -73,6 +80,10 @@ class PendingHtmlOutput implements Stringable
 
     public function decoration(Decoration ...$decorations): self
     {
+        if ($this->decorations === []) {
+            $this->transformer(new DecorationTransformer(fn () => $this->decorations));
+        }
+
         $this->decorations = array_merge($this->decorations, $decorations);
 
         return $this;
