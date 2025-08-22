@@ -54,7 +54,7 @@ class PatternSearcher
 
             [$start, $length] = $result;
 
-            if ($start === 0) {
+            if ($start === $linePos) {
                 $bestLocation = $start;
                 $bestMatches = mb_ereg_search_getregs();
                 $bestLength = $length;
