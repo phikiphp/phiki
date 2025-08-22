@@ -4,6 +4,7 @@ namespace Phiki\Output\Html;
 
 use Closure;
 use Phiki\Contracts\TransformerInterface;
+use Phiki\Decorations\Decoration;
 use Phiki\Grammar\ParsedGrammar;
 use Phiki\Phast\ClassList;
 use Phiki\Phast\Element;
@@ -24,6 +25,8 @@ class PendingHtmlOutput implements Stringable
     protected ?Closure $highlightTokensUsing = null;
 
     protected array $transformers = [];
+
+    protected array $decorations = [];
 
     /**
      * @param  array<string, ParsedTheme>  $themes
@@ -64,6 +67,13 @@ class PendingHtmlOutput implements Stringable
     public function transformer(TransformerInterface $transformer): self
     {
         $this->transformers[] = $transformer;
+
+        return $this;
+    }
+
+    public function decoration(Decoration ...$decorations): self
+    {
+        $this->decorations = array_merge($this->decorations, $decorations);
 
         return $this;
     }
