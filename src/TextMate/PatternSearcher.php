@@ -4,6 +4,7 @@ namespace Phiki\TextMate;
 
 use Phiki\Contracts\GrammarRepositoryInterface;
 use Phiki\Contracts\PatternInterface;
+use Phiki\Exceptions\FailedToInitializePatternSearchException;
 use Phiki\Exceptions\FailedToSetSearchPositionException;
 use Phiki\Grammar\MatchedPattern;
 use Phiki\Grammar\ParsedGrammar;
@@ -36,16 +37,16 @@ class PatternSearcher
         $bestMatches = null;
         $bestPattern = null;
 
-        foreach ($patterns as [$pattern, $regex]) {
-            if (! @mb_ereg_search_init($lineText, $regex)) {
-                continue;
-            }
+        if (! mb_ereg_search_init($lineText)) {
+            throw new FailedToInitializePatternSearchException;
+        }
 
+        foreach ($patterns as [$pattern, $regex]) {
             if (! mb_ereg_search_setpos($linePos)) {
                 throw new FailedToSetSearchPositionException;
             }
 
-            $result = mb_ereg_search_pos();
+            $result = mb_ereg_search_pos($regex);
 
             if ($result === false) {
                 continue;
