@@ -16,6 +16,7 @@ class HtmlGenerator implements OutputGeneratorInterface
         protected array $themes,
         protected bool $withGutter = false,
         protected bool $withWrapper = false,
+        protected int $startingLineNumber = 1,
     ) {}
 
     public function generate(array $tokens): string
@@ -89,7 +90,7 @@ class HtmlGenerator implements OutputGeneratorInterface
         $output = [];
 
         if ($this->withGutter) {
-            $output[] = $this->buildLineNumber($index + 1);
+            $output[] = $this->buildLineNumber($index + $this->startingLineNumber);
         }
 
         foreach ($line as $token) {
