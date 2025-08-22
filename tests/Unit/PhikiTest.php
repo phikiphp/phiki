@@ -57,6 +57,22 @@ describe('Phiki', function () {
         expect((new Phiki)->codeToHtml('echo $a;', Grammar::Php, Theme::GithubDark))->toBeString();
     });
 
+    it('can generate line numbers', function () {
+        $html = (new Phiki)->codeToHtml(<<<'PHP'
+        echo "Hello, world";
+        PHP, Grammar::Php, 'github-dark', withGutter: true);
+
+        expect($html)->toContain('<span class="line-number" style="color: #444d56; -webkit-user-select: none; user-select: none;"> 1</span>');
+    });
+
+    it('can generate line numbers with a starting line number', function () {
+        $html = (new Phiki)->codeToHtml(<<<'PHP'
+        echo "Hello, world";
+        PHP, Grammar::Php, 'github-dark', withGutter: true, startingLineNumber: 10);
+
+        expect($html)->toContain('<span class="line-number" style="color: #444d56; -webkit-user-select: none; user-select: none;">10</span>');
+    });
+
     it('can detect the grammar of code', function () {
         expect((new Phiki)->detectGrammar('<?php echo "Hello, world";'))->toBe(Grammar::Php);
         expect((new Phiki)->detectGrammar('console.log("Hello, world");'))->toBe(Grammar::Javascript);
