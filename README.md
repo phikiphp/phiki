@@ -53,7 +53,7 @@ All you need to do is register the extension through a CommonMark `Environment` 
 use League\CommonMark\Environment\Environment;
 use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
 use League\CommonMark\MarkdownConverter;
-use Phiki\CommonMark\PhikiExtension;
+use Phiki\Adapters\CommonMark\PhikiExtension;
 
 $environment = new Environment;
 $environment
@@ -73,7 +73,7 @@ $output = $converter->convert(<<<'MD'
 If you're using Laravel's `Str::markdown()` or `str()->markdown()` methods, you can use the same CommonMark extension by passing it through to the method.
 
 ```php
-use Phiki\CommonMark\PhikiExtension;
+use Phiki\Adapters\CommonMark\PhikiExtension;
 
 Str::markdown('...', extensions: [
     new PhikiExtension('github-dark'),
