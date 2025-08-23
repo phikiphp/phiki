@@ -3,7 +3,6 @@
 namespace Phiki;
 
 use Phiki\Contracts\ExtensionInterface;
-use Phiki\Extensions\DefaultExtension;
 use Phiki\Grammar\Grammar;
 use Phiki\Grammar\GrammarRepository;
 use Phiki\Grammar\ParsedGrammar;
