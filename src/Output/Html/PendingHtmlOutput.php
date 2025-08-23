@@ -59,7 +59,7 @@ class PendingHtmlOutput implements Stringable
         return $this;
     }
 
-    public function cache(CacheInterface $cache): self
+    public function cache(?CacheInterface $cache): self
     {
         $this->cache = $cache;
 
@@ -132,7 +132,9 @@ class PendingHtmlOutput implements Stringable
 
     public function __toString(): string
     {
-        if (isset($this->cache) && $this->cache->has($cacheKey = $this->cacheKey())) {
+        $cacheKey = $this->cacheKey();
+
+        if (isset($this->cache) && $this->cache->has($cacheKey)) {
             return $this->cache->get($cacheKey);
         }
 
