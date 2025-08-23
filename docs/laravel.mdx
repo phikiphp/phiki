@@ -50,6 +50,37 @@ class AppServiceProvider extends ServiceProvider
 }
 ```
 
+### Caching
+
+Phiki automatically enables caching when used in a Laravel application. It uses your application's default cache store (`CACHE_STORE`) to cache highlighted code blocks.
+
+If you wish to customize the cache store used by Phiki, you can do so in the `boot` method of a service provider.
+
+```php
+use Phiki\Adapters\Laravel\Facades\Phiki;
+use Illuminate\Support\Facades\Cache;
+
+class AppServiceProvider extends ServiceProvider
+{
+    public function boot(): void
+    {
+        Phiki::cache(Cache::store('redis'));
+    }
+}
+```
+
+#### Cache invalidation
+
+Phiki's cache key is based on the content of the code block, the grammar, the themes chosen, the gutter setting, and any transformers used.
+
+If any of these change, Phiki will automatically generate a new cache key and re-highlight the code block.
+
+If you need to manually clear Phiki's cache, you can do so by calling the `php artisan cache:clear` command, which will clear the entire cache for your application.
+
+```sh
+php artisan cache:clear
+```
+
 ## `Str::markdown()`
 
 If you're using the `Str::markdown()` helper method, you can use Phiki's [CommonMark](/commonmark) extension to highlight code blocks inside of your Markdown.
@@ -57,10 +88,11 @@ If you're using the `Str::markdown()` helper method, you can use Phiki's [Common
 ```php
 use Illuminate\Support\Str;
 use Phiki\Adapters\CommonMark\PhikiExtension;
+use Phiki\Phiki;
 use Phiki\Theme\Theme;
 
 Str::markdown($markdown, extensions: [
-    new PhikiExtension(Theme::GithubLight),
+    new PhikiExtension(Theme::GithubLight, resolve(Phiki::class)),
 ]);
 ```
 
@@ -72,9 +104,10 @@ As per the documentation on Phiki's [gutter](/highlighting-code), you can enable
 use Illuminate\Support\Str;
 use Phiki\Adapters\CommonMark\PhikiExtension;
 use Phiki\Theme\Theme;
+use Phiki\Phiki;
 
 Str::markdown($markdown, extensions: [
-    new PhikiExtension(Theme::GithubLight, withGutter: true),
+    new PhikiExtension(Theme::GithubLight, resolve(Phiki::class), withGutter: true),
 ]);
 ```
 
@@ -85,13 +118,14 @@ As per the documentation on [Multiple themes](/multiple-themes), you can also pa
 ```php
 use Illuminate\Support\Str;
 use Phiki\Adapters\CommonMark\PhikiExtension;
+use Phiki\Phiki;
 use Phiki\Theme\Theme;
 
 Str::markdown($markdown, extensions: [
     new PhikiExtension([
         'light' => Theme::GithubLight,
         'dark' => Theme::GithubDark,
-    ]),
+    ], resolve(Phiki::class)),
 ]);
 ```
 
