@@ -87,20 +87,11 @@ To use a language or theme that Phiki doesn't support, you need to register it w
 This can be done by building a custom `Environment` object and telling Phiki to use this instead of the default one.
 
 ```php
-use Phiki\Environment\Environment;
+use Phiki\Phiki;
 
-$environment = Environment::default();
-
-// Register a custom language.
-$environment
-    ->getGrammarRepository()
-    ->register('my-language', __DIR__ . '/../path/to/grammar.json');
-
-$environment
-    ->getThemeRepository()
-    ->register('my-theme', __DIR__ . '/../path/to/theme.json');
-
-$phiki = new Phiki($environment);
+$phiki = (new Phiki)
+    ->grammar('my-language', __DIR__ . '/../path/to/grammar.json')
+    ->theme('my-theme', __DIR__ . '/../path/to/theme.json');
 
 $phiki->codeToHtml('...', 'my-language', 'my-theme');
 ```
