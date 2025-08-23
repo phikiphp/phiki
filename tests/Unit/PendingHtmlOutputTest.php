@@ -28,3 +28,18 @@ it('calls transformer methods', function () {
     expect($transformer->token)->toBeTrue();
     expect($transformer->postprocessed)->toBeTrue();
 });
+
+it('can change the starting line number', function () {
+    $html = (new Phiki)->codeToHtml(
+        <<<'PHP'
+        echo "Hello, world!";
+        PHP,
+        Grammar::Php,
+        Theme::GithubLight,
+    )
+        ->withGutter()
+        ->startingLine(10)
+        ->toString();
+
+    expect($html)->toContain('>10</span');
+});

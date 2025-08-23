@@ -25,6 +25,8 @@ class PendingHtmlOutput implements Stringable
 
     protected array $transformers = [];
 
+    protected int $startingLineNumber = 1;
+
     /**
      * @param  array<string, ParsedTheme>  $themes
      */
@@ -64,6 +66,13 @@ class PendingHtmlOutput implements Stringable
     public function transformer(TransformerInterface $transformer): self
     {
         $this->transformers[] = $transformer;
+
+        return $this;
+    }
+
+    public function startingLine(int $lineNumber): self
+    {
+        $this->startingLineNumber = $lineNumber;
 
         return $this;
     }
@@ -152,7 +161,7 @@ class PendingHtmlOutput implements Stringable
                     '-webkit-user-select: none',
                 ])));
 
-                $gutter->children[] = new Text(sprintf('%2d', $index + 1));
+                $gutter->children[] = new Text(sprintf('%2d', $this->startingLineNumber + $index));
             }
 
             foreach ($lineTokens as $j => $token) {
