@@ -1,0 +1,40 @@
+---
+title: Caching
+---
+
+Syntax highlighting can be a resource-intensive operation, especially for large code snippets or when processing many snippets in a short period.
+
+To improve performance, Phiki includes a built-in caching mechanism built around the `psr/simple-cache` interface.
+
+## Enabling caching
+
+Enabling caching is as simple as providing a cache implementation to the `Phiki::cache()` method.
+
+```php
+class SimpleCache implements \Psr\SimpleCache\CacheInterface
+{
+    // ...
+}
+
+$phiki = (new Phiki)
+    ->cache(new SimpleCache);
+```
+
+This will enable caching for all subsequent calls to `codeToHtml()`. The cache will store the generated HTML for each unique combination of code, grammar, theme(s), gutter setting and `Transformer` class.
+
+## Cache invalidation
+
+Phiki does not include any built-in cache invalidation mechanism apart from a change in the cache key.
+
+If you need to invalidate the cache for any reason, you must do so using the methods provided by your chosen cache implementation.
+
+## Caching individual snippets
+
+If you don't want to cache all syntax highlighted code, you can also cache individual `codeToHtml()` calls by passing a cache implementation to the `PendingHtmlOutput::cache()` method.
+
+```php
+$html = (new Phiki)
+    ->codeToHtml("<?php echo ...", Grammar::Php, Theme::GithubLight)
+    ->cache(new SimpleCache)
+    ->toString();
+```
