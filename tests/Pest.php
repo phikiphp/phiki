@@ -4,10 +4,9 @@ use Phiki\Grammar\Grammar;
 use Phiki\Grammar\GrammarRepository;
 use Phiki\Grammar\ParsedGrammar;
 use Phiki\Phiki;
-use Phiki\Tests\LaravelTestCase;
 use Phiki\Theme\Theme;
 
-pest()->uses(LaravelTestCase::class)->in('Adapters/Laravel');
+pest()->uses(\Phiki\Tests\Adapters\Laravel\TestCase::class)->in('Adapters/Laravel');
 
 function tokenize(string $input, array|Grammar $grammar): array
 {
