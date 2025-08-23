@@ -23,7 +23,7 @@ class Environment
         $this->themes = new ThemeRepository;
     }
 
-    public function addExtension(ExtensionInterface $extension): static
+    public function extend(ExtensionInterface $extension): static
     {
         $extension->register($this);
 

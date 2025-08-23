@@ -68,21 +68,21 @@ class Phiki
         return Arr::map($themes, fn (string|Theme|ParsedTheme $theme): ParsedTheme => $this->environment->themes->resolve($theme));
     }
 
-    public function addExtension(ExtensionInterface $extension): static
+    public function extend(ExtensionInterface $extension): static
     {
-        $this->environment->addExtension($extension);
+        $this->environment->extend($extension);
 
         return $this;
     }
 
-    public function registerGrammar(string $name, string|ParsedGrammar $pathOrGrammar): static
+    public function grammar(string $name, string|ParsedGrammar $pathOrGrammar): static
     {
         $this->environment->grammars->register($name, $pathOrGrammar);
 
         return $this;
     }
     
-    public function registerTheme(string $name, string|ParsedTheme $pathOrTheme): static
+    public function theme(string $name, string|ParsedTheme $pathOrTheme): static
     {
         $this->environment->themes->register($name, $pathOrTheme);
 
