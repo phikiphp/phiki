@@ -3,6 +3,7 @@
 namespace Phiki\Adapters\Laravel;
 
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\ServiceProvider;
 use Phiki\Phiki;
 
@@ -13,7 +14,7 @@ class PhikiServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->singleton(Phiki::class, static fn () => new Phiki);    
+        $this->app->singleton(Phiki::class, static fn () => (new Phiki)->cache(Cache::store()));
     }
 
     /**
