@@ -12,7 +12,6 @@ class DefaultExtension implements ExtensionInterface
     public function register(Environment $environment): void
     {
         $environment
-            ->disableStrictMode()
             ->useGrammarRepository(new GrammarRepository)
             ->useThemeRepository(new ThemeRepository);
     }
