@@ -33,7 +33,7 @@
         "laravel/pint": "^1.18.1",
         "phpstan/phpstan": "^2.0",
         "phpstan/extension-installer": "^1.4.3",
-        "illuminate/support": "^11.30"
+        "illuminate/support": "^11.45"
     },
     "config": {
         "allow-plugins": {
@@ -64,5 +64,12 @@
         "test": "@php -dmemory_limit=-1 vendor/bin/pest --enforce-time-limit --default-time-limit=1",
         "lint": "@php vendor/bin/phpstan",
         "fmt": "@php vendor/bin/pint"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Phiki\\Adapters\\Laravel\\PhikiServiceProvider"
+            ]
+        }
     }
 }

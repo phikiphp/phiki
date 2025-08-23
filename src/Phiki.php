@@ -2,6 +2,7 @@
 
 namespace Phiki;
 
+use Phiki\Contracts\ExtensionInterface;
 use Phiki\Environment\Environment;
 use Phiki\Grammar\Grammar;
 use Phiki\Grammar\ParsedGrammar;
@@ -20,6 +21,11 @@ class Phiki
     {
         $this->environment = $environment ?? Environment::default();
         $this->environment->validate();
+    }
+
+    public function environment(): Environment
+    {
+        return $this->environment;
     }
 
     public function codeToTokens(string $code, string|Grammar|ParsedGrammar $grammar): array
@@ -61,5 +67,26 @@ class Phiki
         }
 
         return Arr::map($themes, fn (string|Theme|ParsedTheme $theme): ParsedTheme => $this->environment->resolveTheme($theme));
+    }
+
+    public function addExtension(ExtensionInterface $extension): static
+    {
+        $this->environment->addExtension($extension);
+
+        return $this;
+    }
+
+    public function registerGrammar(string $name, string|ParsedGrammar $pathOrGrammar): static
+    {
+        $this->environment->getGrammarRepository()->register($name, $pathOrGrammar);
+
+        return $this;
+    }
+    
+    public function registerTheme(string $name, string|ParsedTheme $pathOrTheme): static
+    {
+        $this->environment->getThemeRepository()->register($name, $pathOrTheme);
+
+        return $this;
     }
 }

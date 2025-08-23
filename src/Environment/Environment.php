@@ -18,32 +18,11 @@ class Environment
 
     protected ThemeRepositoryInterface $themeRepository;
 
-    protected bool $strictMode = false;
-
     public function addExtension(ExtensionInterface $extension): static
     {
         $extension->register($this);
 
         return $this;
-    }
-
-    public function enableStrictMode(): static
-    {
-        $this->strictMode = true;
-
-        return $this;
-    }
-
-    public function disableStrictMode(): static
-    {
-        $this->strictMode = false;
-
-        return $this;
-    }
-
-    public function isStrictModeEnabled(): bool
-    {
-        return $this->strictMode;
     }
 
     public function useGrammarRepository(GrammarRepositoryInterface $grammarRepository): static
