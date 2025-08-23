@@ -1,6 +1,6 @@
 <?php
 
-namespace Phiki\CommonMark;
+namespace Phiki\Adapters\CommonMark;
 
 use InvalidArgumentException;
 use League\CommonMark\Extension\CommonMark\Node\Block\FencedCode;

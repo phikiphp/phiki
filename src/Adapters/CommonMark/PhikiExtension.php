@@ -1,6 +1,6 @@
 <?php
 
-namespace Phiki\CommonMark;
+namespace Phiki\Adapters\CommonMark;
 
 use League\CommonMark\Environment\EnvironmentBuilderInterface;
 use League\CommonMark\Extension\CommonMark\Node\Block\FencedCode;
