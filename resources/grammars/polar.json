@@ -1,4 +1,5 @@
 {
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
   "displayName": "Polar",
   "name": "polar",
   "patterns": [
@@ -81,27 +82,27 @@
     "number": {
       "patterns": [
         {
-          "match": "\\b[-+]?\\d+(?:(\\.)\\d+(?:e[-+]?\\d+)?|e[-+]?\\d+)\\b",
+          "match": "\\b[+-]?\\d+(?:(\\.)\\d+(?:e[+-]?\\d+)?|(?:e[+-]?\\d+))\\b",
           "name": "constant.numeric.float"
         },
         {
-          "match": "\\b([-+])\\d+\\b",
+          "match": "\\b(\\+|\\-)[\\d]+\\b",
           "name": "constant.numeric.integer"
         },
         {
-          "match": "\\b\\d+\\b",
+          "match": "\\b[\\d]+\\b",
           "name": "constant.numeric.natural"
         }
       ]
     },
     "object-literal": {
-      "begin": "([A-Z_a-z][0-9A-Z_a-z]*(?:::[0-9A-Z_a-z]+)*)\\s*\\{",
+      "begin": "([a-zA-Z_][a-zA-Z0-9_]*(?:::[a-zA-Z0-9_]+)*)\\s*\\{",
       "beginCaptures": {
         "1": {
           "name": "entity.name.type.resource"
         }
       },
-      "end": "}",
+      "end": "\\}",
       "name": "constant.other.object-literal",
       "patterns": [
         {
@@ -121,33 +122,38 @@
           "name": "keyword.control"
         }
       },
-      "match": "([-!*+/<=>])"
+      "match": "(\\+|-|\\*|\\/|<|>|=|!)"
     },
     "resource-block": {
-      "begin": "(?<resourceType>[A-Z_a-z][0-9A-Z_a-z]*(?:::[0-9A-Z_a-z]+)*){0}((resource|actor)\\s+(\\g<resourceType>)(?:\\s+(extends)\\s+(\\g<resourceType>(?:\\s*,\\s*\\g<resourceType>)*)\\s*,?\\s*)?|(global))\\s*\\{",
+      "begin": "(?<resourceType>[a-zA-Z_][a-zA-Z0-9_]*(?:::[a-zA-Z0-9_]+)*){0}((?:(resource|actor)\\s+(\\g<resourceType>)(?:\\s+(extends)\\s+(\\g<resourceType>(?:\\s*,\\s*\\g<resourceType>)*)\\s*,?\\s*)?)|(global))\\s*{",
       "beginCaptures": {
         "3": {
+          "comment": "actor|resource",
           "name": "keyword.control"
         },
         "4": {
+          "comment": "declared resource type",
           "name": "entity.name.type"
         },
         "5": {
+          "comment": "extends",
           "name": "keyword.control"
         },
         "6": {
+          "comment": "list of extended resources",
           "patterns": [
             {
-              "match": "([A-Z_a-z][0-9A-Z_a-z]*(?:::[0-9A-Z_a-z]+)*)",
+              "match": "([a-zA-Z_][a-zA-Z0-9_]*(?:::[a-zA-Z0-9_]+)*)",
               "name": "entity.name.type"
             }
           ]
         },
         "7": {
+          "comment": "global",
           "name": "keyword.control"
         }
       },
-      "end": "}",
+      "end": "\\}",
       "name": "meta.resource-block",
       "patterns": [
         {
@@ -156,7 +162,7 @@
         },
         {
           "begin": "\\{",
-          "end": "}",
+          "end": "\\}",
           "name": "meta.relation-declaration",
           "patterns": [
             {
@@ -202,7 +208,7 @@
       ]
     },
     "rule-functor": {
-      "begin": "([A-Z_a-z][0-9A-Z_a-z]*(?:::[0-9A-Z_a-z]+)*)\\s*\\(",
+      "begin": "([a-zA-Z_][a-zA-Z0-9_]*(?:::[a-zA-Z0-9_]+)*)\\s*\\(",
       "beginCaptures": {
         "1": {
           "name": "support.function.rule"
@@ -243,7 +249,7 @@
           "name": "entity.name.type.resource"
         }
       },
-      "match": "[A-Z_a-z][0-9A-Z_a-z]*(?:::[0-9A-Z_a-z]+)*\\s*:\\s*([A-Z_a-z][0-9A-Z_a-z]*(?:::[0-9A-Z_a-z]+)*)"
+      "match": "[a-zA-Z_][a-zA-Z0-9_]*(?:::[a-zA-Z0-9_]+)*\\s*:\\s*([a-zA-Z_][a-zA-Z0-9_]*(?:::[a-zA-Z0-9_]+)*)"
     },
     "string": {
       "begin": "\"",
@@ -281,7 +287,7 @@
         },
         {
           "begin": "\\[",
-          "end": "]",
+          "end": "\\]",
           "name": "meta.bracket.list",
           "patterns": [
             {
@@ -295,7 +301,7 @@
         },
         {
           "begin": "\\{",
-          "end": "}",
+          "end": "\\}",
           "name": "meta.bracket.dict",
           "patterns": [
             {
@@ -329,7 +335,7 @@
           "name": "string.quoted.double"
         }
       },
-      "end": "}",
+      "end": "\\}",
       "name": "meta.test-block",
       "patterns": [
         {
@@ -339,7 +345,7 @@
               "name": "keyword.control"
             }
           },
-          "end": "}",
+          "end": "\\}",
           "name": "meta.test-setup",
           "patterns": [
             {
@@ -357,7 +363,7 @@
           "include": "#rule"
         },
         {
-          "match": "\\b(assert(?:|_not))\\b",
+          "match": "\\b(assert|assert_not)\\b",
           "name": "keyword.other"
         },
         {

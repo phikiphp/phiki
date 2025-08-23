@@ -1,4 +1,5 @@
 {
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
   "displayName": "Zig",
   "fileTypes": [
     "zig",
@@ -123,7 +124,7 @@
           "name": "keyword.type.integer.zig"
         },
         {
-          "match": "\\b(c_(?:char|short|ushort|int|uint|long|ulong|longlong|ulonglong|longdouble))\\b",
+          "match": "\\b(c_char|c_short|c_ushort|c_int|c_uint|c_long|c_ulong|c_longlong|c_ulonglong|c_longdouble)\\b",
           "name": "keyword.type.c.zig"
         }
       ]
@@ -131,11 +132,11 @@
     "numbers": {
       "patterns": [
         {
-          "match": "\\b0x\\h[_\\h]*(\\.\\h[_\\h]*)?([Pp][-+]?[_\\h]+)?\\b",
+          "match": "\\b0x[0-9a-fA-F][0-9a-fA-F_]*(\\.[0-9a-fA-F][0-9a-fA-F_]*)?([pP][+-]?[0-9a-fA-F_]+)?\\b",
           "name": "constant.numeric.hexfloat.zig"
         },
         {
-          "match": "\\b[0-9][0-9_]*(\\.[0-9][0-9_]*)?([Ee][-+]?[0-9_]+)?\\b",
+          "match": "\\b[0-9][0-9_]*(\\.[0-9][0-9_]*)?([eE][+-]?[0-9_]+)?\\b",
           "name": "constant.numeric.float.zig"
         },
         {
@@ -143,7 +144,7 @@
           "name": "constant.numeric.decimal.zig"
         },
         {
-          "match": "\\b0x[_\\h]+\\b",
+          "match": "\\b0x[a-fA-F0-9_]+\\b",
           "name": "constant.numeric.hexadecimal.zig"
         },
         {
@@ -155,7 +156,7 @@
           "name": "constant.numeric.binary.zig"
         },
         {
-          "match": "\\b[0-9](([EPep][-+])|[0-9A-Z_a-z])*(\\.(([EPep][-+])|[0-9A-Z_a-z])*)?([EPep][-+])?[0-9A-Z_a-z]*\\b",
+          "match": "\\b[0-9](([eEpP][+-])|[0-9a-zA-Z_])*(\\.(([eEpP][+-])|[0-9a-zA-Z_])*)?([eEpP][+-])?[0-9a-zA-Z_]*\\b",
           "name": "constant.numeric.invalid.zig"
         }
       ]
@@ -163,19 +164,19 @@
     "operators": {
       "patterns": [
         {
-          "match": "(?<=\\[)\\*c(?=])",
+          "match": "(?<=\\[)\\*c(?=\\])",
           "name": "keyword.operator.c-pointer.zig"
         },
         {
-          "match": "\\b((and|or))\\b|(==|!=|<=|>=|[<>])",
+          "match": "(\\b(and|or)\\b)|(==|!=|<=|>=|<|>)",
           "name": "keyword.operator.comparison.zig"
         },
         {
-          "match": "(-%?|\\+%?|\\*%?|[%/])=?",
+          "match": "(-%?|\\+%?|\\*%?|/|%)=?",
           "name": "keyword.operator.arithmetic.zig"
         },
         {
-          "match": "(<<%?|>>|[!\\&^|~])=?",
+          "match": "(<<%?|>>|!|~|&|\\^|\\|)=?",
           "name": "keyword.operator.bitwise.zig"
         },
         {
@@ -215,7 +216,7 @@
     "stringcontent": {
       "patterns": [
         {
-          "match": "\\\\([\"'\\\\nrt]|(x\\h{2})|(u\\{\\h+}))",
+          "match": "\\\\([nrt'\"\\\\]|(x[0-9a-fA-F]{2})|(u\\{[0-9a-fA-F]+\\}))",
           "name": "constant.character.escape.zig"
         },
         {
@@ -242,7 +243,7 @@
           "name": "string.multiline.zig"
         },
         {
-          "match": "'([^'\\\\]|\\\\(x\\h{2}|[012][0-7]{0,2}|3[0-6][0-7]?|37[0-7]?|[4-7][0-7]?|.))'",
+          "match": "'([^'\\\\]|\\\\(x\\h{2}|[0-2][0-7]{,2}|3[0-6][0-7]?|37[0-7]?|[4-7][0-7]?|.))'",
           "name": "string.quoted.single.zig"
         }
       ]
@@ -250,7 +251,8 @@
     "support": {
       "patterns": [
         {
-          "match": "@[A-Z_a-z][0-9A-Z_a-z]*",
+          "comment": "Built-in functions",
+          "match": "@[_a-zA-Z][_a-zA-Z0-9]*",
           "name": "support.function.builtin.zig"
         }
       ]
@@ -269,7 +271,7 @@
                   "name": "entity.name.type.zig"
                 }
               },
-              "match": "\\b(fn)\\s+([A-Z][0-9A-Za-z]*)\\b"
+              "match": "\\b(fn)\\s+([A-Z][a-zA-Z0-9]*)\\b"
             },
             {
               "captures": {
@@ -280,7 +282,7 @@
                   "name": "entity.name.function.zig"
                 }
               },
-              "match": "\\b(fn)\\s+([A-Z_a-z][0-9A-Z_a-z]*)\\b"
+              "match": "\\b(fn)\\s+([_a-zA-Z][_a-zA-Z0-9]*)\\b"
             },
             {
               "begin": "\\b(fn)\\s+@\"",
@@ -307,11 +309,11 @@
           "name": "meta.function.call.zig",
           "patterns": [
             {
-              "match": "([A-Z][0-9A-Za-z]*)(?=\\s*\\()",
+              "match": "([A-Z][a-zA-Z0-9]*)(?=\\s*\\()",
               "name": "entity.name.type.zig"
             },
             {
-              "match": "([A-Z_a-z][0-9A-Z_a-z]*)(?=\\s*\\()",
+              "match": "([_a-zA-Z][_a-zA-Z0-9]*)(?=\\s*\\()",
               "name": "entity.name.function.zig"
             }
           ]
@@ -320,7 +322,7 @@
           "name": "meta.variable.zig",
           "patterns": [
             {
-              "match": "\\b[A-Z_a-z][0-9A-Z_a-z]*\\b",
+              "match": "\\b[_a-zA-Z][_a-zA-Z0-9]*\\b",
               "name": "variable.zig"
             },
             {

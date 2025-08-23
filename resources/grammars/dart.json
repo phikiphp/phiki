@@ -1,5 +1,10 @@
 {
   "displayName": "Dart",
+  "information_for_contributors": [
+    "This file has been converted from https://github.com/dart-lang/dart-syntax-highlight/blob/master/grammars/dart.json",
+    "If you want to provide a fix or improvement, please create a pull request against the original repository.",
+    "Once accepted there, we are happy to receive an update request."
+  ],
   "name": "dart",
   "patterns": [
     {
@@ -63,7 +68,7 @@
     "annotations": {
       "patterns": [
         {
-          "match": "@[A-Za-z]+",
+          "match": "@[a-zA-Z]+",
           "name": "storage.type.annotation.dart"
         }
       ]
@@ -79,7 +84,7 @@
           "name": "storage.type.primitive.dart"
         },
         {
-          "begin": "(?<![$0-9A-Z_a-z])([$_]*[A-Z][$0-9A-Z_a-z]*)\\b",
+          "begin": "(?<![a-zA-Z0-9_$])([_$]*[A-Z][a-zA-Z0-9_$]*)\\b",
           "beginCaptures": {
             "1": {
               "name": "support.class.dart"
@@ -190,7 +195,7 @@
           "name": "variable.language.dart"
         },
         {
-          "match": "(?<!\\$)\\b((0([Xx])\\h[_\\h]*)|(([0-9][0-9_]*\\.?[0-9_]*)|(\\.[0-9][0-9_]*))(([Ee])([-+])?[0-9][0-9_]*)?)\\b(?!\\$)",
+          "match": "(?<!\\$)\\b((0(x|X)[0-9a-fA-F][0-9a-fA-F_]*)|(([0-9][0-9_]*\\.?[0-9_]*)|(\\.[0-9][0-9_]*))((e|E)(\\+|-)?[0-9][0-9_]*)?)\\b(?!\\$)",
           "name": "constant.numeric.dart"
         },
         {
@@ -209,11 +214,11 @@
               "name": "variable.name.source.dart"
             }
           },
-          "match": "(\\[.*?])"
+          "match": "(\\[.*?\\])"
         },
         {
           "begin": "^\\s*///\\s*(```)",
-          "end": "^(?:\\s*///\\s*(```)|(?!\\s*///))",
+          "end": "^\\s*///\\s*(```)|^(?!\\s*///)",
           "patterns": [
             {
               "include": "#dartdoc-codeblock-triple"
@@ -222,7 +227,7 @@
         },
         {
           "begin": "^\\s*\\*\\s*(```)",
-          "end": "^(?:\\s*\\*\\s*(```)|(?=\\s*\\*/))",
+          "end": "^\\s*\\*\\s*(```)|^(?=\\s*\\*/)",
           "patterns": [
             {
               "include": "#dartdoc-codeblock-block"
@@ -230,7 +235,7 @@
           ]
         },
         {
-          "match": "`[^\\n`]+`",
+          "match": "`[^`\n]+`",
           "name": "variable.other.source.dart"
         },
         {
@@ -239,19 +244,19 @@
               "name": "variable.other.source.dart"
             }
           },
-          "match": "(?:\\*|//)\\s{4,}(.*?)(?=($|\\*/))"
+          "match": "(?:\\*|\\/\\/)\\s{4,}(.*?)(?=($|\\*\\/))"
         }
       ]
     },
     "dartdoc-codeblock-block": {
       "begin": "^\\s*\\*\\s*(?!(\\s*```|/))",
       "contentName": "variable.other.source.dart",
-      "end": "\\n"
+      "end": "\n"
     },
     "dartdoc-codeblock-triple": {
       "begin": "^\\s*///\\s*(?!\\s*```)",
       "contentName": "variable.other.source.dart",
-      "end": "\\n"
+      "end": "\n"
     },
     "expression": {
       "patterns": [
@@ -262,12 +267,12 @@
           "include": "#strings"
         },
         {
-          "match": "[0-9A-Z_a-z]+",
+          "match": "[a-zA-Z0-9_]+",
           "name": "variable.parameter.dart"
         },
         {
           "begin": "\\{",
-          "end": "}",
+          "end": "\\}",
           "patterns": [
             {
               "include": "#expression"
@@ -291,7 +296,7 @@
               ]
             }
           },
-          "match": "([$_]*[a-z][$0-9A-Z_a-z]*)(<(?:[$0-9<>?A-Z_a-z]|,\\s*|\\s+extends\\s+)+>)?[!?]?\\("
+          "match": "([_$]*[a-z][a-zA-Z0-9_$]*)(<(?:[a-zA-Z0-9_$<>?]|,\\s*|\\s+extends\\s+)+>)?[!?]?\\("
         }
       ]
     },
@@ -334,7 +339,7 @@
           "name": "storage.modifier.dart"
         },
         {
-          "match": "(?<!\\$)\\bv(?:oid|ar)\\b(?!\\$)",
+          "match": "(?<!\\$)\\b(?:void|var)\\b(?!\\$)",
           "name": "storage.type.primitive.dart"
         }
       ]
@@ -342,19 +347,19 @@
     "operators": {
       "patterns": [
         {
-          "match": "(?<!\\$)\\b(is!?)\\b(?!\\$)",
+          "match": "(?<!\\$)\\b(is\\!?)\\b(?!\\$)",
           "name": "keyword.operator.dart"
         },
         {
-          "match": "[:?]",
+          "match": "\\?|:",
           "name": "keyword.operator.ternary.dart"
         },
         {
-          "match": "(<<|>>>?|[\\&^|~])",
+          "match": "(<<|>>>?|~|\\^|\\||&)",
           "name": "keyword.operator.bitwise.dart"
         },
         {
-          "match": "(([\\&^|]|<<|>>>?)=)",
+          "match": "((&|\\^|\\||<<|>>>?)=)",
           "name": "keyword.operator.assignment.bitwise.dart"
         },
         {
@@ -366,7 +371,7 @@
           "name": "keyword.operator.comparison.dart"
         },
         {
-          "match": "(([-%*+/~])=)",
+          "match": "(([+*/%-]|\\~)=)",
           "name": "keyword.operator.assignment.arithmetic.dart"
         },
         {
@@ -374,11 +379,11 @@
           "name": "keyword.operator.assignment.dart"
         },
         {
-          "match": "(--|\\+\\+)",
+          "match": "(\\-\\-|\\+\\+)",
           "name": "keyword.operator.increment-decrement.dart"
         },
         {
-          "match": "([-*+/]|~/|%)",
+          "match": "(\\-|\\+|\\*|\\/|\\~\\/|%)",
           "name": "keyword.operator.arithmetic.dart"
         },
         {
@@ -411,12 +416,12 @@
               "name": "variable.parameter.dart"
             }
           },
-          "match": "\\$([0-9A-Z_a-z]+)",
+          "match": "\\$([a-zA-Z0-9_]+)",
           "name": "meta.embedded.expression.dart"
         },
         {
           "begin": "\\$\\{",
-          "end": "}",
+          "end": "\\}",
           "name": "meta.embedded.expression.dart",
           "patterns": [
             {
@@ -544,5 +549,6 @@
       ]
     }
   },
-  "scopeName": "source.dart"
+  "scopeName": "source.dart",
+  "version": "https://github.com/dart-lang/dart-syntax-highlight/commit/e1ac5c446c2531343393adbe8fff9d45d8a7c412"
 }

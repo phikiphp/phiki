@@ -9,7 +9,7 @@
     "text.html.erb - (meta.embedded.block.erb | meta.embedded.line.erb | comment)": {
       "patterns": [
         {
-          "begin": "^(\\s*)(?=<%+#(?![^%]*%>))",
+          "begin": "(^\\s*)(?=<%+#(?![^%]*%>))",
           "beginCaptures": {
             "0": {
               "name": "punctuation.whitespace.comment.leading.erb"
@@ -28,7 +28,7 @@
           ]
         },
         {
-          "begin": "^(\\s*)(?=<%(?![^%]*%>))",
+          "begin": "(^\\s*)(?=<%(?![^%]*%>))",
           "beginCaptures": {
             "0": {
               "name": "punctuation.whitespace.embedded.leading.erb"
@@ -55,6 +55,7 @@
       ]
     }
   },
+  "keyEquivalent": "^~H",
   "name": "erb",
   "patterns": [
     {
@@ -152,5 +153,6 @@
       ]
     }
   },
-  "scopeName": "text.html.erb"
+  "scopeName": "text.html.erb",
+  "uuid": "13FF9439-15D0-4E74-9A8E-83ABF0BAA5E7"
 }

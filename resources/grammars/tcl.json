@@ -4,7 +4,8 @@
     "tcl"
   ],
   "foldingStartMarker": "\\{\\s*$",
-  "foldingStopMarker": "^\\s*}",
+  "foldingStopMarker": "^\\s*\\}",
+  "keyEquivalent": "^~T",
   "name": "tcl",
   "patterns": [
     {
@@ -21,7 +22,7 @@
       "end": "\\n",
       "patterns": [
         {
-          "match": "(\\\\[\\n\\\\])"
+          "match": "(\\\\\\\\|\\\\\\n)"
         }
       ]
     },
@@ -31,7 +32,7 @@
           "name": "keyword.control.tcl"
         }
       },
-      "match": "(?<=^|[;\\[{])\\s*(if|while|for|catch|default|return|break|continue|switch|exit|foreach|try|throw)\\b"
+      "match": "(?<=^|[\\[{;])\\s*(if|while|for|catch|default|return|break|continue|switch|exit|foreach|try|throw)\\b"
     },
     {
       "captures": {
@@ -50,7 +51,7 @@
           "name": "entity.name.function.tcl"
         }
       },
-      "match": "(?<=^|\\{)\\s*(proc)\\s+(\\S+)"
+      "match": "(?<=^|{)\\s*(proc)\\s+([^\\s]+)"
     },
     {
       "captures": {
@@ -58,27 +59,30 @@
           "name": "keyword.other.tcl"
         }
       },
-      "match": "(?<=^|[;\\[{])\\s*(after|append|array|auto_execok|auto_import|auto_load|auto_mkindex|auto_mkindex_old|auto_qualify|auto_reset|bgerror|binary|cd|clock|close|concat|dde|encoding|eof|error|eval|exec|expr|fblocked|fconfigure|fcopy|file|fileevent|filename|flush|format|gets|glob|global|history|http|incr|info|interp|join|lappend|library|lindex|linsert|list|llength|load|lrange|lreplace|lsearch|lset|lsort|memory|msgcat|namespace|open|package|parray|pid|pkg::create|pkg_mkIndex|proc|puts|pwd|re_syntax|read|registry|rename|resource|scan|seek|set|socket|SafeBase|source|split|string|subst|Tcl|tcl_endOfWord|tcl_findLibrary|tcl_startOfNextWord|tcl_startOfPreviousWord|tcl_wordBreakAfter|tcl_wordBreakBefore|tcltest|tclvars|tell|time|trace|unknown|unset|update|uplevel|upvar|variable|vwait)\\b"
+      "match": "(?<=^|[\\[{;])\\s*(after|append|array|auto_execok|auto_import|auto_load|auto_mkindex|auto_mkindex_old|auto_qualify|auto_reset|bgerror|binary|cd|clock|close|concat|dde|encoding|eof|error|eval|exec|expr|fblocked|fconfigure|fcopy|file|fileevent|filename|flush|format|gets|glob|global|history|http|incr|info|interp|join|lappend|library|lindex|linsert|list|llength|load|lrange|lreplace|lsearch|lset|lsort|memory|msgcat|namespace|open|package|parray|pid|pkg::create|pkg_mkIndex|proc|puts|pwd|re_syntax|read|registry|rename|resource|scan|seek|set|socket|SafeBase|source|split|string|subst|Tcl|tcl_endOfWord|tcl_findLibrary|tcl_startOfNextWord|tcl_startOfPreviousWord|tcl_wordBreakAfter|tcl_wordBreakBefore|tcltest|tclvars|tell|time|trace|unknown|unset|update|uplevel|upvar|variable|vwait)\\b"
     },
     {
-      "begin": "(?<=^|[;\\[{])\\s*(reg(?:exp|sub))\\b\\s*",
+      "begin": "(?<=^|[\\[{;])\\s*(regexp|regsub)\\b\\s*",
       "beginCaptures": {
         "1": {
           "name": "keyword.other.tcl"
         }
       },
-      "end": "[]\\n;]",
+      "comment": "special-case regexp/regsub keyword in order to handle the expression",
+      "end": "[\\n;\\]]",
       "patterns": [
         {
           "match": "\\\\(?:.|\\n)",
           "name": "constant.character.escape.tcl"
         },
         {
+          "comment": "switch for regexp",
           "match": "-\\w+\\s*"
         },
         {
           "applyEndPatternLast": 1,
           "begin": "--\\s*",
+          "comment": "end of switches",
           "end": "",
           "patterns": [
             {
@@ -133,7 +137,8 @@
   "repository": {
     "bare-string": {
       "begin": "(?:^|(?<=\\s))\"",
-      "end": "\"([^]\\s]*)",
+      "comment": "matches a single quote-enclosed word without scoping",
+      "end": "\"([^\\s\\]]*)",
       "endCaptures": {
         "1": {
           "name": "invalid.illegal.tcl"
@@ -150,7 +155,8 @@
     },
     "braces": {
       "begin": "(?:^|(?<=\\s))\\{",
-      "end": "}([^]\\s]*)",
+      "comment": "matches a single brace-enclosed word",
+      "end": "\\}([^\\s\\]]*)",
       "endCaptures": {
         "1": {
           "name": "invalid.illegal.tcl"
@@ -158,7 +164,7 @@
       },
       "patterns": [
         {
-          "match": "\\\\[\\n{}]",
+          "match": "\\\\[{}\\n]",
           "name": "constant.character.escape.tcl"
         },
         {
@@ -173,7 +179,7 @@
           "name": "punctuation.section.embedded.begin.tcl"
         }
       },
-      "end": "]",
+      "end": "\\]",
       "endCaptures": {
         "0": {
           "name": "punctuation.section.embedded.end.tcl"
@@ -187,15 +193,16 @@
       ]
     },
     "escape": {
-      "match": "\\\\(\\d{1,3}|x\\h+|u\\h{1,4}|.|\\n)",
+      "match": "\\\\(\\d{1,3}|x[a-fA-F0-9]+|u[a-fA-F0-9]{1,4}|.|\\n)",
       "name": "constant.character.escape.tcl"
     },
     "inner-braces": {
       "begin": "\\{",
-      "end": "}",
+      "comment": "matches a nested brace in a brace-enclosed word",
+      "end": "\\}",
       "patterns": [
         {
-          "match": "\\\\[\\n{}]",
+          "match": "\\\\[{}\\n]",
           "name": "constant.character.escape.tcl"
         },
         {
@@ -204,20 +211,21 @@
       ]
     },
     "numeric": {
-      "match": "(?<![A-Za-z])([-+]?([0-9]*\\.)?[0-9]+f?)(?![.A-Za-z])",
+      "match": "(?<![a-zA-Z])([+-]?([0-9]*[.])?[0-9]+f?)(?![\\.a-zA-Z])",
       "name": "constant.numeric.tcl"
     },
     "operator": {
-      "match": "(?<=[ \\d])([-+~]|&{1,2}|\\|{1,2}|<{1,2}|>{1,2}|\\*{1,2}|[!%/]|<=|>=|={1,2}|!=|\\^)(?=[ \\d])",
+      "match": "(?<= |\\d)(-|\\+|~|&{1,2}|\\|{1,2}|<{1,2}|>{1,2}|\\*{1,2}|!|%|\\/|<=|>=|={1,2}|!=|\\^)(?= |\\d)",
       "name": "keyword.operator.tcl"
     },
     "regexp": {
-      "begin": "(?=\\S)(?![]\\n;])",
-      "end": "(?=[]\\n;])",
+      "begin": "(?=\\S)(?![\\n;\\]])",
+      "comment": "matches a single word, named as a regexp, then swallows the rest of the command",
+      "end": "(?=[\\n;\\]])",
       "patterns": [
         {
-          "begin": "(?=[^\\t\\n ;])",
-          "end": "(?=[\\t\\n ;])",
+          "begin": "(?=[^ \\t\\n;])",
+          "end": "(?=[ \\t\\n;])",
           "name": "string.regexp.tcl",
           "patterns": [
             {
@@ -235,8 +243,9 @@
           ]
         },
         {
-          "begin": "[\\t ]",
-          "end": "(?=[]\\n;])",
+          "begin": "[ \\t]",
+          "comment": "swallow the rest of the command",
+          "end": "(?=[\\n;\\]])",
           "patterns": [
             {
               "include": "#variable"
@@ -260,6 +269,7 @@
     "string": {
       "applyEndPatternLast": 1,
       "begin": "(?:^|(?<=\\s))(?=\")",
+      "comment": "matches a single quote-enclosed word with scoping",
       "end": "",
       "name": "string.quoted.double.tcl",
       "patterns": [
@@ -274,9 +284,10 @@
           "name": "punctuation.definition.variable.tcl"
         }
       },
-      "match": "(\\$)((?:[0-9A-Z_a-z]|::)+(\\([^)]+\\))?|\\{[^}]*})",
+      "match": "(\\$)((?:[a-zA-Z0-9_]|::)+(\\([^\\)]+\\))?|\\{[^\\}]*\\})",
       "name": "support.function.tcl"
     }
   },
-  "scopeName": "source.tcl"
+  "scopeName": "source.tcl",
+  "uuid": "62E11136-D9E5-461C-BE98-54E3A2A9E5E3"
 }

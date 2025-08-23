@@ -58,37 +58,37 @@
           "name": "keyword.control.at-rule.css.postcss"
         }
       },
-      "end": "(?=[\\n(;{])",
+      "end": "(?=\\n|\\(|{|;)",
       "name": "support.function.name.postcss.library"
     },
     {
-      "begin": "@(?:mixin|function)",
+      "begin": "@mixin|@function",
       "captures": {
         "0": {
           "name": "keyword.control.at-rule.css.postcss"
         }
       },
-      "end": "$\\n?|(?=[({])",
+      "end": "$\\n?|(?=\\(|{)",
       "name": "support.function.name.postcss.no-completions",
       "patterns": [
         {
-          "match": "[-\\w]+",
+          "match": "[\\w-]+",
           "name": "entity.name.function"
         }
       ]
     },
     {
-      "match": "(?<=@import)\\s[-*./\\w]+",
+      "match": "(?<=@import)\\s[\\w/.*-]+",
       "name": "string.quoted.double.css.postcss"
     },
     {
       "begin": "@",
-      "end": "$\\n?|\\s(?!(all|braille|embossed|handheld|print|projection|screen|speech|tty|tv|if|only|not)([,\\s]))|(?=;)",
+      "end": "$\\n?|\\s(?!(all|braille|embossed|handheld|print|projection|screen|speech|tty|tv|if|only|not)(\\s|,))|(?=;)",
       "name": "keyword.control.at-rule.css.postcss"
     },
     {
       "begin": "#",
-      "end": "$\\n?|(?=[(),.;>\\[{\\s])",
+      "end": "$\\n?|(?=\\s|,|;|\\(|\\)|\\.|\\[|{|>)",
       "name": "entity.other.attribute-name.id.css.postcss",
       "patterns": [
         {
@@ -100,8 +100,8 @@
       ]
     },
     {
-      "begin": "\\.|(?<=&)([-_])",
-      "end": "$\\n?|(?=[(),;>\\[{\\s])",
+      "begin": "\\.|(?<=&)(-|_)",
+      "end": "$\\n?|(?=\\s|,|;|\\(|\\)|\\[|{|>)",
       "name": "entity.other.attribute-name.class.css.postcss",
       "patterns": [
         {
@@ -114,7 +114,7 @@
     },
     {
       "begin": "\\[",
-      "end": "]",
+      "end": "\\]",
       "name": "entity.other.attribute-selector.postcss",
       "patterns": [
         {
@@ -124,18 +124,18 @@
           "include": "#single-quoted"
         },
         {
-          "match": "[$*^~]",
+          "match": "\\^|\\$|\\*|~",
           "name": "keyword.other.regex.postcss"
         }
       ]
     },
     {
-      "match": "(?<=[])]|not\\(|[*>]|>\\s):[-:a-z]+|(:[-:])[-:a-z]+",
+      "match": "(?<=\\]|\\)|not\\(|\\*|>|>\\s):[a-z:-]+|(::|:-)[a-z:-]+",
       "name": "entity.other.attribute-name.pseudo-class.css.postcss"
     },
     {
       "begin": ":",
-      "end": "$\\n?|(?=;|\\s\\(|and\\(|[{}]|\\),)",
+      "end": "$\\n?|(?=;|\\s\\(|and\\(|{|}|\\),)",
       "name": "meta.property-list.css.postcss",
       "patterns": [
         {
@@ -195,8 +195,8 @@
       "include": "#function-content"
     },
     {
-      "begin": "(?<![-(])\\b(a|abbr|acronym|address|applet|area|article|aside|audio|b|base|big|blockquote|body|br|button|canvas|caption|cite|code|col|colgroup|datalist|dd|del|details|dfn|dialog|div|dl|dt|em|embed|eventsource|fieldset|figure|figcaption|footer|form|frame|frameset|(h[1-6])|head|header|hgroup|hr|html|i|iframe|img|input|ins|kbd|label|legend|li|link|map|mark|menu|meta|meter|nav|noframes|noscript|object|ol|optgroup|option|output|p|param|picture|pre|progress|q|samp|script|section|select|small|source|span|strike|strong|style|sub|summary|sup|table|tbody|td|textarea|tfoot|th|thead|time|title|tr|tt|ul|var|video|main|svg|rect|ruby|center|circle|ellipse|line|polyline|polygon|path|text|[ux])\\b(?![-)]|:\\s)|&",
-      "end": "(?=[-(),.;>\\[_{\\s])",
+      "begin": "(?<!\\-|\\()\\b(a|abbr|acronym|address|applet|area|article|aside|audio|b|base|big|blockquote|body|br|button|canvas|caption|cite|code|col|colgroup|datalist|dd|del|details|dfn|dialog|div|dl|dt|em|embed|eventsource|fieldset|figure|figcaption|footer|form|frame|frameset|(h[1-6])|head|header|hgroup|hr|html|i|iframe|img|input|ins|kbd|label|legend|li|link|map|mark|menu|meta|meter|nav|noframes|noscript|object|ol|optgroup|option|output|p|param|picture|pre|progress|q|samp|script|section|select|small|source|span|strike|strong|style|sub|summary|sup|table|tbody|td|textarea|tfoot|th|thead|time|title|tr|tt|ul|var|video|main|svg|rect|ruby|center|circle|ellipse|line|polyline|polygon|path|text|u|x)\\b(?!-|\\)|:\\s)|&",
+      "end": "(?=\\s|,|;|\\(|\\)|\\.|\\[|{|>|-|_)",
       "name": "entity.name.tag.css.postcss.symbol",
       "patterns": [
         {
@@ -211,7 +211,7 @@
       "include": "#operator"
     },
     {
-      "match": "[-a-z]+((?=:|#\\{))",
+      "match": "[a-z-]+((?=:|#{))",
       "name": "support.type.property-name.css.postcss"
     },
     {
@@ -223,12 +223,12 @@
   ],
   "repository": {
     "comment-tag": {
-      "begin": "\\{\\{",
+      "begin": "{{",
       "end": "}}",
       "name": "comment.tags.postcss",
       "patterns": [
         {
-          "match": "[-\\w]+",
+          "match": "[\\w-]+",
           "name": "comment.tag.postcss"
         }
       ]
@@ -262,7 +262,7 @@
       "name": "keyword.other.important.css.postcss"
     },
     "function": {
-      "match": "(?<=[(,:|\\s])(?!url|format|attr)[-\\w][-\\w]*(?=\\()",
+      "match": "(?<=[\\s|\\(|,|:])(?!url|format|attr)[\\w-][\\w-]*(?=\\()",
       "name": "support.function.name.postcss"
     },
     "function-content": {
@@ -270,11 +270,11 @@
       "name": "string.quoted.double.css.postcss"
     },
     "function-content-var": {
-      "match": "(?<=var\\()[-\\w]+(?=\\))",
+      "match": "(?<=var\\()[\\w-]+(?=\\))",
       "name": "variable.parameter.postcss"
     },
     "interpolation": {
-      "begin": "#\\{",
+      "begin": "#{",
       "end": "}",
       "name": "support.function.interpolation.postcss",
       "patterns": [
@@ -299,11 +299,11 @@
       ]
     },
     "numeric": {
-      "match": "([-.])?[0-9]+(\\.[0-9]+)?",
+      "match": "(-|\\.)?[0-9]+(\\.[0-9]+)?",
       "name": "constant.numeric.css.postcss"
     },
     "operator": {
-      "match": "\\+|\\s-\\s|\\s-(?=\\$)|(?<=\\()-(?=\\$)|\\s-(?=\\()|[!%*/<=>~]",
+      "match": "\\+|\\s-\\s|\\s-(?=\\$)|(?<=\\()-(?=\\$)|\\s-(?=\\()|\\*|/|%|=|!|<|>|~",
       "name": "keyword.operator.postcss"
     },
     "parent-selector": {
@@ -312,19 +312,19 @@
     },
     "placeholder-selector": {
       "begin": "(?<!\\d)%(?!\\d)",
-      "end": "$\\n?|\\s|(?=[;{])",
+      "end": "$\\n?|\\s|(?=;|{)",
       "name": "entity.other.attribute-name.placeholder-selector.postcss"
     },
     "property-value": {
-      "match": "[-\\w]+",
+      "match": "[\\w-]+",
       "name": "meta.property-value.css.postcss, support.constant.property-value.css.postcss"
     },
     "pseudo-class": {
-      "match": ":[-:a-z]+",
+      "match": ":[a-z:-]+",
       "name": "entity.other.attribute-name.pseudo-class.css.postcss"
     },
     "quoted-interpolation": {
-      "begin": "#\\{",
+      "begin": "#{",
       "end": "}",
       "name": "support.function.interpolation.postcss",
       "patterns": [
@@ -347,7 +347,7 @@
       "name": "support.type.property-name.css.postcss"
     },
     "rgb-value": {
-      "match": "(#)(\\h{3}|\\h{6})\\b",
+      "match": "(#)([0-9a-fA-F]{3}|[0-9a-fA-F]{6})\\b",
       "name": "constant.other.color.rgb-value.css.postcss"
     },
     "single-quoted": {
@@ -361,17 +361,18 @@
       ]
     },
     "unit": {
-      "match": "(?<=[}\\d])(ch|cm|deg|dpcm|dpi|dppx|em|ex|grad|Hz|in|kHz|mm|ms|pc|pt|px|rad|rem|s|turn|vh|vmax|vmin|vw|%)",
+      "match": "(?<=[\\d]|})(ch|cm|deg|dpcm|dpi|dppx|em|ex|grad|Hz|in|kHz|mm|ms|pc|pt|px|rad|rem|s|turn|vh|vmax|vmin|vw|%)",
       "name": "keyword.other.unit.css.postcss"
     },
     "variable": {
-      "match": "\\$[-\\w]+",
+      "match": "\\$[\\w-]+",
       "name": "variable.parameter.postcss"
     },
     "variable-root-css": {
-      "match": "(?<!&)--[-\\w]+",
+      "match": "(?<!&)--[\\w-]+",
       "name": "variable.parameter.postcss"
     }
   },
-  "scopeName": "source.css.postcss"
+  "scopeName": "source.css.postcss",
+  "uuid": "90DAEA60-88AA-11E2-9E96-0800200C9A66"
 }

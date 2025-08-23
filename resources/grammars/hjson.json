@@ -3,8 +3,9 @@
   "fileTypes": [
     "hjson"
   ],
-  "foldingStartMarker": "^\\s*[\\[{](?!.*[]}],?\\s*$)|[\\[{]\\s*$",
-  "foldingStopMarker": "^\\s*[]}]",
+  "foldingStartMarker": "(?x:     # turn on extended mode\n    ^    # a line beginning with\n    \\s*    # some optional space\n    [{\\[]  # the start of an object or array\n    (?!    # but not followed by\n    .*   # whatever\n    [}\\]]  # and the close of an object or array\n    ,?   # an optional comma\n    \\s*  # some optional space\n    $    # at the end of the line\n    )\n    |    # ...or...\n    [{\\[]  # the start of an object or array\n    \\s*    # some optional space\n    $    # at the end of the line\n  )",
+  "foldingStopMarker": "(?x:   # turn on extended mode\n    ^    # a line beginning with\n    \\s*  # some optional space\n    [}\\]]  # and the close of an object or array\n  )",
+  "keyEquivalent": "^~J",
   "name": "hjson",
   "patterns": [
     {
@@ -14,7 +15,7 @@
       "include": "#value"
     },
     {
-      "match": "\\S",
+      "match": "[^\\s]",
       "name": "invalid.illegal.excess-characters.hjson"
     }
   ],
@@ -26,7 +27,7 @@
           "name": "punctuation.definition.array.begin.hjson"
         }
       },
-      "end": "(])(?:\\s*([^,\\s]+))?",
+      "end": "(\\])(?:\\s*([^,\\s]+))?",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.array.end.hjson"
@@ -49,7 +50,7 @@
           "name": "punctuation.definition.array.begin.hjson"
         }
       },
-      "end": "(])(?:\\s*([^],\\s]+))?",
+      "end": "(\\])(?:\\s*([^,\\s\\]]+))?",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.array.end.hjson"
@@ -74,7 +75,7 @@
           "name": "punctuation.separator.array.after-const.hjson"
         }
       },
-      "match": "\\b(true|false|null)(?:[\\t ]*(?=,)|[\\t ]*(?:(,)[\\t ]*)?(?=$|#|/\\*|//|]))"
+      "match": "\\b(true|false|null)(?:[\\t ]*(?=,)|[\\t ]*(?:(,)[\\t ]*)?(?=$|#|/\\*|//|\\]))"
     },
     "arrayContent": {
       "name": "meta.structure.array.hjson",
@@ -92,7 +93,7 @@
               "name": "punctuation.separator.dictionary.pair.hjson"
             }
           },
-          "end": "(?=[^#,/\\s])|(?=/[^*/])",
+          "end": "(?=[^\\s,/#])|(?=/[^/*])",
           "patterns": [
             {
               "include": "#comments"
@@ -108,7 +109,7 @@
           "name": "punctuation.separator.array.hjson"
         },
         {
-          "match": "[^]\\s]",
+          "match": "[^\\s\\]]",
           "name": "invalid.illegal.expected-array-separator.hjson"
         }
       ]
@@ -122,7 +123,7 @@
               "name": "punctuation.definition.string.begin.hjson"
             }
           },
-          "end": "(\")(?:\\s*((?:[^]#,/\\s]|/[^*/])+))?",
+          "end": "(\")(?:\\s*((?:[^,\\s\\]#/]|/[^/*])+))?",
           "endCaptures": {
             "1": {
               "name": "punctuation.definition.string.end.hjson"
@@ -145,7 +146,7 @@
               "name": "punctuation.definition.string.begin.hjson"
             }
           },
-          "end": "(')(?:\\s*((?:[^]#,/\\s]|/[^*/])+))?",
+          "end": "(')(?:\\s*((?:[^,\\s\\]#/]|/[^/*])+))?",
           "endCaptures": {
             "1": {
               "name": "punctuation.definition.string.end.hjson"
@@ -170,7 +171,7 @@
           "name": "punctuation.definition.string.begin.hjson"
         }
       },
-      "end": "(''')(?:\\s*((?:[^]#,/\\s]|/[^*/])+))?",
+      "end": "(''')(?:\\s*((?:[^,\\s\\]#/]|/[^/*])+))?",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.string.end.hjson"
@@ -190,7 +191,7 @@
           "name": "punctuation.separator.array.after-num.hjson"
         }
       },
-      "match": "(-?(?:0|[1-9]\\d*)(?:\\.\\d+)?(?:[Ee][-+]?\\d+)?)(?:[\\t ]*(?=,)|[\\t ]*(?:(,)[\\t ]*)?(?=$|#|/\\*|//|]))"
+      "match": "(-?(?:0|(?:[1-9]\\d*))(?:\\.\\d+)?(?:[eE][+-]?\\d+)?)(?:[\\t ]*(?=,)|[\\t ]*(?:(,)[\\t ]*)?(?=$|#|/\\*|//|\\]))"
     },
     "arrayObject": {
       "begin": "\\{",
@@ -199,7 +200,7 @@
           "name": "punctuation.definition.dictionary.begin.hjson"
         }
       },
-      "end": "(}|(?<=}))(?:\\s*([^],\\s]+))?",
+      "end": "(\\}|(?<=\\}))(?:\\s*([^,\\s\\]]+))?",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.dictionary.end.hjson"
@@ -255,7 +256,7 @@
               "name": "punctuation.definition.comment.hjson"
             }
           },
-          "match": "^\\s*(#).*\\n?",
+          "match": "^\\s*(#).*(?:\\n)?",
           "name": "comment.line.hash"
         },
         {
@@ -264,7 +265,7 @@
               "name": "punctuation.definition.comment.hjson"
             }
           },
-          "match": "^\\s*(//).*\\n?",
+          "match": "^\\s*(//).*(?:\\n)?",
           "name": "comment.line.double-slash"
         },
         {
@@ -360,7 +361,7 @@
           "name": "constant.language.hjson"
         }
       },
-      "match": "\\b(true|false|null)[\\t ]*(?=$|#|/\\*|//|])"
+      "match": "\\b(true|false|null)[\\t ]*(?=$|#|/\\*|//|\\])"
     },
     "jstring": {
       "patterns": [
@@ -371,7 +372,7 @@
               "name": "punctuation.definition.string.begin.hjson"
             }
           },
-          "end": "(\")(?:\\s*((?:[^#/\\s]|/[^*/]).*)$)?",
+          "end": "(\")(?:\\s*((?:[^\\s#/]|/[^/*]).*)$)?",
           "endCaptures": {
             "1": {
               "name": "punctuation.definition.string.end.hjson"
@@ -394,7 +395,7 @@
               "name": "punctuation.definition.string.begin.hjson"
             }
           },
-          "end": "(')(?:\\s*((?:[^#/\\s]|/[^*/]).*)$)?",
+          "end": "(')(?:\\s*((?:[^\\s#/]|/[^/*]).*)$)?",
           "endCaptures": {
             "1": {
               "name": "punctuation.definition.string.end.hjson"
@@ -415,7 +416,7 @@
     "jstringDoubleContent": {
       "patterns": [
         {
-          "match": "\\\\(?:[\"'/\\\\bfnrt]|u\\h{4})",
+          "match": "\\\\(?:[\"'\\\\\\/bfnrt]|u[0-9a-fA-F]{4})",
           "name": "constant.character.escape.hjson"
         },
         {
@@ -431,7 +432,7 @@
     "jstringSingleContent": {
       "patterns": [
         {
-          "match": "\\\\(?:[\"'/\\\\bfnrt]|u\\h{4})",
+          "match": "\\\\(?:[\"'\\\\\\/bfnrt]|u[0-9a-fA-F]{4})",
           "name": "constant.character.escape.hjson"
         },
         {
@@ -445,7 +446,7 @@
       ]
     },
     "key": {
-      "begin": "([^]\"',:\\[{}\\s][^],:\\[{}\\s]*|'(?:[^'\\\\]|(\\\\(?:[\"'/\\\\bfnrt]|u\\h{4}))|(\\\\.))*'|\"(?:[^\"\\\\]|(\\\\(?:[\"'/\\\\bfnrt]|u\\h{4}))|(\\\\.))*\")\\s*(?!\\n)([],\\[{}]*)",
+      "begin": "(?x:\n        (\n          (?:[^:,\\{\\}\\[\\]\\s\"'][^:,\\{\\}\\[\\]\\s]*) |\n          (?: # json string w/ '\n            '\n            (?:\n              [^\\\\'] | # anything but an escape character or quote\n              (\\\\(?:[\"'\\\\\\/bfnrt]|u[0-9a-fA-F]{4})) | # escape characters\n              (\\\\.) # bad escape characters\n            )*\n            '\n          ) |\n          (?: # json string w/ \"\n            \"\n            (?:\n              [^\\\\\"] | # anything but an escape character or quote\n              (\\\\(?:[\"'\\\\\\/bfnrt]|u[0-9a-fA-F]{4})) | # escape characters\n              (\\\\.) # bad escape characters\n            )*\n            \"\n          )\n        )\n        \\s*\n        (?!\\n)\n        ([,\\{\\}\\[\\]]*)\n      )",
       "beginCaptures": {
         "0": {
           "name": "meta.structure.key-value.begin.hjson"
@@ -486,13 +487,13 @@
           "include": "#keyValue"
         },
         {
-          "match": "\\S",
+          "match": "[^\\s]",
           "name": "invalid.illegal.object-property.hjson"
         }
       ]
     },
     "keyValue": {
-      "begin": "\\s*(:)\\s*([],}]*)",
+      "begin": "(?x:\n        \\s*\n        (:)\n        \\s* # capture the line ending if there is no value on the same line\n        ([,\\}\\]]*)\n      )",
       "beginCaptures": {
         "1": {
           "name": "punctuation.separator.dictionary.key-value.hjson"
@@ -501,7 +502,7 @@
           "name": "invalid.illegal.object-property.hjson"
         }
       },
-      "end": "(?<!^)\\s*(?=\\n)|(?=[,}])",
+      "end": "(?<!^)\\s*(?=\\n)|(?=[},])",
       "name": "meta.structure.key-value.hjson",
       "patterns": [
         {
@@ -519,10 +520,10 @@
               "name": "invalid.illegal.object-property.closing-bracket.hjson"
             }
           },
-          "match": "^\\s*(})"
+          "match": "^\\s*(\\})"
         },
         {
-          "match": "\\S",
+          "match": "[^\\s]",
           "name": "invalid.illegal.object-property.hjson"
         }
       ]
@@ -534,7 +535,7 @@
           "name": "punctuation.definition.string.begin.hjson"
         }
       },
-      "end": "(''')(?:\\s*((?:[^#/\\s]|/[^*/]).*)$)?",
+      "end": "(''')(?:\\s*((?:[^\\s#/]|/[^/*]).*)$)?",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.string.end.hjson"
@@ -551,7 +552,7 @@
           "name": "constant.numeric.hjson"
         }
       },
-      "match": "(-?(?:0|[1-9]\\d*)(?:\\.\\d+)?(?:[Ee][-+]?\\d+)?)[\\t ]*(?=$|#|/\\*|//|])"
+      "match": "(-?(?:0|(?:[1-9]\\d*))(?:\\.\\d+)?(?:[eE][+-]?\\d+)?)[\\t ]*(?=$|#|/\\*|//|\\])"
     },
     "object": {
       "begin": "\\{",
@@ -560,7 +561,7 @@
           "name": "punctuation.definition.dictionary.begin.hjson"
         }
       },
-      "end": "(}|(?<=}))(?:\\s*([^,\\s]+))?",
+      "end": "(\\}|(?<=\\}))(?:\\s*([^,\\s]+))?",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.dictionary.end.hjson"
@@ -583,7 +584,7 @@
           "name": "punctuation.definition.array.begin.hjson"
         }
       },
-      "end": "(])(?:\\s*([^,}\\s]+))?",
+      "end": "(\\])(?:\\s*([^,\\s\\}]+))?",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.array.end.hjson"
@@ -608,7 +609,7 @@
           "name": "punctuation.separator.dictionary.pair.after-const.hjson"
         }
       },
-      "match": "\\b(true|false|null)(?:[\\t ]*(?=,)|[\\t ]*(?:(,)[\\t ]*)?(?=$|#|/\\*|//|}))"
+      "match": "\\b(true|false|null)(?:[\\t ]*(?=,)|[\\t ]*(?:(,)[\\t ]*)?(?=$|#|/\\*|//|\\}))"
     },
     "objectContent": {
       "patterns": [
@@ -623,13 +624,13 @@
           "name": "invalid.illegal.object-property.hjson"
         },
         {
-          "begin": "(?<=[,{])|,",
+          "begin": "(?<=\\{|,)|,",
           "beginCaptures": {
             "1": {
               "name": "punctuation.separator.dictionary.pair.hjson"
             }
           },
-          "end": "(?=[^#,/\\s])|(?=/[^*/])",
+          "end": "(?=[^\\s,/#])|(?=/[^/*])",
           "patterns": [
             {
               "include": "#comments"
@@ -641,7 +642,7 @@
           ]
         },
         {
-          "match": "\\S",
+          "match": "[^\\s]",
           "name": "invalid.illegal.object-property.hjson"
         }
       ]
@@ -655,7 +656,7 @@
               "name": "punctuation.definition.string.begin.hjson"
             }
           },
-          "end": "(\")(?:\\s*((?:[^#,/}\\s]|/[^*/])+))?",
+          "end": "(\")(?:\\s*((?:[^,\\s\\}#/]|/[^/*])+))?",
           "endCaptures": {
             "1": {
               "name": "punctuation.definition.string.end.hjson"
@@ -678,7 +679,7 @@
               "name": "punctuation.definition.string.begin.hjson"
             }
           },
-          "end": "(')(?:\\s*((?:[^#,/}\\s]|/[^*/])+))?",
+          "end": "(')(?:\\s*((?:[^,\\s\\}#/]|/[^/*])+))?",
           "endCaptures": {
             "1": {
               "name": "punctuation.definition.string.end.hjson"
@@ -703,7 +704,7 @@
           "name": "punctuation.definition.string.begin.hjson"
         }
       },
-      "end": "(''')(?:\\s*((?:[^#,/}\\s]|/[^*/])+))?",
+      "end": "(''')(?:\\s*((?:[^,\\s\\}#/]|/[^/*])+))?",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.string.end.hjson"
@@ -723,7 +724,7 @@
           "name": "punctuation.separator.dictionary.pair.after-num.hjson"
         }
       },
-      "match": "(-?(?:0|[1-9]\\d*)(?:\\.\\d+)?(?:[Ee][-+]?\\d+)?)(?:[\\t ]*(?=,)|[\\t ]*(?:(,)[\\t ]*)?(?=$|#|/\\*|//|}))"
+      "match": "(-?(?:0|(?:[1-9]\\d*))(?:\\.\\d+)?(?:[eE][+-]?\\d+)?)(?:[\\t ]*(?=,)|[\\t ]*(?:(,)[\\t ]*)?(?=$|#|/\\*|//|\\}))"
     },
     "objectObject": {
       "begin": "\\{",
@@ -732,7 +733,7 @@
           "name": "punctuation.definition.dictionary.begin.hjson"
         }
       },
-      "end": "(}|(?<=})}?)(?:\\s*([^,}\\s]+))?",
+      "end": "(\\}|(?<=\\})\\}?)(?:\\s*([^,\\s}]+))?",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.dictionary.end.hjson"
@@ -794,7 +795,7 @@
       ]
     },
     "ustring": {
-      "match": "([^],:\\[{}\\s].*)$",
+      "match": "([^:,\\{\\[\\}\\]\\s].*)$",
       "name": "string.quoted.none.hjson"
     },
     "value": {

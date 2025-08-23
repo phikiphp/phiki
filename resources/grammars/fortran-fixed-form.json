@@ -1,4 +1,5 @@
 {
+  "comment": "Inherits rules from free form Fortran.",
   "displayName": "Fortran (Fixed Form)",
   "fileTypes": [
     "f",
@@ -36,7 +37,7 @@
     "comments": {
       "patterns": [
         {
-          "begin": "^[*Cc]",
+          "begin": "^[cC\\*]",
           "end": "\\n",
           "name": "comment.line.fortran"
         },

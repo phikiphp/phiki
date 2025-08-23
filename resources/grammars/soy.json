@@ -46,7 +46,7 @@
           "name": "entity.name.type.soy"
         }
       },
-      "match": "\\{(alias)\\s+([.\\w]+)(?:\\s+(as)\\s+(\\w+))?}"
+      "match": "{(alias)\\s+([\\w\\.]+)(?:\\s+(as)\\s+(\\w+))?}"
     },
     "attribute": {
       "captures": {
@@ -109,7 +109,7 @@
     "call": {
       "patterns": [
         {
-          "begin": "\\{((?:del)?call)\\s+([.\\w]+)(?=[^/]*?})",
+          "begin": "{((?:del)?call)\\s+([\\w\\.]+)(?=[^/]*?})",
           "beginCaptures": {
             "1": {
               "name": "storage.type.function.soy"
@@ -118,7 +118,7 @@
               "name": "entity.name.function.soy"
             }
           },
-          "end": "\\{/(\\1)}",
+          "end": "{/(\\1)}",
           "endCaptures": {
             "1": {
               "name": "storage.type.function.soy"
@@ -140,7 +140,7 @@
           ]
         },
         {
-          "begin": "\\{((?:del)?call)(\\s+[.\\w]+)",
+          "begin": "{((?:del)?call)(\\s+[\\w\\.]+)",
           "beginCaptures": {
             "1": {
               "name": "storage.type.function.soy"
@@ -182,13 +182,13 @@
           ]
         },
         {
-          "match": "^\\s*(//.*)$",
+          "match": "^\\s*(\\/\\/.*)$",
           "name": "comment.line.double-slash.soy"
         }
       ]
     },
     "condition": {
-      "begin": "\\{/?(if|elseif|switch|case)\\s*",
+      "begin": "{/?(if|elseif|switch|case)\\s*",
       "beginCaptures": {
         "1": {
           "name": "keyword.control.soy"
@@ -210,10 +210,10 @@
           "name": "keyword.control.soy"
         }
       },
-      "match": "\\{(else|ifempty|default)}"
+      "match": "{(else|ifempty|default)}"
     },
     "css": {
-      "begin": "\\{(css)\\s+",
+      "begin": "{(css)\\s+",
       "beginCaptures": {
         "1": {
           "name": "keyword.other.soy"
@@ -235,7 +235,7 @@
           "name": "entity.name.type.soy"
         }
       },
-      "match": "\\{(delpackage)\\s+([.\\w]+)}"
+      "match": "{(delpackage)\\s+([\\w\\.]+)}"
     },
     "expression": {
       "patterns": [
@@ -263,7 +263,7 @@
       ]
     },
     "for": {
-      "begin": "\\{/?(for(?:each|))(?=[}\\s])",
+      "begin": "{/?(foreach|for)(?=\\s|})",
       "beginCaptures": {
         "1": {
           "name": "keyword.control.soy"
@@ -300,7 +300,7 @@
     "let": {
       "patterns": [
         {
-          "begin": "\\{(let)\\s+(\\$\\w+\\s*:)",
+          "begin": "{(let)\\s+(\\$\\w+\\s*:)",
           "beginCaptures": {
             "1": {
               "name": "storage.type.soy"
@@ -320,7 +320,7 @@
           ]
         },
         {
-          "begin": "\\{(let)\\s+(\\$\\w+)",
+          "begin": "{(let)\\s+(\\$\\w+)",
           "beginCaptures": {
             "1": {
               "name": "storage.type.soy"
@@ -329,7 +329,7 @@
               "name": "variable.soy"
             }
           },
-          "end": "\\{/(\\1)}",
+          "end": "{/(\\1)}",
           "endCaptures": {
             "1": {
               "name": "storage.type.soy"
@@ -347,13 +347,13 @@
       ]
     },
     "literal": {
-      "begin": "\\{(literal)}",
+      "begin": "{(literal)}",
       "beginCaptures": {
         "1": {
           "name": "keyword.other.soy"
         }
       },
-      "end": "\\{/(\\1)}",
+      "end": "{/(\\1)}",
       "endCaptures": {
         "1": {
           "name": "keyword.other.soy"
@@ -368,7 +368,7 @@
         }
       },
       "end": "}",
-      "match": "\\{/?((?:|fallback)msg)",
+      "match": "{/?(msg|fallbackmsg)",
       "patterns": [
         {
           "include": "#attribute"
@@ -384,24 +384,24 @@
           "name": "entity.name.type.soy"
         }
       },
-      "match": "\\{(namespace)\\s+([.\\w]+)}"
+      "match": "{(namespace)\\s+([\\w\\.]+)}"
     },
     "null": {
       "match": "null",
       "name": "language.constant.null.soy"
     },
     "number": {
-      "match": "-?\\.?\\d+|\\d[.\\d]*",
+      "match": "-?\\.?\\d+|\\d[\\.\\d]*",
       "name": "language.constant.numeric"
     },
     "operator": {
-      "match": "-|not|[%*+/]|<=|>=|[<>]|==|!=|and|or|\\?:|[:?]",
+      "match": "-|not|\\*|\\/|%|\\+|<=|>=|<|>|==|!=|and|or|\\?:|\\?|:",
       "name": "keyword.operator.soy"
     },
     "param": {
       "patterns": [
         {
-          "begin": "\\{(param)\\s+(\\w+\\s*:)",
+          "begin": "{(param)\\s+(\\w+\\s*\\:)",
           "beginCaptures": {
             "1": {
               "name": "storage.type.soy"
@@ -418,7 +418,7 @@
           ]
         },
         {
-          "begin": "\\{(param)\\s+(\\w+)",
+          "begin": "{(param)\\s+(\\w+)",
           "beginCaptures": {
             "1": {
               "name": "storage.type.soy"
@@ -427,7 +427,7 @@
               "name": "variable.parameter.soy"
             }
           },
-          "end": "\\{/(\\1)}",
+          "end": "{/(\\1)}",
           "endCaptures": {
             "1": {
               "name": "storage.type.soy"
@@ -445,7 +445,7 @@
       ]
     },
     "print": {
-      "begin": "\\{(print)?\\s*",
+      "begin": "{(print)?\\s*",
       "beginCaptures": {
         "1": {
           "name": "keyword.other.soy"
@@ -472,7 +472,7 @@
           "name": "language.support.constant"
         }
       },
-      "match": "\\{(sp|nil|\\\\r|\\\\n|\\\\t|lb|rb)}"
+      "match": "{(sp|nil|\\\\r|\\\\n|\\\\t|lb|rb)}"
     },
     "string": {
       "begin": "'",
@@ -480,13 +480,13 @@
       "name": "string.quoted.single.soy",
       "patterns": [
         {
-          "match": "\\\\(?:[\"'\\\\bfnrt]|u\\h{4})",
+          "match": "\\\\(?:[\\\\'\"nrtbf]|u[0-9a-fA-F]{4})",
           "name": "constant.character.escape.soy"
         }
       ]
     },
     "template": {
-      "begin": "\\{((?:|del)template)\\s([.\\w]+)",
+      "begin": "{(template|deltemplate)\\s([\\w\\.]+)",
       "beginCaptures": {
         "1": {
           "name": "storage.type.soy"
@@ -495,7 +495,7 @@
           "name": "entity.name.function.soy"
         }
       },
-      "end": "\\{(/\\1)}",
+      "end": "{(/\\1)}",
       "endCaptures": {
         "1": {
           "name": "storage.type.soy"
@@ -503,7 +503,7 @@
       },
       "patterns": [
         {
-          "begin": "\\{(@param)(\\??)\\s+(\\S+\\s*:)",
+          "begin": "{(@param)(\\??)\\s+(\\S+\\s*:)",
           "beginCaptures": {
             "1": {
               "name": "keyword.parameter.soy"
@@ -565,7 +565,7 @@
       ]
     },
     "variable-ref": {
-      "match": "\\$[\\a-z][.\\w]*",
+      "match": "\\$[\\a-zA-Z_][\\w\\.]*",
       "name": "variable.other.soy"
     },
     "variant": {
@@ -592,7 +592,7 @@
       ]
     },
     "xid": {
-      "begin": "\\{(xid)\\s+",
+      "begin": "{(xid)\\s+",
       "beginCaptures": {
         "1": {
           "name": "keyword.other.soy"

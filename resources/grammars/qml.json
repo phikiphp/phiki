@@ -1,4 +1,5 @@
 {
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
   "displayName": "QML",
   "name": "qml",
   "patterns": [
@@ -39,9 +40,9 @@
     "attributes-value": {
       "patterns": [
         {
-          "begin": "(?<=\\w)\\s*:\\s*(?=[A-Z]\\w*\\s*\\{)",
+          "begin": "(?<=\\w)\\s*\\:\\s*(?=[A-Z]\\w*\\s*\\{)",
           "description": "A QML object as value.",
-          "end": "(?<=})",
+          "end": "(?<=\\})",
           "patterns": [
             {
               "include": "#object"
@@ -49,9 +50,9 @@
           ]
         },
         {
-          "begin": "(?<=\\w)\\s*:\\s*\\[",
+          "begin": "(?<=\\w)\\s*\\:\\s*\\[",
           "description": "A list as value.",
-          "end": "](.*)$",
+          "end": "\\](.*)$",
           "endCaptures": {
             "0": {
               "patterns": [
@@ -71,14 +72,14 @@
           ]
         },
         {
-          "begin": "(?<=\\w)\\s*:(?=\\s*\\{?\\s*$)",
+          "begin": "(?<=\\w)\\s*\\:(?=\\s*\\{?\\s*$)",
           "description": "A block of JavaScript code as value.",
-          "end": "(?<=})",
+          "end": "(?<=\\})",
           "patterns": [
             {
               "begin": "\\{",
               "contentName": "meta.embedded.block.js",
-              "end": "}",
+              "end": "\\}",
               "patterns": [
                 {
                   "include": "source.js"
@@ -88,10 +89,10 @@
           ]
         },
         {
-          "begin": "(?<=\\w)\\s*:",
+          "begin": "(?<=\\w)\\s*\\:",
           "contentName": "meta.embedded.line.js",
           "description": "A JavaScript expression as value.",
-          "end": ";|$|(?=})",
+          "end": ";|$|(?=\\})",
           "patterns": [
             {
               "include": "source.js"
@@ -103,7 +104,7 @@
     "comment": {
       "patterns": [
         {
-          "begin": "(//:)",
+          "begin": "(\\/\\/:)",
           "beginCaptures": {
             "1": {
               "name": "storage.type.class.qml.tr"
@@ -117,7 +118,7 @@
           ]
         },
         {
-          "begin": "(//[=|~])\\s*([$A-Z_a-z][]$.\\[\\w]*)",
+          "begin": "(\\/\\/[~|=])\\s*([A-Za-z_$][\\w$.\\[\\]]*)",
           "beginCaptures": {
             "1": {
               "name": "storage.type.class.qml.tr"
@@ -134,7 +135,7 @@
           ]
         },
         {
-          "begin": "(//)",
+          "begin": "(\\/\\/)",
           "beginCaptures": {
             "1": {
               "name": "comment.line.double-slash.qml"
@@ -148,13 +149,13 @@
           ]
         },
         {
-          "begin": "(/\\*)",
+          "begin": "(\\/\\*)",
           "beginCaptures": {
             "1": {
               "name": "comment.line.double-slash.qml"
             }
           },
-          "end": "(\\*/)",
+          "end": "(\\*\\/)",
           "endCaptures": {
             "1": {
               "name": "comment.line.double-slash.qml"
@@ -201,13 +202,13 @@
     "group-attributes": {
       "patterns": [
         {
-          "begin": "\\b([A-Z_a-z]\\w*)\\s*\\{",
+          "begin": "\\b([_a-zA-Z]\\w*)\\s*\\{",
           "beginCaptures": {
             "1": {
               "name": "variable.parameter.qml"
             }
           },
-          "end": "}",
+          "end": "\\}",
           "patterns": [
             {
               "include": "$self"
@@ -226,7 +227,7 @@
       "description": "The name of variable, key, signal and etc.",
       "patterns": [
         {
-          "match": "\\b[A-Z_a-z]\\w*\\b",
+          "match": "\\b[_a-zA-Z]\\w*\\b",
           "name": "variable.parameter.qml"
         }
       ]
@@ -288,10 +289,10 @@
               "name": "storage.type.qml"
             }
           },
-          "end": "(?<=})",
+          "end": "(?<=\\})",
           "patterns": [
             {
-              "begin": "([A-Z_a-z]\\w*)\\s*\\(",
+              "begin": "([_a-zA-Z]\\w*)\\s*\\(",
               "beginCaptures": {
                 "1": {
                   "name": "entity.name.function.qml"
@@ -307,7 +308,7 @@
             {
               "begin": "\\{",
               "contentName": "meta.embedded.block.js",
-              "end": "}",
+              "end": "\\}",
               "patterns": [
                 {
                   "include": "source.js"
@@ -327,7 +328,7 @@
               "name": "entity.name.type.qml"
             }
           },
-          "end": "}",
+          "end": "\\}",
           "patterns": [
             {
               "include": "$self"
@@ -381,7 +382,7 @@
           "end": "$",
           "patterns": [
             {
-              "begin": "([A-Z_a-z]\\w*)\\s*\\(",
+              "begin": "([_a-zA-Z]\\w*)\\s*\\(",
               "beginCaptures": {
                 "1": {
                   "name": "entity.name.function.qml"

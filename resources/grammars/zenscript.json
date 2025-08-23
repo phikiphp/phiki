@@ -6,17 +6,20 @@
   "name": "zenscript",
   "patterns": [
     {
-      "match": "\\b((0([Xx])\\h*)|(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))(([Ee])([-+])?[0-9]+)?)([DFLUdflu]|UL|ul)?\\b",
+      "comment": "numbers",
+      "match": "\\b((0(x|X)[0-9a-fA-F]*)|(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))((e|E)(\\+|-)?[0-9]+)?)([LlFfUuDd]|UL|ul)?\\b",
       "name": "constant.numeric.zenscript"
     },
     {
-      "match": "\\b-?(0[BOXbox])(0|[1-9A-Fa-f][_\\h]*)[A-Z_a-z]*\\b",
+      "comment": "prefixedNumbers",
+      "match": "\\b\\-?(0b|0x|0o|0B|0X|0O)(0|[1-9a-fA-F][0-9a-fA-F_]*)[a-zA-Z_]*\\b",
       "name": "constant.numeric.zenscript"
     },
     {
       "include": "#code"
     },
     {
+      "comment": "arrays",
       "match": "\\b((?:[a-z]\\w*\\.)*[A-Z]+\\w*)(?=\\[)",
       "name": "storage.type.object.array.zenscript"
     }
@@ -48,6 +51,7 @@
               "name": "keyword.control.zenscript"
             }
           },
+          "comment": "items and blocks",
           "match": "(<)\\b(.*?)(:(.*?(:(\\*|\\d+)?)?)?)(>)",
           "name": "keyword.other.zenscript"
         }
@@ -62,6 +66,7 @@
           "name": "entity.name.type.class.zenscript"
         }
       },
+      "comment": "class",
       "match": "(zenClass)\\s+(\\w+)",
       "name": "meta.class.zenscript"
     },
@@ -102,17 +107,19 @@
     "comments": {
       "patterns": [
         {
-          "match": "//[^\\n]*",
+          "comment": "inline comments",
+          "match": "//[^\n]*",
           "name": "comment.line.double=slash"
         },
         {
-          "begin": "/\\*",
+          "begin": "\\/\\*",
           "beginCaptures": {
             "0": {
               "name": "comment.block"
             }
           },
-          "end": "\\*/",
+          "comment": "block comments",
+          "end": "\\*\\/",
           "endCaptures": {
             "0": {
               "name": "comment.block"
@@ -134,6 +141,7 @@
           "name": "keyword.control.zenscript"
         }
       },
+      "comment": "dots",
       "match": "\\b(\\w+)(\\.)(\\w+)((\\.)(\\w+))*",
       "name": "plain.text.zenscript"
     },
@@ -146,28 +154,34 @@
           "name": "entity.name.function.zenscript"
         }
       },
-      "match": "function\\s+([$A-Z_a-z][$\\w]*)\\s*(?=\\()",
+      "comment": "functions",
+      "match": "function\\s+([A-Za-z_$][\\w$]*)\\s*(?=\\()",
       "name": "meta.function.zenscript"
     },
     "keywords": {
       "patterns": [
         {
+          "comment": "statement keywords",
           "match": "\\b(instanceof|get|implements|set|import|function|override|const|if|else|do|while|for|throw|panic|lock|try|catch|finally|return|break|continue|switch|case|default|in|is|as|match|throws|super|new)\\b",
           "name": "keyword.control.zenscript"
         },
         {
+          "comment": "storage keywords",
           "match": "\\b(zenClass|zenConstructor|alias|class|interface|enum|struct|expand|variant|set|void|bool|byte|sbyte|short|ushort|int|uint|long|ulong|usize|float|double|char|string)\\b",
           "name": "storage.type.zenscript"
         },
         {
+          "comment": "modifier keywords",
           "match": "\\b(variant|abstract|final|private|public|export|internal|static|protected|implicit|virtual|extern|immutable)\\b",
           "name": "storage.modifier.zenscript"
         },
         {
+          "comment": "annotation keywords",
           "match": "\\b(Native|Precondition)\\b",
           "name": "entity.other.attribute-name"
         },
         {
+          "comment": "language keywords",
           "match": "\\b(null|true|false)\\b",
           "name": "constant.language"
         }
@@ -176,11 +190,13 @@
     "operators": {
       "patterns": [
         {
-          "match": "\\b(\\.\\.??|\\.\\.\\.|[+,]|\\+=|\\+\\+|-=??|--|~=??|\\*=??|/=??|%=??|\\|=??|\\|\\||&=??|&&|\\^=??|\\?\\.??|\\?\\?|<=??|<<=??|>=??|>>=??|>>>=??|=>?|===??|!=??|!==|[$`])\\b",
+          "comment": "math operators",
+          "match": "\\b(\\.|\\.\\.|\\.\\.\\.|,|\\+|\\+=|\\+\\+|-|-=|--|~|~=|\\*|\\*=|/|/=|%|%=|\\||\\|=|\\|\\||&|&=|&&|\\^|\\^=|\\?|\\?\\.|\\?\\?|<|<=|<<|<<=|>|>=|>>|>>=|>>>|>>>=|=>|=|==|===|!|!=|!==|\\$|`)\\b",
           "name": "keyword.control"
         },
         {
-          "match": "\\b([:;])\\b",
+          "comment": "colons",
+          "match": "\\b(;|:)\\b",
           "name": "keyword.control"
         }
       ]
@@ -232,7 +248,8 @@
       ]
     },
     "var": {
-      "match": "\\b(va[lr])\\b",
+      "comment": "var",
+      "match": "\\b(val|var)\\b",
       "name": "storage.type"
     }
   },

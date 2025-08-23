@@ -1,4 +1,5 @@
 {
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
   "displayName": "Desktop",
   "name": "desktop",
   "patterns": [
@@ -34,7 +35,7 @@
           "name": "variable.parameter"
         },
         {
-          "match": "(?<=^Exec.*)\\s%[FUcfiku]\\s",
+          "match": "(?<=^Exec.*)\\s\\%[fFuUick]\\s",
           "name": "variable.language"
         },
         {
@@ -46,19 +47,19 @@
     "keywords": {
       "patterns": [
         {
-          "match": "^(?:Type|Version|Name|GenericName|NoDisplay|Comment|Icon|Hidden|OnlyShowIn|NotShowIn|DBusActivatable|TryExec|Exec|Path|Terminal|Actions|MimeType|Categories|Implements|Keywords|StartupNotify|StartupWMClass|URL|PrefersNonDefaultGPU|Encoding)\\b",
+          "match": "^Type\\b|^Version\\b|^Name\\b|^GenericName\\b|^NoDisplay\\b|^Comment\\b|^Icon\\b|^Hidden\\b|^OnlyShowIn\\b|^NotShowIn\\b|^DBusActivatable\\b|^TryExec\\b|^Exec\\b|^Path\\b|^Terminal\\b|^Actions\\b|^MimeType\\b|^Categories\\b|^Implements\\b|^Keywords\\b|^StartupNotify\\b|^StartupWMClass\\b|^URL\\b|^PrefersNonDefaultGPU\\b|^Encoding\\b",
           "name": "keyword"
         },
         {
-          "match": "^X-[- 0-9A-z]*",
+          "match": "^X-[A-z 0-9 -]*",
           "name": "keyword.other"
         },
         {
-          "match": "(?<!^)\\[.+]",
+          "match": "(?<!^)\\[.+\\]",
           "name": "constant.language"
         },
         {
-          "match": "^(?:GtkTheme|MetacityTheme|IconTheme|CursorTheme|ButtonLayout|ApplicationFont)\\b",
+          "match": "^GtkTheme\\b|^MetacityTheme\\b|^IconTheme\\b|^CursorTheme\\b|^ButtonLayout\\b|^ApplicationFont\\b",
           "name": "keyword"
         }
       ]
@@ -67,12 +68,12 @@
       "patterns": [
         {
           "begin": "^\\[Desktop",
-          "end": "]",
+          "end": "\\]",
           "name": "markup.heading"
         },
         {
           "begin": "^\\[X-\\w*",
-          "end": "]",
+          "end": "\\]",
           "name": "markup.heading"
         },
         {
@@ -92,11 +93,11 @@
           "name": "keyword.operator"
         },
         {
-          "match": "\\b(?:tru|fals)e\\b",
+          "match": "\\btrue\\b|\\bfalse\\b",
           "name": "variable.other"
         },
         {
-          "match": "(?<=^Version.*)\\d+(\\.?\\d*)",
+          "match": "(?<=^Version.*)\\d+(\\.{0,1}\\d*)",
           "name": "variable.other"
         }
       ]

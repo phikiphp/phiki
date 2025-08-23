@@ -20,7 +20,7 @@
   ],
   "repository": {
     "action": {
-      "begin": "([.0-9A-Z_a-z]+)(\\()",
+      "begin": "([a-zA-Z0-9._]+)(\\()",
       "beginCaptures": {
         "1": {
           "name": "entity.name.function.talon",
@@ -126,7 +126,7 @@
           "name": "keyword.operator.talon"
         }
       },
-      "end": "\\n",
+      "end": "\n",
       "patterns": [
         {
           "include": "#comment"
@@ -165,7 +165,7 @@
       ]
     },
     "capture": {
-      "match": "(<[.0-9A-Z_a-z]+>)",
+      "match": "(\\<[a-zA-Z0-9._]+\\>)",
       "name": "variable.parameter.talon"
     },
     "comment": {
@@ -251,11 +251,11 @@
           ]
         }
       },
-      "match": "\\{(.+?)}",
+      "match": "{(.+?)}",
       "name": "constant.character.format.placeholder.talon"
     },
     "header": {
-      "begin": "(?=(?:^app|title|os|tag|list|language):)",
+      "begin": "(?=^app:|title:|os:|tag:|list:|language:)",
       "end": "(?=^-$)",
       "patterns": [
         {
@@ -290,7 +290,7 @@
       "match": "(ctrl|shift|cmd|alt|win|super)(-)"
     },
     "keystring": {
-      "begin": "([\"'])",
+      "begin": "(\"|')",
       "beginCaptures": {
         "1": {
           "name": "punctuation.definition.string.begin.talon"
@@ -316,7 +316,7 @@
       ]
     },
     "list": {
-      "match": "(\\{[.0-9A-Z_a-z]+?})",
+      "match": "({[a-zA-Z0-9._]+?})",
       "name": "string.interpolated.talon"
     },
     "number": {
@@ -324,11 +324,11 @@
       "name": "constant.numeric.talon"
     },
     "operator": {
-      "match": "\\s([-*+/]|or)\\s",
+      "match": "\\s(\\+|-|\\*|/|or)\\s",
       "name": "keyword.operator.talon"
     },
     "other-rule-definition": {
-      "begin": "^([a-z]+\\(.*[^-]\\)|[a-z]+\\(.*--\\)|[a-z]+\\(-\\)|[a-z]+\\(\\)):",
+      "begin": "^([a-z]+\\(.*[^\\-]\\)|[a-z]+\\(.*--\\)|[a-z]+\\(-\\)|[a-z]+\\(\\)):",
       "beginCaptures": {
         "1": {
           "name": "entity.name.tag.talon",
@@ -345,7 +345,7 @@
           ]
         }
       },
-      "end": "(?=^[^#\\s])",
+      "end": "(?=^[^\\s#])",
       "patterns": [
         {
           "include": "#statement"
@@ -353,7 +353,7 @@
       ]
     },
     "qstring": {
-      "begin": "([\"'])",
+      "begin": "(\"|')",
       "beginCaptures": {
         "1": {
           "name": "punctuation.definition.string.begin.talon"
@@ -410,15 +410,15 @@
           "name": "support.other.match.begin.regexp"
         },
         {
-          "match": "\\\\[$*+.?^]",
+          "match": "\\\\\\.|\\\\\\*|\\\\\\^|\\\\\\$|\\\\\\+|\\\\\\?",
           "name": "constant.character.escape.talon"
         },
         {
-          "match": "\\[(\\\\]|[^]])*]",
+          "match": "\\[(\\\\\\]|[^\\]])*\\]",
           "name": "constant.other.set.regexp"
         },
         {
-          "match": "[*+?]",
+          "match": "\\*|\\+|\\?",
           "name": "keyword.operator.quantifier.regexp"
         }
       ]
@@ -472,7 +472,7 @@
           ]
         }
       },
-      "end": "(?=^[^#\\s])",
+      "end": "(?=^[^\\s#])",
       "patterns": [
         {
           "include": "#statement"
@@ -507,11 +507,11 @@
     "string-body": {
       "patterns": [
         {
-          "match": "\\{\\{|}}",
+          "match": "{{|}}",
           "name": "string.quoted.double.talon"
         },
         {
-          "match": "\\\\[\"'\\\\nrt]",
+          "match": "\\\\\\\\|\\\\n|\\\\t|\\\\r|\\\\\"|\\\\'",
           "name": "constant.character.escape.python"
         },
         {
@@ -531,7 +531,7 @@
           ]
         }
       },
-      "match": "([.0-9A-Z_a-z])(_(list|\\d+)(?=[^.0-9A-Z_a-z]))?",
+      "match": "([a-zA-Z0-9._])(_(list|\\d+)(?=[^a-zA-Z0-9._]))?",
       "name": "variable.parameter.talon"
     }
   },

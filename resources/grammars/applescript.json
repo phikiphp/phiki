@@ -6,6 +6,7 @@
     "script editor"
   ],
   "firstLineMatch": "^#!.*(osascript)",
+  "keyEquivalent": "^~A",
   "name": "applescript",
   "patterns": [
     {
@@ -62,7 +63,7 @@
           ]
         },
         {
-          "begin": "^\\s*(to|on)\\s+(\\w+)(\\()((?:[,:{}\\s]*\\w+{0,1})*)(\\))",
+          "begin": "^(?x)\n\t\t\t\t\t\t\\s*(to|on)\\s+ \t\t\t\t\t# \"on\" or \"to\"\n\t\t\t\t\t\t(\\w+)\t\t\t\t\t\t\t# function name\n\t\t\t\t\t\t(\\()\t\t\t\t\t\t\t# opening paren\n\t\t\t\t\t\t\t((?:[\\s,:\\{\\}]*(?:\\w+)?)*)\t# parameters\n\t\t\t\t\t\t(\\))\t\t\t\t\t\t\t# closing paren\n\t\t\t\t\t",
           "beginCaptures": {
             "1": {
               "name": "keyword.control.function.applescript"
@@ -80,6 +81,7 @@
               "name": "punctuation.definition.parameters.end.applescript"
             }
           },
+          "comment": "\n\t\t\t\t\t\tThis is not a very well-designed rule.  For now,\n\t\t\t\t\t\twe can leave it like this though, as it sorta works.\n\t\t\t\t\t",
           "end": "^\\s*(end)(?:\\s+(\\2))?(?=\\s*(--.*?)?$)",
           "endCaptures": {
             "1": {
@@ -94,7 +96,7 @@
           ]
         },
         {
-          "begin": "^\\s*(to|on)\\s+(\\w+)(?:\\s+(of|in)\\s+(\\w+))?(?=\\s+(above|against|apart\\s+from|around|aside\\s+from|at|below|beneath|beside|between|by|for|from|instead\\s+of|into|on|onto|out\\s+of|over|thru|under)\\b)",
+          "begin": "^(?x)\n\t\t\t\t\t\t\\s*(to|on)\\s+ \t\t\t\t\t# \"on\" or \"to\"\n\t\t\t\t\t\t(\\w+)\t\t\t\t\t\t\t# function name\n\t\t\t\t\t\t(?:\\s+\n\t\t\t\t\t\t\t(of|in)\\s+\t\t\t\t\t# \"of\" or \"in\"\n\t\t\t\t\t\t\t(\\w+)\t\t\t\t\t\t# direct parameter\n\t\t\t\t\t\t)?\n\t\t\t\t\t\t(?=\\s+(above|against|apart\\s+from|around|aside\\s+from|at|below|beneath|beside|between|by|for|from|instead\\s+of|into|on|onto|out\\s+of|over|thru|under)\\b)\n\t\t\t\t\t",
           "beginCaptures": {
             "1": {
               "name": "keyword.control.function.applescript"
@@ -109,6 +111,7 @@
               "name": "variable.parameter.handler.direct.applescript"
             }
           },
+          "comment": "TODO: match `given` parameters",
           "end": "^\\s*(end)(?:\\s+(\\2))?(?=\\s*(--.*?)?$)",
           "endCaptures": {
             "1": {
@@ -134,7 +137,7 @@
           ]
         },
         {
-          "begin": "^\\s*(to|on)\\s+(\\w+)(?=\\s*(--.*?)?$)",
+          "begin": "^(?x)\n\t\t\t\t\t\t\\s*(to|on)\\s+ \t\t\t\t\t# \"on\" or \"to\"\n\t\t\t\t\t\t(\\w+)\t\t\t\t\t\t\t# function name\n\t\t\t\t\t\t(?=\\s*(--.*?)?$)\t\t\t\t# nothing else\n\t\t\t\t\t",
           "beginCaptures": {
             "1": {
               "name": "keyword.control.function.applescript"
@@ -637,6 +640,7 @@
               "name": "keyword.control.tell.applescript"
             }
           },
+          "comment": "tell Textmate",
           "end": "^\\s*(end(?:\\s+tell)?)(?=\\s*(--.*?)?$)",
           "name": "meta.block.tell.application.textmate.applescript",
           "patterns": [
@@ -658,6 +662,7 @@
               "name": "keyword.control.tell.applescript"
             }
           },
+          "comment": "tell Finder",
           "end": "^\\s*(end(?:\\s+tell)?)(?=\\s*(--.*?)?$)",
           "name": "meta.block.tell.application.finder.applescript",
           "patterns": [
@@ -679,6 +684,7 @@
               "name": "keyword.control.tell.applescript"
             }
           },
+          "comment": "tell System Events",
           "end": "^\\s*(end(?:\\s+tell)?)(?=\\s*(--.*?)?$)",
           "name": "meta.block.tell.application.system-events.applescript",
           "patterns": [
@@ -700,6 +706,7 @@
               "name": "keyword.control.tell.applescript"
             }
           },
+          "comment": "tell iTunes",
           "end": "^\\s*(end(?:\\s+tell)?)(?=\\s*(--.*?)?$)",
           "name": "meta.block.tell.application.itunes.applescript",
           "patterns": [
@@ -721,6 +728,7 @@
               "name": "keyword.control.tell.applescript"
             }
           },
+          "comment": "tell generic application process",
           "end": "^\\s*(end(?:\\s+tell)?)(?=\\s*(--.*?)?$)",
           "name": "meta.block.tell.application-process.generic.applescript",
           "patterns": [
@@ -739,6 +747,7 @@
               "name": "keyword.control.tell.applescript"
             }
           },
+          "comment": "tell generic application",
           "end": "^\\s*(end(?:\\s+tell)?)(?=\\s*(--.*?)?$)",
           "name": "meta.block.tell.application.generic.applescript",
           "patterns": [
@@ -757,6 +766,7 @@
               "name": "keyword.control.tell.applescript"
             }
           },
+          "comment": "generic tell block",
           "end": "^\\s*(end(?:\\s+tell)?)(?=\\s*(--.*?)?$)",
           "name": "meta.block.tell.generic.applescript",
           "patterns": [
@@ -772,6 +782,7 @@
               "name": "keyword.control.tell.applescript"
             }
           },
+          "comment": "tell … to statement",
           "end": "(?<!¬)$",
           "name": "meta.block.tell.generic.applescript",
           "patterns": [
@@ -801,6 +812,7 @@
     "built-in.constant": {
       "patterns": [
         {
+          "comment": "yes/no can’t always be used as booleans, e.g. in an if() expression. But they work e.g. for boolean arguments.",
           "match": "\\b(?i:true|false|yes|no)\\b",
           "name": "constant.language.boolean.applescript"
         },
@@ -817,7 +829,7 @@
           "name": "constant.other.text.applescript"
         },
         {
-          "match": "\\b(?i:all\\s+(caps|lowercase)|bold|condensed|expanded|hidden|italic|outline|plain|shadow|small\\s+caps|strikethrough|(su(?:b|per))script|underline)\\b",
+          "match": "\\b(?i:all\\s+(caps|lowercase)|bold|condensed|expanded|hidden|italic|outline|plain|shadow|small\\s+caps|strikethrough|(sub|super)script|underline)\\b",
           "name": "constant.other.styles.applescript"
         },
         {
@@ -841,19 +853,20 @@
     "built-in.keyword": {
       "patterns": [
         {
-          "match": "([-\\&*+/^÷])",
+          "match": "(&|\\*|\\+|-|/|÷|\\^)",
           "name": "keyword.operator.arithmetic.applescript"
         },
         {
-          "match": "([<=>≠≥]|>=|≤|<=)",
+          "match": "(=|≠|>|<|≥|>=|≤|<=)",
           "name": "keyword.operator.comparison.applescript"
         },
         {
-          "match": "(?i)\\b(and|or|div|mod|as|not|(a\\s+)?(ref(?:(\\s+to)?|erence\\s+to))|equal(s|\\s+to)|contains?|comes\\s+(after|before)|(start|begin|end)s?\\s+with)\\b",
+          "match": "(?ix)\\b\n\t\t\t\t\t\t(and|or|div|mod|as|not\n\t\t\t\t\t\t|(a\\s+)?(ref(\\s+to)?|reference\\s+to)\n\t\t\t\t\t\t|equal(s|\\s+to)|contains?|comes\\s+(after|before)|(start|begin|end)s?\\s+with\n\t\t\t\t\t\t)\n\t\t\t\t\t\\b",
           "name": "keyword.operator.word.applescript"
         },
         {
-          "match": "(?i)\\b(is(n't|\\s+not)?(\\s+(equal(\\s+to)?|(less|greater)\\s+than(\\s+or\\s+equal(\\s+to)?)?|in|contained\\s+by))?|does(n't|\\s+not)\\s+(equal|come\\s+(before|after)|contain))\\b",
+          "comment": "In double quotes so we can use a single quote in the keywords.",
+          "match": "(?ix)\\b\n\t\t\t\t\t\t(is(n't|\\s+not)?(\\s+(equal(\\s+to)?|(less|greater)\\s+than(\\s+or\\s+equal(\\s+to)?)?|in|contained\\s+by))?\n\t\t\t\t\t\t|does(n't|\\s+not)\\s+(equal|come\\s+(before|after)|contain)\n\t\t\t\t\t\t)\n\t\t\t\t\t\\b",
           "name": "keyword.operator.word.applescript"
         },
         {
@@ -865,7 +878,7 @@
           "name": "keyword.control.loop.applescript"
         },
         {
-          "match": "\\b(?i:about|above|after|against|and|apart\\s+from|around|as|aside\\s+from|at|back|before|beginning|behind|below|beneath|beside|between|but|by|considering|contains??|contains|copy|div|does|eighth|else|end|equals??|error|every|false|fifth|first|for|fourth|from|front|get|given|global|if|ignoring|in|instead\\s+of|into|is|its??|last|local|me|middle|mod|my|ninth|not|of|on|onto|or|out\\s+of|over|prop|property|put|ref|reference|repeat|returning|script|second|set|seventh|since|sixth|some|tell|tenth|that|then??|third|through|thru|timeout|times|to|transaction|true|try|until|where|while|whose|with|without)\\b",
+          "match": "\\b(?i:about|above|after|against|and|apart\\s+from|around|as|aside\\s+from|at|back|before|beginning|behind|below|beneath|beside|between|but|by|considering|contain|contains|contains|copy|div|does|eighth|else|end|equal|equals|error|every|false|fifth|first|for|fourth|from|front|get|given|global|if|ignoring|in|instead\\s+of|into|is|it|its|last|local|me|middle|mod|my|ninth|not|of|on|onto|or|out\\s+of|over|prop|property|put|ref|reference|repeat|returning|script|second|set|seventh|since|sixth|some|tell|tenth|that|the|then|third|through|thru|timeout|times|to|transaction|true|try|until|where|while|whose|with|without)\\b",
           "name": "keyword.other.applescript"
         }
       ]
@@ -877,10 +890,12 @@
           "name": "punctuation.separator.continuation.line.applescript"
         },
         {
+          "comment": "the : in property assignments",
           "match": ":",
           "name": "punctuation.separator.key-value.property.applescript"
         },
         {
+          "comment": "the parentheses in groups",
           "match": "[()]",
           "name": "punctuation.section.group.applescript"
         }
@@ -913,7 +928,7 @@
           "name": "support.class.built-in.applescript"
         },
         {
-          "match": "(?i)\\b((cubic\\s+(centi)?|square\\s+(kilo)?|centi|kilo)met(er|re)s|square\\s+(yards|feet|miles)|cubic\\s+(yards|feet|inches)|miles|inches|lit(re|er)s|gallons|quarts|(kilo)?grams|ounces|pounds|degrees\\s+(Celsius|Fahrenheit|Kelvin))\\b",
+          "match": "(?ix)\\b\n\t\t\t\t\t\t(\t(cubic\\s+(centi)?|square\\s+(kilo)?|centi|kilo)met(er|re)s\n\t\t\t\t\t\t|\tsquare\\s+(yards|feet|miles)|cubic\\s+(yards|feet|inches)|miles|inches\n\t\t\t\t\t\t|\tlit(re|er)s|gallons|quarts\n\t\t\t\t\t\t|\t(kilo)?grams|ounces|pounds\n\t\t\t\t\t\t|\tdegrees\\s+(Celsius|Fahrenheit|Kelvin)\n\t\t\t\t\t\t)\n\t\t\t\t\t\\b",
           "name": "support.class.built-in.unit.applescript"
         },
         {
@@ -935,7 +950,7 @@
           "name": "comment.line.number-sign.applescript"
         },
         {
-          "begin": "(^[\\t ]+)?(?=#)",
+          "begin": "(^[ \\t]+)?(?=#)",
           "beginCaptures": {
             "1": {
               "name": "punctuation.whitespace.comment.leading.applescript"
@@ -956,7 +971,7 @@
           ]
         },
         {
-          "begin": "(^[\\t ]+)?(?=--)",
+          "begin": "(^[ \\t]+)?(?=--)",
           "beginCaptures": {
             "1": {
               "name": "punctuation.whitespace.comment.leading.applescript"
@@ -1026,7 +1041,8 @@
               "name": "punctuation.definition.array.begin.applescript"
             }
           },
-          "end": "}",
+          "comment": "We cannot necessarily distinguish \"records\" from \"arrays\", and so this could be either.",
+          "end": "\\}",
           "endCaptures": {
             "0": {
               "name": "punctuation.definition.array.end.applescript"
@@ -1052,7 +1068,7 @@
                   "name": "punctuation.separator.key-value.applescript"
                 }
               },
-              "match": "(\\w+|((\\|)[^\\n|]*(\\|)))\\s*(:)"
+              "match": "(\\w+|((\\|)[^|\\n]*(\\|)))\\s*(:)"
             },
             {
               "match": ":",
@@ -1108,7 +1124,7 @@
               "name": "punctuation.definition.identifier.applescript"
             }
           },
-          "match": "(\\|)[^\\n|]*(\\|)",
+          "match": "(\\|)[^|\\n]*(\\|)",
           "name": "meta.identifier.applescript"
         },
         {
@@ -1135,7 +1151,7 @@
               "name": "support.class.built-in.applescript"
             }
           },
-          "match": "(«)(data) (ut(?:xt|f8))(\\h*)(»)(?:\\s+(as)\\s+(?i:Unicode\\s+text))?",
+          "match": "(«)(data) (utxt|utf8)([[:xdigit:]]*)(»)(?:\\s+(as)\\s+(?i:Unicode\\s+text))?",
           "name": "constant.other.data.utxt.applescript"
         },
         {
@@ -1305,7 +1321,7 @@
           "name": "support.function.standardadditions.miscellaneous.applescript"
         },
         {
-          "match": "\\b(opening folder|((?:clos|mov)ing) folder window for|adding folder items to|removing folder items from)\\b",
+          "match": "\\b(opening folder|(closing|moving) folder window for|adding folder items to|removing folder items from)\\b",
           "name": "support.function.standardadditions.folder-actions.applescript"
         },
         {
@@ -1337,7 +1353,7 @@
           "name": "support.function.system-events.folder-actions.applescript"
         },
         {
-          "match": "\\b(movie (?:data|file))\\b",
+          "match": "\\b(movie data|movie file)\\b",
           "name": "support.class.system-events.movie-file.applescript"
         },
         {
@@ -1345,7 +1361,7 @@
           "name": "support.function.system-events.power.applescript"
         },
         {
-          "match": "\\b(((application |desk accessory )?process|(c(?:heck|ombo ))?box)(es)?|(action|attribute|browser|(busy|progress|relevance) indicator|color well|column|drawer|group|grow area|image|incrementor|list|menu( bar)?( item)?|(menu |pop up |radio )?button|outline|(radio|tab|splitter) group|row|scroll (area|bar)|sheet|slider|splitter|static text|table|text (area|field)|tool bar|UI element|window)s?)\\b",
+          "match": "\\b(((application |desk accessory )?process|(check|combo )?box)(es)?|(action|attribute|browser|(busy|progress|relevance) indicator|color well|column|drawer|group|grow area|image|incrementor|list|menu( bar)?( item)?|(menu |pop up |radio )?button|outline|(radio|tab|splitter) group|row|scroll (area|bar)|sheet|slider|splitter|static text|table|text (area|field)|tool bar|UI element|window)s?)\\b",
           "name": "support.class.system-events.processes.applescript"
         },
         {
@@ -1387,5 +1403,6 @@
       ]
     }
   },
-  "scopeName": "source.applescript"
+  "scopeName": "source.applescript",
+  "uuid": "777CF925-14B9-428E-B07B-17FAAB8FA27E"
 }

@@ -73,7 +73,7 @@
           "name": "keyword.control.razor.directive.attribute"
         }
       },
-      "end": "(?<=])|$",
+      "end": "(?<=\\])|$",
       "name": "meta.directive",
       "patterns": [
         {
@@ -92,7 +92,7 @@
           "name": "punctuation.squarebracket.open.cs"
         }
       },
-      "end": "(])",
+      "end": "(\\])",
       "endCaptures": {
         "1": {
           "name": "punctuation.squarebracket.close.cs"
@@ -126,7 +126,7 @@
       ]
     },
     "catch-clause": {
-      "begin": "(?:^|(?<=}))\\s*(catch)\\b\\s*?(?=[\\n({])",
+      "begin": "(?:^|(?<=}))\\s*(catch)\\b\\s*?(?=[\\n\\(\\{])",
       "beginCaptures": {
         "1": {
           "name": "keyword.control.try.catch.cs"
@@ -176,7 +176,7 @@
               "name": "entity.name.variable.local.cs"
             }
           },
-          "match": "(?<type-name>(?:(?:(?<identifier>@?[_[:alpha:]][_[:alnum:]]*)\\s*::\\s*)?(?<name-and-type-args>\\g<identifier>\\s*(?<type-args>\\s*<(?:[^<>]|\\g<type-args>)+>\\s*)?)(?:\\s*\\.\\s*\\g<name-and-type-args>)*|(?<tuple>\\s*\\((?:[^()]|\\g<tuple>)+\\)))(?:\\s*\\?\\s*)?(?:\\s*\\[(?:\\s*,\\s*)*]\\s*)*)\\s*(?:(\\g<identifier>)\\b)?"
+          "match": "(?x)\n(?<type-name>\n  (?:\n    (?:\n      (?:(?<identifier>@?[_[:alpha:]][_[:alnum:]]*)\\s*\\:\\:\\s*)? # alias-qualification\n      (?<name-and-type-args> # identifier + type arguments (if any)\n        \\g<identifier>\\s*\n        (?<type-args>\\s*<(?:[^<>]|\\g<type-args>)+>\\s*)?\n      )\n      (?:\\s*\\.\\s*\\g<name-and-type-args>)* | # Are there any more names being dotted into?\n      (?<tuple>\\s*\\((?:[^\\(\\)]|\\g<tuple>)+\\))\n    )\n    (?:\\s*\\?\\s*)? # nullable suffix?\n    (?:\\s*\\[(?:\\s*,\\s*)*\\]\\s*)* # array suffix?\n  )\n)\\s*\n(?:(\\g<identifier>)\\b)?"
         }
       ]
     },
@@ -208,7 +208,7 @@
           "name": "punctuation.curlybrace.open.cs"
         }
       },
-      "end": "(})",
+      "end": "(\\})",
       "endCaptures": {
         "1": {
           "name": "punctuation.curlybrace.close.cs"
@@ -257,7 +257,7 @@
         }
       },
       "contentName": "source.cs",
-      "end": "(})",
+      "end": "(\\})",
       "endCaptures": {
         "1": {
           "name": "keyword.control.razor.directive.codeblock.close"
@@ -277,7 +277,7 @@
           "name": "keyword.control.razor.directive.codeblock.open"
         }
       },
-      "end": "(})",
+      "end": "(\\})",
       "endCaptures": {
         "1": {
           "name": "keyword.control.razor.directive.codeblock.close"
@@ -349,7 +349,7 @@
       ]
     },
     "do-statement": {
-      "begin": "(@)(do)\\b\\s",
+      "begin": "(?:(@))(do)\\b\\s",
       "beginCaptures": {
         "1": {
           "patterns": [
@@ -405,7 +405,7 @@
       ]
     },
     "else-part": {
-      "begin": "(?:^|(?<=}))\\s*(else)\\b\\s*?(?: (if))?\\s*?(?=[\\n({])",
+      "begin": "(?:^|(?<=}))\\s*(else)\\b\\s*?(?: (if))?\\s*?(?=[\\n\\(\\{])",
       "beginCaptures": {
         "1": {
           "name": "keyword.control.conditional.else.cs"
@@ -460,7 +460,7 @@
       ]
     },
     "finally-clause": {
-      "begin": "(?:^|(?<=}))\\s*(finally)\\b\\s*?(?=[\\n{])",
+      "begin": "(?:^|(?<=}))\\s*(finally)\\b\\s*?(?=[\\n\\{])",
       "beginCaptures": {
         "1": {
           "name": "keyword.control.try.finally.cs"
@@ -478,7 +478,7 @@
       ]
     },
     "for-statement": {
-      "begin": "(@)(for)\\b\\s*(?=\\()",
+      "begin": "(?:(@))(for)\\b\\s*(?=\\()",
       "beginCaptures": {
         "1": {
           "patterns": [
@@ -566,7 +566,7 @@
               "name": "keyword.control.loop.in.cs"
             }
           },
-          "match": "(?:\\b(var)\\b|(?<type-name>(?:(?:(?<identifier>@?[_[:alpha:]][_[:alnum:]]*)\\s*::\\s*)?(?<name-and-type-args>\\g<identifier>\\s*(?<type-args>\\s*<(?:[^<>]|\\g<type-args>)+>\\s*)?)(?:\\s*\\.\\s*\\g<name-and-type-args>)*|(?<tuple>\\s*\\((?:[^()]|\\g<tuple>)+\\)))(?:\\s*\\?\\s*)?(?:\\s*\\[(?:\\s*,\\s*)*]\\s*)*))\\s+(\\g<identifier>)\\s+\\b(in)\\b"
+          "match": "(?x)\n(?:\n  (\\bvar\\b)|\n  (?<type-name>\n    (?:\n      (?:\n        (?:(?<identifier>@?[_[:alpha:]][_[:alnum:]]*)\\s*\\:\\:\\s*)? # alias-qualification\n        (?<name-and-type-args> # identifier + type arguments (if any)\n          \\g<identifier>\\s*\n          (?<type-args>\\s*<(?:[^<>]|\\g<type-args>)+>\\s*)?\n        )\n        (?:\\s*\\.\\s*\\g<name-and-type-args>)* | # Are there any more names being dotted into?\n        (?<tuple>\\s*\\((?:[^\\(\\)]|\\g<tuple>)+\\))\n      )\n      (?:\\s*\\?\\s*)? # nullable suffix?\n      (?:\\s*\\[(?:\\s*,\\s*)*\\]\\s*)* # array suffix?\n    )\n  )\n)\\s+\n(\\g<identifier>)\\s+\n\\b(in)\\b"
         },
         {
           "captures": {
@@ -584,7 +584,7 @@
               "name": "keyword.control.loop.in.cs"
             }
           },
-          "match": "(?:\\b(var)\\b\\s*)?(?<tuple>\\((?:[^()]|\\g<tuple>)+\\))\\s+\\b(in)\\b"
+          "match": "(?x) # match foreach (var (x, y) in ...)\n(?:\\b(var)\\b\\s*)?\n(?<tuple>\\((?:[^\\(\\)]|\\g<tuple>)+\\))\\s+\n\\b(in)\\b"
         },
         {
           "include": "source.cs#expression"
@@ -592,7 +592,7 @@
       ]
     },
     "foreach-statement": {
-      "begin": "(@)(await\\s+)?(foreach)\\b\\s*(?=\\()",
+      "begin": "(?:(@)(await\\s+)?)(foreach)\\b\\s*(?=\\()",
       "beginCaptures": {
         "1": {
           "patterns": [
@@ -683,7 +683,7 @@
       ]
     },
     "if-statement": {
-      "begin": "(@)(if)\\b\\s*(?=\\()",
+      "begin": "(?:(@))(if)\\b\\s*(?=\\()",
       "beginCaptures": {
         "1": {
           "patterns": [
@@ -773,7 +773,7 @@
         }
       },
       "contentName": "source.cs",
-      "end": "(?=[]\"')<>{}\\s])",
+      "end": "(?=[\\s<>\\{\\}\\)\\]'\"])",
       "name": "meta.expression.implicit.cshtml",
       "patterns": [
         {
@@ -795,7 +795,7 @@
           "name": "variable.other.object.cs"
         }
       },
-      "end": "(?=[]\"')<>{}\\s])",
+      "end": "(?=[\\s<>\\{\\}\\)\\]'\"])",
       "patterns": [
         {
           "include": "#implicit-expression-continuation"
@@ -803,7 +803,7 @@
       ]
     },
     "implicit-expression-body": {
-      "end": "(?=[]\"')<>{}\\s])",
+      "end": "(?=[\\s<>\\{\\}\\)\\]'\"])",
       "patterns": [
         {
           "include": "#implicit-expression-invocation-start"
@@ -814,7 +814,7 @@
       ]
     },
     "implicit-expression-continuation": {
-      "end": "(?=[]\"')<>{}\\s])",
+      "end": "(?=[\\s<>\\{\\}\\)\\]'\"])",
       "patterns": [
         {
           "include": "#balanced-parenthesis-csharp"
@@ -852,7 +852,7 @@
           "name": "entity.name.function.cs"
         }
       },
-      "end": "(?=[]\"')<>{}\\s])",
+      "end": "(?=[\\s<>\\{\\}\\)\\]'\"])",
       "patterns": [
         {
           "include": "#implicit-expression-continuation"
@@ -873,7 +873,7 @@
           "name": "keyword.operator.logical.cs"
         }
       },
-      "match": "(!)(?=\\.[_[:alpha:]][_[:alnum:]]*|[(?\\[])"
+      "match": "(\\!)(?=(?:\\.[_[:alpha:]][_[:alnum:]]*)|\\?|[\\[\\(])"
     },
     "implicit-expression-operator": {
       "patterns": [
@@ -961,7 +961,7 @@
       "name": "meta.directive"
     },
     "lock-statement": {
-      "begin": "(@)(lock)\\b\\s*(?=\\()",
+      "begin": "(?:(@))(lock)\\b\\s*(?=\\()",
       "beginCaptures": {
         "1": {
           "patterns": [
@@ -1059,7 +1059,7 @@
           ]
         }
       },
-      "match": "(@)(namespace)\\s+(\\S+)?",
+      "match": "(@)(namespace)\\s+([^\\s]+)?",
       "name": "meta.directive"
     },
     "namespace-directive-argument": {
@@ -1074,7 +1074,7 @@
       "match": "([_[:alpha:]][_[:alnum:]]*)(\\.)?"
     },
     "non-void-tag": {
-      "begin": "(?=<(!)?([^/>\\s]+)(\\s|/?>))",
+      "begin": "(?=<(!)?([^/\\s>]+)(\\s|/?>))",
       "end": "(</)(\\2)\\s*(>)|(/>)",
       "endCaptures": {
         "1": {
@@ -1092,7 +1092,7 @@
       },
       "patterns": [
         {
-          "begin": "(<)(!)?([^/>\\s]+)(?=\\s|/?>)",
+          "begin": "(<)(!)?([^/\\s>]+)(?=\\s|/?>)",
           "beginCaptures": {
             "1": {
               "name": "punctuation.definition.tag.begin.html"
@@ -1253,7 +1253,7 @@
         }
       },
       "contentName": "source.cs",
-      "end": "(})",
+      "end": "(\\})",
       "endCaptures": {
         "1": {
           "name": "keyword.control.razor.directive.codeblock.close"
@@ -1356,7 +1356,7 @@
           ]
         }
       },
-      "match": "(@:)([^$]*)$"
+      "match": "(\\@\\:)([^$]*)$"
     },
     "removeTagHelper-directive": {
       "captures": {
@@ -1436,7 +1436,7 @@
           "name": "punctuation.curlybrace.open.cs"
         }
       },
-      "end": "(})",
+      "end": "(\\})",
       "endCaptures": {
         "1": {
           "name": "punctuation.curlybrace.close.cs"
@@ -1456,7 +1456,7 @@
       ]
     },
     "switch-statement": {
-      "begin": "(@)(switch)\\b\\s*(?=\\()",
+      "begin": "(?:(@))(switch)\\b\\s*(?=\\()",
       "beginCaptures": {
         "1": {
           "patterns": [
@@ -1605,7 +1605,7 @@
       ]
     },
     "try-block": {
-      "begin": "(@)(try)\\b\\s*",
+      "begin": "(?:(@))(try)\\b\\s*",
       "beginCaptures": {
         "1": {
           "patterns": [
@@ -1760,7 +1760,7 @@
           "name": "keyword.control.razor.optionalSemicolon"
         }
       },
-      "match": "(@)(using)\\b\\s+(?![(\\s])(.+?)?(;)?$",
+      "match": "(@)(using)\\b\\s+(?!\\(|\\s)(.+?)?(;)?$",
       "name": "meta.directive"
     },
     "using-standard-directive": {
@@ -1772,7 +1772,7 @@
       "match": "([_[:alpha:]][_[:alnum:]]*)\\s*"
     },
     "using-statement": {
-      "begin": "(@)(using)\\b\\s*(?=\\()",
+      "begin": "(?:(@))(using)\\b\\s*(?=\\()",
       "beginCaptures": {
         "1": {
           "patterns": [

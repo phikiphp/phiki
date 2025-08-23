@@ -1,4 +1,5 @@
 {
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
   "displayName": "Edge",
   "injections": {
     "text.html.edge - (meta.embedded | meta.tag | comment.block.edge), L:(text.html.edge meta.tag - (comment.block.edge | meta.embedded.block.edge)), L:(source.ts.embedded.html - (comment.block.edge | meta.embedded.block.edge))": {
@@ -35,13 +36,13 @@
   ],
   "repository": {
     "comment": {
-      "begin": "\\{\\{--",
+      "begin": "\\{{--",
       "beginCaptures": {
         "0": {
           "name": "punctuation.definition.comment.begin.edge"
         }
       },
-      "end": "--}}",
+      "end": "\\--}}",
       "endCaptures": {
         "0": {
           "name": "punctuation.definition.comment.end.edge"
@@ -50,13 +51,13 @@
       "name": "comment.block"
     },
     "escapedMustache": {
-      "begin": "@\\{\\{",
+      "begin": "\\@{{",
       "beginCaptures": {
         "0": {
           "name": "punctuation.definition.comment.begin.edge"
         }
       },
-      "end": "}}",
+      "end": "\\}}",
       "endCaptures": {
         "0": {
           "name": "punctuation.definition.comment.end.edge"
@@ -65,13 +66,13 @@
       "name": "comment.block"
     },
     "mustache": {
-      "begin": "\\{\\{",
+      "begin": "\\{{",
       "beginCaptures": {
         "0": {
           "name": "punctuation.mustache.begin"
         }
       },
-      "end": "}}",
+      "end": "\\}}",
       "endCaptures": {
         "0": {
           "name": "punctuation.mustache.end"
@@ -90,7 +91,7 @@
           "name": "support.function.edge"
         }
       },
-      "match": "^(\\s*)((@{1,2})(!)?([.A-Z_a-z]+))(~)?$",
+      "match": "^(\\s*)((@{1,2})(!)?([a-zA-Z._]+))(~)?$",
       "name": "meta.embedded.block.javascript",
       "patterns": [
         {
@@ -99,13 +100,13 @@
       ]
     },
     "safeMustache": {
-      "begin": "\\{\\{\\{",
+      "begin": "\\{{{",
       "beginCaptures": {
         "0": {
           "name": "punctuation.mustache.begin"
         }
       },
-      "end": "}}}",
+      "end": "\\}}}",
       "endCaptures": {
         "0": {
           "name": "punctuation.mustache.end"
@@ -119,7 +120,7 @@
       ]
     },
     "tag": {
-      "begin": "^(\\s*)((@{1,2})(!)?([.A-Z_a-z]+)(\\s{0,2}))(\\()",
+      "begin": "^(\\s*)((@{1,2})(!)?([a-zA-Z._]+)(\\s{0,2}))(\\()",
       "beginCaptures": {
         "2": {
           "name": "support.function.edge"

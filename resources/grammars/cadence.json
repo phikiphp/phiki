@@ -32,7 +32,7 @@
           "name": "punctuation.section.scope.begin.cadence"
         }
       },
-      "end": "}",
+      "end": "\\}",
       "endCaptures": {
         "0": {
           "name": "punctuation.section.scope.end.cadence"
@@ -120,7 +120,7 @@
           "name": "invalid.illegal.unexpected-end-of-block-comment.cadence"
         },
         {
-          "begin": "(^[\\t ]+)?(?=//)",
+          "begin": "(^[ \\t]+)?(?=//)",
           "beginCaptures": {
             "1": {
               "name": "punctuation.whitespace.comment.leading.cadence"
@@ -174,7 +174,7 @@
       }
     },
     "composite": {
-      "begin": "\\b((?:struct|resource|contract)(?:\\s+interface)?|transaction|enum)\\s+([_\\p{L}][_\\p{L}\\p{N}\\p{M}]*)",
+      "begin": "\\b((?:(?:struct|resource|contract)(?:\\s+interface)?)|transaction|enum)\\s+([\\p{L}_][\\p{L}_\\p{N}\\p{M}]*)",
       "beginCaptures": {
         "1": {
           "name": "storage.type.$1.cadence"
@@ -183,7 +183,7 @@
           "name": "entity.name.type.$1.cadence"
         }
       },
-      "end": "(?<=})",
+      "end": "(?<=\\})",
       "name": "meta.definition.type.composite.cadence",
       "patterns": [
         {
@@ -199,7 +199,7 @@
               "name": "punctuation.definition.type.begin.cadence"
             }
           },
-          "end": "}",
+          "end": "\\}",
           "endCaptures": {
             "0": {
               "name": "punctuation.definition.type.end.cadence"
@@ -255,7 +255,7 @@
       ]
     },
     "event": {
-      "begin": "\\b(event)\\b\\s+([_\\p{L}][_\\p{L}\\p{N}\\p{M}]*)\\s*",
+      "begin": "\\b(event)\\b\\s+([\\p{L}_][\\p{L}_\\p{N}\\p{M}]*)\\s*",
       "beginCaptures": {
         "1": {
           "name": "storage.type.event.cadence"
@@ -281,7 +281,7 @@
           "include": "#comments"
         },
         {
-          "begin": "([_\\p{L}][_\\p{L}\\p{N}\\p{M}]*)\\s*(:)",
+          "begin": "([\\p{L}_][\\p{L}_\\p{N}\\p{M}]*)\\s*(:)",
           "beginCaptures": {
             "1": {
               "name": "support.function.any-method.cadence"
@@ -290,7 +290,8 @@
               "name": "punctuation.separator.argument-label.cadence"
             }
           },
-          "end": "(?=[]),])",
+          "comment": "an element with a label",
+          "end": "(?=[,)\\]])",
           "patterns": [
             {
               "include": "#expressions"
@@ -298,8 +299,9 @@
           ]
         },
         {
-          "begin": "(?![]),])(?=\\S)",
-          "end": "(?=[]),])",
+          "begin": "(?![,)\\]])(?=\\S)",
+          "comment": "an element without a label (i.e. anything else)",
+          "end": "(?=[,)\\]])",
           "patterns": [
             {
               "include": "#expressions"
@@ -328,7 +330,7 @@
       ]
     },
     "function": {
-      "begin": "\\b(fun)\\b\\s+([_\\p{L}][_\\p{L}\\p{N}\\p{M}]*)\\s*",
+      "begin": "\\b(fun)\\b\\s+([\\p{L}_][\\p{L}_\\p{N}\\p{M}]*)\\s*",
       "beginCaptures": {
         "1": {
           "name": "storage.type.function.cadence"
@@ -337,7 +339,7 @@
           "name": "entity.name.function.cadence"
         }
       },
-      "end": "(?<=})|$",
+      "end": "(?<=\\})|$",
       "name": "meta.definition.function.cadence",
       "patterns": [
         {
@@ -356,7 +358,7 @@
               "name": "punctuation.section.function.begin.cadence"
             }
           },
-          "end": "(})",
+          "end": "(\\})",
           "endCaptures": {
             "1": {
               "name": "punctuation.section.function.end.cadence"
@@ -374,7 +376,7 @@
     "function-call-expression": {
       "patterns": [
         {
-          "begin": "(?!set|init)([_\\p{L}][_\\p{L}\\p{N}\\p{M}]*)\\s*(\\()",
+          "begin": "(?!(?:set|init))([\\p{L}_][\\p{L}_\\p{N}\\p{M}]*)\\s*(\\()",
           "beginCaptures": {
             "1": {
               "name": "support.function.any-method.cadence"
@@ -383,6 +385,7 @@
               "name": "punctuation.definition.arguments.begin.cadence"
             }
           },
+          "comment": "foo(args) -- a call whose callee is a highlightable name",
           "end": "\\)",
           "endCaptures": {
             "0": {
@@ -399,13 +402,13 @@
       ]
     },
     "function-result": {
-      "begin": "(?<![-!%\\&*+./<=>^|~])(:)(?![-!%\\&*+./<=>^|~])\\s*",
+      "begin": "(?<![/=\\-+!*%<>&|\\^~.])(:)(?![/=\\-+!*%<>&|\\^~.])\\s*",
       "beginCaptures": {
         "1": {
           "name": "keyword.operator.function-result.cadence"
         }
       },
-      "end": "(?!\\G)(?=[;{])|$",
+      "end": "(?!\\G)(?=\\{|;)|$",
       "name": "meta.function-result.cadence",
       "patterns": [
         {
@@ -414,13 +417,13 @@
       ]
     },
     "initializer": {
-      "begin": "(?<!\\.)\\b(init)\\s*(?=[(<])",
+      "begin": "(?<!\\.)\\b(init)\\s*(?=\\(|<)",
       "beginCaptures": {
         "1": {
           "name": "storage.type.function.cadence"
         }
       },
-      "end": "(?<=})|$",
+      "end": "(?<=\\})|$",
       "name": "meta.definition.function.initializer.cadence",
       "patterns": [
         {
@@ -436,7 +439,7 @@
               "name": "punctuation.section.function.begin.cadence"
             }
           },
-          "end": "(})",
+          "end": "(\\})",
           "endCaptures": {
             "1": {
               "name": "punctuation.section.function.end.cadence"
@@ -529,19 +532,23 @@
           ],
           "repository": {
             "binary": {
-              "match": "(\\B-|\\b)0b[01]([01_]*[01])?\\b",
+              "comment": "",
+              "match": "(\\B\\-|\\b)0b[01]([_01]*[01])?\\b",
               "name": "constant.numeric.integer.binary.cadence"
             },
             "decimal": {
-              "match": "(\\B-|\\b)[0-9]([0-9_]*[0-9])?\\b",
+              "comment": "",
+              "match": "(\\B\\-|\\b)[0-9]([_0-9]*[0-9])?\\b",
               "name": "constant.numeric.integer.decimal.cadence"
             },
             "hexadecimal": {
-              "match": "(\\B-|\\b)0x\\h([_\\h]*\\h)?\\b",
+              "comment": "",
+              "match": "(\\B\\-|\\b)0x[0-9A-Fa-f]([_0-9A-Fa-f]*[0-9A-Fa-f])?\\b",
               "name": "constant.numeric.integer.hexadecimal.cadence"
             },
             "octal": {
-              "match": "(\\B-|\\b)0o[0-7]([0-7_]*[0-7])?\\b",
+              "comment": "",
+              "match": "(\\B\\-|\\b)0o[0-7]([_0-7]*[0-7])?\\b",
               "name": "constant.numeric.integer.octal.cadence"
             }
           }
@@ -564,7 +571,7 @@
               "name": "string.quoted.double.single-line.cadence",
               "patterns": [
                 {
-                  "match": "[\\n\\r]",
+                  "match": "\\r|\\n",
                   "name": "invalid.illegal.returns-not-allowed.cadence"
                 },
                 {
@@ -577,11 +584,11 @@
             "string-guts": {
               "patterns": [
                 {
-                  "match": "\\\\[\"'0\\\\nrt]",
+                  "match": "\\\\[0\\\\tnr\"']",
                   "name": "constant.character.escape.cadence"
                 },
                 {
-                  "match": "\\\\u\\{\\h{1,8}}",
+                  "match": "\\\\u\\{[0-9a-fA-F]{1,8}\\}",
                   "name": "constant.character.escape.unicode.cadence"
                 }
               ]
@@ -593,7 +600,7 @@
     "operators": {
       "patterns": [
         {
-          "match": "-",
+          "match": "\\-",
           "name": "keyword.operator.arithmetic.unary.cadence"
         },
         {
@@ -613,7 +620,7 @@
           "name": "keyword.operator.force-move.cadence"
         },
         {
-          "match": "[-*+/]",
+          "match": "\\+|\\-|\\*|/",
           "name": "keyword.operator.arithmetic.cadence"
         },
         {
@@ -621,7 +628,7 @@
           "name": "keyword.operator.arithmetic.remainder.cadence"
         },
         {
-          "match": "==|!=|[<>]|>=|<=",
+          "match": "==|!=|>|<|>=|<=",
           "name": "keyword.operator.comparison.cadence"
         },
         {
@@ -633,7 +640,7 @@
           "name": "keyword.operator.logical.cadence"
         },
         {
-          "match": "[!?]",
+          "match": "[?!]",
           "name": "keyword.operator.type.optional.cadence"
         }
       ]
@@ -669,7 +676,8 @@
               "name": "variable.parameter.function.cadence"
             }
           },
-          "match": "([_\\p{L}][_\\p{L}\\p{N}\\p{M}]*)\\s+([_\\p{L}][_\\p{L}\\p{N}\\p{M}]*)(?=\\s*:)"
+          "comment": "External parameter labels are considered part of the function name",
+          "match": "([\\p{L}_][\\p{L}_\\p{N}\\p{M}]*)\\s+([\\p{L}_][\\p{L}_\\p{N}\\p{M}]*)(?=\\s*:)"
         },
         {
           "captures": {
@@ -680,11 +688,12 @@
               "name": "entity.name.function.cadence"
             }
           },
-          "match": "(([_\\p{L}][_\\p{L}\\p{N}\\p{M}]*))(?=\\s*:)"
+          "comment": "If no external label is given, the name is both the external label and the internal variable name",
+          "match": "(([\\p{L}_][\\p{L}_\\p{N}\\p{M}]*))(?=\\s*:)"
         },
         {
           "begin": ":\\s*(?!\\s)",
-          "end": "(?=[),])",
+          "end": "(?=[,)])",
           "patterns": [
             {
               "include": "#type"
@@ -703,13 +712,13 @@
           "include": "#comments"
         },
         {
-          "match": "([_\\p{L}][_\\p{L}\\p{N}\\p{M}]*)",
+          "match": "([\\p{L}_][\\p{L}_\\p{N}\\p{M}]*)",
           "name": "storage.type.cadence"
         }
       ]
     },
     "var-let-declaration": {
-      "begin": "\\b(var|let)\\b\\s+([_\\p{L}][_\\p{L}\\p{N}\\p{M}]*)",
+      "begin": "\\b(var|let)\\b\\s+([\\p{L}_][\\p{L}_\\p{N}\\p{M}]*)",
       "beginCaptures": {
         "1": {
           "name": "storage.type.$1.cadence"
@@ -718,7 +727,7 @@
           "name": "entity.name.type.$1.cadence"
         }
       },
-      "end": "=|<-!??|$",
+      "end": "=|<-|<-!|$",
       "patterns": [
         {
           "include": "#type"

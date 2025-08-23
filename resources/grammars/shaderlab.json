@@ -1,5 +1,10 @@
 {
   "displayName": "ShaderLab",
+  "information_for_contributors": [
+    "This file has been converted from https://github.com/tgjones/shaders-tmLanguage/blob/master/grammars/shaderlab.json",
+    "If you want to provide a fix or improvement, please create a pull request against the original repository.",
+    "Once accepted there, we are happy to receive an update request."
+  ],
   "name": "shaderlab",
   "patterns": [
     {
@@ -23,7 +28,7 @@
       "name": "support.type.propertyname.shaderlab"
     },
     {
-      "match": "\\b(?i:Back|Front|On|Off|[ABGR]{1,3}|AmbientAndDiffuse|Emission)\\b",
+      "match": "\\b(?i:Back|Front|On|Off|[RGBA]{1,3}|AmbientAndDiffuse|Emission)\\b",
       "name": "support.constant.property-value.shaderlab"
     },
     {
@@ -39,7 +44,7 @@
       "name": "support.constant.property-value.texturecombiners.shaderlab"
     },
     {
-      "match": "\\b(?i:Global|Linear|Exp2?)\\b",
+      "match": "\\b(?i:Global|Linear|Exp2|Exp)\\b",
       "name": "support.constant.property-value.fog.shaderlab"
     },
     {
@@ -55,16 +60,16 @@
       "name": "support.constant.property-value.blendfactors.shaderlab"
     },
     {
-      "match": "\\[([A-Z_a-z][0-9A-Z_a-z]*)](?!\\s*[A-Z_a-z][0-9A-Z_a-z]*\\s*\\(\")",
+      "match": "\\[([a-zA-Z_][a-zA-Z0-9_]*)\\](?!\\s*[a-zA-Z_][a-zA-Z0-9_]*\\s*\\(\")",
       "name": "support.variable.reference.shaderlab"
     },
     {
       "begin": "(\\[)",
-      "end": "(])",
+      "end": "(\\])",
       "name": "meta.attribute.shaderlab",
       "patterns": [
         {
-          "match": "\\G([A-Za-z]+)\\b",
+          "match": "\\G([a-zA-Z]+)\\b",
           "name": "support.type.attributename.shaderlab"
         },
         {
@@ -73,11 +78,11 @@
       ]
     },
     {
-      "match": "\\b([A-Z_a-z][0-9A-Z_a-z]*)\\s*\\(",
+      "match": "\\b([a-zA-Z_][a-zA-Z0-9_]*)\\s*\\(",
       "name": "support.variable.declaration.shaderlab"
     },
     {
-      "begin": "\\b(CG(?:PROGRAM|INCLUDE))\\b",
+      "begin": "\\b(CGPROGRAM|CGINCLUDE)\\b",
       "beginCaptures": {
         "1": {
           "name": "keyword.other"
@@ -97,7 +102,7 @@
       ]
     },
     {
-      "begin": "\\b(HLSL(?:PROGRAM|INCLUDE))\\b",
+      "begin": "\\b(HLSLPROGRAM|HLSLINCLUDE)\\b",
       "beginCaptures": {
         "1": {
           "name": "keyword.other"
@@ -133,7 +138,7 @@
           "name": "storage.type.basic.shaderlab"
         },
         {
-          "match": "\\b(UNITY_MATRIX_MVP?|UNITY_MATRIX_M|UNITY_MATRIX_V|UNITY_MATRIX_P|UNITY_MATRIX_VP|UNITY_MATRIX_T_MV|UNITY_MATRIX_I_V|UNITY_MATRIX_IT_MV|_Object2World|_World2Object|unity_ObjectToWorld|unity_WorldToObject)\\b",
+          "match": "\\b(UNITY_MATRIX_MVP|UNITY_MATRIX_MV|UNITY_MATRIX_M|UNITY_MATRIX_V|UNITY_MATRIX_P|UNITY_MATRIX_VP|UNITY_MATRIX_T_MV|UNITY_MATRIX_I_V|UNITY_MATRIX_IT_MV|_Object2World|_World2Object|unity_ObjectToWorld|unity_WorldToObject)\\b",
           "name": "support.variable.transformations.shaderlab"
         },
         {
@@ -141,7 +146,7 @@
           "name": "support.variable.camera.shaderlab"
         },
         {
-          "match": "\\b((?:_|_Sin|_Cos|unity_Delta)Time)\\b",
+          "match": "\\b(_Time|_SinTime|_CosTime|unity_DeltaTime)\\b",
           "name": "support.variable.time.shaderlab"
         },
         {
@@ -157,7 +162,7 @@
           "name": "support.variable.various.shaderlab"
         },
         {
-          "match": "\\b(SHADER_API_(?:D3D9|D3D11|GLCORE|OPENGL|GLES3??|METAL|D3D11_9X|PSSL|XBOXONE|PSP2|WIIU|MOBILE|GLSL))\\b",
+          "match": "\\b(SHADER_API_D3D9|SHADER_API_D3D11|SHADER_API_GLCORE|SHADER_API_OPENGL|SHADER_API_GLES|SHADER_API_GLES3|SHADER_API_METAL|SHADER_API_D3D11_9X|SHADER_API_PSSL|SHADER_API_XBOXONE|SHADER_API_PSP2|SHADER_API_WIIU|SHADER_API_MOBILE|SHADER_API_GLSL)\\b",
           "name": "support.variable.preprocessor.targetplatform.shaderlab"
         },
         {
@@ -169,15 +174,15 @@
           "name": "support.variable.preprocessor.unityversion.shaderlab"
         },
         {
-          "match": "\\b(UNITY_(?:BRANCH|FLATTEN|NO_SCREENSPACE_SHADOWS|NO_LINEAR_COLORSPACE|NO_RGBM|NO_DXT5nm|FRAMEBUFFER_FETCH_AVAILABLE|USE_RGBA_FOR_POINT_SHADOWS|ATTEN_CHANNEL|HALF_TEXEL_OFFSET|UV_STARTS_AT_TOP|MIGHT_NOT_HAVE_DEPTH_Texture|NEAR_CLIP_VALUE|VPOS_TYPE|CAN_COMPILE_TESSELLATION|COMPILER_HLSL|COMPILER_HLSL2GLSL|COMPILER_CG|REVERSED_Z))\\b",
+          "match": "\\b(UNITY_BRANCH|UNITY_FLATTEN|UNITY_NO_SCREENSPACE_SHADOWS|UNITY_NO_LINEAR_COLORSPACE|UNITY_NO_RGBM|UNITY_NO_DXT5nm|UNITY_FRAMEBUFFER_FETCH_AVAILABLE|UNITY_USE_RGBA_FOR_POINT_SHADOWS|UNITY_ATTEN_CHANNEL|UNITY_HALF_TEXEL_OFFSET|UNITY_UV_STARTS_AT_TOP|UNITY_MIGHT_NOT_HAVE_DEPTH_Texture|UNITY_NEAR_CLIP_VALUE|UNITY_VPOS_TYPE|UNITY_CAN_COMPILE_TESSELLATION|UNITY_COMPILER_HLSL|UNITY_COMPILER_HLSL2GLSL|UNITY_COMPILER_CG|UNITY_REVERSED_Z)\\b",
           "name": "support.variable.preprocessor.platformdifference.shaderlab"
         },
         {
-          "match": "\\b(UNITY_PASS_(?:FORWARDBASE|FORWARDADD|DEFERRED|SHADOWCASTER|PREPASSBASE|PREPASSFINAL))\\b",
+          "match": "\\b(UNITY_PASS_FORWARDBASE|UNITY_PASS_FORWARDADD|UNITY_PASS_DEFERRED|UNITY_PASS_SHADOWCASTER|UNITY_PASS_PREPASSBASE|UNITY_PASS_PREPASSFINAL)\\b",
           "name": "support.variable.preprocessor.texture2D.shaderlab"
         },
         {
-          "match": "\\b(appdata_(?:base|tan|full|img))\\b",
+          "match": "\\b(appdata_base|appdata_tan|appdata_full|appdata_img)\\b",
           "name": "support.class.structures.shaderlab"
         },
         {
@@ -195,5 +200,6 @@
       ]
     }
   },
-  "scopeName": "source.shaderlab"
+  "scopeName": "source.shaderlab",
+  "version": "https://github.com/tgjones/shaders-tmLanguage/commit/c72c8b39380ba5a86c58ceed053b5d965ebf38b3"
 }

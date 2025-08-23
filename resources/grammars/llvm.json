@@ -1,9 +1,10 @@
 {
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
   "displayName": "LLVM IR",
   "name": "llvm",
   "patterns": [
     {
-      "match": "\\b(?:void\\b|half\\b|bfloat\\b|float\\b|double\\b|x86_fp80\\b|fp128\\b|ppc_fp128\\b|label\\b|metadata\\b|x86_mmx\\b|x86_amx\\b|type\\b|label\\b|opaque\\b|token\\b|i\\d+\\**)",
+      "match": "\\bvoid\\b|\\bhalf\\b|\\bbfloat\\b|\\bfloat\\b|\\bdouble\\b|\\bx86_fp80\\b|\\bfp128\\b|\\bppc_fp128\\b|\\blabel\\b|\\bmetadata\\b|\\bx86_mmx\\b|\\bx86_amx\\b|\\btype\\b|\\blabel\\b|\\bopaque\\b|\\btoken\\b|\\bi\\d+\\**",
       "name": "storage.type.llvm"
     },
     {
@@ -12,26 +13,26 @@
           "name": "storage.type.llvm"
         }
       },
-      "match": "!([A-Za-z]+)\\s*\\("
+      "match": "!([a-zA-Z]+)\\s*\\("
     },
     {
-      "match": "(?:(?<=\\s|^)#dbg_(assign|declare|label|value)|\\badd|\\baddrspacecast|\\balloca|\\band|\\barcp|\\bashr|\\batomicrmw|\\bbitcast|\\bbr|\\bcatchpad|\\bcatchswitch|\\bcatchret|\\bcall|\\bcallbr|\\bcleanuppad|\\bcleanupret|\\bcmpxchg|\\beq|\\bexact|\\bextractelement|\\bextractvalue|\\bfadd|\\bfast|\\bfcmp|\\bfdiv|\\bfence|\\bfmul|\\bfpext|\\bfptosi|\\bfptoui|\\bfptrunc|\\bfree|\\bfrem|\\bfreeze|\\bfsub|\\bfneg|\\bgetelementptr|\\bicmp|\\binbounds|\\bindirectbr|\\binsertelement|\\binsertvalue|\\binttoptr|\\binvoke|\\blandingpad|\\bload|\\blshr|\\bmalloc|\\bmax|\\bmin|\\bmul|\\bnand|\\bne|\\bninf|\\bnnan|\\bnsw|\\bnsz|\\bnuw|\\boeq|\\boge|\\bogt|\\bole|\\bolt|\\bone|\\bord??|\\bphi|\\bptrtoint|\\bresume|\\bret|\\bsdiv|\\bselect|\\bsext|\\bsge|\\bsgt|\\bshl|\\bshufflevector|\\bsitofp|\\bsle|\\bslt|\\bsrem|\\bstore|\\bsub|\\bswitch|\\btrunc|\\budiv|\\bueq|\\buge|\\bugt|\\buitofp|\\bule|\\bult|\\bumax|\\bumin|\\bune|\\buno|\\bunreachable|\\bunwind|\\burem|\\bva_arg|\\bxchg|\\bxor|\\bzext)\\b",
+      "match": "(?<=\\s|^)#dbg_(assign|declare|label|value)\\b|\\badd\\b|\\baddrspacecast\\b|\\balloca\\b|\\band\\b|\\barcp\\b|\\bashr\\b|\\batomicrmw\\b|\\bbitcast\\b|\\bbr\\b|\\bcatchpad\\b|\\bcatchswitch\\b|\\bcatchret\\b|\\bcall\\b|\\bcallbr\\b|\\bcleanuppad\\b|\\bcleanupret\\b|\\bcmpxchg\\b|\\beq\\b|\\bexact\\b|\\bextractelement\\b|\\bextractvalue\\b|\\bfadd\\b|\\bfast\\b|\\bfcmp\\b|\\bfdiv\\b|\\bfence\\b|\\bfmul\\b|\\bfpext\\b|\\bfptosi\\b|\\bfptoui\\b|\\bfptrunc\\b|\\bfree\\b|\\bfrem\\b|\\bfreeze\\b|\\bfsub\\b|\\bfneg\\b|\\bgetelementptr\\b|\\bicmp\\b|\\binbounds\\b|\\bindirectbr\\b|\\binsertelement\\b|\\binsertvalue\\b|\\binttoptr\\b|\\binvoke\\b|\\blandingpad\\b|\\bload\\b|\\blshr\\b|\\bmalloc\\b|\\bmax\\b|\\bmin\\b|\\bmul\\b|\\bnand\\b|\\bne\\b|\\bninf\\b|\\bnnan\\b|\\bnsw\\b|\\bnsz\\b|\\bnuw\\b|\\boeq\\b|\\boge\\b|\\bogt\\b|\\bole\\b|\\bolt\\b|\\bone\\b|\\bor\\b|\\bord\\b|\\bphi\\b|\\bptrtoint\\b|\\bresume\\b|\\bret\\b|\\bsdiv\\b|\\bselect\\b|\\bsext\\b|\\bsge\\b|\\bsgt\\b|\\bshl\\b|\\bshufflevector\\b|\\bsitofp\\b|\\bsle\\b|\\bslt\\b|\\bsrem\\b|\\bstore\\b|\\bsub\\b|\\bswitch\\b|\\btrunc\\b|\\budiv\\b|\\bueq\\b|\\buge\\b|\\bugt\\b|\\buitofp\\b|\\bule\\b|\\bult\\b|\\bumax\\b|\\bumin\\b|\\bune\\b|\\buno\\b|\\bunreachable\\b|\\bunwind\\b|\\burem\\b|\\bva_arg\\b|\\bxchg\\b|\\bxor\\b|\\bzext\\b",
       "name": "keyword.instruction.llvm"
     },
     {
-      "match": "\\b(?:acq_rel|acquire|addrspace|alias|align|alignstack|allocsize|alwaysinline|appending|argmemonly|arm_aapcs_vfpcc|arm_aapcscc|arm_apcscc|asm|atomic|available_externally|blockaddress|builtin|byref|byval|c|caller|catch|ccc??|cleanup|cold|coldcc|comdat|common|constant|convergent|datalayout|declare|default|define|deplibs|dereferenceable|dereferenceable_or_null|distinct|dllexport|dllimport|dso_local|dso_preemptable|except|extern_weak|external|externally_initialized|fastcc|filter|from|gc|global|hhvm_ccc|hhvmcc|hidden|hot|immarg|inaccessiblemem_or_argmemonly|inaccessiblememonly|inalloc|initialexec|inlinehint|inreg|intel_ocl_bicc|inteldialect|internal|jumptable|linkonce|linkonce_odr|local_unnamed_addr|localdynamic|localexec|minsize|module|monotonic|msp430_intrcc|mustprogress|musttail|naked|nest|noalias|nobuiltin|nocallback|nocapture|nocf_check|noduplicate|nofree|noimplicitfloat|noinline|nomerge|nonlazybind|nonnull|noprofile|norecurse|noredzone|noreturn|nosync|noundef|nounwind|nosanitize_bounds|nosanitize_coverage|null_pointer_is_valid|optforfuzzing|optnone|optsize|personality|preallocated|private|protected|ptx_device|ptx_kernel|readnone|readonly|release|returned|returns_twice|safestack|sanitize_address|sanitize_hwaddress|sanitize_memory|sanitize_memtag|sanitize_thread|section|seq_cst|shadowcallstack|sideeffect|signext|source_filename|speculatable|speculative_load_hardening|spir_func|spir_kernel|sret|ssp|sspreq|sspstrong|strictfp|swiftcc|swifterror|swiftself|syncscope|tail|tailcc|target|thread_local|to|triple|unnamed_addr|unordered|uselistorder|uselistorder_bb|uwtable|volatile|weak|weak_odr|willreturn|win64cc|within|writeonly|x86_64_sysvcc|x86_fastcallcc|x86_stdcallcc|x86_thiscallcc|zeroext)\\b",
+      "match": "\\bacq_rel\\b|\\bacquire\\b|\\baddrspace\\b|\\balias\\b|\\balign\\b|\\balignstack\\b|\\ballocsize\\b|\\balwaysinline\\b|\\bappending\\b|\\bargmemonly\\b|\\barm_aapcs_vfpcc\\b|\\barm_aapcscc\\b|\\barm_apcscc\\b|\\basm\\b|\\batomic\\b|\\bavailable_externally\\b|\\bblockaddress\\b|\\bbuiltin\\b|\\bbyref\\b|\\bbyval\\b|\\bc\\b|\\bcaller\\b|\\bcatch\\b|\\bcc\\b|\\bccc\\b|\\bcleanup\\b|\\bcold\\b|\\bcoldcc\\b|\\bcomdat\\b|\\bcommon\\b|\\bconstant\\b|\\bconvergent\\b|\\bdatalayout\\b|\\bdeclare\\b|\\bdefault\\b|\\bdefine\\b|\\bdeplibs\\b|\\bdereferenceable\\b|\\bdereferenceable_or_null\\b|\\bdistinct\\b|\\bdllexport\\b|\\bdllimport\\b|\\bdso_local\\b|\\bdso_preemptable\\b|\\bexcept\\b|\\bextern_weak\\b|\\bexternal\\b|\\bexternally_initialized\\b|\\bfastcc\\b|\\bfilter\\b|\\bfrom\\b|\\bgc\\b|\\bglobal\\b|\\bhhvm_ccc\\b|\\bhhvmcc\\b|\\bhidden\\b|\\bhot\\b|\\bimmarg\\b|\\binaccessiblemem_or_argmemonly\\b|\\binaccessiblememonly\\b|\\binalloc\\b|\\binitialexec\\b|\\binlinehint\\b|\\binreg\\b|\\bintel_ocl_bicc\\b|\\binteldialect\\b|\\binternal\\b|\\bjumptable\\b|\\blinkonce\\b|\\blinkonce_odr\\b|\\blocal_unnamed_addr\\b|\\blocaldynamic\\b|\\blocalexec\\b|\\bminsize\\b|\\bmodule\\b|\\bmonotonic\\b|\\bmsp430_intrcc\\b|\\bmustprogress\\b|\\bmusttail\\b|\\bnaked\\b|\\bnest\\b|\\bnoalias\\b|\\bnobuiltin\\b|\\bnocallback\\b|\\bnocapture\\b|\\bnocf_check\\b|\\bnoduplicate\\b|\\bnofree\\b|\\bnoimplicitfloat\\b|\\bnoinline\\b|\\bnomerge\\b|\\bnonlazybind\\b|\\bnonnull\\b|\\bnoprofile\\b|\\bnorecurse\\b|\\bnoredzone\\b|\\bnoreturn\\b|\\bnosync\\b|\\bnoundef\\b|\\bnounwind\\b|\\bnosanitize_bounds\\b|\\bnosanitize_coverage\\b|\\bnull_pointer_is_valid\\b|\\boptforfuzzing\\b|\\boptnone\\b|\\boptsize\\b|\\bpersonality\\b|\\bpreallocated\\b|\\bprivate\\b|\\bprotected\\b|\\bptx_device\\b|\\bptx_kernel\\b|\\breadnone\\b|\\breadonly\\b|\\brelease\\b|\\breturned\\b|\\breturns_twice\\b|\\bsafestack\\b|\\bsanitize_address\\b|\\bsanitize_hwaddress\\b|\\bsanitize_memory\\b|\\bsanitize_memtag\\b|\\bsanitize_thread\\b|\\bsection\\b|\\bseq_cst\\b|\\bshadowcallstack\\b|\\bsideeffect\\b|\\bsignext\\b|\\bsource_filename\\b|\\bspeculatable\\b|\\bspeculative_load_hardening\\b|\\bspir_func\\b|\\bspir_kernel\\b|\\bsret\\b|\\bssp\\b|\\bsspreq\\b|\\bsspstrong\\b|\\bstrictfp\\b|\\bswiftcc\\b|\\bswifterror\\b|\\bswiftself\\b|\\bsyncscope\\b|\\btail\\b|\\btailcc\\b|\\btarget\\b|\\bthread_local\\b|\\bto\\b|\\btriple\\b|\\bunnamed_addr\\b|\\bunordered\\b|\\buselistorder\\b|\\buselistorder_bb\\b|\\buwtable\\b|\\bvolatile\\b|\\bweak\\b|\\bweak_odr\\b|\\bwillreturn\\b|\\bwin64cc\\b|\\bwithin\\b|\\bwriteonly\\b|\\bx86_64_sysvcc\\b|\\bx86_fastcallcc\\b|\\bx86_stdcallcc\\b|\\bx86_thiscallcc\\b|\\bzeroext\\b",
       "name": "storage.modifier.llvm"
     },
     {
-      "match": "@[-$.A-Z_a-z][-$.0-9A-Z_a-z]*",
+      "match": "@[-a-zA-Z$._][-a-zA-Z$._0-9]*",
       "name": "entity.name.function.llvm"
     },
     {
-      "match": "[!%@]\\d+\\b",
+      "match": "[%@!]\\d+\\b",
       "name": "variable.llvm"
     },
     {
-      "match": "%[-$.A-Z_a-z][-$.0-9A-Z_a-z]*",
+      "match": "%[-a-zA-Z$._][-a-zA-Z$._0-9]*",
       "name": "variable.llvm"
     },
     {
@@ -40,7 +41,7 @@
           "name": "variable.llvm"
         }
       },
-      "match": "(![-$.A-Z_a-z][-$.0-9A-Z_a-z]*)\\s*$"
+      "match": "(![-a-zA-Z$._][-a-zA-Z$._0-9]*)\\s*$"
     },
     {
       "captures": {
@@ -48,7 +49,7 @@
           "name": "variable.llvm"
         }
       },
-      "match": "(![-$.A-Z_a-z][-$.0-9A-Z_a-z]*)\\s*[!=]"
+      "match": "(![-a-zA-Z$._][-a-zA-Z$._0-9]*)\\s*[=!]"
     },
     {
       "begin": "\"",
@@ -62,11 +63,11 @@
       ]
     },
     {
-      "match": "[-$.A-Z_a-z][-$.0-9A-Z_a-z]*:",
+      "match": "[-a-zA-Z$._][-a-zA-Z$._0-9]*:",
       "name": "entity.name.label.llvm"
     },
     {
-      "match": "-?\\b\\d+\\.\\d*(e[-+]\\d+)?\\b",
+      "match": "-?\\b\\d+\\.\\d*(e[+-]\\d+)?\\b",
       "name": "constant.numeric.float"
     },
     {
@@ -78,11 +79,11 @@
       "name": "constant.numeric.integer"
     },
     {
-      "match": "\\b(?:true|false|null|zeroinitializer|undef|poison|null|none)\\b",
+      "match": "\\btrue\\b|\\bfalse\\b|\\bnull\\b|\\bzeroinitializer\\b|\\bundef\\b|\\bpoison\\b|\\bnull\\b|\\bnone\\b",
       "name": "constant.language"
     },
     {
-      "match": "\\bD(?:W_TAG_[_a-z]+|W_ATE_[A-Z_a-z]+|W_OP_[0-9A-Z_a-z]+|W_LANG_[0-9A-Z_a-z]+|W_VIRTUALITY_[_a-z]+|IFlag[A-Za-z]+)\\b",
+      "match": "\\bDW_TAG_[a-z_]+\\b|\\bDW_ATE_[a-zA-Z_]+\\b|\\bDW_OP_[a-zA-Z0-9_]+\\b|\\bDW_LANG_[a-zA-Z0-9_]+\\b|\\bDW_VIRTUALITY_[a-z_]+\\b|\\bDIFlag[A-Za-z]+\\b",
       "name": "constant.other"
     },
     {

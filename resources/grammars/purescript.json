@@ -3,6 +3,27 @@
   "fileTypes": [
     "purs"
   ],
+  "macros": {
+    "character": "(?:[ -\\[\\]-~]|(\\\\(?:NUL|SOH|STX|ETX|EOT|ENQ|ACK|BEL|BS|HT|LF|VT|FF|CR|SO|SI|DLE|DC1|DC2|DC3|DC4|NAK|SYN|ETB|CAN|EM|SUB|ESC|FS|GS|RS|US|SP|DEL|[abfnrtv\\\\\\\"'\\&]))|(\\\\o[0-7]+)|(\\\\x[0-9A-Fa-f]+)|(\\^[A-Z@\\[\\]\\\\\\^_]))",
+    "classConstraint": "(?:(?:([\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*)\\s+)(?:(?<classConstraint>(?:[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*|(?:[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*\\.)?[\\p{Ll}_][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)(?:\\s*(?:\\s+)\\s*(?:[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*|(?:[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*\\.)?[\\p{Ll}_][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*))*)))",
+    "className": "[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*",
+    "classNameOne": "[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*",
+    "ctor": "(?:(?:\\b([\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*)\\s+)(?:(?<ctorArgs>(?:(?:[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*|(?:[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*\\.)?[\\p{Ll}_][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*|(?:(?:[\\w()'→⇒\\[\\],]|->|=>)+\\s*)+))(?:\\s*(?:\\s+)\\s*(?:(?:[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*|(?:[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*\\.)?[\\p{Ll}_][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*|(?:(?:[\\w()'→⇒\\[\\],]|->|=>)+\\s*)+)))*)?))",
+    "ctorArgs": "(?:[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*|(?:[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*\\.)?[\\p{Ll}_][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*|(?:(?:[\\w()'→⇒\\[\\],]|->|=>)+\\s*)+)",
+    "doubleColon": "(?:::|∷)",
+    "functionName": "(?:[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*\\.)?[\\p{Ll}_][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*",
+    "functionNameOne": "[\\p{Ll}_][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*",
+    "functionTypeDeclaration": "([\\p{Ll}_][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)\\s*(::|∷)",
+    "indentBlockEnd": "^(?!\\1[ \\t]|[ \\t]*$)",
+    "indentChar": "[ \\t]",
+    "maybeBirdTrack": "^",
+    "operator": "[\\p{S}\\p{P}&&[^(),;\\[\\]`{}_\"']]+",
+    "operatorChar": "[\\p{S}\\p{P}&&[^(),;\\[\\]`{}_\"']]",
+    "operatorFun": "(?:\\((?!--+\\))[\\p{S}\\p{P}&&[^(),;\\[\\]`{}_\"']]+\\))",
+    "recordFieldDeclaration": "((?:[ ,])(?:\"(?:[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*|[\\p{Ll}_][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)\")|[\\p{Ll}_][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)\\s*(::|∷)",
+    "recordFieldQuoted": "\"(?:[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*|[\\p{Ll}_][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)\"",
+    "typeDecl": ".+?"
+  },
   "name": "purescript",
   "patterns": [
     {
@@ -93,11 +114,11 @@
       "include": "#comments"
     },
     {
-      "match": "<-|->",
+      "match": "\\<-|-\\>",
       "name": "keyword.other.arrow.purescript"
     },
     {
-      "match": "[[\\p{S}\\p{P}]&&[^]\"'(),;\\[_`{}]]+",
+      "match": "[\\p{S}\\p{P}&&[^(),;\\[\\]`{}_\"']]+",
       "name": "keyword.operator.purescript"
     },
     {
@@ -116,7 +137,7 @@
               "name": "punctuation.definition.comment.documentation.purescript"
             }
           },
-          "end": "-}",
+          "end": "-\\}",
           "endCaptures": {
             "0": {
               "name": "punctuation.definition.comment.documentation.purescript"
@@ -137,7 +158,7 @@
               "name": "punctuation.definition.comment.purescript"
             }
           },
-          "end": "-}",
+          "end": "-\\}",
           "name": "comment.block.purescript",
           "patterns": [
             {
@@ -164,7 +185,7 @@
               "name": "constant.character.escape.control.purescript"
             }
           },
-          "match": "[ -\\[\\]-~]|(\\\\(?:NUL|SOH|STX|ETX|EOT|ENQ|ACK|BEL|BS|HT|LF|VT|FF|CR|SO|SI|DLE|DC1|DC2|DC3|DC4|NAK|SYN|ETB|CAN|EM|SUB|ESC|FS|GS|RS|US|SP|DEL|[\"\\&'\\\\abfnrtv]))|(\\\\o[0-7]+)|(\\\\x\\h+)|(\\^[@-_])"
+          "match": "(?:[ -\\[\\]-~]|(\\\\(?:NUL|SOH|STX|ETX|EOT|ENQ|ACK|BEL|BS|HT|LF|VT|FF|CR|SO|SI|DLE|DC1|DC2|DC3|DC4|NAK|SYN|ETB|CAN|EM|SUB|ESC|FS|GS|RS|US|SP|DEL|[abfnrtv\\\\\\\"'\\&]))|(\\\\o[0-7]+)|(\\\\x[0-9A-Fa-f]+)|(\\^[A-Z@\\[\\]\\\\\\^_]))"
         }
       ]
     },
@@ -175,7 +196,7 @@
             "1": {
               "patterns": [
                 {
-                  "match": "\\b[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*(?:\\.[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*)*",
+                  "match": "\\b[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*",
                   "name": "entity.name.type.purescript"
                 }
               ]
@@ -191,7 +212,7 @@
               ]
             }
           },
-          "match": "([\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*(?:\\.[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*)*)\\s+(?<classConstraint>(?:[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*(?:\\.[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*)*|(?:[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*(?:\\.[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*)*\\.)?[_\\p{Ll}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*)(?:\\s*\\s+\\s*(?:[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*(?:\\.[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*)*|(?:[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*(?:\\.[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*)*\\.)?[_\\p{Ll}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*))*)",
+          "match": "(?:(?:([\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*)\\s+)(?:(?<classConstraint>(?:[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*|(?:[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*\\.)?[\\p{Ll}_][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)(?:\\s*(?:\\s+)\\s*(?:[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*|(?:[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*\\.)?[\\p{Ll}_][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*))*)))",
           "name": "meta.class-constraint.purescript"
         }
       ]
@@ -199,7 +220,7 @@
     "comments": {
       "patterns": [
         {
-          "begin": "(^[\\t ]+)?(?=--+)",
+          "begin": "(^[ \\t]+)?(?=--+)",
           "beginCaptures": {
             "1": {
               "name": "punctuation.whitespace.comment.leading.purescript"
@@ -235,7 +256,7 @@
     "constant_numeric": {
       "patterns": [
         {
-          "match": "\\b(([0-9]+_?)*[0-9]+|0([Xx]\\h+|[Oo][0-7]+))\\b",
+          "match": "\\b(([0-9]+_?)*[0-9]+|0([xX][0-9a-fA-F]+|[oO][0-7]+))\\b",
           "name": "constant.numeric.purescript"
         }
       ]
@@ -266,7 +287,7 @@
               "name": "meta.delimiter.decimal.period.purescript"
             }
           },
-          "match": "(?<!\\$)\\b(?:[0-9]+(\\.)[0-9]+[Ee][-+]?[0-9]+\\b|[0-9]+[Ee][-+]?[0-9]+\\b|[0-9]+(\\.)[0-9]+\\b|[0-9]+\\b(?!\\.))(?!\\$)",
+          "match": "(?x)\n(?<!\\$)(?:\n  (?:\\b[0-9]+(\\.)[0-9]+[eE][+-]?[0-9]+\\b)| # 1.1E+3\n  (?:\\b[0-9]+[eE][+-]?[0-9]+\\b)|            # 1E+3\n  (?:\\b[0-9]+(\\.)[0-9]+\\b)|                # 1.1\n  (?:\\b[0-9]+\\b(?!\\.))                     # 1\n)(?!\\$)",
           "name": "constant.numeric.decimal.purescript"
         }
       ]
@@ -274,7 +295,7 @@
     "control_keywords": {
       "patterns": [
         {
-          "match": "\\b(do|ado|if|then|else|case|of|let|in)(?!('|\\s*([:=])))\\b",
+          "match": "\\b(do|ado|if|then|else|case|of|let|in)(?!('|\\s*(:|=)))\\b",
           "name": "keyword.control.purescript"
         }
       ]
@@ -282,7 +303,7 @@
     "data_ctor": {
       "patterns": [
         {
-          "match": "\\b[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*(?:\\.[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*)*",
+          "match": "\\b[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*",
           "name": "entity.name.tag.purescript"
         }
       ]
@@ -290,7 +311,7 @@
     "data_type_declaration": {
       "patterns": [
         {
-          "begin": "^(\\s)*(data|newtype)\\s+(.+?)\\s*(?==|$)",
+          "begin": "^(\\s)*(data|newtype)\\s+(.+?)\\s*(?=\\=|$)",
           "beginCaptures": {
             "2": {
               "name": "storage.type.data.purescript"
@@ -304,7 +325,7 @@
               ]
             }
           },
-          "end": "^(?!\\1[\\t ]|[\\t ]*$)",
+          "end": "^(?!\\1[ \\t]|[ \\t]*$)",
           "name": "meta.declaration.type.data.purescript",
           "patterns": [
             {
@@ -320,7 +341,7 @@
                   ]
                 }
               },
-              "match": "(?<=([=|])\\s*)([\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*)"
+              "match": "(?<=(\\||=)\\s*)([\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)"
             },
             {
               "captures": {
@@ -377,7 +398,7 @@
     "double_colon": {
       "patterns": [
         {
-          "match": "::|∷",
+          "match": "(?:::|∷)",
           "name": "keyword.other.double-colon.purescript"
         }
       ]
@@ -400,20 +421,20 @@
                   ]
                 }
               },
-              "match": "(::|∷)(.*?)(?=<-| \"\"\")"
+              "match": "((?:::|∷))(.*?)(?=<-| \"\"\")"
             }
           ]
         },
         {
           "patterns": [
             {
-              "begin": "(::|∷)",
+              "begin": "((?:::|∷))",
               "beginCaptures": {
                 "1": {
                   "name": "keyword.other.double-colon.purescript"
                 }
               },
-              "end": "(?=^([\\s\\S]))",
+              "end": "(?=^(\\s|\\S))",
               "patterns": [
                 {
                   "include": "#type_signature"
@@ -427,13 +448,13 @@
     "double_colon_orphan": {
       "patterns": [
         {
-          "begin": "(\\s*)(::|∷)(\\s*)$",
+          "begin": "(\\s*)(?:(::|∷))(\\s*)$",
           "beginCaptures": {
             "2": {
               "name": "keyword.other.double-colon.purescript"
             }
           },
-          "end": "^(?!\\1[\\t ]*|[\\t ]*$)",
+          "end": "^(?!\\1[ \\t]*|[ \\t]*$)",
           "patterns": [
             {
               "include": "#type_signature"
@@ -472,7 +493,7 @@
     "foreign_import": {
       "patterns": [
         {
-          "begin": "^(\\s*)(foreign)\\s+(import)\\s+([_\\p{Ll}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*)",
+          "begin": "^(\\s*)(foreign)\\s+(import)\\s+([\\p{Ll}_][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)",
           "beginCaptures": {
             "2": {
               "name": "keyword.other.purescript"
@@ -485,7 +506,7 @@
             }
           },
           "contentName": "meta.type-signature.purescript",
-          "end": "^(?!\\1[\\t ]|[\\t ]*$)",
+          "end": "^(?!\\1[ \\t]|[ \\t]*$)",
           "name": "meta.foreign.purescript",
           "patterns": [
             {
@@ -504,7 +525,7 @@
     "foreign_import_data": {
       "patterns": [
         {
-          "begin": "^(\\s*)(foreign)\\s+(import)\\s+(data)\\s(?:\\s+([\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*)\\s*(::|∷))?",
+          "begin": "^(\\s*)(foreign)\\s+(import)\\s+(data)\\s(?:\\s+([\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)\\s*((?:::|∷)))?",
           "beginCaptures": {
             "2": {
               "name": "keyword.other.purescript"
@@ -523,7 +544,7 @@
             }
           },
           "contentName": "meta.kind-signature.purescript",
-          "end": "^(?!\\1[\\t ]|[\\t ]*$)",
+          "end": "^(?!\\1[ \\t]|[ \\t]*$)",
           "name": "meta.foreign.data.purescript",
           "patterns": [
             {
@@ -550,7 +571,7 @@
               "name": "punctuation.definition.entity.purescript"
             }
           },
-          "match": "(`)(?:[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*(?:\\.[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*)*\\.)?[_\\p{Ll}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*.*(`)",
+          "match": "(`)(?:[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*\\.)?[\\p{Ll}_][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*.*(`)",
           "name": "keyword.operator.function.infix.purescript"
         }
       ]
@@ -558,7 +579,7 @@
     "function_type_declaration": {
       "patterns": [
         {
-          "begin": "^(\\s*)([_\\p{Ll}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*)\\s*(::|∷)(?!.*<-)",
+          "begin": "^(\\s*)([\\p{Ll}_][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)\\s*(?:(::|∷)(?!.*<-))",
           "beginCaptures": {
             "2": {
               "name": "entity.name.function.purescript"
@@ -568,7 +589,7 @@
             }
           },
           "contentName": "meta.type-signature.purescript",
-          "end": "^(?!\\1[\\t ]|[\\t ]*$)",
+          "end": "^(?!\\1[ \\t]|[ \\t]*$)",
           "name": "meta.function.type-declaration.purescript",
           "patterns": [
             {
@@ -590,14 +611,14 @@
     "function_type_declaration_arrow_first": {
       "patterns": [
         {
-          "begin": "^(\\s*)\\s(::|∷)(?!.*<-)",
+          "begin": "^(\\s*)(?:\\s(::|∷)(?!.*<-))",
           "beginCaptures": {
             "2": {
               "name": "keyword.other.double-colon.purescript"
             }
           },
           "contentName": "meta.type-signature.purescript",
-          "end": "^(?!\\1[\\t ]|[\\t ]*$)",
+          "end": "^(?!\\1[ \\t]|[ \\t]*$)",
           "name": "meta.function.type-declaration.purescript",
           "patterns": [
             {
@@ -619,7 +640,7 @@
     "generic_type": {
       "patterns": [
         {
-          "match": "\\b(?:[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*(?:\\.[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*)*\\.)?[_\\p{Ll}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*",
+          "match": "\\b(?:[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*\\.)?[\\p{Ll}_][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*",
           "name": "variable.other.generic-type.purescript"
         }
       ]
@@ -627,7 +648,7 @@
     "infix_op": {
       "patterns": [
         {
-          "match": "\\((?!--+\\))[[\\p{S}\\p{P}]&&[^]\"'(),;\\[_`{}]]+\\)",
+          "match": "(?:\\((?!--+\\))[\\p{S}\\p{P}&&[^(),;\\[\\]`{}_\"']]+\\))",
           "name": "entity.name.function.infix.purescript"
         }
       ]
@@ -635,13 +656,13 @@
     "infix_op_declaration": {
       "patterns": [
         {
-          "begin": "^\\b(infix[lr|]?)(?!')\\b",
+          "begin": "^\\b(infix[l|r]?)(?!')\\b",
           "beginCaptures": {
             "1": {
               "name": "keyword.other.purescript"
             }
           },
-          "end": "$()",
+          "end": "($)",
           "name": "meta.infix.declaration.purescript",
           "patterns": [
             {
@@ -660,7 +681,7 @@
                   "name": "keyword.other.purescript"
                 }
               },
-              "match": "([[\\p{S}\\p{P}]&&[^]\"'(),;\\[_`{}]]+)"
+              "match": "([\\p{S}\\p{P}&&[^(),;\\[\\]`{}_\"']]+)"
             },
             {
               "captures": {
@@ -671,7 +692,7 @@
                   "name": "entity.name.type.purescript"
                 }
               },
-              "match": "\\b(type)\\s+([\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*(?:\\.[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*)*)\\b"
+              "match": "\\b(type)\\s+([\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*)\\b"
             },
             {
               "captures": {
@@ -764,7 +785,7 @@
               "name": "keyword.other.purescript"
             }
           },
-          "end": "\\b(where)\\b",
+          "end": "(\\bwhere\\b)",
           "endCaptures": {
             "1": {
               "name": "keyword.other.purescript"
@@ -800,7 +821,7 @@
               "include": "#comments"
             },
             {
-              "match": "\\b(?:[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*(?:\\.[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*)*\\.)?[_\\p{Ll}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*",
+              "match": "\\b(?:[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*\\.)?[\\p{Ll}_][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*",
               "name": "entity.name.function.purescript"
             },
             {
@@ -860,7 +881,7 @@
     "module_name": {
       "patterns": [
         {
-          "match": "(?:[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*(?:\\.[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*)*\\.)*[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*(?:\\.[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*)*\\.?",
+          "match": "(?:[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*\\.)*[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*\\.?",
           "name": "support.other.module.purescript"
         }
       ]
@@ -868,16 +889,16 @@
     "record_field_declaration": {
       "patterns": [
         {
-          "begin": "([ ,]\"(?:[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*(?:\\.[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*)*|[_\\p{Ll}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*)\"|[_\\p{Ll}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*)\\s*(::|∷)",
+          "begin": "((?:[ ,])(?:\"(?:[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*|[\\p{Ll}_][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)\")|[\\p{Ll}_][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)\\s*(::|∷)",
           "beginCaptures": {
             "1": {
               "patterns": [
                 {
-                  "match": "(?:[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*(?:\\.[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*)*\\.)?[_\\p{Ll}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*",
+                  "match": "(?:[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*\\.)?[\\p{Ll}_][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*",
                   "name": "entity.other.attribute-name.purescript"
                 },
                 {
-                  "match": "\"([_\\p{Ll}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*|[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*)\"",
+                  "match": "\\\"([\\p{Ll}_][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*|[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)\\\"",
                   "name": "string.quoted.double.purescript"
                 }
               ]
@@ -887,7 +908,7 @@
             }
           },
           "contentName": "meta.type-signature.purescript",
-          "end": "(?=([ ,]\"(?:[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*(?:\\.[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*)*|[_\\p{Ll}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*)\"|[_\\p{Ll}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*)\\s*(::|∷)|}| \\)|^(?!\\1[\\t ]|[\\t ]*$))",
+          "end": "(?=((?:[ ,])(?:\"(?:[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*|[\\p{Ll}_][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)\")|[\\p{Ll}_][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)\\s*(::|∷)|}| \\)|^(?!\\1[ \\t]|[ \\t]*$))",
           "name": "meta.record-field.type-declaration.purescript",
           "patterns": [
             {
@@ -912,7 +933,7 @@
               "name": "keyword.operator.type.record.begin.purescript"
             }
           },
-          "end": "}",
+          "end": "\\}",
           "endCaptures": {
             "0": {
               "name": "keyword.operator.type.record.end.purescript"
@@ -940,7 +961,7 @@
     "row_types": {
       "patterns": [
         {
-          "begin": "\\((?=\\s*([_\\p{Ll}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*|\"[_\\p{Ll}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*\"|\"[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*\")\\s*(::|∷))",
+          "begin": "\\((?=\\s*([\\p{Ll}_][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*|\"[\\p{Ll}_][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*\"|\"[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*\")\\s*(::|∷))",
           "end": "(?=^\\S)",
           "name": "meta.type.row.purescript",
           "patterns": [
@@ -980,7 +1001,7 @@
               ]
             }
           },
-          "match": "\\((.*?)(\"(?:[ -\\[\\]-~]|(\\\\(?:NUL|SOH|STX|ETX|EOT|ENQ|ACK|BEL|BS|HT|LF|VT|FF|CR|SO|SI|DLE|DC1|DC2|DC3|DC4|NAK|SYN|ETB|CAN|EM|SUB|ESC|FS|GS|RS|US|SP|DEL|[\"\\&'\\\\abfnrtv]))|(\\\\o[0-7]+)|(\\\\x\\h+)|(\\^[@-_]))*(::|∷)([ -\\[\\]-~]|(\\\\(?:NUL|SOH|STX|ETX|EOT|ENQ|ACK|BEL|BS|HT|LF|VT|FF|CR|SO|SI|DLE|DC1|DC2|DC3|DC4|NAK|SYN|ETB|CAN|EM|SUB|ESC|FS|GS|RS|US|SP|DEL|[\"\\&'\\\\abfnrtv]))|(\\\\o[0-7]+)|(\\\\x\\h+)|(\\^[@-_]))*\")"
+          "match": "\\((.*?)(\"(?:[ -\\[\\]-~]|(\\\\(?:NUL|SOH|STX|ETX|EOT|ENQ|ACK|BEL|BS|HT|LF|VT|FF|CR|SO|SI|DLE|DC1|DC2|DC3|DC4|NAK|SYN|ETB|CAN|EM|SUB|ESC|FS|GS|RS|US|SP|DEL|[abfnrtv\\\\\\\"'\\&]))|(\\\\o[0-7]+)|(\\\\x[0-9A-Fa-f]+)|(\\^[A-Z@\\[\\]\\\\\\^_]))*(::|∷)((?:[ -\\[\\]-~]|(\\\\(?:NUL|SOH|STX|ETX|EOT|ENQ|ACK|BEL|BS|HT|LF|VT|FF|CR|SO|SI|DLE|DC1|DC2|DC3|DC4|NAK|SYN|ETB|CAN|EM|SUB|ESC|FS|GS|RS|US|SP|DEL|[abfnrtv\\\\\\\"'\\&]))|(\\\\o[0-7]+)|(\\\\x[0-9A-Fa-f]+)|(\\^[A-Z@\\[\\]\\\\\\^_])))*\")"
         }
       ]
     },
@@ -1046,7 +1067,7 @@
               "name": "punctuation.definition.string.end.purescript"
             }
           },
-          "match": "(')([ -\\[\\]-~]|(\\\\(?:NUL|SOH|STX|ETX|EOT|ENQ|ACK|BEL|BS|HT|LF|VT|FF|CR|SO|SI|DLE|DC1|DC2|DC3|DC4|NAK|SYN|ETB|CAN|EM|SUB|ESC|FS|GS|RS|US|SP|DEL|[\"\\&'\\\\abfnrtv]))|(\\\\o[0-7]+)|(\\\\x\\h+)|(\\^[@-_]))(')",
+          "match": "(')((?:[ -\\[\\]-~]|(\\\\(?:NUL|SOH|STX|ETX|EOT|ENQ|ACK|BEL|BS|HT|LF|VT|FF|CR|SO|SI|DLE|DC1|DC2|DC3|DC4|NAK|SYN|ETB|CAN|EM|SUB|ESC|FS|GS|RS|US|SP|DEL|[abfnrtv\\\\\\\"'\\&]))|(\\\\o[0-7]+)|(\\\\x[0-9A-Fa-f]+)|(\\^[A-Z@\\[\\]\\\\\\^_])))(')",
           "name": "string.quoted.single.purescript"
         }
       ]
@@ -1073,7 +1094,7 @@
     "type_kind_signature": {
       "patterns": [
         {
-          "begin": "^(data|newtype)\\s+([\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*)\\s*(::|∷)",
+          "begin": "^(data|newtype)\\s+([\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)\\s*((?:::|∷))",
           "beginCaptures": {
             "1": {
               "name": "storage.type.data.purescript"
@@ -1122,7 +1143,7 @@
                   ]
                 }
               },
-              "match": "\\b([\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*(?:\\.[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*)*)\\s+(?<ctorArgs>(?:[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*(?:\\.[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*)*|(?:[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*(?:\\.[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*)*\\.)?[_\\p{Ll}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*|(?:(?:[]'(),\\[→⇒\\w]|->|=>)+\\s*)+)(?:\\s*\\s+\\s*(?:[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*(?:\\.[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*)*|(?:[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*(?:\\.[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*)*\\.)?[_\\p{Ll}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*|(?:(?:[]'(),\\[→⇒\\w]|->|=>)+\\s*)+))*)?"
+              "match": "(?:(?:\\b([\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*)\\s+)(?:(?<ctorArgs>(?:(?:[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*|(?:[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*\\.)?[\\p{Ll}_][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*|(?:(?:[\\w()'→⇒\\[\\],]|->|=>)+\\s*)+))(?:\\s*(?:\\s+)\\s*(?:(?:[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*|(?:[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*\\.)?[\\p{Ll}_][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*|(?:(?:[\\w()'→⇒\\[\\],]|->|=>)+\\s*)+)))*)?))"
             },
             {
               "captures": {
@@ -1142,7 +1163,7 @@
     "type_name": {
       "patterns": [
         {
-          "match": "\\b[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*(?:\\.[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*)*",
+          "match": "\\b[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*",
           "name": "entity.name.type.purescript"
         }
       ]
@@ -1165,7 +1186,7 @@
               "name": "keyword.other.big-arrow.purescript"
             }
           },
-          "match": "\\((?<classConstraints>([\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*(?:\\.[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*)*)\\s+(?<classConstraint>(?:[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*(?:\\.[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*)*|(?:[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*(?:\\.[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*)*\\.)?[_\\p{Ll}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*)(?:\\s*\\s+\\s*(?:[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*(?:\\.[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*)*|(?:[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*(?:\\.[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*)*\\.)?[_\\p{Ll}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*))*)(?:\\s*,\\s*([\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*(?:\\.[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*)*)\\s+(?<classConstraint>(?:[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*(?:\\.[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*)*|(?:[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*(?:\\.[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*)*\\.)?[_\\p{Ll}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*)(?:\\s*\\s+\\s*(?:[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*(?:\\.[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*)*|(?:[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*(?:\\.[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*)*\\.)?[_\\p{Ll}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*))*))*)\\)\\s*(=>|<=|[⇐⇒])",
+          "match": "(?:(?:\\()(?:(?<classConstraints>(?:(?:(?:([\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*)\\s+)(?:(?<classConstraint>(?:[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*|(?:[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*\\.)?[\\p{Ll}_][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)(?:\\s*(?:\\s+)\\s*(?:[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*|(?:[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*\\.)?[\\p{Ll}_][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*))*))))(?:\\s*(?:,)\\s*(?:(?:(?:([\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*)\\s+)(?:(?<classConstraint>(?:[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*|(?:[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*\\.)?[\\p{Ll}_][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)(?:\\s*(?:\\s+)\\s*(?:[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*|(?:[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*\\.)?[\\p{Ll}_][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*))*)))))*))(?:\\))(?:\\s*(=>|<=|⇐|⇒)))",
           "name": "meta.class-constraints.purescript"
         },
         {
@@ -1181,15 +1202,15 @@
               "name": "keyword.other.big-arrow.purescript"
             }
           },
-          "match": "(([\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*(?:\\.[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*)*)\\s+(?<classConstraint>(?:[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*(?:\\.[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*)*|(?:[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*(?:\\.[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*)*\\.)?[_\\p{Ll}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*)(?:\\s*\\s+\\s*(?:[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*(?:\\.[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*)*|(?:[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*(?:\\.[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*)*\\.)?[_\\p{Ll}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*))*))\\s*(=>|<=|[⇐⇒])",
+          "match": "((?:(?:([\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*)\\s+)(?:(?<classConstraint>(?:[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*|(?:[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*\\.)?[\\p{Ll}_][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)(?:\\s*(?:\\s+)\\s*(?:[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*|(?:[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*(?:\\.[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)*\\.)?[\\p{Ll}_][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*))*))))\\s*(=>|<=|⇐|⇒)",
           "name": "meta.class-constraints.purescript"
         },
         {
-          "match": "(?<![[\\p{S}\\p{P}]&&[^]\"'(),;\\[_`{}]])(->|→)",
+          "match": "(?<![\\p{S}\\p{P}&&[^(),;\\[\\]`{}_\"']])(->|→)",
           "name": "keyword.other.arrow.purescript"
         },
         {
-          "match": "(?<![[\\p{S}\\p{P}]&&[^]\"'(),;\\[_`{}]])(=>|⇒)",
+          "match": "(?<![\\p{S}\\p{P}&&[^(),;\\[\\]`{}_\"']])(=>|⇒)",
           "name": "keyword.other.big-arrow.purescript"
         },
         {
@@ -1213,7 +1234,7 @@
           "include": "#comments"
         },
         {
-          "match": "[[\\p{S}\\p{P}]&&[^]\"'(),;\\[_`{}]]+",
+          "match": "[\\p{S}\\p{P}&&[^(),;\\[\\]`{}_\"']]+",
           "name": "keyword.other.purescript"
         }
       ]
@@ -1221,7 +1242,7 @@
     "type_synonym_declaration": {
       "patterns": [
         {
-          "begin": "^(\\s)*(type)\\s+(.+?)\\s*(?==|$)",
+          "begin": "^(\\s)*(type)\\s+(.+?)\\s*(?=\\=|$)",
           "beginCaptures": {
             "2": {
               "name": "storage.type.data.purescript"
@@ -1236,7 +1257,7 @@
             }
           },
           "contentName": "meta.type-signature.purescript",
-          "end": "^(?!\\1[\\t ]|[\\t ]*$)",
+          "end": "^(?!\\1[ \\t]|[ \\t]*$)",
           "name": "meta.declaration.type.type.purescript",
           "patterns": [
             {
@@ -1290,7 +1311,7 @@
     "typed_hole": {
       "patterns": [
         {
-          "match": "\\?(?:[_\\p{Ll}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*|[\\p{Lu}\\p{Lt}]['_\\p{Ll}\\p{Lu}\\p{Lt}\\d]*)",
+          "match": "\\?(?:[\\p{Ll}_][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*|[\\p{Lu}\\p{Lt}][\\p{Ll}_\\p{Lu}\\p{Lt}\\p{Nd}']*)",
           "name": "entity.name.function.typed-hole.purescript"
         }
       ]

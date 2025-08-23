@@ -23,7 +23,7 @@
     "command": {
       "patterns": [
         {
-          "match": "\\b(?:next|printf??)\\b",
+          "match": "\\b(?:next|print|printf)\\b",
           "name": "keyword.other.command.awk"
         },
         {
@@ -51,7 +51,7 @@
       ]
     },
     "escaped-char": {
-      "match": "\\\\(?:[\"/\\\\abfnrtv]|x\\h{2}|[0-7]{3})",
+      "match": "\\\\(?:[\\\\abfnrtv/\"]|x[0-9A-Fa-f]{2}|[0-7]{3})",
       "name": "constant.character.escape.awk"
     },
     "expression": {
@@ -136,7 +136,7 @@
           "name": "meta.brace.round.awk"
         },
         {
-          "match": ",",
+          "match": "\\,",
           "name": "punctuation.separator.parameters.awk"
         }
       ]
@@ -146,13 +146,13 @@
       "name": "keyword.control.awk"
     },
     "numeric-constant": {
-      "match": "\\b[0-9]+(?:\\.[0-9]+)?(?:e[-+][0-9]+)?\\b",
+      "match": "\\b[0-9]+(?:\\.[0-9]+)?(?:e[+-][0-9]+)?\\b",
       "name": "constant.numeric.awk"
     },
     "operator": {
       "patterns": [
         {
-          "match": "(!?~|[!<=>]=|[<>])",
+          "match": "(!?~|[=<>!]=|[<>])",
           "name": "keyword.operator.comparison.awk"
         },
         {
@@ -160,7 +160,7 @@
           "name": "keyword.operator.comparison.awk"
         },
         {
-          "match": "([-%*+/^]=|\\+\\+|--|>>|=)",
+          "match": "([+\\-*/%^]=|\\+\\+|--|>>|=)",
           "name": "keyword.operator.assignment.awk"
         },
         {
@@ -168,15 +168,15 @@
           "name": "keyword.operator.boolean.awk"
         },
         {
-          "match": "([-%*+/^])",
+          "match": "([+\\-*/%^])",
           "name": "keyword.operator.arithmetic.awk"
         },
         {
-          "match": "([:?])",
+          "match": "([?:])",
           "name": "keyword.operator.trinary.awk"
         },
         {
-          "match": "([]\\[])",
+          "match": "(\\[|\\])",
           "name": "keyword.operator.index.awk"
         }
       ]
@@ -199,7 +199,7 @@
     },
     "procedure": {
       "begin": "\\{",
-      "end": "}",
+      "end": "\\}",
       "patterns": [
         {
           "include": "#comment"
@@ -216,7 +216,7 @@
       ]
     },
     "regex-as-assignment": {
-      "begin": "([^-!%*+/<=>^]=)\\s*(/)",
+      "begin": "([^=<>!+\\-*/%^]=)\\s*(/)",
       "beginCaptures": {
         "1": {
           "name": "keyword.operator.assignment.awk"
@@ -384,5 +384,6 @@
       ]
     }
   },
-  "scopeName": "source.awk"
+  "scopeName": "source.awk",
+  "uuid": "67bd1ff0-006b-4c32-8b97-8bc198777582"
 }

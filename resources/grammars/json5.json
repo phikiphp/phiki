@@ -20,7 +20,7 @@
           "name": "punctuation.definition.array.begin.json5"
         }
       },
-      "end": "]",
+      "end": "\\]",
       "endCaptures": {
         "0": {
           "name": "punctuation.definition.array.end.json5"
@@ -39,7 +39,7 @@
           "name": "punctuation.separator.array.json5"
         },
         {
-          "match": "[^]\\s]",
+          "match": "[^\\s\\]]",
           "name": "invalid.illegal.expected-array-separator.json5"
         }
       ]
@@ -90,7 +90,7 @@
           "include": "#stringDouble"
         },
         {
-          "match": "[-0-9A-Z_a-z]",
+          "match": "[a-zA-Z0-9_-]",
           "name": "string.key.json5"
         }
       ]
@@ -98,11 +98,13 @@
     "number": {
       "patterns": [
         {
-          "match": "(0x)[0-9A-f]*",
+          "comment": "handles hexadecimal numbers",
+          "match": "(0x)[0-9a-fA-f]*",
           "name": "constant.hex.numeric.json5"
         },
         {
-          "match": "[+-.]?(?=[1-9]|0(?!\\d))\\d+(\\.\\d+)?([Ee][-+]?\\d+)?",
+          "comment": "handles integer and decimal numbers",
+          "match": "[+-.]?(?=[1-9]|0(?!\\d))\\d+(\\.\\d+)?([eE][+-]?\\d+)?",
           "name": "constant.dec.numeric.json5"
         }
       ]
@@ -114,7 +116,8 @@
           "name": "punctuation.definition.dictionary.begin.json5"
         }
       },
-      "end": "}",
+      "comment": "a json5 object",
+      "end": "\\}",
       "endCaptures": {
         "0": {
           "name": "punctuation.definition.dictionary.end.json5"
@@ -126,6 +129,7 @@
           "include": "#comments"
         },
         {
+          "comment": "the json5 object key",
           "include": "#key"
         },
         {
@@ -135,7 +139,7 @@
               "name": "punctuation.separator.dictionary.key-value.json5"
             }
           },
-          "end": "(,)|(?=})",
+          "end": "(,)|(?=\\})",
           "endCaptures": {
             "1": {
               "name": "punctuation.separator.dictionary.pair.json5"
@@ -144,28 +148,29 @@
           "name": "meta.structure.dictionary.value.json5",
           "patterns": [
             {
+              "comment": "the json5 object value",
               "include": "#value"
             },
             {
-              "match": "[^,\\s]",
+              "match": "[^\\s,]",
               "name": "invalid.illegal.expected-dictionary-separator.json5"
             }
           ]
         },
         {
-          "match": "[^}\\s]",
+          "match": "[^\\s\\}]",
           "name": "invalid.illegal.expected-dictionary-separator.json5"
         }
       ]
     },
     "stringDouble": {
-      "begin": "\"",
+      "begin": "[\"]",
       "beginCaptures": {
         "0": {
           "name": "punctuation.definition.string.begin.json5"
         }
       },
-      "end": "\"",
+      "end": "[\"]",
       "endCaptures": {
         "0": {
           "name": "punctuation.definition.string.end.json5"
@@ -174,7 +179,7 @@
       "name": "string.quoted.json5",
       "patterns": [
         {
-          "match": "\\\\(?:[\"/\\\\bfnrt]|u\\h{4})",
+          "match": "(?x:                # turn on extended mode\n                     \\\\                # a literal backslash\n                     (?:               # ...followed by...\n                       [\"\\\\/bfnrt]     # one of these characters\n                       |               # ...or...\n                       u               # a u\n                       [0-9a-fA-F]{4}  # and four hex digits\n                     )\n                   )",
           "name": "constant.character.escape.json5"
         },
         {
@@ -184,13 +189,13 @@
       ]
     },
     "stringSingle": {
-      "begin": "'",
+      "begin": "[']",
       "beginCaptures": {
         "0": {
           "name": "punctuation.definition.string.begin.json5"
         }
       },
-      "end": "'",
+      "end": "[']",
       "endCaptures": {
         "0": {
           "name": "punctuation.definition.string.end.json5"
@@ -199,7 +204,7 @@
       "name": "string.quoted.json5",
       "patterns": [
         {
-          "match": "\\\\(?:[\"/\\\\bfnrt]|u\\h{4})",
+          "match": "(?x:                # turn on extended mode\n                     \\\\                # a literal backslash\n                     (?:               # ...followed by...\n                       [\"\\\\/bfnrt]     # one of these characters\n                       |               # ...or...\n                       u               # a u\n                       [0-9a-fA-F]{4}  # and four hex digits\n                     )\n                   )",
           "name": "constant.character.escape.json5"
         },
         {
@@ -209,6 +214,7 @@
       ]
     },
     "value": {
+      "comment": "the 'value' diagram at http://json.org",
       "patterns": [
         {
           "include": "#constant"

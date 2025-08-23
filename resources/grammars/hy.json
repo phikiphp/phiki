@@ -1,4 +1,5 @@
 {
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
   "displayName": "Hy",
   "name": "hy",
   "patterns": [
@@ -38,11 +39,11 @@
     "builtin": {
       "patterns": [
         {
-          "match": "(?<![-!$%\\&*./:<-@^_\\w])(abs|all|any|ascii|bin|breakpoint|callable|chr|compile|delattr|dir|divmod|eval|exec|format|getattr|globals|hasattr|hash|hex|id|input|isinstance|issubclass|iter|aiter|len|locals|max|min|next|anext|oct|ord|pow|print|repr|round|setattr|sorted|sum|vars|False|None|True|NotImplemented|bool|memoryview|bytearray|bytes|classmethod|complex|dict|enumerate|filter|float|frozenset|property|int|list|map|object|range|reversed|set|slice|staticmethod|str|super|tuple|type|zip|open|quit|exit|copyright|credits|help)(?![-!$%\\&*./:<-@^_\\w])",
+          "match": "(?<![\\.:\\w_\\-=!@\\$%^&?/<>*])(abs|all|any|ascii|bin|breakpoint|callable|chr|compile|delattr|dir|divmod|eval|exec|format|getattr|globals|hasattr|hash|hex|id|input|isinstance|issubclass|iter|aiter|len|locals|max|min|next|anext|oct|ord|pow|print|repr|round|setattr|sorted|sum|vars|False|None|True|NotImplemented|bool|memoryview|bytearray|bytes|classmethod|complex|dict|enumerate|filter|float|frozenset|property|int|list|map|object|range|reversed|set|slice|staticmethod|str|super|tuple|type|zip|open|quit|exit|copyright|credits|help)(?![\\.:\\w_\\-=!@\\$%^&?/<>*])",
           "name": "storage.builtin.hy"
         },
         {
-          "match": "(?<=\\(\\s*)\\.\\.\\.(?![-!$%\\&*./:<-@^_\\w])",
+          "match": "(?<=\\(\\s*)\\.\\.\\.(?![\\.:\\w_\\-=!@\\$%^&?/<>*])",
           "name": "storage.builtin.dots.hy"
         }
       ]
@@ -58,23 +59,23 @@
     "constants": {
       "patterns": [
         {
-          "match": "(?<=[(\\[{\\s])([0-9]+(\\.[0-9]+)?|(#x)\\h+|(#o)[0-7]+|(#b)[01]+)(?=[]\"'(),;\\[{}\\s])",
+          "match": "(?<=[\\{\\[\\(\\s])([0-9]+(\\.[0-9]+)?|(#x)[0-9a-fA-F]+|(#o)[0-7]+|(#b)[01]+)(?=[\\s;()'\",\\[\\]\\{\\}])",
           "name": "constant.numeric.hy"
         }
       ]
     },
     "keysym": {
-      "match": "(?<![-!$%\\&*./:<-@^_\\w]):[-!$%\\&*./:<-@^_\\w]*",
+      "match": "(?<![\\.:\\w_\\-=!@\\$%^&?\\/<>*]):[\\.:\\w_\\-=!@\\$%^&?\\/<>*]*",
       "name": "variable.other.constant"
     },
     "keywords": {
       "patterns": [
         {
-          "match": "(?<![-!$%\\&*./:<-@^_\\w])(and|await|match|let|annotate|assert|break|chainc|cond|continue|deftype|do|except\\*?|finally|else|defreader|([dgls])?for|set[vx]|defclass|defmacro|del|export|eval-and-compile|eval-when-compile|get|global|if|import|(de)?fn|nonlocal|not-in|or|(quasi)?quote|require|return|cut|raise|try|unpack-iterable|unpack-mapping|unquote|unquote-splice|when|while|with|yield|local-macros|in|is|py(s)?|pragma|nonlocal|(is-)?not)(?![-!$%\\&*./:<-@^_\\w])",
+          "match": "(?<![\\.:\\w_\\-=!@\\$%^&?/<>*])(and|await|match|let|annotate|assert|break|chainc|cond|continue|deftype|do|except\\*?|finally|else|defreader|([dgls])?for|set[vx]|defclass|defmacro|del|export|eval-and-compile|eval-when-compile|get|global|if|import|(de)?fn|nonlocal|not-in|or|(quasi)?quote|require|return|cut|raise|try|unpack-iterable|unpack-mapping|unquote|unquote-splice|when|while|with|yield|local-macros|in|is|py(s)?|pragma|nonlocal|(is-)?not)(?![\\.:\\w_\\-=!@\\$%^&?/<>*])",
           "name": "keyword.control.hy"
         },
         {
-          "match": "(?<=\\(\\s*)\\.(?![-!$%\\&*./:<-@^_\\w])",
+          "match": "(?<=\\(\\s*)\\.(?![\\.:\\w_\\-=!@\\$%^&?/<>*])",
           "name": "keyword.control.dot.hy"
         }
       ]
@@ -82,14 +83,14 @@
     "operators": {
       "patterns": [
         {
-          "match": "(?<![-!$%\\&*./:<-@^_\\w])(\\+=?|//?=?|\\*\\*?=?|--?=?|[!<>]?=|@=?|%=?|<<?=?|>>?=?|&=?|\\|=?|\\^|~@|~=?|#\\*\\*?)(?![-!$%\\&*./:<-@^_\\w])",
+          "match": "(?<![\\.:\\w_\\-=!@\\$%^&?/<>*])(\\+=?|\\/\\/?=?|\\*\\*?=?|--?=?|[!<>]?=|@=?|%=?|<<?=?|>>?=?|&=?|\\|=?|\\^|~@|~=?|#\\*\\*?)(?![\\.:\\w_\\-=!@\\$%^&?/<>*])",
           "name": "keyword.control.hy"
         }
       ]
     },
     "strings": {
-      "begin": "(f?\"|}(?=\\N*?[\"{]))",
-      "end": "(\"|(?<=[\"}]\\N*?)\\{)",
+      "begin": "(f?\"|}(?=[^\n]*?[{\"]))",
+      "end": "(\"|(?<=[\"}][^\n]*?){)",
       "name": "string.quoted.double.hy",
       "patterns": [
         {
@@ -99,7 +100,7 @@
       ]
     },
     "symbol": {
-      "match": "(?<![-!#-\\&*./:<-@^_\\w])[-!#$%*./<-Z^_a-zΑ-Ωα-ω][-!#-\\&*./:<-@^_\\w]*",
+      "match": "(?<![\\.:\\w_\\-=!@\\$%^&?/<>*#])[\\.a-zA-ZΑ-Ωα-ω_\\-=!@\\$%^<?/<>*#][\\.:\\w_\\-=!@\\$%^&?/<>*#]*",
       "name": "variable.other.hy"
     }
   },

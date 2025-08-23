@@ -27,19 +27,19 @@
           "name": "variable.language.result-id.jison"
         },
         {
-          "match": "\\$(?:-?\\d+|[_[:alpha:]](?:[-\\w]*\\w)?)",
+          "match": "\\$(?:-?\\d+|[[:alpha:]_](?:[\\w-]*\\w)?)",
           "name": "support.variable.token-value.jison"
         },
         {
-          "match": "@(?:-?\\d+|[_[:alpha:]](?:[-\\w]*\\w)?)",
+          "match": "@(?:-?\\d+|[[:alpha:]_](?:[\\w-]*\\w)?)",
           "name": "support.variable.token-location.jison"
         },
         {
-          "match": "##(?:-?\\d+|[_[:alpha:]](?:[-\\w]*\\w)?)",
+          "match": "##(?:-?\\d+|[[:alpha:]_](?:[\\w-]*\\w)?)",
           "name": "support.variable.stack-index.jison"
         },
         {
-          "match": "#(?:-?\\d+|[_[:alpha:]](?:[-\\w]*\\w)?)",
+          "match": "#(?:-?\\d+|[[:alpha:]_](?:[\\w-]*\\w)?)",
           "name": "support.variable.token-id.jison"
         },
         {
@@ -120,7 +120,7 @@
             }
           },
           "contentName": "source.js.embedded.jison",
-          "end": "}}",
+          "end": "\\}\\}",
           "endCaptures": {
             "0": {
               "name": "punctuation.definition.action.end.jison"
@@ -135,7 +135,7 @@
         },
         {
           "begin": "(?=%\\{)",
-          "end": "(?<=%})",
+          "end": "(?<=%\\})",
           "name": "meta.action.jison",
           "patterns": [
             {
@@ -250,7 +250,7 @@
         },
         {
           "begin": "(?=%\\{)",
-          "end": "(?<=%})",
+          "end": "(?<=%\\})",
           "name": "meta.section.prologue.jison",
           "patterns": [
             {
@@ -292,7 +292,7 @@
               "include": "#quoted_strings"
             },
             {
-              "match": "\\b[_[:alpha:]](?:[-\\w]*\\w)?\\b",
+              "match": "\\b[[:alpha:]_](?:[\\w-]*\\w)?\\b",
               "name": "string.unquoted.jison"
             }
           ]
@@ -314,7 +314,7 @@
               "include": "#quoted_strings"
             },
             {
-              "match": "\\b[_[:alpha:]](?:[-\\w]*\\w)?\\b",
+              "match": "\\b[[:alpha:]_](?:[\\w-]*\\w)?\\b",
               "name": "string.unquoted.jison"
             }
           ]
@@ -344,7 +344,7 @@
               "include": "#quoted_strings"
             },
             {
-              "match": "<[_[:alpha:]](?:[-\\w]*\\w)?>",
+              "match": "<[[:alpha:]_](?:[\\w-]*\\w)?>",
               "name": "invalid.unimplemented.jison"
             },
             {
@@ -362,7 +362,7 @@
           "name": "invalid.illegal.jison"
         },
         {
-          "match": "%[_[:alpha:]](?:[-\\w]*\\w)?\\b",
+          "match": "%[[:alpha:]_](?:[\\w-]*\\w)?\\b",
           "name": "invalid.unimplemented.jison"
         },
         {
@@ -392,7 +392,7 @@
               "name": "keyword.other.declaration.$2.jison"
             }
           },
-          "end": "(?<=[\"'])|(?=\\s)",
+          "end": "(?<=['\"])|(?=\\s)",
           "name": "meta.include.jison",
           "patterns": [
             {
@@ -430,7 +430,7 @@
               "name": "constant.numeric.integer.hexadecimal.jison"
             }
           },
-          "match": "(0[Xx])(\\h+)"
+          "match": "(0[Xx])([0-9A-Fa-f]+)"
         },
         {
           "match": "\\d+",
@@ -454,7 +454,7 @@
               "include": "#comments"
             },
             {
-              "match": "\\b[_[:alpha:]](?:[-\\w]*\\w)?\\b",
+              "match": "\\b[[:alpha:]_](?:[\\w-]*\\w)?\\b",
               "name": "entity.name.constant.jison"
             },
             {
@@ -464,7 +464,7 @@
                   "name": "keyword.operator.option.assignment.jison"
                 }
               },
-              "end": "(?<=[\"'])|(?=\\s)",
+              "end": "(?<=['\"])|(?=\\s)",
               "patterns": [
                 {
                   "include": "#comments"
@@ -529,7 +529,7 @@
             }
           },
           "contentName": "source.js.embedded.jison",
-          "end": "}",
+          "end": "\\}",
           "endCaptures": {
             "0": {
               "name": "punctuation.definition.action.end.jison"
@@ -575,7 +575,7 @@
           "include": "#include_declarations"
         },
         {
-          "begin": "\\b[_[:alpha:]](?:[-\\w]*\\w)?\\b",
+          "begin": "\\b[[:alpha:]_](?:[\\w-]*\\w)?\\b",
           "beginCaptures": {
             "0": {
               "name": "entity.name.constant.rule-result.jison"
@@ -620,7 +620,7 @@
                       "name": "punctuation.definition.named-reference.end.jison"
                     }
                   },
-                  "match": "(\\[)([_[:alpha:]](?:[-\\w]*\\w)?)(])"
+                  "match": "(\\[)([[:alpha:]_](?:[\\w-]*\\w)?)(\\])"
                 },
                 {
                   "begin": "(%(prec))\\s*",
@@ -629,7 +629,7 @@
                       "name": "keyword.other.$2.jison"
                     }
                   },
-                  "end": "(?<=[\"'])|(?=\\s)",
+                  "end": "(?<=['\"])|(?=\\s)",
                   "name": "meta.prec.jison",
                   "patterns": [
                     {
@@ -654,7 +654,7 @@
                   "name": "keyword.other.$0.jison"
                 },
                 {
-                  "match": "(?:%e(?:mpty|psilon)|\\b[Ɛɛεϵ])\\b",
+                  "match": "(?:%(?:e(?:mpty|psilon))|\\b[Ɛɛεϵ])\\b",
                   "name": "keyword.other.empty.jison"
                 },
                 {
@@ -676,7 +676,7 @@
             }
           },
           "contentName": "source.js.embedded.jison",
-          "end": "%}",
+          "end": "%\\}",
           "endCaptures": {
             "0": {
               "name": "punctuation.definition.user-code-block.end.jison"
@@ -700,7 +700,7 @@
               "name": "keyword.other.declaration.$2.jison"
             }
           },
-          "end": "(?<=[\"'])|(?=\\s)",
+          "end": "(?<=['\"])|(?=\\s)",
           "name": "meta.include.jison",
           "patterns": [
             {

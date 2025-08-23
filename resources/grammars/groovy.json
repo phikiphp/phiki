@@ -1,5 +1,10 @@
 {
   "displayName": "Groovy",
+  "information_for_contributors": [
+    "This file has been converted from https://github.com/textmate/groovy.tmbundle/blob/master/Syntaxes/Groovy.tmLanguage",
+    "If you want to provide a fix or improvement, please create a pull request against the original repository.",
+    "Once accepted there, we are happy to receive an update request."
+  ],
   "name": "groovy",
   "patterns": [
     {
@@ -23,7 +28,7 @@
           "name": "punctuation.terminator.groovy"
         }
       },
-      "match": "^\\s*(package)\\b(?:\\s*([^ $;]+)\\s*(;)?)?",
+      "match": "^\\s*(package)\\b(?:\\s*([^ ;$]+)\\s*(;)?)?",
       "name": "meta.package.groovy"
     },
     {
@@ -115,7 +120,7 @@
           "name": "punctuation.terminator.groovy"
         }
       },
-      "match": "^\\s*(import)\\s+(static)\\s+\\b(?:\\s*([^ $;]+)\\s*(;)?)?",
+      "match": "^\\s*(import)(?:\\s+(static)\\s+)\\b(?:\\s*([^ ;$]+)\\s*(;)?)?",
       "name": "meta.import.groovy"
     },
     {
@@ -176,7 +181,7 @@
           "name": "keyword.control.new.groovy"
         }
       },
-      "end": "(?<=[])])(?!\\s*\\{)|(?<=})|(?=;)|$",
+      "end": "(?<=\\)|\\])(?!\\s*{)|(?<=})|(?=[;])|$",
       "patterns": [
         {
           "begin": "(\\w+)\\s*(?=\\[)",
@@ -185,11 +190,11 @@
               "name": "storage.type.groovy"
             }
           },
-          "end": "}|(?=\\s*[),;])|$",
+          "end": "}|(?=\\s*(?:,|;|\\)))|$",
           "patterns": [
             {
               "begin": "\\[",
-              "end": "]",
+              "end": "\\]",
               "patterns": [
                 {
                   "include": "#groovy"
@@ -197,7 +202,7 @@
               ]
             },
             {
-              "begin": "\\{",
+              "begin": "{",
               "end": "(?=})",
               "patterns": [
                 {
@@ -231,7 +236,7 @@
           ]
         },
         {
-          "begin": "\\{",
+          "begin": "{",
           "end": "}",
           "name": "meta.inner-class.groovy",
           "patterns": [
@@ -244,7 +249,7 @@
     },
     "braces": {
       "begin": "\\{",
-      "end": "}",
+      "end": "\\}",
       "patterns": [
         {
           "include": "#groovy-code"
@@ -252,7 +257,7 @@
       ]
     },
     "class": {
-      "begin": "(?=\\w?[\\w\\s]*(?:class|@?interface|enum)\\s+\\w+)",
+      "begin": "(?=\\w?[\\w\\s]*(?:class|(?:@)?interface|enum)\\s+\\w+)",
       "end": "}",
       "endCaptures": {
         "0": {
@@ -276,7 +281,7 @@
               "name": "entity.name.type.class.groovy"
             }
           },
-          "match": "(class|@?interface|enum)\\s+(\\w+)",
+          "match": "(class|(?:@)?interface|enum)\\s+(\\w+)",
           "name": "meta.class.identifier.groovy"
         },
         {
@@ -286,7 +291,7 @@
               "name": "storage.modifier.extends.groovy"
             }
           },
-          "end": "(?=\\{|implements)",
+          "end": "(?={|implements)",
           "name": "meta.definition.class.inherited.classes.groovy",
           "patterns": [
             {
@@ -316,7 +321,7 @@
           ]
         },
         {
-          "begin": "\\{",
+          "begin": "{",
           "end": "(?=})",
           "name": "meta.class.body.groovy",
           "patterns": [
@@ -342,10 +347,10 @@
     },
     "closures": {
       "begin": "\\{(?=.*?->)",
-      "end": "}",
+      "end": "\\}",
       "patterns": [
         {
-          "begin": "(?<=\\{)(?=[^}]*?->)",
+          "begin": "(?<=\\{)(?=[^\\}]*?->)",
           "end": "->",
           "endCaptures": {
             "0": {
@@ -389,7 +394,7 @@
         },
         {
           "begin": "(?=[^}])",
-          "end": "(?=})",
+          "end": "(?=\\})",
           "patterns": [
             {
               "include": "#groovy-code"
@@ -439,7 +444,7 @@
     "constants": {
       "patterns": [
         {
-          "match": "\\b([A-Z][0-9A-Z_]+)\\b",
+          "match": "\\b([A-Z][A-Z0-9_]+)\\b",
           "name": "constant.other.groovy"
         },
         {
@@ -461,13 +466,13 @@
     "enum-values": {
       "patterns": [
         {
-          "begin": "(?<=;|^)\\s*\\b([0-9A-Z_]+)(?=\\s*(?:[(,;}]|$))",
+          "begin": "(?<=;|^)\\s*\\b([A-Z0-9_]+)(?=\\s*(?:,|;|}|\\(|$))",
           "beginCaptures": {
             "1": {
               "name": "constant.enum.name.groovy"
             }
           },
-          "end": "[,;]|(?=})|^(?!\\s*\\w+\\s*(?:,|$))",
+          "end": ",|;|(?=})|^(?!\\s*\\w+\\s*(?:,|$))",
           "patterns": [
             {
               "begin": "\\(",
@@ -520,6 +525,7 @@
       ]
     },
     "groovy-code-minus-map-keys": {
+      "comment": "In some situations, maps can't be declared without enclosing []'s, \n\t\t\t\ttherefore we create a collection of everything but that",
       "patterns": [
         {
           "include": "#comments"
@@ -606,7 +612,7 @@
               "name": "keyword.control.assert.groovy"
             }
           },
-          "end": "$|[;}]",
+          "end": "$|;|}",
           "name": "meta.declaration.assertion.groovy",
           "patterns": [
             {
@@ -635,11 +641,11 @@
           "name": "keyword.operator.in.groovy"
         },
         {
-          "match": "\\?:",
+          "match": "\\?\\:",
           "name": "keyword.operator.elvis.groovy"
         },
         {
-          "match": "\\*:",
+          "match": "\\*\\:",
           "name": "keyword.operator.spreadmap.groovy"
         },
         {
@@ -647,7 +653,7 @@
           "name": "keyword.operator.range.groovy"
         },
         {
-          "match": "->",
+          "match": "\\->",
           "name": "keyword.operator.arrow.groovy"
         },
         {
@@ -669,7 +675,7 @@
               "name": "keyword.operator.ternary.groovy"
             }
           },
-          "end": "(?=$|[])}])",
+          "end": "(?=$|\\)|}|])",
           "name": "meta.evaluation.ternary.groovy",
           "patterns": [
             {
@@ -694,7 +700,7 @@
           "name": "keyword.operator.instanceof.groovy"
         },
         {
-          "match": "(===?|!=|<=|>=|<=>|<>|[<>]|<<)",
+          "match": "(===|==|!=|<=|>=|<=>|<>|<|>|<<)",
           "name": "keyword.operator.comparison.groovy"
         },
         {
@@ -702,11 +708,11 @@
           "name": "keyword.operator.assignment.groovy"
         },
         {
-          "match": "(--|\\+\\+)",
+          "match": "(\\-\\-|\\+\\+)",
           "name": "keyword.operator.increment-decrement.groovy"
         },
         {
-          "match": "([-%*+/])",
+          "match": "(\\-|\\+|\\*|\\/|%)",
           "name": "keyword.operator.arithmetic.groovy"
         },
         {
@@ -739,7 +745,7 @@
       ]
     },
     "method-call": {
-      "begin": "([$\\w]+)(\\()",
+      "begin": "([\\w$]+)(\\()",
       "beginCaptures": {
         "1": {
           "name": "meta.method.groovy"
@@ -774,8 +780,8 @@
           "include": "#annotations"
         },
         {
-          "begin": "(?=[<\\w][^(]*\\s+[$<\\w]+\\s*\\()",
-          "end": "(?=[$\\w]+\\s*\\()",
+          "begin": "(?=(?:\\w|<)[^\\(]*\\s+(?:[\\w$]|<)+\\s*\\()",
+          "end": "(?=[\\w$]+\\s*\\()",
           "name": "meta.method.return-type.java",
           "patterns": [
             {
@@ -787,7 +793,7 @@
           ]
         },
         {
-          "begin": "([$\\w]+)\\s*\\(",
+          "begin": "([\\w$]+)\\s*\\(",
           "beginCaptures": {
             "1": {
               "name": "entity.name.function.java"
@@ -802,8 +808,8 @@
               "name": "meta.method.parameters.groovy",
               "patterns": [
                 {
-                  "begin": "(?=[^),])",
-                  "end": "(?=[),])",
+                  "begin": "(?=[^,)])",
+                  "end": "(?=,|\\))",
                   "name": "meta.method.parameter.groovy",
                   "patterns": [
                     {
@@ -817,7 +823,7 @@
                           "name": "keyword.operator.assignment.groovy"
                         }
                       },
-                      "end": "(?=[),])",
+                      "end": "(?=,|\\))",
                       "name": "meta.parameter.default.groovy",
                       "patterns": [
                         {
@@ -862,7 +868,7 @@
               "name": "storage.modifier.groovy"
             }
           },
-          "end": "(?=[;{])|^(?=\\s*(?:[^{\\s]|$))",
+          "end": "(?={|;)|^(?=\\s*(?:[^{\\s]|$))",
           "name": "meta.throwables.groovy",
           "patterns": [
             {
@@ -871,7 +877,7 @@
           ]
         },
         {
-          "begin": "\\{",
+          "begin": "{",
           "end": "(?=})",
           "name": "meta.method.body.java",
           "patterns": [
@@ -884,7 +890,7 @@
     },
     "methods": {
       "applyEndPatternLast": 1,
-      "begin": "(?<=;|^|\\{)(?=\\s*(?:(?:private|protected|public|native|synchronized|abstract|threadsafe|transient|static|final)|def|(?:(?:void|boolean|byte|char|short|int|float|long|double)|@?(?:[A-Za-z]\\w*\\.)*[A-Z]+\\w*)[]\\[]*(?:<.*>)?)\\s+([^=]+\\s+)?\\w+\\s*\\()",
+      "begin": "(?x:(?<=;|^|{)(?=\\s*\n                (?:\n                    (?:private|protected|public|native|synchronized|abstract|threadsafe|transient|static|final) # visibility/modifier\n                        |\n                    (?:def)\n                        |\n                    (?:\n                        (?:\n                            (?:void|boolean|byte|char|short|int|float|long|double)\n                                |\n                            (?:@?(?:[a-zA-Z]\\w*\\.)*[A-Z]+\\w*) # object type\n                        )\n                        [\\[\\]]*\n                        (?:<.*>)?\n                    ) \n                    \n                )\n                \\s+\n                ([^=]+\\s+)?\\w+\\s*\\(\n\t\t\t))",
       "end": "}|(?=[^{])",
       "name": "meta.definition.method.groovy",
       "patterns": [
@@ -900,7 +906,7 @@
           "name": "punctuation.section.scope.groovy"
         }
       },
-      "end": "}",
+      "end": "\\}",
       "patterns": [
         {
           "include": "#nest_curly"
@@ -910,7 +916,7 @@
     "numbers": {
       "patterns": [
         {
-          "match": "((0([Xx])\\h*)|([-+])?\\b(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))(([Ee])([-+])?[0-9]+)?)([DFLUdfglu]|UL|ul)?\\b",
+          "match": "((0(x|X)[0-9a-fA-F]*)|(\\+|-)?\\b(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))((e|E)(\\+|-)?[0-9]+)?)([LlFfUuDdg]|UL|ul)?\\b",
           "name": "constant.numeric.groovy"
         }
       ]
@@ -918,8 +924,8 @@
     "object-types": {
       "patterns": [
         {
-          "begin": "\\b((?:[a-z]\\w*\\.)*(?:[A-Z]+\\w*[a-z]+\\w*|UR[IL]))<",
-          "end": "[>[^],<?\\[\\w\\s]]",
+          "begin": "\\b((?:[a-z]\\w*\\.)*(?:[A-Z]+\\w*[a-z]+\\w*|UR[LI]))<",
+          "end": ">|[^\\w\\s,\\?<\\[\\]]",
           "name": "storage.type.generic.groovy",
           "patterns": [
             {
@@ -927,19 +933,20 @@
             },
             {
               "begin": "<",
-              "end": "[>[^],<\\[\\w\\s]]",
+              "comment": "This is just to support <>'s with no actual type prefix",
+              "end": ">|[^\\w\\s,\\[\\]<]",
               "name": "storage.type.generic.groovy"
             }
           ]
         },
         {
           "begin": "\\b((?:[a-z]\\w*\\.)*[A-Z]+\\w*[a-z]+\\w*)(?=\\[)",
-          "end": "(?=[^]\\s])",
+          "end": "(?=[^\\]\\s])",
           "name": "storage.type.object.array.groovy",
           "patterns": [
             {
               "begin": "\\[",
-              "end": "]",
+              "end": "\\]",
               "patterns": [
                 {
                   "include": "#groovy"
@@ -949,7 +956,7 @@
           ]
         },
         {
-          "match": "\\b(?:[A-Za-z]\\w*\\.)*(?:[A-Z]+\\w*[a-z]+\\w*|UR[IL])\\b",
+          "match": "\\b(?:[a-zA-Z]\\w*\\.)*(?:[A-Z]+\\w*[a-z]+\\w*|UR[LI])\\b",
           "name": "storage.type.groovy"
         }
       ]
@@ -957,8 +964,8 @@
     "object-types-inherited": {
       "patterns": [
         {
-          "begin": "\\b((?:[A-Za-z]\\w*\\.)*[A-Z]+\\w*[a-z]+\\w*)<",
-          "end": "[>[^],<?\\[\\w\\s]]",
+          "begin": "\\b((?:[a-zA-Z]\\w*\\.)*[A-Z]+\\w*[a-z]+\\w*)<",
+          "end": ">|[^\\w\\s,\\?<\\[\\]]",
           "name": "entity.other.inherited-class.groovy",
           "patterns": [
             {
@@ -966,7 +973,8 @@
             },
             {
               "begin": "<",
-              "end": "[>[^],<\\[\\w\\s]]",
+              "comment": "This is just to support <>'s with no actual type prefix",
+              "end": ">|[^\\w\\s,\\[\\]<]",
               "name": "storage.type.generic.groovy"
             }
           ]
@@ -977,7 +985,7 @@
               "name": "keyword.operator.dereference.groovy"
             }
           },
-          "match": "\\b(?:[A-Za-z]\\w*(\\.))*[A-Z]+\\w*[a-z]+\\w*\\b",
+          "match": "\\b(?:[a-zA-Z]\\w*(\\.))*[A-Z]+\\w*[a-z]+\\w*\\b",
           "name": "entity.other.inherited-class.groovy"
         }
       ]
@@ -1011,7 +1019,7 @@
     "primitive-arrays": {
       "patterns": [
         {
-          "match": "\\b(?:void|boolean|byte|char|short|int|float|long|double)(\\[])*\\b",
+          "match": "\\b(?:void|boolean|byte|char|short|int|float|long|double)(\\[\\])*\\b",
           "name": "storage.type.primitive.array.groovy"
         }
       ]
@@ -1073,7 +1081,7 @@
     "storage-modifiers": {
       "patterns": [
         {
-          "match": "\\b(p(?:rivate|rotected|ublic))\\b",
+          "match": "\\b(private|protected|public)\\b",
           "name": "storage.modifier.access-control.groovy"
         },
         {
@@ -1139,7 +1147,7 @@
               "name": "punctuation.section.embedded.groovy"
             }
           },
-          "end": "}",
+          "end": "\\}",
           "name": "source.groovy.embedded.source",
           "patterns": [
             {
@@ -1243,7 +1251,7 @@
           "name": "punctuation.definition.structure.begin.groovy"
         }
       },
-      "end": "]",
+      "end": "\\]",
       "endCaptures": {
         "0": {
           "name": "punctuation.definition.structure.end.groovy"
@@ -1263,11 +1271,11 @@
     "support-functions": {
       "patterns": [
         {
-          "match": "\\b(?:sprintf|print(?:f|ln)?)\\b",
+          "match": "(?x)\\b(?:sprintf|print(?:f|ln)?)\\b",
           "name": "support.function.print.groovy"
         },
         {
-          "match": "\\b(?:shouldFail|fail(?:NotEquals)?|ass(?:ume|ert(?:S(?:cript|ame)|N(?:ot(?:Same|Null)|ull)|Contains|T(?:hat|oString|rue)|Inspect|Equals|False|Length|ArrayEquals)))\\b",
+          "match": "(?x)\\b(?:shouldFail|fail(?:NotEquals)?|ass(?:ume|ert(?:S(?:cript|ame)|N(?:ot(?:Same|\n\t\t\t\t\tNull)|ull)|Contains|T(?:hat|oString|rue)|Inspect|Equals|False|Length|\n\t\t\t\t\tArrayEquals)))\\b",
           "name": "support.function.testing.groovy"
         }
       ]
@@ -1318,7 +1326,7 @@
       "applyEndPatternLast": 1,
       "patterns": [
         {
-          "begin": "(?=(?:(?:private|protected|public|native|synchronized|abstract|threadsafe|transient|static|final)|def|(?:void|boolean|byte|char|short|int|float|long|double)|(?:[a-z]\\w*\\.)*[A-Z]+\\w*)\\s+[],<>\\[_\\w\\d\\s]+(?:=|$))",
+          "begin": "(?x:(?=\n                        (?:\n                            (?:private|protected|public|native|synchronized|abstract|threadsafe|transient|static|final) # visibility/modifier\n                                |\n                            (?:def)\n                                |\n                            (?:void|boolean|byte|char|short|int|float|long|double)\n                                |\n                            (?:(?:[a-z]\\w*\\.)*[A-Z]+\\w*) # object type\n                        )\n                        \\s+\n                        [\\w\\d_<>\\[\\],\\s]+\n                        (?:=|$)\n                        \n        \t\t\t))",
           "end": ";|$",
           "name": "meta.definition.variable.groovy",
           "patterns": [
@@ -1331,7 +1339,7 @@
                   "name": "constant.variable.groovy"
                 }
               },
-              "match": "([0-9A-Z_]+)\\s+(?==)"
+              "match": "([A-Z_0-9]+)\\s+(?=\\=)"
             },
             {
               "captures": {
@@ -1339,7 +1347,7 @@
                   "name": "meta.definition.variable.name.groovy"
                 }
               },
-              "match": "(\\w[^,\\s]*)\\s+(?==)"
+              "match": "(\\w[^\\s,]*)\\s+(?=\\=)"
             },
             {
               "begin": "=",
@@ -1361,7 +1369,7 @@
                   "name": "meta.definition.variable.name.groovy"
                 }
               },
-              "match": "(\\w[^=\\s]*)(?=\\s*($|;))"
+              "match": "(\\w[^\\s=]*)(?=\\s*($|;))"
             },
             {
               "include": "#groovy-code"
@@ -1371,5 +1379,6 @@
       ]
     }
   },
-  "scopeName": "source.groovy"
+  "scopeName": "source.groovy",
+  "version": "https://github.com/textmate/groovy.tmbundle/commit/85d8f7c97ae473ccb9473f6c8d27e4ec957f4be1"
 }

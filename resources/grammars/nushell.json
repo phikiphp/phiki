@@ -1,4 +1,5 @@
 {
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
   "displayName": "nushell",
   "name": "nushell",
   "patterns": [
@@ -38,7 +39,7 @@
           "name": "meta.brace.square.begin.nushell"
         }
       },
-      "end": "]",
+      "end": "\\]",
       "endCaptures": {
         "0": {
           "name": "meta.brace.square.begin.nushell"
@@ -47,7 +48,7 @@
       "name": "constant.binary.nushell",
       "patterns": [
         {
-          "match": "\\h{2}",
+          "match": "[0-9a-fA-F]{2}",
           "name": "constant.numeric.nushell"
         }
       ]
@@ -59,7 +60,7 @@
           "name": "punctuation.section.block.begin.bracket.curly.nushell"
         }
       },
-      "end": "}",
+      "end": "\\}",
       "endCaptures": {
         "0": {
           "name": "punctuation.section.block.end.bracket.curly.nushell"
@@ -161,7 +162,7 @@
       ]
     },
     "command": {
-      "begin": "(?<!\\w)(?:(\\^)|(?![$0-9]))([!.\\w]+(?: (?!-)[-!.\\w]+(?:(?=[ )])|$)|[-!.\\w]+)*|(?<=\\^)\\$?(?:\"[^\"]+\"|'[^']+'))",
+      "begin": "(?<!\\w)(?:(\\^)|(?![0-9]|\\$))([\\w.!]+(?:(?: (?!-)[\\w\\-.!]+(?:(?= |\\))|$)|[\\w\\-.!]+))*|(?<=\\^)\\$?(?:\"[^\"]+\"|'[^']+'))",
       "beginCaptures": {
         "1": {
           "name": "keyword.operator.nushell"
@@ -192,7 +193,8 @@
                   ]
                 }
               },
-              "match": "(a(?:l(?:ias|l)|n(?:si(?: (?:gradient|link|strip))?|y)|ppend|st)|b(?:g|its(?: (?:and|not|or|ro[lr]|sh[lr]|xor))?|reak|ytes(?: (?:a(?:dd|t)|build|collect|ends-with|index-of|length|re(?:move|place|verse)|starts-with))?)|c(?:al|d|h(?:ar|unks)|lear|o(?:l(?:lect|umns)|m(?:mandline(?: (?:edit|get-cursor|set-cursor))?|p(?:act|lete))|n(?:fig(?: (?:env|nu|reset))?|st|tinue))|p)|d(?:ate(?: (?:format|humanize|list-timezone|now|to-(?:record|t(?:able|imezone))))?|e(?:bug(?: (?:info|profile))?|code(?: (?:base(?:32(?:hex)?|64)|hex|new-base64))?|f(?:ault)?|scribe|tect columns)|o|rop(?: (?:column|nth))?|t(?: (?:add|diff|format|now|part|to|utcnow))?|u)|e(?:ach(?: while)?|cho|moji|n(?:code(?: (?:base(?:32(?:hex)?|64)|hex|new-base64))?|umerate)|rror make|very|x(?:ec|it|p(?:l(?:ain|ore)|ort(?: (?:alias|const|def|extern|module|use)|-env)?)|tern))|f(?:i(?:l(?:[el]|ter)|nd|rst)|latten|mt|or(?:mat(?: (?:d(?:ate|uration)|filesize|pattern))?)?|rom(?: (?:csv|eml|i(?:cs|ni)|json|msgpackz?|nuon|ods|p(?:arquet|list)|ssv|t(?:oml|sv)|url|vcf|x(?:lsx|ml)|ya?ml))?)|g(?:e(?:nerate|t)|lob|r(?:id|oup(?:-by)?)|stat)|h(?:ash(?: (?:md5|sha256))?|e(?:aders|lp(?: (?:aliases|commands|e(?:scapes|xterns)|modules|operators))?)|i(?:de(?:-env)?|sto(?:gram|ry(?: session)?))|ttp(?: (?:delete|get|head|options|p(?:atch|ost|ut)))?)|i(?:f|gnore|n(?:c|put(?: list(?:en)?)?|s(?:ert|pect)|t(?:erleave|o(?: (?:b(?:i(?:nary|ts)|ool)|cell-path|d(?:atetime|uration)|f(?:ilesize|loat)|glob|int|record|s(?:qlite|tring)|value))?))|s-(?:admin|empty|not-empty|terminal)|tems)|j(?:oin|son path|walk)|k(?:eybindings(?: (?:default|list(?:en)?))?|ill)|l(?:ast|e(?:ngth|t(?:-env)?)|ines|o(?:ad-env|op)|s)|m(?:at(?:ch|h(?: (?:a(?:bs|rc(?:cosh?|sinh?|tanh?)|vg)|c(?:eil|osh?)|exp|floor|l(?:n|og)|m(?:ax|edian|in|ode)|product|round|s(?:inh?|qrt|tddev|um)|tanh?|variance))?)|d|e(?:rge|tadata(?: (?:access|set))?)|k(?:dir|temp)|o(?:dule|ve)|ut|v)|nu-(?:check|highlight)|o(?:pen|verlay(?: (?:hide|list|new|use))?)|p(?:a(?:nic|r(?:-each|se)|th(?: (?:basename|dirname|ex(?:ists|pand)|join|parse|relative-to|split|type))?)|lugin(?: (?:add|list|rm|stop|use))?|net|o(?:lars(?: (?:a(?:gg(?:-groups)?|ll-(?:false|true)|ppend|rg-(?:m(?:ax|in)|sort|true|unique|where)|s(?:-date(?:time)?)?)|c(?:a(?:che|st)|o(?:l(?:lect|umns)?|n(?:cat(?:-str)?|tains)|unt(?:-null)?)|umulative)|d(?:atepart|ecimal|rop(?:-(?:duplicates|nulls))?|ummies)|exp(?:lode|r-not)|f(?:etch|i(?:l(?:l-n(?:an|ull)|ter(?:-with)?)|rst)|latten)|g(?:et(?:-(?:day|hour|m(?:inute|onth)|nanosecond|ordinal|second|week(?:day)?|year))?|roup-by)|i(?:mplode|nt(?:eger|o-(?:df|lazy|nu))|s-(?:duplicated|in|n(?:ot-n|)ull|unique))|join|l(?:ast|it|owercase)|m(?:ax|e(?:an|dian)|in)|n(?:-unique|ot)|o(?:pen|therwise)|p(?:ivot|rofile)|qu(?:antile|ery)|r(?:e(?:name|place(?:-all)?|verse)|olling)|s(?:a(?:mple|ve)|chema|e(?:lect|t(?:-with-idx)?)|h(?:ape|ift)|lice|ort-by|t(?:d|ore-(?:get|ls|rm)|r(?:-(?:join|lengths|slice)|ftime))|um(?:mary)?)|take|u(?:n(?:ique|pivot)|ppercase)|va(?:lue-counts|r)|w(?:hen|ith-column)))?|rt)|r(?:epend|int)|s)|query(?: (?:db|git|json|web(?:page-info)?|xml))?|r(?:an(?:dom(?: (?:b(?:inary|ool)|chars|dice|float|int|uuid))?|ge)|e(?:duce|g(?:ex|istry query)|ject|name|turn|verse)|m|o(?:ll(?: (?:down|left|right|up))?|tate)|un-external)|s(?:ave|c(?:hema|ope(?: (?:aliases|commands|e(?:ngine-stats|xterns)|modules|variables))?)|e(?:lect|q(?: (?:char|date))?)|huffle|kip(?: (?:until|while))?|leep|o(?:rt(?:-by)?|urce(?:-env)?)|plit(?: (?:c(?:ell-path|hars|olumn)|list|row|words)|-by)?|t(?:art|or(?: (?:create|delete|export|i(?:mport|nsert)|open|reset|update))?|r(?: (?:c(?:a(?:mel-case|pitalize)|ontains)|d(?:istance|owncase)|e(?:nds-with|xpand)|index-of|join|kebab-case|length|pascal-case|re(?:place|verse)|s(?:creaming-snake-case|imilarity|nake-case|ta(?:rts-with|ts)|ubstring)|t(?:itle-case|rim)|upcase)|ess_internals)?)|ys(?: (?:cpu|disks|host|mem|net|temp|users))?)|t(?:a(?:ble|ke(?: (?:until|while))?)|e(?:e|rm size)|imeit|o(?: (?:csv|html|json|m(?:d|sgpackz?)|nuon|p(?:arquet|list)|t(?:ext|oml|sv)|xml|yaml)|uch)?|r(?:anspose|y)|utor)|u(?:limit|n(?:ame|iq(?:-by)?)|p(?:date(?: cells)?|sert)|rl(?: (?:build-query|decode|encode|join|parse))?|se)|v(?:alues|ersion|iew(?: (?:files|ir|s(?:ource|pan)))?)|w(?:atch|h(?:ere|i(?:ch|le)|oami)|i(?:ndow|th-env)|rap)|zip)(?![-\\w])( (.*))?"
+              "comment": "Regex generated with list-to-tree (https://github.com/glcraft/list-to-tree)",
+              "match": "(a(?:l(?:ias|l)|n(?:si(?: (?:gradient|link|strip))?|y)|ppend|st)|b(?:g|its(?: (?:and|not|or|ro(?:l|r)|sh(?:l|r)|xor))?|reak|ytes(?: (?:a(?:dd|t)|build|collect|ends-with|index-of|length|re(?:move|place|verse)|starts-with))?)|c(?:al|d|h(?:ar|unks)|lear|o(?:l(?:lect|umns)|m(?:mandline(?: (?:edit|get-cursor|set-cursor))?|p(?:act|lete))|n(?:fig(?: (?:env|nu|reset))?|st|tinue))|p)|d(?:ate(?: (?:format|humanize|list-timezone|now|to-(?:record|t(?:able|imezone))))?|e(?:bug(?: (?:info|profile))?|code(?: (?:base(?:32(?:hex)?|64)|hex|new-base64))?|f(?:ault)?|scribe|tect columns)|o|rop(?: (?:column|nth))?|t(?: (?:add|diff|format|now|part|to|utcnow))?|u)|e(?:ach(?: while)?|cho|moji|n(?:code(?: (?:base(?:32(?:hex)?|64)|hex|new-base64))?|umerate)|rror make|very|x(?:ec|it|p(?:l(?:ain|ore)|ort(?: (?:alias|const|def|extern|module|use)|-env)?)|tern))|f(?:i(?:l(?:e|l|ter)|nd|rst)|latten|mt|or(?:mat(?: (?:d(?:ate|uration)|filesize|pattern))?)?|rom(?: (?:csv|eml|i(?:cs|ni)|json|msgpack(?:z)?|nuon|ods|p(?:arquet|list)|ssv|t(?:oml|sv)|url|vcf|x(?:lsx|ml)|y(?:aml|ml)))?)|g(?:e(?:nerate|t)|lob|r(?:id|oup(?:-by)?)|stat)|h(?:ash(?: (?:md5|sha256))?|e(?:aders|lp(?: (?:aliases|commands|e(?:scapes|xterns)|modules|operators))?)|i(?:de(?:-env)?|sto(?:gram|ry(?: session)?))|ttp(?: (?:delete|get|head|options|p(?:atch|ost|ut)))?)|i(?:f|gnore|n(?:c|put(?: list(?:en)?)?|s(?:ert|pect)|t(?:erleave|o(?: (?:b(?:i(?:nary|ts)|ool)|cell-path|d(?:atetime|uration)|f(?:ilesize|loat)|glob|int|record|s(?:qlite|tring)|value))?))|s-(?:admin|empty|not-empty|terminal)|tems)|j(?:oin|son path|walk)|k(?:eybindings(?: (?:default|list(?:en)?))?|ill)|l(?:ast|e(?:ngth|t(?:-env)?)|ines|o(?:ad-env|op)|s)|m(?:at(?:ch|h(?: (?:a(?:bs|rc(?:cos(?:h)?|sin(?:h)?|tan(?:h)?)|vg)|c(?:eil|os(?:h)?)|exp|floor|l(?:n|og)|m(?:ax|edian|in|ode)|product|round|s(?:in(?:h)?|qrt|tddev|um)|tan(?:h)?|variance))?)|d|e(?:rge|tadata(?: (?:access|set))?)|k(?:dir|temp)|o(?:dule|ve)|ut|v)|nu-(?:check|highlight)|o(?:pen|verlay(?: (?:hide|list|new|use))?)|p(?:a(?:nic|r(?:-each|se)|th(?: (?:basename|dirname|ex(?:ists|pand)|join|parse|relative-to|split|type))?)|lugin(?: (?:add|list|rm|stop|use))?|net|o(?:lars(?: (?:a(?:gg(?:-groups)?|ll-(?:false|true)|ppend|rg-(?:m(?:ax|in)|sort|true|unique|where)|s(?:-date(?:time)?)?)|c(?:a(?:che|st)|o(?:l(?:lect|umns)?|n(?:cat(?:-str)?|tains)|unt(?:-null)?)|umulative)|d(?:atepart|ecimal|rop(?:-(?:duplicates|nulls))?|ummies)|exp(?:lode|r-not)|f(?:etch|i(?:l(?:l-n(?:an|ull)|ter(?:-with)?)|rst)|latten)|g(?:et(?:-(?:day|hour|m(?:inute|onth)|nanosecond|ordinal|second|week(?:day)?|year))?|roup-by)|i(?:mplode|nt(?:eger|o-(?:df|lazy|nu))|s-(?:duplicated|in|n(?:ot-null|ull)|unique))|join|l(?:ast|it|owercase)|m(?:ax|e(?:an|dian)|in)|n(?:-unique|ot)|o(?:pen|therwise)|p(?:ivot|rofile)|qu(?:antile|ery)|r(?:e(?:name|place(?:-all)?|verse)|olling)|s(?:a(?:mple|ve)|chema|e(?:lect|t(?:-with-idx)?)|h(?:ape|ift)|lice|ort-by|t(?:d|ore-(?:get|ls|rm)|r(?:-(?:join|lengths|slice)|ftime))|um(?:mary)?)|take|u(?:n(?:ique|pivot)|ppercase)|va(?:lue-counts|r)|w(?:hen|ith-column)))?|rt)|r(?:epend|int)|s)|query(?: (?:db|git|json|web(?:page-info)?|xml))?|r(?:an(?:dom(?: (?:b(?:inary|ool)|chars|dice|float|int|uuid))?|ge)|e(?:duce|g(?:ex|istry query)|ject|name|turn|verse)|m|o(?:ll(?: (?:down|left|right|up))?|tate)|un-external)|s(?:ave|c(?:hema|ope(?: (?:aliases|commands|e(?:ngine-stats|xterns)|modules|variables))?)|e(?:lect|q(?: (?:char|date))?)|huffle|kip(?: (?:until|while))?|leep|o(?:rt(?:-by)?|urce(?:-env)?)|plit(?: (?:c(?:ell-path|hars|olumn)|list|row|words)|-by)?|t(?:art|or(?: (?:create|delete|export|i(?:mport|nsert)|open|reset|update))?|r(?: (?:c(?:a(?:mel-case|pitalize)|ontains)|d(?:istance|owncase)|e(?:nds-with|xpand)|index-of|join|kebab-case|length|pascal-case|re(?:place|verse)|s(?:creaming-snake-case|imilarity|nake-case|ta(?:rts-with|ts)|ubstring)|t(?:itle-case|rim)|upcase)|ess_internals)?)|ys(?: (?:cpu|disks|host|mem|net|temp|users))?)|t(?:a(?:ble|ke(?: (?:until|while))?)|e(?:e|rm size)|imeit|o(?: (?:csv|html|json|m(?:d|sgpack(?:z)?)|nuon|p(?:arquet|list)|t(?:ext|oml|sv)|xml|yaml)|uch)?|r(?:anspose|y)|utor)|u(?:limit|n(?:ame|iq(?:-by)?)|p(?:date(?: cells)?|sert)|rl(?: (?:build-query|decode|encode|join|parse))?|se)|v(?:alues|ersion|iew(?: (?:files|ir|s(?:ource|pan)))?)|w(?:atch|h(?:ere|i(?:ch|le)|oami)|i(?:ndow|th-env)|rap)|zip)(?![\\w-])( (.*))?"
             },
             {
               "captures": {
@@ -220,7 +222,7 @@
                   ]
                 }
               },
-              "match": "([.\\w]+(?:-[!.\\w]+)*)(?: (.*))?"
+              "match": "([\\w.]+(?:-[\\w.!]+)*)(?: (.*))?"
             },
             {
               "include": "#value"
@@ -228,7 +230,7 @@
           ]
         }
       },
-      "end": "(?=[);|}])|$",
+      "end": "(?=\\||\\)|\\}|;)|$",
       "name": "meta.command.nushell",
       "patterns": [
         {
@@ -276,7 +278,8 @@
       ]
     },
     "control-keywords": {
-      "match": "(?<![\\--:A-Z\\\\_a-z])(?:break|continue|else(?: if)?|for|if|loop|mut|return|try|while)(?![\\--:A-Z\\\\_a-z])",
+      "comment": "Regex generated with list-to-tree (https://github.com/glcraft/list-to-tree)",
+      "match": "(?<![0-9a-zA-Z_\\-.\\/:\\\\])(?:break|continue|else(?: if)?|for|if|loop|mut|return|try|while)(?![0-9a-zA-Z_\\-.\\/:\\\\])",
       "name": "keyword.control.nushell"
     },
     "datetime": {
@@ -299,7 +302,7 @@
           ]
         }
       },
-      "match": "((?:export )?alias)\\s+([-!\\w]+)\\s*(=)"
+      "match": "((?:export )?alias)\\s+([\\w\\-!]+)\\s*(=)"
     },
     "define-variable": {
       "captures": {
@@ -352,7 +355,7 @@
       ]
     },
     "extern": {
-      "begin": "((?:export\\s+)?extern)\\s+([-\\w]+|\"[- \\w]+\")",
+      "begin": "((?:export\\s+)?extern)\\s+([\\w\\-]+|\"[\\w\\- ]+\")",
       "beginCaptures": {
         "1": {
           "name": "entity.name.function.nushell"
@@ -361,7 +364,7 @@
           "name": "entity.name.type.nushell"
         }
       },
-      "end": "(?<=])",
+      "end": "(?<=\\])",
       "endCaptures": {
         "0": {
           "name": "punctuation.definition.function.end.nushell"
@@ -396,7 +399,7 @@
           "name": "punctuation.section.block.begin.bracket.curly.nushell"
         }
       },
-      "end": "}",
+      "end": "\\}",
       "endCaptures": {
         "0": {
           "name": "punctuation.section.block.end.bracket.curly.nushell"
@@ -410,7 +413,7 @@
       ]
     },
     "function": {
-      "begin": "((?:export\\s+)?def(?:\\s+--\\w+)*)\\s+([-\\w]+|\"[- \\w]+\"|'[- \\w]+'|`[- \\w]+`)(\\s+--\\w+)*",
+      "begin": "((?:export\\s+)?def(?:\\s+--\\w+)*)\\s+([\\w\\-]+|\"[\\w\\- ]+\"|'[\\w\\- ]+'|`[\\w\\- ]+`)(\\s+--\\w+)*",
       "beginCaptures": {
         "1": {
           "name": "entity.name.function.nushell"
@@ -422,7 +425,7 @@
           "name": "entity.name.function.nushell"
         }
       },
-      "end": "(?<=})",
+      "end": "(?<=\\})",
       "patterns": [
         {
           "include": "#function-parameters"
@@ -442,7 +445,7 @@
           "name": "punctuation.definition.function.begin.nushell"
         }
       },
-      "end": "}",
+      "end": "\\}",
       "endCaptures": {
         "0": {
           "name": "punctuation.definition.function.end.nushell"
@@ -479,7 +482,7 @@
           "name": "meta.brace.square.begin.nushell"
         }
       },
-      "end": "]",
+      "end": "\\]",
       "endCaptures": {
         "0": {
           "name": "meta.brace.square.end.nushell"
@@ -515,12 +518,12 @@
               "name": "keyword.control.nushell"
             }
           },
-          "match": "(-{0,2}|\\.{3})[-\\w]+(?:\\((-[?\\w])\\))?",
+          "match": "(-{0,2}|\\.{3})[\\w-]+(?:\\((-[\\w?])\\))?",
           "name": "variable.parameter.nushell"
         },
         {
           "begin": "\\??:\\s*",
-          "end": "(?=\\s+(?:-{0,2}|\\.{3})[-\\w]+|\\s*(?:[]#,=@|]|$))",
+          "end": "(?=(?:\\s+(?:-{0,2}|\\.{3})[\\w-]+)|(?:\\s*(?:,|\\]|\\||@|=|#|$)))",
           "patterns": [
             {
               "include": "#types"
@@ -528,8 +531,8 @@
           ]
         },
         {
-          "begin": "@(?=[\"'])",
-          "end": "(?<=[\"'])",
+          "begin": "@(?=\"|')",
+          "end": "(?<=\"|')",
           "patterns": [
             {
               "include": "#string"
@@ -538,7 +541,7 @@
         },
         {
           "begin": "=\\s*",
-          "end": "(?=\\s+-{0,2}[-\\w]+|\\s*(?:[]#,|]|$))",
+          "end": "(?=(?:\\s+-{0,2}[\\w-]+)|(?:\\s*(?:,|\\]|\\||#|$)))",
           "name": "default.value.nushell",
           "patterns": [
             {
@@ -555,7 +558,7 @@
           "name": "meta.brace.square.begin.nushell"
         }
       },
-      "end": "]",
+      "end": "\\]",
       "endCaptures": {
         "0": {
           "name": "meta.brace.square.end.nushell"
@@ -576,11 +579,11 @@
       "name": "variable.language.nushell"
     },
     "keyword": {
-      "match": "def(?:-env)?",
+      "match": "(?:def(?:-env)?)",
       "name": "keyword.other.nushell"
     },
     "module": {
-      "begin": "((?:export\\s+)?module)\\s+([-\\w]+)\\s*\\{",
+      "begin": "((?:export\\s+)?module)\\s+([\\w\\-]+)\\s*\\{",
       "beginCaptures": {
         "1": {
           "name": "entity.name.function.nushell"
@@ -589,7 +592,7 @@
           "name": "entity.name.namespace.nushell"
         }
       },
-      "end": "}",
+      "end": "\\}",
       "endCaptures": {
         "0": {
           "name": "punctuation.definition.module.end.nushell"
@@ -603,19 +606,19 @@
       ]
     },
     "numbers": {
-      "match": "(?<![-\\w])_*+[-+]?_*+(?:(?i:NaN|infinity|inf)_*+|(?:\\d[_\\d]*+\\.?|\\._*+\\d)[_\\d]*+(?i:E_*+[-+]?_*+\\d[_\\d]*+)?)(?i:ns|us|µs|ms|sec|min|hr|day|wk|b|kb|mb|gb|tb|pt|eb|zb|kib|mib|gib|tib|pit|eib|zib)?(?:(?![.\\w])|(?=\\.\\.))",
+      "match": "(?<![\\w-])_*+[-+]?_*+(?:(?i:NaN|infinity|inf)_*+|(?:\\d[\\d_]*+\\.?|\\._*+\\d)[\\d_]*+(?i:E_*+[-+]?_*+\\d[\\d_]*+)?)(?i:ns|us|µs|ms|sec|min|hr|day|wk|b|kb|mb|gb|tb|pt|eb|zb|kib|mib|gib|tib|pit|eib|zib)?(?:(?![\\w.])|(?=\\.\\.))",
       "name": "constant.numeric.nushell"
     },
     "numbers-binary": {
-      "match": "(?<![-\\w])_*+0_*+b_*+[01][01_]*+(?![.\\w])",
+      "match": "(?<![\\w-])_*+0_*+b_*+[01][01_]*+(?![\\w.])",
       "name": "constant.numeric.nushell"
     },
     "numbers-hexa": {
-      "match": "(?<![-\\w])_*+0_*+x_*+\\h[_\\h]*+(?![.\\w])",
+      "match": "(?<![\\w-])_*+0_*+x_*+[0-9a-fA-F][0-9a-fA-F_]*+(?![\\w.])",
       "name": "constant.numeric.nushell"
     },
     "numbers-octal": {
-      "match": "(?<![-\\w])_*+0_*+o_*+[0-7][0-7_]*+(?![.\\w])",
+      "match": "(?<![\\w-])_*+0_*+o_*+[0-7][0-7_]*+(?![\\w.])",
       "name": "constant.numeric.nushell"
     },
     "operators": {
@@ -632,11 +635,11 @@
       ]
     },
     "operators-symbols": {
-      "match": "(?<= )(?:[-*+/]=?|//|\\*\\*|!=|[<=>]=?|[!=]~|\\+\\+=?)(?= |$)",
+      "match": "(?<= )(?:(?:\\+|\\-|\\*|\\/)=?|\\/\\/|\\*\\*|!=|[<>=]=?|[!=]~|\\+\\+=?)(?= |$)",
       "name": "keyword.control.nushell"
     },
     "operators-word": {
-      "match": "(?<=[ (])(?:mod|in|not-(?:in|like|has)|not|and|or|xor|bit-(?:or|and|xor|shl|shr)|starts-with|ends-with|like|has)(?=[ )]|$)",
+      "match": "(?<= |\\()(?:mod|in|not-(?:in|like|has)|not|and|or|xor|bit-(?:or|and|xor|shl|shr)|starts-with|ends-with|like|has)(?= |\\)|$)",
       "name": "keyword.control.nushell"
     },
     "parameters": {
@@ -645,7 +648,7 @@
           "name": "keyword.control.nushell"
         }
       },
-      "match": "(?<=\\s)(-{1,2})[-\\w]+",
+      "match": "(?<=\\s)(-{1,2})[\\w-]+",
       "name": "variable.parameter.nushell"
     },
     "paren-expression": {
@@ -694,7 +697,7 @@
       "name": "keyword.control.nushell"
     },
     "spread": {
-      "match": "\\.\\.\\.(?=[^]}\\s])",
+      "match": "\\.\\.\\.(?=[^\\s\\]}])",
       "name": "keyword.control.nushell"
     },
     "string": {
@@ -738,7 +741,7 @@
       "name": "string.quoted.single.nushell"
     },
     "string-bare": {
-      "match": "[^\"#$'(,;\\[{|\\s][^]\"'(),;\\[{|}\\s]*",
+      "match": "[^$\\[{(\"',|#\\s|;][^\\[\\]{}()\"'\\s,|;]*",
       "name": "string.bare.nushell"
     },
     "string-double-quote": {
@@ -765,7 +768,7 @@
       ]
     },
     "string-escape": {
-      "match": "\\\\(?:[\"'/\\\\bfnrt]|u\\h{4})",
+      "match": "\\\\(?:[bfrnt\\\\'\"/]|u[0-9a-fA-F]{4})",
       "name": "constant.character.escape.nushell"
     },
     "string-interpolated-double": {
@@ -852,7 +855,7 @@
           "name": "meta.brace.square.begin.nushell"
         }
       },
-      "end": "]",
+      "end": "\\]",
       "endCaptures": {
         "0": {
           "name": "meta.brace.square.end.nushell"
@@ -905,7 +908,7 @@
                   "name": "variable.parameter.nushell"
                 }
               },
-              "match": "([-\\w]+|\"[- \\w]+\"|'[^']+')\\s*:\\s*"
+              "match": "([\\w\\-]+|\"[\\w\\- ]+\"|'[^']+')\\s*:\\s*"
             },
             {
               "include": "#types"
@@ -932,10 +935,10 @@
               "name": "keyword.other.nushell"
             }
           },
-          "match": "^\\s*((?:export )?use)\\s+([-\\w]+|\"[- \\w]+\"|'[- \\w]+')(?:\\s+([-\\w]+|\"[- \\w]+\"|'[- \\w]+'|\\*))?\\s*;?$"
+          "match": "^\\s*((?:export )?use)\\s+([\\w\\-]+|\"[\\w\\- ]+\"|'[\\w\\- ]+')(?:\\s+([\\w\\-]+|\"[\\w\\- ]+\"|'[\\w\\- ]+'|\\*))?\\s*;?$"
         },
         {
-          "begin": "^\\s*((?:export )?use)\\s+([-\\w]+|\"[- \\w]+\"|'[- \\w]+')\\s*\\[",
+          "begin": "^\\s*((?:export )?use)\\s+([\\w\\-]+|\"[\\w\\- ]+\"|'[\\w\\- ]+')\\s*\\[",
           "beginCaptures": {
             "1": {
               "name": "entity.name.function.nushell"
@@ -944,7 +947,7 @@
               "name": "entity.name.namespace.nushell"
             }
           },
-          "end": "(])\\s*;?\\s*$",
+          "end": "(\\])\\s*;?\\s*$",
           "endCaptures": {
             "1": {
               "name": "meta.brace.square.end.nushell"
@@ -957,7 +960,7 @@
                   "name": "keyword.other.nushell"
                 }
               },
-              "match": "([-\\w]+|\"[- \\w]+\"|'[- \\w]+'|\\*),?"
+              "match": "([\\w\\-]+|\"[\\w\\- ]+\"|'[\\w\\- ]+'|\\*),?"
             },
             {
               "include": "#comment"
@@ -978,7 +981,7 @@
                       "name": "entity.name.namespace.nushell"
                     }
                   },
-                  "match": "([- \\w]+)(?:\\.nu)?(?=$|[\"'])"
+                  "match": "([\\w\\- ]+)(?:\\.nu)?(?=$|\"|')"
                 }
               ]
             },
@@ -986,10 +989,10 @@
               "name": "keyword.other.nushell"
             }
           },
-          "match": "(?<path>(?:[/\\\\]|~[/\\\\]|\\.\\.?[/\\\\])?(?:[^/\\\\]+[/\\\\])*[- \\w]+(?:\\.nu)?){0}^\\s*((?:export )?use)\\s+(\"\\g<path>\"|'\\g<path>'|(?![\"'])\\g<path>)(?:\\s+([-\\w]+|\"[- \\w]+\"|'[^']+'|\\*))?\\s*;?$"
+          "match": "(?<path>(?:/|\\\\|~[\\/\\\\]|\\.\\.?[\\/\\\\])?(?:[^\\/\\\\]+[\\/\\\\])*[\\w\\- ]+(?:\\.nu)?){0}^\\s*((?:export )?use)\\s+(\"\\g<path>\"|'\\g<path>\\'|(?![\"'])\\g<path>)(?:\\s+([\\w\\-]+|\"[\\w\\- ]+\"|'[^']+'|\\*))?\\s*;?$"
         },
         {
-          "begin": "(?<path>(?:[/\\\\]|~[/\\\\]|\\.\\.?[/\\\\])?(?:[^/\\\\]+[/\\\\])*[- \\w]+(?:\\.nu)?){0}^\\s*((?:export )?use)\\s+(\"\\g<path>\"|'\\g<path>'|(?![\"'])\\g<path>)\\s+\\[",
+          "begin": "(?<path>(?:/|\\\\|~[\\/\\\\]|\\.\\.?[\\/\\\\])?(?:[^\\/\\\\]+[\\/\\\\])*[\\w\\- ]+(?:\\.nu)?){0}^\\s*((?:export )?use)\\s+(\"\\g<path>\"|'\\g<path>\\'|(?![\"'])\\g<path>)\\s+\\[",
           "beginCaptures": {
             "2": {
               "name": "entity.name.function.nushell"
@@ -1003,12 +1006,12 @@
                       "name": "entity.name.namespace.nushell"
                     }
                   },
-                  "match": "([- \\w]+)(?:\\.nu)?(?=$|[\"'])"
+                  "match": "([\\w\\- ]+)(?:\\.nu)?(?=$|\"|')"
                 }
               ]
             }
           },
-          "end": "(])\\s*;?\\s*$",
+          "end": "(\\])\\s*;?\\s*$",
           "endCaptures": {
             "1": {
               "name": "meta.brace.square.end.nushell"
@@ -1021,7 +1024,7 @@
                   "name": "keyword.other.nushell"
                 }
               },
-              "match": "([-\\w]+|\"[- \\w]+\"|'[- \\w]+'|\\*),?"
+              "match": "([\\w\\-]+|\"[\\w\\- ]+\"|'[\\w\\- ]+'|\\*),?"
             },
             {
               "include": "#comment"
@@ -1073,7 +1076,7 @@
       ]
     },
     "variable-fields": {
-      "match": "(?<=[])}])(?:\\.(?:[-\\w]+|\"[- \\w]+\"))+",
+      "match": "(?<=\\)|\\}|\\])(?:\\.(?:[\\w-]+|\"[\\w\\- ]+\"))+",
       "name": "variable.other.nushell"
     },
     "variables": {
@@ -1093,7 +1096,7 @@
           "name": "variable.other.nushell"
         }
       },
-      "match": "(\\$[0-9A-Z_a-z]+)((?:\\.(?:[-\\w]+|\"[- \\w]+\"))*)"
+      "match": "(\\$[a-zA-Z0-9_]+)((?:\\.(?:[\\w-]+|\"[\\w\\- ]+\"))*)"
     }
   },
   "scopeName": "source.nushell"

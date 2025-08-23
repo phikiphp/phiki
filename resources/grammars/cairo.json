@@ -1,4 +1,5 @@
 {
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
   "displayName": "Cairo",
   "name": "cairo",
   "patterns": [
@@ -13,7 +14,7 @@
         }
       },
       "contentName": "source.cairo0",
-      "end": "}",
+      "end": "\\}",
       "endCaptures": {
         "0": {
           "name": "keyword.control.end"
@@ -37,7 +38,7 @@
         }
       },
       "contentName": "source.cairo0",
-      "end": "}",
+      "end": "\\}",
       "endCaptures": {
         "0": {
           "name": "keyword.control.end"
@@ -51,7 +52,7 @@
       ]
     },
     {
-      "begin": "\\b(with_attr)\\s+([A-Z_a-z][0-9A-Z_a-z]*)\\s*[({]",
+      "begin": "\\b(with_attr)\\s+([a-zA-Z_][a-zA-Z0-9_]*)\\s*[({]",
       "beginCaptures": {
         "1": {
           "name": "keyword.control.with_attr"
@@ -61,7 +62,7 @@
         }
       },
       "contentName": "source.cairo0",
-      "end": "}",
+      "end": "\\}",
       "endCaptures": {
         "0": {
           "name": "keyword.control.end"
@@ -83,7 +84,7 @@
       "name": "keyword.other.opcode"
     },
     {
-      "match": "\\b([af]p)\\b",
+      "match": "\\b(ap|fp)\\b",
       "name": "keyword.other.register"
     },
     {
@@ -91,19 +92,19 @@
       "name": "keyword.other.meta"
     },
     {
-      "match": "\\b(SIZE(?:OF_LOCALS|))\\b",
+      "match": "\\b(SIZEOF_LOCALS|SIZE)\\b",
       "name": "markup.italic"
     },
     {
-      "match": "//[^\\n]*\\n",
+      "match": "//[^\n]*\n",
       "name": "comment.line.sharp"
     },
     {
-      "match": "\\b[A-Z_a-z][0-9A-Z_a-z]*:\\s*$",
+      "match": "\\b[a-zA-Z_][a-zA-Z0-9_]*:\\s*$",
       "name": "entity.name.function"
     },
     {
-      "begin": "\\b(func)\\s+([A-Z_a-z][0-9A-Z_a-z]*)\\s*[({]",
+      "begin": "\\b(func)\\s+([a-zA-Z_][a-zA-Z0-9_]*)\\s*[({]",
       "beginCaptures": {
         "1": {
           "name": "storage.type.function.cairo"
@@ -113,7 +114,7 @@
         }
       },
       "contentName": "source.cairo0",
-      "end": "}",
+      "end": "\\}",
       "endCaptures": {
         "0": {
           "name": "storage.type.function.cairo"
@@ -127,7 +128,7 @@
       ]
     },
     {
-      "begin": "\\b(struct|namespace)\\s+([A-Z_a-z][0-9A-Z_a-z]*)\\s*\\{",
+      "begin": "\\b(struct|namespace)\\s+([a-zA-Z_][a-zA-Z0-9_]*)\\s*\\{",
       "beginCaptures": {
         "1": {
           "name": "storage.type.function.cairo"
@@ -137,7 +138,7 @@
         }
       },
       "contentName": "source.cairo0",
-      "end": "}",
+      "end": "\\}",
       "endCaptures": {
         "0": {
           "name": "storage.type.function.cairo"
@@ -151,11 +152,11 @@
       ]
     },
     {
-      "match": "\\b[-+]?[0-9]+\\b",
+      "match": "\\b[+-]?[0-9]+\\b",
       "name": "constant.numeric.decimal"
     },
     {
-      "match": "\\b[-+]?0x\\h+\\b",
+      "match": "\\b[+-]?0x[0-9a-fA-F]+\\b",
       "name": "constant.numeric.hexadecimal"
     },
     {
@@ -167,7 +168,7 @@
       "name": "string.quoted.double"
     },
     {
-      "begin": "%\\{",
+      "begin": "%{",
       "beginCaptures": {
         "0": {
           "name": "punctuation.section.embedded.begin.python"

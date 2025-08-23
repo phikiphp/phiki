@@ -25,7 +25,7 @@
   ],
   "repository": {
     "expression-operators": {
-      "match": "\\|\\||&&|=|!=|[<>]|<=|>=|[-!*+/?^|]",
+      "match": "(?:\\|\\||&&|=|!=|<|>|<=|>=|\\*|/|\\+|-|\\||\\^|\\?|\\!)",
       "name": "support.class.sparql"
     },
     "functions": {
@@ -37,7 +37,7 @@
       "name": "keyword.control.sparql"
     },
     "variables": {
-      "match": "(?<!\\w)[$?]\\w+",
+      "match": "(?<!\\w)[?$]\\w+",
       "name": "constant.variable.sparql.turtle"
     }
   },

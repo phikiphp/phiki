@@ -30,8 +30,6 @@ grammars.forEach(grammar => {
     cases[pascalCase(grammar.name)] = grammar.name;
     aliases[pascalCase(grammar.name)] = grammar.aliases ?? [];
     scopeNames[pascalCase(grammar.name)] = grammar.scopeName;
-
-    fs.copyFileSync(basePath(`node_modules/tm-grammars/grammars/${grammar.name}.json`), basePath(`resources/grammars/${grammar.name}.json`));
 })
 
 console.log(`Found ${Object.keys(cases).length} grammars.`);

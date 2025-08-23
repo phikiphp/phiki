@@ -1,4 +1,5 @@
 {
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
   "displayName": "Kotlin",
   "fileTypes": [
     "kt",
@@ -18,7 +19,7 @@
   ],
   "repository": {
     "annotation-simple": {
-      "match": "(?<!\\w)@[.\\w]+\\b(?!:)",
+      "match": "(?<!\\w)@[\\w\\.]+\\b(?!:)",
       "name": "entity.name.type.annotation.kotlin"
     },
     "annotation-site": {
@@ -42,7 +43,7 @@
           "name": "entity.name.type.annotation-site.kotlin"
         }
       },
-      "end": "]",
+      "end": "\\]",
       "patterns": [
         {
           "include": "#unescaped-annotation"
@@ -50,7 +51,7 @@
       ]
     },
     "binary-literal": {
-      "match": "0([Bb])[01][01_]*",
+      "match": "0(b|B)[01][01_]*",
       "name": "constant.numeric.binary.kotlin"
     },
     "boolean-literal": {
@@ -196,7 +197,7 @@
                   "name": "variable.parameter.kotlin"
                 }
               },
-              "match": "(@p(?:aram|roperty))\\s+(\\S+)"
+              "match": "(@param|@property)\\s+(\\S+)"
             },
             {
               "captures": {
@@ -207,7 +208,7 @@
                   "name": "variable.parameter.kotlin"
                 }
               },
-              "match": "(@param)\\[(\\S+)]"
+              "match": "(@param)\\[(\\S+)\\]"
             },
             {
               "captures": {
@@ -232,7 +233,7 @@
                   "name": "variable.parameter.kotlin"
                 }
               },
-              "match": "\\{(@link)\\s+(\\S+)?#([$\\w]+\\s*\\([^()]*\\)).*}"
+              "match": "{(@link)\\s+(\\S+)?#([\\w$]+\\s*\\([^\\(\\)]*\\)).*}"
             }
           ]
         }
@@ -261,7 +262,7 @@
       "name": "keyword.control.kotlin"
     },
     "decimal-literal": {
-      "match": "\\b\\d[_\\d]*(\\.[_\\d]+)?(([Ee])\\d+)?([Uu])?([FLf])?\\b",
+      "match": "\\b\\d[\\d_]*(\\.[\\d_]+)?((e|E)\\d+)?(u|U)?(L|F|f)?\\b",
       "name": "constant.numeric.decimal.kotlin"
     },
     "function": {
@@ -305,7 +306,7 @@
       "name": "keyword.hard.kotlin"
     },
     "hex-literal": {
-      "match": "0([Xx])\\h[_\\h]*([Uu])?",
+      "match": "0(x|X)[A-Fa-f0-9][A-Fa-f0-9_]*(u|U)?",
       "name": "constant.numeric.hex.kotlin"
     },
     "import": {
@@ -391,11 +392,11 @@
     "operators": {
       "patterns": [
         {
-          "match": "(===?|!==?|<=|>=|[<>])",
+          "match": "(===?|\\!==?|<=|>=|<|>)",
           "name": "keyword.operator.comparison.kotlin"
         },
         {
-          "match": "([-%*+/]=)",
+          "match": "([+*/%-]=)",
           "name": "keyword.operator.assignment.arithmetic.kotlin"
         },
         {
@@ -403,7 +404,7 @@
           "name": "keyword.operator.assignment.kotlin"
         },
         {
-          "match": "([-%*+/])",
+          "match": "([+*/%-])",
           "name": "keyword.operator.arithmetic.kotlin"
         },
         {
@@ -480,7 +481,7 @@
           "name": "punctuation.definition.template-expression.begin"
         }
       },
-      "end": "(})",
+      "end": "(\\})",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.template-expression.end"
@@ -542,7 +543,7 @@
           ]
         }
       },
-      "match": "(?<![:?]):\\s*([?\\w\\s]|->|(?<GROUP>[(<]([^\"'()<>]|\\g<GROUP>)+[)>]))+"
+      "match": "(?<![:?]):\\s*(\\w|\\?|\\s|->|(?<GROUP>[<(]([^<>()\"']|\\g<GROUP>)+[)>]))+"
     },
     "type-parameter": {
       "patterns": [
@@ -557,7 +558,7 @@
       ]
     },
     "unescaped-annotation": {
-      "match": "\\b[.\\w]+\\b",
+      "match": "\\b[\\w\\.]+\\b",
       "name": "entity.name.type.annotation.kotlin"
     },
     "variable-declaration": {
@@ -573,7 +574,7 @@
           ]
         }
       },
-      "match": "\\b(va[lr])\\b\\s*(?<GROUP><([^<>]|\\g<GROUP>)+>)?"
+      "match": "\\b(val|var)\\b\\s*(?<GROUP><([^<>]|\\g<GROUP>)+>)?"
     }
   },
   "scopeName": "source.kotlin"

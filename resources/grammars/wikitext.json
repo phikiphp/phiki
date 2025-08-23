@@ -1,4 +1,5 @@
 {
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
   "displayName": "Wikitext",
   "name": "wikitext",
   "patterns": [
@@ -60,7 +61,7 @@
       ],
       "repository": {
         "argument": {
-          "begin": "(\\{\\{\\{)",
+          "begin": "({{{)",
           "end": "(}}})",
           "name": "variable.parameter.wikitext",
           "patterns": [
@@ -73,7 +74,7 @@
                   "name": "keyword.operator.wikitext"
                 }
               },
-              "match": "(?:^|\\G)([^]#:\\[{|}]*)(\\|)"
+              "match": "(?:^|\\G)([^#:\\|\\[\\]\\{\\}\\|]*)(\\|)"
             },
             {
               "include": "$self"
@@ -85,7 +86,7 @@
           "name": "markup.changed.wikitext"
         },
         "convert": {
-          "begin": "(-\\{(?!\\{))([A-Za-z](\\|))?",
+          "begin": "(-\\{(?!\\{))([a-zA-Z](\\|))?",
           "captures": {
             "1": {
               "name": "punctuation.definition.tag.template.wikitext"
@@ -97,7 +98,7 @@
               "name": "keyword.operator.wikitext"
             }
           },
-          "end": "(}-)",
+          "end": "(\\}-)",
           "patterns": [
             {
               "include": "$self"
@@ -122,12 +123,12 @@
                   "name": "punctuation.terminator.rule.wikitext"
                 }
               },
-              "match": "(?:([-A-Za-z]*)(:))?(.*?)(?:(;)|(?=}-))"
+              "match": "(?:([a-zA-Z\\-]*)(:))?(.*?)(?:(;)|(?=\\}-))"
             }
           ]
         },
         "extension-comments": {
-          "begin": "(<%--)\\s*(\\[)([A-Z_]*)(])",
+          "begin": "(<%--)\\s*(\\[)([A-Z_]*)(\\])",
           "beginCaptures": {
             "1": {
               "name": "punctuation.definition.comment.extension.wikitext"
@@ -142,7 +143,7 @@
               "name": "punctuation.definition.tag.extension.wikitext"
             }
           },
-          "end": "(\\[)([A-Z_]*)(])\\s*(--%>)",
+          "end": "(\\[)([A-Z_]*)(\\])\\s*(--%>)",
           "endCaptures": {
             "1": {
               "name": "punctuation.definition.tag.extension.wikitext"
@@ -206,7 +207,7 @@
                   "name": "punctuation.definition.tag.link.external.wikitext"
                 }
               },
-              "match": "(\\[)((?:https?|ftps?)://[-.\\w]+(?:\\.[-.\\w]+)+[!#-/:;=?@~\\w]+)\\s*?([^]]*)(])",
+              "match": "(\\[)((?:(?:(?:http(?:s)?)|(?:ftp(?:s)?)):\\/\\/)[\\w.-]+(?:\\.[\\w\\.-]+)+[\\w\\-\\.~:\\/?#%@!\\$&'\\(\\)\\*\\+,;=.]+)\\s*?([^\\]]*)(\\])",
               "name": "meta.link.external.wikitext"
             },
             {
@@ -229,7 +230,7 @@
                   "name": "punctuation.definition.tag.link.external.wikitext"
                 }
               },
-              "match": "(\\[)([-.\\w]+(?:\\.[-.\\w]+)+[!#-/:;=?@~\\w]+)\\s*?([^]]*)(])",
+              "match": "(\\[)([\\w.-]+(?:\\.[\\w\\.-]+)+[\\w\\-\\.~:\\/?#%@!\\$&'\\(\\)\\*\\+,;=.]+)\\s*?([^\\]]*)(\\])",
               "name": "invalid.illegal.bad-link.wikitext"
             }
           ]
@@ -288,7 +289,7 @@
         },
         "internal-link": {
           "TODO": "SINGLE LINE",
-          "begin": "(\\[\\[)(([^]#:\\[{|}]*:)*)?([^]\\[|]*)?",
+          "begin": "(\\[\\[)(([^#:\\|\\[\\]\\{\\}]*:)*)?([^\\|\\[\\]]*)?",
           "captures": {
             "1": {
               "name": "punctuation.definition.tag.link.internal.wikitext"
@@ -300,7 +301,7 @@
               "name": "entity.other.attribute-name.wikitext"
             }
           },
-          "end": "(]])",
+          "end": "(\\]\\])",
           "name": "string.quoted.internal-link.wikitext",
           "patterns": [
             {
@@ -315,7 +316,7 @@
                   "name": "entity.other.attribute-name.localname.wikitext"
                 }
               },
-              "match": "(\\|)|\\s*(?:([-.\\w]+)((:)))?([-.:\\w]+)\\s*(=)"
+              "match": "(\\|)|(?:\\s*)(?:([-\\w.]+)((:)))?([-\\w.:]+)\\s*(=)"
             }
           ]
         },
@@ -328,7 +329,7 @@
                   "name": "punctuation.definition.list.begin.markdown.wikitext"
                 }
               },
-              "match": "^([#*:;]+)"
+              "match": "^([#*;:]+)"
             }
           ]
         },
@@ -346,25 +347,25 @@
           ],
           "repository": {
             "behavior-switches": {
-              "match": "(?i)(__)(NOTOC|FORCETOC|TOC|NOEDITSECTION|NEWSECTIONLINK|NOGALLERY|HIDDENCAT|EXPECTUNUSEDCATEGORY|NOCONTENTCONVERT|NOCC|NOTITLECONVERT|NOTC|INDEX|NOINDEX|STATICREDIRECT|NOGLOBAL|DISAMBIG)(__)",
+              "match": "(?x)    # turn on extended mode\n(?i)    # ignore case\n  (__)  # start: __\n    (\n      NOTOC|FORCETOC|TOC|NOEDITSECTION|NEWSECTIONLINK|NOGALLERY|\n      HIDDENCAT|EXPECTUNUSEDCATEGORY|NOCONTENTCONVERT|NOCC|\n      NOTITLECONVERT|NOTC|INDEX|NOINDEX|STATICREDIRECT|NOGLOBAL|\n      DISAMBIG\n    )\n  (__)",
               "name": "constant.language.behavior-switcher.wikitext"
             },
             "outdated-behavior-switches": {
-              "match": "(?i)(__)(START|END)(__)",
+              "match": "(?x)\n(?i)\n  (__)\n    (\n      START|END\n    )\n  (__)",
               "name": "invalid.deprecated.behavior-switcher.wikitext"
             },
             "variables": {
               "patterns": [
                 {
-                  "match": "(?i)(\\{\\{)(CURRENTYEAR|CURRENTMONTH1??|CURRENTMONTHNAME|CURRENTMONTHNAMEGEN|CURRENTMONTHABBREV|CURRENTDAY2??|CURRENTDOW|CURRENTDAYNAME|CURRENTTIME|CURRENTHOUR|CURRENTWEEK|CURRENTTIMESTAMP|LOCALYEAR|LOCALMONTH1??|LOCALMONTHNAME|LOCALMONTHNAMEGEN|LOCALMONTHABBREV|LOCALDAY2??|LOCALDOW|LOCALDAYNAME|LOCALTIME|LOCALHOUR|LOCALWEEK|LOCALTIMESTAMP)(}})",
+                  "match": "(?x)\n(?i)\n  (\\{\\{)\n    (\n      CURRENTYEAR|CURRENTMONTH|CURRENTMONTH1|CURRENTMONTHNAME|\n      CURRENTMONTHNAMEGEN|CURRENTMONTHABBREV|CURRENTDAY|\n      CURRENTDAY2|CURRENTDOW|CURRENTDAYNAME|CURRENTTIME|\n      CURRENTHOUR|CURRENTWEEK|CURRENTTIMESTAMP|LOCALYEAR|\n      LOCALMONTH|LOCALMONTH1|LOCALMONTHNAME|LOCALMONTHNAMEGEN|\n      LOCALMONTHABBREV|LOCALDAY|LOCALDAY2|LOCALDOW|\n      LOCALDAYNAME|LOCALTIME|LOCALHOUR|LOCALWEEK|\n      LOCALTIMESTAMP\n    )\n  (\\}\\})",
                   "name": "constant.language.variables.time.wikitext"
                 },
                 {
-                  "match": "(?i)(\\{\\{)(SITENAME|SERVER|SERVERNAME|DIRMARK|DIRECTIONMARK|SCRIPTPATH|STYLEPATH|CURRENTVERSION|CONTENTLANGUAGE|CONTENTLANG|PAGEID|PAGELANGUAGE|CASCADINGSOURCES|REVISIONID|REVISIONDAY2??|REVISIONMONTH1??|REVISIONYEAR|REVISIONTIMESTAMP|REVISIONUSER|REVISIONSIZE)(}})",
+                  "match": "(?x)\n(?i)\n  (\\{\\{)\n    (\n      SITENAME|SERVER|SERVERNAME|DIRMARK|DIRECTIONMARK|\n      SCRIPTPATH|STYLEPATH|CURRENTVERSION|CONTENTLANGUAGE|\n      CONTENTLANG|PAGEID|PAGELANGUAGE|CASCADINGSOURCES|\n      REVISIONID|REVISIONDAY|REVISIONDAY2|REVISIONMONTH|\n      REVISIONMONTH1|REVISIONYEAR|REVISIONTIMESTAMP|\n      REVISIONUSER|REVISIONSIZE\n    )\n  (\\}\\})",
                   "name": "constant.language.variables.metadata.wikitext"
                 },
                 {
-                  "match": "ISBN\\s+((9[-\\s]?7[-\\s]?[89][-\\s]?)?([0-9][-\\s]?){10})",
+                  "match": "ISBN\\s+((9[\\-\\s]?7[\\-\\s]?[89][\\-\\s]?)?([0-9][\\-\\s]?){10})",
                   "name": "constant.language.variables.isbn.wikitext"
                 },
                 {
@@ -403,7 +404,7 @@
                   "name": "punctuation.definition.tag.link.internal.end.wikitext"
                 }
               },
-              "match": "(?i)^(\\s*?#REDIRECT)\\s*(\\[\\[)(([^]#:\\[{|}]*?:)*)?([^]\\[|]*)?(\\|[^]\\[]*?)?(]])"
+              "match": "(?i)(^\\s*?#REDIRECT)\\s*(\\[\\[)(([^#:\\|\\[\\]\\{\\}]*?:)*)?([^\\|\\[\\]]*)?(\\|[^\\[\\]]*?)?(\\]\\])"
             }
           ]
         },
@@ -431,7 +432,7 @@
                   ]
                 }
               },
-              "end": "^\\s*(\\|})",
+              "end": "^\\s*(\\|\\})",
               "name": "meta.tag.block.table.wikitext",
               "patterns": [
                 {
@@ -560,7 +561,7 @@
                           "name": "punctuation.definition.tag.wikitext"
                         }
                       },
-                      "match": "\\s*([^|]+)\\s*(?<!\\|)(\\|)(?!\\|)"
+                      "match": "\\s*([^\\|]+)\\s*(?<!\\|)(\\|)(?!\\|)"
                     },
                     {
                       "match": "\\|\\|",
@@ -576,7 +577,7 @@
           ]
         },
         "template": {
-          "begin": "(\\{\\{)\\s*(([^]#:\\[{|}]*(:))*)\\s*((#[^]#:\\[{|}]+(:))*)([^]#:\\[{|}]*)",
+          "begin": "(\\{\\{)\\s*(([^#:\\|\\[\\]\\{\\}]*(:))*)\\s*((#[^#:\\|\\[\\]\\{\\}]+(:))*)([^#:\\|\\[\\]\\{\\}]*)",
           "captures": {
             "1": {
               "name": "punctuation.definition.tag.template.wikitext"
@@ -597,7 +598,7 @@
               "name": "entity.name.tag.local-name.wikitext"
             }
           },
-          "end": "(}})",
+          "end": "(\\}\\})",
           "patterns": [
             {
               "include": "$self"
@@ -621,7 +622,7 @@
                   "name": "keyword.operator.equal.wikitext"
                 }
               },
-              "match": "(?<=\\|)\\s*(?:([-.\\w]+)(:))?([-.:\\w\\s]+)\\s*(=)"
+              "match": "(?<=\\|)\\s*(?:([-\\w.]+)(:))?([-\\w\\s\\.:]+)\\s*(=)"
             }
           ]
         },
@@ -1011,7 +1012,7 @@
               ],
               "repository": {
                 "hl-bat": {
-                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?\\s+lang=([\"']?)([\"']?)(?:batch|bat|dosbatch|winbatch)\\4(?:\\s+[^>]+)?)\\s*(>)",
+                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?(?:\\s+lang=(?:(['\"]?)(['\"]?)(?:batch|bat|dosbatch|winbatch)\\4))(?:\\s+[^>]+)?)\\s*(>)",
                   "beginCaptures": {
                     "0": {
                       "name": "meta.tag.metadata.start.wikitext"
@@ -1065,7 +1066,7 @@
                   ]
                 },
                 "hl-bibtex": {
-                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?\\s+lang=([\"']?)bib(?:tex|)\\4(?:\\s+[^>]+)?)\\s*(>)",
+                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?(?:\\s+lang=(?:(['\"]?)(?:bibtex|bib)\\4))(?:\\s+[^>]+)?)\\s*(>)",
                   "beginCaptures": {
                     "0": {
                       "name": "meta.tag.metadata.start.wikitext"
@@ -1119,7 +1120,7 @@
                   ]
                 },
                 "hl-c": {
-                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?\\s+lang=([\"']?)c\\4(?:\\s+[^>]+)?)\\s*(>)",
+                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?(?:\\s+lang=(?:(['\"]?)c\\4))(?:\\s+[^>]+)?)\\s*(>)",
                   "beginCaptures": {
                     "0": {
                       "name": "meta.tag.metadata.start.wikitext"
@@ -1173,7 +1174,7 @@
                   ]
                 },
                 "hl-clojure": {
-                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?\\s+lang=([\"']?)cl(?:ojure|j)\\4(?:\\s+[^>]+)?)\\s*(>)",
+                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?(?:\\s+lang=(?:(['\"]?)(?:clojure|clj)\\4))(?:\\s+[^>]+)?)\\s*(>)",
                   "beginCaptures": {
                     "0": {
                       "name": "meta.tag.metadata.start.wikitext"
@@ -1227,7 +1228,7 @@
                   ]
                 },
                 "hl-coffee": {
-                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?\\s+lang=([\"']?)coffee(?:script|-script|)\\4(?:\\s+[^>]+)?)\\s*(>)",
+                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?(?:\\s+lang=(?:(['\"]?)(?:coffeescript|coffee-script|coffee)\\4))(?:\\s+[^>]+)?)\\s*(>)",
                   "beginCaptures": {
                     "0": {
                       "name": "meta.tag.metadata.start.wikitext"
@@ -1281,7 +1282,7 @@
                   ]
                 },
                 "hl-cpp": {
-                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?\\s+lang=([\"']?)c(?:pp|\\+\\+)\\4(?:\\s+[^>]+)?)\\s*(>)",
+                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?(?:\\s+lang=(?:(['\"]?)(?:cpp|c\\+\\+)\\4))(?:\\s+[^>]+)?)\\s*(>)",
                   "beginCaptures": {
                     "0": {
                       "name": "meta.tag.metadata.start.wikitext"
@@ -1335,7 +1336,7 @@
                   ]
                 },
                 "hl-csharp": {
-                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?\\s+lang=([\"']?)c(?:sharp|[#s])\\4(?:\\s+[^>]+)?)\\s*(>)",
+                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?(?:\\s+lang=(?:(['\"]?)(?:csharp|c#|cs)\\4))(?:\\s+[^>]+)?)\\s*(>)",
                   "beginCaptures": {
                     "0": {
                       "name": "meta.tag.metadata.start.wikitext"
@@ -1389,7 +1390,7 @@
                   ]
                 },
                 "hl-css": {
-                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?\\s+lang=([\"']?)css\\4(?:\\s+[^>]+)?)\\s*(>)",
+                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?(?:\\s+lang=(?:(['\"]?)css\\4))(?:\\s+[^>]+)?)\\s*(>)",
                   "beginCaptures": {
                     "0": {
                       "name": "meta.tag.metadata.start.wikitext"
@@ -1443,7 +1444,7 @@
                   ]
                 },
                 "hl-dart": {
-                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?\\s+lang=([\"']?)dart\\4(?:\\s+[^>]+)?)\\s*(>)",
+                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?(?:\\s+lang=(?:(['\"]?)dart\\4))(?:\\s+[^>]+)?)\\s*(>)",
                   "beginCaptures": {
                     "0": {
                       "name": "meta.tag.metadata.start.wikitext"
@@ -1497,7 +1498,7 @@
                   ]
                 },
                 "hl-diff": {
-                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?\\s+lang=([\"']?)u??diff\\4(?:\\s+[^>]+)?)\\s*(>)",
+                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?(?:\\s+lang=(?:(['\"]?)(?:diff|udiff)\\4))(?:\\s+[^>]+)?)\\s*(>)",
                   "beginCaptures": {
                     "0": {
                       "name": "meta.tag.metadata.start.wikitext"
@@ -1551,7 +1552,7 @@
                   ]
                 },
                 "hl-dockerfile": {
-                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?\\s+lang=([\"']?)docker(?:|file)\\4(?:\\s+[^>]+)?)\\s*(>)",
+                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?(?:\\s+lang=(?:(['\"]?)(?:docker|dockerfile)\\4))(?:\\s+[^>]+)?)\\s*(>)",
                   "beginCaptures": {
                     "0": {
                       "name": "meta.tag.metadata.start.wikitext"
@@ -1605,7 +1606,7 @@
                   ]
                 },
                 "hl-elixir": {
-                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?\\s+lang=([\"']?)e(?:lixir|xs??)\\4(?:\\s+[^>]+)?)\\s*(>)",
+                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?(?:\\s+lang=(?:(['\"]?)(?:elixir|ex|exs)\\4))(?:\\s+[^>]+)?)\\s*(>)",
                   "beginCaptures": {
                     "0": {
                       "name": "meta.tag.metadata.start.wikitext"
@@ -1659,7 +1660,7 @@
                   ]
                 },
                 "hl-erlang": {
-                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?\\s+lang=([\"']?)erlang\\4(?:\\s+[^>]+)?)\\s*(>)",
+                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?(?:\\s+lang=(?:(['\"]?)erlang\\4))(?:\\s+[^>]+)?)\\s*(>)",
                   "beginCaptures": {
                     "0": {
                       "name": "meta.tag.metadata.start.wikitext"
@@ -1713,7 +1714,7 @@
                   ]
                 },
                 "hl-fsharp": {
-                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?\\s+lang=([\"']?)f(?:sharp|#)\\4(?:\\s+[^>]+)?)\\s*(>)",
+                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?(?:\\s+lang=(?:(['\"]?)(?:fsharp|f#)\\4))(?:\\s+[^>]+)?)\\s*(>)",
                   "beginCaptures": {
                     "0": {
                       "name": "meta.tag.metadata.start.wikitext"
@@ -1767,7 +1768,7 @@
                   ]
                 },
                 "hl-go": {
-                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?\\s+lang=([\"']?)go(?:|lang)\\4(?:\\s+[^>]+)?)\\s*(>)",
+                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?(?:\\s+lang=(?:(['\"]?)(?:go|golang)\\4))(?:\\s+[^>]+)?)\\s*(>)",
                   "beginCaptures": {
                     "0": {
                       "name": "meta.tag.metadata.start.wikitext"
@@ -1821,7 +1822,7 @@
                   ]
                 },
                 "hl-groovy": {
-                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?\\s+lang=([\"']?)groovy\\4(?:\\s+[^>]+)?)\\s*(>)",
+                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?(?:\\s+lang=(?:(['\"]?)groovy\\4))(?:\\s+[^>]+)?)\\s*(>)",
                   "beginCaptures": {
                     "0": {
                       "name": "meta.tag.metadata.start.wikitext"
@@ -1875,7 +1876,7 @@
                   ]
                 },
                 "hl-handlebars": {
-                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?\\s+lang=([\"']?)handlebars\\4(?:\\s+[^>]+)?)\\s*(>)",
+                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?(?:\\s+lang=(?:(['\"]?)handlebars\\4))(?:\\s+[^>]+)?)\\s*(>)",
                   "beginCaptures": {
                     "0": {
                       "name": "meta.tag.metadata.start.wikitext"
@@ -1929,7 +1930,7 @@
                   ]
                 },
                 "hl-html": {
-                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?\\s+lang=([\"']?)html\\4(?:\\s+[^>]+)?)\\s*(>)",
+                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?(?:\\s+lang=(?:(['\"]?)html\\4))(?:\\s+[^>]+)?)\\s*(>)",
                   "beginCaptures": {
                     "0": {
                       "name": "meta.tag.metadata.start.wikitext"
@@ -1983,7 +1984,7 @@
                   ]
                 },
                 "hl-ini": {
-                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?\\s+lang=([\"']?)(?:ini|cfg|dosini)\\4(?:\\s+[^>]+)?)\\s*(>)",
+                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?(?:\\s+lang=(?:(['\"]?)(?:ini|cfg|dosini)\\4))(?:\\s+[^>]+)?)\\s*(>)",
                   "beginCaptures": {
                     "0": {
                       "name": "meta.tag.metadata.start.wikitext"
@@ -2037,7 +2038,7 @@
                   ]
                 },
                 "hl-java": {
-                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?\\s+lang=([\"']?)java\\4(?:\\s+[^>]+)?)\\s*(>)",
+                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?(?:\\s+lang=(?:(['\"]?)java\\4))(?:\\s+[^>]+)?)\\s*(>)",
                   "beginCaptures": {
                     "0": {
                       "name": "meta.tag.metadata.start.wikitext"
@@ -2091,7 +2092,7 @@
                   ]
                 },
                 "hl-js": {
-                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?\\s+lang=([\"']?)j(?:avascript|s)\\4(?:\\s+[^>]+)?)\\s*(>)",
+                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?(?:\\s+lang=(?:(['\"]?)(?:javascript|js)\\4))(?:\\s+[^>]+)?)\\s*(>)",
                   "beginCaptures": {
                     "0": {
                       "name": "meta.tag.metadata.start.wikitext"
@@ -2145,7 +2146,7 @@
                   ]
                 },
                 "hl-json": {
-                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?\\s+lang=(?:\"json\"|'json'|\"json-object\"|'json-object')(?:\\s+[^>]+)?)\\s*(>)",
+                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?(?:\\s+lang=(?:\"json\"|'json'|\"json-object\"|'json-object'))(?:\\s+[^>]+)?)\\s*(>)",
                   "beginCaptures": {
                     "0": {
                       "name": "meta.tag.metadata.start.wikitext"
@@ -2199,7 +2200,7 @@
                   ]
                 },
                 "hl-julia": {
-                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?\\s+lang=(?:\"julia\"|'julia'|\"jl\"|'jl')(?:\\s+[^>]+)?)\\s*(>)",
+                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?(?:\\s+lang=(?:\"julia\"|'julia'|\"jl\"|'jl'))(?:\\s+[^>]+)?)\\s*(>)",
                   "beginCaptures": {
                     "0": {
                       "name": "meta.tag.metadata.start.wikitext"
@@ -2253,7 +2254,7 @@
                   ]
                 },
                 "hl-latex": {
-                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?\\s+lang=([\"']?)(?:|la)tex\\4(?:\\s+[^>]+)?)\\s*(>)",
+                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?(?:\\s+lang=(?:(['\"]?)(?:tex|latex)\\4))(?:\\s+[^>]+)?)\\s*(>)",
                   "beginCaptures": {
                     "0": {
                       "name": "meta.tag.metadata.start.wikitext"
@@ -2307,7 +2308,7 @@
                   ]
                 },
                 "hl-less": {
-                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?\\s+lang=(?:\"less\"|'less')(?:\\s+[^>]+)?)\\s*(>)",
+                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?(?:\\s+lang=(?:\"less\"|'less'))(?:\\s+[^>]+)?)\\s*(>)",
                   "beginCaptures": {
                     "0": {
                       "name": "meta.tag.metadata.start.wikitext"
@@ -2361,7 +2362,7 @@
                   ]
                 },
                 "hl-lua": {
-                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?\\s+lang=([\"']?)lua\\4(?:\\s+[^>]+)?)\\s*(>)",
+                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?(?:\\s+lang=(?:(['\"]?)lua\\4))(?:\\s+[^>]+)?)\\s*(>)",
                   "beginCaptures": {
                     "0": {
                       "name": "meta.tag.metadata.start.wikitext"
@@ -2415,7 +2416,7 @@
                   ]
                 },
                 "hl-makefile": {
-                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?\\s+lang=([\"']?)(?:make|makefile|mf|bsdmake)\\4(?:\\s+[^>]+)?)\\s*(>)",
+                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?(?:\\s+lang=(?:(['\"]?)(?:make|makefile|mf|bsdmake)\\4))(?:\\s+[^>]+)?)\\s*(>)",
                   "beginCaptures": {
                     "0": {
                       "name": "meta.tag.metadata.start.wikitext"
@@ -2469,7 +2470,7 @@
                   ]
                 },
                 "hl-markdown": {
-                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?\\s+lang=([\"']?)m(?:arkdown|d)\\4(?:\\s+[^>]+)?)\\s*(>)",
+                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?(?:\\s+lang=(?:(['\"]?)(?:markdown|md)\\4))(?:\\s+[^>]+)?)\\s*(>)",
                   "beginCaptures": {
                     "0": {
                       "name": "meta.tag.metadata.start.wikitext"
@@ -2523,7 +2524,7 @@
                   ]
                 },
                 "hl-objc": {
-                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?\\s+lang=(?:\"objective-c\"|'objective-c'|\"objectivec\"|'objectivec'|\"obj-c\"|'obj-c'|\"objc\"|'objc')(?:\\s+[^>]+)?)\\s*(>)",
+                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?(?:\\s+lang=(?:\"objective-c\"|'objective-c'|\"objectivec\"|'objectivec'|\"obj-c\"|'obj-c'|\"objc\"|'objc'))(?:\\s+[^>]+)?)\\s*(>)",
                   "beginCaptures": {
                     "0": {
                       "name": "meta.tag.metadata.start.wikitext"
@@ -2577,7 +2578,7 @@
                   ]
                 },
                 "hl-perl": {
-                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?\\s+lang=([\"']?)p(?:erl|le)\\4(?:\\s+[^>]+)?)\\s*(>)",
+                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?(?:\\s+lang=(?:(['\"]?)(?:perl|ple)\\4))(?:\\s+[^>]+)?)\\s*(>)",
                   "beginCaptures": {
                     "0": {
                       "name": "meta.tag.metadata.start.wikitext"
@@ -2631,7 +2632,7 @@
                   ]
                 },
                 "hl-perl6": {
-                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?\\s+lang=(?:\"perl6\"|'perl6'|\"pl6\"|'pl6'|\"raku\"|'raku')(?:\\s+[^>]+)?)\\s*(>)",
+                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?(?:\\s+lang=(?:\"perl6\"|'perl6'|\"pl6\"|'pl6'|\"raku\"|'raku'))(?:\\s+[^>]+)?)\\s*(>)",
                   "beginCaptures": {
                     "0": {
                       "name": "meta.tag.metadata.start.wikitext"
@@ -2685,7 +2686,7 @@
                   ]
                 },
                 "hl-php": {
-                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?\\s+lang=([\"']?)php[345]??\\4(?:\\s+[^>]+)?)\\s*(>)",
+                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?(?:\\s+lang=(?:(['\"]?)(?:php|php3|php4|php5)\\4))(?:\\s+[^>]+)?)\\s*(>)",
                   "beginCaptures": {
                     "0": {
                       "name": "meta.tag.metadata.start.wikitext"
@@ -2739,7 +2740,7 @@
                   ]
                 },
                 "hl-powershell": {
-                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?\\s+lang=(?:\"powershell\"|'powershell'|\"pwsh\"|'pwsh'|\"posh\"|'posh'|\"ps1\"|'ps1'|\"psm1\"|'psm1')(?:\\s+[^>]+)?)\\s*(>)",
+                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?(?:\\s+lang=(?:\"powershell\"|'powershell'|\"pwsh\"|'pwsh'|\"posh\"|'posh'|\"ps1\"|'ps1'|\"psm1\"|'psm1'))(?:\\s+[^>]+)?)\\s*(>)",
                   "beginCaptures": {
                     "0": {
                       "name": "meta.tag.metadata.start.wikitext"
@@ -2793,7 +2794,7 @@
                   ]
                 },
                 "hl-pug": {
-                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?\\s+lang=([\"']?)(?:pug|jade)\\4(?:\\s+[^>]+)?)\\s*(>)",
+                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?(?:\\s+lang=(?:(['\"]?)(?:pug|jade)\\4))(?:\\s+[^>]+)?)\\s*(>)",
                   "beginCaptures": {
                     "0": {
                       "name": "meta.tag.metadata.start.wikitext"
@@ -2847,7 +2848,7 @@
                   ]
                 },
                 "hl-python": {
-                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?\\s+lang=(?:\"python\"|'python'|\"py\"|'py'|\"sage\"|'sage'|\"python3\"|'python3'|\"py3\"|'py3')(?:\\s+[^>]+)?)\\s*(>)",
+                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?(?:\\s+lang=(?:\"python\"|'python'|\"py\"|'py'|\"sage\"|'sage'|\"python3\"|'python3'|\"py3\"|'py3'))(?:\\s+[^>]+)?)\\s*(>)",
                   "beginCaptures": {
                     "0": {
                       "name": "meta.tag.metadata.start.wikitext"
@@ -2901,7 +2902,7 @@
                   ]
                 },
                 "hl-r": {
-                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?\\s+lang=([\"']?)(?:splus|[rs])\\4(?:\\s+[^>]+)?)\\s*(>)",
+                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?(?:\\s+lang=(?:(['\"]?)(?:splus|s|r)\\4))(?:\\s+[^>]+)?)\\s*(>)",
                   "beginCaptures": {
                     "0": {
                       "name": "meta.tag.metadata.start.wikitext"
@@ -2955,7 +2956,7 @@
                   ]
                 },
                 "hl-ruby": {
-                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?\\s+lang=([\"']?)(?:ruby|rb|duby)\\4(?:\\s+[^>]+)?)\\s*(>)",
+                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?(?:\\s+lang=(?:(['\"]?)(?:ruby|rb|duby)\\4))(?:\\s+[^>]+)?)\\s*(>)",
                   "beginCaptures": {
                     "0": {
                       "name": "meta.tag.metadata.start.wikitext"
@@ -3009,7 +3010,7 @@
                   ]
                 },
                 "hl-rust": {
-                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?\\s+lang=(?:\"rust\"|'rust'|\"rs\"|'rs')(?:\\s+[^>]+)?)\\s*(>)",
+                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?(?:\\s+lang=(?:\"rust\"|'rust'|\"rs\"|'rs'))(?:\\s+[^>]+)?)\\s*(>)",
                   "beginCaptures": {
                     "0": {
                       "name": "meta.tag.metadata.start.wikitext"
@@ -3063,7 +3064,7 @@
                   ]
                 },
                 "hl-scala": {
-                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?\\s+lang=(?:\"scala\"|'scala')(?:\\s+[^>]+)?)\\s*(>)",
+                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?(?:\\s+lang=(?:\"scala\"|'scala'))(?:\\s+[^>]+)?)\\s*(>)",
                   "beginCaptures": {
                     "0": {
                       "name": "meta.tag.metadata.start.wikitext"
@@ -3117,7 +3118,7 @@
                   ]
                 },
                 "hl-scss": {
-                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?\\s+lang=(?:\"scss\"|'scss')(?:\\s+[^>]+)?)\\s*(>)",
+                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?(?:\\s+lang=(?:\"scss\"|'scss'))(?:\\s+[^>]+)?)\\s*(>)",
                   "beginCaptures": {
                     "0": {
                       "name": "meta.tag.metadata.start.wikitext"
@@ -3171,7 +3172,7 @@
                   ]
                 },
                 "hl-shell": {
-                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?\\s+lang=(?:\"bash\"|'bash'|\"sh\"|'sh'|\"ksh\"|'ksh'|\"zsh\"|'zsh'|\"shell\"|'shell')(?:\\s+[^>]+)?)\\s*(>)",
+                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?(?:\\s+lang=(?:\"bash\"|'bash'|\"sh\"|'sh'|\"ksh\"|'ksh'|\"zsh\"|'zsh'|\"shell\"|'shell'))(?:\\s+[^>]+)?)\\s*(>)",
                   "beginCaptures": {
                     "0": {
                       "name": "meta.tag.metadata.start.wikitext"
@@ -3225,7 +3226,7 @@
                   ]
                 },
                 "hl-sql": {
-                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?\\s+lang=([\"']?)sql\\4(?:\\s+[^>]+)?)\\s*(>)",
+                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?(?:\\s+lang=(?:(['\"]?)sql\\4))(?:\\s+[^>]+)?)\\s*(>)",
                   "beginCaptures": {
                     "0": {
                       "name": "meta.tag.metadata.start.wikitext"
@@ -3279,7 +3280,7 @@
                   ]
                 },
                 "hl-swift": {
-                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?\\s+lang=(?:\"swift\"|'swift')(?:\\s+[^>]+)?)\\s*(>)",
+                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?(?:\\s+lang=(?:\"swift\"|'swift'))(?:\\s+[^>]+)?)\\s*(>)",
                   "beginCaptures": {
                     "0": {
                       "name": "meta.tag.metadata.start.wikitext"
@@ -3333,7 +3334,7 @@
                   ]
                 },
                 "hl-ts": {
-                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?\\s+lang=(?:\"typescript\"|'typescript'|\"ts\"|'ts')(?:\\s+[^>]+)?)\\s*(>)",
+                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?(?:\\s+lang=(?:\"typescript\"|'typescript'|\"ts\"|'ts'))(?:\\s+[^>]+)?)\\s*(>)",
                   "beginCaptures": {
                     "0": {
                       "name": "meta.tag.metadata.start.wikitext"
@@ -3387,7 +3388,7 @@
                   ]
                 },
                 "hl-vb-net": {
-                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?\\s+lang=([\"']?)(?:vb\\.net|vbnet|lobas|oobas|sobas)\\4(?:\\s+[^>]+)?)\\s*(>)",
+                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?(?:\\s+lang=(?:(['\"]?)(?:vb\\.net|vbnet|lobas|oobas|sobas)\\4))(?:\\s+[^>]+)?)\\s*(>)",
                   "beginCaptures": {
                     "0": {
                       "name": "meta.tag.metadata.start.wikitext"
@@ -3441,7 +3442,7 @@
                   ]
                 },
                 "hl-xml": {
-                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?\\s+lang=([\"']?)xml\\4(?:\\s+[^>]+)?)\\s*(>)",
+                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?(?:\\s+lang=(?:(['\"]?)xml\\4))(?:\\s+[^>]+)?)\\s*(>)",
                   "beginCaptures": {
                     "0": {
                       "name": "meta.tag.metadata.start.wikitext"
@@ -3495,7 +3496,7 @@
                   ]
                 },
                 "hl-xslt": {
-                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?\\s+lang=([\"']?)xslt\\4(?:\\s+[^>]+)?)\\s*(>)",
+                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?(?:\\s+lang=(?:(['\"]?)xslt\\4))(?:\\s+[^>]+)?)\\s*(>)",
                   "beginCaptures": {
                     "0": {
                       "name": "meta.tag.metadata.start.wikitext"
@@ -3549,7 +3550,7 @@
                   ]
                 },
                 "hl-yaml": {
-                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?\\s+lang=([\"']?)yaml\\4(?:\\s+[^>]+)?)\\s*(>)",
+                  "begin": "(?i)(<)(syntaxhighlight)((?:\\s+[^>]+)?(?:\\s+lang=(?:(['\"]?)yaml\\4))(?:\\s+[^>]+)?)\\s*(>)",
                   "beginCaptures": {
                     "0": {
                       "name": "meta.tag.metadata.start.wikitext"

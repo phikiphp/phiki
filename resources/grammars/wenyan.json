@@ -1,4 +1,5 @@
 {
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
   "displayName": "Wenyan",
   "name": "wenyan",
   "patterns": [
@@ -26,7 +27,7 @@
   ],
   "repository": {
     "comment-blocks": {
-      "begin": "([批注疏]曰)。?(「「|『)",
+      "begin": "(注曰|疏曰|批曰)。?(「「|『)",
       "end": "(」」|』)",
       "name": "comment.block",
       "patterns": [
@@ -37,7 +38,7 @@
       ]
     },
     "comment-lines": {
-      "begin": "[批注疏]曰",
+      "begin": "注曰|疏曰|批曰",
       "end": "$",
       "name": "comment.line",
       "patterns": [
@@ -50,11 +51,11 @@
     "constants": {
       "patterns": [
         {
-          "match": "[·〇一七三九二五京億兆八六分十千又四垓埃塵微忽極正毫沙渺溝漠澗百秭穰絲纖萬負載釐零]",
+          "match": "負|·|又|零|〇|一|二|三|四|五|六|七|八|九|十|百|千|萬|億|兆|京|垓|秭|穰|溝|澗|正|載|極|分|釐|毫|絲|忽|微|纖|沙|塵|埃|渺|漠",
           "name": "constant.numeric"
         },
         {
-          "match": "[其陰陽]",
+          "match": "其|陰|陽",
           "name": "constant.language"
         },
         {
@@ -80,7 +81,7 @@
     "keywords": {
       "patterns": [
         {
-          "match": "[元列數爻物術言]",
+          "match": "數|列|言|術|爻|物|元",
           "name": "storage.type"
         },
         {
@@ -92,15 +93,15 @@
           "name": "keyword.control"
         },
         {
-          "match": "中有陽乎|中無陰乎|所餘幾何|不等於|不大於|不小於|等於|大於|小於|[乘以加於減變除]",
+          "match": "中有陽乎|中無陰乎|所餘幾何|不等於|不大於|不小於|等於|大於|小於|加|減|乘|除|變|以|於",
           "name": "keyword.operator"
         },
         {
-          "match": "不知何禍歟|不復存矣|姑妄行此|如事不諧|名之曰|吾嘗觀|之禍歟|乃作罷|吾有|今有|物之|書之|以施|昔之|是矣|之書|方悟|之義|嗚呼|之禍|[中今取噫夫施曰有豈]",
+          "match": "不知何禍歟|不復存矣|姑妄行此|如事不諧|名之曰|吾嘗觀|之禍歟|乃作罷|吾有|今有|物之|書之|以施|昔之|是矣|之書|方悟|之義|嗚呼|之禍|有|施|曰|噫|取|今|夫|中|豈",
           "name": "keyword.other"
         },
         {
-          "match": "[之也充凡者若遍銜]",
+          "match": "也|凡|遍|若|者|之|充|銜",
           "name": "keyword.control"
         }
       ]
@@ -108,7 +109,7 @@
     "symbols": {
       "patterns": [
         {
-          "match": "[、。]",
+          "match": "。|、",
           "name": "punctuation.separator"
         }
       ]

@@ -4,8 +4,9 @@
     "haml",
     "html.haml"
   ],
-  "foldingStartMarker": "^\\s*([-#%.:=\\w].*)\\s$",
+  "foldingStartMarker": "^\\s*([-%#\\:\\.\\w\\=].*)\\s$",
   "foldingStopMarker": "^\\s*$",
+  "keyEquivalent": "^~H",
   "name": "haml",
   "patterns": [
     {
@@ -73,11 +74,11 @@
           "name": "punctuation.section.comment.haml"
         }
       },
-      "match": "^(\\s*)(/\\[[^]].*?$\\n?)",
+      "match": "^(\\s*)(\\/\\[[^\\]].*?$\\n?)",
       "name": "comment.line.slash.haml"
     },
     {
-      "begin": "^(\\s*)(-#|/|-\\s*/\\*+)",
+      "begin": "^(\\s*)(\\-\\#|\\/|\\-\\s*\\/\\*+)",
       "beginCaptures": {
         "2": {
           "name": "punctuation.section.comment.haml"
@@ -92,7 +93,7 @@
       ]
     },
     {
-      "begin": "^\\s*(?:((%)([-:\\w]+))|(?=[#.]))",
+      "begin": "^\\s*(?:((%)([-\\w:]+))|(?=\\.|#))",
       "captures": {
         "1": {
           "name": "meta.tag.haml"
@@ -104,7 +105,7 @@
           "name": "entity.name.tag.haml"
         }
       },
-      "end": "$|(?![#(.\\[{]|&amp;|[-=~]|!=|&=|/)",
+      "end": "$|(?!\\.|#|\\{|\\(|\\[|&amp;|=|-|~|!=|&=|/)",
       "patterns": [
         {
           "begin": "==",
@@ -122,7 +123,7 @@
               "name": "entity.other.attribute-name.class"
             }
           },
-          "match": "(\\.[-:\\w]+)",
+          "match": "(\\.[\\w\\-\\:]+)",
           "name": "meta.selector.css"
         },
         {
@@ -131,12 +132,12 @@
               "name": "entity.other.attribute-name.id"
             }
           },
-          "match": "(#[-\\w]+)",
+          "match": "(#[\\w-]+)",
           "name": "meta.selector.css"
         },
         {
-          "begin": "(?<!#)\\{(?=.*(,|(do)|[{|}]|(#.*)|\\R)\\s*)",
-          "end": "\\s*}(?!\\s*,)(?!\\s*\\|)(?!#\\{.*})",
+          "begin": "(?<!\\#)\\{(?=.*(,|(do)|\\{|\\}|\\||(\\#.*)|\\R)\\s*)",
+          "end": "\\s*\\}(?!\\s*\\,)(?!\\s*\\|)(?!\\#\\{.*\\})",
           "name": "meta.section.attributes.haml",
           "patterns": [
             {
@@ -156,11 +157,11 @@
           "name": "meta.section.attributes.plain.haml",
           "patterns": [
             {
-              "match": "([-\\w]+)",
+              "match": "([\\w-]+)",
               "name": "constant.other.symbol.ruby"
             },
             {
-              "match": "=",
+              "match": "\\=",
               "name": "punctuation"
             },
             {
@@ -172,7 +173,7 @@
               "name": "string.quoted.double.ruby",
               "patterns": [
                 {
-                  "match": "\\\\(x\\h{2}|[012][0-7]{0,2}|3[0-6][0-7]?|37[0-7]?|[4-7][0-7]?|.)",
+                  "match": "\\\\(x\\h{2}|[0-2][0-7]{0,2}|3[0-6][0-7]?|37[0-7]?|[4-7][0-7]?|.)",
                   "name": "constant.character.escape.ruby"
                 },
                 {
@@ -186,8 +187,8 @@
           ]
         },
         {
-          "begin": "\\[(?=.+([],\\[|]|(#.*))\\s*)",
-          "end": "\\s*](?!.*(?!#\\[)])",
+          "begin": "\\[(?=.+(,|\\[|\\]|\\||(\\#.*))\\s*)",
+          "end": "\\s*\\](?!.*(?!\\#\\[)\\])",
           "name": "meta.section.object.haml",
           "patterns": [
             {
@@ -234,7 +235,7 @@
       ]
     },
     {
-      "begin": "^(\\s*):(s(?:tyle|ass))$",
+      "begin": "^(\\s*):(style|sass)$",
       "end": "^(?=\\1\\s+|$\\n*)",
       "name": "source.sass.embedded.filter.haml",
       "patterns": [
@@ -294,7 +295,7 @@
       ]
     },
     {
-      "begin": "^(\\s*):(s(?:tyles|ass))$",
+      "begin": "^(\\s*):(styles|sass)$",
       "end": "^(?=\\1\\s+|$\\n*)",
       "name": "source.sass.embedded.filter.haml",
       "patterns": [
@@ -322,7 +323,7 @@
       "match": "^\\s*(\\.)"
     },
     {
-      "begin": "^\\s*(?=[-=~]|!=|&=)",
+      "begin": "^\\s*(?==|-|~|!=|&=)",
       "end": "$",
       "patterns": [
         {
@@ -429,7 +430,7 @@
               "name": "source.ruby.embedded.source.empty"
             }
           },
-          "match": "#\\{(})",
+          "match": "#\\{(\\})",
           "name": "source.ruby.embedded.source"
         },
         {
@@ -439,7 +440,7 @@
               "name": "punctuation.section.embedded.ruby"
             }
           },
-          "end": "(})",
+          "end": "(\\})",
           "name": "source.ruby.embedded.source",
           "patterns": [
             {
@@ -478,7 +479,7 @@
               "name": "punctuation.section.scope.ruby"
             }
           },
-          "end": "}",
+          "end": "\\}",
           "patterns": [
             {
               "include": "#nest_curly_and_self"
@@ -491,9 +492,9 @@
       ]
     },
     "rubyline": {
-      "begin": "(&amp|!)?([-=~])",
+      "begin": "(&amp|!)?(=|-|~)",
       "contentName": "source.ruby.embedded.haml",
-      "end": "((do|\\{)( \\|[*.]+\\|)?)$|$|^(?!.*\\|\\s*)$\\n?",
+      "end": "((do|\\{)( \\|[.*]+\\|)?)$|$|^(?!.*\\|\\s*)$\\n?",
       "endCaptures": {
         "1": {
           "name": "source.ruby.embedded.html"
@@ -510,7 +511,7 @@
               "name": "keyword.control.php"
             }
           },
-          "match": "\\s+((elseif|foreach|switch|declare|default|use))(?=[(\\s])"
+          "match": "\\s+((elseif|foreach|switch|declare|default|use))(?=\\s|\\()"
         },
         {
           "captures": {
@@ -518,10 +519,10 @@
               "name": "keyword.control.import.include.php"
             }
           },
-          "match": "\\s+((?:requir|includ)e_once)(?=[(\\s])"
+          "match": "\\s+(require_once|include_once)(?=\\s|\\()"
         },
         {
-          "match": "\\s+(catch|try|throw|exception|finally|die)(?=[(\\s]|\\n*)",
+          "match": "\\s+(catch|try|throw|exception|finally|die)(?=\\s|\\(|\\n*)",
           "name": "keyword.control.exception.php"
         },
         {
@@ -541,7 +542,7 @@
           "match": "\\s+(use\\s*)((?=\\())"
         },
         {
-          "match": "([,<|]|do|\\{)\\s*(#.*)?$\\n*",
+          "match": "(\\||,|<|do|\\{)\\s*(\\#.*)?$\\n*",
           "name": "source.ruby",
           "patterns": [
             {
@@ -550,6 +551,7 @@
           ]
         },
         {
+          "comment": "Hack to let ruby comments work in this context properly",
           "match": "#.*$",
           "name": "comment.line.number-sign.ruby"
         },
@@ -569,7 +571,7 @@
               "name": "punctuation.definition.variable.ruby"
             }
           },
-          "match": "(#@)[A-Z_a-z]\\w*",
+          "match": "(#@)[a-zA-Z_]\\w*",
           "name": "variable.other.readwrite.instance.ruby"
         },
         {
@@ -578,7 +580,7 @@
               "name": "punctuation.definition.variable.ruby"
             }
           },
-          "match": "(#@@)[A-Z_a-z]\\w*",
+          "match": "(#@@)[a-zA-Z_]\\w*",
           "name": "variable.other.readwrite.class.ruby"
         },
         {
@@ -587,11 +589,12 @@
               "name": "punctuation.definition.variable.ruby"
             }
           },
-          "match": "(#\\$)[A-Z_a-z]\\w*",
+          "match": "(#\\$)[a-zA-Z_]\\w*",
           "name": "variable.other.readwrite.global.ruby"
         }
       ]
     }
   },
-  "scopeName": "text.haml"
+  "scopeName": "text.haml",
+  "uuid": "3D727049-DD05-45DF-92A5-D50EA36FD035"
 }

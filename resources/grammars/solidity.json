@@ -117,7 +117,7 @@
       "name": "constant.language.currency"
     },
     "constant-time": {
-      "match": "\\b((?:second|minute|hour|day|week|year)s)\\b",
+      "match": "\\b(seconds|minutes|hours|days|weeks|years)\\b",
       "name": "constant.language.time"
     },
     "control": {
@@ -176,11 +176,11 @@
               "name": "keyword.control.import"
             }
           },
-          "end": "(?=;)",
+          "end": "(?=\\;)",
           "patterns": [
             {
               "begin": "((?=\\{))",
-              "end": "((?=}))",
+              "end": "((?=\\}))",
               "patterns": [
                 {
                   "match": "\\b(\\w+)\\b",
@@ -222,7 +222,7 @@
           "name": "constant.other.pragma"
         }
       },
-      "match": "\\b(pragma)(?:\\s+([A-Z_a-z]\\w+)\\s+(\\S+))?\\b"
+      "match": "\\b(pragma)(?:\\s+([A-Za-z_]\\w+)\\s+([^\\s]+))?\\b"
     },
     "control-unchecked": {
       "match": "\\b(unchecked)\\b",
@@ -249,7 +249,7 @@
               "name": "entity.name.type"
             }
           },
-          "match": "\\b(using)\\b\\s+\\b([A-Z_a-z\\d]+)\\b\\s+\\b(for)\\b\\s+\\b([A-Z_a-z\\d]+)"
+          "match": "\\b(using)\\b\\s+\\b([A-Za-z\\d_]+)\\b\\s+\\b(for)\\b\\s+\\b([A-Za-z\\d_]+)"
         },
         {
           "match": "\\b(using)\\b",
@@ -367,7 +367,7 @@
               "name": "entity.name.type.contract"
             }
           },
-          "match": "\\b(contract)(\\s+([A-Z_a-z]\\w*))?\\b"
+          "match": "\\b(contract)(\\s+([A-Za-z_]\\w*))?\\b"
         }
       ]
     },
@@ -383,7 +383,7 @@
               "name": "entity.name.type.enum"
             }
           },
-          "end": "(?=})",
+          "end": "(?=\\})",
           "patterns": [
             {
               "match": "\\b(\\w+)\\b",
@@ -406,7 +406,7 @@
               "name": "entity.name.type.enum"
             }
           },
-          "match": "\\b(enum)(\\s+([A-Z_a-z]\\w*))?\\b"
+          "match": "\\b(enum)(\\s+([A-Za-z_]\\w*))?\\b"
         }
       ]
     },
@@ -419,7 +419,7 @@
           "name": "entity.name.type.error"
         }
       },
-      "match": "\\b(error)(\\s+([A-Z_a-z]\\w*))?\\b"
+      "match": "\\b(error)(\\s+([A-Za-z_]\\w*))?\\b"
     },
     "declaration-event": {
       "patterns": [
@@ -463,7 +463,7 @@
               "name": "entity.name.type.event"
             }
           },
-          "match": "\\b(event)(\\s+([A-Z_a-z]\\w*))?\\b"
+          "match": "\\b(event)(\\s+([A-Za-z_]\\w*))?\\b"
         }
       ]
     },
@@ -479,7 +479,7 @@
               "name": "entity.name.function"
             }
           },
-          "end": "(?=[;{])",
+          "end": "(?=\\{|;)",
           "patterns": [
             {
               "include": "#natspec"
@@ -525,7 +525,7 @@
               "name": "entity.name.function"
             }
           },
-          "match": "\\b(function)\\s+([A-Z_a-z]\\w*)\\b"
+          "match": "\\b(function)\\s+([A-Za-z_]\\w*)\\b"
         }
       ]
     },
@@ -590,7 +590,7 @@
               "name": "entity.name.type.interface"
             }
           },
-          "match": "\\b(interface)(\\s+([A-Z_a-z]\\w*))?\\b"
+          "match": "\\b(interface)(\\s+([A-Za-z_]\\w*))?\\b"
         }
       ]
     },
@@ -603,7 +603,7 @@
           "name": "entity.name.type.library"
         }
       },
-      "match": "\\b(library)(\\s+([A-Z_a-z]\\w*))?\\b"
+      "match": "\\b(library)(\\s+([A-Za-z_]\\w*))?\\b"
     },
     "declaration-modifier": {
       "patterns": [
@@ -663,7 +663,7 @@
               "name": "entity.name.function"
             }
           },
-          "match": "\\b(modifier)(\\s+([A-Z_a-z]\\w*))?\\b"
+          "match": "\\b(modifier)(\\s+([A-Za-z_]\\w*))?\\b"
         }
       ]
     },
@@ -768,7 +768,7 @@
               "name": "entity.name.type.struct"
             }
           },
-          "match": "\\b(struct)(\\s+([A-Z_a-z]\\w*))?\\b"
+          "match": "\\b(struct)(\\s+([A-Za-z_]\\w*))?\\b"
         },
         {
           "begin": "\\b(struct)\\b\\s*(\\w+)?\\b\\s*(?=\\{)",
@@ -780,7 +780,7 @@
               "name": "entity.name.type.struct"
             }
           },
-          "end": "(?=})",
+          "end": "(?=\\})",
           "patterns": [
             {
               "include": "#type-primitive"
@@ -821,7 +821,7 @@
           "name": "punctuation.parameters.begin"
         }
       },
-      "match": "\\b([A-Z_a-z]\\w*)\\s*(\\()"
+      "match": "\\b([A-Za-z_]\\w*)\\s*(\\()"
     },
     "global": {
       "patterns": [
@@ -840,7 +840,7 @@
           "name": "keyword.control.exceptions"
         },
         {
-          "match": "\\b(s(?:elfdestruct|uicide))\\b",
+          "match": "\\b(selfdestruct|suicide)\\b",
           "name": "keyword.control.contract"
         },
         {
@@ -949,7 +949,7 @@
           "name": "variable.other.natspec"
         }
       },
-      "match": "(@param)(\\s+([A-Z_a-z]\\w*))?\\b"
+      "match": "(@param)(\\s+([A-Za-z_]\\w*))?\\b"
     },
     "natspec-tag-return": {
       "captures": {
@@ -960,7 +960,7 @@
           "name": "variable.other.natspec"
         }
       },
-      "match": "(@return)(\\s+([A-Z_a-z]\\w*))?\\b"
+      "match": "(@return)(\\s+([A-Za-z_]\\w*))?\\b"
     },
     "natspec-tag-title": {
       "match": "(@title)\\b",
@@ -1015,11 +1015,11 @@
       "name": "constant.numeric.decimal"
     },
     "number-hex": {
-      "match": "\\b(0[Xx]\\h+)\\b",
+      "match": "\\b(0[xX][a-fA-F0-9]+)\\b",
       "name": "constant.numeric.hexadecimal"
     },
     "number-scientific": {
-      "match": "\\b(?:0\\.(?:0[0-9]|[0-9][0-9_]?)|[0-9][0-9_]*(?:\\.\\d{1,2})?)(?:e[-+]?[0-9_]+)?",
+      "match": "\\b(?:0\\.(?:0[0-9]|[0-9][0-9_]?)|[0-9][0-9_]*(?:\\.\\d{1,2})?)(?:e[+-]?[0-9_]+)?",
       "name": "constant.numeric.scientific"
     },
     "operator": {
@@ -1042,19 +1042,19 @@
       ]
     },
     "operator-arithmetic": {
-      "match": "([-*+/])",
+      "match": "(\\+|\\-|\\/|\\*)",
       "name": "keyword.operator.arithmetic"
     },
     "operator-assignment": {
-      "match": "(:?=)",
+      "match": "(\\:?=)",
       "name": "keyword.operator.assignment"
     },
     "operator-binary": {
-      "match": "([\\&^|]|<<|>>)",
+      "match": "(\\^|\\&|\\||<<|>>)",
       "name": "keyword.operator.binary"
     },
     "operator-logic": {
-      "match": "(==|!=|<(?!<)|<=|>(?!>)|>=|&&|\\|\\||:(?!=)|[!?])",
+      "match": "(==|\\!=|<(?!<)|<=|>(?!>)|>=|\\&\\&|\\|\\||\\:(?!=)|\\?|\\!)",
       "name": "keyword.operator.logic"
     },
     "operator-mapping": {
@@ -1096,7 +1096,7 @@
           "name": "punctuation.brace.curly.begin"
         },
         {
-          "match": "}",
+          "match": "\\}",
           "name": "punctuation.brace.curly.end"
         },
         {
@@ -1104,7 +1104,7 @@
           "name": "punctuation.brace.square.begin"
         },
         {
-          "match": "]",
+          "match": "\\]",
           "name": "punctuation.brace.square.end"
         },
         {
@@ -1120,11 +1120,11 @@
     "string": {
       "patterns": [
         {
-          "match": "\"(?:\\\\\"|[^\"])*\"",
+          "match": "\\\"(?:\\\\\"|[^\\\"])*\\\"",
           "name": "string.quoted.double"
         },
         {
-          "match": "'(?:\\\\'|[^'])*'",
+          "match": "\\'(?:\\\\'|[^\\'])*\\'",
           "name": "string.quoted.single"
         }
       ]
@@ -1146,7 +1146,7 @@
       "name": "storage.type.modifier.readonly"
     },
     "type-modifier-payable": {
-      "match": "\\b((?:non|)payable)\\b",
+      "match": "\\b(nonpayable|payable)\\b",
       "name": "storage.type.modifier.payable"
     },
     "type-modifier-transient": {
@@ -1156,7 +1156,7 @@
     "type-primitive": {
       "patterns": [
         {
-          "begin": "\\b(address|string\\d*|bytes\\d*|int\\d*|uint\\d*|bool|hash\\d*)\\b\\[](\\()",
+          "begin": "\\b(address|string\\d*|bytes\\d*|int\\d*|uint\\d*|bool|hash\\d*)\\b(?:\\[\\])(\\()",
           "beginCaptures": {
             "1": {
               "name": "support.type.primitive"
@@ -1192,7 +1192,7 @@
               "name": "variable.parameter.function"
             }
           },
-          "match": "\\b(_\\w+)\\b"
+          "match": "\\b(\\_\\w+)\\b"
         },
         {
           "captures": {
@@ -1200,7 +1200,7 @@
               "name": "support.variable.property"
             }
           },
-          "match": "\\.(\\w+)\\b"
+          "match": "(?:\\.)(\\w+)\\b"
         },
         {
           "captures": {
@@ -1213,5 +1213,6 @@
       ]
     }
   },
-  "scopeName": "source.solidity"
+  "scopeName": "source.solidity",
+  "uuid": "ad87d2cd-8575-4afe-984e-9421a3788933"
 }

@@ -1,4 +1,5 @@
 {
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
   "displayName": "Prisma",
   "fileTypes": [
     "prisma"
@@ -35,7 +36,7 @@
           "name": "punctuation.definition.tag.prisma"
         }
       },
-      "end": "]",
+      "end": "\\]",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.tag.prisma"
@@ -78,11 +79,11 @@
           "name": "entity.name.function.attribute.prisma"
         }
       },
-      "match": "(@@?[.\\w]+)",
+      "match": "(@@?[\\w\\.]+)",
       "name": "source.prisma.attribute"
     },
     "attribute_with_arguments": {
-      "begin": "(@@?[.\\w]+)(\\()",
+      "begin": "(@@?[\\w\\.]+)(\\()",
       "beginCaptures": {
         "1": {
           "name": "entity.name.function.attribute.prisma"
@@ -112,7 +113,7 @@
       "name": "constant.language.boolean.prisma"
     },
     "config_block_definition": {
-      "begin": "^\\s*(generator|datasource)\\s+([A-Za-z]\\w*)\\s+(\\{)",
+      "begin": "^\\s*(generator|datasource)\\s+([A-Za-z][\\w]*)\\s+({)",
       "beginCaptures": {
         "1": {
           "name": "storage.type.config.prisma"
@@ -124,7 +125,7 @@
           "name": "punctuation.definition.tag.prisma"
         }
       },
-      "end": "\\s*}",
+      "end": "\\s*\\}",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.tag.prisma"
@@ -174,13 +175,13 @@
           "include": "#string_interpolation"
         },
         {
-          "match": "([-%./:=?@\\\\_\\w]+)",
+          "match": "([\\w\\-\\/\\._\\\\%@:\\?=]+)",
           "name": "string.quoted.double.prisma"
         }
       ]
     },
     "enum_block_definition": {
-      "begin": "^\\s*(enum)\\s+([A-Za-z]\\w*)\\s+(\\{)",
+      "begin": "^\\s*(enum)\\s+([A-Za-z][\\w]*)\\s+({)",
       "beginCaptures": {
         "1": {
           "name": "storage.type.enum.prisma"
@@ -192,7 +193,7 @@
           "name": "punctuation.definition.tag.prisma"
         }
       },
-      "end": "\\s*}",
+      "end": "\\s*\\}",
       "endCaptures": {
         "0": {
           "name": "punctuation.definition.tag.prisma"
@@ -259,7 +260,7 @@
               "name": "invalid.illegal.required_type.prisma"
             }
           },
-          "match": "^\\s*(\\w+)(\\s*:)?\\s+((?!(?:Int|BigInt|String|DateTime|Bytes|Decimal|Float|Json|Boolean)\\b)\\b\\w+)?(Int|BigInt|String|DateTime|Bytes|Decimal|Float|Json|Boolean)?(\\[])?(\\?)?(!)?"
+          "match": "^\\s*(\\w+)(\\s*:)?\\s+((?!(?:Int|BigInt|String|DateTime|Bytes|Decimal|Float|Json|Boolean)\\b)\\b\\w+)?(Int|BigInt|String|DateTime|Bytes|Decimal|Float|Json|Boolean)?(\\[\\])?(\\?)?(\\!)?"
         },
         {
           "include": "#attribute_with_arguments"
@@ -334,7 +335,7 @@
       ]
     },
     "model_block_definition": {
-      "begin": "^\\s*(model|type|view)\\s+([A-Za-z]\\w*)\\s*(\\{)",
+      "begin": "^\\s*(model|type|view)\\s+([A-Za-z][\\w]*)\\s*({)",
       "beginCaptures": {
         "1": {
           "name": "storage.type.model.prisma"
@@ -346,7 +347,7 @@
           "name": "punctuation.definition.tag.prisma"
         }
       },
-      "end": "\\s*}",
+      "end": "\\s*\\}",
       "endCaptures": {
         "0": {
           "name": "punctuation.definition.tag.prisma"
@@ -385,7 +386,7 @@
       ]
     },
     "number": {
-      "match": "((0([Xx])\\h*)|([-+])?\\b(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))(([Ee])([-+])?[0-9]+)?)([DFLUdfglu]|UL|ul)?\\b",
+      "match": "((0(x|X)[0-9a-fA-F]*)|(\\+|-)?\\b(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))((e|E)(\\+|-)?[0-9]+)?)([LlFfUuDdg]|UL|ul)?\\b",
       "name": "constant.numeric.prisma"
     },
     "string_interpolation": {
@@ -397,7 +398,7 @@
               "name": "keyword.control.interpolation.start.prisma"
             }
           },
-          "end": "\\s*}",
+          "end": "\\s*\\}",
           "endCaptures": {
             "0": {
               "name": "keyword.control.interpolation.end.prisma"

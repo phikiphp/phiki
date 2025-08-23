@@ -1,4 +1,5 @@
 {
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
   "displayName": "Fennel",
   "name": "fennel",
   "patterns": [
@@ -27,7 +28,7 @@
           "name": "constant.language.boolean.fennel"
         },
         {
-          "match": "(-?\\d+\\.\\d+([Ee][-+]?\\d+)?)",
+          "match": "(-?\\d+\\.\\d+([eE][+-]?\\d+)?)",
           "name": "constant.numeric.double.fennel"
         },
         {
@@ -88,7 +89,7 @@
           "name": "support.function.library.fennel"
         },
         {
-          "match": "\\b(_(?:G|VERSION))\\b",
+          "match": "\\b(_G|_VERSION)\\b",
           "name": "constant.language.fennel"
         }
       ]
@@ -96,7 +97,7 @@
     "methods": {
       "patterns": [
         {
-          "match": "\\w+:\\w+",
+          "match": "\\w+\\:\\w+",
           "name": "entity.name.function.method.fennel"
         }
       ]
@@ -124,15 +125,15 @@
     "special": {
       "patterns": [
         {
-          "match": "[#%*+]|\\?\\.|(\\.)?\\.|(/)?/|:|<=?|=|>=?|\\^",
+          "match": "\\#|\\%|\\+|\\*|[?][.]|(\\.)?\\.|(\\/)?\\/|:|<=?|=|>=?|\\^",
           "name": "keyword.special.fennel"
         },
         {
-          "match": "(->(>)?)",
+          "match": "(\\-\\>(\\>)?)",
           "name": "keyword.special.fennel"
         },
         {
-          "match": "-\\?>(>)?",
+          "match": "\\-\\?\\>(\\>)?",
           "name": "keyword.special.fennel"
         },
         {
@@ -148,7 +149,7 @@
           "name": "keyword.special.fennel"
         },
         {
-          "match": "\\b(and|band|bnot|bor|bxor|collect|comment|doc??|doto|each|eval-compiler|for|global|hashfn|icollect|if|import-macros|include|lambda|length|let|local|lshift|lua|macro|macrodebug|macros|match|not=?|or|partial|pick-args|pick-values|quote|require-macros|rshift|set|tset|values|var|when|while|with-open)\\b",
+          "match": "\\b(and|band|bnot|bor|bxor|collect|comment|do|doc|doto|each|eval-compiler|for|global|hashfn|icollect|if|import-macros|include|lambda|length|let|local|lshift|lua|macro|macrodebug|macros|match|not=?|or|partial|pick-args|pick-values|quote|require-macros|rshift|set|tset|values|var|when|while|with-open)\\b",
           "name": "keyword.special.fennel"
         },
         {
@@ -195,7 +196,7 @@
           "name": "punctuation.table.bracket.open.fennel"
         }
       },
-      "end": "}",
+      "end": "\\}",
       "endCaptures": {
         "0": {
           "name": "punctuation.table.bracket.close.fennel"
@@ -215,7 +216,7 @@
           "name": "punctuation.vector.bracket.open.fennel"
         }
       },
-      "end": "]",
+      "end": "\\]",
       "endCaptures": {
         "0": {
           "name": "punctuation.vector.bracket.close.fennel"

@@ -1,4 +1,5 @@
 {
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
   "displayName": "Rel",
   "name": "rel",
   "patterns": [
@@ -83,7 +84,7 @@
           "name": "comment.block.documentation.rel"
         },
         {
-          "begin": "(^[\\t ]+)?((//)(?:\\s*((@)internal)(?=\\s|$))?)",
+          "begin": "(^[ \\t]+)?((//)(?:\\s*((@)internal)(?=\\s|$))?)",
           "beginCaptures": {
             "1": {
               "name": "punctuation.whitespace.comment.leading.rel"
@@ -109,7 +110,7 @@
     "constants": {
       "patterns": [
         {
-          "match": "\\b((true|false))\\b",
+          "match": "(\\b(true|false)\\b)",
           "name": "constant.language.rel"
         }
       ]
@@ -125,7 +126,7 @@
     "keywords": {
       "patterns": [
         {
-          "match": "\\b((def|entity|bound|include|ic|forall|exists|[∀∃]|return|module|^end))\\b|(((<)?\\|(>)?)|[∀∃])",
+          "match": "(\\b(def|entity|bound|include|ic|forall|exists|∀|∃|return|module|^end)\\b)|(((\\<)?\\|(\\>)?)|∀|∃)",
           "name": "keyword.control.rel"
         }
       ]
@@ -133,7 +134,7 @@
     "operators": {
       "patterns": [
         {
-          "match": "\\b((if|then|else|and|or|not|eq|neq|lt|lt_eq|gt|gt_eq))\\b|([-%*+/=^÷]|!=|[<≠]|<=|[>≤]|>=|[\\&≥])|\\s+(end)",
+          "match": "(\\b(if|then|else|and|or|not|eq|neq|lt|lt_eq|gt|gt_eq)\\b)|(\\+|\\-|\\*|\\/|÷|\\^|\\%|\\=|\\!\\=|≠|\\<|\\<\\=|≤|\\>|\\>\\=|≥|\\&)|\\s+(end)",
           "name": "keyword.other.rel"
         }
       ]
@@ -141,13 +142,13 @@
     "otherkeywords": {
       "patterns": [
         {
-          "match": "\\s*(@inline)\\s*|\\s*(@auto_number)\\s*|\\s*(function)\\s|\\b((implies|select|from|∈|where|for|in))\\b|(((<)?\\|(>)?)|∈)",
+          "match": "\\s*(@inline)\\s*|\\s*(@auto_number)\\s*|\\s*(function)\\s|(\\b(implies|select|from|∈|where|for|in)\\b)|(((\\<)?\\|(\\>)?)|∈)",
           "name": "keyword.other.rel"
         }
       ]
     },
     "single-line-comment-consuming-line-ending": {
-      "begin": "(^[\\t ]+)?((//)(?:\\s*((@)internal)(?=\\s|$))?)",
+      "begin": "(^[ \\t]+)?((//)(?:\\s*((@)internal)(?=\\s|$))?)",
       "beginCaptures": {
         "1": {
           "name": "punctuation.whitespace.comment.leading.rel"
@@ -182,7 +183,7 @@
     "symbols": {
       "patterns": [
         {
-          "match": "(:[$\\[_[:alpha:]](]|[$_[:alnum:]]*))",
+          "match": "(:[\\[_$[:alpha:]](\\]|[_$[:alnum:]]*))",
           "name": "variable.parameter.rel"
         }
       ]
@@ -190,7 +191,7 @@
     "types": {
       "patterns": [
         {
-          "match": "\\b((Symbol|Char|Bool|Rational|FixedDecimal|Float16|Float32|Float64|Int8|Int16|Int32|Int64|Int128|UInt8|UInt16|UInt32|UInt64|UInt128|Date|DateTime|Day|Week|Month|Year|Nanosecond|Microsecond|Millisecond|Second|Minute|Hour|FilePos|HashValue|AutoNumberValue))\\b",
+          "match": "(\\b(Symbol|Char|Bool|Rational|FixedDecimal|Float16|Float32|Float64|Int8|Int16|Int32|Int64|Int128|UInt8|UInt16|UInt32|UInt64|UInt128|Date|DateTime|Day|Week|Month|Year|Nanosecond|Microsecond|Millisecond|Second|Minute|Hour|FilePos|HashValue|AutoNumberValue)\\b)",
           "name": "entity.name.type.rel"
         }
       ]

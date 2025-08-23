@@ -107,7 +107,7 @@
           "name": "string.path.apacheconf"
         }
       },
-      "match": "(?<=(?:Script|)AliasMatch)\\s+(.+?)\\s+((.+?)\\s)?"
+      "match": "(?<=ScriptAliasMatch|AliasMatch)\\s+(.+?)\\s+((.+?)\\s)?"
     },
     {
       "captures": {
@@ -126,7 +126,7 @@
           "name": "keyword.core.apacheconf"
         }
       },
-      "match": "\\b(AcceptPathInfo|AccessFileName|AddDefaultCharset|AddOutputFilterByType|AllowEncodedSlashes|AllowOverride|AuthName|AuthType|CGIMapExtension|ContentDigest|DefaultType|Define|DocumentRoot|EnableMMAP|EnableSendfile|ErrorDocument|ErrorLog|FileETag|ForceType|HostnameLookups|IdentityCheck|Include(Optional)?|KeepAlive|KeepAliveTimeout|LimitInternalRecursion|LimitRequestBody|LimitRequestFields|LimitRequestFieldSize|LimitRequestLine|LimitXMLRequestBody|LogLevel|MaxKeepAliveRequests|Mutex|NameVirtualHost|Options|Require|RLimitCPU|RLimitMEM|RLimitNPROC|Satisfy|ScriptInterpreterSource|ServerAdmin|ServerAlias|ServerName|ServerPath|ServerRoot|ServerSignature|ServerTokens|SetHandler|SetInputFilter|SetOutputFilter|Time([Oo])ut|TraceEnable|UseCanonicalName|Use|ErrorLogFormat|GlobalLog|PHPIniDir|SSLHonorCipherOrder|SSLCompression|SSLUseStapling|SSLStapling\\w+|SSLCARevocationCheck|SSLSRPVerifierFile|SSLSessionTickets|RequestReadTimeout|ProxyHTML\\w+|MaxRanges)\\b"
+      "match": "\\b(AcceptPathInfo|AccessFileName|AddDefaultCharset|AddOutputFilterByType|AllowEncodedSlashes|AllowOverride|AuthName|AuthType|CGIMapExtension|ContentDigest|DefaultType|Define|DocumentRoot|EnableMMAP|EnableSendfile|ErrorDocument|ErrorLog|FileETag|ForceType|HostnameLookups|IdentityCheck|Include(Optional)?|KeepAlive|KeepAliveTimeout|LimitInternalRecursion|LimitRequestBody|LimitRequestFields|LimitRequestFieldSize|LimitRequestLine|LimitXMLRequestBody|LogLevel|MaxKeepAliveRequests|Mutex|NameVirtualHost|Options|Require|RLimitCPU|RLimitMEM|RLimitNPROC|Satisfy|ScriptInterpreterSource|ServerAdmin|ServerAlias|ServerName|ServerPath|ServerRoot|ServerSignature|ServerTokens|SetHandler|SetInputFilter|SetOutputFilter|Time(O|o)ut|TraceEnable|UseCanonicalName|Use|ErrorLogFormat|GlobalLog|PHPIniDir|SSLHonorCipherOrder|SSLCompression|SSLUseStapling|SSLStapling\\w+|SSLCARevocationCheck|SSLSRPVerifierFile|SSLSessionTickets|RequestReadTimeout|ProxyHTML\\w+|MaxRanges)\\b"
     },
     {
       "captures": {
@@ -166,7 +166,7 @@
           "name": "keyword.auth.apacheconf"
         }
       },
-      "match": "\\b(Auth(?:Authoritative|GroupFile|UserFile|BasicProvider|BasicFake|BasicAuthoritative|BasicUseDigestAlgorithm))\\b"
+      "match": "\\b(AuthAuthoritative|AuthGroupFile|AuthUserFile|AuthBasicProvider|AuthBasicFake|AuthBasicAuthoritative|AuthBasicUseDigestAlgorithm)\\b"
     },
     {
       "captures": {
@@ -174,7 +174,7 @@
           "name": "keyword.auth_anon.apacheconf"
         }
       },
-      "match": "\\b(Anonymous(?:|_Authoritative|_LogEmail|_MustGiveEmail|_NoUserID|_VerifyEmail))\\b"
+      "match": "\\b(Anonymous|Anonymous_Authoritative|Anonymous_LogEmail|Anonymous_MustGiveEmail|Anonymous_NoUserID|Anonymous_VerifyEmail)\\b"
     },
     {
       "captures": {
@@ -182,7 +182,7 @@
           "name": "keyword.auth_dbm.apacheconf"
         }
       },
-      "match": "\\b(AuthDBM(?:Authoritative|GroupFile|Type|UserFile))\\b"
+      "match": "\\b(AuthDBMAuthoritative|AuthDBMGroupFile|AuthDBMType|AuthDBMUserFile)\\b"
     },
     {
       "captures": {
@@ -190,7 +190,7 @@
           "name": "keyword.auth_digest.apacheconf"
         }
       },
-      "match": "\\b(AuthDigest(?:Algorithm|Domain|File|GroupFile|NcCheck|NonceFormat|NonceLifetime|Qop|ShmemSize|Provider))\\b"
+      "match": "\\b(AuthDigestAlgorithm|AuthDigestDomain|AuthDigestFile|AuthDigestGroupFile|AuthDigestNcCheck|AuthDigestNonceFormat|AuthDigestNonceLifetime|AuthDigestQop|AuthDigestShmemSize|AuthDigestProvider)\\b"
     },
     {
       "captures": {
@@ -198,7 +198,7 @@
           "name": "keyword.auth_ldap.apacheconf"
         }
       },
-      "match": "\\b(AuthLDAP(?:Authoritative|BindDN|BindPassword|CharsetConfig|CompareDNOnServer|DereferenceAliases|Enabled|FrontPageHack|GroupAttribute|GroupAttributeIsDN|RemoteUserIsDN|Url))\\b"
+      "match": "\\b(AuthLDAPAuthoritative|AuthLDAPBindDN|AuthLDAPBindPassword|AuthLDAPCharsetConfig|AuthLDAPCompareDNOnServer|AuthLDAPDereferenceAliases|AuthLDAPEnabled|AuthLDAPFrontPageHack|AuthLDAPGroupAttribute|AuthLDAPGroupAttributeIsDN|AuthLDAPRemoteUserIsDN|AuthLDAPUrl)\\b"
     },
     {
       "captures": {
@@ -214,7 +214,7 @@
           "name": "keyword.filter.apacheconf"
         }
       },
-      "match": "\\b(Balancer(?:Member|Growth|Persist|Inherit))\\b"
+      "match": "\\b(BalancerMember|BalancerGrowth|BalancerPersist|BalancerInherit)\\b"
     },
     {
       "captures": {
@@ -222,7 +222,7 @@
           "name": "keyword.cache.apacheconf"
         }
       },
-      "match": "\\b(Cache(?:DefaultExpire|Disable|Enable|ForceCompletion|IgnoreCacheControl|IgnoreHeaders|IgnoreNoLastMod|LastModifiedFactor|MaxExpire))\\b"
+      "match": "\\b(CacheDefaultExpire|CacheDisable|CacheEnable|CacheForceCompletion|CacheIgnoreCacheControl|CacheIgnoreHeaders|CacheIgnoreNoLastMod|CacheLastModifiedFactor|CacheMaxExpire)\\b"
     },
     {
       "captures": {
@@ -230,7 +230,7 @@
           "name": "keyword.cern_meta.apacheconf"
         }
       },
-      "match": "\\b(Meta(?:Dir|Files|Suffix))\\b"
+      "match": "\\b(MetaDir|MetaFiles|MetaSuffix)\\b"
     },
     {
       "captures": {
@@ -238,7 +238,7 @@
           "name": "keyword.cgi.apacheconf"
         }
       },
-      "match": "\\b(ScriptLog(?:|Buffer|Length))\\b"
+      "match": "\\b(ScriptLog|ScriptLogBuffer|ScriptLogLength)\\b"
     },
     {
       "captures": {
@@ -246,7 +246,7 @@
           "name": "keyword.cgid.apacheconf"
         }
       },
-      "match": "\\b(Script(?:Log|LogBuffer|LogLength|Sock))\\b"
+      "match": "\\b(ScriptLog|ScriptLogBuffer|ScriptLogLength|ScriptSock)\\b"
     },
     {
       "captures": {
@@ -254,7 +254,7 @@
           "name": "keyword.charset_lite.apacheconf"
         }
       },
-      "match": "\\b(Charset(?:Default|Options|SourceEnc))\\b"
+      "match": "\\b(CharsetDefault|CharsetOptions|CharsetSourceEnc)\\b"
     },
     {
       "captures": {
@@ -262,7 +262,7 @@
           "name": "keyword.dav.apacheconf"
         }
       },
-      "match": "\\b(Dav(?:|DepthInfinity|MinTimeout|LockDB))\\b"
+      "match": "\\b(Dav|DavDepthInfinity|DavMinTimeout|DavLockDB)\\b"
     },
     {
       "captures": {
@@ -270,7 +270,7 @@
           "name": "keyword.deflate.apacheconf"
         }
       },
-      "match": "\\b(Deflate(?:BufferSize|CompressionLevel|FilterNote|MemLevel|WindowSize))\\b"
+      "match": "\\b(DeflateBufferSize|DeflateCompressionLevel|DeflateFilterNote|DeflateMemLevel|DeflateWindowSize)\\b"
     },
     {
       "captures": {
@@ -286,7 +286,7 @@
           "name": "keyword.disk_cache.apacheconf"
         }
       },
-      "match": "\\b(Cache(?:DirLength|DirLevels|ExpiryCheck|GcClean|GcDaily|GcInterval|GcMemUsage|GcUnused|MaxFileSize|MinFileSize|Root|Size|TimeMargin))\\b"
+      "match": "\\b(CacheDirLength|CacheDirLevels|CacheExpiryCheck|CacheGcClean|CacheGcDaily|CacheGcInterval|CacheGcMemUsage|CacheGcUnused|CacheMaxFileSize|CacheMinFileSize|CacheRoot|CacheSize|CacheTimeMargin)\\b"
     },
     {
       "captures": {
@@ -294,7 +294,7 @@
           "name": "keyword.dumpio.apacheconf"
         }
       },
-      "match": "\\b(DumpIO(?:In|Out)put)\\b"
+      "match": "\\b(DumpIOInput|DumpIOOutput)\\b"
     },
     {
       "captures": {
@@ -302,7 +302,7 @@
           "name": "keyword.env.apacheconf"
         }
       },
-      "match": "\\b((?:Pass|Set|Unset)Env)\\b"
+      "match": "\\b(PassEnv|SetEnv|UnsetEnv)\\b"
     },
     {
       "captures": {
@@ -310,7 +310,7 @@
           "name": "keyword.expires.apacheconf"
         }
       },
-      "match": "\\b(Expires(?:Active|ByType|Default))\\b"
+      "match": "\\b(ExpiresActive|ExpiresByType|ExpiresDefault)\\b"
     },
     {
       "captures": {
@@ -318,7 +318,7 @@
           "name": "keyword.ext_filter.apacheconf"
         }
       },
-      "match": "\\b(ExtFilter(?:Define|Options))\\b"
+      "match": "\\b(ExtFilterDefine|ExtFilterOptions)\\b"
     },
     {
       "captures": {
@@ -326,7 +326,7 @@
           "name": "keyword.file_cache.apacheconf"
         }
       },
-      "match": "\\b((?:Cache|MMap)File)\\b"
+      "match": "\\b(CacheFile|MMapFile)\\b"
     },
     {
       "captures": {
@@ -342,7 +342,7 @@
           "name": "keyword.headers.apacheconf"
         }
       },
-      "match": "\\b((?:|Request)Header)\\b"
+      "match": "\\b(Header|RequestHeader)\\b"
     },
     {
       "captures": {
@@ -350,7 +350,7 @@
           "name": "keyword.imap.apacheconf"
         }
       },
-      "match": "\\b(Imap(?:Base|Default|Menu))\\b"
+      "match": "\\b(ImapBase|ImapDefault|ImapMenu)\\b"
     },
     {
       "captures": {
@@ -366,7 +366,7 @@
           "name": "keyword.isapi.apacheconf"
         }
       },
-      "match": "\\b(ISAPI(?:AppendLogToErrors|AppendLogToQuery|CacheFile|FakeAsync|LogNotSupported|ReadAheadBuffer))\\b"
+      "match": "\\b(ISAPIAppendLogToErrors|ISAPIAppendLogToQuery|ISAPICacheFile|ISAPIFakeAsync|ISAPILogNotSupported|ISAPIReadAheadBuffer)\\b"
     },
     {
       "captures": {
@@ -374,7 +374,7 @@
           "name": "keyword.ldap.apacheconf"
         }
       },
-      "match": "\\b(LDAP(?:CacheEntries|CacheTTL|ConnectionTimeout|OpCacheEntries|OpCacheTTL|SharedCacheFile|SharedCacheSize|TrustedCA|TrustedCAType))\\b"
+      "match": "\\b(LDAPCacheEntries|LDAPCacheTTL|LDAPConnectionTimeout|LDAPOpCacheEntries|LDAPOpCacheTTL|LDAPSharedCacheFile|LDAPSharedCacheSize|LDAPTrustedCA|LDAPTrustedCAType)\\b"
     },
     {
       "captures": {
@@ -390,7 +390,7 @@
           "name": "keyword.mem_cache.apacheconf"
         }
       },
-      "match": "\\b(MCache(?:MaxObjectCount|MaxObjectSize|MaxStreamingBuffer|MinObjectSize|RemovalAlgorithm|Size))\\b"
+      "match": "\\b(MCacheMaxObjectCount|MCacheMaxObjectSize|MCacheMaxStreamingBuffer|MCacheMinObjectSize|MCacheRemovalAlgorithm|MCacheSize)\\b"
     },
     {
       "captures": {
@@ -438,7 +438,7 @@
           "name": "keyword.rewrite.apacheconf"
         }
       },
-      "match": "\\b(Rewrite(?:Base|Cond|Engine|Lock|Log|LogLevel|Map|Options|Rule))\\b"
+      "match": "\\b(RewriteBase|RewriteCond|RewriteEngine|RewriteLock|RewriteLog|RewriteLogLevel|RewriteMap|RewriteOptions|RewriteRule)\\b"
     },
     {
       "captures": {
@@ -454,7 +454,7 @@
           "name": "keyword.so.apacheconf"
         }
       },
-      "match": "\\b(Load(?:File|Module))\\b"
+      "match": "\\b(LoadFile|LoadModule)\\b"
     },
     {
       "captures": {
@@ -462,7 +462,7 @@
           "name": "keyword.ssl.apacheconf"
         }
       },
-      "match": "\\b(SSL(?:CACertificateFile|CACertificatePath|CARevocationFile|CARevocationPath|CertificateChainFile|CertificateFile|CertificateKeyFile|CipherSuite|Engine|Mutex|Options|PassPhraseDialog|Protocol|ProxyCACertificateFile|ProxyCACertificatePath|ProxyCARevocationFile|ProxyCARevocationPath|ProxyCipherSuite|ProxyEngine|ProxyMachineCertificateFile|ProxyMachineCertificatePath|ProxyProtocol|ProxyVerify|ProxyVerifyDepth|RandomSeed|Require|RequireSSL|SessionCache|SessionCacheTimeout|UserName|VerifyClient|VerifyDepth|InsecureRenegotiation|OpenSSLConfCmd))\\b"
+      "match": "\\b(SSLCACertificateFile|SSLCACertificatePath|SSLCARevocationFile|SSLCARevocationPath|SSLCertificateChainFile|SSLCertificateFile|SSLCertificateKeyFile|SSLCipherSuite|SSLEngine|SSLMutex|SSLOptions|SSLPassPhraseDialog|SSLProtocol|SSLProxyCACertificateFile|SSLProxyCACertificatePath|SSLProxyCARevocationFile|SSLProxyCARevocationPath|SSLProxyCipherSuite|SSLProxyEngine|SSLProxyMachineCertificateFile|SSLProxyMachineCertificatePath|SSLProxyProtocol|SSLProxyVerify|SSLProxyVerifyDepth|SSLRandomSeed|SSLRequire|SSLRequireSSL|SSLSessionCache|SSLSessionCacheTimeout|SSLUserName|SSLVerifyClient|SSLVerifyDepth|SSLInsecureRenegotiation|SSLOpenSSLConfCmd)\\b"
     },
     {
       "captures": {
@@ -470,7 +470,7 @@
           "name": "keyword.substitute.apacheconf"
         }
       },
-      "match": "\\b(Substitute(?:|InheritBefore|MaxLineLength))\\b"
+      "match": "\\b(Substitute|SubstituteInheritBefore|SubstituteMaxLineLength)\\b"
     },
     {
       "captures": {
@@ -478,7 +478,7 @@
           "name": "keyword.usertrack.apacheconf"
         }
       },
-      "match": "\\b(Cookie(?:Domain|Expires|Name|Style|Tracking))\\b"
+      "match": "\\b(CookieDomain|CookieExpires|CookieName|CookieStyle|CookieTracking)\\b"
     },
     {
       "captures": {
@@ -486,7 +486,7 @@
           "name": "keyword.vhost_alias.apacheconf"
         }
       },
-      "match": "\\b(Virtual(?:DocumentRoot|DocumentRootIP|ScriptAlias|ScriptAliasIP))\\b"
+      "match": "\\b(VirtualDocumentRoot|VirtualDocumentRootIP|VirtualScriptAlias|VirtualScriptAliasIP)\\b"
     },
     {
       "captures": {
@@ -500,7 +500,7 @@
           "name": "string.value.apacheconf"
         }
       },
-      "match": "\\b(php_(?:value|flag|admin_value|admin_flag))\\b(\\s+(.+?)(\\s+(\".+?\"|.+?))?)?\\s"
+      "match": "\\b(php_value|php_flag|php_admin_value|php_admin_flag)\\b(\\s+(.+?)(\\s+(\".+?\"|.+?))?)?\\s"
     },
     {
       "captures": {
@@ -517,7 +517,7 @@
           "name": "punctuation.variable.apacheconf"
         }
       },
-      "match": "(%\\{)((HTTP_USER_AGENT|HTTP_REFERER|HTTP_COOKIE|HTTP_FORWARDED|HTTP_HOST|HTTP_PROXY_CONNECTION|HTTP_ACCEPT|REMOTE_ADDR|REMOTE_HOST|REMOTE_PORT|REMOTE_USER|REMOTE_IDENT|REQUEST_METHOD|SCRIPT_FILENAME|PATH_INFO|QUERY_STRING|AUTH_TYPE|DOCUMENT_ROOT|SERVER_ADMIN|SERVER_NAME|SERVER_ADDR|SERVER_PORT|SERVER_PROTOCOL|SERVER_SOFTWARE|TIME_YEAR|TIME_MON|TIME_DAY|TIME_HOUR|TIME_MIN|TIME_SEC|TIME_WDAY|TIME|API_VERSION|THE_REQUEST|REQUEST_URI|REQUEST_FILENAME|IS_SUBREQ|HTTPS)|(.*?))(})"
+      "match": "(%\\{)((HTTP_USER_AGENT|HTTP_REFERER|HTTP_COOKIE|HTTP_FORWARDED|HTTP_HOST|HTTP_PROXY_CONNECTION|HTTP_ACCEPT|REMOTE_ADDR|REMOTE_HOST|REMOTE_PORT|REMOTE_USER|REMOTE_IDENT|REQUEST_METHOD|SCRIPT_FILENAME|PATH_INFO|QUERY_STRING|AUTH_TYPE|DOCUMENT_ROOT|SERVER_ADMIN|SERVER_NAME|SERVER_ADDR|SERVER_PORT|SERVER_PROTOCOL|SERVER_SOFTWARE|TIME_YEAR|TIME_MON|TIME_DAY|TIME_HOUR|TIME_MIN|TIME_SEC|TIME_WDAY|TIME|API_VERSION|THE_REQUEST|REQUEST_URI|REQUEST_FILENAME|IS_SUBREQ|HTTPS)|(.*?))(\\})"
     },
     {
       "captures": {
@@ -555,8 +555,9 @@
           "name": "punctuation.definition.flag.apacheconf"
         }
       },
-      "match": "\\s(\\[)(.*?)(])\\s"
+      "match": "\\s(\\[)(.*?)(\\])\\s"
     }
   ],
-  "scopeName": "source.apacheconf"
+  "scopeName": "source.apacheconf",
+  "uuid": "8747d9e4-b308-4fc2-9aa1-66b6919bc7b9"
 }

@@ -1,5 +1,10 @@
 {
   "displayName": "Makefile",
+  "information_for_contributors": [
+    "This file has been converted from https://github.com/fadeevab/make.tmbundle/blob/master/Syntaxes/Makefile.plist",
+    "If you want to provide a fix or improvement, please create a pull request against the original repository.",
+    "Once accepted there, we are happy to receive an update request."
+  ],
   "name": "make",
   "patterns": [
     {
@@ -25,7 +30,7 @@
     "another-variable-braces": {
       "patterns": [
         {
-          "begin": "(?<=\\{)(?!})",
+          "begin": "(?<={)(?!})",
           "end": "(?=}|((?<!\\\\)\\n))",
           "name": "variable.other.makefile",
           "patterns": [
@@ -59,7 +64,7 @@
       ]
     },
     "braces-interpolation": {
-      "begin": "\\{",
+      "begin": "{",
       "end": "}",
       "patterns": [
         {
@@ -73,7 +78,7 @@
     "builtin-variable-braces": {
       "patterns": [
         {
-          "match": "(?<=\\{)(MAKEFILES|VPATH|SHELL|MAKESHELL|MAKE|MAKELEVEL|MAKEFLAGS|MAKECMDGOALS|CURDIR|SUFFIXES|\\.LIBPATTERNS)(?=\\s*})",
+          "match": "(?<={)(MAKEFILES|VPATH|SHELL|MAKESHELL|MAKE|MAKELEVEL|MAKEFLAGS|MAKECMDGOALS|CURDIR|SUFFIXES|\\.LIBPATTERNS)(?=\\s*})",
           "name": "variable.language.makefile"
         }
       ]
@@ -91,7 +96,7 @@
       "name": "punctuation.separator.delimeter.comma.makefile"
     },
     "comment": {
-      "begin": "(^ +)?((?<!\\\\)(\\\\\\\\)*)(?=#)",
+      "begin": "(^[ ]+)?((?<!\\\\)(\\\\\\\\)*)(?=#)",
       "beginCaptures": {
         "1": {
           "name": "punctuation.whitespace.comment.leading.makefile"
@@ -120,7 +125,7 @@
     "directives": {
       "patterns": [
         {
-          "begin": "^ *([-s]?include)\\b",
+          "begin": "^[ ]*([s\\-]?include)\\b",
           "beginCaptures": {
             "1": {
               "name": "keyword.control.include.makefile"
@@ -141,7 +146,7 @@
           ]
         },
         {
-          "begin": "^ *(vpath)\\b",
+          "begin": "^[ ]*(vpath)\\b",
           "beginCaptures": {
             "1": {
               "name": "keyword.control.vpath.makefile"
@@ -162,7 +167,7 @@
           ]
         },
         {
-          "begin": "^\\s*(?:(override)\\s*)?(define)\\s*(\\S+)\\s*([+:?]??=)?(?=\\s)",
+          "begin": "^\\s*(?:(override)\\s*)?(define)\\s*([^\\s]+)\\s*(=|\\?=|:=|\\+=)?(?=\\s)",
           "captures": {
             "1": {
               "name": "keyword.control.override.makefile"
@@ -198,7 +203,7 @@
           ]
         },
         {
-          "begin": "^ *(export)\\b",
+          "begin": "^[ ]*(export)\\b",
           "beginCaptures": {
             "1": {
               "name": "keyword.control.$1.makefile"
@@ -213,13 +218,13 @@
               "include": "#variable-assignment"
             },
             {
-              "match": "\\S+",
+              "match": "[^\\s]+",
               "name": "variable.other.makefile"
             }
           ]
         },
         {
-          "begin": "^ *(override|private)\\b",
+          "begin": "^[ ]*(override|private)\\b",
           "beginCaptures": {
             "1": {
               "name": "keyword.control.$1.makefile"
@@ -236,7 +241,7 @@
           ]
         },
         {
-          "begin": "^ *(un(?:export|define))\\b",
+          "begin": "^[ ]*(unexport|undefine)\\b",
           "beginCaptures": {
             "1": {
               "name": "keyword.control.$1.makefile"
@@ -248,13 +253,13 @@
               "include": "#comment"
             },
             {
-              "match": "\\S+",
+              "match": "[^\\s]+",
               "name": "variable.other.makefile"
             }
           ]
         },
         {
-          "begin": "^\\s*(ifn??(?:eq|def))(?=\\s)",
+          "begin": "^\\s*(ifeq|ifneq|ifdef|ifndef)(?=\\s)",
           "captures": {
             "1": {
               "name": "keyword.control.$1.makefile"
@@ -280,7 +285,7 @@
               ]
             },
             {
-              "begin": "^\\s*else(?=\\s)\\s*(ifn??(?:eq|def))*(?=\\s)",
+              "begin": "^\\s*else(?=\\s)\\s*(ifeq|ifneq|ifdef|ifndef)*(?=\\s)",
               "beginCaptures": {
                 "0": {
                   "name": "keyword.control.else.makefile"
@@ -309,7 +314,7 @@
     "flavor-variable-braces": {
       "patterns": [
         {
-          "begin": "(?<=\\{)(origin|flavor)\\s(?=[^}\\s]+\\s*})",
+          "begin": "(?<={)(origin|flavor)\\s(?=[^\\s}]+\\s*})",
           "beginCaptures": {
             "1": {
               "name": "support.function.$1.makefile"
@@ -329,7 +334,7 @@
     "flavor-variable-parentheses": {
       "patterns": [
         {
-          "begin": "(?<=\\()(origin|flavor)\\s(?=[^)\\s]+\\s*\\))",
+          "begin": "(?<=\\()(origin|flavor)\\s(?=[^\\s)]+\\s*\\))",
           "beginCaptures": {
             "1": {
               "name": "support.function.$1.makefile"
@@ -349,7 +354,7 @@
     "function-variable-braces": {
       "patterns": [
         {
-          "begin": "(?<=\\{)(subst|patsubst|strip|findstring|filter(-out)?|sort|word(list)?|firstword|lastword|dir|notdir|suffix|basename|addsuffix|addprefix|join|wildcard|realpath|abspath|info|error|warning|shell|foreach|if|or|and|call|eval|value|file|guile)\\s",
+          "begin": "(?<={)(subst|patsubst|strip|findstring|filter(-out)?|sort|word(list)?|firstword|lastword|dir|notdir|suffix|basename|addsuffix|addprefix|join|wildcard|realpath|abspath|info|error|warning|shell|foreach|if|or|and|call|eval|value|file|guile)\\s",
           "beginCaptures": {
             "1": {
               "name": "support.function.$1.makefile"
@@ -368,7 +373,7 @@
               "include": "#interpolation"
             },
             {
-              "match": "[%*]",
+              "match": "%|\\*",
               "name": "constant.other.placeholder.makefile"
             },
             {
@@ -401,7 +406,7 @@
               "include": "#interpolation"
             },
             {
-              "match": "[%*]",
+              "match": "%|\\*",
               "name": "constant.other.placeholder.makefile"
             },
             {
@@ -435,7 +440,7 @@
       ]
     },
     "recipe": {
-      "begin": "^\\t([-+@]*)",
+      "begin": "^\\t([+\\-@]*)",
       "beginCaptures": {
         "1": {
           "name": "keyword.control.$1.makefile"
@@ -462,7 +467,7 @@
       ]
     },
     "target": {
-      "begin": "^(?!\\t)([^:]*)(:)(?!=)",
+      "begin": "^(?!\\t)([^:]*)(:)(?!\\=)",
       "beginCaptures": {
         "1": {
           "patterns": [
@@ -507,7 +512,7 @@
               "name": "constant.character.escape.continuation.makefile"
             },
             {
-              "match": "[%*]",
+              "match": "%|\\*",
               "name": "constant.other.placeholder.makefile"
             },
             {
@@ -521,7 +526,7 @@
       ]
     },
     "variable-assignment": {
-      "begin": "(^ *|\\G\\s*)([^#:=\\s]+)\\s*((?:(?<![!+:?])|[!+:?])=)",
+      "begin": "(^[ ]*|\\G\\s*)([^\\s:#=]+)\\s*((?<![?:+!])=|\\?=|:=|\\+=|!=)",
       "beginCaptures": {
         "2": {
           "name": "variable.other.makefile",
@@ -552,7 +557,7 @@
     "variable-braces": {
       "patterns": [
         {
-          "begin": "\\$\\{",
+          "begin": "\\${",
           "captures": {
             "0": {
               "name": "punctuation.definition.variable.makefile"
@@ -625,5 +630,6 @@
       ]
     }
   },
-  "scopeName": "source.makefile"
+  "scopeName": "source.makefile",
+  "version": "https://github.com/fadeevab/make.tmbundle/commit/1d4c0b541959995db098df751ffc129da39a294b"
 }

@@ -1,5 +1,11 @@
 {
+  "comment": "Modified from the original ASP bundle. Originally modified by Thomas Aylott subtleGradient.com",
   "displayName": "Visual Basic",
+  "information_for_contributors": [
+    "This file has been converted from https://github.com/textmate/asp.vb.net.tmbundle/blob/master/Syntaxes/ASP%20VB.net.plist",
+    "If you want to provide a fix or improvement, please create a pull request against the original repository.",
+    "Once accepted there, we are happy to receive an update request."
+  ],
   "name": "vb",
   "patterns": [
     {
@@ -63,11 +69,11 @@
           "name": "punctuation.definition.parameters.asp"
         }
       },
-      "match": "^\\s*((?i:function|sub))\\s*([A-Z_a-z]\\w*)\\s*(\\()([^)]*)(\\)).*\\n?",
+      "match": "^\\s*((?i:function|sub))\\s*([a-zA-Z_]\\w*)\\s*(\\()([^)]*)(\\)).*\\n?",
       "name": "meta.function.asp"
     },
     {
-      "begin": "(^[\\t ]+)?(?=')",
+      "begin": "(^[ \\t]+)?(?=')",
       "beginCaptures": {
         "1": {
           "name": "punctuation.whitespace.comment.leading.asp"
@@ -107,7 +113,7 @@
           "name": "meta.separator.comma.asp"
         }
       },
-      "match": "(?i:(dim)\\s*\\b([7A-Z_a-z][0-9A-Z_a-z]*?)\\b\\s*(,?))",
+      "match": "(?i:(dim)\\s*(?:(\\b[a-zA-Z_x7f-xff][a-zA-Z0-9_x7f-xff]*?\\b)\\s*(,?)))",
       "name": "variable.other.dim.asp"
     },
     {
@@ -149,7 +155,7 @@
           "name": "punctuation.definition.variable.asp"
         }
       },
-      "match": "(\\$)[7A-Z_a-z][0-9A-Z_a-z]*?\\b\\s*",
+      "match": "(\\$)[a-zA-Z_x7f-xff][a-zA-Z0-9_x7f-xff]*?\\b\\s*",
       "name": "variable.other.asp"
     },
     {
@@ -173,15 +179,15 @@
       "name": "support.function.event.asp"
     },
     {
-      "match": "(?i:(?<=as )\\b([7A-Z_a-z][0-9A-Z_a-z]*?)\\b)",
+      "match": "(?i:(?<=as )(\\b[a-zA-Z_x7f-xff][a-zA-Z0-9_x7f-xff]*?\\b))",
       "name": "support.type.vb.asp"
     },
     {
-      "match": "(?i:\\b(Array|Add|Asc|Atn|CBool|CByte|CCur|CDate|CDbl|Chr|CInt|CLng|Conversions|Cos|CreateObject|CSng|CStr|Date|DateAdd|DateDiff|DatePart|DateSerial|DateValue|Day|Derived|Math|Escape|Eval|Exists|Exp|Filter|FormatCurrency|FormatDateTime|FormatNumber|FormatPercent|GetLocale|GetObject|GetRef|Hex|Hour|InputBox|InStr|InStrRev|Int|Fix|IsArray|IsDate|IsEmpty|IsNull|IsNumeric|IsObject|Items??|Join|Keys|LBound|LCase|Left|Len|LoadPicture|Log|LTrim|RTrim|Trim|Maths|Mid|Minute|Month|MonthName|MsgBox|Now|Oct|Remove|RemoveAll|Replace|RGB|Right|Rnd|Round|ScriptEngine|ScriptEngineBuildVersion|ScriptEngineMajorVersion|ScriptEngineMinorVersion|Second|SetLocale|Sgn|Sin|Space|Split|Sqr|StrComp|String|StrReverse|Tan|Timer??|TimeSerial|TimeValue|TypeName|UBound|UCase|Unescape|VarType|Weekday|WeekdayName|Year)\\b)",
+      "match": "(?i:\\b(Array|Add|Asc|Atn|CBool|CByte|CCur|CDate|CDbl|Chr|CInt|CLng|Conversions|Cos|CreateObject|CSng|CStr|Date|DateAdd|DateDiff|DatePart|DateSerial|DateValue|Day|Derived|Math|Escape|Eval|Exists|Exp|Filter|FormatCurrency|FormatDateTime|FormatNumber|FormatPercent|GetLocale|GetObject|GetRef|Hex|Hour|InputBox|InStr|InStrRev|Int|Fix|IsArray|IsDate|IsEmpty|IsNull|IsNumeric|IsObject|Item|Items|Join|Keys|LBound|LCase|Left|Len|LoadPicture|Log|LTrim|RTrim|Trim|Maths|Mid|Minute|Month|MonthName|MsgBox|Now|Oct|Remove|RemoveAll|Replace|RGB|Right|Rnd|Round|ScriptEngine|ScriptEngineBuildVersion|ScriptEngineMajorVersion|ScriptEngineMinorVersion|Second|SetLocale|Sgn|Sin|Space|Split|Sqr|StrComp|String|StrReverse|Tan|Time|Timer|TimeSerial|TimeValue|TypeName|UBound|UCase|Unescape|VarType|Weekday|WeekdayName|Year)\\b)",
       "name": "support.function.vb.asp"
     },
     {
-      "match": "-?\\b((0([Xx])\\h*)|(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))(([Ee])([-+])?[0-9]+)?)([Ll]|UL|ul|[FUfu])?\\b",
+      "match": "-?\\b((0(x|X)[0-9a-fA-F]*)|(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))((e|E)(\\+|-)?[0-9]+)?)(L|l|UL|ul|u|U|F|f)?\\b",
       "name": "constant.numeric.asp"
     },
     {
@@ -194,15 +200,15 @@
           "name": "entity.name.function.asp"
         }
       },
-      "match": "(?i:\\b([7A-Z_a-z][0-9A-Z_a-z]*?)\\b(?=\\(\\)?))",
+      "match": "(?i:(\\b[a-zA-Z_x7f-xff][a-zA-Z0-9_x7f-xff]*?\\b)(?=\\(\\)?))",
       "name": "support.function.asp"
     },
     {
-      "match": "(?i:((?<=([-\\&(+,/<=>\\\\]))\\s*\\b([7A-Z_a-z][0-9A-Z_a-z]*?)\\b(?!([(.]))|\\b([7A-Z_a-z][0-9A-Z_a-z]*?)\\b(?=\\s*([-\\&()+/<=>\\\\]))))",
+      "match": "(?i:((?<=(\\+|=|-|\\&|\\\\|/|<|>|\\(|,))\\s*\\b([a-zA-Z_x7f-xff][a-zA-Z0-9_x7f-xff]*?)\\b(?!(\\(|\\.))|\\b([a-zA-Z_x7f-xff][a-zA-Z0-9_x7f-xff]*?)\\b(?=\\s*(\\+|=|-|\\&|\\\\|/|<|>|\\(|\\)))))",
       "name": "variable.other.asp"
     },
     {
-      "match": "[!$%\\&*]|--?|\\+\\+|[+~]|===?|=|!==??|<=|>=|<<=|>>=|>>>=|<>|[!<>]|&&|\\|\\||\\?:|\\*=|/=|%=|\\+=|-=|&=|\\^=|\\b(in|instanceof|new|delete|typeof|void)\\b",
+      "match": "!|\\$|%|&|\\*|\\-\\-|\\-|\\+\\+|\\+|~|===|==|=|!=|!==|<=|>=|<<=|>>=|>>>=|<>|<|>|!|&&|\\|\\||\\?\\:|\\*=|/=|%=|\\+=|\\-=|&=|\\^=|\\b(in|instanceof|new|delete|typeof|void)\\b",
       "name": "keyword.operator.js"
     }
   ],
@@ -228,5 +234,6 @@
       ]
     }
   },
-  "scopeName": "source.asp.vb.net"
+  "scopeName": "source.asp.vb.net",
+  "version": "https://github.com/textmate/asp.vb.net.tmbundle/commit/72d44550b3286d0382d7be0624140cf97857ff69"
 }

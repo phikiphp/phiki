@@ -1,5 +1,11 @@
 {
+  "comment": "Grammar based on description from https://github.com/aclements/biblib",
   "displayName": "BibTeX",
+  "information_for_contributors": [
+    "This file has been converted from https://github.com/jlelong/vscode-latex-basics/blob/master/syntaxes/Bibtex.tmLanguage.json",
+    "If you want to provide a fix or improvement, please create a pull request against the original repository.",
+    "Once accepted there, we are happy to receive an update request."
+  ],
   "name": "bibtex",
   "patterns": [
     {
@@ -8,7 +14,7 @@
           "name": "punctuation.definition.comment.bibtex"
         }
       },
-      "match": "@(?i:comment)(?=[({\\s])",
+      "match": "@(?i:comment)(?=[\\s{(])",
       "name": "comment.block.at-sign.bibtex"
     },
     {
@@ -21,7 +27,7 @@
       "include": "#entry"
     },
     {
-      "begin": "[^\\n@]",
+      "begin": "[^@\\n]",
       "end": "(?=@)",
       "name": "comment.block.bibtex"
     }
@@ -30,7 +36,7 @@
     "entry": {
       "patterns": [
         {
-          "begin": "((@)[-!$\\&*+./:;<>-z|~][!$\\&*+\\--<>-z|~]*)\\s*(\\{)\\s*([^,}\\s]*)",
+          "begin": "((@)[a-zA-Z!$&*+\\-./:;<>?@\\[\\\\\\]^_`|~][a-zA-Z0-9!$&*+\\-./:;<>?@\\[\\\\\\]^_`|~]*)\\s*(\\{)\\s*([^\\s,}]*)",
           "beginCaptures": {
             "1": {
               "name": "keyword.other.entry-type.bibtex"
@@ -45,7 +51,7 @@
               "name": "entity.name.type.entry-key.bibtex"
             }
           },
-          "end": "}",
+          "end": "\\}",
           "endCaptures": {
             "0": {
               "name": "punctuation.section.entry.end.bibtex"
@@ -54,7 +60,7 @@
           "name": "meta.entry.braces.bibtex",
           "patterns": [
             {
-              "begin": "([-!$\\&*+./:;<>-z|~][!$\\&*+\\--<>-z|~]*)\\s*(=)",
+              "begin": "([a-zA-Z!$&*+\\-./:;<>?@\\[\\\\\\]^_`|~][a-zA-Z0-9!$&*+\\-./:;<>?@\\[\\\\\\]^_`|~]*)\\s*(\\=)",
               "beginCaptures": {
                 "1": {
                   "name": "support.function.key.bibtex"
@@ -74,7 +80,7 @@
           ]
         },
         {
-          "begin": "((@)[-!$\\&*+./:;<>-z|~][!$\\&*+\\--<>-z|~]*)\\s*(\\()\\s*([^,\\s]*)",
+          "begin": "((@)[a-zA-Z!$&*+\\-./:;<>?@\\[\\\\\\]^_`|~][a-zA-Z0-9!$&*+\\-./:;<>?@\\[\\\\\\]^_`|~]*)\\s*(\\()\\s*([^\\s,]*)",
           "beginCaptures": {
             "1": {
               "name": "keyword.other.entry-type.bibtex"
@@ -98,7 +104,7 @@
           "name": "meta.entry.parenthesis.bibtex",
           "patterns": [
             {
-              "begin": "([-!$\\&*+./:;<>-z|~][!$\\&*+\\--<>-z|~]*)\\s*(=)",
+              "begin": "([a-zA-Z!$&*+\\-./:;<>?@\\[\\\\\\]^_`|~][a-zA-Z0-9!$&*+\\-./:;<>?@\\[\\\\\\]^_`|~]*)\\s*(\\=)",
               "beginCaptures": {
                 "1": {
                   "name": "support.function.key.bibtex"
@@ -107,7 +113,7 @@
                   "name": "punctuation.separator.key-value.bibtex"
                 }
               },
-              "end": "(?=[),])",
+              "end": "(?=[,)])",
               "name": "meta.key-assignment.bibtex",
               "patterns": [
                 {
@@ -151,7 +157,7 @@
           "name": "punctuation.definition.group.begin.bibtex"
         }
       },
-      "end": "}",
+      "end": "\\}",
       "endCaptures": {
         "0": {
           "name": "punctuation.definition.group.end.bibtex"
@@ -178,7 +184,7 @@
               "name": "punctuation.section.preamble.begin.bibtex"
             }
           },
-          "end": "}",
+          "end": "\\}",
           "endCaptures": {
             "0": {
               "name": "punctuation.section.preamble.end.bibtex"
@@ -222,7 +228,7 @@
     "string": {
       "patterns": [
         {
-          "begin": "((@)(?i:string))\\s*(\\{)\\s*([-!$\\&*+./:;<>-z|~][!$\\&*+\\--<>-z|~]*)",
+          "begin": "((@)(?i:string))\\s*(\\{)\\s*([a-zA-Z!$&*+\\-./:;<>?@\\[\\\\\\]^_`|~][a-zA-Z0-9!$&*+\\-./:;<>?@\\[\\\\\\]^_`|~]*)",
           "beginCaptures": {
             "1": {
               "name": "keyword.other.string-constant.bibtex"
@@ -237,7 +243,7 @@
               "name": "variable.other.bibtex"
             }
           },
-          "end": "}",
+          "end": "\\}",
           "endCaptures": {
             "0": {
               "name": "punctuation.section.string-constant.end.bibtex"
@@ -251,7 +257,7 @@
           ]
         },
         {
-          "begin": "((@)(?i:string))\\s*(\\()\\s*([-!$\\&*+./:;<>-z|~][!$\\&*+\\--<>-z|~]*)",
+          "begin": "((@)(?i:string))\\s*(\\()\\s*([a-zA-Z!$&*+\\-./:;<>?@\\[\\\\\\]^_`|~][a-zA-Z0-9!$&*+\\-./:;<>?@\\[\\\\\\]^_`|~]*)",
           "beginCaptures": {
             "1": {
               "name": "keyword.other.string-constant.bibtex"
@@ -290,7 +296,7 @@
               "name": "punctuation.definition.string.begin.bibtex"
             }
           },
-          "end": "}",
+          "end": "\\}",
           "endCaptures": {
             "0": {
               "name": "punctuation.definition.string.end.bibtex"
@@ -329,8 +335,9 @@
           "name": "support.variable.bibtex"
         }
       },
-      "match": "[-!$\\&*+./:;<>-z|~][!$\\&*+\\--<>-z|~]*"
+      "match": "[a-zA-Z!$&*+\\-./:;<>?@\\[\\\\\\]^_`|~][a-zA-Z0-9!$&*+\\-./:;<>?@\\[\\\\\\]^_`|~]*"
     }
   },
-  "scopeName": "text.bibtex"
+  "scopeName": "text.bibtex",
+  "version": "https://github.com/jlelong/vscode-latex-basics/commit/0fcf9283828cab2aa611072f54feb1e7d501c2b4"
 }

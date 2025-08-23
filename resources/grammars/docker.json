@@ -1,5 +1,10 @@
 {
   "displayName": "Dockerfile",
+  "information_for_contributors": [
+    "This file has been converted from https://github.com/moby/moby/blob/master/contrib/syntax/textmate/Docker.tmbundle/Syntaxes/Dockerfile.tmLanguage",
+    "If you want to provide a fix or improvement, please create a pull request against the original repository.",
+    "Once accepted there, we are happy to receive an update request."
+  ],
   "name": "docker",
   "patterns": [
     {
@@ -90,6 +95,7 @@
           "name": "punctuation.definition.comment.dockerfile"
         }
       },
+      "comment": "comment.line",
       "match": "^(\\s*)((#).*$\\n?)"
     }
   ],
@@ -99,5 +105,6 @@
       "name": "constant.character.escaped.dockerfile"
     }
   },
-  "scopeName": "source.dockerfile"
+  "scopeName": "source.dockerfile",
+  "version": "https://github.com/moby/moby/commit/c2029cb2574647e4bc28ed58486b8e85883eedb9"
 }

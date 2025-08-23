@@ -11,11 +11,12 @@
     "uwsgi_params"
   ],
   "foldingStartMarker": "\\{\\s*$",
-  "foldingStopMarker": "^\\s*}",
+  "foldingStopMarker": "^\\s*\\}",
+  "keyEquivalent": "^~N",
   "name": "nginx",
   "patterns": [
     {
-      "match": "#.*",
+      "match": "\\#.*",
       "name": "comment.line.number-sign"
     },
     {
@@ -26,7 +27,7 @@
         }
       },
       "contentName": "meta.embedded.block.lua",
-      "end": "}",
+      "end": "\\}",
       "name": "meta.context.lua.nginx",
       "patterns": [
         {
@@ -57,7 +58,7 @@
           "name": "storage.type.directive.context.nginx"
         }
       },
-      "end": "}",
+      "end": "\\}",
       "name": "meta.context.events.nginx",
       "patterns": [
         {
@@ -72,7 +73,7 @@
           "name": "storage.type.directive.context.nginx"
         }
       },
-      "end": "}",
+      "end": "\\}",
       "name": "meta.context.http.nginx",
       "patterns": [
         {
@@ -87,7 +88,7 @@
           "name": "storage.type.directive.context.nginx"
         }
       },
-      "end": "}",
+      "end": "\\}",
       "name": "meta.context.mail.nginx",
       "patterns": [
         {
@@ -102,7 +103,7 @@
           "name": "storage.type.directive.context.nginx"
         }
       },
-      "end": "}",
+      "end": "\\}",
       "name": "meta.context.stream.nginx",
       "patterns": [
         {
@@ -117,7 +118,7 @@
           "name": "storage.type.directive.context.nginx"
         }
       },
-      "end": "}",
+      "end": "\\}",
       "name": "meta.context.server.nginx",
       "patterns": [
         {
@@ -126,7 +127,7 @@
       ]
     },
     {
-      "begin": "\\b(location) +(\\^?~\\*?|=) +(.*?)\\{",
+      "begin": "\\b(location) +([\\^]?~[\\*]?|=) +(.*?)\\{",
       "beginCaptures": {
         "1": {
           "name": "storage.type.directive.context.nginx"
@@ -138,7 +139,7 @@
           "name": "string.regexp.nginx"
         }
       },
-      "end": "}",
+      "end": "\\}",
       "name": "meta.context.location.nginx",
       "patterns": [
         {
@@ -156,7 +157,7 @@
           "name": "entity.name.context.location.nginx"
         }
       },
-      "end": "}",
+      "end": "\\}",
       "name": "meta.context.location.nginx",
       "patterns": [
         {
@@ -171,7 +172,7 @@
           "name": "storage.type.directive.context.nginx"
         }
       },
-      "end": "}",
+      "end": "\\}",
       "name": "meta.context.limit_except.nginx",
       "patterns": [
         {
@@ -204,7 +205,7 @@
           "name": "entity.name.context.location.nginx"
         }
       },
-      "end": "}",
+      "end": "\\}",
       "name": "meta.context.upstream.nginx",
       "patterns": [
         {
@@ -219,7 +220,7 @@
           "name": "storage.type.directive.context.nginx"
         }
       },
-      "end": "}",
+      "end": "\\}",
       "name": "meta.context.types.nginx",
       "patterns": [
         {
@@ -228,7 +229,7 @@
       ]
     },
     {
-      "begin": "\\b(map) +(\\$)([0-9A-Z_a-z]+) +(\\$)([0-9A-Z_a-z]+) *\\{",
+      "begin": "\\b(map) +(\\$)([A-Za-z0-9\\_]+) +(\\$)([A-Za-z0-9\\_]+) *\\{",
       "beginCaptures": {
         "1": {
           "name": "storage.type.directive.context.nginx"
@@ -246,7 +247,7 @@
           "name": "variable.other.nginx"
         }
       },
-      "end": "}",
+      "end": "\\}",
       "name": "meta.context.map.nginx",
       "patterns": [
         {
@@ -257,14 +258,14 @@
           "name": "punctuation.terminator.nginx"
         },
         {
-          "match": "#.*",
+          "match": "\\#.*",
           "name": "comment.line.number-sign"
         }
       ]
     },
     {
       "begin": "\\{",
-      "end": "}",
+      "end": "\\}",
       "name": "meta.block.nginx",
       "patterns": [
         {
@@ -342,7 +343,7 @@
       }
     },
     {
-      "begin": "([\"'\\s]|^)(accept_)(mutex(?:|_delay))([\"'\\s]|$)",
+      "begin": "([\"'\\s]|^)(accept_)(mutex|mutex_delay)([\"'\\s]|$)",
       "beginCaptures": {
         "1": {
           "name": "keyword.directive.nginx"
@@ -790,7 +791,7 @@
       ]
     },
     {
-      "begin": "([\"'\\s]|^)(tcp_)(no(?:delay|push))([\"'\\s]|$)",
+      "begin": "([\"'\\s]|^)(tcp_)(nodelay|nopush)([\"'\\s]|$)",
       "beginCaptures": {
         "1": {
           "name": "keyword.directive.nginx"
@@ -818,7 +819,7 @@
       ]
     },
     {
-      "begin": "([\"'\\s]|^)(types_)(hash_(?:bucket|max)_size)([\"'\\s]|$)",
+      "begin": "([\"'\\s]|^)(types_)(hash_bucket_size|hash_max_size)([\"'\\s]|$)",
       "beginCaptures": {
         "1": {
           "name": "keyword.directive.nginx"
@@ -846,7 +847,7 @@
       ]
     },
     {
-      "begin": "([\"'\\s]|^)(variables_)(hash_(?:bucket|max)_size)([\"'\\s]|$)",
+      "begin": "([\"'\\s]|^)(variables_)(hash_bucket_size|hash_max_size)([\"'\\s]|$)",
       "beginCaptures": {
         "1": {
           "name": "keyword.directive.nginx"
@@ -958,7 +959,7 @@
       ]
     },
     {
-      "begin": "([\"'\\s]|^)(ancient_)(browser(?:|_value))([\"'\\s]|$)",
+      "begin": "([\"'\\s]|^)(ancient_)(browser|browser_value)([\"'\\s]|$)",
       "beginCaptures": {
         "1": {
           "name": "keyword.directive.nginx"
@@ -986,7 +987,7 @@
       ]
     },
     {
-      "begin": "([\"'\\s]|^)(modern_)(browser(?:|_value))([\"'\\s]|$)",
+      "begin": "([\"'\\s]|^)(modern_)(browser|browser_value)([\"'\\s]|$)",
       "beginCaptures": {
         "1": {
           "name": "keyword.directive.nginx"
@@ -1210,7 +1211,7 @@
       ]
     },
     {
-      "begin": "([\"'\\s]|^)(image_)(filter(?:|_buffer|_interlace|_jpeg_quality|_sharpen|_transparency|_webp_quality))([\"'\\s]|$)",
+      "begin": "([\"'\\s]|^)(image_)(filter|filter_buffer|filter_interlace|filter_jpeg_quality|filter_sharpen|filter_transparency|filter_webp_quality)([\"'\\s]|$)",
       "beginCaptures": {
         "1": {
           "name": "keyword.directive.nginx"
@@ -1238,7 +1239,7 @@
       ]
     },
     {
-      "begin": "([\"'\\s]|^)(map_)(hash_(?:bucket|max)_size)([\"'\\s]|$)",
+      "begin": "([\"'\\s]|^)(map_)(hash_bucket_size|hash_max_size)([\"'\\s]|$)",
       "beginCaptures": {
         "1": {
           "name": "keyword.directive.nginx"
@@ -1378,7 +1379,7 @@
       ]
     },
     {
-      "begin": "([\"'\\s]|^)(real_)(ip_(?:header|recursive))([\"'\\s]|$)",
+      "begin": "([\"'\\s]|^)(real_)(ip_header|ip_recursive)([\"'\\s]|$)",
       "beginCaptures": {
         "1": {
           "name": "keyword.directive.nginx"
@@ -1406,7 +1407,7 @@
       ]
     },
     {
-      "begin": "([\"'\\s]|^)(referer_)(hash_(?:bucket|max)_size)([\"'\\s]|$)",
+      "begin": "([\"'\\s]|^)(referer_)(hash_bucket_size|hash_max_size)([\"'\\s]|$)",
       "beginCaptures": {
         "1": {
           "name": "keyword.directive.nginx"
@@ -1462,7 +1463,7 @@
       ]
     },
     {
-      "begin": "([\"'\\s]|^)(secure_)(link(?:|_md5|_secret))([\"'\\s]|$)",
+      "begin": "([\"'\\s]|^)(secure_)(link|link_md5|link_secret)([\"'\\s]|$)",
       "beginCaptures": {
         "1": {
           "name": "keyword.directive.nginx"
@@ -1490,7 +1491,7 @@
       ]
     },
     {
-      "begin": "([\"'\\s]|^)(session_)(log(?:|_format|_zone))([\"'\\s]|$)",
+      "begin": "([\"'\\s]|^)(session_)(log|log_format|log_zone)([\"'\\s]|$)",
       "beginCaptures": {
         "1": {
           "name": "keyword.directive.nginx"
@@ -1546,7 +1547,7 @@
       ]
     },
     {
-      "begin": "([\"'\\s]|^)(sub_)(filter(?:|_last_modified|_once|_types))([\"'\\s]|$)",
+      "begin": "([\"'\\s]|^)(sub_)(filter|filter_last_modified|filter_once|filter_types)([\"'\\s]|$)",
       "beginCaptures": {
         "1": {
           "name": "keyword.directive.nginx"
@@ -1574,7 +1575,7 @@
       ]
     },
     {
-      "begin": "([\"'\\s]|^)(health_)(check(?:|_timeout))([\"'\\s]|$)",
+      "begin": "([\"'\\s]|^)(health_)(check|check_timeout)([\"'\\s]|$)",
       "beginCaptures": {
         "1": {
           "name": "keyword.directive.nginx"
@@ -1910,7 +1911,7 @@
       ]
     },
     {
-      "begin": "([\"'\\s]|^)(zone_)(sync_(?:buffers|connect_retry_interval|connect_timeout|interval|recv_buffer_size|server|ssl|ssl_certificate|ssl_certificate_key|ssl_ciphers|ssl_conf_command|ssl_crl|ssl_name|ssl_password_file|ssl_protocols|ssl_server_name|ssl_trusted_certificate|ssl_verify|ssl_verify_depth|timeout))([\"'\\s]|$)",
+      "begin": "([\"'\\s]|^)(zone_)(sync_buffers|sync_connect_retry_interval|sync_connect_timeout|sync_interval|sync_recv_buffer_size|sync_server|sync_ssl|sync_ssl_certificate|sync_ssl_certificate_key|sync_ssl_ciphers|sync_ssl_conf_command|sync_ssl_crl|sync_ssl_name|sync_ssl_password_file|sync_ssl_protocols|sync_ssl_server_name|sync_ssl_trusted_certificate|sync_ssl_verify|sync_ssl_verify_depth|sync_timeout)([\"'\\s]|$)",
       "beginCaptures": {
         "1": {
           "name": "keyword.directive.nginx"
@@ -1994,7 +1995,7 @@
       ]
     },
     {
-      "begin": "([\"'\\s]|^)(daemon|env|include|pid|user??|aio|alias|directio|etag|listen|resolver|root|satisfy|sendfile|allow|deny|api|autoindex|charset|geo|gunzip|gzip|expires|index|keyval|mirror|perl|set|slice|ssi|ssl|zone|state|hash|keepalive|queue|random|sticky|match|userid|http2|http3|protocol|timeout|xclient|starttls|mqtt|load_module|lock_file|master_process|multi_accept|pcre_jit|thread_pool|timer_resolution|working_directory|absolute_redirect|aio_write|chunked_transfer_encoding|connection_pool_size|default_type|directio_alignment|disable_symlinks|if_modified_since|ignore_invalid_headers|large_client_header_buffers|merge_slashes|output_buffers|port_in_redirect|postpone_output|read_ahead|recursive_error_pages|request_pool_size|reset_timedout_connection|resolver_timeout|sendfile_max_chunk|subrequest_output_buffer_size|try_files|underscores_in_headers|addition_types|override_charset|source_charset|create_full_put_path|min_delete_depth|f4f_buffer_size|gunzip_buffers|internal_redirect|keyval_zone|access_log|mirror_request_body|random_index|set_real_ip_from|valid_referers|rewrite_log|uninitialized_variable_warn|split_clients|least_time|sticky_cookie_insert|xml_entities|google_perftools_profiles)([\"'\\s]|$)",
+      "begin": "([\"'\\s]|^)(daemon|env|include|pid|use|user|aio|alias|directio|etag|listen|resolver|root|satisfy|sendfile|allow|deny|api|autoindex|charset|geo|gunzip|gzip|expires|index|keyval|mirror|perl|set|slice|ssi|ssl|zone|state|hash|keepalive|queue|random|sticky|match|userid|http2|http3|protocol|timeout|xclient|starttls|mqtt|load_module|lock_file|master_process|multi_accept|pcre_jit|thread_pool|timer_resolution|working_directory|absolute_redirect|aio_write|chunked_transfer_encoding|connection_pool_size|default_type|directio_alignment|disable_symlinks|if_modified_since|ignore_invalid_headers|large_client_header_buffers|merge_slashes|output_buffers|port_in_redirect|postpone_output|read_ahead|recursive_error_pages|request_pool_size|reset_timedout_connection|resolver_timeout|sendfile_max_chunk|subrequest_output_buffer_size|try_files|underscores_in_headers|addition_types|override_charset|source_charset|create_full_put_path|min_delete_depth|f4f_buffer_size|gunzip_buffers|internal_redirect|keyval_zone|access_log|mirror_request_body|random_index|set_real_ip_from|valid_referers|rewrite_log|uninitialized_variable_warn|split_clients|least_time|sticky_cookie_insert|xml_entities|google_perftools_profiles)([\"'\\s]|$)",
       "beginCaptures": {
         "1": {
           "name": "keyword.directive.nginx"
@@ -2019,7 +2020,7 @@
       ]
     },
     {
-      "begin": "\\b([0-9A-Z_a-z]+)\\s+",
+      "begin": "\\b([a-zA-Z0-9\\_]+)\\s+",
       "beginCaptures": {
         "1": {
           "name": "keyword.directive.unknown.nginx"
@@ -2038,7 +2039,7 @@
       ]
     },
     {
-      "begin": "\\b([a-z]+/[-+.0-9A-Za-z]+)\\b",
+      "begin": "\\b([a-z]+\\/[A-Za-z0-9\\-\\.\\+]+)\\b",
       "beginCaptures": {
         "1": {
           "name": "constant.other.mediatype.nginx"
@@ -2064,15 +2065,15 @@
           "include": "#variables"
         },
         {
-          "match": "!?~\\*?\\s",
+          "match": "\\!?\\~\\*?\\s",
           "name": "keyword.operator.nginx"
         },
         {
-          "match": "!?-[defx]\\s",
+          "match": "\\!?\\-[fdex]\\s",
           "name": "keyword.operator.nginx"
         },
         {
-          "match": "!?=[^=]",
+          "match": "\\!?=[^=]",
           "name": "keyword.operator.nginx"
         },
         {
@@ -2092,7 +2093,7 @@
           "name": "string.quoted.double.nginx",
           "patterns": [
             {
-              "match": "\\\\[\"'\\\\nt]",
+              "match": "\\\\[\"'nt\\\\]",
               "name": "constant.character.escape.nginx"
             },
             {
@@ -2106,7 +2107,7 @@
           "name": "string.quoted.single.nginx",
           "patterns": [
             {
-              "match": "\\\\[\"'\\\\nt]",
+              "match": "\\\\[\"'nt\\\\]",
               "name": "constant.character.escape.nginx"
             },
             {
@@ -2130,7 +2131,7 @@
               "name": "constant.numeric.nginx"
             }
           },
-          "match": "(?:^|\\s)(weight|max_conn|max_fails|fail_timeout|slow_start)(=)(\\d[.\\d]*[BDGHKMSTbdghkmst]?)(?:[;\\s]|$)"
+          "match": "(?:^|\\s)(weight|max_conn|max_fails|fail_timeout|slow_start)(=)(\\d[\\d\\.]*[bBkKmMgGtTsShHdD]?)(?:\\s|;|$)"
         },
         {
           "include": "#values"
@@ -2143,7 +2144,7 @@
           "include": "#variables"
         },
         {
-          "match": "#.*",
+          "match": "\\#.*",
           "name": "comment.line.number-sign"
         },
         {
@@ -2152,18 +2153,18 @@
               "name": "constant.numeric.nginx"
             }
           },
-          "match": "(?<=\\G|\\s)(=?[0-9][.0-9]*[BDGHKMSTbdghkmst]?)(?=[\\t ;])"
+          "match": "(?<=\\G|\\s)(=?[0-9][0-9\\.]*[bBkKmMgGtTsShHdD]?)(?=[\\t ;])"
         },
         {
           "match": "(?<=\\G|\\s)(on|off|true|false)(?=[\\t ;])",
           "name": "constant.language.nginx"
         },
         {
-          "match": "(?<=\\G|\\s)(kqueue|rtsig|epoll|/dev/poll|select|poll|eventport|max|all|default_server|default|main|crit|error|debug|warn|notice|last)(?=[\\t ;])",
+          "match": "(?<=\\G|\\s)(kqueue|rtsig|epoll|\\/dev\\/poll|select|poll|eventport|max|all|default_server|default|main|crit|error|debug|warn|notice|last)(?=[\\t ;])",
           "name": "constant.language.nginx"
         },
         {
-          "match": "\\\\.* |~\\*?|!~\\*?",
+          "match": "\\\\.*\\ |\\~\\*|\\~|\\!\\~\\*|\\!\\~",
           "name": "keyword.operator.nginx"
         },
         {
@@ -2182,7 +2183,7 @@
               "name": "variable.other.nginx"
             }
           },
-          "match": "(\\$)([0-9A-Z_a-z]+)\\b"
+          "match": "(\\$)([A-Za-z0-9\\_]+)\\b"
         },
         {
           "captures": {
@@ -2196,10 +2197,11 @@
               "name": "punctuation.definition.variable.nginx"
             }
           },
-          "match": "(\\$\\{)([0-9A-Z_a-z]+)(})"
+          "match": "(\\$\\{)([A-Za-z0-9\\_]+)(\\})"
         }
       ]
     }
   },
-  "scopeName": "source.nginx"
+  "scopeName": "source.nginx",
+  "uuid": "0C04066A-12D2-43CA-8238-00A12CE4C12D"
 }

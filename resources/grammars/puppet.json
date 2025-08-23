@@ -3,8 +3,8 @@
   "fileTypes": [
     "pp"
   ],
-  "foldingStartMarker": "(^\\s*/\\*|([(\\[{])\\s*$)",
-  "foldingStopMarker": "(\\*/|^\\s*([])}]))",
+  "foldingStartMarker": "(^\\s*/\\*|(\\{|\\[|\\()\\s*$)",
+  "foldingStopMarker": "(\\*/|^\\s*(\\}|\\]|\\)))",
   "name": "puppet",
   "patterns": [
     {
@@ -28,7 +28,7 @@
           "name": "entity.name.type.class.puppet"
         }
       },
-      "end": "(?=\\{)",
+      "end": "(?={)",
       "name": "meta.definition.class.puppet",
       "patterns": [
         {
@@ -44,7 +44,7 @@
       ]
     },
     {
-      "begin": "\\b(class)\\s+((?:[a-z][0-9_a-z]*)?(?:::[a-z][0-9_a-z]*)+|[a-z][0-9_a-z]*)\\s*",
+      "begin": "\\b(class)\\s+((?#Qualified Resource Name)(?:[a-z][a-z0-9_]*)?(?:::[a-z][a-z0-9_]*)+|(?#Bareword Resource Name)[a-z][a-z0-9_]*)\\s*",
       "captures": {
         "1": {
           "name": "storage.type.puppet"
@@ -53,7 +53,7 @@
           "name": "entity.name.type.class.puppet"
         }
       },
-      "end": "(?=\\{)",
+      "end": "(?={)",
       "name": "meta.definition.class.puppet",
       "patterns": [
         {
@@ -63,11 +63,11 @@
               "name": "storage.modifier.puppet"
             }
           },
-          "end": "(?=[({])",
+          "end": "(?=\\(|{)",
           "name": "meta.definition.class.inherits.puppet",
           "patterns": [
             {
-              "match": "\\b((?:[-\".0-9A-Z_a-z]+::)*[-\".0-9A-Z_a-z]+)\\b",
+              "match": "\\b((?:[-_A-Za-z0-9\".]+::)*[-_A-Za-z0-9\".]+)\\b",
               "name": "support.type.puppet"
             }
           ]
@@ -84,7 +84,7 @@
       ]
     },
     {
-      "begin": "^\\s*(plan)\\s+((?:[a-z][0-9_a-z]*)?(?:::[a-z][0-9_a-z]*)+|[a-z][0-9_a-z]*)\\s*",
+      "begin": "^\\s*(plan)\\s+((?#Qualified Resource Name)(?:[a-z][a-z0-9_]*)?(?:::[a-z][a-z0-9_]*)+|(?#Bareword Resource Name)[a-z][a-z0-9_]*)\\s*",
       "captures": {
         "1": {
           "name": "storage.type.puppet"
@@ -93,7 +93,7 @@
           "name": "entity.name.type.plan.puppet"
         }
       },
-      "end": "(?=\\{)",
+      "end": "(?={)",
       "name": "meta.definition.plan.puppet",
       "patterns": [
         {
@@ -108,7 +108,7 @@
       ]
     },
     {
-      "begin": "^\\s*(define|function)\\s+([a-z][0-9_a-z]*|(?:[a-z][0-9_a-z]*)?(?:::[a-z][0-9_a-z]*)+)\\s*(\\()",
+      "begin": "^\\s*(define|function)\\s+((?#Bareword Resource Name)[a-z][a-z0-9_]*|(?#Qualified Resource Name)(?:[a-z][a-z0-9_]*)?(?:::[a-z][a-z0-9_]*)+)\\s*(\\()",
       "captures": {
         "1": {
           "name": "storage.type.function.puppet"
@@ -117,7 +117,7 @@
           "name": "entity.name.function.puppet"
         }
       },
-      "end": "(?=\\{)",
+      "end": "(?={)",
       "name": "meta.function.puppet",
       "patterns": [
         {
@@ -158,7 +158,7 @@
       "include": "#array"
     },
     {
-      "match": "((\\$?)\"?[A-Z_a-z\\x7F-ÿ][0-9A-Z_a-z\\x7F-ÿ]*\"?):(?=\\s+|$)",
+      "match": "((\\$?)\"?[a-zA-Z_\\x{7f}-\\x{ff}][a-zA-Z0-9_\\x{7f}-\\x{ff}]*\"?):(?=\\s+|$)",
       "name": "entity.name.section.puppet"
     },
     {
@@ -183,11 +183,11 @@
       "name": "constant.other.key.puppet"
     },
     {
-      "match": "(?<=\\{)\\s*\\w+\\s*(?=})",
+      "match": "(?<={)\\s*\\w+\\s*(?=})",
       "name": "constant.other.bareword.puppet"
     },
     {
-      "match": "\\b(alert|crit|debug|defined|emerg|err|escape|fail|failed|file|generate|gsub|info|notice|package|realize|search|tag|tagged|template|warning)\\b(?!.*\\{)",
+      "match": "\\b(alert|crit|debug|defined|emerg|err|escape|fail|failed|file|generate|gsub|info|notice|package|realize|search|tag|tagged|template|warning)\\b(?!.*{)",
       "name": "support.function.puppet"
     },
     {
@@ -214,7 +214,7 @@
           "name": "punctuation.definition.array.begin.puppet"
         }
       },
-      "end": "]",
+      "end": "\\]",
       "endCaptures": {
         "0": {
           "name": "punctuation.definition.array.end.puppet"
@@ -236,7 +236,7 @@
     "constants": {
       "patterns": [
         {
-          "match": "\\b(absent|directory|false|file|present|running|stopped|true)\\b(?!.*\\{)",
+          "match": "\\b(absent|directory|false|file|present|running|stopped|true)\\b(?!.*{)",
           "name": "constant.language.puppet"
         }
       ]
@@ -269,7 +269,7 @@
       "name": "constant.character.escape.puppet"
     },
     "function_call": {
-      "begin": "([A-Z_a-z][0-9A-Z_a-z]*)(\\()",
+      "begin": "([a-zA-Z_][a-zA-Z0-9_]*)(\\()",
       "end": "\\)",
       "name": "meta.function-call.puppet",
       "patterns": [
@@ -289,7 +289,7 @@
           "name": "punctuation.definition.hash.begin.puppet"
         }
       },
-      "end": "}",
+      "end": "\\}",
       "endCaptures": {
         "0": {
           "name": "punctuation.definition.hash.end.puppet"
@@ -312,13 +312,13 @@
     "heredoc": {
       "patterns": [
         {
-          "begin": "@\\(\\p{blank}*\"([^\\t )/:]+)\"\\p{blank}*(:\\p{blank}*[a-z][+0-9A-Z_a-z]*\\p{blank}*)?(/\\p{blank}*[$Lnrst]*)?\\p{blank}*\\)",
+          "begin": "@\\([[:blank:]]*\"([^:\\/) \\t]+)\"[[:blank:]]*(:[[:blank:]]*[a-z][a-zA-Z0-9_+]*[[:blank:]]*)?(\\/[[:blank:]]*[tsrnL$]*)?[[:blank:]]*\\)",
           "beginCaptures": {
             "0": {
               "name": "punctuation.definition.string.begin.puppet"
             }
           },
-          "end": "^\\p{blank}*(\\|\\p{blank}*-|[-|])?\\p{blank}*\\1",
+          "end": "^[[:blank:]]*(\\|[[:blank:]]*-|\\||-)?[[:blank:]]*\\1",
           "endCaptures": {
             "0": {
               "name": "punctuation.definition.string.end.puppet"
@@ -335,13 +335,13 @@
           ]
         },
         {
-          "begin": "@\\(\\p{blank}*([^\\t )/:]+)\\p{blank}*(:\\p{blank}*[a-z][+0-9A-Z_a-z]*\\p{blank}*)?(/\\p{blank}*[$Lnrst]*)?\\p{blank}*\\)",
+          "begin": "@\\([[:blank:]]*([^:\\/) \\t]+)[[:blank:]]*(:[[:blank:]]*[a-z][a-zA-Z0-9_+]*[[:blank:]]*)?(\\/[[:blank:]]*[tsrnL$]*)?[[:blank:]]*\\)",
           "beginCaptures": {
             "0": {
               "name": "punctuation.definition.string.begin.puppet"
             }
           },
-          "end": "^\\p{blank}*(\\|\\p{blank}*-|[-|])?\\p{blank}*\\1",
+          "end": "^[[:blank:]]*(\\|[[:blank:]]*-|\\||-)?[[:blank:]]*\\1",
           "endCaptures": {
             "0": {
               "name": "punctuation.definition.string.end.puppet"
@@ -354,7 +354,7 @@
     "interpolated_puppet": {
       "patterns": [
         {
-          "begin": "(\\$\\{)(\\d+)",
+          "begin": "(\\${)(\\d+)",
           "beginCaptures": {
             "1": {
               "name": "punctuation.section.embedded.begin.puppet"
@@ -378,7 +378,7 @@
           ]
         },
         {
-          "begin": "(\\$\\{)(_[0-9A-Z_a-z]*)",
+          "begin": "(\\${)(_[a-zA-Z0-9_]*)",
           "beginCaptures": {
             "1": {
               "name": "punctuation.section.embedded.begin.puppet"
@@ -402,7 +402,7 @@
           ]
         },
         {
-          "begin": "(\\$\\{)(([a-z][0-9_a-z]*)?(?:::[a-z][0-9_a-z]*)*)",
+          "begin": "(\\${)(([a-z][a-z0-9_]*)?(?:::[a-z][a-z0-9_]*)*)",
           "beginCaptures": {
             "1": {
               "name": "punctuation.section.embedded.begin.puppet"
@@ -426,7 +426,7 @@
           ]
         },
         {
-          "begin": "\\$\\{",
+          "begin": "\\${",
           "beginCaptures": {
             "0": {
               "name": "punctuation.section.embedded.begin.puppet"
@@ -488,7 +488,7 @@
           "name": "punctuation.section.scope.puppet"
         }
       },
-      "end": "}",
+      "end": "\\}",
       "patterns": [
         {
           "include": "#escaped_char"
@@ -505,7 +505,7 @@
           "name": "punctuation.section.scope.puppet"
         }
       },
-      "end": "}",
+      "end": "\\}",
       "patterns": [
         {
           "include": "#escaped_char"
@@ -525,7 +525,7 @@
           "name": "punctuation.section.scope.puppet"
         }
       },
-      "end": "]",
+      "end": "\\]",
       "patterns": [
         {
           "include": "#escaped_char"
@@ -542,7 +542,7 @@
           "name": "punctuation.section.scope.puppet"
         }
       },
-      "end": "]",
+      "end": "\\]",
       "patterns": [
         {
           "include": "#escaped_char"
@@ -595,15 +595,18 @@
     "numbers": {
       "patterns": [
         {
-          "match": "(?<![\\w\\d])([-+]?)(?i:0x)(?i:[0-9a-f])+(?![\\w\\d])",
+          "comment": "HEX 0x 0-f",
+          "match": "(?<!\\w|\\d)([-+]?)(?i:0x)(?i:[0-9a-f])+(?!\\w|\\d)",
           "name": "constant.numeric.hexadecimal.puppet"
         },
         {
-          "match": "(?<![.\\w])([-+]?)(?<!\\d)\\d+(?i:e([-+])?\\d+)?(?![.\\w\\d])",
+          "comment": "INTEGERS [(+|-)] digits [e [(+|-)] digits]",
+          "match": "(?<!\\w|\\.)([-+]?)(?<!\\d)\\d+(?i:e(\\+|-){0,1}\\d+){0,1}(?!\\w|\\d|\\.)",
           "name": "constant.numeric.integer.puppet"
         },
         {
-          "match": "(?<!\\w)([-+]?)\\d+\\.\\d+(?i:e([-+])?\\d+)?(?![\\w\\d])",
+          "comment": "FLOAT [(+|-)] digits . digits [e [(+|-)] digits]",
+          "match": "(?<!\\w)([-+]?)\\d+\\.\\d+(?i:e(\\+|-){0,1}\\d+){0,1}(?!\\w|\\d)",
           "name": "constant.numeric.integer.puppet"
         }
       ]
@@ -639,17 +642,19 @@
     "puppet-datatypes": {
       "patterns": [
         {
-          "match": "(?<![$A-Za-z])([A-Z][0-9A-Z_a-z]*)(?![0-9A-Z_a-z])",
+          "comment": "Puppet Data type",
+          "match": "(?<![a-zA-Z\\$])([A-Z][a-zA-Z0-9_]*)(?![a-zA-Z0-9_])",
           "name": "storage.type.puppet"
         }
       ]
     },
     "regex-literal": {
-      "match": "(/)(.+?)[^\\\\]/",
+      "comment": "Puppet Regular expression literal without interpolation",
+      "match": "(\\/)(.+?)(?:[^\\\\]\\/)",
       "name": "string.regexp.literal.puppet"
     },
     "resource-definition": {
-      "begin": "(?:^|\\b)(::[a-z][0-9_a-z]*|[a-z][0-9_a-z]*|(?:[a-z][0-9_a-z]*)?(?:::[a-z][0-9_a-z]*)+)\\s*(\\{)\\s*",
+      "begin": "(?:^|\\b)((?#Toplevel Bareword)::[a-z][a-z0-9_]*|(?#Bareword Resource Name)[a-z][a-z0-9_]*|(?#Qualified Resource Name)(?:[a-z][a-z0-9_]*)?(?:::[a-z][a-z0-9_]*)+)\\s*({)\\s*",
       "beginCaptures": {
         "1": {
           "name": "meta.definition.resource.puppet storage.type.puppet"
@@ -680,11 +685,11 @@
               "name": "punctuation.definition.variable.puppet"
             }
           },
-          "match": "((\\$+)[A-Z_a-z][0-9A-Z_a-z]*)\\s*(?=[),])",
+          "match": "((\\$+)[a-zA-Z_][a-zA-Z0-9_]*)\\s*(?=,|\\))",
           "name": "meta.function.argument.puppet"
         },
         {
-          "begin": "((\\$+)[A-Z_a-z][0-9A-Z_a-z]*)\\s*(=)\\s*\\s*",
+          "begin": "((\\$+)[a-zA-Z_][a-zA-Z0-9_]*)(?:\\s*(=)\\s*)\\s*",
           "captures": {
             "1": {
               "name": "variable.other.puppet"
@@ -696,7 +701,7 @@
               "name": "keyword.operator.assignment.puppet"
             }
           },
-          "end": "(?=[),])",
+          "end": "(?=,|\\))",
           "name": "meta.function.argument.puppet",
           "patterns": [
             {
@@ -753,7 +758,7 @@
               "name": "punctuation.definition.variable.puppet"
             }
           },
-          "match": "(\\$)_[0-9A-Z_a-z]*",
+          "match": "(\\$)_[a-zA-Z0-9_]*",
           "name": "variable.other.readwrite.global.puppet"
         },
         {
@@ -762,7 +767,7 @@
               "name": "punctuation.definition.variable.puppet"
             }
           },
-          "match": "(\\$)(([a-z][0-9A-Z_a-z]*)?(?:::[a-z][0-9A-Z_a-z]*)*)",
+          "match": "(\\$)(([a-z][a-zA-Z0-9_]*)?(?:::[a-z][a-zA-Z0-9_]*)*)",
           "name": "variable.other.readwrite.global.puppet"
         }
       ]

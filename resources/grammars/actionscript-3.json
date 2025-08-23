@@ -92,15 +92,15 @@
   ],
   "repository": {
     "arithmetic_operators": {
-      "match": "([-%+/]|(?<!:)\\*)",
+      "match": "(\\+|\\-|/|%|(?<!:)\\*)",
       "name": "keyword.operator.actionscript.3"
     },
     "array_access_operators": {
-      "match": "([]\\[])",
+      "match": "(\\[|\\])",
       "name": "keyword.operator.actionscript.3"
     },
     "class": {
-      "begin": "(^|\\s+|;)(\\b(dynamic|final|abstract)\\b\\s+)?(\\b(internal|public)\\b\\s+)?(\\b(dynamic|final|abstract)\\b\\s+)?(?=\\bclass\\b)",
+      "begin": "(?x) (^|\\s+|;) (\\b(dynamic|final|abstract)\\b\\s+)? (\\b(internal|public)\\b\\s+)? (\\b(dynamic|final|abstract)\\b\\s+)? (?=\\bclass\\b)",
       "beginCaptures": {
         "3": {
           "name": "storage.modifier.actionscript.3"
@@ -112,7 +112,7 @@
           "name": "storage.modifier.actionscript.3"
         }
       },
-      "end": "}",
+      "end": "\\}",
       "name": "meta.class.actionscript.3",
       "patterns": [
         {
@@ -187,7 +187,7 @@
       ]
     },
     "class_declaration": {
-      "begin": "\\b(class)\\b\\s+([$.0-9A-Z_a-z]+|\\*)",
+      "begin": "(?x) \\b(class)\\b \\s+ ([A-Za-z0-9_\\$\\.]+|\\*)",
       "beginCaptures": {
         "1": {
           "name": "storage.type.class.actionscript.3"
@@ -212,7 +212,7 @@
     },
     "code_block": {
       "begin": "\\{",
-      "end": "}",
+      "end": "\\}",
       "name": "meta.code_block.actionscript.3",
       "patterns": [
         {
@@ -326,7 +326,7 @@
       "match": "(?<=:)\\s*(\\*)"
     },
     "escapes": {
-      "match": "\\\\(x\\h{2}|[012][0-7]{0,2}|3[0-6][0-7]|37[0-7]?|[4-7][0-7]?|.)",
+      "match": "\\\\(x\\h{2}|[0-2][0-7]{,2}|3[0-6][0-7]|37[0-7]?|[4-7][0-7]?|.)",
       "name": "constant.character.escape.actionscript.3"
     },
     "extends": {
@@ -341,7 +341,7 @@
           "name": "entity.other.inherited-class.actionscript.3"
         }
       },
-      "match": "\\b(extends)\\b\\s+([$.0-9A-Z_a-z]+)\\s*(?:,\\s*([$.0-9A-Z_a-z]+))*\\s*",
+      "match": "(?x) \\b(extends)\\b \\s+ ([A-Za-z0-9_\\$\\.]+) \\s* (?:, \\s* ([A-Za-z0-9_\\$\\.]+))* \\s*",
       "name": "meta.extends.actionscript.3"
     },
     "function_arguments": {
@@ -358,7 +358,7 @@
       ]
     },
     "functions": {
-      "begin": "\\b(function)\\b(?:\\s+\\b([gs]et)\\b\\s+)?\\s*([$0-9A-Z_a-z]+\\b)?",
+      "begin": "(?x) \\b(function)\\b (?:\\s+\\b(get|set)\\b\\s+)? \\s* ([a-zA-Z0-9_\\$]+\\b)?",
       "beginCaptures": {
         "1": {
           "name": "storage.type.function.actionscript.3"
@@ -390,7 +390,8 @@
           "name": "constant.other.actionscript.3"
         }
       },
-      "match": "\\b([$A-Z][0-9A-Z_]+)\\b"
+      "comment": "Following convention, let's guess that anything in all caps/digits (possible underscores) is a constant.",
+      "match": "\\b([A-Z\\$][A-Z0-9_]+)\\b"
     },
     "guess_type": {
       "captures": {
@@ -398,7 +399,8 @@
           "name": "support.type.actionscript.3"
         }
       },
-      "match": "\\b((?:[$0-9A-Z_a-z]+\\.)*[A-Z][0-9A-Z]*[a-z]+[$0-9A-Z_a-z]*)\\b"
+      "comment": "Following convention, let's guess that any word starting with one or more capital letters (that contains at least some lower-case letters so that constants aren't detected) refers to a class/type. May be fully-qualified.",
+      "match": "\\b((?:[A-Za-z0-9_\\$]+\\.)*[A-Z][A-Z0-9]*[a-z]+[A-Za-z0-9_\\$]*)\\b"
     },
     "implements": {
       "captures": {
@@ -412,7 +414,7 @@
           "name": "entity.other.inherited-class.actionscript.3"
         }
       },
-      "match": "\\b(implements)\\b\\s+([$.0-9A-Z_a-z]+)\\s*(?:,\\s*([$.0-9A-Z_a-z]+))*\\s*",
+      "match": "(?x) \\b(implements)\\b \\s+ ([A-Za-z0-9_\\$\\.]+) \\s* (?:, \\s* ([A-Za-z0-9_\\$\\.]+))* \\s*",
       "name": "meta.implements.actionscript.3"
     },
     "import": {
@@ -424,17 +426,17 @@
           "name": "support.type.actionscript.3"
         }
       },
-      "match": "(^|\\s+|;)\\b(import)\\b\\s+([$.0-9A-Z_a-z]+(?:\\.\\*)?)\\s*(?=;|$)",
+      "match": "(?x) (^|\\s+|;) \\b(import)\\b \\s+ ([A-Za-z0-9\\$_\\.]+(?:\\.\\*)?) \\s* (?=;|$)",
       "name": "meta.import.actionscript.3"
     },
     "interface": {
-      "begin": "(^|\\s+|;)(\\b(internal|public)\\b\\s+)?(?=\\binterface\\b)",
+      "begin": "(?x) (^|\\s+|;) (\\b(internal|public)\\b\\s+)? (?=\\binterface\\b)",
       "beginCaptures": {
         "3": {
           "name": "storage.modifier.actionscript.3"
         }
       },
-      "end": "}",
+      "end": "\\}",
       "name": "meta.interface.actionscript.3",
       "patterns": [
         {
@@ -452,7 +454,7 @@
       ]
     },
     "interface_declaration": {
-      "begin": "\\b(interface)\\b\\s+([$.0-9A-Z_a-z]+)",
+      "begin": "(?x) \\b(interface)\\b \\s+ ([A-Za-z0-9_\\$\\.]+)",
       "beginCaptures": {
         "1": {
           "name": "storage.type.interface.actionscript.3"
@@ -481,17 +483,17 @@
       "name": "variable.language.actionscript.3"
     },
     "logical_operators": {
-      "match": "([!\\&<>?^|~])",
+      "match": "(&|<|~|\\||>|\\^|!|\\?)",
       "name": "keyword.operator.actionscript.3"
     },
     "metadata": {
-      "begin": "(?<=(?:^|[;{}]|\\*/)\\s*)\\[\\s*\\b([$A-Z_a-z][$0-9A-Z_a-z]+)\\b",
+      "begin": "(?<=(?:^|;|\\}|\\{|\\*\\/)\\s*)\\[\\s*\\b([A-Za-z_\\$][A-Za-z0-9_\\$]+)\\b",
       "beginCaptures": {
         "1": {
           "name": "keyword.other.actionscript.3"
         }
       },
-      "end": "]",
+      "end": "\\]",
       "name": "meta.metadata_info.actionscript.3",
       "patterns": [
         {
@@ -520,7 +522,7 @@
       ]
     },
     "method": {
-      "begin": "(^|\\s+)((\\w+)\\s+)?((\\w+)\\s+)?((\\w+)\\s+)?((\\w+)\\s+)?(?=\\bfunction\\b)",
+      "begin": "(?x) (^|\\s+) ((\\w+)\\s+)? ((\\w+)\\s+)? ((\\w+)\\s+)? ((\\w+)\\s+)? (?=\\bfunction\\b)",
       "beginCaptures": {
         "3": {
           "name": "storage.modifier.actionscript.3"
@@ -535,7 +537,7 @@
           "name": "storage.modifier.actionscript.3"
         }
       },
-      "end": "(?<=([;}]))",
+      "end": "(?<=(;|\\}))",
       "name": "meta.method.actionscript.3",
       "patterns": [
         {
@@ -548,7 +550,7 @@
     },
     "mxml": {
       "begin": "<!\\[CDATA\\[",
-      "end": "]]>",
+      "end": "\\]\\]>",
       "name": "meta.cdata.actionscript.3",
       "patterns": [
         {
@@ -640,16 +642,16 @@
           "name": "storage.modifier.actionscript.3"
         }
       },
-      "match": "((\\w+)\\s+)?(namespace)\\s+[$0-9A-Z_a-z]+",
+      "match": "(?x) ((\\w+)\\s+)? (namespace) \\s+ (?:[A-Za-z0-9_\\$]+)",
       "name": "meta.namespace_declaration.actionscript.3"
     },
     "numbers": {
-      "match": "\\b((0([Xx])\\h*)|(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))(([Ee])([-+])?[0-9]+)?)([Ll]|UL|ul|[FUfu])?\\b",
+      "match": "\\b((0(x|X)[0-9a-fA-F]*)|(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))((e|E)(\\+|-)?[0-9]+)?)(L|l|UL|ul|u|U|F|f)?\\b",
       "name": "constant.numeric.actionscript.3"
     },
     "object_literal": {
       "begin": "\\{",
-      "end": "}",
+      "end": "\\}",
       "name": "meta.object_literal.actionscript.3",
       "patterns": [
         {
@@ -707,7 +709,7 @@
       "name": "keyword.other.actionscript.3"
     },
     "other_operators": {
-      "match": "([.=])",
+      "match": "(\\.|=)",
       "name": "keyword.operator.actionscript.3"
     },
     "package": {
@@ -717,7 +719,7 @@
           "name": "keyword.other.actionscript.3"
         }
       },
-      "end": "}",
+      "end": "\\}",
       "name": "meta.package.actionscript.3",
       "patterns": [
         {
@@ -765,12 +767,12 @@
       ]
     },
     "package_name": {
-      "begin": "(?<=package)\\s+([._\\w]*)\\b",
+      "begin": "(?<=package)\\s+([\\w\\._]*)\\b",
       "end": "\\{",
       "name": "meta.package_name.actionscript.3"
     },
     "parameters": {
-      "begin": "(\\.\\.\\.)?\\s*([$A-Z_a-z][$0-9A-Z_a-z]*)(?:\\s*(:)\\s*(?:([$A-Za-z][$0-9A-Z_a-z]+(?:\\.[$A-Za-z][$0-9A-Z_a-z]+)*)(?:\\.<([$A-Za-z][$0-9A-Z_a-z]+(?:\\.[$A-Za-z][$0-9A-Z_a-z]+)*)>)?|(\\*)))?(?:\\s*(=))?",
+      "begin": "(\\.\\.\\.)?\\s*([A-Za-z\\_\\$][A-Za-z0-9_\\$]*)(?:\\s*(\\:)\\s*(?:(?:([A-Za-z\\$][A-Za-z0-9_\\$]+(?:\\.[A-Za-z\\$][A-Za-z0-9_\\$]+)*)(?:\\.<([A-Za-z\\$][A-Za-z0-9_\\$]+(?:\\.[A-Za-z\\$][A-Za-z0-9_\\$]+)*)>)?)|(\\*)))?(?:\\s*(=))?",
       "beginCaptures": {
         "1": {
           "name": "keyword.operator.actionscript.3"
@@ -850,8 +852,8 @@
       "match": "\\b(Array|Boolean|Class|Date|Function|int|JSON|Math|Namespace|Number|Object|QName|RegExp|String|uint|Vector|XML|XMLList|\\*(?<=a))\\b"
     },
     "regexp": {
-      "begin": "(?<=[(,:=\\[]|^|return|&&|\\|\\||!)\\s*(/)(?![*+/?{}])",
-      "end": "$|(/)[gim]*",
+      "begin": "(?<=[=(:,\\[]|^|return|&&|\\|\\||!)\\s*(/)(?![/*+{}?])",
+      "end": "$|(/)[igm]*",
       "name": "string.regex.actionscript.3",
       "patterns": [
         {
@@ -859,7 +861,7 @@
           "name": "constant.character.escape.actionscript.3"
         },
         {
-          "match": "\\[(\\\\]|[^]])*]",
+          "match": "\\[(\\\\\\]|[^\\]])*\\]",
           "name": "constant.character.class.actionscript.3"
         }
       ]
@@ -879,7 +881,7 @@
           "name": "support.type.actionscript.3"
         }
       },
-      "match": "(:)\\s*([$A-Za-z][$0-9A-Z_a-z]+(?:\\.[$A-Za-z][$0-9A-Z_a-z]+)*)(?:\\.<([$A-Za-z][$0-9A-Z_a-z]+(?:\\.[$A-Za-z][$0-9A-Z_a-z]+)*)>)?|(\\*)"
+      "match": "(\\:)\\s*(?:([A-Za-z\\$][A-Za-z0-9_\\$]+(?:\\.[A-Za-z\\$][A-Za-z0-9_\\$]+)*)(?:\\.<([A-Za-z\\$][A-Za-z0-9_\\$]+(?:\\.[A-Za-z\\$][A-Za-z0-9_\\$]+)*)>)?)|(\\*)"
     },
     "strings": {
       "patterns": [
@@ -922,7 +924,7 @@
           "name": "storage.modifier.actionscript.3"
         }
       },
-      "match": "(^|\\s+|;)(use\\s+)?(namespace)\\s+(\\w+)\\s*(;|$)"
+      "match": "(?x) (^|\\s+|;) (use\\s+)? (namespace) \\s+ (\\w+) \\s* (;|$)"
     },
     "variable_declaration": {
       "captures": {
@@ -942,13 +944,14 @@
           "name": "keyword.operator.actionscript.3"
         }
       },
-      "match": "((static)\\s+)?((\\w+)\\s+)?((static)\\s+)?(const|var)\\s+[$0-9A-Z_a-z]+(?:\\s*(:))?",
+      "match": "(?x) ((static)\\s+)? ((\\w+)\\s+)? ((static)\\s+)? (const|var) \\s+ (?:[A-Za-z0-9_\\$]+)(?:\\s*(:))?",
       "name": "meta.variable_declaration.actionscript.3"
     },
     "vector_creation_operators": {
-      "match": "([<>])",
+      "match": "(<|>)",
       "name": "keyword.operator.actionscript.3"
     }
   },
-  "scopeName": "source.actionscript.3"
+  "scopeName": "source.actionscript.3",
+  "uuid": "aa6f75ba-ab10-466e-8c6f-28c69aca1e9d"
 }

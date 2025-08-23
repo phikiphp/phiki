@@ -1,5 +1,10 @@
 {
   "displayName": "Handlebars",
+  "information_for_contributors": [
+    "This file has been converted from https://github.com/daaain/Handlebars/blob/master/grammars/Handlebars.json",
+    "If you want to provide a fix or improvement, please create a pull request against the original repository.",
+    "Once accepted there, we are happy to receive an update request."
+  ],
   "name": "handlebars",
   "patterns": [
     {
@@ -41,7 +46,7 @@
       "patterns": [
         {
           "begin": "\\{\\{!--",
-          "end": "--}}",
+          "end": "--\\}\\}",
           "name": "comment.block.handlebars",
           "patterns": [
             {
@@ -72,7 +77,7 @@
       ]
     },
     "block_helper": {
-      "begin": "(\\{\\{)(~?#)([\\--9>A-Z_a-z]+)\\s?(@?[\\--9A-Z_a-z]+)*\\s?(@?[\\--9A-Z_a-z]+)*\\s?(@?[\\--9A-Z_a-z]+)*",
+      "begin": "(\\{\\{)(~?\\#)([-a-zA-Z0-9_\\./>]+)\\s?(@?[-a-zA-Z0-9_\\./]+)*\\s?(@?[-a-zA-Z0-9_\\./]+)*\\s?(@?[-a-zA-Z0-9_\\./]+)*",
       "beginCaptures": {
         "1": {
           "name": "support.constant.handlebars"
@@ -96,7 +101,7 @@
           "name": "support.constant.handlebars"
         }
       },
-      "end": "(~?}})",
+      "end": "(~?\\}\\})",
       "endCaptures": {
         "1": {
           "name": "support.constant.handlebars"
@@ -116,7 +121,7 @@
       "patterns": [
         {
           "begin": "\\{\\{!",
-          "end": "}}",
+          "end": "\\}\\}",
           "name": "comment.block.handlebars",
           "patterns": [
             {
@@ -147,7 +152,7 @@
       ]
     },
     "else_token": {
-      "begin": "(\\{\\{)(~?else)(@?\\s(if)\\s([()\\--9A-Z_a-z\\s]+))?",
+      "begin": "(\\{\\{)(~?else)(@?\\s(if)\\s([-a-zA-Z0-9_\\.\\(\\s\\)/]+))?",
       "beginCaptures": {
         "1": {
           "name": "support.constant.handlebars"
@@ -162,7 +167,7 @@
           "name": "variable.parameter.handlebars"
         }
       },
-      "end": "(~?}}}*)",
+      "end": "(~?\\}\\}\\}*)",
       "endCaptures": {
         "1": {
           "name": "support.constant.handlebars"
@@ -171,7 +176,7 @@
       "name": "meta.function.inline.else.handlebars"
     },
     "end_block": {
-      "begin": "(\\{\\{)(~?/)([\\--9A-Z_a-z]+)\\s*",
+      "begin": "(\\{\\{)(~?/)([a-zA-Z0-9/_\\.-]+)\\s*",
       "beginCaptures": {
         "1": {
           "name": "support.constant.handlebars"
@@ -183,7 +188,7 @@
           "name": "support.constant.handlebars keyword.control"
         }
       },
-      "end": "(~?}})",
+      "end": "(~?\\}\\})",
       "endCaptures": {
         "1": {
           "name": "support.constant.handlebars"
@@ -204,7 +209,7 @@
               "name": "punctuation.definition.entity.html"
             }
           },
-          "match": "(&)([0-9A-Za-z]+|#[0-9]+|#x\\h+)(;)",
+          "match": "(&)([a-zA-Z0-9]+|#[0-9]+|#x[0-9a-fA-F]+)(;)",
           "name": "constant.character.entity.html"
         },
         {
@@ -224,7 +229,7 @@
     "extends": {
       "patterns": [
         {
-          "begin": "(\\{\\{!<)\\s([\\--9A-Z_a-z]+)",
+          "begin": "(\\{\\{!<)\\s([-a-zA-Z0-9_\\./]+)",
           "beginCaptures": {
             "1": {
               "name": "support.function.handlebars"
@@ -233,7 +238,7 @@
               "name": "support.class.handlebars"
             }
           },
-          "end": "(}})",
+          "end": "(\\}\\})",
           "endCaptures": {
             "1": {
               "name": "support.function.handlebars"
@@ -254,23 +259,23 @@
       ]
     },
     "handlebars_attribute_name": {
-      "begin": "\\b([-.0-9A-Z_a-z]+)\\b=",
+      "begin": "\\b([-a-zA-Z0-9_\\.]+)\\b=",
       "captures": {
         "1": {
           "name": "variable.parameter.handlebars"
         }
       },
-      "end": "(?=[\"']?)",
+      "end": "(?='|\"|)",
       "name": "entity.other.attribute-name.handlebars"
     },
     "handlebars_attribute_value": {
-      "begin": "([\\--9A-Z_a-z]+)\\b",
+      "begin": "([-a-zA-Z0-9_\\./]+)\\b",
       "captures": {
         "1": {
           "name": "variable.parameter.handlebars"
         }
       },
-      "end": "([\"']?)",
+      "end": "('|\"|)",
       "name": "entity.other.attribute-value.handlebars",
       "patterns": [
         {
@@ -281,7 +286,7 @@
     "html_tags": {
       "patterns": [
         {
-          "begin": "(<)([-0-:A-Za-z]+)(?=[^>]*></\\2>)",
+          "begin": "(<)([a-zA-Z0-9:-]+)(?=[^>]*></\\2>)",
           "beginCaptures": {
             "1": {
               "name": "punctuation.definition.tag.html"
@@ -481,7 +486,7 @@
           ]
         },
         {
-          "begin": "(</?)((?i:body|head|html))\\b",
+          "begin": "(</?)((?i:body|head|html)\\b)",
           "captures": {
             "1": {
               "name": "punctuation.definition.tag.html"
@@ -499,7 +504,7 @@
           ]
         },
         {
-          "begin": "(</?)((?i:address|blockquote|dd|div|header|section|footer|aside|nav|dl|dt|fieldset|form|frame|frameset|h1|h2|h3|h4|h5|h6|iframe|noframes|object|ol|p|ul|applet|center|dir|hr|menu|pre))\\b",
+          "begin": "(</?)((?i:address|blockquote|dd|div|header|section|footer|aside|nav|dl|dt|fieldset|form|frame|frameset|h1|h2|h3|h4|h5|h6|iframe|noframes|object|ol|p|ul|applet|center|dir|hr|menu|pre)\\b)",
           "captures": {
             "1": {
               "name": "punctuation.definition.tag.html"
@@ -517,7 +522,7 @@
           ]
         },
         {
-          "begin": "(</?)((?i:a|abbr|acronym|area|b|base|basefont|bdo|big|br|button|caption|cite|code|col|colgroup|del|dfn|em|font|head|html|i|img|input|ins|isindex|kbd|label|legend|li|link|map|meta|noscript|optgroup|option|param|[qs]|samp|script|select|small|span|strike|strong|style|sub|sup|table|tbody|td|textarea|tfoot|th|thead|title|tr|tt|u|var))\\b",
+          "begin": "(</?)((?i:a|abbr|acronym|area|b|base|basefont|bdo|big|br|button|caption|cite|code|col|colgroup|del|dfn|em|font|head|html|i|img|input|ins|isindex|kbd|label|legend|li|link|map|meta|noscript|optgroup|option|param|q|s|samp|script|select|small|span|strike|strong|style|sub|sup|table|tbody|td|textarea|tfoot|th|thead|title|tr|tt|u|var)\\b)",
           "captures": {
             "1": {
               "name": "punctuation.definition.tag.html"
@@ -535,7 +540,7 @@
           ]
         },
         {
-          "begin": "(</?)([-0-:A-Za-z]+)",
+          "begin": "(</?)([a-zA-Z0-9:-]+)",
           "captures": {
             "1": {
               "name": "punctuation.definition.tag.html"
@@ -553,7 +558,7 @@
           ]
         },
         {
-          "begin": "(</?)([-0-:A-Za-{}]+)",
+          "begin": "(</?)([a-zA-Z0-9{}:-]+)",
           "captures": {
             "1": {
               "name": "punctuation.definition.tag.html"
@@ -584,7 +589,7 @@
       ]
     },
     "inline_script": {
-      "begin": "(?:^\\s+)?(<)((?i:script))\\b.*(type)=([\"'](?:text/x-handlebars-template|text/x-handlebars|text/template|x-tmpl-handlebars)[\"'])(?![^>]*/>)",
+      "begin": "(?:^\\s+)?(<)((?i:script))\\b(?:.*(type)=([\"'](?:text/x-handlebars-template|text/x-handlebars|text/template|x-tmpl-handlebars)[\"']))(?![^>]*/>)",
       "beginCaptures": {
         "1": {
           "name": "punctuation.definition.tag.html"
@@ -651,7 +656,7 @@
       ]
     },
     "partial_and_var": {
-      "begin": "(\\{\\{~?\\{*(>|!<)*)\\s*(@?[$\\--9A-Z_a-z]+)*",
+      "begin": "(\\{\\{~?\\{*(>|!<)*)\\s*(@?[-a-zA-Z0-9$_\\./]+)*",
       "beginCaptures": {
         "1": {
           "name": "support.constant.handlebars"
@@ -660,7 +665,7 @@
           "name": "variable.parameter.handlebars"
         }
       },
-      "end": "(~?}}}*)",
+      "end": "(~?\\}\\}\\}*)",
       "endCaptures": {
         "1": {
           "name": "support.constant.handlebars"
@@ -794,7 +799,7 @@
       ]
     },
     "tag_generic_attribute": {
-      "begin": "\\b([-0-9A-Z_a-z]+)\\b\\s*(=)",
+      "begin": "\\b([a-zA-Z0-9_-]+)\\b\\s*(=)",
       "captures": {
         "1": {
           "name": "entity.other.attribute-name.generic.html"
@@ -803,7 +808,7 @@
           "name": "punctuation.separator.key-value.html"
         }
       },
-      "end": "(?<=[\"']?)",
+      "end": "(?<='|\"|)",
       "name": "entity.other.attribute-name.html",
       "patterns": [
         {
@@ -821,7 +826,7 @@
           "name": "punctuation.separator.key-value.html"
         }
       },
-      "end": "(?<=[\"']?)",
+      "end": "(?<='|\"|)",
       "name": "meta.attribute-with-value.id.html",
       "patterns": [
         {
@@ -844,5 +849,6 @@
       ]
     }
   },
-  "scopeName": "text.html.handlebars"
+  "scopeName": "text.html.handlebars",
+  "version": "https://github.com/daaain/Handlebars/commit/85a153a6f759df4e8da7533e1b3651f007867c51"
 }

@@ -82,11 +82,11 @@
     "constants": {
       "patterns": [
         {
-          "match": "\\b((0([Xx])\\h*)|(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))(([Ee])([-+])?[0-9]+)?)([DFLUdflu]|UL|ul)?\\b",
+          "match": "\\b((0(x|X)[0-9a-fA-F]*)|(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))((e|E)(\\+|-)?[0-9]+)?)([LlFfUuDd]|UL|ul)?\\b",
           "name": "constant.numeric.vala"
         },
         {
-          "match": "\\b([A-Z][0-9A-Z_]+)\\b",
+          "match": "\\b([A-Z][A-Z0-9_]+)\\b",
           "name": "variable.other.constant.vala"
         }
       ]
@@ -94,7 +94,7 @@
     "functions": {
       "patterns": [
         {
-          "match": "(\\w+)(?=\\s*(<[.\\s\\w]+>\\s*)?\\()",
+          "match": "(\\w+)(?=\\s*(<[\\s\\w.]+>\\s*)?\\()",
           "name": "entity.name.function.vala"
         }
       ]
@@ -102,15 +102,15 @@
     "keywords": {
       "patterns": [
         {
-          "match": "(?<=^|[^.@\\w])(as|do|if|in|is|of|or|to|and|def|for|get|isa|new|not|out|ref|set|try|var|case|dict|else|enum|init|list|lock|null|pass|prop|self|true|uses|void|weak|when|array|async|break|class|const|event|false|final|owned|print|super|raise|while|yield|assert|delete|downto|except|extern|inline|params|public|raises|return|sealed|sizeof|static|struct|typeof|default|dynamic|ensures|finally|private|unowned|virtual|abstract|continue|delegate|internal|override|readonly|requires|volatile|construct|errordomain|interface|namespace|protected|implements)\\b",
+          "match": "(?<=^|[^@\\w\\.])(as|do|if|in|is|of|or|to|and|def|for|get|isa|new|not|out|ref|set|try|var|case|dict|else|enum|init|list|lock|null|pass|prop|self|true|uses|void|weak|when|array|async|break|class|const|event|false|final|owned|print|super|raise|while|yield|assert|delete|downto|except|extern|inline|params|public|raises|return|sealed|sizeof|static|struct|typeof|default|dynamic|ensures|finally|private|unowned|virtual|abstract|continue|delegate|internal|override|readonly|requires|volatile|construct|errordomain|interface|namespace|protected|implements)\\b",
           "name": "keyword.vala"
         },
         {
-          "match": "(?<=^|[^.@\\w])(bool|double|float|unichar|char|uchar|int|uint|long|ulong|short|ushort|size_t|ssize_t|string|void|signal|int8|int16|int32|int64|uint8|uint16|uint32|uint64)\\b",
+          "match": "(?<=^|[^@\\w\\.])(bool|double|float|unichar|char|uchar|int|uint|long|ulong|short|ushort|size_t|ssize_t|string|void|signal|int8|int16|int32|int64|uint8|uint16|uint32|uint64)\\b",
           "name": "keyword.vala"
         },
         {
-          "match": "(#(?:if|elif|else|endif))",
+          "match": "(#if|#elif|#else|#endif)",
           "name": "keyword.vala"
         }
       ]
@@ -136,7 +136,7 @@
               "name": "constant.character.escape.vala"
             },
             {
-              "match": "\\$\\(([^()]|\\(([^()]|\\([^)]*\\))*\\))*\\)",
+              "match": "\\$\\(([^)(]|\\(([^)(]|\\([^)]*\\))*\\))*\\)",
               "name": "constant.character.escape.vala"
             }
           ]
@@ -164,7 +164,7 @@
           ]
         },
         {
-          "match": "/((\\\\/)|([^/]))*/(?=\\s*[\\n),.;])",
+          "match": "/((\\\\/)|([^/]))*/(?=\\s*[,;)\\.\\n])",
           "name": "string.regexp.vala"
         }
       ]
@@ -172,7 +172,7 @@
     "types": {
       "patterns": [
         {
-          "match": "(?<=^|[^.@\\w])(bool|double|float|unichar|char|uchar|int|uint|long|ulong|short|ushort|size_t|ssize_t|string|void|signal|int8|int16|int32|int64|uint8|uint16|uint32|uint64)\\b",
+          "match": "(?<=^|[^@\\w\\.])(bool|double|float|unichar|char|uchar|int|uint|long|ulong|short|ushort|size_t|ssize_t|string|void|signal|int8|int16|int32|int64|uint8|uint16|uint32|uint64)\\b",
           "name": "storage.type.primitive.vala"
         },
         {
@@ -190,5 +190,6 @@
       ]
     }
   },
-  "scopeName": "source.genie"
+  "scopeName": "source.genie",
+  "uuid": "b1e902c2-7248-400a-a6e6-666f250eadb1"
 }

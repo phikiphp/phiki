@@ -1,5 +1,10 @@
 {
   "displayName": "reStructuredText",
+  "information_for_contributors": [
+    "This file has been converted from https://github.com/trond-snekvik/vscode-rst/blob/master/syntaxes/rst.tmLanguage.json",
+    "If you want to provide a fix or improvement, please create a pull request against the original repository.",
+    "Once accepted there, we are happy to receive an update request."
+  ],
   "name": "rst",
   "patterns": [
     {
@@ -33,13 +38,13 @@
     },
     "block-comment": {
       "begin": "^(\\s*)\\.{2}(\\s+|$)",
-      "end": "^(?:(?=\\S)|\\s*$)",
+      "end": "^(?=\\S)|^\\s*$",
       "name": "comment.block",
       "patterns": [
         {
           "begin": "^\\s{3,}(?=\\S)",
           "name": "comment.block",
-          "while": "^(?:\\s{3}.*|\\s*$)"
+          "while": "^\\s{3}.*|^\\s*$"
         }
       ]
     },
@@ -64,7 +69,7 @@
             "2": {
               "patterns": [
                 {
-                  "match": "\\b(0x[A-Fa-f\\d]+|\\d+)\\b",
+                  "match": "\\b(0x[a-fA-F\\d]+|\\d+)\\b",
                   "name": "constant.numeric"
                 },
                 {
@@ -170,18 +175,18 @@
       ]
     },
     "bold": {
-      "begin": "(?<=[\"'(<\\[{\\s]|^)\\*{2}[^*\\s]",
+      "begin": "(?<=[\\s\"'(\\[{<]|^)\\*{2}[^\\s*]",
       "end": "\\*{2}|^\\s*$",
       "name": "markup.bold"
     },
     "citation": {
       "applyEndPatternLast": 0,
-      "begin": "(?<=[\"'(<\\[{\\s]|^)`[^`\\s]",
-      "end": "`_{0,2}|^\\s*$",
+      "begin": "(?<=[\\s\"'(\\[{<]|^)`[^\\s`]",
+      "end": "`_{,2}|^\\s*$",
       "name": "entity.name.tag"
     },
     "code-block": {
-      "begin": "^(\\s*)(\\.{2}\\s+(code(?:|-block))::)",
+      "begin": "^(\\s*)(\\.{2}\\s+(code|code-block)::)",
       "beginCaptures": {
         "2": {
           "name": "keyword.control"
@@ -192,10 +197,10 @@
           "include": "#block-param"
         }
       ],
-      "while": "^(?:\\1(?=\\s)|\\s*$)"
+      "while": "^\\1(?=\\s)|^\\s*$"
     },
     "code-block-cmake": {
-      "begin": "^(\\s*)(\\.{2}\\s+(code(?:|-block))::)\\s*(cmake)\\s*$",
+      "begin": "^(\\s*)(\\.{2}\\s+(code|code-block)::)\\s*(cmake)\\s*$",
       "beginCaptures": {
         "2": {
           "name": "keyword.control"
@@ -212,10 +217,10 @@
           "include": "source.cmake"
         }
       ],
-      "while": "^(?:\\1(?=\\s)|\\s*$)"
+      "while": "^\\1(?=\\s)|^\\s*$"
     },
     "code-block-console": {
-      "begin": "^(\\s*)(\\.{2}\\s+(code(?:|-block))::)\\s*(console|shell|bash)\\s*$",
+      "begin": "^(\\s*)(\\.{2}\\s+(code|code-block)::)\\s*(console|shell|bash)\\s*$",
       "beginCaptures": {
         "2": {
           "name": "keyword.control"
@@ -232,10 +237,10 @@
           "include": "source.shell"
         }
       ],
-      "while": "^(?:\\1(?=\\s)|\\s*$)"
+      "while": "^\\1(?=\\s)|^\\s*$"
     },
     "code-block-cpp": {
-      "begin": "^(\\s*)(\\.{2}\\s+(code(?:|-block))::)\\s*(c|c\\+\\+|cpp|C|C\\+\\+|CPP|Cpp)\\s*$",
+      "begin": "^(\\s*)(\\.{2}\\s+(code|code-block)::)\\s*(c|c\\+\\+|cpp|C|C\\+\\+|CPP|Cpp)\\s*$",
       "beginCaptures": {
         "2": {
           "name": "keyword.control"
@@ -252,10 +257,10 @@
           "include": "source.cpp"
         }
       ],
-      "while": "^(?:\\1(?=\\s)|\\s*$)"
+      "while": "^\\1(?=\\s)|^\\s*$"
     },
     "code-block-dts": {
-      "begin": "^(\\s*)(\\.{2}\\s+(code(?:|-block))::)\\s*(dts|DTS|devicetree)\\s*$",
+      "begin": "^(\\s*)(\\.{2}\\s+(code|code-block)::)\\s*(dts|DTS|devicetree)\\s*$",
       "beginCaptures": {
         "2": {
           "name": "keyword.control"
@@ -272,10 +277,10 @@
           "include": "source.dts"
         }
       ],
-      "while": "^(?:\\1(?=\\s)|\\s*$)"
+      "while": "^\\1(?=\\s)|^\\s*$"
     },
     "code-block-javascript": {
-      "begin": "^(\\s*)(\\.{2}\\s+(code(?:|-block))::)\\s*(javascript)\\s*$",
+      "begin": "^(\\s*)(\\.{2}\\s+(code|code-block)::)\\s*(javascript)\\s*$",
       "beginCaptures": {
         "2": {
           "name": "keyword.control"
@@ -292,10 +297,10 @@
           "include": "source.js"
         }
       ],
-      "while": "^(?:\\1(?=\\s)|\\s*$)"
+      "while": "^\\1(?=\\s)|^\\s*$"
     },
     "code-block-kconfig": {
-      "begin": "^(\\s*)(\\.{2}\\s+(code(?:|-block))::)\\s*([Kk]config)\\s*$",
+      "begin": "^(\\s*)(\\.{2}\\s+(code|code-block)::)\\s*([kK]config)\\s*$",
       "beginCaptures": {
         "2": {
           "name": "keyword.control"
@@ -312,10 +317,10 @@
           "include": "source.kconfig"
         }
       ],
-      "while": "^(?:\\1(?=\\s)|\\s*$)"
+      "while": "^\\1(?=\\s)|^\\s*$"
     },
     "code-block-py": {
-      "begin": "^(\\s*)(\\.{2}\\s+(code(?:|-block))::)\\s*(python)\\s*$",
+      "begin": "^(\\s*)(\\.{2}\\s+(code|code-block)::)\\s*(python)\\s*$",
       "beginCaptures": {
         "2": {
           "name": "keyword.control"
@@ -332,10 +337,10 @@
           "include": "source.python"
         }
       ],
-      "while": "^(?:\\1(?=\\s)|\\s*$)"
+      "while": "^\\1(?=\\s)|^\\s*$"
     },
     "code-block-ruby": {
-      "begin": "^(\\s*)(\\.{2}\\s+(code(?:|-block))::)\\s*(ruby)\\s*$",
+      "begin": "^(\\s*)(\\.{2}\\s+(code|code-block)::)\\s*(ruby)\\s*$",
       "beginCaptures": {
         "2": {
           "name": "keyword.control"
@@ -352,10 +357,10 @@
           "include": "source.ruby"
         }
       ],
-      "while": "^(?:\\1(?=\\s)|\\s*$)"
+      "while": "^\\1(?=\\s)|^\\s*$"
     },
     "code-block-yaml": {
-      "begin": "^(\\s*)(\\.{2}\\s+(code(?:|-block))::)\\s*(ya?ml)\\s*$",
+      "begin": "^(\\s*)(\\.{2}\\s+(code|code-block)::)\\s*(ya?ml)\\s*$",
       "beginCaptures": {
         "2": {
           "name": "keyword.control"
@@ -372,7 +377,7 @@
           "include": "source.yaml"
         }
       ],
-      "while": "^(?:\\1(?=\\s)|\\s*$)"
+      "while": "^\\1(?=\\s)|^\\s*$"
     },
     "doctest": {
       "begin": "^(>>>)\\s*(.*)",
@@ -405,7 +410,7 @@
           "include": "source.python"
         }
       ],
-      "while": "^(?:\\1(?=\\s)|\\s*$)"
+      "while": "^\\1(?=\\s)|^\\s*$"
     },
     "domain-auto": {
       "begin": "^(\\s*)(\\.{2}\\s+auto(?:class|module|exception|function|decorator|data|method|attribute|property)::)\\s*(.*)",
@@ -429,10 +434,10 @@
           "include": "#body"
         }
       ],
-      "while": "^(?:\\1(?=\\s)|\\s*$)"
+      "while": "^\\1(?=\\s)|^\\s*$"
     },
     "domain-cpp": {
-      "begin": "^(\\s*)(\\.{2}\\s+c(?:pp|):(?:class|struct|function|member|var|type|enum|enum-struct|enum-class|enumerator|union|concept)::)\\s*(?:(@\\w+)|(.*))",
+      "begin": "^(\\s*)(\\.{2}\\s+(?:cpp|c):(?:class|struct|function|member|var|type|enum|enum-struct|enum-class|enumerator|union|concept)::)\\s*(?:(@\\w+)|(.*))",
       "beginCaptures": {
         "2": {
           "name": "keyword.control"
@@ -456,7 +461,7 @@
           "include": "#body"
         }
       ],
-      "while": "^(?:\\1(?=\\s)|\\s*$)"
+      "while": "^\\1(?=\\s)|^\\s*$"
     },
     "domain-js": {
       "begin": "^(\\s*)(\\.{2}\\s+js:\\w+::)\\s*(.*)",
@@ -472,7 +477,7 @@
           ]
         }
       },
-      "end": "^(?!\\1[\\t ]|$)",
+      "end": "^(?!\\1[ \\t]|$)",
       "patterns": [
         {
           "include": "#block-param"
@@ -504,7 +509,7 @@
           "include": "#body"
         }
       ],
-      "while": "^(?:\\1(?=\\s)|\\s*$)"
+      "while": "^\\1(?=\\s)|^\\s*$"
     },
     "domains": {
       "patterns": [
@@ -527,32 +532,32 @@
       "name": "constant.character.escape"
     },
     "footnote": {
-      "match": "^\\s*\\.{2}\\s+\\[(?:[-.\\w]+|[#*]|#\\w+)]\\s+",
+      "match": "^\\s*\\.{2}\\s+\\[(?:[\\w\\.-]+|[#*]|#\\w+)\\]\\s+",
       "name": "entity.name.tag"
     },
     "footnote-ref": {
-      "match": "\\[(?:[-.\\w]+|[#*])]_",
+      "match": "\\[(?:[\\w\\.-]+|[#*])\\]_",
       "name": "entity.name.tag"
     },
     "ignore": {
       "patterns": [
         {
-          "match": "'[*`]+'"
+          "match": "'[`*]+'"
         },
         {
-          "match": "<[*`]+>"
+          "match": "<[`*]+>"
         },
         {
-          "match": "\\{[*`]+}"
+          "match": "{[`*]+}"
         },
         {
-          "match": "\\([*`]+\\)"
+          "match": "\\([`*]+\\)"
         },
         {
-          "match": "\\[[*`]+]"
+          "match": "\\[[`*]+\\]"
         },
         {
-          "match": "\"[*`]+\""
+          "match": "\"[`*]+\""
         }
       ]
     },
@@ -597,7 +602,7 @@
       ]
     },
     "italic": {
-      "begin": "(?<=[\"'(<\\[{\\s]|^)\\*[^*\\s]",
+      "begin": "(?<=[\\s\"'(\\[{<]|^)\\*[^\\s*]",
       "end": "\\*|^\\s*$",
       "name": "markup.italic"
     },
@@ -606,7 +611,7 @@
       "name": "keyword.control"
     },
     "list": {
-      "match": "^\\s*(\\d+\\.|\\* -|[#A-Za-z]\\.|[CIMVXcimvx]+\\.|\\(\\d+\\)|\\d+\\)|[-*+])\\s+",
+      "match": "^\\s*(\\d+\\.|\\* -|[a-zA-Z#]\\.|[iIvVxXmMcC]+\\.|\\(\\d+\\)|\\d+\\)|[*+-])\\s+",
       "name": "keyword.control"
     },
     "literal": {
@@ -634,19 +639,19 @@
           "name": "keyword.control"
         }
       },
-      "while": "^(?:\\1(?=\\s)|\\s*$)"
+      "while": "^\\1(?=\\s)|^\\s*$"
     },
     "macro": {
-      "match": "\\|[^|]+\\|",
+      "match": "\\|[^\\|]+\\|",
       "name": "entity.name.tag"
     },
     "monospaced": {
-      "begin": "(?<=[\"'(<\\[{\\s]|^)``[^`\\s]",
+      "begin": "(?<=[\\s\"'(\\[{<]|^)``[^\\s`]",
       "end": "``|^\\s*$",
       "name": "string.interpolated"
     },
     "options-list": {
-      "match": "(?:(?:^|,\\s+)(?:[-+]\\w|--?[A-Za-z][-\\w]+|/\\w+)(?:[ =](?:\\w+|<[^<>]+?>))?)+(?=  |\\t|$)",
+      "match": "(?:(?:^|,\\s+)(?:[-+]\\w|--?[a-zA-Z][\\w-]+|/\\w+)(?:[ =](?:\\w+|<[^<>]+?>))?)+(?=  |\\t|$)",
       "name": "variable.parameter"
     },
     "raw-html": {
@@ -667,7 +672,7 @@
           "include": "text.html.derivative"
         }
       ],
-      "while": "^(?:\\1(?=\\s)|\\s*$)"
+      "while": "^\\1(?=\\s)|^\\s*$"
     },
     "ref": {
       "begin": "(:ref:)`",
@@ -686,7 +691,7 @@
       ]
     },
     "reference": {
-      "match": "[-\\w]*[-A-Za-z\\d]__?\\b",
+      "match": "[\\w-]*[a-zA-Z\\d-]__?\\b",
       "name": "entity.name.tag"
     },
     "replace-include": {
@@ -701,7 +706,7 @@
           "name": "keyword.control"
         }
       },
-      "match": "^\\s*(\\.{2})\\s+(\\|[^|]+\\|)\\s+(replace::)"
+      "match": "^\\s*(\\.{2})\\s+(\\|[^\\|]+\\|)\\s+(replace::)"
     },
     "simple-table": {
       "match": "^[=\\s]+$",
@@ -712,7 +717,7 @@
       "name": "entity.name.tag"
     },
     "table": {
-      "begin": "^\\s*\\+[-+=]+\\+\\s*$",
+      "begin": "^\\s*\\+[=+-]+\\+\\s*$",
       "beginCaptures": {
         "0": {
           "name": "keyword.control.table"
@@ -721,15 +726,16 @@
       "end": "^(?![+|])",
       "patterns": [
         {
-          "match": "[-+=|]",
+          "match": "[=+|-]",
           "name": "keyword.control.table"
         }
       ]
     },
     "title": {
-      "match": "^(\\*{3,}|#{3,}|={3,}|~{3,}|\\+{3,}|-{3,}|`{3,}|\\^{3,}|:{3,}|\"{3,}|_{3,}|'{3,})$",
+      "match": "^(\\*{3,}|#{3,}|\\={3,}|~{3,}|\\+{3,}|-{3,}|`{3,}|\\^{3,}|:{3,}|\"{3,}|_{3,}|'{3,})$",
       "name": "markup.heading"
     }
   },
-  "scopeName": "source.rst"
+  "scopeName": "source.rst",
+  "version": "https://github.com/trond-snekvik/vscode-rst/commit/7f2d6bb4e20642b60f2979afcb594cfe4b48117a"
 }

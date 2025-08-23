@@ -1,4 +1,5 @@
 {
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
   "displayName": "Narrat Language",
   "name": "narrat",
   "patterns": [
@@ -17,7 +18,7 @@
           "name": "keyword.commands.variables.narrat"
         },
         {
-          "match": "\\b(t(?:alk|hink))\\b",
+          "match": "\\b(talk|think)\\b",
           "name": "keyword.commands.text.narrat"
         },
         {
@@ -25,7 +26,7 @@
           "name": "keyword.commands.flow.narrat"
         },
         {
-          "match": "\\b((?:|clear_dia)log)\\b",
+          "match": "\\b(log|clear_dialog)\\b",
           "name": "keyword.commands.helpers.narrat"
         },
         {
@@ -73,7 +74,7 @@
     "comments": {
       "patterns": [
         {
-          "match": "//.*$",
+          "match": "\\/\\/.*$",
           "name": "comment.line.narrat"
         }
       ]
@@ -103,7 +104,7 @@
     "interpolation": {
       "patterns": [
         {
-          "match": "([.\\w])+",
+          "match": "(\\w|\\.)+",
           "name": "variable.interpolation.narrat"
         }
       ]
@@ -115,19 +116,19 @@
           "name": "keyword.control.narrat"
         },
         {
-          "match": "\\$[.|\\w]+\\b",
+          "match": "\\$[\\w|\\.]+\\b",
           "name": "variable.value.narrat"
         },
         {
-          "match": "^\\w+(?=([\\s\\w])*:)",
+          "match": "(?x)                  # Ignore comments\n  ^\\w+                # Find label name\n  (?=(\\s|\\w)*:)       # Positive lookahead for ':'\n",
           "name": "entity.name.function.narrat"
         },
         {
-          "match": "^\\w+(?!([\\s\\w])*:)",
+          "match": "(?x)                  # Ignore comments\n  ^\\w+                # Find label name\n  (?!(\\s|\\w)*:)        # Negative lookahead for ':'\n",
           "name": "invalid.label.narrat"
         },
         {
-          "match": "(?<=\\w)[^^]\\b(\\w+)\\b(?=([\\s\\w])*:)",
+          "match": "(?<=\\w)[^^](\\b\\w+\\b)(?=(\\s|\\w)*:)",
           "name": "entity.other.attribute-name"
         }
       ]
@@ -135,11 +136,11 @@
     "operators": {
       "patterns": [
         {
-          "match": "(&&|\\|\\||!=|==|>=|<=|[!<>?])\\s",
+          "match": "(&&|\\|\\||!=|==|>=|<=|<|>|!|\\?)\\s",
           "name": "keyword.operator.logic.narrat"
         },
         {
-          "match": "([-*+/])\\s",
+          "match": "(\\+|-|\\*|\\/)\\s",
           "name": "keyword.operator.arithmetic.narrat"
         }
       ]
@@ -198,7 +199,7 @@
           "name": "constant.character.escape.narrat"
         },
         {
-          "begin": "%\\{",
+          "begin": "%{",
           "beginCaptures": {
             "0": {
               "name": "punctuation.template.open"

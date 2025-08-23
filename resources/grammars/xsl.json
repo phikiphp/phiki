@@ -1,5 +1,10 @@
 {
   "displayName": "XSL",
+  "information_for_contributors": [
+    "This file has been converted from https://github.com/atom/language-xml/blob/master/grammars/xsl.cson",
+    "If you want to provide a fix or improvement, please create a pull request against the original repository.",
+    "Once accepted there, we are happy to receive an update request."
+  ],
   "name": "xsl",
   "patterns": [
     {
@@ -39,7 +44,7 @@
               "name": "entity.other.attribute-name.localname.xml"
             }
           },
-          "match": " (?:([-0-9A-Z_a-z]+)((:)))?([-A-Za-z]+)"
+          "match": " (?:([-_a-zA-Z0-9]+)((:)))?([a-zA-Z-]+)"
         },
         {
           "include": "#doublequotedString"
@@ -85,5 +90,6 @@
       "name": "string.quoted.single.xml"
     }
   },
-  "scopeName": "text.xml.xsl"
+  "scopeName": "text.xml.xsl",
+  "version": "https://github.com/atom/language-xml/commit/507de2ee7daca60cf02e9e21fbeb92bbae73e280"
 }

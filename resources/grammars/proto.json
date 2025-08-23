@@ -50,7 +50,7 @@
       "name": "constant.language.proto"
     },
     "enum": {
-      "begin": "(enum)(\\s+)([A-Za-z][0-9A-Z_a-z]*)(\\s*)(\\{)?",
+      "begin": "(enum)(\\s+)([A-Za-z][A-Za-z0-9_]*)(\\s*)(\\{)?",
       "beginCaptures": {
         "1": {
           "name": "keyword.other.proto"
@@ -59,7 +59,7 @@
           "name": "entity.name.class.proto"
         }
       },
-      "end": "}",
+      "end": "\\}",
       "patterns": [
         {
           "include": "#reserved"
@@ -71,7 +71,7 @@
           "include": "#comments"
         },
         {
-          "begin": "([A-Za-z][0-9A-Z_a-z]*)\\s*(=)\\s*(0[Xx]\\h+|[0-9]+)",
+          "begin": "([A-Za-z][A-Za-z0-9_]*)\\s*(=)\\s*(0[xX][0-9a-fA-F]+|[0-9]+)",
           "beginCaptures": {
             "1": {
               "name": "variable.other.proto"
@@ -98,7 +98,7 @@
       ]
     },
     "field": {
-      "begin": "\\s*(optional|repeated|required)?\\s*\\b([.\\w]+)\\s+(\\w+)\\s*(=)\\s*(0[Xx]\\h+|[0-9]+)",
+      "begin": "\\s*(optional|repeated|required)?\\s*\\b([\\w.]+)\\s+(\\w+)\\s*(=)\\s*(0[xX][0-9a-fA-F]+|[0-9]+)",
       "beginCaptures": {
         "1": {
           "name": "storage.modifier.proto"
@@ -130,7 +130,7 @@
     },
     "fieldOptions": {
       "begin": "\\[",
-      "end": "]",
+      "end": "\\]",
       "patterns": [
         {
           "include": "#constants"
@@ -150,7 +150,7 @@
       ]
     },
     "ident": {
-      "match": "[A-Za-z][0-9A-Z_a-z]*",
+      "match": "[A-Za-z][A-Za-z0-9_]*",
       "name": "entity.name.class.proto"
     },
     "import": {
@@ -180,7 +180,7 @@
           "name": "punctuation.separator.key-value.proto"
         }
       },
-      "end": "(;)|,|(?=[/A-Z_a-z}])",
+      "end": "(;)|,|(?=[}/_a-zA-Z])",
       "endCaptures": {
         "1": {
           "name": "punctuation.terminator.proto"
@@ -202,7 +202,7 @@
       ]
     },
     "mapfield": {
-      "begin": "\\s*(map)\\s*(<)\\s*([.\\w]+)\\s*,\\s*([.\\w]+)\\s*(>)\\s+(\\w+)\\s*(=)\\s*(\\d+)",
+      "begin": "\\s*(map)\\s*(<)\\s*([\\w.]+)\\s*,\\s*([\\w.]+)\\s*(>)\\s+(\\w+)\\s*(=)\\s*(\\d+)",
       "beginCaptures": {
         "1": {
           "name": "storage.type.proto"
@@ -242,7 +242,7 @@
       ]
     },
     "message": {
-      "begin": "(message|extend)(\\s+)([A-Z_a-z][.0-9A-Z_a-z]*)(\\s*)(\\{)?",
+      "begin": "(message|extend)(\\s+)([A-Za-z_][A-Za-z0-9_.]*)(\\s*)(\\{)?",
       "beginCaptures": {
         "1": {
           "name": "keyword.other.proto"
@@ -251,7 +251,7 @@
           "name": "entity.name.class.message.proto"
         }
       },
-      "end": "}",
+      "end": "\\}",
       "patterns": [
         {
           "include": "#reserved"
@@ -280,7 +280,7 @@
       ]
     },
     "method": {
-      "begin": "(rpc)\\s+([A-Za-z][0-9A-Z_a-z]*)",
+      "begin": "(rpc)\\s+([A-Za-z][A-Za-z0-9_]*)",
       "beginCaptures": {
         "1": {
           "name": "keyword.other.proto"
@@ -289,7 +289,7 @@
           "name": "entity.name.function"
         }
       },
-      "end": "}|(;)",
+      "end": "\\}|(;)",
       "endCaptures": {
         "1": {
           "name": "punctuation.terminator.proto"
@@ -311,11 +311,11 @@
       ]
     },
     "number": {
-      "match": "\\b((0([Xx])\\h*)|(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))(([Ee])([-+])?[0-9]+)?)\\b",
+      "match": "\\b((0(x|X)[0-9a-fA-F]*)|(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))((e|E)(\\+|-)?[0-9]+)?)\\b",
       "name": "constant.numeric.proto"
     },
     "oneof": {
-      "begin": "(oneof)\\s+([A-Za-z][0-9A-Z_a-z]*)\\s*\\{?",
+      "begin": "(oneof)\\s+([A-Za-z][A-Za-z0-9_]*)\\s*\\{?",
       "beginCaptures": {
         "1": {
           "name": "keyword.other.proto"
@@ -324,7 +324,7 @@
           "name": "variable.other.proto"
         }
       },
-      "end": "}",
+      "end": "\\}",
       "patterns": [
         {
           "include": "#optionStmt"
@@ -403,7 +403,7 @@
           "name": "punctuation.terminator.proto"
         }
       },
-      "match": "\\s*(package)\\s+([.\\w]+)\\s*(;)"
+      "match": "\\s*(package)\\s+([\\w.]+)\\s*(;)"
     },
     "reserved": {
       "begin": "(reserved)\\s+",
@@ -443,7 +443,7 @@
       "name": "keyword.other.proto"
     },
     "service": {
-      "begin": "(service)\\s+([A-Za-z][.0-9A-Z_a-z]*)\\s*\\{?",
+      "begin": "(service)\\s+([A-Za-z][A-Za-z0-9_.]*)\\s*\\{?",
       "beginCaptures": {
         "1": {
           "name": "keyword.other.proto"
@@ -452,7 +452,7 @@
           "name": "entity.name.class.message.proto"
         }
       },
-      "end": "}",
+      "end": "\\}",
       "patterns": [
         {
           "include": "#comments"
@@ -470,12 +470,12 @@
       "name": "storage.type.proto"
     },
     "string": {
-      "match": "('(['[^']])*')|(\"([\"[^\"]])*\")",
+      "match": "('([^']|\\')*')|(\"([^\"]|\\\")*\")",
       "name": "string.quoted.double.proto"
     },
     "subMsgOption": {
       "begin": "\\{",
-      "end": "}",
+      "end": "\\}",
       "patterns": [
         {
           "include": "#kv"

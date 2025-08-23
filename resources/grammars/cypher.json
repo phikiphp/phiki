@@ -62,30 +62,37 @@
     "functions": {
       "patterns": [
         {
+          "comment": "List of Cypher built-in functions from http://docs.neo4j.org/chunked/milestone/query-function.html",
           "match": "(?i)\\b((NOT)(?=\\s*\\()|IS\\s+NULL|IS\\s+NOT\\s+NULL)",
           "name": "keyword.control.function.boolean.cypher"
         },
         {
+          "comment": "List of Cypher built-in functions from http://docs.neo4j.org/chunked/milestone/query-function.html",
           "match": "(?i)\\b(ALL|ANY|NONE|SINGLE)(?=\\s*\\()",
           "name": "support.function.predicate.cypher"
         },
         {
+          "comment": "List of Cypher built-in functions from http://docs.neo4j.org/chunked/milestone/query-function.html",
           "match": "(?i)\\b(LENGTH|TYPE|ID|COALESCE|HEAD|LAST|TIMESTAMP|STARTNODE|ENDNODE|TOINT|TOFLOAT)(?=\\s*\\()",
           "name": "support.function.scalar.cypher"
         },
         {
+          "comment": "List of Cypher built-in functions from http://docs.neo4j.org/chunked/milestone/query-function.html",
           "match": "(?i)\\b(NODES|RELATIONSHIPS|LABELS|EXTRACT|FILTER|TAIL|RANGE|REDUCE)(?=\\s*\\()",
           "name": "support.function.collection.cypher"
         },
         {
-          "match": "(?i)\\b(ABS|ACOS|ASIN|ATAN2??|COS|COT|DEGREES|E|EXP|FLOOR|HAVERSIN|LOG|LOG10|PI|RADIANS|RAND|ROUND|SIGN|SIN|SQRT|TAN)(?=\\s*\\()",
+          "comment": "List of Cypher built-in functions from http://docs.neo4j.org/chunked/milestone/query-function.html",
+          "match": "(?i)\\b(ABS|ACOS|ASIN|ATAN|ATAN2|COS|COT|DEGREES|E|EXP|FLOOR|HAVERSIN|LOG|LOG10|PI|RADIANS|RAND|ROUND|SIGN|SIN|SQRT|TAN)(?=\\s*\\()",
           "name": "support.function.math.cypher"
         },
         {
-          "match": "(?i)\\b(COUNT|sum|avg|max|min|stdevp??|percentileDisc|percentileCont|collect)(?=\\s*\\()",
+          "comment": "List of Cypher built-in functions from http://docs.neo4j.org/chunked/milestone/query-function.html",
+          "match": "(?i)\\b(COUNT|sum|avg|max|min|stdev|stdevp|percentileDisc|percentileCont|collect)(?=\\s*\\()",
           "name": "support.function.aggregation.cypher"
         },
         {
+          "comment": "List of Cypher built-in functions from http://docs.neo4j.org/chunked/milestone/query-function.html",
           "match": "(?i)\\b(STR|REPLACE|SUBSTRING|LEFT|RIGHT|LTRIM|RTRIM|TRIM|LOWER|UPPER|SPLIT)(?=\\s*\\()",
           "name": "support.function.string.cypher"
         }
@@ -98,7 +105,7 @@
           "name": "variable.other.quoted-identifier.cypher"
         },
         {
-          "match": "[_\\p{L}][0-9_\\p{L}]*",
+          "match": "[\\p{L}_][\\p{L}0-9_]*",
           "name": "variable.other.identifier.cypher"
         }
       ]
@@ -130,7 +137,7 @@
           "name": "keyword.other.order.cypher"
         },
         {
-          "begin": "(?i)\\b(node|relationship|rel)((:)([-_\\p{L}][0-9_\\p{L}]*))?(?=\\s*\\()",
+          "begin": "(?i)\\b(node|relationship|rel)((:)([\\p{L}_-][\\p{L}0-9_]*))?(?=\\s*\\()",
           "beginCaptures": {
             "1": {
               "name": "support.class.starting-functions-point.cypher"
@@ -149,7 +156,7 @@
           "name": "source.starting-functions.cypher",
           "patterns": [
             {
-              "match": "(`.+?`|[_\\p{L}][0-9_\\p{L}]*)",
+              "match": "((?:`.+?`)|(?:[\\p{L}_][\\p{L}0-9_]*))",
               "name": "variable.parameter.relationship-name.cypher"
             },
             {
@@ -180,11 +187,11 @@
     "operators": {
       "patterns": [
         {
-          "match": "([-!%*+/?])",
+          "match": "(\\+|\\-|\\/|\\*|\\%|\\?|!)",
           "name": "keyword.operator.math.cypher"
         },
         {
-          "match": "(<=|=>|<>|[<>]|=~?)",
+          "match": "(<=|=>|<>|<|>|=~|=)",
           "name": "keyword.operator.compare.cypher"
         },
         {
@@ -200,11 +207,11 @@
     "path-patterns": {
       "patterns": [
         {
-          "match": "(<--|-->?)",
+          "match": "(<--|-->|--)",
           "name": "support.function.relationship-pattern.cypher"
         },
         {
-          "begin": "(<?-)(\\[)",
+          "begin": "(<-|-)(\\[)",
           "beginCaptures": {
             "1": {
               "name": "support.function.relationship-pattern-start.cypher"
@@ -213,7 +220,7 @@
               "name": "keyword.operator.relationship-pattern-start.cypher"
             }
           },
-          "end": "(])(->?)",
+          "end": "(])(->|-)",
           "endCaptures": {
             "1": {
               "name": "keyword.operator.relationship-pattern-end.cypher"
@@ -236,7 +243,7 @@
                   "name": "entity.name.class.relationship.type.cypher"
                 }
               },
-              "match": "(:)(`.+?`|[_\\p{L}][0-9_\\p{L}]*)",
+              "match": "(:)((?:`.+?`)|(?:[\\p{L}_][\\p{L}0-9_]*))",
               "name": "entity.name.class.relationship-type.cypher"
             },
             {
@@ -248,11 +255,11 @@
                   "name": "entity.name.class.relationship.type-or.cypher"
                 }
               },
-              "match": "(\\|)(\\s*)(`.+?`|[_\\p{L}][0-9_\\p{L}]*)",
+              "match": "(\\|)(\\s*)((?:`.+?`)|(?:[\\p{L}_][\\p{L}0-9_]*))",
               "name": "entity.name.class.relationship-type-ored.cypher"
             },
             {
-              "match": "(?:\\?\\*|[*?])\\s*(?:\\d+\\s*(?:\\.\\.\\s*\\d+)?)?",
+              "match": "(?:\\?\\*|\\?|\\*)\\s*(?:\\d+\\s*(?:\\.\\.\\s*\\d+)?)?",
               "name": "support.function.relationship-pattern.quant.cypher"
             },
             {
@@ -265,7 +272,7 @@
     "properties_literal": {
       "patterns": [
         {
-          "begin": "\\{",
+          "begin": "{",
           "beginCaptures": {
             "0": {
               "name": "keyword.control.properties_literal.cypher"
@@ -280,7 +287,7 @@
           "name": "source.cypher",
           "patterns": [
             {
-              "match": "[,:]",
+              "match": ":|,",
               "name": "keyword.control.properties_literal.seperator.cypher"
             },
             {
@@ -314,7 +321,7 @@
           "name": "string.quoted.double.cypher"
         }
       },
-      "match": "(\\\\[\\\\bfnrt])|(\\\\[\"'])",
+      "match": "(\\\\\\\\|\\\\[tbnrf])|(\\\\'|\\\\\")",
       "name": "constant.character.escape.cypher"
     },
     "strings": {
@@ -342,5 +349,6 @@
       ]
     }
   },
-  "scopeName": "source.cypher"
+  "scopeName": "source.cypher",
+  "uuid": "698F4D06-BAE8-40A8-8AA4-3307ABC03B31"
 }

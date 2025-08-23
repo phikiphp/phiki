@@ -6,42 +6,50 @@
     "riscv",
     "asm"
   ],
+  "keyEquivalent": "^~M",
   "name": "riscv",
   "patterns": [
     {
-      "match": "\\b(la|lb|lh|lw|ld|nop|li|mv|not|negw??|sext\\.w|seqz|snez|sltz|sgtz|beqz|bnez|blez|bgez|bltz|bgtz?|ble|bgtu|bleu|j|jal|jr|ret|call|tail|fence|csr[crsw|]|csr[csw|]i)\\b",
+      "comment": "ok actually this are instructions, but one also could call them funtions…",
+      "match": "\\b(la|lb|lh|lw|ld|nop|li|mv|not|neg|negw|sext\\.w|seqz|snez|sltz|sgtz|beqz|bnez|blez|bgez|bltz|bgtz|bgt|ble|bgtu|bleu|j|jal|jr|ret|call|tail|fence|csr[r|w|s|c]|csr[w|s|c]i)\\b",
       "name": "support.function.pseudo.riscv"
     },
     {
-      "match": "\\b(addw??|auipc|lui|jalr|beq|bne|blt|bge|bltu|bgeu|lb|lh|lw|ld|lbu|lhu|sb|sh|sw|sd|addiw??|sltiu??|xori|ori|andi|slliw??|srliw??|sraiw??|subw??|sllw??|sltu??|xor|srlw??|sraw??|or|and|fence|fence\\.i|csrrw|csrrs|csrrc|csrrwi|csrrsi|csrrci)\\b",
+      "match": "\\b(add|addw|auipc|lui|jalr|beq|bne|blt|bge|bltu|bgeu|lb|lh|lw|ld|lbu|lhu|sb|sh|sw|sd|addi|addiw|slti|sltiu|xori|ori|andi|slli|slliw|srli|srliw|srai|sraiw|sub|subw|sll|sllw|slt|sltu|xor|srl|srlw|sra|sraw|or|and|fence|fence\\.i|csrrw|csrrs|csrrc|csrrwi|csrrsi|csrrci)\\b",
       "name": "support.function.riscv"
     },
     {
+      "comment": "priviledged instructions",
       "match": "\\b(ecall|ebreak|sfence\\.vma|mret|sret|uret|wfi)\\b",
       "name": "support.function.riscv.privileged"
     },
     {
-      "match": "\\b(mulh??|mulhsu|mulhu|divu??|remu??|mulw|divw|divuw|remw|remuw)\\b",
+      "comment": "M extension (multiplication and division)",
+      "match": "\\b(mul|mulh|mulhsu|mulhu|div|divu|rem|remu|mulw|divw|divuw|remw|remuw)\\b",
       "name": "support.function.riscv.m"
     },
     {
-      "match": "\\b(c\\.(?:addi4spn|fld|lq|lw|flw|ld|fsd|sq|sw|fsw|sd|nop|addi|jal|addiw|li|addi16sp|lui|srli|srli64|srai|srai64|andi|sub|xor|or|and|subw|addw|j|beqz|bnez))\\b",
+      "comment": "C extension (compressed instructions)",
+      "match": "\\b(c\\.addi4spn|c\\.fld|c\\.lq|c\\.lw|c\\.flw|c\\.ld|c\\.fsd|c\\.sq|c\\.sw|c\\.fsw|c\\.sd|c\\.nop|c\\.addi|c\\.jal|c\\.addiw|c\\.li|c\\.addi16sp|c\\.lui|c\\.srli|c\\.srli64|c\\.srai|c\\.srai64|c\\.andi|c\\.sub|c\\.xor|c\\.or|c\\.and|c\\.subw|c\\.addw|c\\.j|c\\.beqz|c\\.bnez)\\b",
       "name": "support.function.riscv.c"
     },
     {
-      "match": "\\b(lr\\.[dw|]|sc\\.[dw|]|amoswap\\.[dw|]|amoadd\\.[dw|]|amoxor\\.[dw|]|amoand\\.[dw|]|amoor\\.[dw|]|amomin\\.[dw|]|amomax\\.[dw|]|amominu\\.[dw|]|amomaxu\\.[dw|])\\b",
+      "comment": "A extension (atomic instructions)",
+      "match": "\\b(lr\\.[w|d]|sc\\.[w|d]|amoswap\\.[w|d]|amoadd\\.[w|d]|amoxor\\.[w|d]|amoand\\.[w|d]|amoor\\.[w|d]|amomin\\.[w|d]|amomax\\.[w|d]|amominu\\.[w|d]|amomaxu\\.[w|d])\\b",
       "name": "support.function.riscv.a"
     },
     {
-      "match": "\\b(f(?:lw|sw|madd\\.s|msub\\.s|nmsub\\.s|nmadd\\.s|add\\.s|sub\\.s|mul\\.s|div\\.s|sqrt\\.s|sgnj\\.s|sgnjn\\.s|sgnjx\\.s|min\\.s|max\\.s|cvt\\.w\\.s|cvt\\.wu\\.s|mv\\.x\\.w|eq\\.s|lt\\.s|le\\.s|class\\.s|cvt\\.s\\.wu??|mv\\.w\\.x|cvt\\.l\\.s|cvt\\.lu\\.s|cvt\\.s\\.lu??))\\b",
+      "comment": "F extension (single precision floating point)",
+      "match": "\\b(flw|fsw|fmadd\\.s|fmsub\\.s|fnmsub\\.s|fnmadd\\.s|fadd\\.s|fsub\\.s|fmul\\.s|fdiv\\.s|fsqrt\\.s|fsgnj\\.s|fsgnjn\\.s|fsgnjx\\.s|fmin\\.s|fmax\\.s|fcvt\\.w\\.s|fcvt\\.wu\\.s|fmv\\.x\\.w|feq\\.s|flt\\.s|fle\\.s|fclass\\.s|fcvt\\.s\\.w|fcvt\\.s\\.wu|fmv\\.w\\.x|fcvt\\.l\\.s|fcvt\\.lu\\.s|fcvt\\.s\\.l|fcvt\\.s\\.lu)\\b",
       "name": "support.function.riscv.f"
     },
     {
-      "match": "\\b(f(?:ld|sd|madd\\.d|msub\\.d|nmsub\\.d|nmadd\\.d|add\\.d|sub\\.d|mul\\.d|div\\.d|sqrt\\.d|sgnj\\.d|sgnjn\\.d|sgnjx\\.d|min\\.d|max\\.d|cvt\\.s\\.d|cvt\\.d\\.s|eq\\.d|lt\\.d|le\\.d|class\\.d|cvt\\.w\\.d|cvt\\.wu\\.d|cvt\\.d\\.wu??|cvt\\.l\\.d|cvt\\.lu\\.d|mv\\.x\\.d|cvt\\.d\\.lu??|mv\\.d\\.x))\\b",
+      "comment": "D extension (double precision floating point)",
+      "match": "\\b(fld|fsd|fmadd\\.d|fmsub\\.d|fnmsub\\.d|fnmadd\\.d|fadd\\.d|fsub\\.d|fmul\\.d|fdiv\\.d|fsqrt\\.d|fsgnj\\.d|fsgnjn\\.d|fsgnjx\\.d|fmin\\.d|fmax\\.d|fcvt\\.s\\.d|fcvt\\.d\\.s|feq\\.d|flt\\.d|fle\\.d|fclass\\.d|fcvt\\.w\\.d|fcvt\\.wu\\.d|fcvt\\.d\\.w|fcvt\\.d\\.wu|fcvt\\.l\\.d|fcvt\\.lu\\.d|fmv\\.x\\.d|fcvt\\.d\\.l|fcvt\\.d\\.lu|fmv\\.d\\.x)\\b",
       "name": "support.function.riscv.d"
     },
     {
-      "match": "\\.(skip|asciiz??|byte|[248|]byte|data|double|float|half|kdata|ktext|space|text|word|dword|dtprelword|dtpreldword|set\\s*(noat|at)|[su|]leb128|string|incbin|zero|rodata|comm|common)\\b",
+      "match": "\\.(skip|ascii|asciiz|byte|[2|4|8]byte|data|double|float|half|kdata|ktext|space|text|word|dword|dtprelword|dtpreldword|set\\s*(noat|at)|[s|u]leb128|string|incbin|zero|rodata|comm|common)\\b",
       "name": "storage.type.riscv"
     },
     {
@@ -54,7 +62,7 @@
           "name": "entity.name.function.label.riscv"
         }
       },
-      "match": "\\b([0-9A-Z_a-z]+):",
+      "match": "\\b([A-Za-z0-9_]+):",
       "name": "meta.function.label.riscv"
     },
     {
@@ -63,7 +71,7 @@
           "name": "punctuation.definition.variable.riscv"
         }
       },
-      "match": "\\b(x([0-9]|1[0-9]|2[0-9]|3[01]))\\b",
+      "match": "\\b(x([0-9]|1[0-9]|2[0-9]|3[0-1]))\\b",
       "name": "variable.other.register.usable.by-number.riscv"
     },
     {
@@ -72,7 +80,7 @@
           "name": "punctuation.definition.variable.riscv"
         }
       },
-      "match": "\\b(zero|ra|sp|gp|tp|t[0-6]|a[0-7]|s[0-9]|fp|s1[01])\\b",
+      "match": "\\b(zero|ra|sp|gp|tp|t[0-6]|a[0-7]|s[0-9]|fp|s1[0-1])\\b",
       "name": "variable.other.register.usable.by-name.riscv"
     },
     {
@@ -81,7 +89,7 @@
           "name": "punctuation.definition.variable.riscv"
         }
       },
-      "match": "\\b(([hmsu]|vs)status|([hmsu]|vs)ie|([msu]|vs)tvec|([msu]|vs)scratch|([msu]|vs)epc|([msu]|vs)cause|([hmsu]|vs)tval|([hmsu]|vs)ip|fflags|frm|fcsr|m?cycleh?|timeh?|m?instreth?|m?hpmcounter([3-9]|[12][0-9]|3[01])h?|[hms][ei]deleg|[hms]counteren|v?satp|hgeie|hgeip|[hm]tinst|hvip|hgatp|htimedeltah?|mvendorid|marchid|mimpid|mhartid|misa|mstatush|mtval2|pmpcfg[0-3]|pmpaddr([0-9]|1[0-5])|mcountinhibit|mhpmevent([3-9]|[12][0-9]|3[01])|tselect|tdata[123]|dcsr|dpc|dscratch[01])\\b",
+      "match": "\\b(([umsh]|vs)status|([umsh]|vs)ie|([ums]|vs)tvec|([ums]|vs)scratch|([ums]|vs)epc|([ums]|vs)cause|([umsh]|vs)tval|([umsh]|vs)ip|fflags|frm|fcsr|m?cycleh?|timeh?|m?instreth?|m?hpmcounter([3-9]|[12][0-9]|3[01])h?|[msh][ei]deleg|[msh]counteren|v?satp|hgeie|hgeip|[hm]tinst|hvip|hgatp|htimedeltah?|mvendorid|marchid|mimpid|mhartid|misa|mstatush|mtval2|pmpcfg[0-3]|pmpaddr([0-9]|1[0-5])|mcountinhibit|mhpmevent([3-9]|[12][0-9]|3[01])|tselect|tdata[1-3]|dcsr|dpc|dscratch[0-1])\\b",
       "name": "variable.other.csr.names.riscv"
     },
     {
@@ -90,7 +98,7 @@
           "name": "punctuation.definition.variable.riscv"
         }
       },
-      "match": "\\bf([0-9]|1[0-9]|2[0-9]|3[01])\\b",
+      "match": "\\bf([0-9]|1[0-9]|2[0-9]|3[0-1])\\b",
       "name": "variable.other.register.usable.floating-point.riscv"
     },
     {
@@ -98,7 +106,7 @@
       "name": "constant.numeric.float.riscv"
     },
     {
-      "match": "\\b(\\d+|0([Xx])\\h+)\\b",
+      "match": "\\b(\\d+|0(x|X)[a-fA-F0-9]+)\\b",
       "name": "constant.numeric.integer.riscv"
     },
     {
@@ -117,7 +125,7 @@
       "name": "string.quoted.double.riscv",
       "patterns": [
         {
-          "match": "\\\\[\"\\\\nrt]",
+          "match": "\\\\[rnt\\\\\"]",
           "name": "constant.character.escape.riscv"
         }
       ]
@@ -138,23 +146,23 @@
       "name": "string.quoted.single.riscv",
       "patterns": [
         {
-          "match": "\\\\[\"\\\\nrt]",
+          "match": "\\\\[rnt\\\\\"]",
           "name": "constant.character.escape.riscv"
         }
       ]
     },
     {
-      "begin": "/\\*",
-      "end": "\\*/",
+      "begin": "\\/\\*",
+      "end": "\\*\\/",
       "name": "comment.block"
     },
     {
-      "begin": "//",
+      "begin": "\\/\\/",
       "end": "\\n",
       "name": "comment.line.double-slash"
     },
     {
-      "begin": "^\\s*#\\s*(define)\\s+((?<id>[A-Z_a-z][0-9A-Z_a-z]*))(?:(\\()(\\s*\\g<id>\\s*((,)\\s*\\g<id>\\s*)*(?:\\.\\.\\.)?)(\\)))?",
+      "begin": "(?x)\n          ^\\s*\\#\\s*(define)\\s+             # define\n          ((?<id>[a-zA-Z_][a-zA-Z0-9_]*))  # macro name\n          (?:                              # and optionally:\n          (\\()                         # an open parenthesis\n          (\n          \\s* \\g<id> \\s*       # first argument\n          ((,) \\s* \\g<id> \\s*)*  # additional arguments\n          (?:\\.\\.\\.)?          # varargs ellipsis?\n          )\n          (\\))                         # a close parenthesis\n          )?\n        ",
       "beginCaptures": {
         "1": {
           "name": "keyword.control.import.define.c"
@@ -175,7 +183,7 @@
           "name": "punctuation.definition.parameters.c"
         }
       },
-      "end": "(?=/[*/])|$",
+      "end": "(?=(?://|/\\*))|$",
       "name": "meta.preprocessor.macro.c",
       "patterns": [
         {
@@ -204,13 +212,13 @@
       ]
     },
     {
-      "begin": "^\\s*#\\s*(i(?:nclude|mport))\\b\\s+",
+      "begin": "^\\s*#\\s*(include|import)\\b\\s+",
       "captures": {
         "1": {
           "name": "keyword.control.import.include.c"
         }
       },
-      "end": "(?=/[*/])|$",
+      "end": "(?=(?://|/\\*))|$",
       "name": "meta.preprocessor.c.include",
       "patterns": [
         {
@@ -250,13 +258,13 @@
       ]
     },
     {
-      "begin": "^\\s*#\\s*(defined??|elif|else|if|ifdef|ifndef|line|pragma|undef|endif)\\b",
+      "begin": "^\\s*#\\s*(define|defined|elif|else|if|ifdef|ifndef|line|pragma|undef|endif)\\b",
       "captures": {
         "1": {
           "name": "keyword.control.import.c"
         }
       },
-      "end": "(?=/[*/])|$",
+      "end": "(?=(?://|/\\*))|$",
       "name": "meta.preprocessor.c",
       "patterns": [
         {
@@ -266,7 +274,7 @@
       ]
     },
     {
-      "begin": "(^[\\t ]+)?(?=#)",
+      "begin": "(^[ \\t]+)?(?=#)",
       "beginCaptures": {
         "1": {
           "name": "punctuation.whitespace.comment.leading.riscv"
@@ -275,7 +283,7 @@
       "end": "(?!\\G)",
       "patterns": [
         {
-          "begin": "#|(//)",
+          "begin": "#|(\\/\\/)",
           "beginCaptures": {
             "0": {
               "name": "punctuation.definition.comment.riscv"
@@ -287,5 +295,6 @@
       ]
     }
   ],
-  "scopeName": "source.riscv"
+  "scopeName": "source.riscv",
+  "uuid": "003223C7-B8D1-4B7F-BF91-5E0062B19B53"
 }

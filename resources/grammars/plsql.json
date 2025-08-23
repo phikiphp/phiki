@@ -13,6 +13,7 @@
   ],
   "foldingStartMarker": "(?i)^\\s*(begin|if|loop)\\b",
   "foldingStopMarker": "(?i)^\\s*(end)\\b",
+  "keyEquivalent": "^~S",
   "name": "plsql",
   "patterns": [
     {
@@ -25,11 +26,11 @@
       "name": "comment.line.double-dash.oracle"
     },
     {
-      "match": "(?i)^\\s*rem\\s+.*$",
+      "match": "(?i)(?:^\\s*)rem(?:\\s+.*$)",
       "name": "comment.line.sqlplus.oracle"
     },
     {
-      "match": "(?i)^\\s*prompt\\s+.*$",
+      "match": "(?i)(?:^\\s*)prompt(?:\\s+.*$)",
       "name": "comment.line.sqlplus-prompt.oracle"
     },
     {
@@ -80,11 +81,11 @@
           "name": "entity.name.function.oracle"
         }
       },
-      "match": "(?i)^\\s*(function|procedure)\\s+\"?([-0-9_a-z]+)\"?",
+      "match": "(?i)^\\s*(function|procedure)\\s+\"?([-a-z0-9_]+)\"?",
       "name": "meta.procedure.oracle"
     },
     {
-      "match": "[!:<>]?=|<>|[+<>]|(?<!\\.)\\*|-|(?<!^)/|\\|\\|",
+      "match": "[!<>:]?=|<>|<|>|\\+|(?<!\\.)\\*|-|(?<!^)/|\\|\\|",
       "name": "keyword.operator.oracle"
     },
     {
@@ -108,11 +109,11 @@
       "name": "support.function.oracle"
     },
     {
-      "match": "(?i)\\b(sql(?:|code))\\b",
+      "match": "(?i)\\b(sql|sqlcode)\\b",
       "name": "variable.language.oracle"
     },
     {
-      "match": "(?i)\\b(ascii|asciistr|chr|compose|concat|convert|decompose|dump|initcap|instrb??|instrc|instr2|instr4|unistr|lengthb??|lengthc|length2|length4|lower|lpad|ltrim|nchr|replace|rpad|rtrim|soundex|substr|translate|trim|upper|vsize)\\b",
+      "match": "(?i)\\b(ascii|asciistr|chr|compose|concat|convert|decompose|dump|initcap|instr|instrb|instrc|instr2|instr4|unistr|length|lengthb|lengthc|length2|length4|lower|lpad|ltrim|nchr|replace|rpad|rtrim|soundex|substr|translate|trim|upper|vsize)\\b",
       "name": "support.function.builtin.char.oracle"
     },
     {
@@ -124,7 +125,7 @@
       "name": "support.function.builtin.aggregate.oracle"
     },
     {
-      "match": "(?i)\\b(bfilename|cardinality|coalesce|decode|empty_([bc]lob)|lag|lead|listagg|lnnvl|nanvl|nullif|nvl2??|sys_(context|guid|typeid|connect_by_path|extract_utc)|uid|(current\\s+)?user|userenv|cardinality|(bulk\\s+)?collect|powermultiset(_by_cardinality)?|ora_hash|standard_hash|execute\\s+immediate|alter\\s+session)\\b",
+      "match": "(?i)\\b(bfilename|cardinality|coalesce|decode|empty_(blob|clob)|lag|lead|listagg|lnnvl|nanvl|nullif|nvl|nvl2|sys_(context|guid|typeid|connect_by_path|extract_utc)|uid|(current\\s+)?user|userenv|cardinality|(bulk\\s+)?collect|powermultiset(_by_cardinality)?|ora_hash|standard_hash|execute\\s+immediate|alter\\s+session)\\b",
       "name": "support.function.builtin.advanced.oracle"
     },
     {
@@ -132,7 +133,7 @@
       "name": "support.function.builtin.convert.oracle"
     },
     {
-      "match": "(?i)\\b(abs|acos|asin|atan2??|bit_(and|or|xor)|ceil|cosh??|exp|extract|floor|greatest|least|ln|log|mod|power|remainder|round|sign|sinh??|sqrt|tanh??|trunc)\\b",
+      "match": "(?i)\\b(abs|acos|asin|atan|atan2|bit_(and|or|xor)|ceil|cos|cosh|exp|extract|floor|greatest|least|ln|log|mod|power|remainder|round|sign|sin|sinh|sqrt|tan|tanh|trunc)\\b",
       "name": "support.function.builtin.math.oracle"
     },
     {
@@ -152,11 +153,11 @@
       "name": "keyword.other.pragma.oracle"
     },
     {
-      "match": "(?i)\\b(p([io]|io)_[-0-9_a-z]+)\\b",
+      "match": "(?i)\\b(p(i|o|io)_[-a-z0-9_]+)\\b",
       "name": "variable.parameter.oracle"
     },
     {
-      "match": "(?i)\\b(l_[-0-9_a-z]+)\\b",
+      "match": "(?i)\\b(l_[-a-z0-9_]+)\\b",
       "name": "variable.other.oracle"
     },
     {
@@ -172,7 +173,7 @@
       "name": "keyword.wrapper.oracle"
     },
     {
-      "match": "(?i)\\b(end|then|deterministic|exception|when|declare|begin|in|out|nocopy|is|as|exit|open|fetch|into|close|subtype|type|rowtype|default|exclusive|mode|lock|record|index\\s+by|result_cache|constant|comment|\\.((?:next|curr)val))\\b",
+      "match": "(?i)\\b(end|then|deterministic|exception|when|declare|begin|in|out|nocopy|is|as|exit|open|fetch|into|close|subtype|type|rowtype|default|exclusive|mode|lock|record|index\\s+by|result_cache|constant|comment|\\.(nextval|currval))\\b",
       "name": "keyword.other.oracle"
     },
     {
@@ -180,7 +181,7 @@
       "name": "keyword.other.ddl.oracle"
     },
     {
-      "match": "(?i)\\b(with|select|from|where|order\\s+(siblings\\s+)?by|group\\s+by|rollup|cube|((left|right|cross|natural)\\s+(outer\\s+)?)?join|on|asc|desc|update|set|insert|into|values|delete|distinct|union|minus|intersect|having|limit|table|between|like|of|row|(r(?:ange|ows))\\s+between|nulls\\s+first|nulls\\s+last|before|after|all|any|exists|rownum|cursor|returning|over|partition\\s+by|merge|using|matched|pivot|unpivot)\\b",
+      "match": "(?i)\\b(with|select|from|where|order\\s+(siblings\\s+)?by|group\\s+by|rollup|cube|((left|right|cross|natural)\\s+(outer\\s+)?)?join|on|asc|desc|update|set|insert|into|values|delete|distinct|union|minus|intersect|having|limit|table|between|like|of|row|(range|rows)\\s+between|nulls\\s+first|nulls\\s+last|before|after|all|any|exists|rownum|cursor|returning|over|partition\\s+by|merge|using|matched|pivot|unpivot)\\b",
       "name": "keyword.other.sql.oracle"
     },
     {
@@ -206,7 +207,7 @@
           "name": "support.class.oracle"
         }
       },
-      "match": "(?i)\\b((ht[fp])\\.(\\w+))\\b",
+      "match": "(?i)\\b((htf|htp)\\.(\\w+))\\b",
       "name": "support.function.oracle"
     },
     {
@@ -219,7 +220,7 @@
       "name": "support.function.user-defined.oracle"
     },
     {
-      "match": "(?i)\\b(raise(?:|_application_error))\\b",
+      "match": "(?i)\\b(raise|raise_application_error)\\b",
       "name": "support.function.oracle"
     },
     {
@@ -233,9 +234,10 @@
       "name": "string.quoted.double.oracle"
     },
     {
-      "match": "(?i)\\b(char|varchar2??|nchar|nvarchar2|boolean|date|timestamp(\\s+with(\\s+local)?\\s+time\\s+zone)?|interval\\s*day(\\(\\d*\\))?\\s*to\\s*month|interval\\s*year(\\(\\d*\\))?\\s*to\\s*second(\\(\\d*\\))?|xmltype|blob|clob|nclob|bfile|long|long\\s+raw|raw|number|integer|decimal|smallint|float|binary_(float|double|integer)|pls_(float|double|integer)|rowid|urowid|vararray|naturaln??|positiven??|signtype|simple_(float|double|integer))\\b",
+      "match": "(?i)\\b(char|varchar|varchar2|nchar|nvarchar2|boolean|date|timestamp(\\s+with(\\s+local)?\\s+time\\s+zone)?|interval\\s*day(\\(\\d*\\))?\\s*to\\s*month|interval\\s*year(\\(\\d*\\))?\\s*to\\s*second(\\(\\d*\\))?|xmltype|blob|clob|nclob|bfile|long|long\\s+raw|raw|number|integer|decimal|smallint|float|binary_(float|double|integer)|pls_(float|double|integer)|rowid|urowid|vararray|natural|naturaln|positive|positiven|signtype|simple_(float|double|integer))\\b",
       "name": "storage.type.oracle"
     }
   ],
-  "scopeName": "source.plsql.oracle"
+  "scopeName": "source.plsql.oracle",
+  "uuid": "28DCE4DD-F5E1-4ED3-8847-64DA6B1F9163"
 }

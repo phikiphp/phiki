@@ -31,7 +31,7 @@
           "name": "punctuation.definition.section.reg"
         }
       },
-      "match": "^\\s*(\\[(?!-))(.*?)(])",
+      "match": "^\\s*(\\[(?!-))(.*?)(\\])",
       "name": "entity.name.function.section.add.reg"
     },
     {
@@ -46,7 +46,7 @@
           "name": "punctuation.definition.section.reg"
         }
       },
-      "match": "^\\s*(\\[-)(.*?)(])",
+      "match": "^\\s*(\\[-)(.*?)(\\])",
       "name": "entity.name.function.section.delete.reg"
     },
     {
@@ -112,7 +112,7 @@
           "name": "punctuation.definition.quote.reg"
         }
       },
-      "match": "^(\\s*([\"']?)(.+?)([\"']?)\\s*(=))?\\s*((-)|(([\"'])(.*?)([\"']))|(((?i:dword))(:)\\s*([A-Fa-f\\d]{1,8}))|(((?i:hex))((\\()(\\d*)(\\)))?(:)(.*?)(\\\\?)))\\s*(;.*)?$",
+      "match": "^(\\s*([\"']?)(.+?)([\"']?)\\s*(=))?\\s*((-)|(([\"'])(.*?)([\"']))|(((?i:dword))(\\:)\\s*([\\dabcdefABCDEF]{1,8}))|(((?i:hex))((\\()([\\d]*)(\\)))?(\\:)(.*?)(\\\\?)))\\s*(;.*)?$",
       "name": "meta.declaration.reg"
     },
     {
@@ -120,7 +120,7 @@
       "name": "constant.numeric.reg"
     },
     {
-      "match": "[A-Fa-f]+",
+      "match": "[a-fA-F]+",
       "name": "constant.numeric.hex.reg"
     },
     {
@@ -132,5 +132,6 @@
       "name": "keyword.operator.arithmetic.linecontinuation.reg"
     }
   ],
-  "scopeName": "source.reg"
+  "scopeName": "source.reg",
+  "uuid": "B7773F5B-C43A-4BB9-843A-4AC119250EBD"
 }

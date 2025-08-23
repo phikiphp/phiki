@@ -1,5 +1,10 @@
 {
   "displayName": "JSON with Comments",
+  "information_for_contributors": [
+    "This file has been converted from https://github.com/microsoft/vscode-JSON.tmLanguage/blob/master/JSON.tmLanguage",
+    "If you want to provide a fix or improvement, please create a pull request against the original repository.",
+    "Once accepted there, we are happy to receive an update request."
+  ],
   "name": "jsonc",
   "patterns": [
     {
@@ -14,7 +19,7 @@
           "name": "punctuation.definition.array.begin.json.comments"
         }
       },
-      "end": "]",
+      "end": "\\]",
       "endCaptures": {
         "0": {
           "name": "punctuation.definition.array.end.json.comments"
@@ -30,7 +35,7 @@
           "name": "punctuation.separator.array.json.comments"
         },
         {
-          "match": "[^]\\s]",
+          "match": "[^\\s\\]]",
           "name": "invalid.illegal.expected-array-separator.json.comments"
         }
       ]
@@ -73,7 +78,7 @@
       "name": "constant.language.json.comments"
     },
     "number": {
-      "match": "-?(?:0|[1-9]\\d*)(?:(?:\\.\\d+)?(?:[Ee][-+]?\\d+)?)?",
+      "match": "(?x)        # turn on extended mode\n  -?        # an optional minus\n  (?:\n    0       # a zero\n    |       # ...or...\n    [1-9]   # a 1-9 character\n    \\d*     # followed by zero or more digits\n  )\n  (?:\n    (?:\n      \\.    # a period\n      \\d+   # followed by one or more digits\n    )?\n    (?:\n      [eE]  # an e character\n      [+-]? # followed by an option +/-\n      \\d+   # followed by one or more digits\n    )?      # make exponent optional\n  )?        # make decimal portion optional",
       "name": "constant.numeric.json.comments"
     },
     "object": {
@@ -83,7 +88,7 @@
           "name": "punctuation.definition.dictionary.begin.json.comments"
         }
       },
-      "end": "}",
+      "end": "\\}",
       "endCaptures": {
         "0": {
           "name": "punctuation.definition.dictionary.end.json.comments"
@@ -92,6 +97,7 @@
       "name": "meta.structure.dictionary.json.comments",
       "patterns": [
         {
+          "comment": "the JSON object key",
           "include": "#objectkey"
         },
         {
@@ -104,7 +110,7 @@
               "name": "punctuation.separator.dictionary.key-value.json.comments"
             }
           },
-          "end": "(,)|(?=})",
+          "end": "(,)|(?=\\})",
           "endCaptures": {
             "1": {
               "name": "punctuation.separator.dictionary.pair.json.comments"
@@ -113,16 +119,17 @@
           "name": "meta.structure.dictionary.value.json.comments",
           "patterns": [
             {
+              "comment": "the JSON object value",
               "include": "#value"
             },
             {
-              "match": "[^,\\s]",
+              "match": "[^\\s,]",
               "name": "invalid.illegal.expected-dictionary-separator.json.comments"
             }
           ]
         },
         {
-          "match": "[^}\\s]",
+          "match": "[^\\s\\}]",
           "name": "invalid.illegal.expected-dictionary-separator.json.comments"
         }
       ]
@@ -170,7 +177,7 @@
     "stringcontent": {
       "patterns": [
         {
-          "match": "\\\\(?:[\"/\\\\bfnrt]|u\\h{4})",
+          "match": "(?x)                # turn on extended mode\n  \\\\                # a literal backslash\n  (?:               # ...followed by...\n    [\"\\\\/bfnrt]     # one of these characters\n    |               # ...or...\n    u               # a u\n    [0-9a-fA-F]{4}) # and four hex digits",
           "name": "constant.character.escape.json.comments"
         },
         {
@@ -202,5 +209,6 @@
       ]
     }
   },
-  "scopeName": "source.json.comments"
+  "scopeName": "source.json.comments",
+  "version": "https://github.com/microsoft/vscode-JSON.tmLanguage/commit/9bd83f1c252b375e957203f21793316203f61f70"
 }

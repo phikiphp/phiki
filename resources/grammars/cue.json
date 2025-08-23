@@ -1,4 +1,5 @@
 {
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
   "displayName": "CUE",
   "fileTypes": [
     "cue"
@@ -20,12 +21,12 @@
           "name": "entity.name.namespace"
         }
       },
-      "match": "(?<![#$_\\p{L}\\d])(package)[\\t ]+([#$\\p{L}][#$_\\p{L}\\d]*)(?![#$_\\p{L}\\d])"
+      "match": "(?<![\\p{L}\\p{Nd}_\\$\\#])(package)[ \\t]+([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*)(?![\\p{L}\\p{Nd}_\\$\\#])"
     },
     {
       "patterns": [
         {
-          "begin": "(?<![#$_\\p{L}\\d])(import)[\\t ]+(\\()",
+          "begin": "(?<![\\p{L}\\p{Nd}_\\$\\#])(import)[ \\t]+(\\()",
           "beginCaptures": {
             "1": {
               "name": "keyword.other.import"
@@ -69,7 +70,7 @@
                   "name": "punctuation.definition.string.end"
                 }
               },
-              "match": "(?:([#$\\p{L}][#$_\\p{L}\\d]*)[\\t ]+)?(\")([^\":]+)(?:(:)([#$\\p{L}][#$_\\p{L}\\d]*))?(\")",
+              "match": "(?:([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*)[ \\t]+)?(\")([^:\"]+)(?:(:)([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*))?(\")",
               "name": "meta.import-spec"
             },
             {
@@ -105,7 +106,7 @@
               "name": "punctuation.definition.string.end"
             }
           },
-          "match": "(?<![#$_\\p{L}\\d])(import)[\\t ]+(?:([#$\\p{L}][#$_\\p{L}\\d]*)[\\t ]+)?(\")([^\":]+)(?:(:)([#$\\p{L}][#$_\\p{L}\\d]*))?(\")",
+          "match": "(?<![\\p{L}\\p{Nd}_\\$\\#])(import)[ \\t]+(?:([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*)[ \\t]+)?(\")([^:\"]+)(?:(:)([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*))?(\")",
           "name": "meta.import"
         }
       ]
@@ -124,7 +125,7 @@
     "attribute_element": {
       "patterns": [
         {
-          "begin": "([#$\\p{L}][#$_\\p{L}\\d]*|_[#$_\\p{L}\\d]+)(=)",
+          "begin": "([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*|_[\\p{L}\\p{Nd}_\\$\\#]+)(=)",
           "beginCaptures": {
             "1": {
               "name": "variable.other"
@@ -133,7 +134,7 @@
               "name": "punctuation.bind"
             }
           },
-          "end": "(?=[),])",
+          "end": "(?=[,\\)])",
           "patterns": [
             {
               "include": "#attribute_string"
@@ -141,7 +142,7 @@
           ]
         },
         {
-          "begin": "([#$\\p{L}][#$_\\p{L}\\d]*|_[#$_\\p{L}\\d]+)(\\()",
+          "begin": "([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*|_[\\p{L}\\p{Nd}_\\$\\#]+)(\\()",
           "beginCaptures": {
             "1": {
               "name": "variable.other"
@@ -176,11 +177,11 @@
           "include": "#string"
         },
         {
-          "match": "[^\\n\"#'(),=]+",
+          "match": "[^\\n,\"'#=\\(\\)]+",
           "name": "string.unquoted"
         },
         {
-          "match": "[^),]+",
+          "match": "[^,\\)]+",
           "name": "invalid"
         }
       ]
@@ -211,7 +212,7 @@
     "declaration": {
       "patterns": [
         {
-          "begin": "(@)([#$\\p{L}][#$_\\p{L}\\d]*|_[#$_\\p{L}\\d]+)(\\()",
+          "begin": "(@)([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*|_[\\p{L}\\p{Nd}_\\$\\#]+)(\\()",
           "beginCaptures": {
             "1": {
               "name": "punctuation.definition.annotation"
@@ -251,7 +252,7 @@
           "name": "punctuation.option"
         },
         {
-          "match": "(?<![!<=>])=(?![=~])",
+          "match": "(?<![=!><])=(?![=~])",
           "name": "punctuation.bind"
         },
         {
@@ -285,10 +286,10 @@
                   "name": "keyword.control.in"
                 }
               },
-              "match": "(?<![#$_\\p{L}\\d])(for)[\\t ]+([#$\\p{L}][#$_\\p{L}\\d]*|_[#$_\\p{L}\\d]+)(?:[\\t ]*(,)[\\t ]*([#$\\p{L}][#$_\\p{L}\\d]*|_[#$_\\p{L}\\d]+))?[\\t ]+(in)(?![#$_\\p{L}\\d])"
+              "match": "(?<![\\p{L}\\p{Nd}_\\$\\#])(for)[ \\t]+([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*|_[\\p{L}\\p{Nd}_\\$\\#]+)(?:[ \\t]*(,)[ \\t]*([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*|_[\\p{L}\\p{Nd}_\\$\\#]+))?[ \\t]+(in)(?![\\p{L}\\p{Nd}_\\$\\#])"
             },
             {
-              "match": "(?<![#$_\\p{L}\\d])if(?![#$_\\p{L}\\d])",
+              "match": "(?<![\\p{L}\\p{Nd}_\\$\\#])if(?![\\p{L}\\p{Nd}_\\$\\#])",
               "name": "keyword.control.conditional"
             },
             {
@@ -303,22 +304,22 @@
                   "name": "punctuation.bind"
                 }
               },
-              "match": "(?<![#$_\\p{L}\\d])(let)[\\t ]+([#$\\p{L}][#$_\\p{L}\\d]*|_[#$_\\p{L}\\d]+)[\\t ]*(=)(?!=)"
+              "match": "(?<![\\p{L}\\p{Nd}_\\$\\#])(let)[ \\t]+([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*|_[\\p{L}\\p{Nd}_\\$\\#]+)[ \\t]*(=)(?![=])"
             }
           ]
         },
         {
           "patterns": [
             {
-              "match": "[-*+]|/(?![*/])",
+              "match": "[\\+\\-\\*]|/(?![/*])",
               "name": "keyword.operator"
             },
             {
-              "match": "(?<![#$_\\p{L}\\d])(?:div|mod|quo|rem)(?![#$_\\p{L}\\d])",
+              "match": "(?<![\\p{L}\\p{Nd}_\\$\\#])(?:div|mod|quo|rem)(?![\\p{L}\\p{Nd}_\\$\\#])",
               "name": "keyword.operator.word"
             },
             {
-              "match": "=[=~]|![=~]|<=|>=|<(?![-=])|>(?!=)",
+              "match": "=[=~]|![=~]|<=|>=|[<](?![-=])|[>](?![=])",
               "name": "keyword.operator.comparison"
             },
             {
@@ -340,24 +341,24 @@
               "name": "variable.other.member"
             }
           },
-          "match": "(?<!\\.)(\\.)([#$\\p{L}][#$_\\p{L}\\d]*|_[#$_\\p{L}\\d]+)(?![#$_\\p{L}\\d])"
+          "match": "(?<!\\.)(\\.)([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*|_[\\p{L}\\p{Nd}_\\$\\#]+)(?![\\p{L}\\p{Nd}_\\$\\#])"
         },
         {
           "patterns": [
             {
-              "match": "(?<![#$_\\p{L}\\d])_(?!\\|)(?![#$_\\p{L}\\d])",
+              "match": "(?<![\\p{L}\\p{Nd}_\\$\\#])_(?!\\|)(?![\\p{L}\\p{Nd}_\\$\\#])",
               "name": "constant.language.top"
             },
             {
-              "match": "(?<![#$_\\p{L}\\d])_\\|_(?![#$_\\p{L}\\d])",
+              "match": "(?<![\\p{L}\\p{Nd}_\\$\\#])_\\|_(?![\\p{L}\\p{Nd}_\\$\\#])",
               "name": "constant.language.bottom"
             },
             {
-              "match": "(?<![#$_\\p{L}\\d])null(?![#$_\\p{L}\\d])",
+              "match": "(?<![\\p{L}\\p{Nd}_\\$\\#])null(?![\\p{L}\\p{Nd}_\\$\\#])",
               "name": "constant.language.null"
             },
             {
-              "match": "(?<![#$_\\p{L}\\d])(?:true|false)(?![#$_\\p{L}\\d])",
+              "match": "(?<![\\p{L}\\p{Nd}_\\$\\#])(?:true|false)(?![\\p{L}\\p{Nd}_\\$\\#])",
               "name": "constant.language.bool"
             },
             {
@@ -365,15 +366,15 @@
                 {
                   "patterns": [
                     {
-                      "match": "(?<![._\\p{L}\\d])[0-9](?:_?[0-9])*\\.(?:[0-9](?:_?[0-9])*)?(?:[Ee][-+]?[0-9](?:_?[0-9])*)?(?![._\\p{L}\\d])",
+                      "match": "(?<![\\p{L}\\p{Nd}_\\.])[0-9](?:_?[0-9])*\\.(?:[0-9](?:_?[0-9])*)?(?:[eE][\\+\\-]?[0-9](?:_?[0-9])*)?(?![\\p{L}\\p{Nd}_\\.])",
                       "name": "constant.numeric.float.decimal"
                     },
                     {
-                      "match": "(?<![._\\p{L}\\d])[0-9](?:_?[0-9])*[Ee][-+]?[0-9](?:_?[0-9])*(?![._\\p{L}\\d])",
+                      "match": "(?<![\\p{L}\\p{Nd}_\\.])[0-9](?:_?[0-9])*[eE][\\+\\-]?[0-9](?:_?[0-9])*(?![\\p{L}\\p{Nd}_\\.])",
                       "name": "constant.numeric.float.decimal"
                     },
                     {
-                      "match": "(?<![._\\p{L}\\d])\\.[0-9](?:_?[0-9])*(?:[Ee][-+]?[0-9](?:_?[0-9])*)?(?![._\\p{L}\\d])",
+                      "match": "(?<![\\p{L}\\p{Nd}_\\.])\\.[0-9](?:_?[0-9])*(?:[eE][\\+\\-]?[0-9](?:_?[0-9])*)?(?![\\p{L}\\p{Nd}_\\.])",
                       "name": "constant.numeric.float.decimal"
                     }
                   ]
@@ -383,29 +384,29 @@
                     {
                       "patterns": [
                         {
-                          "match": "(?<![._\\p{L}\\d])(?:0|[1-9](?:_?[0-9])*)(?:\\.[0-9](?:_?[0-9])*)?[EGKMPTYZ]i?(?![._\\p{L}\\d])",
+                          "match": "(?<![\\p{L}\\p{Nd}_\\.])(?:0|[1-9](?:_?[0-9])*)(?:\\.[0-9](?:_?[0-9])*)?(?:[KMGTPEYZ]i?)(?![\\p{L}\\p{Nd}_\\.])",
                           "name": "constant.numeric.integer.other"
                         },
                         {
-                          "match": "(?<![._\\p{L}\\d])\\.[0-9](?:_?[0-9])*[EGKMPTYZ]i?(?![._\\p{L}\\d])",
+                          "match": "(?<![\\p{L}\\p{Nd}_\\.])\\.[0-9](?:_?[0-9])*(?:[KMGTPEYZ]i?)(?![\\p{L}\\p{Nd}_\\.])",
                           "name": "constant.numeric.integer.other"
                         }
                       ]
                     },
                     {
-                      "match": "(?<![._\\p{L}\\d])(?:0|[1-9](?:_?[0-9])*)(?![._\\p{L}\\d])",
+                      "match": "(?<![\\p{L}\\p{Nd}_\\.])(?:0|[1-9](?:_?[0-9])*)(?![\\p{L}\\p{Nd}_\\.])",
                       "name": "constant.numeric.integer.decimal"
                     },
                     {
-                      "match": "(?<![._\\p{L}\\d])0b[01](?:_?[01])*(?![._\\p{L}\\d])",
+                      "match": "(?<![\\p{L}\\p{Nd}_\\.])0b[0-1](?:_?[0-1])*(?![\\p{L}\\p{Nd}_\\.])",
                       "name": "constant.numeric.integer.binary"
                     },
                     {
-                      "match": "(?<![._\\p{L}\\d])0[Xx]\\h(?:_?\\h)*(?![._\\p{L}\\d])",
+                      "match": "(?<![\\p{L}\\p{Nd}_\\.])0[xX][0-9a-fA-F](?:_?[0-9a-fA-F])*(?![\\p{L}\\p{Nd}_\\.])",
                       "name": "constant.numeric.integer.hexadecimal"
                     },
                     {
-                      "match": "(?<![._\\p{L}\\d])0o?[0-7](?:_?[0-7])*(?![._\\p{L}\\d])",
+                      "match": "(?<![\\p{L}\\p{Nd}_\\.])0o?[0-7](?:_?[0-7])*(?![\\p{L}\\p{Nd}_\\.])",
                       "name": "constant.numeric.integer.octal"
                     }
                   ]
@@ -416,13 +417,13 @@
               "include": "#string"
             },
             {
-              "match": "(?<![#$_\\p{L}\\d])(?:bool|u?int(?:8|16|32|64|128)?|float(?:32|64)?|string|bytes|number|rune)(?![#$_\\p{L}\\d])",
+              "match": "(?<![\\p{L}\\p{Nd}_\\$\\#])(?:bool|u?int(?:8|16|32|64|128)?|float(?:32|64)?|string|bytes|number|rune)(?![\\p{L}\\p{Nd}_\\$\\#])",
               "name": "support.type"
             },
             {
               "patterns": [
                 {
-                  "begin": "(?<![#$_\\p{L}\\d])(len|close|and|or)(\\()",
+                  "begin": "(?<![\\p{L}\\p{Nd}_\\$\\#])(len|close|and|or)(\\()",
                   "beginCaptures": {
                     "1": {
                       "name": "support.function"
@@ -457,7 +458,7 @@
                   ]
                 },
                 {
-                  "begin": "(?<![#$_\\p{L}\\d])([#$\\p{L}][#$_\\p{L}\\d]*)(\\.)(\\p{Lu}[#$_\\p{L}\\d]*)(\\()",
+                  "begin": "(?<![\\p{L}\\p{Nd}_\\$\\#])([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*)(\\.)(\\p{Lu}[\\p{L}\\p{Nd}_\\$\\#]*)(\\()",
                   "beginCaptures": {
                     "1": {
                       "name": "support.module"
@@ -500,7 +501,7 @@
               ]
             },
             {
-              "match": "(?<![#$_\\p{L}\\d])(?:[#$\\p{L}][#$_\\p{L}\\d]*|_[#$_\\p{L}\\d]+)(?![#$_\\p{L}\\d])",
+              "match": "(?<![\\p{L}\\p{Nd}_\\$\\#])(?:[\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*|_[\\p{L}\\p{Nd}_\\$\\#]+)(?![\\p{L}\\p{Nd}_\\$\\#])",
               "name": "variable.other"
             },
             {
@@ -510,7 +511,7 @@
                   "name": "punctuation.definition.struct.begin"
                 }
               },
-              "end": "}",
+              "end": "\\}",
               "endCaptures": {
                 "0": {
                   "name": "punctuation.definition.struct.end"
@@ -545,7 +546,7 @@
                   "name": "punctuation.section.brackets.begin"
                 }
               },
-              "end": "]",
+              "end": "\\]",
               "endCaptures": {
                 "0": {
                   "name": "punctuation.section.brackets.end"
@@ -577,13 +578,13 @@
                       "name": "punctuation.alias"
                     }
                   },
-                  "match": "([#$\\p{L}][#$_\\p{L}\\d]*|_[#$_\\p{L}\\d]+)[\\t ]*(=)"
+                  "match": "([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*|_[\\p{L}\\p{Nd}_\\$\\#]+)[ \\t]*(=)"
                 },
                 {
                   "include": "#expression"
                 },
                 {
-                  "match": "[^]]+",
+                  "match": "[^\\]]+",
                   "name": "invalid"
                 }
               ]
@@ -625,11 +626,11 @@
       ]
     },
     "invalid_in_braces": {
-      "match": "[^}]+",
+      "match": "[^\\}]+",
       "name": "invalid"
     },
     "invalid_in_parens": {
-      "match": "[^)]+",
+      "match": "[^\\)]+",
       "name": "invalid"
     },
     "punctuation_colon": {
@@ -663,11 +664,11 @@
           "name": "meta.string",
           "patterns": [
             {
-              "match": "\\\\#(?:\"\"\"|[/\\\\abfnrtv]|u\\h{4}|U\\h{8})",
+              "match": "\\\\#(?:\"\"\"|/|\\\\|[abfnrtv]|u[0-9A-Fa-f]{4}|U[0-9A-Fa-f]{8})",
               "name": "constant.character.escape"
             },
             {
-              "match": "\\\\#(?:[0-7]{3}|x\\h{2})",
+              "match": "\\\\#(?:[0-7]{3}|x[0-9A-Fa-f]{2})",
               "name": "invalid.illegal"
             },
             {
@@ -720,11 +721,11 @@
           "name": "meta.string",
           "patterns": [
             {
-              "match": "\\\\#(?:[\"/\\\\abfnrtv]|u\\h{4}|U\\h{8})",
+              "match": "\\\\#(?:\"|/|\\\\|[abfnrtv]|u[0-9A-Fa-f]{4}|U[0-9A-Fa-f]{8})",
               "name": "constant.character.escape"
             },
             {
-              "match": "\\\\#(?:[0-7]{3}|x\\h{2})",
+              "match": "\\\\#(?:[0-7]{3}|x[0-9A-Fa-f]{2})",
               "name": "invalid.illegal"
             },
             {
@@ -777,11 +778,11 @@
           "name": "meta.string",
           "patterns": [
             {
-              "match": "\\\\#(?:'''|[/\\\\abfnrtv]|u\\h{4}|U\\h{8})",
+              "match": "\\\\#(?:'''|/|\\\\|[abfnrtv]|u[0-9A-Fa-f]{4}|U[0-9A-Fa-f]{8})",
               "name": "constant.character.escape"
             },
             {
-              "match": "\\\\#(?:[0-7]{3}|x\\h{2})",
+              "match": "\\\\#(?:[0-7]{3}|x[0-9A-Fa-f]{2})",
               "name": "constant.character.escape"
             },
             {
@@ -834,11 +835,11 @@
           "name": "meta.string",
           "patterns": [
             {
-              "match": "\\\\#(?:['/\\\\abfnrtv]|u\\h{4}|U\\h{8})",
+              "match": "\\\\#(?:'|/|\\\\|[abfnrtv]|u[0-9A-Fa-f]{4}|U[0-9A-Fa-f]{8})",
               "name": "constant.character.escape"
             },
             {
-              "match": "\\\\#(?:[0-7]{3}|x\\h{2})",
+              "match": "\\\\#(?:[0-7]{3}|x[0-9A-Fa-f]{2})",
               "name": "constant.character.escape"
             },
             {
@@ -891,11 +892,11 @@
           "name": "meta.string",
           "patterns": [
             {
-              "match": "\\\\(?:\"\"\"|[/\\\\abfnrtv]|u\\h{4}|U\\h{8})",
+              "match": "\\\\(?:\"\"\"|/|\\\\|[abfnrtv]|u[0-9A-Fa-f]{4}|U[0-9A-Fa-f]{8})",
               "name": "constant.character.escape"
             },
             {
-              "match": "\\\\(?:[0-7]{3}|x\\h{2})",
+              "match": "\\\\(?:[0-7]{3}|x[0-9A-Fa-f]{2})",
               "name": "invalid.illegal"
             },
             {
@@ -948,11 +949,11 @@
           "name": "meta.string",
           "patterns": [
             {
-              "match": "\\\\(?:[\"/\\\\abfnrtv]|u\\h{4}|U\\h{8})",
+              "match": "\\\\(?:\"|/|\\\\|[abfnrtv]|u[0-9A-Fa-f]{4}|U[0-9A-Fa-f]{8})",
               "name": "constant.character.escape"
             },
             {
-              "match": "\\\\(?:[0-7]{3}|x\\h{2})",
+              "match": "\\\\(?:[0-7]{3}|x[0-9A-Fa-f]{2})",
               "name": "invalid.illegal"
             },
             {
@@ -1005,11 +1006,11 @@
           "name": "meta.string",
           "patterns": [
             {
-              "match": "\\\\(?:'''|[/\\\\abfnrtv]|u\\h{4}|U\\h{8})",
+              "match": "\\\\(?:'''|/|\\\\|[abfnrtv]|u[0-9A-Fa-f]{4}|U[0-9A-Fa-f]{8})",
               "name": "constant.character.escape"
             },
             {
-              "match": "\\\\(?:[0-7]{3}|x\\h{2})",
+              "match": "\\\\(?:[0-7]{3}|x[0-9A-Fa-f]{2})",
               "name": "constant.character.escape"
             },
             {
@@ -1062,11 +1063,11 @@
           "name": "meta.string",
           "patterns": [
             {
-              "match": "\\\\(?:['/\\\\abfnrtv]|u\\h{4}|U\\h{8})",
+              "match": "\\\\(?:'|/|\\\\|[abfnrtv]|u[0-9A-Fa-f]{4}|U[0-9A-Fa-f]{8})",
               "name": "constant.character.escape"
             },
             {
-              "match": "\\\\(?:[0-7]{3}|x\\h{2})",
+              "match": "\\\\(?:[0-7]{3}|x[0-9A-Fa-f]{2})",
               "name": "constant.character.escape"
             },
             {
@@ -1121,7 +1122,7 @@
       ]
     },
     "whitespace": {
-      "match": "[\\t\\n\\r ]+"
+      "match": "[ \\t\\r\\n]+"
     }
   },
   "scopeName": "source.cue"

@@ -1,5 +1,10 @@
 {
   "displayName": "Ruby",
+  "information_for_contributors": [
+    "This file has been converted from https://github.com/Shopify/ruby-lsp/blob/master/vscode/grammars/ruby.cson.json",
+    "If you want to provide a fix or improvement, please create a pull request against the original repository.",
+    "Once accepted there, we are happy to receive an update request."
+  ],
   "name": "ruby",
   "patterns": [
     {
@@ -23,7 +28,8 @@
           "name": "entity.other.inherited-class.ruby"
         }
       },
-      "match": "\\b(class)\\s+(([0-9A-Z_a-z]+)((::)[0-9A-Z_a-z]+)*)\\s*((<)\\s*(([0-9A-Z_a-z]+)((::)[0-9A-Z_a-z]+)*))?",
+      "comment": "class Namespace::ClassName < OtherNamespace::OtherClassName",
+      "match": "\\b(class)\\s+(([a-zA-Z0-9_]+)((::)[a-zA-Z0-9_]+)*)\\s*((<)\\s*(([a-zA-Z0-9_]+)((::)[a-zA-Z0-9_]+)*))?",
       "name": "meta.class.ruby"
     },
     {
@@ -38,7 +44,7 @@
           "name": "punctuation.separator.namespace.ruby"
         }
       },
-      "match": "\\b(module)\\s+(([0-9A-Z_a-z]+)((::)[0-9A-Z_a-z]+)*)",
+      "match": "\\b(module)\\s+(([a-zA-Z0-9_]+)((::)[a-zA-Z0-9_]+)*)",
       "name": "meta.module.ruby"
     },
     {
@@ -54,6 +60,7 @@
       "name": "meta.class.ruby"
     },
     {
+      "comment": "else if is a common mistake carried over from other languages. it works if you put in a second end, but it’s never what you want.",
       "match": "(?<!\\.)\\belse(\\s)+if\\b",
       "name": "invalid.deprecated.ruby"
     },
@@ -66,7 +73,8 @@
           "name": "keyword.operator.assignment.augmented.ruby"
         }
       },
-      "match": "^\\s*([_a-z][0-9A-Z_a-z]*)\\s*((&&|\\|\\|)=)"
+      "comment": "A local variable and/or assignment",
+      "match": "^\\s*([_a-z][A-Za-z0-9_]*)\\s*((&&|\\|\\|)=)"
     },
     {
       "captures": {
@@ -80,7 +88,8 @@
           "name": "keyword.operator.assignment.augmented.ruby"
         }
       },
-      "match": "(?<!\\.)\\b(case|if|elsif|unless|until|while)\\b\\s*(\\()*?\\s*([_a-z][0-9A-Z_a-z]*)\\s*((&&|\\|\\|)=)"
+      "comment": "A local variable and/or assignment in a condition",
+      "match": "(?<!\\.)\\b(case|if|elsif|unless|until|while)\\b\\s*(\\()*?\\s*([_a-z][A-Za-z0-9_]*)\\s*((&&|\\|\\|)=)"
     },
     {
       "captures": {
@@ -91,7 +100,8 @@
           "name": "keyword.operator.assignment.augmented.ruby"
         }
       },
-      "match": "^\\s*([_a-z][0-9A-Z_a-z]*)\\s*(([-%*+/]|\\*\\*|[\\&^|]|<<|>>)=)"
+      "comment": "A local variable operation assignment (+=, -=, *=, /=)",
+      "match": "^\\s*([_a-z][A-Za-z0-9_]*)\\s*((\\+|\\*|-|\\/|%|\\*\\*|&|\\||\\^|<<|>>)=)"
     },
     {
       "captures": {
@@ -105,7 +115,8 @@
           "name": "keyword.operator.assignment.augmented.ruby"
         }
       },
-      "match": "(?<!\\.)\\b(case|if|elsif|unless|until|while)\\b\\s*(\\()*?\\s*([_a-z][0-9A-Z_a-z]*)\\s*(([-%*+/]|\\*\\*|[\\&^|]|<<|>>)=)"
+      "comment": "A local variable operation assignment in a condition",
+      "match": "(?<!\\.)\\b(case|if|elsif|unless|until|while)\\b\\s*(\\()*?\\s*([_a-z][A-Za-z0-9_]*)\\s*((\\+|\\*|-|\\/|%|\\*\\*|&|\\||\\^|<<|>>)=)"
     },
     {
       "captures": {
@@ -113,7 +124,8 @@
           "name": "variable.ruby"
         }
       },
-      "match": "^\\s*([_a-z][0-9A-Z_a-z]*)\\s*(?==[^=>])"
+      "comment": "A local variable assignment",
+      "match": "^\\s*([_a-z][A-Za-z0-9_]*)\\s*(?==[^=>])"
     },
     {
       "captures": {
@@ -124,7 +136,8 @@
           "name": "variable.ruby"
         }
       },
-      "match": "(?<!\\.)\\b(case|if|elsif|unless|until|while)\\b\\s*(\\()*?\\s*([_a-z][0-9A-Z_a-z]*)\\s*=[^=>]"
+      "comment": "A local variable assignment in a condition",
+      "match": "(?<!\\.)\\b(case|if|elsif|unless|until|while)\\b\\s*(\\()*?\\s*([_a-z][A-Za-z0-9_]*)\\s*=[^=>]"
     },
     {
       "captures": {
@@ -132,7 +145,8 @@
           "name": "punctuation.definition.constant.hashkey.ruby"
         }
       },
-      "match": "(?>[A-Z_a-z]\\w*[!?]?)(:)(?!:)",
+      "comment": "symbols as hash key (1.9 syntax)",
+      "match": "(?>[a-zA-Z_]\\w*(?>[?!])?)(:)(?!:)",
       "name": "constant.language.symbol.hashkey.ruby"
     },
     {
@@ -141,53 +155,58 @@
           "name": "punctuation.definition.constant.ruby"
         }
       },
-      "match": "(?<!:)(:)(?>[A-Z_a-z]\\w*[!?]?)(?=\\s*=>)",
+      "comment": "symbols as hash key (1.8 syntax)",
+      "match": "(?<!:)(:)(?>[a-zA-Z_]\\w*(?>[?!])?)(?=\\s*=>)",
       "name": "constant.language.symbol.hashkey.ruby"
     },
     {
-      "match": "(?<!\\.)\\b(BEGIN|begin|case|class|else|elsif|END|end|ensure|for|if|in|module|rescue|then|unless|until|when|while)\\b(?![!?])",
+      "comment": "everything being a reserved word, not a value and needing a 'end' is a..",
+      "match": "(?<!\\.)\\b(BEGIN|begin|case|class|else|elsif|END|end|ensure|for|if|in|module|rescue|then|unless|until|when|while)\\b(?![?!])",
       "name": "keyword.control.ruby"
     },
     {
+      "comment": "contextual smart pair support for block parameters",
       "match": "(?<!\\.)\\bdo\\b",
       "name": "keyword.control.start-block.ruby"
     },
     {
-      "match": "(?<=\\{)(\\s+)",
+      "comment": "contextual smart pair support",
+      "match": "(?<={)(\\s+)",
       "name": "meta.syntax.ruby.start-block"
     },
     {
-      "match": "(?<!\\.)\\b(alias|alias_method|break|next|redo|retry|return|super|undef|yield)\\b(?![!?])|\\bdefined\\?|\\b(block_given|iterator)\\?",
+      "match": "(?<!\\.)\\b(alias|alias_method|break|next|redo|retry|return|super|undef|yield)\\b(?![?!])|\\bdefined\\?|\\b(block_given|iterator)\\?",
       "name": "keyword.control.pseudo-method.ruby"
     },
     {
-      "match": "\\bnil\\b(?![!?])",
+      "match": "\\bnil\\b(?![?!])",
       "name": "constant.language.nil.ruby"
     },
     {
-      "match": "\\b(true|false)\\b(?![!?])",
+      "match": "\\b(true|false)\\b(?![?!])",
       "name": "constant.language.boolean.ruby"
     },
     {
-      "match": "\\b(__(FILE|LINE)__)\\b(?![!?])",
+      "match": "\\b(__(FILE|LINE)__)\\b(?![?!])",
       "name": "variable.language.ruby"
     },
     {
-      "match": "\\bself\\b(?![!?])",
+      "match": "\\bself\\b(?![?!])",
       "name": "variable.language.self.ruby"
     },
     {
-      "match": "\\b(initialize|new|loop|include|extend|prepend|raise|fail|attr_reader|attr_writer|attr_accessor|attr|catch|throw|private|private_class_method|module_function|public|public_class_method|protected|refine|using)\\b(?![!?])",
+      "comment": " everything being a method but having a special function is a..",
+      "match": "\\b(initialize|new|loop|include|extend|prepend|raise|fail|attr_reader|attr_writer|attr_accessor|attr|catch|throw|private|private_class_method|module_function|public|public_class_method|protected|refine|using)\\b(?![?!])",
       "name": "keyword.other.special-method.ruby"
     },
     {
-      "begin": "\\b(?<!\\.|::)(require(?:|_relative))\\b(?![!?])",
+      "begin": "\\b(?<!\\.|::)(require|require_relative)\\b(?![?!])",
       "captures": {
         "1": {
           "name": "keyword.other.special-method.ruby"
         }
       },
-      "end": "$|(?=[#}])",
+      "end": "$|(?=#|})",
       "name": "meta.require.ruby",
       "patterns": [
         {
@@ -201,7 +220,7 @@
           "name": "punctuation.definition.variable.ruby"
         }
       },
-      "match": "(@)[A-Z_a-z]\\w*",
+      "match": "(@)[a-zA-Z_]\\w*",
       "name": "variable.other.readwrite.instance.ruby"
     },
     {
@@ -210,7 +229,7 @@
           "name": "punctuation.definition.variable.ruby"
         }
       },
-      "match": "(@@)[A-Z_a-z]\\w*",
+      "match": "(@@)[a-zA-Z_]\\w*",
       "name": "variable.other.readwrite.class.ruby"
     },
     {
@@ -219,7 +238,7 @@
           "name": "punctuation.definition.variable.ruby"
         }
       },
-      "match": "(\\$)[A-Z_a-z]\\w*",
+      "match": "(\\$)[a-zA-Z_]\\w*",
       "name": "variable.other.readwrite.global.ruby"
     },
     {
@@ -228,7 +247,7 @@
           "name": "punctuation.definition.variable.ruby"
         }
       },
-      "match": "(\\$)([!\\&'+@`]|\\d+|[\"$*,./:-?\\\\_~]|-[0FIadilpv])",
+      "match": "(\\$)(!|@|&|`|'|\\+|\\d+|~|=|/|\\\\|,|;|\\.|<|>|_|\\*|\\$|\\?|:|\"|-[0adFiIlpv])",
       "name": "variable.other.readwrite.global.pre-defined.ruby"
     },
     {
@@ -251,11 +270,11 @@
       "name": "support.class.ruby"
     },
     {
-      "match": "\\b((abort|at_exit|autoload|binding|callcc|caller|caller_locations|chomp|chop|eval|exec|exit|fork|format|gets|global_variables|gsub|lambda|load|local_variables|open|p|printf??|proc|putc|puts|rand|readlines??|select|set_trace_func|sleep|spawn|sprintf|srand|sub|syscall|system|test|trace_var|trap|untrace_var|warn)\\b(?![!?])|autoload\\?|exit!)",
+      "match": "\\b((abort|at_exit|autoload|binding|callcc|caller|caller_locations|chomp|chop|eval|exec|exit|fork|format|gets|global_variables|gsub|lambda|load|local_variables|open|p|print|printf|proc|putc|puts|rand|readline|readlines|select|set_trace_func|sleep|spawn|sprintf|srand|sub|syscall|system|test|trace_var|trap|untrace_var|warn)\\b(?![?!])|autoload\\?|exit!)",
       "name": "support.function.kernel.ruby"
     },
     {
-      "match": "\\b[A-Z_]\\w*\\b",
+      "match": "\\b[_A-Z]\\w*\\b",
       "name": "variable.other.constant.ruby"
     },
     {
@@ -265,11 +284,12 @@
           "name": "support.function.kernel.ruby"
         }
       },
+      "comment": "Lambda parameters.",
       "end": "\\)",
       "patterns": [
         {
-          "begin": "(?=[\\&*A-Z_a-z])",
-          "end": "(?=[),])",
+          "begin": "(?=[&*_a-zA-Z])",
+          "end": "(?=[,)])",
           "patterns": [
             {
               "include": "#method_parameters"
@@ -282,7 +302,7 @@
       ]
     },
     {
-      "begin": "(?=def\\b)(?<=^|\\s)(def)\\s+((?>[A-Z_a-z]\\w*(?>\\.|::))?(?>[A-Z_a-z]\\w*(?>[!?]|=(?!>))?|===?|!=|>[=>]?|<=>|<[<=]?|[%\\&/`|]|\\*\\*?|=?~|[-+]@?|\\[]=?))\\s*(\\()",
+      "begin": "(?x)\n(?=def\\b)                          # optimization to help Oniguruma fail fast\n(?<=^|\\s)(def)\\s+\n(\n  (?>[a-zA-Z_]\\w*(?>\\.|::))?      # method prefix\n  (?>                               # method name\n    [a-zA-Z_]\\w*(?>[?!]|=(?!>))?\n    |\n    ===?|!=|>[>=]?|<=>|<[<=]?|[%&`/\\|]|\\*\\*?|=?~|[-+]@?|\\[]=?\n  )\n)\n\\s*(\\()",
       "beginCaptures": {
         "1": {
           "name": "keyword.control.def.ruby"
@@ -294,6 +314,7 @@
           "name": "punctuation.definition.parameters.ruby"
         }
       },
+      "comment": "The method pattern comes from the symbol pattern. See there for an explanation.",
       "end": "\\)",
       "endCaptures": {
         "0": {
@@ -303,8 +324,8 @@
       "name": "meta.function.method.with-arguments.ruby",
       "patterns": [
         {
-          "begin": "(?=[\\&*A-Z_a-z])",
-          "end": "(?=[),])",
+          "begin": "(?=[&*_a-zA-Z])",
+          "end": "(?=[,)])",
           "patterns": [
             {
               "include": "#method_parameters"
@@ -317,7 +338,7 @@
       ]
     },
     {
-      "begin": "(?=def\\b)(?<=^|\\s)(def)\\s+((?>[A-Z_a-z]\\w*(?>\\.|::))?(?>[A-Z_a-z]\\w*(?>[!?]|=(?!>))?|===?|!=|>[=>]?|<=>|<[<=]?|[%\\&/`|]|\\*\\*?|=?~|[-+]@?|\\[]=?))[\\t ](?=[\\t ]*[^#;\\s])",
+      "begin": "(?x)\n(?=def\\b)                          # optimization to help Oniguruma fail fast\n(?<=^|\\s)(def)\\s+\n(\n  (?>[a-zA-Z_]\\w*(?>\\.|::))?      # method prefix\n  (?>                               # method name\n    [a-zA-Z_]\\w*(?>[?!]|=(?!>))?\n    |\n    ===?|!=|>[>=]?|<=>|<[<=]?|[%&`/\\|]|\\*\\*?|=?~|[-+]@?|\\[]=?\n  )\n)\n[ \\t]\n(?=[ \\t]*[^\\s#;])                 # make sure the following is not comment",
       "beginCaptures": {
         "1": {
           "name": "keyword.control.def.ruby"
@@ -326,12 +347,13 @@
           "name": "entity.name.function.ruby"
         }
       },
-      "end": "(?=;)|(?<=[]!\"')?`}\\w])(?=\\s*#|\\s*$)",
+      "comment": "same as the previous rule, but without parentheses around the arguments",
+      "end": "(?=;)|(?<=[\\w\\])}`'\"!?])(?=\\s*#|\\s*$)",
       "name": "meta.function.method.with-arguments.ruby",
       "patterns": [
         {
-          "begin": "(?=[\\&*A-Z_a-z])",
-          "end": "(?=[,;]|\\s*#|\\s*$)",
+          "begin": "(?=[&*_a-zA-Z])",
+          "end": "(?=,|;|\\s*#|\\s*$)",
           "patterns": [
             {
               "include": "#method_parameters"
@@ -352,11 +374,12 @@
           "name": "entity.name.function.ruby"
         }
       },
-      "match": "(?=def\\b)(?<=^|\\s)(def)\\b(\\s+((?>[A-Z_a-z]\\w*(?>\\.|::))?(?>[A-Z_a-z]\\w*(?>[!?]|=(?!>))?|===?|!=|>[=>]?|<=>|<[<=]?|[%\\&/`|]|\\*\\*?|=?~|[-+]@?|\\[]=?)))?",
+      "comment": " the optional name is just to catch the def also without a method-name",
+      "match": "(?x)\n(?=def\\b)                            # optimization to help Oniguruma fail fast\n(?<=^|\\s)(def)\\b\n(\n  \\s+\n  (\n    (?>[a-zA-Z_]\\w*(?>\\.|::))?      # method prefix\n    (?>                               # method name\n      [a-zA-Z_]\\w*(?>[?!]|=(?!>))?\n      |\n      ===?|!=|>[>=]?|<=>|<[<=]?|[%&`/\\|]|\\*\\*?|=?~|[-+]@?|\\[]=?\n    )\n  )\n)?",
       "name": "meta.function.method.without-arguments.ruby"
     },
     {
-      "match": "\\b(\\d(?>_?\\d)*(\\.(?![^\\s\\d])(?>_?\\d)*)?([Ee][-+]?\\d(?>_?\\d)*)?|0(?:[Xx]\\h(?>_?\\h)*|[Oo]?[0-7](?>_?[0-7])*|[Bb][01](?>_?[01])*|[Dd]\\d(?>_?\\d)*))\\b",
+      "match": "(?x)\n\\b\n(\n  [\\d](?>_?\\d)*                             # 100_000\n  (\\.(?![^[:space:][:digit:]])(?>_?\\d)*)?   # fractional part\n  ([eE][-+]?\\d(?>_?\\d)*)?                   # 1.23e-4\n  |\n  0\n  (?:\n    [xX]\\h(?>_?\\h)*|\n    [oO]?[0-7](?>_?[0-7])*|\n    [bB][01](?>_?[01])*|\n    [dD]\\d(?>_?\\d)*\n  )                                           # A base indicator can only be used with an integer\n)\\b",
       "name": "constant.numeric.ruby"
     },
     {
@@ -366,6 +389,7 @@
           "name": "punctuation.definition.symbol.begin.ruby"
         }
       },
+      "comment": "symbol literal with '' delimiter",
       "end": "'",
       "endCaptures": {
         "0": {
@@ -387,6 +411,7 @@
           "name": "punctuation.section.symbol.begin.ruby"
         }
       },
+      "comment": "symbol literal with \"\" delimiter",
       "end": "\"",
       "endCaptures": {
         "0": {
@@ -404,6 +429,7 @@
       ]
     },
     {
+      "comment": "Needs higher precedence than regular expressions.",
       "match": "(?<!\\()/=",
       "name": "keyword.operator.assignment.augmented.ruby"
     },
@@ -414,6 +440,7 @@
           "name": "punctuation.definition.string.begin.ruby"
         }
       },
+      "comment": "string literal with '' delimiter",
       "end": "'",
       "endCaptures": {
         "0": {
@@ -423,7 +450,7 @@
       "name": "string.quoted.single.ruby",
       "patterns": [
         {
-          "match": "\\\\['\\\\]",
+          "match": "\\\\'|\\\\\\\\",
           "name": "constant.character.escape.ruby"
         }
       ]
@@ -435,6 +462,7 @@
           "name": "punctuation.definition.string.begin.ruby"
         }
       },
+      "comment": "string literal with interpolation and \"\" delimiter",
       "end": "\"",
       "endCaptures": {
         "0": {
@@ -458,6 +486,7 @@
           "name": "punctuation.definition.string.begin.ruby"
         }
       },
+      "comment": "execute string (allows for interpolation)",
       "end": "`",
       "endCaptures": {
         "0": {
@@ -475,7 +504,7 @@
       ]
     },
     {
-      "begin": "(?<![)\\w])((/))(?![*+?])(?=(?:\\\\/|[^/])*+/[eimnosux]*\\s*(?:[]#),.:?}]|\\|\\||&&|<=>|=>|==|=~|!~|!=|;|$|if|else|elsif|then|do|end|unless|while|until|or|and)|$)",
+      "begin": "(?x)\n(?<![\\w)])((/))(?![?*+])\n(?=\n  (?:\\\\/|[^/])*+          # Do NOT change the order\n  /[eimnosux]*\\s*\n  (?:\n    [)\\]}#.,?:]|\\|\\||&&|<=>|=>|==|=~|!~|!=|;|$|\n    if|else|elsif|then|do|end|unless|while|until|or|and\n  )\n  |\n  $\n)",
       "captures": {
         "1": {
           "name": "string.regexp.interpolated.ruby"
@@ -484,6 +513,7 @@
           "name": "punctuation.section.regexp.ruby"
         }
       },
+      "comment": "regular expression literal with interpolation",
       "contentName": "string.regexp.interpolated.ruby",
       "end": "((/[eimnosux]*))",
       "patterns": [
@@ -493,7 +523,7 @@
       ]
     },
     {
-      "begin": "%r\\{",
+      "begin": "%r{",
       "beginCaptures": {
         "0": {
           "name": "punctuation.section.regexp.begin.ruby"
@@ -585,7 +615,7 @@
       ]
     },
     {
-      "begin": "%r(\\W)",
+      "begin": "%r([^\\w])",
       "beginCaptures": {
         "0": {
           "name": "punctuation.section.regexp.begin.ruby"
@@ -683,7 +713,7 @@
       ]
     },
     {
-      "begin": "%I\\{",
+      "begin": "%I{",
       "beginCaptures": {
         "0": {
           "name": "punctuation.section.array.begin.ruby"
@@ -709,7 +739,7 @@
       ]
     },
     {
-      "begin": "%I(\\W)",
+      "begin": "%I([^\\w])",
       "beginCaptures": {
         "0": {
           "name": "punctuation.section.array.begin.ruby"
@@ -747,7 +777,7 @@
       "name": "constant.language.symbol.ruby",
       "patterns": [
         {
-          "match": "\\\\[]\\\\]",
+          "match": "\\\\]|\\\\\\\\",
           "name": "constant.character.escape.ruby"
         },
         {
@@ -771,7 +801,7 @@
       "name": "constant.language.symbol.ruby",
       "patterns": [
         {
-          "match": "\\\\[)\\\\]",
+          "match": "\\\\\\)|\\\\\\\\",
           "name": "constant.character.escape.ruby"
         },
         {
@@ -795,7 +825,7 @@
       "name": "constant.language.symbol.ruby",
       "patterns": [
         {
-          "match": "\\\\[>\\\\]",
+          "match": "\\\\>|\\\\\\\\",
           "name": "constant.character.escape.ruby"
         },
         {
@@ -804,7 +834,7 @@
       ]
     },
     {
-      "begin": "%i\\{",
+      "begin": "%i{",
       "beginCaptures": {
         "0": {
           "name": "punctuation.section.array.begin.ruby"
@@ -819,7 +849,7 @@
       "name": "constant.language.symbol.ruby",
       "patterns": [
         {
-          "match": "\\\\[\\\\}]",
+          "match": "\\\\}|\\\\\\\\",
           "name": "constant.character.escape.ruby"
         },
         {
@@ -828,7 +858,7 @@
       ]
     },
     {
-      "begin": "%i(\\W)",
+      "begin": "%i([^\\w])",
       "beginCaptures": {
         "0": {
           "name": "punctuation.section.array.begin.ruby"
@@ -843,6 +873,7 @@
       "name": "constant.language.symbol.ruby",
       "patterns": [
         {
+          "comment": "Cant be named because its not necessarily an escape.",
           "match": "\\\\."
         }
       ]
@@ -926,7 +957,7 @@
       ]
     },
     {
-      "begin": "%W\\{",
+      "begin": "%W{",
       "beginCaptures": {
         "0": {
           "name": "punctuation.section.array.begin.ruby"
@@ -952,7 +983,7 @@
       ]
     },
     {
-      "begin": "%W(\\W)",
+      "begin": "%W([^\\w])",
       "beginCaptures": {
         "0": {
           "name": "punctuation.section.array.begin.ruby"
@@ -990,7 +1021,7 @@
       "name": "string.quoted.other.ruby",
       "patterns": [
         {
-          "match": "\\\\[]\\\\]",
+          "match": "\\\\]|\\\\\\\\",
           "name": "constant.character.escape.ruby"
         },
         {
@@ -1014,7 +1045,7 @@
       "name": "string.quoted.other.ruby",
       "patterns": [
         {
-          "match": "\\\\[)\\\\]",
+          "match": "\\\\\\)|\\\\\\\\",
           "name": "constant.character.escape.ruby"
         },
         {
@@ -1038,7 +1069,7 @@
       "name": "string.quoted.other.ruby",
       "patterns": [
         {
-          "match": "\\\\[>\\\\]",
+          "match": "\\\\>|\\\\\\\\",
           "name": "constant.character.escape.ruby"
         },
         {
@@ -1047,7 +1078,7 @@
       ]
     },
     {
-      "begin": "%w\\{",
+      "begin": "%w{",
       "beginCaptures": {
         "0": {
           "name": "punctuation.section.array.begin.ruby"
@@ -1062,7 +1093,7 @@
       "name": "string.quoted.other.ruby",
       "patterns": [
         {
-          "match": "\\\\[\\\\}]",
+          "match": "\\\\}|\\\\\\\\",
           "name": "constant.character.escape.ruby"
         },
         {
@@ -1071,7 +1102,7 @@
       ]
     },
     {
-      "begin": "%w(\\W)",
+      "begin": "%w([^\\w])",
       "beginCaptures": {
         "0": {
           "name": "punctuation.section.array.begin.ruby"
@@ -1086,6 +1117,7 @@
       "name": "string.quoted.other.ruby",
       "patterns": [
         {
+          "comment": "Cant be named because its not necessarily an escape.",
           "match": "\\\\."
         }
       ]
@@ -1143,7 +1175,7 @@
       ]
     },
     {
-      "begin": "%[Qx]?\\{",
+      "begin": "%[Qx]?{",
       "beginCaptures": {
         "0": {
           "name": "punctuation.definition.string.begin.ruby"
@@ -1195,7 +1227,7 @@
       ]
     },
     {
-      "begin": "%[Qx](\\W)",
+      "begin": "%[Qx]([^\\w])",
       "beginCaptures": {
         "0": {
           "name": "punctuation.definition.string.begin.ruby"
@@ -1218,7 +1250,7 @@
       ]
     },
     {
-      "begin": "%([^=\\w\\s])",
+      "begin": "%([^\\w\\s=])",
       "beginCaptures": {
         "0": {
           "name": "punctuation.definition.string.begin.ruby"
@@ -1256,7 +1288,7 @@
       "name": "string.quoted.other.ruby",
       "patterns": [
         {
-          "match": "\\\\[)\\\\]",
+          "match": "\\\\\\)|\\\\\\\\",
           "name": "constant.character.escape.ruby"
         },
         {
@@ -1280,7 +1312,7 @@
       "name": "string.quoted.other.ruby",
       "patterns": [
         {
-          "match": "\\\\[>\\\\]",
+          "match": "\\\\>|\\\\\\\\",
           "name": "constant.character.escape.ruby"
         },
         {
@@ -1304,7 +1336,7 @@
       "name": "string.quoted.other.ruby",
       "patterns": [
         {
-          "match": "\\\\[]\\\\]",
+          "match": "\\\\]|\\\\\\\\",
           "name": "constant.character.escape.ruby"
         },
         {
@@ -1313,7 +1345,7 @@
       ]
     },
     {
-      "begin": "%q\\{",
+      "begin": "%q{",
       "beginCaptures": {
         "0": {
           "name": "punctuation.definition.string.begin.ruby"
@@ -1328,7 +1360,7 @@
       "name": "string.quoted.other.ruby",
       "patterns": [
         {
-          "match": "\\\\[\\\\}]",
+          "match": "\\\\}|\\\\\\\\",
           "name": "constant.character.escape.ruby"
         },
         {
@@ -1337,7 +1369,7 @@
       ]
     },
     {
-      "begin": "%q(\\W)",
+      "begin": "%q([^\\w])",
       "beginCaptures": {
         "0": {
           "name": "punctuation.definition.string.begin.ruby"
@@ -1352,6 +1384,7 @@
       "name": "string.quoted.other.ruby",
       "patterns": [
         {
+          "comment": "Cant be named because its not necessarily an escape.",
           "match": "\\\\."
         }
       ]
@@ -1372,7 +1405,7 @@
       "name": "constant.language.symbol.ruby",
       "patterns": [
         {
-          "match": "\\\\[)\\\\]",
+          "match": "\\\\\\)|\\\\\\\\",
           "name": "constant.character.escape.ruby"
         },
         {
@@ -1396,7 +1429,7 @@
       "name": "constant.language.symbol.ruby",
       "patterns": [
         {
-          "match": "\\\\[>\\\\]",
+          "match": "\\\\>|\\\\\\\\",
           "name": "constant.character.escape.ruby"
         },
         {
@@ -1420,7 +1453,7 @@
       "name": "constant.language.symbol.ruby",
       "patterns": [
         {
-          "match": "\\\\[]\\\\]",
+          "match": "\\\\]|\\\\\\\\",
           "name": "constant.character.escape.ruby"
         },
         {
@@ -1429,7 +1462,7 @@
       ]
     },
     {
-      "begin": "%s\\{",
+      "begin": "%s{",
       "beginCaptures": {
         "0": {
           "name": "punctuation.definition.symbol.begin.ruby"
@@ -1444,7 +1477,7 @@
       "name": "constant.language.symbol.ruby",
       "patterns": [
         {
-          "match": "\\\\[\\\\}]",
+          "match": "\\\\}|\\\\\\\\",
           "name": "constant.character.escape.ruby"
         },
         {
@@ -1453,7 +1486,7 @@
       ]
     },
     {
-      "begin": "%s(\\W)",
+      "begin": "%s([^\\w])",
       "beginCaptures": {
         "0": {
           "name": "punctuation.definition.symbol.begin.ruby"
@@ -1468,6 +1501,7 @@
       "name": "constant.language.symbol.ruby",
       "patterns": [
         {
+          "comment": "Cant be named because its not necessarily an escape.",
           "match": "\\\\."
         }
       ]
@@ -1478,7 +1512,8 @@
           "name": "punctuation.definition.constant.ruby"
         }
       },
-      "match": "(?<!:)(:)(?>[$A-Z_a-z]\\w*(?>[!?]|=(?![=>]))?|===?|<=>|>[=>]?|<[<=]?|[%\\&/`|]|\\*\\*?|=?~|[-+]@?|\\[]=?|@@?[A-Z_a-z]\\w*)",
+      "comment": "symbols",
+      "match": "(?x)\n(?<!:)(:)\n(?>\n  [$a-zA-Z_]\\w*(?>[?!]|=(?![>=]))?\n  |\n  ===?|<=>|>[>=]?|<[<=]?|[%&`/\\|]|\\*\\*?|=?~|[-+]@?|\\[]=?\n  |\n  @@?[a-zA-Z_]\\w*\n)",
       "name": "constant.language.symbol.ruby"
     },
     {
@@ -1488,6 +1523,7 @@
           "name": "punctuation.definition.comment.ruby"
         }
       },
+      "comment": "multiline comments",
       "end": "^=end",
       "name": "comment.block.documentation.ruby"
     },
@@ -1495,7 +1531,7 @@
       "include": "#yard"
     },
     {
-      "begin": "(^[\\t ]+)?(?=#)",
+      "begin": "(^[ \\t]+)?(?=#)",
       "beginCaptures": {
         "1": {
           "name": "punctuation.whitespace.comment.leading.ruby"
@@ -1516,7 +1552,8 @@
       ]
     },
     {
-      "match": "(?<!\\w)\\?(\\\\(x\\h{1,2}(?!\\h)\\b|0[0-7]{0,2}(?![0-7])\\b|[^0CMx])|(\\\\[CM]-)+\\w|[^\\\\\\s])",
+      "comment": "\n\t\t\tmatches questionmark-letters.\n\n\t\t\texamples (1st alternation = hex):\n\t\t\t?\\x1     ?\\x61\n\n\t\t\texamples (2nd alternation = octal):\n\t\t\t?\\0      ?\\07     ?\\017\n\n\t\t\texamples (3rd alternation = escaped):\n\t\t\t?\\n      ?\\b\n\n\t\t\texamples (4th alternation = meta-ctrl):\n\t\t\t?\\C-a    ?\\M-a    ?\\C-\\M-\\C-\\M-a\n\n\t\t\texamples (4th alternation = normal):\n\t\t\t?a       ?A       ?0 \n\t\t\t?*       ?\"       ?( \n\t\t\t?.       ?#\n\t\t\t\n\t\t\t\n\t\t\tthe negative lookbehind prevents against matching\n\t\t\tp(42.tainted?)\n\t\t\t",
+      "match": "(?<!\\w)\\?(\\\\(x\\h{1,2}(?!\\h)\\b|0[0-7]{0,2}(?![0-7])\\b|[^x0MC])|(\\\\[MC]-)+\\w|[^\\s\\\\])",
       "name": "constant.numeric.ruby"
     },
     {
@@ -1526,6 +1563,7 @@
           "name": "string.unquoted.program-block.ruby"
         }
       },
+      "comment": "__END__ marker",
       "contentName": "text.plain",
       "end": "(?=not)impossible",
       "patterns": [
@@ -1543,6 +1581,7 @@
     },
     {
       "begin": "(?=(?><<[-~]([\"'`]?)((?:[_\\w]+_|)HTML)\\b\\1))",
+      "comment": "Heredoc with embedded HTML",
       "end": "(?!\\G)",
       "name": "meta.embedded.block.html",
       "patterns": [
@@ -1579,6 +1618,7 @@
     },
     {
       "begin": "(?=(?><<[-~]([\"'`]?)((?:[_\\w]+_|)HAML)\\b\\1))",
+      "comment": "Heredoc with embedded HAML",
       "end": "(?!\\G)",
       "name": "meta.embedded.block.haml",
       "patterns": [
@@ -1615,6 +1655,7 @@
     },
     {
       "begin": "(?=(?><<[-~]([\"'`]?)((?:[_\\w]+_|)XML)\\b\\1))",
+      "comment": "Heredoc with embedded XML",
       "end": "(?!\\G)",
       "name": "meta.embedded.block.xml",
       "patterns": [
@@ -1651,6 +1692,7 @@
     },
     {
       "begin": "(?=(?><<[-~]([\"'`]?)((?:[_\\w]+_|)SQL)\\b\\1))",
+      "comment": "Heredoc with embedded SQL",
       "end": "(?!\\G)",
       "name": "meta.embedded.block.sql",
       "patterns": [
@@ -1686,12 +1728,13 @@
       ]
     },
     {
-      "begin": "(?=(?><<[-~]([\"'`]?)((?:[_\\w]+_|)G(?:RAPHQL|QL))\\b\\1))",
+      "begin": "(?=(?><<[-~]([\"'`]?)((?:[_\\w]+_|)(?:GRAPHQL|GQL))\\b\\1))",
+      "comment": "Heredoc with embedded GraphQL",
       "end": "(?!\\G)",
       "name": "meta.embedded.block.graphql",
       "patterns": [
         {
-          "begin": "(?><<[-~]([\"'`]?)((?:[_\\w]+_|)G(?:RAPHQL|QL))\\b\\1)",
+          "begin": "(?><<[-~]([\"'`]?)((?:[_\\w]+_|)(?:GRAPHQL|GQL))\\b\\1)",
           "beginCaptures": {
             "0": {
               "name": "string.definition.begin.ruby"
@@ -1723,6 +1766,7 @@
     },
     {
       "begin": "(?=(?><<[-~]([\"'`]?)((?:[_\\w]+_|)CSS)\\b\\1))",
+      "comment": "Heredoc with embedded CSS",
       "end": "(?!\\G)",
       "name": "meta.embedded.block.css",
       "patterns": [
@@ -1759,6 +1803,7 @@
     },
     {
       "begin": "(?=(?><<[-~]([\"'`]?)((?:[_\\w]+_|)CPP)\\b\\1))",
+      "comment": "Heredoc with embedded C++",
       "end": "(?!\\G)",
       "name": "meta.embedded.block.cpp",
       "patterns": [
@@ -1795,6 +1840,7 @@
     },
     {
       "begin": "(?=(?><<[-~]([\"'`]?)((?:[_\\w]+_|)C)\\b\\1))",
+      "comment": "Heredoc with embedded C",
       "end": "(?!\\G)",
       "name": "meta.embedded.block.c",
       "patterns": [
@@ -1830,12 +1876,13 @@
       ]
     },
     {
-      "begin": "(?=(?><<[-~]([\"'`]?)((?:[_\\w]+_|)J(?:S|AVASCRIPT))\\b\\1))",
+      "begin": "(?=(?><<[-~]([\"'`]?)((?:[_\\w]+_|)(?:JS|JAVASCRIPT))\\b\\1))",
+      "comment": "Heredoc with embedded Javascript",
       "end": "(?!\\G)",
       "name": "meta.embedded.block.js",
       "patterns": [
         {
-          "begin": "(?><<[-~]([\"'`]?)((?:[_\\w]+_|)J(?:S|AVASCRIPT))\\b\\1)",
+          "begin": "(?><<[-~]([\"'`]?)((?:[_\\w]+_|)(?:JS|JAVASCRIPT))\\b\\1)",
           "beginCaptures": {
             "0": {
               "name": "string.definition.begin.ruby"
@@ -1867,6 +1914,7 @@
     },
     {
       "begin": "(?=(?><<[-~]([\"'`]?)((?:[_\\w]+_|)JQUERY)\\b\\1))",
+      "comment": "Heredoc with embedded jQuery Javascript",
       "end": "(?!\\G)",
       "name": "meta.embedded.block.js.jquery",
       "patterns": [
@@ -1902,12 +1950,13 @@
       ]
     },
     {
-      "begin": "(?=(?><<[-~]([\"'`]?)((?:[_\\w]+_|)SH(?:|ELL))\\b\\1))",
+      "begin": "(?=(?><<[-~]([\"'`]?)((?:[_\\w]+_|)(?:SH|SHELL))\\b\\1))",
+      "comment": "Heredoc with embedded Shell",
       "end": "(?!\\G)",
       "name": "meta.embedded.block.shell",
       "patterns": [
         {
-          "begin": "(?><<[-~]([\"'`]?)((?:[_\\w]+_|)SH(?:|ELL))\\b\\1)",
+          "begin": "(?><<[-~]([\"'`]?)((?:[_\\w]+_|)(?:SH|SHELL))\\b\\1)",
           "beginCaptures": {
             "0": {
               "name": "string.definition.begin.ruby"
@@ -1939,6 +1988,7 @@
     },
     {
       "begin": "(?=(?><<[-~]([\"'`]?)((?:[_\\w]+_|)LUA)\\b\\1))",
+      "comment": "Heredoc with embedded Lua",
       "end": "(?!\\G)",
       "name": "meta.embedded.block.lua",
       "patterns": [
@@ -1975,6 +2025,7 @@
     },
     {
       "begin": "(?=(?><<[-~]([\"'`]?)((?:[_\\w]+_|)RUBY)\\b\\1))",
+      "comment": "Heredoc with embedded Ruby",
       "end": "(?!\\G)",
       "name": "meta.embedded.block.ruby",
       "patterns": [
@@ -2010,12 +2061,13 @@
       ]
     },
     {
-      "begin": "(?=(?><<[-~]([\"'`]?)((?:[_\\w]+_|)YA?ML)\\b\\1))",
+      "begin": "(?=(?><<[-~]([\"'`]?)((?:[_\\w]+_|)(?:YAML|YML))\\b\\1))",
+      "comment": "Heredoc with embedded YAML",
       "end": "(?!\\G)",
       "name": "meta.embedded.block.yaml",
       "patterns": [
         {
-          "begin": "(?><<[-~]([\"'`]?)((?:[_\\w]+_|)YA?ML)\\b\\1)",
+          "begin": "(?><<[-~]([\"'`]?)((?:[_\\w]+_|)(?:YAML|YML))\\b\\1)",
           "beginCaptures": {
             "0": {
               "name": "string.definition.begin.ruby"
@@ -2047,6 +2099,7 @@
     },
     {
       "begin": "(?=(?><<[-~]([\"'`]?)((?:[_\\w]+_|)SLIM)\\b\\1))",
+      "comment": "Heredoc with embedded Slim",
       "end": "(?!\\G)",
       "name": "meta.embedded.block.slim",
       "patterns": [
@@ -2121,6 +2174,7 @@
           ]
         }
       },
+      "comment": "heredoc with multiple inputs and indented terminator",
       "contentName": "string.unquoted.heredoc.ruby",
       "end": "^\\s*\\6$",
       "endCaptures": {
@@ -2141,7 +2195,7 @@
       ]
     },
     {
-      "begin": "(?<=\\{|\\{\\s+|[^$0-:@-Z_a-z]do|^do|[^$0-:@-Z_a-z]do\\s+|^do\\s+)(\\|)",
+      "begin": "(?<={|{\\s+|[^A-Za-z0-9_:@$]do|^do|[^A-Za-z0-9_:@$]do\\s+|^do\\s+)(\\|)",
       "captures": {
         "1": {
           "name": "punctuation.separator.variable.ruby"
@@ -2151,7 +2205,7 @@
       "name": "meta.block.parameters.ruby",
       "patterns": [
         {
-          "begin": "(?![(,|\\s])",
+          "begin": "(?![\\s,|(])",
           "end": "(?=,|\\|\\s*)",
           "patterns": [
             {
@@ -2163,7 +2217,7 @@
                   "name": "variable.other.block.ruby"
                 }
               },
-              "match": "\\G((?:&|\\*\\*?)?)([A-Z_a-z][_\\w]*)"
+              "match": "\\G((?:&|\\*\\*?)?)([a-zA-Z_][\\w_]*)"
             }
           ]
         },
@@ -2186,15 +2240,15 @@
       "name": "keyword.operator.assignment.augmented.ruby"
     },
     {
-      "match": "<=>|<(?![<=])|>(?![<=>])|<=|>=|===?|=~|!=|!~|(?<=[\\t ])\\?",
+      "match": "<=>|<(?!<|=)|>(?!<|=|>)|<=|>=|===|==|=~|!=|!~|(?<=[ \\t])\\?",
       "name": "keyword.operator.comparison.ruby"
     },
     {
-      "match": "(?<!\\.)\\b(and|not|or)\\b(?![!?])",
+      "match": "(?<!\\.)\\b(and|not|or)\\b(?![?!])",
       "name": "keyword.operator.logical.ruby"
     },
     {
-      "match": "(?<=^|[\\t !])!|&&|\\|\\||\\^",
+      "match": "(?<=^|[ \\t!])!|&&|\\|\\||\\^",
       "name": "keyword.operator.logical.ruby"
     },
     {
@@ -2203,10 +2257,11 @@
           "name": "keyword.operator.logical.ruby"
         }
       },
+      "comment": "Safe navigation operator",
       "match": "(&\\.)\\s*(?![A-Z])"
     },
     {
-      "match": "([%\\&]|\\*\\*|[-*+/])",
+      "match": "(%|&|\\*\\*|\\*|\\+|-|/)",
       "name": "keyword.operator.arithmetic.ruby"
     },
     {
@@ -2214,7 +2269,7 @@
       "name": "keyword.operator.assignment.ruby"
     },
     {
-      "match": "[|~]|>>",
+      "match": "\\||~|>>",
       "name": "keyword.operator.other.ruby"
     },
     {
@@ -2231,6 +2286,7 @@
           "name": "punctuation.separator.namespace.ruby"
         }
       },
+      "comment": "Mark as namespace separator if double colons followed by capital letter",
       "match": "(::)\\s*(?=[A-Z])"
     },
     {
@@ -2239,14 +2295,16 @@
           "name": "punctuation.separator.method.ruby"
         }
       },
+      "comment": "Mark as method separator if double colons not followed by capital letter",
       "match": "(\\.|::)\\s*(?![A-Z])"
     },
     {
+      "comment": "Must come after method and constant separators to prefer double colons",
       "match": ":",
       "name": "punctuation.separator.other.ruby"
     },
     {
-      "match": "\\{",
+      "match": "{",
       "name": "punctuation.section.scope.begin.ruby"
     },
     {
@@ -2262,22 +2320,22 @@
       "name": "punctuation.section.array.end.ruby"
     },
     {
-      "match": "[()]",
+      "match": "\\(|\\)",
       "name": "punctuation.section.function.ruby"
     },
     {
-      "begin": "(?<=[^.]\\.|::)(?=[A-Za-z][!0-9?A-Z_a-z]*[^!0-9?A-Z_a-z])",
-      "end": "(?<=[!0-9?A-Z_a-z])(?=[^!0-9?A-Z_a-z])",
+      "begin": "(?<=[^\\.]\\.|::)(?=[a-zA-Z][a-zA-Z0-9_!?]*[^a-zA-Z0-9_!?])",
+      "end": "(?<=[a-zA-Z0-9_!?])(?=[^a-zA-Z0-9_!?])",
       "name": "meta.function-call.ruby",
       "patterns": [
         {
-          "match": "([A-Za-z][!0-9?A-Z_a-z]*)(?=[^!0-9?A-Z_a-z])",
+          "match": "([a-zA-Z][a-zA-Z0-9_!?]*)(?=[^a-zA-Z0-9_!?])",
           "name": "entity.name.function.ruby"
         }
       ]
     },
     {
-      "begin": "([A-Za-z]\\w*[!?]?)(\\()",
+      "begin": "([a-zA-Z]\\w*[!?]?)(\\()",
       "beginCaptures": {
         "1": {
           "name": "entity.name.function.ruby"
@@ -2302,7 +2360,7 @@
   ],
   "repository": {
     "escaped_char": {
-      "match": "\\\\(?:[0-7]{1,3}|x[A-Fa-f\\d]{1,2}|.)",
+      "match": "\\\\(?:[0-7]{1,3}|x[\\da-fA-F]{1,2}|.)",
       "name": "constant.character.escape.ruby"
     },
     "heredoc": {
@@ -2317,7 +2375,7 @@
     "interpolated_ruby": {
       "patterns": [
         {
-          "begin": "#\\{",
+          "begin": "#{",
           "beginCaptures": {
             "0": {
               "name": "punctuation.section.embedded.begin.ruby"
@@ -2346,7 +2404,7 @@
               "name": "punctuation.definition.variable.ruby"
             }
           },
-          "match": "(#@)[A-Z_a-z]\\w*",
+          "match": "(#@)[a-zA-Z_]\\w*",
           "name": "variable.other.readwrite.instance.ruby"
         },
         {
@@ -2355,7 +2413,7 @@
               "name": "punctuation.definition.variable.ruby"
             }
           },
-          "match": "(#@@)[A-Z_a-z]\\w*",
+          "match": "(#@@)[a-zA-Z_]\\w*",
           "name": "variable.other.readwrite.class.ruby"
         },
         {
@@ -2364,7 +2422,7 @@
               "name": "punctuation.definition.variable.ruby"
             }
           },
-          "match": "(#\\$)[A-Z_a-z]\\w*",
+          "match": "(#\\$)[a-zA-Z_]\\w*",
           "name": "variable.other.readwrite.global.ruby"
         }
       ]
@@ -2395,7 +2453,7 @@
               "name": "punctuation.section.scope.begin.ruby"
             }
           },
-          "end": "}",
+          "end": "\\}",
           "endCaptures": {
             "0": {
               "name": "punctuation.section.scope.end.ruby"
@@ -2423,7 +2481,7 @@
               "name": "punctuation.section.array.begin.ruby"
             }
           },
-          "end": "]",
+          "end": "\\]",
           "endCaptures": {
             "0": {
               "name": "punctuation.section.array.end.ruby"
@@ -2459,7 +2517,7 @@
               "name": "variable.parameter.function.ruby"
             }
           },
-          "match": "\\G(&|\\*\\*?)?(?:([A-Z_a-z]\\w*[!?]?(:))|([A-Z_a-z]\\w*))"
+          "match": "\\G(&|\\*\\*?)?(?:([_a-zA-Z]\\w*[?!]?(:))|([_a-zA-Z]\\w*))"
         },
         "parens": {
           "begin": "\\(",
@@ -2543,7 +2601,7 @@
       ]
     },
     "nest_curly": {
-      "begin": "\\{",
+      "begin": "{",
       "captures": {
         "0": {
           "name": "punctuation.section.scope.ruby"
@@ -2559,7 +2617,7 @@
     "nest_curly_and_self": {
       "patterns": [
         {
-          "begin": "\\{",
+          "begin": "{",
           "captures": {
             "0": {
               "name": "punctuation.section.scope.ruby"
@@ -2578,7 +2636,7 @@
       ]
     },
     "nest_curly_i": {
-      "begin": "\\{",
+      "begin": "{",
       "captures": {
         "0": {
           "name": "punctuation.section.scope.ruby"
@@ -2598,7 +2656,7 @@
       ]
     },
     "nest_curly_r": {
-      "begin": "\\{",
+      "begin": "{",
       "captures": {
         "0": {
           "name": "punctuation.section.scope.ruby"
@@ -2733,7 +2791,7 @@
               "name": "punctuation.definition.arbitrary-repetition.ruby"
             }
           },
-          "match": "(\\{)\\d+(,\\d+)?(})",
+          "match": "({)\\d+(,\\d+)?(})",
           "name": "string.regexp.arbitrary-repetition.ruby"
         },
         {
@@ -2787,12 +2845,13 @@
           ]
         },
         {
-          "begin": "(?<=^|\\s)(#)\\s(?=[-\\t !,.0-9?A-Za-z[^\\x00-\\x7F]]*$)",
+          "begin": "(?<=^|\\s)(#)\\s(?=[[a-zA-Z0-9,. \\t?!-][^\\x{00}-\\x{7F}]]*$)",
           "beginCaptures": {
             "1": {
               "name": "punctuation.definition.comment.ruby"
             }
           },
+          "comment": "We are restrictive in what we allow to go after the comment character to avoid false positives, since the availability of comments depend on regexp flags.",
           "end": "$\\n?",
           "endCaptures": {
             "0": {
@@ -2844,6 +2903,7 @@
           "name": "comment.line.keyword.yard.ruby"
         }
       },
+      "comment": "For YARD tags that follow the tag-comment pattern",
       "contentName": "comment.line.string.yard.ruby",
       "end": "^(?!\\s*#\\3\\s{2,}|\\s*#\\s*$)",
       "name": "comment.line.number-sign.ruby",
@@ -2882,6 +2942,7 @@
           "name": "comment.line.punctuation.yard.ruby"
         }
       },
+      "comment": "For YARD directives",
       "contentName": "comment.line.string.yard.ruby",
       "end": "^(?!\\s*#\\3\\s{2,}|\\s*#\\s*$)",
       "name": "comment.line.number-sign.ruby",
@@ -2895,7 +2956,7 @@
       ]
     },
     "yard_macro_attribute": {
-      "begin": "^(\\s*)(#)(\\s*)(@!)(attribute|macro)(\\s+((\\[).+(])))?(?=\\s)(\\s+([_a-z]\\w*:?))?",
+      "begin": "^(\\s*)(#)(\\s*)(@!)(attribute|macro)(\\s+((\\[).+(])))?(?=\\s)(\\s+([a-z_]\\w*:?))?",
       "beginCaptures": {
         "11": {
           "name": "comment.line.parameter.yard.ruby"
@@ -2919,6 +2980,7 @@
           "name": "comment.line.punctuation.yard.ruby"
         }
       },
+      "comment": "separate rule for attribute and macro tags because name goes after []",
       "contentName": "comment.line.string.yard.ruby",
       "end": "^(?!\\s*#\\3\\s{2,}|\\s*#\\s*$)",
       "name": "comment.line.number-sign.ruby",
@@ -2932,7 +2994,7 @@
       ]
     },
     "yard_option": {
-      "begin": "^(\\s*)(#)(\\s*)(@)(option)(?=\\s)(?>\\s+([_a-z]\\w*:?))?(?>\\s+((\\[).+(])))?(?>\\s+((\\S*)))?(?>\\s+((\\().+(\\))))?",
+      "begin": "^(\\s*)(#)(\\s*)(@)(option)(?=\\s)(?>\\s+([a-z_]\\w*:?))?(?>\\s+((\\[).+(])))?(?>\\s+((\\S*)))?(?>\\s+((\\().+(\\))))?",
       "beginCaptures": {
         "10": {
           "name": "comment.line.keyword.yard.ruby"
@@ -2971,6 +3033,7 @@
           "name": "comment.line.punctuation.yard.ruby"
         }
       },
+      "comment": "For YARD option tag that follow the tag-name-types-key-(value)-description pattern",
       "contentName": "comment.line.string.yard.ruby",
       "end": "^(?!\\s*#\\3\\s{2,}|\\s*#\\s*$)",
       "name": "comment.line.number-sign.ruby",
@@ -2984,7 +3047,7 @@
       ]
     },
     "yard_param_types": {
-      "begin": "^(\\s*)(#)(\\s*)(@)(attr|attr_reader|attr_writer|yieldparam|param)(?=\\s)(?>\\s+(?>([_a-z]\\w*:?)|((\\[).+(]))))?(?>\\s+(?>((\\[).+(]))|([_a-z]\\w*:?)))?",
+      "begin": "^(\\s*)(#)(\\s*)(@)(attr|attr_reader|attr_writer|yieldparam|param)(?=\\s)(?>\\s+(?>([a-z_]\\w*:?)|((\\[).+(]))))?(?>\\s+(?>((\\[).+(]))|([a-z_]\\w*:?)))?",
       "beginCaptures": {
         "10": {
           "name": "comment.line.type.yard.ruby"
@@ -3020,6 +3083,7 @@
           "name": "comment.line.punctuation.yard.ruby"
         }
       },
+      "comment": "For YARD tags that follow the tag-name-types-description or tag-types-name-description pattern",
       "contentName": "comment.line.string.yard.ruby",
       "end": "^(?!\\s*#\\3\\s{2,}|\\s*#\\s*$)",
       "name": "comment.line.number-sign.ruby",
@@ -3048,6 +3112,7 @@
           "name": "comment.line.parameter.yard.ruby"
         }
       },
+      "comment": "separate rule for @see because name could contain url",
       "contentName": "comment.line.string.yard.ruby",
       "end": "^(?!\\s*#\\3\\s{2,}|\\s*#\\s*$)",
       "name": "comment.line.number-sign.ruby",
@@ -3072,6 +3137,7 @@
           "name": "comment.line.keyword.yard.ruby"
         }
       },
+      "comment": "For YARD tags that are just the tag",
       "match": "^(\\s*)(#)(\\s*)(@)(private)$",
       "name": "comment.line.number-sign.ruby"
     },
@@ -3097,6 +3163,7 @@
           "name": "comment.line.punctuation.yard.ruby"
         }
       },
+      "comment": "For YARD tags that follow the tag-types-comment pattern",
       "contentName": "comment.line.string.yard.ruby",
       "end": "^(?!\\s*#\\3\\s{2,}|\\s*#\\s*$)",
       "name": "comment.line.number-sign.ruby",
@@ -3110,5 +3177,6 @@
       ]
     }
   },
-  "scopeName": "source.ruby"
+  "scopeName": "source.ruby",
+  "version": "https://github.com/Shopify/ruby-lsp/commit/2d5552a22f71ac75086c7f03d404df51e23f6535"
 }

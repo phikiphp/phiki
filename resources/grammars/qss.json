@@ -1,4 +1,5 @@
 {
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
   "displayName": "Qt Style Sheets",
   "name": "qss",
   "patterns": [
@@ -16,7 +17,7 @@
     "color": {
       "patterns": [
         {
-          "begin": "\\b(rgba??|hsva??|hsla??)\\s*\\(",
+          "begin": "\\b(rgb|rgba|hsv|hsva|hsl|hsla)\\s*\\(",
           "beginCaptures": {
             "1": {
               "name": "entity.name.function.qss"
@@ -38,7 +39,7 @@
           "name": "support.constant.property-value.named-color.qss"
         },
         {
-          "match": "#(\\h{3}|\\h{6}|\\h{8})\\b",
+          "match": "#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})\\b",
           "name": "support.constant.property-value.color.qss"
         }
       ]
@@ -55,7 +56,7 @@
     "icon-properties": {
       "patterns": [
         {
-          "match": "\\b((?:backward|cd|computer|desktop|dialog-apply|dialog-cancel|dialog-close|dialog-discard|dialog-help|dialog-no|dialog-ok|dialog-open|dialog-reset|dialog-save|dialog-yes|directory-closed|directory|directory-link|directory-open|dockwidget-close|downarrow|dvd|file|file-link|filedialog-contentsview|filedialog-detailedview|filedialog-end|filedialog-infoview|filedialog-listview|filedialog-new-directory|filedialog-parent-directory|filedialog-start|floppy|forward|harddisk|home|leftarrow|messagebox-critical|messagebox-information|messagebox-question|messagebox-warning|network|rightarrow|titlebar-contexthelp|titlebar-maximize|titlebar-menu|titlebar-minimize|titlebar-normal|titlebar-close|titlebar-shade|titlebar-unshade|trash|uparrow)-icon)\\b",
+          "match": "\\b(backward-icon|cd-icon|computer-icon|desktop-icon|dialog-apply-icon|dialog-cancel-icon|dialog-close-icon|dialog-discard-icon|dialog-help-icon|dialog-no-icon|dialog-ok-icon|dialog-open-icon|dialog-reset-icon|dialog-save-icon|dialog-yes-icon|directory-closed-icon|directory-icon|directory-link-icon|directory-open-icon|dockwidget-close-icon|downarrow-icon|dvd-icon|file-icon|file-link-icon|filedialog-contentsview-icon|filedialog-detailedview-icon|filedialog-end-icon|filedialog-infoview-icon|filedialog-listview-icon|filedialog-new-directory-icon|filedialog-parent-directory-icon|filedialog-start-icon|floppy-icon|forward-icon|harddisk-icon|home-icon|leftarrow-icon|messagebox-critical-icon|messagebox-information-icon|messagebox-question-icon|messagebox-warning-icon|network-icon|rightarrow-icon|titlebar-contexthelp-icon|titlebar-maximize-icon|titlebar-menu-icon|titlebar-minimize-icon|titlebar-normal-icon|titlebar-close-icon|titlebar-shade-icon|titlebar-unshade-icon|trash-icon|uparrow-icon)\\b",
           "name": "support.type.property-name.qss"
         }
       ]
@@ -71,7 +72,7 @@
               "name": "entity.name.tag.qss"
             }
           },
-          "match": "(#)([A-Za-z][-0-9A-Z_a-z]*)"
+          "match": "(#)([a-zA-Z][a-zA-Z0-9_-]*)"
         }
       ]
     },
@@ -117,7 +118,7 @@
       "patterns": [
         {
           "begin": "\\[",
-          "end": "]",
+          "end": "\\]",
           "patterns": [
             {
               "include": "#comment-block"
@@ -126,7 +127,7 @@
               "include": "#string"
             },
             {
-              "match": "\\b[A-Z_a-z]\\w*\\b",
+              "match": "\\b[_a-zA-Z]\\w*\\b",
               "name": "variable.parameter.qml"
             }
           ]
@@ -137,7 +138,7 @@
       "patterns": [
         {
           "begin": ":",
-          "end": ";|(?=})",
+          "end": ";|(?=\\})",
           "patterns": [
             {
               "include": "#comment-block"
@@ -146,7 +147,7 @@
               "include": "#color"
             },
             {
-              "begin": "\\b(q(?:linear|radial|conical)gradient)\\s*\\(",
+              "begin": "\\b(qlineargradient|qradialgradient|qconicalgradient)\\s*\\(",
               "beginCaptures": {
                 "1": {
                   "name": "entity.name.function.qss"
@@ -215,7 +216,7 @@
       "patterns": [
         {
           "begin": "\\{",
-          "end": "}",
+          "end": "\\}",
           "patterns": [
             {
               "include": "#comment-block"
@@ -267,7 +268,7 @@
     "stylable-widgets": {
       "patterns": [
         {
-          "match": "\\b(Q(?:AbstractScrollArea|AbstractItemView|CheckBox|ColumnView|ComboBox|DateEdit|DateTimeEdit|Dialog|DialogButtonBox|DockWidget|DoubleSpinBox|Frame|GroupBox|HeaderView|Label|LineEdit|ListView|ListWidget|MainWindow|Menu|MenuBar|MessageBox|ProgressBar|PlainTextEdit|PushButton|RadioButton|ScrollBar|SizeGrip|Slider|SpinBox|Splitter|StatusBar|TabBar|TabWidget|TableView|TableWidget|TextEdit|TimeEdit|ToolBar|ToolButton|ToolBox|ToolTip|TreeView|TreeWidget|Widget))\\b",
+          "match": "\\b(QAbstractScrollArea|QAbstractItemView|QCheckBox|QColumnView|QComboBox|QDateEdit|QDateTimeEdit|QDialog|QDialogButtonBox|QDockWidget|QDoubleSpinBox|QFrame|QGroupBox|QHeaderView|QLabel|QLineEdit|QListView|QListWidget|QMainWindow|QMenu|QMenuBar|QMessageBox|QProgressBar|QPlainTextEdit|QPushButton|QRadioButton|QScrollBar|QSizeGrip|QSlider|QSpinBox|QSplitter|QStatusBar|QTabBar|QTabWidget|QTableView|QTableWidget|QTextEdit|QTimeEdit|QToolBar|QToolButton|QToolBox|QToolTip|QTreeView|QTreeWidget|QWidget)\\b",
           "name": "entity.name.type.qss"
         }
       ]

@@ -4,8 +4,8 @@
     "dm",
     "dme"
   ],
-  "foldingStartMarker": "/\\*\\*(?!\\*)|^(?![^{]*?//|[^{]*?/\\*(?!.*?\\*/.*?\\{)).*?\\{\\s*($|//|/\\*(?!.*?\\*/.*\\S))",
-  "foldingStopMarker": "(?<!\\*)\\*\\*/|^\\s*}",
+  "foldingStartMarker": "(?x)\n/\\*\\*(?!\\*)\n|^(?![^{]*?//|[^{]*?/\\*(?!.*?\\*/.*?\\{)).*?\\{\\s*($|//|/\\*(?!.*?\\*/.*\\S))",
+  "foldingStopMarker": "(?<!\\*)\\*\\*/|^\\s*\\}",
   "name": "dream-maker",
   "patterns": [
     {
@@ -35,11 +35,11 @@
           "name": "variable.other.dm"
         }
       },
-      "match": "(var)[ /](?:(static|global|tmp|const)/)?(?:(datum|atom(?:/movable)?|obj|mob|turf|area|savefile|list|client|sound|image|database|matrix|regex|exception)/)?(?:([-$0-9A-Z_a-z]*)/)*([$0-9A-Z_a-z]*)\\b",
+      "match": "(?x)\n(var)[\\/ ]\n(?:(static|global|tmp|const)\\/)?\n(?:(datum|atom(?:\\/movable)?|obj|mob|turf|area|savefile|list|client|sound|image|database|matrix|regex|exception)\\/)?\n(?:\n\t([a-zA-Z0-9_\\-$]*)\\/\n)*\n\n([A-Za-z0-9_$]*)\\b",
       "name": "meta.initialization.dm"
     },
     {
-      "match": "\\b((0([Xx])\\h*)|(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))(([Ee])([-+])?[0-9]+)?)\\b",
+      "match": "\\b((0(x|X)[0-9a-fA-F]*)|(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))((e|E)(\\+|-)?[0-9]+)?)\\b",
       "name": "constant.numeric.dm"
     },
     {
@@ -63,11 +63,11 @@
       "name": "variable.language.dm"
     },
     {
-      "match": "(\\?|([<>])(=)?|[.:]|/(=)?|~|\\+([+=])?|-([-=])?|\\*([*=])?|%|>>|<<|=(=)?|!(=)?|<>|&&??|[\\^|]|\\|\\||\\bto\\b|\\bin\\b|\\bstep\\b)",
+      "match": "(\\?|(>|<)(=)?|\\.|:|/(=)?|~|\\+(\\+|=)?|-(-|=)?|\\*(\\*|=)?|%|>>|<<|=(=)?|!(=)?|<>|&|&&|\\^|\\||\\|\\||\\bto\\b|\\bin\\b|\\bstep\\b)",
       "name": "keyword.operator.dm"
     },
     {
-      "match": "\\b([A-Z_][0-9A-Z_]*)\\b",
+      "match": "\\b([A-Z_][A-Z_0-9]*)\\b",
       "name": "constant.language.dm"
     },
     {
@@ -75,7 +75,7 @@
       "name": "constant.language.dm"
     },
     {
-      "begin": "\\{\"",
+      "begin": "{\"",
       "beginCaptures": {
         "0": {
           "name": "punctuation.definition.string.begin.dm"
@@ -141,7 +141,7 @@
       ]
     },
     {
-      "begin": "^\\s*((#)\\s*define)\\s+((?<id>[A-Z_a-z][0-9A-Z_a-z]*))(\\()(\\s*\\g<id>\\s*((,)\\s*\\g<id>\\s*)*(?:\\.\\.\\.)?)(\\))",
+      "begin": "(?x)\n^\\s* ((\\#)\\s*define) \\s+     # define\n((?<id>[a-zA-Z_][a-zA-Z0-9_]*))  # macro name\n(?:\n\t(\\()\n\t\t(\n\t\t\t\\s* \\g<id> \\s*         # first argument\n\t\t\t((,) \\s* \\g<id> \\s*)*  # additional arguments\n\t\t\t(?:\\.\\.\\.)?            # varargs ellipsis?\n\t\t)\n\t(\\))\n)",
       "beginCaptures": {
         "1": {
           "name": "keyword.control.directive.define.dm"
@@ -165,7 +165,7 @@
           "name": "punctuation.definition.parameters.end.dm"
         }
       },
-      "end": "(?=/[*/])|(?<!\\\\)(?=\\n)",
+      "end": "(?=(?://|/\\*))|(?<!\\\\)(?=\\n)",
       "name": "meta.preprocessor.macro.dm",
       "patterns": [
         {
@@ -174,7 +174,7 @@
       ]
     },
     {
-      "begin": "^\\s*((#)\\s*define)\\s+((?<id>[A-Z_a-z][0-9A-Z_a-z]*))",
+      "begin": "(?x)\n^\\s* ((\\#)\\s*define) \\s+     # define\n((?<id>[a-zA-Z_][a-zA-Z0-9_]*))  # macro name",
       "beginCaptures": {
         "1": {
           "name": "keyword.control.directive.define.dm"
@@ -186,7 +186,7 @@
           "name": "variable.other.preprocessor.dm"
         }
       },
-      "end": "(?=/[*/])|(?<!\\\\)(?=\\n)",
+      "end": "(?=(?://|/\\*))|(?<!\\\\)(?=\\n)",
       "name": "meta.preprocessor.macro.dm",
       "patterns": [
         {
@@ -226,7 +226,7 @@
           "name": "punctuation.definition.directive.dm"
         }
       },
-      "end": "(?=/[*/])|(?<!\\\\)(?=\\n)",
+      "end": "(?=(?://|/\\*))|(?<!\\\\)(?=\\n)",
       "name": "meta.preprocessor.dm",
       "patterns": [
         {
@@ -239,7 +239,7 @@
       "include": "#block"
     },
     {
-      "begin": "(?:^|(?:(?=\\s)(?<!else|new|return)(?<=\\w)|(?=\\s*[A-Z_a-z])(?<!&&)(?<=[\\&*>])))(\\s*)(?!(while|for|do|if|else|switch|catch|enumerate|return|r?iterate)\\s*\\()((?:[A-Z_a-z][0-9A-Z_a-z]*+|::)++|(?<=operator)(?:[-!\\&*+<=>]+|\\(\\)|\\[]))\\s*(?=\\()",
+      "begin": "(?x)\n\t\t\t\t(?:  ^                                 # begin-of-line\n\t\t\t\t\t|\n\t\t\t\t\t\t (?: (?= \\s )           (?<!else|new|return) (?<=\\w)      #  or word + space before name\n\t\t\t\t\t\t\t | (?= \\s*[A-Za-z_] ) (?<!&&)       (?<=[*&>])   #  or type modifier before name\n\t\t\t\t\t\t )\n\t\t\t\t)\n\t\t\t\t(\\s*) (?!(while|for|do|if|else|switch|catch|enumerate|return|r?iterate)\\s*\\()\n\t\t\t\t(\n\t\t\t\t\t(?: [A-Za-z_][A-Za-z0-9_]*+ | :: )++ |                  # actual name\n\t\t\t\t\t(?: (?<=operator) (?: [-*&<>=+!]+ | \\(\\) | \\[\\] ) )  # if it is a C++ operator\n\t\t\t\t)\n\t\t\t\t \\s*(?=\\()",
       "beginCaptures": {
         "1": {
           "name": "punctuation.whitespace.function.leading.dm"
@@ -251,7 +251,7 @@
           "name": "punctuation.definition.parameters.dm"
         }
       },
-      "end": "(?<=})|(?=#)|(;)?",
+      "end": "(?<=\\})|(?=#)|(;)?",
       "name": "meta.function.dm",
       "patterns": [
         {
@@ -272,12 +272,12 @@
   ],
   "repository": {
     "access": {
-      "match": "\\.[A-Z_a-z][0-9A-Z_a-z]*\\b(?!\\s*\\()",
+      "match": "\\.[a-zA-Z_][a-zA-Z_0-9]*\\b(?!\\s*\\()",
       "name": "variable.other.dot-access.dm"
     },
     "block": {
       "begin": "\\{",
-      "end": "}",
+      "end": "\\}",
       "name": "meta.block.dm",
       "patterns": [
         {
@@ -311,7 +311,7 @@
               "name": "punctuation.definition.parameters.dm"
             }
           },
-          "match": "(?:(?=\\s)(?:(?<=else|new|return)|(?<!\\w))(\\s+))?\\b((?!(while|for|do|if|else|switch|catch|enumerate|return|r?iterate)\\s*\\()(?:(?!NS)[A-Z_a-z][0-9A-Z_a-z]*+\\b|::)++)\\s*(\\()",
+          "match": "(?x) (?: (?= \\s )  (?:(?<=else|new|return) | (?<!\\w)) (\\s+))?\n\t\t\t(\\b\n\t\t\t\t(?!(while|for|do|if|else|switch|catch|enumerate|return|r?iterate)\\s*\\()(?:(?!NS)[A-Za-z_][A-Za-z0-9_]*+\\b | :: )++                  # actual name\n\t\t\t)\n\t\t\t \\s*(\\()",
           "name": "meta.function-call.dm"
         },
         {
@@ -381,6 +381,7 @@
     },
     "disabled": {
       "begin": "^\\s*#\\s*if(n?def)?\\b.*$",
+      "comment": "eat nested preprocessor if(def)s",
       "end": "^\\s*#\\s*endif\\b.*$",
       "patterns": [
         {
@@ -399,7 +400,7 @@
       ]
     },
     "preprocessor-rule-disabled": {
-      "begin": "^\\s*(#(if)\\s+(0))\\b.*",
+      "begin": "^\\s*(#(if)\\s+(0)\\b).*",
       "captures": {
         "1": {
           "name": "meta.preprocessor.dm"
@@ -411,10 +412,10 @@
           "name": "constant.numeric.preprocessor.dm"
         }
       },
-      "end": "^\\s*(#\\s*(endif))\\b",
+      "end": "^\\s*(#\\s*(endif)\\b)",
       "patterns": [
         {
-          "begin": "^\\s*(#\\s*(else))\\b",
+          "begin": "^\\s*(#\\s*(else)\\b)",
           "captures": {
             "1": {
               "name": "meta.preprocessor.dm"
@@ -432,7 +433,7 @@
         },
         {
           "begin": "",
-          "end": "(?=^\\s*#\\s*(e(?:lse|ndif))\\b.*$)",
+          "end": "(?=^\\s*#\\s*(else|endif)\\b.*$)",
           "name": "comment.block.preprocessor.if-branch",
           "patterns": [
             {
@@ -443,7 +444,7 @@
       ]
     },
     "preprocessor-rule-disabled-block": {
-      "begin": "^\\s*(#(if)\\s+(0))\\b.*",
+      "begin": "^\\s*(#(if)\\s+(0)\\b).*",
       "captures": {
         "1": {
           "name": "meta.preprocessor.dm"
@@ -455,10 +456,10 @@
           "name": "constant.numeric.preprocessor.dm"
         }
       },
-      "end": "^\\s*(#\\s*(endif))\\b",
+      "end": "^\\s*(#\\s*(endif)\\b)",
       "patterns": [
         {
-          "begin": "^\\s*(#\\s*(else))\\b",
+          "begin": "^\\s*(#\\s*(else)\\b)",
           "captures": {
             "1": {
               "name": "meta.preprocessor.dm"
@@ -476,7 +477,7 @@
         },
         {
           "begin": "",
-          "end": "(?=^\\s*#\\s*(e(?:lse|ndif))\\b.*$)",
+          "end": "(?=^\\s*#\\s*(else|endif)\\b.*$)",
           "name": "comment.block.preprocessor.if-branch.in-block",
           "patterns": [
             {
@@ -487,7 +488,7 @@
       ]
     },
     "preprocessor-rule-enabled": {
-      "begin": "^\\s*(#(if)\\s+(0*1))\\b",
+      "begin": "^\\s*(#(if)\\s+(0*1)\\b)",
       "captures": {
         "1": {
           "name": "meta.preprocessor.dm"
@@ -499,10 +500,10 @@
           "name": "constant.numeric.preprocessor.dm"
         }
       },
-      "end": "^\\s*(#\\s*(endif))\\b",
+      "end": "^\\s*(#\\s*(endif)\\b)",
       "patterns": [
         {
-          "begin": "^\\s*(#\\s*(else))\\b.*",
+          "begin": "^\\s*(#\\s*(else)\\b).*",
           "captures": {
             "1": {
               "name": "meta.preprocessor.dm"
@@ -521,7 +522,7 @@
         },
         {
           "begin": "",
-          "end": "(?=^\\s*#\\s*(e(?:lse|ndif))\\b.*$)",
+          "end": "(?=^\\s*#\\s*(else|endif)\\b.*$)",
           "patterns": [
             {
               "include": "$base"
@@ -531,7 +532,7 @@
       ]
     },
     "preprocessor-rule-enabled-block": {
-      "begin": "^\\s*(#(if)\\s+(0*1))\\b",
+      "begin": "^\\s*(#(if)\\s+(0*1)\\b)",
       "captures": {
         "1": {
           "name": "meta.preprocessor.dm"
@@ -543,10 +544,10 @@
           "name": "constant.numeric.preprocessor.dm"
         }
       },
-      "end": "^\\s*(#\\s*(endif))\\b",
+      "end": "^\\s*(#\\s*(endif)\\b)",
       "patterns": [
         {
-          "begin": "^\\s*(#\\s*(else))\\b.*",
+          "begin": "^\\s*(#\\s*(else)\\b).*",
           "captures": {
             "1": {
               "name": "meta.preprocessor.dm"
@@ -565,7 +566,7 @@
         },
         {
           "begin": "",
-          "end": "(?=^\\s*#\\s*(e(?:lse|ndif))\\b.*$)",
+          "end": "(?=^\\s*#\\s*(else|endif)\\b.*$)",
           "patterns": [
             {
               "include": "#block_innards"
@@ -575,7 +576,7 @@
       ]
     },
     "preprocessor-rule-other": {
-      "begin": "^\\s*((#\\s*(if(n?def)?))\\b.*?(?:(?=/[*/])|$))",
+      "begin": "^\\s*((#\\s*(if(n?def)?))\\b.*?(?:(?=(?://|/\\*))|$))",
       "captures": {
         "1": {
           "name": "meta.preprocessor.dm"
@@ -584,7 +585,7 @@
           "name": "keyword.control.import.dm"
         }
       },
-      "end": "^\\s*((#\\s*(endif)))\\b.*$",
+      "end": "^\\s*((#\\s*(endif))\\b).*$",
       "patterns": [
         {
           "include": "$base"
@@ -592,7 +593,7 @@
       ]
     },
     "preprocessor-rule-other-block": {
-      "begin": "^\\s*(#\\s*(if(n?def)?)\\b.*?(?:(?=/[*/])|$))",
+      "begin": "^\\s*(#\\s*(if(n?def)?)\\b.*?(?:(?=(?://|/\\*))|$))",
       "captures": {
         "1": {
           "name": "meta.preprocessor.dm"
@@ -601,7 +602,7 @@
           "name": "keyword.control.import.dm"
         }
       },
-      "end": "^\\s*(#\\s*(endif))\\b.*$",
+      "end": "^\\s*(#\\s*(endif)\\b).*$",
       "patterns": [
         {
           "include": "#block_innards"
@@ -612,7 +613,7 @@
       "patterns": [
         {
           "begin": "(?<!\\\\)\\[",
-          "end": "]",
+          "end": "\\]",
           "name": "string.interpolated.dm",
           "patterns": [
             {
@@ -625,7 +626,7 @@
     "string_escaped_char": {
       "patterns": [
         {
-          "match": "\\\\(h(?:(?:er|im)self|ers|im)|([STst]?he)|He|[Hh]is|[Aa]n?|(?:im)?proper|\\.\\.\\.|(?:icon|ref|[Rr]oman)(?=\\[)|[\\n \"<>\\[ns])",
+          "match": "(?x)\n\\\\\n(\n\th(?:(?:er|im)self|ers|im)\n\t|([tTsS]?he) # Weird regex to match The, the, She, she and he at once.\n\t|He\n\t|[Hh]is\n\t|[aA]n?\n\t|(?:im)?proper\n\t|\\.\\.\\.\n\t|(?:icon|ref|[Rr]oman)(?=\\[) # Macros which need a [] after them.\n\t|[s<>\"n\\n \\[]\n)",
           "name": "constant.character.escape.dm"
         },
         {

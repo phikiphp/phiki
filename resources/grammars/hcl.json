@@ -26,15 +26,18 @@
           "name": "keyword.operator.accessor.hcl"
         }
       },
-      "end": "\\p{alpha}[-\\w]*|\\d*",
+      "comment": "Matches traversal attribute access such as .attr",
+      "end": "[[:alpha:]][\\w-]*|\\d*",
       "endCaptures": {
         "0": {
           "patterns": [
             {
-              "match": "(?!null|false|true)\\p{alpha}[-\\w]*",
+              "comment": "Attribute name",
+              "match": "(?!null|false|true)[[:alpha:]][\\w-]*",
               "name": "variable.other.member.hcl"
             },
             {
+              "comment": "Optional attribute index",
               "match": "\\d+",
               "name": "constant.numeric.integer.hcl"
             }
@@ -57,7 +60,8 @@
           "name": "keyword.operator.assignment.hcl"
         }
       },
-      "match": "(\\()?\\b((?!(?:null|false|true)\\b)\\p{alpha}[-_[:alnum:]]*)(\\))?\\s*(=(?![=>]))\\s*",
+      "comment": "Identifier \"=\" with optional parens",
+      "match": "(\\()?(\\b(?!null\\b|false\\b|true\\b)[[:alpha:]][[:alnum:]_-]*)(\\))?\\s*(\\=(?!\\=|\\>))\\s*",
       "name": "variable.declaration.hcl"
     },
     "attribute_splat": {
@@ -67,6 +71,7 @@
           "name": "keyword.operator.accessor.hcl"
         }
       },
+      "comment": "Legacy attribute-only splat",
       "end": "\\*",
       "endCaptures": {
         "0": {
@@ -75,12 +80,13 @@
       }
     },
     "block": {
-      "begin": "(\\w[-\\w]*)(([^\\n\\r\\S]+(\\w[-_\\w]*|\"[^\\n\\r\"]*\"))*)[^\\n\\r\\S]*(\\{)",
+      "begin": "([\\w][\\-\\w]*)(([^\\S\\r\\n]+([\\w][\\-_\\w]*|\\\"[^\\\"\\r\\n]*\\\"))*)[^\\S\\r\\n]*(\\{)",
       "beginCaptures": {
         "1": {
           "patterns": [
             {
-              "match": "\\b(?!null|false|true)\\p{alpha}[-_[:alnum:]]*\\b",
+              "comment": "Block type",
+              "match": "\\b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\\b",
               "name": "entity.name.type.hcl"
             }
           ]
@@ -88,11 +94,13 @@
         "2": {
           "patterns": [
             {
-              "match": "\"[^\\n\\r\"]*\"",
+              "comment": "Block label (String Literal)",
+              "match": "\\\"[^\\\"\\r\\n]*\\\"",
               "name": "variable.other.enummember.hcl"
             },
             {
-              "match": "\\p{alpha}[-_[:alnum:]]*",
+              "comment": "Block label (Identifier)",
+              "match": "[[:alpha:]][[:alnum:]_-]*",
               "name": "variable.other.enummember.hcl"
             }
           ]
@@ -101,7 +109,8 @@
           "name": "punctuation.section.block.begin.hcl"
         }
       },
-      "end": "}",
+      "comment": "This will match HCL blocks like `thing1 \"one\" \"two\" {` or `thing2 {`",
+      "end": "\\}",
       "endCaptures": {
         "0": {
           "name": "punctuation.section.block.end.hcl"
@@ -130,6 +139,7 @@
           "name": "punctuation.definition.comment.hcl"
         }
       },
+      "comment": "Inline comments start with the /* sequence and end with the */ sequence, and may have any characters within except the ending sequence. An inline comment is considered equivalent to a whitespace sequence",
       "end": "\\*/",
       "name": "comment.block.hcl"
     },
@@ -140,7 +150,7 @@
           "name": "punctuation.section.brackets.begin.hcl"
         }
       },
-      "end": "]",
+      "end": "\\]",
       "endCaptures": {
         "0": {
           "name": "punctuation.section.brackets.end.hcl"
@@ -148,6 +158,7 @@
       },
       "patterns": [
         {
+          "comment": "Splat operator",
           "match": "\\*",
           "name": "keyword.operator.splat.hcl"
         },
@@ -172,11 +183,13 @@
       ]
     },
     "char_escapes": {
-      "match": "\\\\(?:[\"\\\\nrt]|u(\\h{8}|\\h{4}))",
+      "comment": "Character Escapes",
+      "match": "\\\\[nrt\"\\\\]|\\\\u(\\h{8}|\\h{4})",
       "name": "constant.character.escape.hcl"
     },
     "comma": {
-      "match": ",",
+      "comment": "Commas - used in certain expressions",
+      "match": "\\,",
       "name": "punctuation.separator.hcl"
     },
     "comments": {
@@ -199,6 +212,7 @@
           "name": "punctuation.definition.comment.hcl"
         }
       },
+      "comment": "Line comments start with // sequence and end with the next newline sequence. A line comment is considered equivalent to a newline sequence",
       "end": "$\\n?",
       "name": "comment.line.double-slash.hcl"
     },
@@ -239,15 +253,17 @@
     "for_expression_body": {
       "patterns": [
         {
+          "comment": "in keyword",
           "match": "\\bin\\b",
           "name": "keyword.operator.word.hcl"
         },
         {
+          "comment": "if keyword",
           "match": "\\bif\\b",
           "name": "keyword.control.conditional.hcl"
         },
         {
-          "match": ":",
+          "match": "\\:",
           "name": "keyword.operator.hcl"
         },
         {
@@ -265,16 +281,16 @@
       ]
     },
     "functions": {
-      "begin": "([-:\\w]+)(\\()",
+      "begin": "([:\\-\\w]+)(\\()",
       "beginCaptures": {
         "1": {
           "patterns": [
             {
-              "match": "\\b\\p{alpha}[-_\\w]*::(\\p{alpha}[-_\\w]*::)?\\p{alpha}[-_\\w]*\\b",
+              "match": "\\b[[:alpha:]][\\w_-]*::([[:alpha:]][\\w_-]*::)?[[:alpha:]][\\w_-]*\\b",
               "name": "support.function.namespaced.hcl"
             },
             {
-              "match": "\\b\\p{alpha}[-_\\w]*\\b",
+              "match": "\\b[[:alpha:]][\\w_-]*\\b",
               "name": "support.function.builtin.hcl"
             }
           ]
@@ -283,6 +299,7 @@
           "name": "punctuation.section.parens.begin.hcl"
         }
       },
+      "comment": "Built-in function calls",
       "end": "\\)",
       "endCaptures": {
         "0": {
@@ -309,15 +326,17 @@
           "name": "punctuation.definition.comment.hcl"
         }
       },
+      "comment": "Line comments start with # sequence and end with the next newline sequence. A line comment is considered equivalent to a newline sequence",
       "end": "$\\n?",
       "name": "comment.line.number-sign.hcl"
     },
     "hcl_type_keywords": {
+      "comment": "Type keywords known to HCL.",
       "match": "\\b(any|string|number|bool|list|set|map|tuple|object)\\b",
       "name": "storage.type.hcl"
     },
     "heredoc": {
-      "begin": "(<<-?)\\s*(\\w+)\\s*$",
+      "begin": "(\\<\\<\\-?)\\s*(\\w+)\\s*$",
       "beginCaptures": {
         "1": {
           "name": "keyword.operator.heredoc.hcl"
@@ -326,6 +345,7 @@
           "name": "keyword.control.heredoc.hcl"
         }
       },
+      "comment": "String Heredoc",
       "end": "^\\s*\\2\\s*$",
       "endCaptures": {
         "0": {
@@ -347,7 +367,7 @@
         "2": {
           "patterns": [
             {
-              "match": "=>",
+              "match": "\\=\\>",
               "name": "storage.type.function.hcl"
             },
             {
@@ -382,6 +402,7 @@
       ]
     },
     "language_constants": {
+      "comment": "Language Constants",
       "match": "\\b(true|false|null)\\b",
       "name": "constant.language.hcl"
     },
@@ -405,7 +426,8 @@
       ]
     },
     "local_identifiers": {
-      "match": "\\b(?!null|false|true)\\p{alpha}[-_[:alnum:]]*\\b",
+      "comment": "Local Identifiers",
+      "match": "\\b(?!null|false|true)[[:alpha:]][[:alnum:]_-]*\\b",
       "name": "variable.other.readwrite.hcl"
     },
     "numeric_literals": {
@@ -416,7 +438,8 @@
               "name": "punctuation.separator.exponent.hcl"
             }
           },
-          "match": "\\b\\d+([Ee][-+]?)\\d+\\b",
+          "comment": "Integer, no fraction, optional exponent",
+          "match": "\\b\\d+([Ee][+-]?)\\d+\\b",
           "name": "constant.numeric.float.hcl"
         },
         {
@@ -428,10 +451,12 @@
               "name": "punctuation.separator.exponent.hcl"
             }
           },
-          "match": "\\b\\d+(\\.)\\d+(?:([Ee][-+]?)\\d+)?\\b",
+          "comment": "Integer, fraction, optional exponent",
+          "match": "\\b\\d+(\\.)\\d+(?:([Ee][+-]?)\\d+)?\\b",
           "name": "constant.numeric.float.hcl"
         },
         {
+          "comment": "Integers",
           "match": "\\b\\d+\\b",
           "name": "constant.numeric.integer.hcl"
         }
@@ -447,7 +472,7 @@
           "name": "keyword.control.hcl"
         }
       },
-      "end": "}",
+      "end": "\\}",
       "endCaptures": {
         "0": {
           "name": "punctuation.section.braces.end.hcl"
@@ -455,7 +480,7 @@
       },
       "patterns": [
         {
-          "match": "=>",
+          "match": "\\=\\>",
           "name": "storage.type.function.hcl"
         },
         {
@@ -495,7 +520,7 @@
           "name": "punctuation.section.braces.begin.hcl"
         }
       },
-      "end": "}",
+      "end": "\\}",
       "endCaptures": {
         "0": {
           "name": "punctuation.section.braces.end.hcl"
@@ -524,7 +549,8 @@
               "name": "keyword.operator.assignment.hcl"
             }
           },
-          "match": "\\b((?!null|false|true)\\p{alpha}[-_[:alnum:]]*)\\s*(=(?!=))\\s*"
+          "comment": "Literal, named object key",
+          "match": "\\b((?!null|false|true)[[:alpha:]][[:alnum:]_-]*)\\s*(\\=(?!=))\\s*"
         },
         {
           "captures": {
@@ -541,7 +567,8 @@
               "name": "keyword.operator.hcl"
             }
           },
-          "match": "^\\s*((\").*(\"))\\s*(=)\\s*"
+          "comment": "String object key",
+          "match": "^\\s*((\").*(\"))\\s*(\\=)\\s*"
         },
         {
           "begin": "^\\s*\\(",
@@ -550,7 +577,8 @@
               "name": "punctuation.section.parens.begin.hcl"
             }
           },
-          "end": "(\\))\\s*([:=])\\s*",
+          "comment": "Computed object key (any expression between parens)",
+          "end": "(\\))\\s*(=|:)\\s*",
           "endCaptures": {
             "1": {
               "name": "punctuation.section.parens.end.hcl"
@@ -577,19 +605,19 @@
     "operators": {
       "patterns": [
         {
-          "match": ">=",
+          "match": "\\>\\=",
           "name": "keyword.operator.hcl"
         },
         {
-          "match": "<=",
+          "match": "\\<\\=",
           "name": "keyword.operator.hcl"
         },
         {
-          "match": "==",
+          "match": "\\=\\=",
           "name": "keyword.operator.hcl"
         },
         {
-          "match": "!=",
+          "match": "\\!\\=",
           "name": "keyword.operator.hcl"
         },
         {
@@ -597,7 +625,7 @@
           "name": "keyword.operator.arithmetic.hcl"
         },
         {
-          "match": "-",
+          "match": "\\-",
           "name": "keyword.operator.arithmetic.hcl"
         },
         {
@@ -605,15 +633,15 @@
           "name": "keyword.operator.arithmetic.hcl"
         },
         {
-          "match": "/",
+          "match": "\\/",
           "name": "keyword.operator.arithmetic.hcl"
         },
         {
-          "match": "%",
+          "match": "\\%",
           "name": "keyword.operator.arithmetic.hcl"
         },
         {
-          "match": "&&",
+          "match": "\\&\\&",
           "name": "keyword.operator.logical.hcl"
         },
         {
@@ -621,15 +649,15 @@
           "name": "keyword.operator.logical.hcl"
         },
         {
-          "match": "!",
+          "match": "\\!",
           "name": "keyword.operator.logical.hcl"
         },
         {
-          "match": ">",
+          "match": "\\>",
           "name": "keyword.operator.hcl"
         },
         {
-          "match": "<",
+          "match": "\\<",
           "name": "keyword.operator.hcl"
         },
         {
@@ -641,11 +669,11 @@
           "name": "keyword.operator.hcl"
         },
         {
-          "match": ":",
+          "match": "\\:",
           "name": "keyword.operator.hcl"
         },
         {
-          "match": "=>",
+          "match": "\\=\\>",
           "name": "keyword.operator.hcl"
         }
       ]
@@ -657,6 +685,7 @@
           "name": "punctuation.section.parens.begin.hcl"
         }
       },
+      "comment": "Parens - matched *after* function syntax",
       "end": "\\)",
       "endCaptures": {
         "0": {
@@ -673,13 +702,14 @@
       ]
     },
     "string_interpolation": {
-      "begin": "(?<![$%])([$%]\\{)",
+      "begin": "(?<![%$])([%$]{)",
       "beginCaptures": {
         "1": {
           "name": "keyword.other.interpolation.begin.hcl"
         }
       },
-      "end": "}",
+      "comment": "String interpolation",
+      "end": "\\}",
       "endCaptures": {
         "0": {
           "name": "keyword.other.interpolation.end.hcl"
@@ -688,14 +718,17 @@
       "name": "meta.interpolation.hcl",
       "patterns": [
         {
-          "match": "~\\s",
+          "comment": "Trim left whitespace",
+          "match": "\\~\\s",
           "name": "keyword.operator.template.left.trim.hcl"
         },
         {
-          "match": "\\s~",
+          "comment": "Trim right whitespace",
+          "match": "\\s\\~",
           "name": "keyword.operator.template.right.trim.hcl"
         },
         {
+          "comment": "if/else/endif and for/in/endfor directives",
           "match": "\\b(if|else|endif|for|in|endfor)\\b",
           "name": "keyword.control.hcl"
         },
@@ -714,6 +747,7 @@
           "name": "punctuation.definition.string.begin.hcl"
         }
       },
+      "comment": "Strings",
       "end": "\"",
       "endCaptures": {
         "0": {
@@ -740,7 +774,7 @@
           "name": "keyword.control.hcl"
         }
       },
-      "end": "]",
+      "end": "\\]",
       "endCaptures": {
         "0": {
           "name": "punctuation.section.brackets.end.hcl"
@@ -753,5 +787,6 @@
       ]
     }
   },
-  "scopeName": "source.hcl"
+  "scopeName": "source.hcl",
+  "uuid": "a14187be-98d8-42c1-ac89-bb5eaccf911e"
 }
