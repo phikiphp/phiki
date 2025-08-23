@@ -2,6 +2,7 @@
 
 use Phiki\Grammar\Grammar;
 use Phiki\Phiki;
+use Phiki\Tests\Fixtures\FakeCache;
 use Phiki\Tests\Fixtures\UselessTransformer;
 use Phiki\Theme\Theme;
 
@@ -56,4 +57,50 @@ it('can output line numbers', function () {
         ->toString();
 
     expect($html)->toContain('> 1</span');
+});
+
+it('can cache the generated HTML', function () {
+    $cache = new FakeCache;
+
+    $pending = (new Phiki)
+        ->codeToHtml(
+            <<<'PHP'
+            echo "Hello, world!";
+            PHP,
+            Grammar::Php,
+            Theme::GithubLight,
+        )
+        ->cache($cache);
+    
+    $pending->toString();
+
+    expect($cache->has($pending->cacheKey()))->toBeTrue();
+});
+
+it('can read from cache', function () {
+    $cache = new FakeCache;
+
+    $pending = (new Phiki)
+        ->codeToHtml(
+            <<<'PHP'
+            echo "Hello, world!";
+            PHP,
+            Grammar::Php,
+            Theme::GithubLight,
+        )
+        ->cache($cache);
+    
+    $pending->toString();
+
+    $pending2 = (new Phiki)
+        ->codeToHtml(
+            <<<'PHP'
+            echo "Hello, world!";
+            PHP,
+            Grammar::Php,
+            Theme::GithubLight,
+        )
+        ->cache($cache);
+
+    expect($pending2->toString())->toBe($pending->toString());
 });

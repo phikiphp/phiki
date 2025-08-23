@@ -92,6 +92,19 @@ class PendingHtmlOutput implements Stringable
         return $this->__toString();
     }
 
+    public function cacheKey(): string
+    {
+        return 'phiki_html_' . md5(serialize([
+            $this->code,
+            $this->grammar->scopeName,
+            array_keys($this->themes),
+            ...array_map(fn (ParsedTheme $theme) => $theme->name, $this->themes),
+            $this->withGutter,
+            $this->startingLineNumber,
+            ...array_map(fn (TransformerInterface $transformer) => get_class($transformer), $this->transformers),
+        ]));
+    }
+
     protected function callTransformerMethod(string $method, mixed ...$args): mixed
     {
         if ($this->transformers === []) {
@@ -119,6 +132,10 @@ class PendingHtmlOutput implements Stringable
 
     public function __toString(): string
     {
+        if (isset($this->cache) && $this->cache->has($cacheKey = $this->cacheKey())) {
+            return $this->cache->get($cacheKey);
+        }
+
         [$code] = $this->callTransformerMethod('preprocess', $this->code);
         [$tokens] = $this->callTransformerMethod('tokens', call_user_func($this->generateTokensUsing, $code, $this->grammar));
         [$highlightedTokens] = $this->callTransformerMethod('highlighted', call_user_func($this->highlightTokensUsing, $tokens, $this->themes));
@@ -206,6 +223,10 @@ class PendingHtmlOutput implements Stringable
         [$pre] = $this->callTransformerMethod('pre', $pre);
         [$root] = $this->callTransformerMethod('root', new Root([$pre]));
         [$html] = $this->callTransformerMethod('postprocess', $root->__toString());
+
+        if (isset($this->cache)) {
+            $this->cache->set($cacheKey, $html);
+        }
 
         return $html;
     }
