@@ -2,6 +2,7 @@
 
 namespace Phiki\Contracts;
 
+use Phiki\Grammar\Grammar;
 use Phiki\Grammar\ParsedGrammar;
 
 interface GrammarRepositoryInterface
@@ -40,4 +41,9 @@ interface GrammarRepositoryInterface
      * @param  string|ParsedGrammar  $pathOrGrammar  The path to the grammar file or the grammar itself.
      */
     public function register(string $name, string|ParsedGrammar $pathOrGrammar): void;
+
+    /**
+     * Resolve the given grammar from the repository.
+     */
+    public function resolve(string|Grammar|ParsedGrammar $theme): ParsedGrammar;
 }
