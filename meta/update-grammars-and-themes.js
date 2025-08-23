@@ -21,6 +21,11 @@ grammars.forEach(grammar => {
         console.warn(`Skipping grammar ${grammar.name} as it is in the exclusions list.`);
         return;
     }
+
+    if (! fs.existsSync(basePath(`resources/grammars/${grammar.name}.json`))) {
+        console.warn(`Grammar ${grammar.name} does not exist in resources/grammars, skipping.`);
+        return;
+    }
     
     cases[pascalCase(grammar.name)] = grammar.name;
     aliases[pascalCase(grammar.name)] = grammar.aliases ?? [];

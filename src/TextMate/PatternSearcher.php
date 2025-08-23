@@ -42,6 +42,7 @@ class PatternSearcher
         }
 
         foreach ($patterns as [$pattern, $regex]) {
+            set_error_handler(fn ($errno, $errstr) => dd($errstr, $regex));
             if (! mb_ereg_search_setpos($linePos)) {
                 throw new FailedToSetSearchPositionException;
             }

@@ -1,14 +1,17 @@
 {
+  "comment": "\nTODO:  Command for copy original to untranslated, label as fuzzy, remove fuzzy, next fuzzy etc\nCreate meta scope for each entry\n",
   "displayName": "Gettext PO",
   "fileTypes": [
     "po",
     "pot",
     "potx"
   ],
+  "keyEquivalent": "^~G",
   "name": "po",
   "patterns": [
     {
-      "begin": "^(?:(?=(msg(?:id(_plural)?|ctxt))\\s*\"[^\"])|\\s*$)",
+      "begin": "^(?=(msgid(_plural)?|msgctxt)\\s*\"[^\"])|^\\s*$",
+      "comment": "Start of body of document, after header",
       "end": "\\z",
       "patterns": [
         {
@@ -35,7 +38,7 @@
           "name": "string.other.po"
         }
       },
-      "match": "^\"(?:([^:\\s]+)(:)\\s+)?([^\"]*)\"\\s*$\\n?",
+      "match": "^\"(?:([^\\s:]+)(:)\\s+)?([^\"]*)\"\\s*$\\n?",
       "name": "meta.header.po"
     }
   ],
@@ -58,7 +61,7 @@
               "name": "string.quoted.double.po",
               "patterns": [
                 {
-                  "match": "\\\\[\"\\\\]",
+                  "match": "\\\\[\\\\\"]",
                   "name": "constant.character.escape.po"
                 }
               ]
@@ -66,7 +69,7 @@
           ]
         },
         {
-          "begin": "^(msgstr)(?:(\\[)(\\d+)(]))?\\s+",
+          "begin": "^(msgstr)(?:(\\[)(\\d+)(\\]))?\\s+",
           "beginCaptures": {
             "1": {
               "name": "keyword.control.msgstr.po"
@@ -90,7 +93,7 @@
               "name": "string.quoted.double.po",
               "patterns": [
                 {
-                  "match": "\\\\[\"\\\\]",
+                  "match": "\\\\[\\\\\"]",
                   "name": "constant.character.escape.po"
                 }
               ]
@@ -98,7 +101,7 @@
           ]
         },
         {
-          "begin": "^(msgctxt)(?:(\\[)(\\d+)(]))?\\s+",
+          "begin": "^(msgctxt)(?:(\\[)(\\d+)(\\]))?\\s+",
           "beginCaptures": {
             "1": {
               "name": "keyword.control.msgctxt.po"
@@ -122,7 +125,7 @@
               "name": "string.quoted.double.po",
               "patterns": [
                 {
-                  "match": "\\\\[\"\\\\]",
+                  "match": "\\\\[\\\\\"]",
                   "name": "constant.character.escape.po"
                 }
               ]
@@ -142,7 +145,8 @@
           "include": "#comments"
         },
         {
-          "match": "^(?!\\s*$)[^\"#].*$\\n?",
+          "comment": "a line that does not begin with # or \". Could improve this regexp",
+          "match": "^(?!\\s*$)[^#\"].*$\\n?",
           "name": "invalid.illegal.po"
         }
       ]
@@ -169,7 +173,7 @@
                       "name": "entity.name.type.flag.po"
                     }
                   },
-                  "match": "(?:\\G|,\\s*)(fuzzy|(?:no-)?(?:c|objc|sh|lisp|elisp|librep|scheme|smalltalk|java|csharp|awk|object-pascal|ycp|tcl|perl|perl-brace|php|gcc-internal|qt|boost)-format)"
+                  "match": "(?:\\G|,\\s*)((?:fuzzy)|(?:no-)?(?:c|objc|sh|lisp|elisp|librep|scheme|smalltalk|java|csharp|awk|object-pascal|ycp|tcl|perl|perl-brace|php|gcc-internal|qt|boost)-format)"
                 }
               ]
             },
@@ -184,7 +188,7 @@
               "name": "comment.line.number-sign.extracted.po"
             },
             {
-              "begin": "(#:)[\\t ]*",
+              "begin": "(#:)[ \\t]*",
               "beginCaptures": {
                 "1": {
                   "name": "punctuation.definition.comment.po"
@@ -194,7 +198,7 @@
               "name": "comment.line.number-sign.reference.po",
               "patterns": [
                 {
-                  "match": "(\\S+:)([;\\d]*)",
+                  "match": "(\\S+:)([\\d;]*)",
                   "name": "storage.type.class.po"
                 }
               ]
@@ -224,5 +228,6 @@
       ]
     }
   },
-  "scopeName": "source.po"
+  "scopeName": "source.po",
+  "uuid": "F07730BD-59BC-41D0-AC3F-4AB2DCB6C54A"
 }

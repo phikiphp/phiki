@@ -214,7 +214,6 @@ enum Grammar: string
     case Viml = 'viml';
     case Vue = 'vue';
     case VueHtml = 'vue-html';
-    case VueVine = 'vue-vine';
     case Vyper = 'vyper';
     case Wasm = 'wasm';
     case Wenyan = 'wenyan';
@@ -437,7 +436,6 @@ enum Grammar: string
             self::Viml => ["vim","vimscript"],
             self::Vue => [],
             self::VueHtml => [],
-            self::VueVine => [],
             self::Vyper => ["vy"],
             self::Wasm => [],
             self::Wenyan => ["文言"],
@@ -664,7 +662,6 @@ enum Grammar: string
             self::Viml => 'source.viml',
             self::Vue => 'source.vue',
             self::VueHtml => 'text.html.vue-html',
-            self::VueVine => 'source.vue-vine',
             self::Vyper => 'source.vyper',
             self::Wasm => 'source.wat',
             self::Wenyan => 'source.wenyan',
