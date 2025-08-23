@@ -8,8 +8,6 @@ use Phiki\Tests\Fixtures\EmptyExtension;
 use Phiki\Tests\LaravelTestCase;
 use Phiki\Theme\Theme;
 
-pest()->use(LaravelTestCase::class);
-
 it('can return the environment object', function () {
     expect(Phiki::environment())->toBeInstanceOf(Environment::class);
 });

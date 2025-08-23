@@ -5,8 +5,11 @@ use Phiki\Grammar\Grammar;
 use Phiki\Grammar\GrammarRepository;
 use Phiki\Grammar\ParsedGrammar;
 use Phiki\Highlighting\Highlighter;
+use Phiki\Tests\LaravelTestCase;
 use Phiki\TextMate\Tokenizer;
 use Phiki\Theme\Theme;
+
+pest()->uses(LaravelTestCase::class)->in('Adapters/Laravel');
 
 function tokenize(string $input, array|Grammar $grammar): array
 {
