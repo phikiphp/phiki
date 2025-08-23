@@ -3,7 +3,7 @@
 namespace Phiki\Extensions;
 
 use Phiki\Contracts\ExtensionInterface;
-use Phiki\Environment\Environment;
+use Phiki\Environment;
 use Phiki\Grammar\GrammarRepository;
 use Phiki\Theme\ThemeRepository;
 

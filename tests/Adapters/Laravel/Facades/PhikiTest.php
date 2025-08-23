@@ -1,11 +1,10 @@
 <?php
 
 use Phiki\Adapters\Laravel\Facades\Phiki;
-use Phiki\Environment\Environment;
+use Phiki\Environment;
 use Phiki\Grammar\Grammar;
 use Phiki\Output\Html\PendingHtmlOutput;
 use Phiki\Tests\Fixtures\EmptyExtension;
-use Phiki\Tests\LaravelTestCase;
 use Phiki\Theme\Theme;
 
 it('can return the environment object', function () {
@@ -15,13 +14,13 @@ it('can return the environment object', function () {
 it('can register a custom grammar', function () {
     Phiki::registerGrammar('custom', __DIR__ . '/../../../Fixtures/example.json');
 
-    expect(Phiki::environment()->getGrammarRepository()->has('custom'))->toBeTrue();
+    expect(Phiki::environment()->grammars->has('custom'))->toBeTrue();
 });
 
 it('can register a custom theme', function () {
     Phiki::registerTheme('custom', __DIR__ . '/../../../Fixtures/theme.json');
 
-    expect(Phiki::environment()->getThemeRepository()->has('custom'))->toBeTrue();
+    expect(Phiki::environment()->themes->has('custom'))->toBeTrue();
 });
 
 it('can register an extension', function () {

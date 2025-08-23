@@ -2,7 +2,7 @@
 
 namespace Phiki\Contracts;
 
-use Phiki\Environment\Environment;
+use Phiki\Environment;
 
 interface ExtensionInterface
 {

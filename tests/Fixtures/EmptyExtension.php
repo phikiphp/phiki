@@ -3,7 +3,7 @@
 namespace Phiki\Tests\Fixtures;
 
 use Phiki\Contracts\ExtensionInterface;
-use Phiki\Environment\Environment;
+use Phiki\Environment;
 
 class EmptyExtension implements ExtensionInterface
 {

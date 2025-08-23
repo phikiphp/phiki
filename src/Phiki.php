@@ -3,7 +3,7 @@
 namespace Phiki;
 
 use Phiki\Contracts\ExtensionInterface;
-use Phiki\Environment\Environment;
+use Phiki\Environment;
 use Phiki\Grammar\Grammar;
 use Phiki\Grammar\ParsedGrammar;
 use Phiki\Highlighting\Highlighter;
@@ -17,10 +17,9 @@ class Phiki
 {
     protected Environment $environment;
 
-    public function __construct(?Environment $environment = null)
+    public function __construct()
     {
-        $this->environment = $environment ?? Environment::default();
-        $this->environment->validate();
+        $this->environment = new Environment;
     }
 
     public function environment(): Environment
@@ -78,14 +77,14 @@ class Phiki
 
     public function registerGrammar(string $name, string|ParsedGrammar $pathOrGrammar): static
     {
-        $this->environment->getGrammarRepository()->register($name, $pathOrGrammar);
+        $this->environment->grammars->register($name, $pathOrGrammar);
 
         return $this;
     }
     
     public function registerTheme(string $name, string|ParsedTheme $pathOrTheme): static
     {
-        $this->environment->getThemeRepository()->register($name, $pathOrTheme);
+        $this->environment->themes->register($name, $pathOrTheme);
 
         return $this;
     }

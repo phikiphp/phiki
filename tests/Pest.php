@@ -1,12 +1,10 @@
 <?php
 
-use Phiki\Environment\Environment;
 use Phiki\Grammar\Grammar;
 use Phiki\Grammar\GrammarRepository;
 use Phiki\Grammar\ParsedGrammar;
-use Phiki\Highlighting\Highlighter;
+use Phiki\Phiki;
 use Phiki\Tests\LaravelTestCase;
-use Phiki\TextMate\Tokenizer;
 use Phiki\Theme\Theme;
 
 pest()->uses(LaravelTestCase::class)->in('Adapters/Laravel');
@@ -23,9 +21,7 @@ function tokenize(string $input, array|Grammar $grammar): array
         $parsedGrammar = $grammar->toParsedGrammar(new GrammarRepository);
     }
 
-    $tokenizer = new Tokenizer($parsedGrammar, Environment::default());
-
-    return $tokenizer->tokenize($input);
+    return (new Phiki)->codeToTokens($input, $parsedGrammar);
 }
 
 function highlight(array $tokens, array $theme): array
@@ -49,5 +45,5 @@ function highlight(array $tokens, array $theme): array
         $value = Theme::parse($value);
     }
 
-    return (new Highlighter($theme))->highlight($tokens);
+    return (new Phiki)->tokensToHighlightedTokens($tokens, $theme);
 }
