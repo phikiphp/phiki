@@ -15,7 +15,7 @@ use Phiki\Theme\Theme;
 
 class Phiki
 {
-    protected Environment $environment;
+    public readonly Environment $environment;
 
     public function __construct()
     {
