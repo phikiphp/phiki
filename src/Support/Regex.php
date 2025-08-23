@@ -10,7 +10,7 @@ class Regex implements Stringable
 
     protected array $anchorCache = [];
 
-    protected string $pattern;
+    public string $pattern;
 
     public function __construct(string $pattern)
     {

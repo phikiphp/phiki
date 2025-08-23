@@ -32,24 +32,35 @@
             "text": ">",
             "start": 7,
             "end": 8
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "meta.script.svelte",
+                "meta.embedded.block.svelte",
+                "source.js"
+            ],
+            "text": "\n",
+            "start": 8,
+            "end": 9
         }
     ],
     [
         {
             "scopes": [
                 "source.svelte",
-                "meta.scope.tag.script.svelte",
+                "meta.script.svelte",
                 "meta.tag.end.svelte",
                 "punctuation.definition.tag.begin.svelte"
             ],
-            "text": "</",
+            "text": "<\/",
             "start": 0,
             "end": 2
         },
         {
             "scopes": [
                 "source.svelte",
-                "meta.scope.tag.script.svelte",
+                "meta.script.svelte",
                 "meta.tag.end.svelte",
                 "entity.name.tag.svelte"
             ],
@@ -60,21 +71,31 @@
         {
             "scopes": [
                 "source.svelte",
-                "meta.scope.tag.script.svelte",
+                "meta.script.svelte",
                 "meta.tag.end.svelte",
                 "punctuation.definition.tag.end.svelte"
             ],
             "text": ">",
             "start": 8,
             "end": 9
+        },
+        {
+            "scopes": [
+                "source.svelte",
+                "text.svelte"
+            ],
+            "text": "\n",
+            "start": 9,
+            "end": 10
         }
     ],
     [
         {
             "scopes": [
-                "source.svelte"
+                "source.svelte",
+                "text.svelte"
             ],
-            "text": "",
+            "text": "\n",
             "start": 0,
             "end": 1
         }

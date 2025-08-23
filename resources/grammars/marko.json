@@ -146,7 +146,7 @@
         }
       },
       "contentName": "source.ts",
-      "end": "(?=[],;]|/>|(?<=[^=])>|(?<!(?:^|[!%\\&*:?^|~]|[-!%\\&*+/<-?^|~]=|=>|>{2,}|[^.]\\.|[^-]-|^\\s*\\+\\+|[^+]\\+{2}*\\+|[]%).0-9<A-Za-z}]\\s*/|\\b(?<!\\.\\s*)(?:await|async|class|function|keyof|new|typeof|void))\\s*)(?:\\n|[\\t ]+(?![\\n!%\\&(*+:?^{|~]|[-/<=>]=|=>|>{2,}|\\.[^.]|-[^-]|/[^>]|(?:in|instanceof|satisfies|as|extends)\\s+[^,/:;=>])))",
+      "end": "(?=[],;]|/>|(?<=[^=>])>|(?<!^|[!%\\&*:?^|~]|[-!%\\&*+/<-?^|~]=|[=>]>|[^.]\\.|[^-]-|[^+]\\+|[]%).0-9<A-Za-z}]\\s/|[^$.\\w]await|[^$.\\w]async|[^$.\\w]class|[^$.\\w]function|[^$.\\w]keyof|[^$.\\w]new|[^$.\\w]readonly|[^$.\\w]infer|[^$.\\w]typeof|[^$.\\w]void)\\s+(?![\\n!%\\&(*+:?^{|~]|[-/<=>]=|[=>]>|\\.[^.]|-[^-]|/[^>]|(?:in|instanceof|satisfies|as|extends)\\s+[^,/:;=>]))",
       "name": "meta.embedded.ts",
       "patterns": [
         {
@@ -195,7 +195,7 @@
             }
           },
           "contentName": "source.ts",
-          "end": "(?=[],;]|/>|(?<=[^=])>|(?<!(?:^|[!%\\&*:?^|~]|[-!%\\&*+/<-?^|~]=|=>|>{2,}|[^.]\\.|[^-]-|^\\s*\\+\\+|[^+]\\+{2}*\\+|[]%).0-9<A-Za-z}]\\s*/|\\b(?<!\\.\\s*)(?:await|async|class|function|keyof|new|typeof|void))\\s*)(?:\\n|[\\t ]+(?![\\n!%\\&(*+:?^{|~]|[-/<=>]=|=>|>{2,}|\\.[^.]|-[^-]|/[^>]|(?:in|instanceof|satisfies|as|extends)\\s+[^,/:;=>])))",
+          "end": "(?=[],;]|/>|(?<=[^=>])>|(?<!^|[!%\\&*:?^|~]|[-!%\\&*+/<-?^|~]=|[=>]>|[^.]\\.|[^-]-|[^+]\\+|[]%).0-9<A-Za-z}]\\s/|[^$.\\w]await|[^$.\\w]async|[^$.\\w]class|[^$.\\w]function|[^$.\\w]keyof|[^$.\\w]new|[^$.\\w]readonly|[^$.\\w]infer|[^$.\\w]typeof|[^$.\\w]void)\\s+(?![\\n!%\\&(*+:?^{|~]|[-/<=>]=|[=>]>|\\.[^.]|-[^-]|/[^>]|(?:in|instanceof|satisfies|as|extends)\\s+[^,/:;=>]))",
           "name": "meta.marko-spread-attribute",
           "patterns": [
             {
@@ -370,6 +370,9 @@
     },
     "concise-open-tag-content": {
       "patterns": [
+        {
+          "include": "#invalid-close-tag"
+        },
         {
           "include": "#tag-before-attrs"
         },
@@ -1061,6 +1064,9 @@
     "open-tag-content": {
       "patterns": [
         {
+          "include": "#invalid-close-tag"
+        },
+        {
           "include": "#tag-before-attrs"
         },
         {
@@ -1174,7 +1180,7 @@
                   "name": "keyword.operator.type.annotation.ts"
                 }
               },
-              "end": "(?=[](,;]|/>|(?<=[^=])>|(?<!(?:^|[!%\\&*:?^|~]|[-!%\\&*+/<-?^|~]=|=>|>{2,}|[^.]\\.|[^-]-|^\\s*\\+\\+|[^+]\\+{2}*\\+|[]%).0-9<A-Za-z}]\\s*/|\\b(?<!\\.\\s*)(?:await|async|class|function|keyof|new|typeof|void))\\s*)(?:\\n|[\\t ]+(?![\\n!%\\&*+:?^{|~]|[-/<=>]=|=>|>{2,}|\\.[^.]|-[^-]|/[^>]|(?:in|instanceof|satisfies|as|extends)\\s+[^,/:;=>])))",
+              "end": "(?=[](,;]|/>|(?<=[^=>])>|(?<!^|[!%\\&*:?^|~]|[-!%\\&*+/<-?^|~]=|[=>]>|[^.]\\.|[^-]-|[^+]\\+|[]%).0-9<A-Za-z}]\\s/|[^$.\\w]await|[^$.\\w]async|[^$.\\w]class|[^$.\\w]function|[^$.\\w]keyof|[^$.\\w]new|[^$.\\w]readonly|[^$.\\w]infer|[^$.\\w]typeof|[^$.\\w]void)\\s+(?![\\n!%\\&*+:?^{|~]|[-/<=>]=|[=>]>|\\.[^.]|-[^-]|/[^>]|(?:in|instanceof|satisfies|as|extends)\\s+[^,/:;=>]))",
               "patterns": [
                 {
                   "include": "source.ts#type"
@@ -1282,7 +1288,7 @@
               "name": "punctuation.definition.tag.begin.marko"
             }
           },
-          "end": "/>|(?<=</(?:html-comment)?>)",
+          "end": "/>|(?<=</(?:>|html-comment>))",
           "endCaptures": {
             "0": {
               "name": "punctuation.definition.tag.end.marko"
@@ -1299,7 +1305,7 @@
                   "name": "punctuation.definition.tag.end.marko"
                 }
               },
-              "end": "\\s*(</)(html-comment)?(>)",
+              "end": "\\s*</(?:>|html-comment>)",
               "endCaptures": {
                 "1": {
                   "name": "punctuation.definition.tag.begin.marko"
@@ -1324,13 +1330,13 @@
           ]
         },
         {
-          "begin": "\\s*(<)(?=(?:html-)?style\\b\\S*\\.less\\b)",
+          "begin": "\\s*(<)(?=((?:html-)?style)\\b\\S*\\.less\\b)",
           "beginCaptures": {
             "1": {
               "name": "punctuation.definition.tag.begin.marko"
             }
           },
-          "end": "/>|(?<=</(?:(?:html-)?style)?>)",
+          "end": "/>|(?<=</\\2??>)",
           "endCaptures": {
             "0": {
               "name": "punctuation.definition.tag.end.marko"
@@ -1373,13 +1379,13 @@
           ]
         },
         {
-          "begin": "\\s*(<)(?=(?:html-)?style\\b\\S*\\.scss\\b)",
+          "begin": "\\s*(<)(?=((?:html-)?style)\\b\\S*\\.scss\\b)",
           "beginCaptures": {
             "1": {
               "name": "punctuation.definition.tag.begin.marko"
             }
           },
-          "end": "/>|(?<=</(?:(?:html-)?style)?>)",
+          "end": "/>|(?<=</\\2??>)",
           "endCaptures": {
             "0": {
               "name": "punctuation.definition.tag.end.marko"
@@ -1422,13 +1428,13 @@
           ]
         },
         {
-          "begin": "\\s*(<)(?=(?:html-)?style\\b\\S*\\.[jt]s\\b)",
+          "begin": "\\s*(<)(?=((?:html-)?style)\\b\\S*\\.[jt]s\\b)",
           "beginCaptures": {
             "1": {
               "name": "punctuation.definition.tag.begin.marko"
             }
           },
-          "end": "/>|(?<=</(?:(?:html-)?style)?>)",
+          "end": "/>|(?<=</\\2??>)",
           "endCaptures": {
             "0": {
               "name": "punctuation.definition.tag.end.marko"
@@ -1471,13 +1477,13 @@
           ]
         },
         {
-          "begin": "\\s*(<)(?=(?:html-)?style\\b)",
+          "begin": "\\s*(<)(?=((?:html-)?style)\\b)",
           "beginCaptures": {
             "1": {
               "name": "punctuation.definition.tag.begin.marko"
             }
           },
-          "end": "/>|(?<=</(?:(?:html-)?style)?>)",
+          "end": "/>|(?<=</\\2??>)",
           "endCaptures": {
             "0": {
               "name": "punctuation.definition.tag.end.marko"
@@ -1520,13 +1526,13 @@
           ]
         },
         {
-          "begin": "\\s*(<)(?=(?:html-)?script\\b)",
+          "begin": "\\s*(<)(?=((?:html-)?script)\\b)",
           "beginCaptures": {
             "1": {
               "name": "punctuation.definition.tag.begin.marko"
             }
           },
-          "end": "/>|(?<=</(?:(?:html-)?script)?>)",
+          "end": "/>|(?<=</\\2??>)",
           "endCaptures": {
             "0": {
               "name": "punctuation.definition.tag.end.marko"
@@ -1569,13 +1575,13 @@
           ]
         },
         {
-          "begin": "\\s*(<)(?=[#$.0-9@-Z_a-z])",
+          "begin": "\\s*(<)(?=[#$.]|([-$0-9@-Z_a-z]+))",
           "beginCaptures": {
             "1": {
               "name": "punctuation.definition.tag.begin.marko"
             }
           },
-          "end": "/>|(?<=</[-#$.0-:@-Z_a-z]*>)",
+          "end": "/>|(?<=</\\2??>)",
           "endCaptures": {
             "0": {
               "name": "punctuation.definition.tag.end.marko"

@@ -252,7 +252,7 @@
           "name": "entity.other.attribute-name.preprocessor.cobol"
         }
       },
-      "match": "(\\$(?:|end-)region)(.*)$"
+      "match": "(\\$(?:(?i:region)|(?i:end-region)))(.*)$"
     },
     {
       "begin": "\\$(?i:doc)(.*)$",
@@ -315,7 +315,7 @@
     },
     {
       "match": "(>>.*)$",
-      "name": "strong comment.line.set.acucobol"
+      "name": "strong comment.line.set.cobol"
     },
     {
       "match": "([NUnu][Xx]|[HXhx])'\\h*'",

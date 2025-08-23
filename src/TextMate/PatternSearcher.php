@@ -38,7 +38,7 @@ class PatternSearcher
         $bestPattern = null;
 
         if (! mb_ereg_search_init($lineText)) {
-            throw new FailedToInitializePatternSearchException;
+            return null;
         }
 
         foreach ($patterns as [$pattern, $regex]) {
