@@ -43,3 +43,17 @@ it('can change the starting line number', function () {
 
     expect($html)->toContain('>10</span');
 });
+
+it('can output line numbers', function () {
+    $html = (new Phiki)->codeToHtml(
+        <<<'PHP'
+        echo "Hello, world!";
+        PHP,
+        Grammar::Php,
+        Theme::GithubLight,
+    )
+        ->withGutter()
+        ->toString();
+
+    expect($html)->toContain('> 1</span');
+});
