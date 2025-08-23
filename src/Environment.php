@@ -9,12 +9,15 @@ use Phiki\Grammar\ParsedGrammar;
 use Phiki\Theme\ParsedTheme;
 use Phiki\Theme\Theme;
 use Phiki\Theme\ThemeRepository;
+use Psr\SimpleCache\CacheInterface;
 
 class Environment
 {
     public readonly GrammarRepository $grammars;
 
     public readonly ThemeRepository $themes;
+
+    public ?CacheInterface $cache = null;
 
     public function __construct()
     {
@@ -39,6 +42,13 @@ class Environment
     public function theme(string $slug, string|ParsedTheme $theme): static
     {
         $this->themes->register($slug, $theme);
+
+        return $this;
+    }
+
+    public function cache(CacheInterface $cache): static
+    {
+        $this->cache = $cache;
 
         return $this;
     }

@@ -12,6 +12,7 @@ use Phiki\Support\Arr;
 use Phiki\TextMate\Tokenizer;
 use Phiki\Theme\ParsedTheme;
 use Phiki\Theme\Theme;
+use Psr\SimpleCache\CacheInterface;
 
 class Phiki
 {
@@ -85,6 +86,13 @@ class Phiki
     public function theme(string $name, string|ParsedTheme $pathOrTheme): static
     {
         $this->environment->themes->register($name, $pathOrTheme);
+
+        return $this;
+    }
+
+    public function cache(CacheInterface $cache): static
+    {
+        $this->environment->cache($cache);
 
         return $this;
     }
