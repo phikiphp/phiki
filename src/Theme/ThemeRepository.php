@@ -42,4 +42,16 @@ class ThemeRepository implements ThemeRepositoryInterface
     {
         $this->themes[$name] = $pathOrTheme;
     }
+
+    public function resolve(string|Theme|ParsedTheme $theme): ParsedTheme
+    {
+        if ($theme instanceof ParsedTheme) {
+            return $theme;
+        }
+
+        return match (true) {
+            is_string($theme) => $this->get($theme),
+            $theme instanceof Theme => $theme->toParsedTheme($this),
+        };
+    }
 }

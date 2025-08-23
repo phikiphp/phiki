@@ -66,4 +66,16 @@ class GrammarRepository implements GrammarRepositoryInterface
     {
         $this->grammars[$name] = $pathOrGrammar;
     }
+
+    public function resolve(string|Grammar|ParsedGrammar $grammar): ParsedGrammar
+    {
+        if ($grammar instanceof ParsedGrammar) {
+            return $grammar;
+        }
+
+        return match (true) {
+            is_string($grammar) => $this->get($grammar),
+            $grammar instanceof Grammar => $grammar->toParsedGrammar($this),
+        };
+    }
 }

@@ -29,7 +29,7 @@ class Phiki
 
     public function codeToTokens(string $code, string|Grammar|ParsedGrammar $grammar): array
     {
-        $grammar = $this->environment->resolveGrammar($grammar);
+        $grammar = $this->environment->grammars->resolve($grammar);
         $tokenizer = new Tokenizer($grammar, $this->environment);
 
         return $tokenizer->tokenize($code);
@@ -54,7 +54,7 @@ class Phiki
 
     public function codeToHtml(string $code, string|Grammar $grammar, string|array|Theme $theme): PendingHtmlOutput
     {
-        return (new PendingHtmlOutput($code, $this->environment->resolveGrammar($grammar), $this->wrapThemes($theme)))
+        return (new PendingHtmlOutput($code, $this->environment->grammars->resolve($grammar), $this->wrapThemes($theme)))
             ->generateTokensUsing(fn (string $code, ParsedGrammar $grammar) => $this->codeToTokens($code, $grammar))
             ->highlightTokensUsing(fn (array $tokens, array $themes) => $this->tokensToHighlightedTokens($tokens, $themes));
     }
@@ -65,7 +65,7 @@ class Phiki
             $themes = ['default' => $themes];
         }
 
-        return Arr::map($themes, fn (string|Theme|ParsedTheme $theme): ParsedTheme => $this->environment->resolveTheme($theme));
+        return Arr::map($themes, fn (string|Theme|ParsedTheme $theme): ParsedTheme => $this->environment->themes->resolve($theme));
     }
 
     public function addExtension(ExtensionInterface $extension): static
