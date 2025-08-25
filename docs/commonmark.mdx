@@ -5,6 +5,8 @@ description: "Learn how to use Phiki with The PHP League's CommonMark library."
 
 If you're using `league/commonmark` to parse and render Markdown in your PHP project, you can easily integrate Phiki using our custom extension.
 
+## Usage
+
 ```php
 use League\CommonMark\Environment\Environment;
 use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
@@ -56,4 +58,44 @@ $environment
         'light' => Theme::GithubLight, // [!code ++]
         'dark' => Theme::GithubDark, // [!code ++]
     ])); // [!code ++]
+```
+
+### Highlighting and focusing lines
+
+You can highlight and focus lines in your code blocks using special annotations in the code block's info string.
+
+```md
+```php {2,4-8}{3}
+```
+
+The first set of braces represents the lines to highlight, while the second set represents the lines to focus on.
+
+In this example, line 2 will be highlighted, as well as lines 4 through 8. Line 3 will then be focused.
+
+If you only want to focus lines, you can use an empty set of braces for the highlighted lines:
+
+```md
+```php {}{3}
+```
+
+#### Sample CSS
+
+Phiki does not style the highlighted or focused lines by default, so you will need to add your own CSS.
+
+You can use the following sample CSS to get started:
+
+```css
+pre.phiki code .line.highlight {
+    background-color: hsl(197, 88%, 94%);
+}
+
+.shiki.focus .line:not(.focus) {
+    transition: all 250ms;
+    filter: blur(2px);
+}
+
+.shiki.focus:hover .line {
+    transition: all 250ms;
+    filter: blur(0);
+}
 ```
