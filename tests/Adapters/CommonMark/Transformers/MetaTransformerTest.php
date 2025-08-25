@@ -54,7 +54,8 @@ it('can focus a single line', function () {
     ```
     MD);
 
-    expect($output)->toContain('<span class="line focus">');
+
+    expect($output)->toContain('<pre class="phiki language-php github-light focus"')->toContain('<span class="line focus">');
 });
 
 it('can focus a range of lines', function () {

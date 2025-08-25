@@ -19,6 +19,15 @@ class MetaTransformer extends AbstractTransformer
         return $code;
     }
 
+    public function pre(Element $pre): Element
+    {
+        if ($this->focuses !== []) {
+            $pre->properties->get('class')->add('focus');
+        }
+
+        return $pre;
+    }
+
     public function line(Element $span, array $tokens, int $index): Element
     {
         if (in_array($index + 1, $this->highlights, true)) {
