@@ -144,6 +144,7 @@ enum Grammar: string
     case Perl = 'perl';
     case Php = 'php';
     case Plsql = 'plsql';
+    case Po = 'po';
     case Polar = 'polar';
     case Postcss = 'postcss';
     case Powerquery = 'powerquery';
@@ -217,6 +218,7 @@ enum Grammar: string
     case VueVine = 'vue-vine';
     case Vyper = 'vyper';
     case Wasm = 'wasm';
+    case Wenyan = 'wenyan';
     case Wgsl = 'wgsl';
     case Wikitext = 'wikitext';
     case Wit = 'wit';
@@ -276,7 +278,7 @@ enum Grammar: string
             self::Desktop => [],
             self::Diff => [],
             self::Docker => ['dockerfile'],
-            self::Dotenv => [],
+            self::Dotenv => ['env'],
             self::DreamMaker => [],
             self::Edge => [],
             self::Elixir => [],
@@ -366,6 +368,7 @@ enum Grammar: string
             self::Perl => [],
             self::Php => [],
             self::Plsql => [],
+            self::Po => ['pot', 'potx'],
             self::Polar => [],
             self::Postcss => [],
             self::Powerquery => [],
@@ -439,6 +442,7 @@ enum Grammar: string
             self::VueVine => [],
             self::Vyper => ['vy'],
             self::Wasm => [],
+            self::Wenyan => ['文言'],
             self::Wgsl => [],
             self::Wikitext => ['mediawiki', 'wiki'],
             self::Wit => [],
@@ -449,7 +453,7 @@ enum Grammar: string
             self::Zenscript => [],
             self::Zig => [],
             self::Antlers => [],
-            self::Txt => [],
+            self::Txt => ['plaintext', 'text'],
         };
     }
 
@@ -592,6 +596,7 @@ enum Grammar: string
             self::Perl => 'source.perl',
             self::Php => 'source.php',
             self::Plsql => 'source.plsql.oracle',
+            self::Po => 'source.po',
             self::Polar => 'source.polar',
             self::Postcss => 'source.css.postcss',
             self::Powerquery => 'source.powerquery',
@@ -665,6 +670,7 @@ enum Grammar: string
             self::VueVine => 'source.vue-vine',
             self::Vyper => 'source.vyper',
             self::Wasm => 'source.wat',
+            self::Wenyan => 'source.wenyan',
             self::Wgsl => 'source.wgsl',
             self::Wikitext => 'source.wikitext',
             self::Wit => 'source.wit',
