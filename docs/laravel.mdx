@@ -143,3 +143,45 @@ Str::markdown($markdown, extensions: [
     new PhikiExtension(Theme::GithubLight, resolve(Phiki::class)),
 ]);
 ```
+
+## Blade component
+
+If you want to highlight code inside of a Blade view, Phiki provides a Blade component that you can use.
+
+```blade
+<x-phiki::code grammar="php" theme="github-light">
+echo "Hello, world!";
+</x-phiki::code>
+```
+
+This will highlight the code block using the `Grammar::Php` grammar and the `Theme::GithubLight` theme.
+
+### Enabling the gutter
+
+To enable the gutter, add the `gutter` attribute to the component.
+
+```blade
+<x-phiki::code grammar="php" theme="github-light" gutter>
+echo "Hello, world!";
+</x-phiki::code>
+```
+
+### Changing the starting line number
+
+To change the starting line number, add the `starting-line` attribute to the component.
+
+```blade
+<x-phiki::code grammar="php" theme="github-light" gutter :starting-line="5">
+echo "Hello, world!";
+</x-phiki::code>
+```
+
+### Passing code as an attribute
+
+Since Laravel trims whitespace from the slot of a Blade component, you can also pass the code to the component using the `code` attribute.
+
+```blade
+<x-phiki::code grammar="php" theme="github-light" :code="$myCodeVariable" />
+```
+
+This is especially useful if you want to highlight code that is stored in a variable or preserve trailing and leading whitespace.
