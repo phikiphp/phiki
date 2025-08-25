@@ -15,6 +15,7 @@ use Phiki\Token\HighlightedToken;
 use Phiki\Token\Token;
 use Phiki\Transformers\Decorations\DecorationTransformer;
 use Phiki\Transformers\Decorations\LineDecoration;
+use Phiki\Transformers\Meta;
 use Psr\SimpleCache\CacheInterface;
 use Stringable;
 
@@ -33,6 +34,8 @@ class PendingHtmlOutput implements Stringable
     protected array $decorations = [];
 
     protected int $startingLineNumber = 1;
+
+    protected Meta $meta;
 
     /**
      * @param  array<string, ParsedTheme>  $themes
@@ -102,6 +105,13 @@ class PendingHtmlOutput implements Stringable
         return $this;
     }
 
+    public function withMeta(Meta $meta): self
+    {
+        $this->meta = $meta;
+
+        return $this;
+    }
+
     public function toString(): string
     {
         return $this->__toString();
@@ -151,6 +161,14 @@ class PendingHtmlOutput implements Stringable
 
         if (isset($this->cache) && $this->cache->has($cacheKey)) {
             return $this->cache->get($cacheKey);
+        }
+
+        if (! isset($this->meta)) {
+            $this->meta = new Meta();
+        }
+
+        foreach ($this->transformers as $transformer) {
+            $transformer->withMeta($this->meta);
         }
 
         [$code] = $this->callTransformerMethod('preprocess', $this->code);

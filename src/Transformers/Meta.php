@@ -5,6 +5,6 @@ namespace Phiki\Transformers;
 readonly class Meta
 {
     public function __construct(
-        public ?string $markdown,
+        public ?string $markdownInfo = null,
     ) {}
 }
