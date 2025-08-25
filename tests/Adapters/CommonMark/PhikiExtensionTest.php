@@ -4,6 +4,7 @@ use League\CommonMark\Environment\Environment;
 use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
 use League\CommonMark\MarkdownConverter;
 use Phiki\Adapters\CommonMark\PhikiExtension;
+use Phiki\Tests\Fixtures\UselessTransformer;
 use Phiki\Theme\Theme;
 
 it('registers renderers', function () {
@@ -44,6 +45,24 @@ it('can be configured using environment config array', function () {
     class A {}
     ```
     MD)->getContent();
+
+    expect($generated)->toMatchSnapshot();
+});
+
+it('understands the info string', function () {
+    $environment = new Environment;
+
+    $environment
+        ->addExtension(new CommonMarkCoreExtension)
+        ->addExtension(new PhikiExtension('github-dark'));
+
+    $markdown = new MarkdownConverter($environment);
+
+    $generated = $markdown->convert(<<<'MD'
+    ```php {0-10}
+    class A {}
+    ```
+    MD);
 
     expect($generated)->toMatchSnapshot();
 });

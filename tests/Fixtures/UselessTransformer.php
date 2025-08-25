@@ -7,6 +7,7 @@ use Phiki\Phast\Element;
 use Phiki\Phast\Root;
 use Phiki\Token\HighlightedToken;
 use Phiki\Transformers\AbstractTransformer;
+use Phiki\Transformers\Meta;
 
 class UselessTransformer extends AbstractTransformer
 {
@@ -89,5 +90,10 @@ class UselessTransformer extends AbstractTransformer
         $this->postprocessed = true;
 
         return $html;
+    }
+
+    public function meta(): Meta
+    {
+        return $this->meta;
     }
 }

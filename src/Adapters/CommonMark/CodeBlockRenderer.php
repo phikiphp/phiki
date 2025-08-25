@@ -10,6 +10,7 @@ use League\CommonMark\Renderer\NodeRendererInterface;
 use Phiki\Grammar\Grammar;
 use Phiki\Phiki;
 use Phiki\Theme\Theme;
+use Phiki\Transformers\Meta;
 
 class CodeBlockRenderer implements NodeRendererInterface
 {
@@ -27,8 +28,9 @@ class CodeBlockRenderer implements NodeRendererInterface
 
         $code = rtrim($node->getLiteral(), "\n");
         $grammar = $this->detectGrammar($node);
+        $meta = new Meta(markdownInfo: $node->getInfoWords()[1] ?? null);
 
-        return $this->phiki->codeToHtml($code, $grammar, $this->theme)->withGutter($this->withGutter)->toString();
+        return $this->phiki->codeToHtml($code, $grammar, $this->theme)->withGutter($this->withGutter)->withMeta($meta)->toString();
     }
 
     protected function detectGrammar(FencedCode $node): Grammar|string
