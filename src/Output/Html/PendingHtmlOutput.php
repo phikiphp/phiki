@@ -13,6 +13,9 @@ use Phiki\Support\Arr;
 use Phiki\Theme\ParsedTheme;
 use Phiki\Token\HighlightedToken;
 use Phiki\Token\Token;
+use Phiki\Transformers\Decorations\DecorationsTransformer;
+use Phiki\Transformers\Decorations\DecorationTransformer;
+use Phiki\Transformers\Decorations\LineDecoration;
 use Psr\SimpleCache\CacheInterface;
 use Stringable;
 
@@ -27,6 +30,8 @@ class PendingHtmlOutput implements Stringable
     protected ?CacheInterface $cache = null;
 
     protected array $transformers = [];
+
+    protected array $decorations = [];
 
     protected int $startingLineNumber = 1;
 
@@ -76,6 +81,17 @@ class PendingHtmlOutput implements Stringable
     public function transformer(TransformerInterface $transformer): self
     {
         $this->transformers[] = $transformer;
+
+        return $this;
+    }
+
+    public function decoration(LineDecoration ...$decorations): self
+    {
+        if (! Arr::any($this->transformers, fn (TransformerInterface $transformer) => $transformer instanceof DecorationTransformer)) {
+            $this->transformers[] = new DecorationTransformer($this->decorations);
+        }
+
+        $this->decorations = array_merge($this->decorations, $decorations);
 
         return $this;
     }
