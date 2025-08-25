@@ -57,6 +57,11 @@ interface TransformerInterface
     public function token(Element $span, HighlightedToken $token, int $index, int $line): Element;
 
     /**
+     * Modify the <span> for each gutter element.
+     */
+    public function gutter(Element $span, int $lineNumber): Element;
+
+    /**
      * Modify the HTML output after the AST has been converted.
      */
     public function postprocess(string $html): string;

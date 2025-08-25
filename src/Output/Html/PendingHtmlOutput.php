@@ -215,8 +215,7 @@ class PendingHtmlOutput implements Stringable
             $line->properties->set('class', new ClassList(['line']));
 
             if ($this->withGutter) {
-                $line->children[] = $gutter = new Element('span');
-
+                $gutter = new Element('span');
                 $gutter->properties->set('class', new ClassList(['line-number']));
 
                 $lineNumberColor = $this->getDefaultTheme()->colors['editorLineNumber.foreground'] ?? null;
@@ -227,6 +226,10 @@ class PendingHtmlOutput implements Stringable
                 ])));
 
                 $gutter->children[] = new Text(sprintf('%2d', $this->startingLineNumber + $index));
+                
+                [$gutter] = $this->callTransformerMethod('gutter', $gutter, $index);
+
+                $line->children[] = $gutter;
             }
 
             foreach ($lineTokens as $j => $token) {

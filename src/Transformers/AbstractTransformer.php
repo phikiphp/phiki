@@ -86,6 +86,14 @@ class AbstractTransformer implements TransformerInterface
     }
 
     /**
+     * Modify the <span> for line number.
+     */
+    public function gutter(Element $span, int $lineNumber): Element
+    {
+        return $span;
+    }
+
+    /**
      * Modify the HTML output after the AST has been converted.
      */
     public function postprocess(string $html): string
