@@ -1,5 +1,9 @@
 <?php
 
+use League\CommonMark\Environment\Environment;
+use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
+use League\CommonMark\MarkdownConverter;
+use Phiki\Adapters\CommonMark\PhikiExtension;
 use Phiki\Grammar\Grammar;
 use Phiki\Grammar\GrammarRepository;
 use Phiki\Grammar\ParsedGrammar;
@@ -45,4 +49,13 @@ function highlight(array $tokens, array $theme): array
     }
 
     return (new Phiki)->tokensToHighlightedTokens($tokens, $theme);
+}
+
+function markdown(string $input, Theme $theme = Theme::GithubLight): string
+{
+    $environment = new Environment();
+    $environment->addExtension(new CommonMarkCoreExtension)->addExtension(new PhikiExtension($theme));
+    $converter = new MarkdownConverter($environment);
+
+    return $converter->convert($input)->getContent();
 }

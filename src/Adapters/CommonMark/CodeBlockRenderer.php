@@ -7,6 +7,7 @@ use League\CommonMark\Extension\CommonMark\Node\Block\FencedCode;
 use League\CommonMark\Node\Node;
 use League\CommonMark\Renderer\ChildNodeRendererInterface;
 use League\CommonMark\Renderer\NodeRendererInterface;
+use Phiki\Adapters\CommonMark\Transformers\MetaTransformer;
 use Phiki\Grammar\Grammar;
 use Phiki\Phiki;
 use Phiki\Theme\Theme;
@@ -30,7 +31,11 @@ class CodeBlockRenderer implements NodeRendererInterface
         $grammar = $this->detectGrammar($node);
         $meta = new Meta(markdownInfo: $node->getInfoWords()[1] ?? null);
 
-        return $this->phiki->codeToHtml($code, $grammar, $this->theme)->withGutter($this->withGutter)->withMeta($meta)->toString();
+        return $this->phiki->codeToHtml($code, $grammar, $this->theme)
+            ->withGutter($this->withGutter)
+            ->withMeta($meta)
+            ->transformer(new MetaTransformer)
+            ->toString();
     }
 
     protected function detectGrammar(FencedCode $node): Grammar|string
