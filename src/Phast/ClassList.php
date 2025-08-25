@@ -45,6 +45,11 @@ class ClassList implements Stringable
         return $this->classes;
     }
 
+    public function isEmpty(): bool
+    {
+        return empty($this->classes);
+    }
+
     public function __toString(): string
     {
         return implode(' ', array_filter($this->classes, fn (string $class) => trim($class) !== ''));

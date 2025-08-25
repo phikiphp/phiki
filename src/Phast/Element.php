@@ -17,10 +17,12 @@ class Element implements Stringable
 
     public function __toString(): string
     {
+        $properties = (string) $this->properties;
+
         $element = sprintf(
             '<%s%s>',
             $this->tagName,
-            count($this->properties->properties) > 0 ? ' '.(string) $this->properties : ''
+            $properties ? ' '.$properties : ''
         );
 
         foreach ($this->children as $child) {

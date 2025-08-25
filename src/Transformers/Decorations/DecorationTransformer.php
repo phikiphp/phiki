@@ -8,15 +8,45 @@ use Phiki\Transformers\AbstractTransformer;
 class DecorationTransformer extends AbstractTransformer
 {
     /**
-     * @param  array<int, LineDecoration>  $decorations
+     * @param  array<int, LineDecoration | PreDecoration | CodeDecoration>  $decorations
      */
     public function __construct(
         public array &$decorations,
     ) {}
 
+    public function pre(Element $pre): Element
+    {
+        foreach ($this->decorations as $decoration) {
+            if (! $decoration instanceof PreDecoration) {
+                continue;
+            }
+
+            $pre->properties->get('class')->add(...$decoration->classes->all());
+        }
+
+        return $pre;
+    }
+
+    public function code(Element $code): Element
+    {
+        foreach ($this->decorations as $decoration) {
+            if (! $decoration instanceof CodeDecoration) {
+                continue;
+            }
+
+            $code->properties->get('class')->add(...$decoration->classes->all());
+        }
+
+        return $code;
+    }
+
     public function line(Element $span, array $tokens, int $index): Element
     {
         foreach ($this->decorations as $decoration) {
+            if (! $decoration instanceof LineDecoration) {
+                continue;
+            }
+
             if (! $decoration->appliesToLine($index)) {
                 continue;
             }

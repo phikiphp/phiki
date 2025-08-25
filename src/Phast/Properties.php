@@ -39,7 +39,7 @@ class Properties implements Stringable
 
     public function __toString(): string
     {
-        $properties = array_filter($this->properties, fn ($value) => (bool) $value);
+        $properties = array_filter($this->properties, fn ($value) => $value instanceof ClassList ? (! $value->isEmpty()) : (!! $value));
 
         return implode(' ', array_map(
             fn ($key, $value) => sprintf('%s="%s"', $key, $value),
