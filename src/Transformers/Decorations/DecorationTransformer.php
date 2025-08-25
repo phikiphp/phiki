@@ -8,7 +8,7 @@ use Phiki\Transformers\AbstractTransformer;
 class DecorationTransformer extends AbstractTransformer
 {
     /**
-     * @param  array<int, LineDecoration | PreDecoration | CodeDecoration>  $decorations
+     * @param  array<int, LineDecoration | PreDecoration | CodeDecoration | GutterDecoration>  $decorations
      */
     public function __construct(
         public array &$decorations,
@@ -48,6 +48,19 @@ class DecorationTransformer extends AbstractTransformer
             }
 
             if (! $decoration->appliesToLine($index)) {
+                continue;
+            }
+
+            $span->properties->get('class')->add(...$decoration->classes->all());
+        }
+
+        return $span;
+    }
+
+    public function gutter(Element $span, int $lineNumber): Element
+    {
+        foreach ($this->decorations as $decoration) {
+            if (! $decoration instanceof GutterDecoration) {
                 continue;
             }
 

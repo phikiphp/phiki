@@ -16,6 +16,7 @@ use Phiki\Token\HighlightedToken;
 use Phiki\Token\Token;
 use Phiki\Transformers\Decorations\CodeDecoration;
 use Phiki\Transformers\Decorations\DecorationTransformer;
+use Phiki\Transformers\Decorations\GutterDecoration;
 use Phiki\Transformers\Decorations\LineDecoration;
 use Phiki\Transformers\Decorations\PreDecoration;
 use Phiki\Transformers\Meta;
@@ -90,7 +91,7 @@ class PendingHtmlOutput implements Stringable
         return $this;
     }
 
-    public function decoration(LineDecoration | PreDecoration | CodeDecoration ...$decorations): self
+    public function decoration(LineDecoration | PreDecoration | CodeDecoration | GutterDecoration ...$decorations): self
     {
         if (! Arr::any($this->transformers, fn (TransformerInterface $transformer) => $transformer instanceof DecorationTransformer)) {
             $this->transformers[] = new DecorationTransformer($this->decorations);

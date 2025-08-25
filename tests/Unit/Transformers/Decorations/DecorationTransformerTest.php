@@ -5,6 +5,7 @@ use Phiki\Phast\ClassList;
 use Phiki\Phiki;
 use Phiki\Theme\Theme;
 use Phiki\Transformers\Decorations\CodeDecoration;
+use Phiki\Transformers\Decorations\GutterDecoration;
 use Phiki\Transformers\Decorations\LineDecoration;
 use Phiki\Transformers\Decorations\PreDecoration;
 
@@ -70,4 +71,16 @@ it('can apply decorations to code', function () {
         ->toString();
 
     expect($output)->toContain('<code class="code-class">');
+});
+
+it('can apply decorations to gutter', function () {
+    $output = (new Phiki)
+        ->codeToHtml(<<<'PHP'
+        echo "Hello, world!";
+        PHP, Grammar::Php, Theme::GithubLight, true)
+        ->withGutter()
+        ->decoration(GutterDecoration::make()->class('gutter-class'))
+        ->toString();
+
+    expect($output)->toContain('<span class="line-number gutter-class"');
 });

@@ -50,6 +50,23 @@ $output = (new Phiki)
     );
 ```
 
+## Gutter decorations
+
+To add additional classes to the gutter element that contains line numbers, you can pass a `GutterDecoration` instance to the `PendingHtmlOutput::decoration()` method.
+
+```php
+use Phiki\Transformers\Decorations\GutterDecoration;
+
+$output = (new Phiki)
+    ->codeToHtml('<?php echo ...', Grammar::Php, Theme::GithubLight)
+    ->withGutter()
+    ->decoration(
+        GutterDecoration::make()->class('gutter-class'),
+    );
+```
+
+This will add the `gutter-class` class to the gutter element.
+
 ## Substring decorations
 
 At the time of writing, you can only decorate entire lines. 
