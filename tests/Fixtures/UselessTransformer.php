@@ -6,8 +6,9 @@ use Phiki\Contracts\TransformerInterface;
 use Phiki\Phast\Element;
 use Phiki\Phast\Root;
 use Phiki\Token\HighlightedToken;
+use Phiki\Transformers\AbstractTransformer;
 
-class UselessTransformer implements TransformerInterface
+class UselessTransformer extends AbstractTransformer
 {
     public $preprocessed = false;
 

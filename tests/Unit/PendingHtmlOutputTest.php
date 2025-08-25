@@ -5,6 +5,7 @@ use Phiki\Phiki;
 use Phiki\Tests\Fixtures\FakeCache;
 use Phiki\Tests\Fixtures\UselessTransformer;
 use Phiki\Theme\Theme;
+use Phiki\Transformers\Meta;
 
 it('calls transformer methods', function () {
     $transformer = new UselessTransformer;
@@ -103,4 +104,27 @@ it('can read from cache', function () {
         ->cache($cache);
 
     expect($pending2->toString())->toBe($pending->toString());
+});
+
+it('passes meta to transformers', function () {
+    $transformer = new class extends UselessTransformer {
+        public function meta(): Meta
+        {
+            return $this->meta;
+        }
+    };
+
+    $output = (new Phiki)
+        ->codeToHtml(
+            <<<'PHP'
+            echo "Hello, world!";
+            PHP,
+            Grammar::Php,
+            Theme::GithubLight,
+        )
+        ->transformer($transformer)
+        ->withMeta($meta = new Meta())
+        ->toString();
+
+    expect($transformer->meta())->toBe($meta);
 });
