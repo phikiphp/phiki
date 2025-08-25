@@ -2,11 +2,11 @@
 title: Decorations
 ---
 
-Decorations allow you to apply custom classes to specific lines in the generated HTML. This is useful if you want to style certain regions of your code blocks differently, such as focusing attention on specific lines or adding custom colors.
+Decorations allow you to apply custom classes to specific elements in the generated HTML. This is useful if you want to style certain regions of your code blocks differently, such as focusing attention on specific lines or adding custom colors.
 
-## Usage
+## Line decorations
 
-To use decorations, you can pass a `LineDecoration` instance to the `PendingHtmlOutput::decoration()` method.
+To add additional classes to line elements, you can pass a `LineDecoration` instance to the `PendingHtmlOutput::decoration()` method.
 
 ```php
 use Phiki\Transformers\Decorations\LineDecoration;
@@ -19,6 +19,36 @@ $output = (new Phiki)
 ```
 
 This will add the `focus` class to the first line of the code block, since lines are zero-indexed.
+
+## Pre decorations
+
+To add additional classes to the `<pre>` element that wraps the entire code block, you can pass a `PreDecoration` instance to the `PendingHtmlOutput::decoration()` method.
+
+```php
+use Phiki\Transformers\Decorations\PreDecoration;
+
+$output = (new Phiki)
+    ->codeToHtml('<?php echo ...', Grammar::Php, Theme::GithubLight)
+    ->decoration(
+        PreDecoration::make()->class('pre-class'),
+    );
+```
+
+This will add the `pre-class` class to the `<pre>` element.
+
+## Code decorations
+
+To add additional classes to the `<code>` element that wraps the entire code block, you can pass a `CodeDecoration` instance to the `PendingHtmlOutput::decoration()` method.
+
+```php
+use Phiki\Transformers\Decorations\CodeDecoration;
+
+$output = (new Phiki)
+    ->codeToHtml('<?php echo ...', Grammar::Php, Theme::GithubLight)
+    ->decoration(
+        CodeDecoration::make()->class('code-class'),
+    );
+```
 
 ## Substring decorations
 
