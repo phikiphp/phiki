@@ -6,6 +6,7 @@ use Phiki\Phast\Element;
 use Phiki\Phast\Root;
 use Phiki\Token\HighlightedToken;
 use Phiki\Token\Token;
+use Phiki\Transformers\Meta;
 
 interface TransformerInterface
 {
@@ -59,4 +60,9 @@ interface TransformerInterface
      * Modify the HTML output after the AST has been converted.
      */
     public function postprocess(string $html): string;
+
+    /**
+     * Supply the meta object to the transformer.
+     */
+    public function withMeta(Meta $meta): void;
 }

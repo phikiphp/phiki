@@ -11,6 +11,11 @@ use Phiki\Token\Token;
 class AbstractTransformer implements TransformerInterface
 {
     /**
+     * The meta information.
+     */
+    protected Meta $meta;
+
+    /**
      * Modify the code before it is tokenized.
      */
     public function preprocess(string $code): string
@@ -86,5 +91,13 @@ class AbstractTransformer implements TransformerInterface
     public function postprocess(string $html): string
     {
         return $html;
+    }
+
+    /**
+     * Store the meta object.
+     */
+    public function withMeta(Meta $meta): void
+    {
+        $this->meta = $meta;
     }
 }
