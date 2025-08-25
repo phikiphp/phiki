@@ -31,3 +31,13 @@ BLADE);
 
     expect($output)->toContain('10</span>');
 });
+
+it('can accept code through an attribute', function () {
+    $output = Blade::render(<<<'BLADE'
+    <x-phiki::code grammar="php" theme="github-light" :$code />
+    BLADE, [
+        'code' => "<?php echo 'Hello, world!';",
+    ]);
+
+    expect($output)->toMatchSnapshot();
+});

@@ -14,6 +14,7 @@ class Code extends Component
     public function __construct(
         public string|Grammar $grammar,
         public string|array|Theme $theme,
+        public ?string $code = null,
         public bool $gutter = false,
         public int $startingLine = 1,
     ) {}
@@ -24,7 +25,7 @@ class Code extends Component
     public function render(): string
     {
         return <<<'BLADE'
-        {!! \Phiki\Adapters\Laravel\Facades\Phiki::codeToHtml($slot->__toString(), $grammar, $theme)->withGutter($gutter)->startingLine($startingLine) !!}
+        {!! \Phiki\Adapters\Laravel\Facades\Phiki::codeToHtml($code ?? $slot->__toString(), $grammar, $theme)->withGutter($gutter)->startingLine($startingLine) !!}
         BLADE;
     }
 }
