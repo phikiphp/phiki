@@ -14,7 +14,7 @@ use Phiki\Transformers\Decorations\LineDecoration;
 $output = (new Phiki)
     ->codeToHtml('<?php echo ...', Grammar::Php, Theme::GithubLight)
     ->decoration(
-        LineDecoration::forLine(0)->addClass('focus'),
+        LineDecoration::forLine(0)->class('focus'),
     );
 ```
 
