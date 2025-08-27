@@ -51,11 +51,17 @@ function highlight(array $tokens, array $theme): array
     return (new Phiki)->tokensToHighlightedTokens($tokens, $theme);
 }
 
-function markdown(string $input, Theme $theme = Theme::GithubLight): string
+function markdown(string $input, Theme $theme = Theme::GithubLight, ?Grammar $grammar = null): string
 {
     $environment = new Environment;
     $environment->addExtension(new CommonMarkCoreExtension)->addExtension(new PhikiExtension($theme));
     $converter = new MarkdownConverter($environment);
 
-    return $converter->convert($input)->getContent();
+    $markdown = $grammar === null ? $input : <<<MD
+```{$grammar->value}
+{$input}
+```
+MD;
+
+    return $converter->convert($markdown)->getContent();
 }

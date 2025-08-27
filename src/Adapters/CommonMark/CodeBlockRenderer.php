@@ -7,6 +7,7 @@ use League\CommonMark\Extension\CommonMark\Node\Block\FencedCode;
 use League\CommonMark\Node\Node;
 use League\CommonMark\Renderer\ChildNodeRendererInterface;
 use League\CommonMark\Renderer\NodeRendererInterface;
+use Phiki\Adapters\CommonMark\Transformers\AnnotationsTransformer;
 use Phiki\Adapters\CommonMark\Transformers\MetaTransformer;
 use Phiki\Grammar\Grammar;
 use Phiki\Phiki;
@@ -35,6 +36,7 @@ class CodeBlockRenderer implements NodeRendererInterface
             ->withGutter($this->withGutter)
             ->withMeta($meta)
             ->transformer(new MetaTransformer)
+            ->transformer(new AnnotationsTransformer)
             ->toString();
     }
 

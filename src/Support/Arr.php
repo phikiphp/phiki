@@ -58,4 +58,25 @@ final class Arr
 
         return false;
     }
+
+    public static function partition(array $array, callable $callback): array
+    {
+        $matches = [];
+        $nonMatches = [];
+
+        foreach ($array as $key => $value) {
+            if ($callback($value, $key)) {
+                $matches[$key] = $value;
+            } else {
+                $nonMatches[$key] = $value;
+            }
+        }
+
+        return [$matches, $nonMatches];
+    }
+
+    public static function flatten(array $array): array
+    {
+        return array_merge(...array_map(fn ($item) => is_array($item) ? self::flatten($item) : [$item], $array));
+    }
 }
