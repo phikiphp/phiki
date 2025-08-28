@@ -96,7 +96,82 @@ describe('focus', function () {
         echo "This is also not focused.";
         PHP, Theme::GithubLight, Grammar::Php);
 
-        echo $output;
+        expect($output)->toMatchSnapshot();
+    });
+
+    it('can focus multiple lines', function () {
+        $output = markdown(<<<'PHP'
+        echo "This line is not focused!";
+        echo "This line is focused."; // [code! focus:2]
+        echo "This is also focused.";
+        echo "This line is not focused.";
+        PHP, Theme::GithubLight, Grammar::Php);
+
+        expect($output)->toMatchSnapshot();
+    });
+
+    it('can focus a negative offset', function () {
+        $output = markdown(<<<'PHP'
+        echo "This line is not focused!";
+        echo "This line is focused.";
+        echo "This is also focused."; // [code! focus:-2]
+        echo "This line is not focused.";
+        PHP, Theme::GithubLight, Grammar::Php);
+
+        expect($output)->toMatchSnapshot();
+    });
+
+    it('can focus a range of lines', function () {
+        $output = markdown(<<<'PHP'
+        echo "This line is not focused!";
+        echo "This line is focused."; // [code! focus:1]
+        echo "This is also focused.";
+        echo "This line is not focused.";
+        PHP, Theme::GithubLight, Grammar::Php);
+
+        expect($output)->toMatchSnapshot();
+    });
+
+    it('can focus a negative offset range', function () {
+        $output = markdown(<<<'PHP'
+        echo "This line is not focused!";
+        echo "This line is focused.";
+        echo "This is also focused."; // [code! focus:-1]
+        echo "This line is not focused.";
+        PHP, Theme::GithubLight, Grammar::Php);
+
+        expect($output)->toMatchSnapshot();
+    });
+
+    it('can focus an open ended range', function () {
+        $output = markdown(<<<'PHP'
+        echo "This line is not focused!";
+        echo "This line is focused."; // [code! focus:start]
+        echo "This is also focused."; // [code! focus:end]
+        echo "This line is not focused.";
+        PHP, Theme::GithubLight, Grammar::Php);
+
+        expect($output)->toMatchSnapshot();
+    });
+
+    it('can focus an offset with total', function () {
+        $output = markdown(<<<'PHP'
+        echo "This line is not focused!"; // [code! focus:1,2]
+        echo "This line is focused.";
+        echo "This is also focused.";
+        echo "This line is not focused.";
+        PHP, Theme::GithubLight, Grammar::Php);
+
+        expect($output)->toMatchSnapshot();
+    });
+
+    it('can focus a negative offset with total', function () {
+        $output = markdown(<<<'PHP'
+        echo "This line is focused!";
+        echo "This line is focused."; // [code! focus:-1,3]
+        echo "This is also focused.";
+        echo "This line is not focused.";
+        PHP, Theme::GithubLight, Grammar::Php);
 
         expect($output)->toMatchSnapshot();
     });
