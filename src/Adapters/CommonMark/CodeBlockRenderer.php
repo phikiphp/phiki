@@ -46,6 +46,10 @@ class CodeBlockRenderer implements NodeRendererInterface
 
         preg_match('/[a-zA-Z]+/', $node->getInfoWords()[0], $matches);
 
+        if (! $this->phiki->environment->grammars->has($matches[0])) {
+            return 'txt';
+        }
+
         return $matches[0];
     }
 }

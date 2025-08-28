@@ -65,3 +65,21 @@ it('understands the info string', function () {
 
     expect($generated)->toMatchSnapshot();
 });
+
+it('falls back to txt if the grammar doesnt exist', function () {
+    $environment = new Environment;
+
+    $environment
+        ->addExtension(new CommonMarkCoreExtension)
+        ->addExtension(new PhikiExtension('github-dark'));
+
+    $markdown = new MarkdownConverter($environment);
+
+    $generated = $markdown->convert(<<<'MD'
+    ```nonexistentlang
+    class A {}
+    ```
+    MD);
+
+    expect($generated)->toMatchSnapshot();
+});
