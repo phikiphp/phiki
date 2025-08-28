@@ -41,13 +41,13 @@ class CodeBlockRenderer implements NodeRendererInterface
     protected function detectGrammar(FencedCode $node): Grammar|string
     {
         if (! isset($node->getInfoWords()[0]) || $node->getInfoWords()[0] === '') {
-            return 'txt';
+            return Grammar::Txt;
         }
 
         preg_match('/[a-zA-Z]+/', $node->getInfoWords()[0], $matches);
 
         if (! $this->phiki->environment->grammars->has($matches[0])) {
-            return 'txt';
+            return Grammar::Txt;
         }
 
         return $matches[0];
