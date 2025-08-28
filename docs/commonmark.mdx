@@ -60,23 +60,33 @@ $environment
     ])); // [!code ++]
 ```
 
-### Highlighting and focusing lines
+### Meta information
 
-You can highlight and focus lines in your code blocks using special annotations in the code block's info string.
+You can add additional meta information to your Markdown code blocks to highlight and focus a specified set of lines.
 
-```md
-```php {2,4-8}{3}
-```
+#### Highlighting lines
 
-The first set of braces represents the lines to highlight, while the second set represents the lines to focus on.
-
-In this example, line 2 will be highlighted, as well as lines 4 through 8. Line 3 will then be focused.
-
-If you only want to focus lines, you can use an empty set of braces for the highlighted lines:
+You can highlight lines in your code blocks using special annotations in the code block's info string.
 
 ```md
-```php {}{3}
+```php {2,4-8}
 ```
+
+The braces represent the lines to highlight. In this example, line 2 will be highlighted, as well as lines 4 through 8.
+
+#### Focusing lines
+
+You can focus lines in your code blocks using special annotations in the code block's info string.
+
+```md
+```php {}{2,4-8}
+```
+
+The first set of braces represents the lines to highlight (none in this case), while the second set of braces represents the lines to focus. In this example, line 2 will be focused, as well as lines 4 through 8.
+
+<Tip>
+    When you have focused lines inside of a code block, Phiki will add a `focus` class to the `<pre>` element.
+</Tip>
 
 #### Sample CSS
 
@@ -89,6 +99,108 @@ pre.phiki code .line.highlight {
     background-color: hsl(197, 88%, 94%);
 }
 
+pre.phiki.focus .line:not(.focus) {
+    transition: all 250ms;
+    filter: blur(2px);
+}
+
+pre.phiki.focus:hover .line {
+    transition: all 250ms;
+    filter: blur(0);
+}
+```
+
+### Inline annotations
+
+The meta information for highlighting and focusing lines can be difficult to use when you have a large code block or if you change the code frequently since it uses line numbers.
+
+That's why Phiki also supports inline annotations using special comments in your code.
+
+#### Ranges
+
+Inline annotations accept an optional range parameter to specify which lines should be highlighted or focused. 
+
+```
+// [code! highlight]      → Only this line.
+// [code! highlight:2]    → This line and the 2 lines after it.
+// [code! highlight:-2]   → This line and the 2 lines before it.
+// [code! highlight:1,3]  → From the next line, 3 lines in total.
+// [code! highlight:-1,2] → From the previous line, 2 lines in total.
+```
+
+It's also possible to create an "open ended" range by using `start` and `end` to mark the beginning and end of a range.
+
+```
+// [code! highlight:start] → Start highlighting from this line.
+// ...
+// [code! highlight:end]   → Stop highlighting after this line.
+```
+
+#### Highlighting lines
+
+To highlight a line, you can add a trailing comment to the line you want to highlight.
+
+```php
+echo "Hello, world!"; // [code! highlight]
+```
+
+This comment tells Phiki to highlight this line by adding a `highlight` class to the corresponding line element.
+
+If you don't want to write out `highlight` every time, you can use the `hl` or `~~` shorthands instead.
+
+```php
+echo "Hello, world!"; // [code! hl]
+echo "Hello, world!"; // [code! ~~]
+```
+
+#### Focusing lines
+
+To focus a line, you can add a trailing comment to the line you want to focus.
+
+```php
+echo "Hello, world!"; // [code! focus]
+```
+
+This comment tells Phiki to focus this line by adding a `focus` class to the corresponding line element.
+
+<Tip>
+    When you have focused lines inside of a code block, Phiki will add a `focus` class to the `<pre>` element.
+</Tip>
+
+If you don't want to write out `focus` every time, you can use the `f` or `**` shorthands instead.
+
+```php
+echo "Hello, world!"; // [code! f]
+echo "Hello, world!"; // [code! **]
+```
+
+#### Sample CSS
+
+##### **Highlighted lines**
+
+When you use an inline highlight annotation, Phiki will try to find an `editor.lineHighlightBackground` or `editor.selectionHighlightBackground` color inside of your chosen theme(s) and add a CSS variable to the `<pre>` element.
+
+If it can't find one, it will fallback to the default background color of the theme.
+
+Those CSS variables are then applied to the line element the same as other styled elements.
+
+<Note>
+If you're using multiple themes, Phiki will also add CSS variables for each theme so you can style them differently in dark mode, for example.
+</Note>
+
+```css
+@media (prefers-color-scheme: dark) {
+    .phiki .line.highlight {
+        background-color: var(--phiki-dark-line-highlight) !important;
+    }
+}
+```
+
+##### **Focused lines**
+
+Phiki does not apply any styles to focused lines by default, so you will need to add your own CSS.
+
+```css
 pre.phiki.focus .line:not(.focus) {
     transition: all 250ms;
     filter: blur(2px);
