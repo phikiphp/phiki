@@ -7,15 +7,18 @@ use Phiki\Adapters\CommonMark\Transformers\Annotations\AnnotationRange;
 use Phiki\Adapters\CommonMark\Transformers\Annotations\AnnotationRangeKind;
 use Phiki\Adapters\CommonMark\Transformers\Annotations\AnnotationType;
 use Phiki\Contracts\RequiresGrammarInterface;
+use Phiki\Contracts\RequiresThemesInterface;
 use Phiki\Grammar\Grammar;
 use Phiki\Phast\Element;
 use Phiki\Support\Arr;
 use Phiki\Transformers\AbstractTransformer;
 use Phiki\Transformers\Concerns\RequiresGrammar;
+use Phiki\Transformers\Concerns\RequiresThemes;
 
-class AnnotationsTransformer extends AbstractTransformer implements RequiresGrammarInterface
+class AnnotationsTransformer extends AbstractTransformer implements RequiresGrammarInterface, RequiresThemesInterface
 {
     use RequiresGrammar;
+    use RequiresThemes;
 
     const ANNOTATION_REGEX = '/\[%s! (?<keyword>%s)(:(?<range>.+))?\]/';
 
