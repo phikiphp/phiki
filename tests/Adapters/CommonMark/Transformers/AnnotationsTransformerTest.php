@@ -87,3 +87,17 @@ describe('highlight', function () {
         expect($output)->toMatchSnapshot();
     });
 });
+
+describe('focus', function () {
+    it('can focus a line', function () {
+        $output = markdown(<<<'PHP'
+        echo "This line is not focused!";
+        echo "This line is focused."; // [code! focus]
+        echo "This is also not focused.";
+        PHP, Theme::GithubLight, Grammar::Php);
+
+        echo $output;
+
+        expect($output)->toMatchSnapshot();
+    });
+});
