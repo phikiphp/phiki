@@ -65,7 +65,7 @@ class Str
                 return '';
             }
 
-            while ($result[0] === '.') {
+            while ($result && $result[0] === '.') {
                 $result = substr($result, 1);
             }
 
