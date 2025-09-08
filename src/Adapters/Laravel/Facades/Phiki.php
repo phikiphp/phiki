@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static \Phiki\Environment environment()
  * @method static \Phiki\Phiki extend(\Phiki\Contracts\ExtensionInterface $extension)
  * @method static \Phiki\Phiki grammar(string $name, string|\Phiki\Grammar\ParsedGrammar $pathOrGrammar)
+ * @method static \Phiki\Phiki alias(string $alias, string | \Phiki\Grammar\Grammar $for)
  * @method static \Phiki\Phiki theme(string $name, string|\Phiki\Theme\ParsedTheme $pathOrTheme)
  * @method static \Phiki\Phiki cache(\Psr\SimpleCache\CacheInterface $cache)
  *

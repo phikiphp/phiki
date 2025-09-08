@@ -49,3 +49,16 @@ $html = (new Phiki)
     ->codeToHtml('Your code here...', 'my-language', Theme::GithubLight)
     ->toString();
 ```
+
+## Aliasing
+
+If you wish to register custom aliases for a grammar that has already been registered, you can do so by calling the `Phiki::alias()` method.
+
+```php
+(new Phiki)
+    ->alias('my-php', Grammar::Php)
+    ->codeToHtml('<?php echo "Hello, World!"; ?>', 'my-php', Theme::GithubLight)
+    ->toString();
+```
+
+This will allow you to use `my-php` as an alias for the built-in PHP grammar.

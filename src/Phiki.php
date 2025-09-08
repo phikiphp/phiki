@@ -83,6 +83,13 @@ class Phiki
         return $this;
     }
 
+    public function alias(string $alias, string | Grammar $for): static
+    {
+        $this->environment->grammars->alias($alias, $for instanceof Grammar ? $for->value : $for);
+
+        return $this;
+    }
+
     public function theme(string $name, string|ParsedTheme $pathOrTheme): static
     {
         $this->environment->themes->register($name, $pathOrTheme);

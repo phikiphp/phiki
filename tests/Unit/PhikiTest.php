@@ -55,3 +55,9 @@ it('accepts a grammar enum member', function () {
 it('accepts a theme enum member', function () {
     expect((new Phiki)->codeToHtml('echo $a;', Grammar::Php, Theme::GithubDark))->__toString()->toBeString();
 });
+
+it('can alias a grammar', function () {
+    $phiki = (new Phiki)->alias('my-php', Grammar::Php);
+
+    expect($phiki->codeToHtml('echo $a;', 'my-php', Theme::GithubDark))->__toString()->toBeString();
+});
