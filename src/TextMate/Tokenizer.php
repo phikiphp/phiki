@@ -45,7 +45,7 @@ class Tokenizer
             contentNameScopesList: $scopeList,
         );
 
-        $lines = array_values(preg_split("/\R/", $text));
+        $lines = array_values(preg_split("/\R/u", $text));
         $tokens = [];
 
         foreach ($lines as $index => $line) {
