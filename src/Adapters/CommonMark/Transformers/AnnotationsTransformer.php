@@ -10,6 +10,7 @@ use Phiki\Contracts\RequiresGrammarInterface;
 use Phiki\Contracts\RequiresThemesInterface;
 use Phiki\Grammar\Grammar;
 use Phiki\Phast\Element;
+use Phiki\Phast\Text;
 use Phiki\Support\Arr;
 use Phiki\Transformers\AbstractTransformer;
 use Phiki\Transformers\Concerns\RequiresGrammar;
@@ -40,15 +41,15 @@ class AnnotationsTransformer extends AbstractTransformer implements RequiresGram
 
     /**
      * The collected list of annotations.
-     * 
+     *
      * @var array<int, array<Annotation>>
      */
     protected array $annotations = [];
 
     /**
      * Create a new instance.
-     * 
-     * @param string $prefix The prefix used to denote annotations, e.g. `code` for `[code! highlight]`.
+     *
+     * @param  string  $prefix  The prefix used to denote annotations, e.g. `code` for `[code! highlight]`.
      */
     public function __construct(protected string $prefix = 'code') {}
 
@@ -120,10 +121,10 @@ class AnnotationsTransformer extends AbstractTransformer implements RequiresGram
             // We store a list of these in a constant:
             //    - strings are characters for line comments
             //    - arrays are beginning and ending comment pairs (block comments)
-            [$l, $b] = Arr::partition($commentChars, fn(string|array $chars) => is_string($chars));
+            [$l, $b] = Arr::partition($commentChars, fn (string|array $chars) => is_string($chars));
 
             // We'll first check for line comments.
-            $processedLineCommentRegex = sprintf(self::DANGLING_LINE_COMMENT_REGEX, implode('|', array_map(fn(string $char) => preg_quote($char, '/'), $l)));
+            $processedLineCommentRegex = sprintf(self::DANGLING_LINE_COMMENT_REGEX, implode('|', array_map(fn (string $char) => preg_quote($char, '/'), $l)));
 
             // If we find a match, we can set the cutoff point and skip checking for block comments.
             if (preg_match($processedLineCommentRegex, $trimmed, $lineCommentMatches, PREG_OFFSET_CAPTURE) === 1) {
@@ -133,7 +134,7 @@ class AnnotationsTransformer extends AbstractTransformer implements RequiresGram
 
             $processedBlockCommentRegex = sprintf(
                 '/%s$/',
-                implode('|', array_map(fn(array $chars) => sprintf('(%s\s*%s)', preg_quote($chars[0], '/'), preg_quote($chars[1], '/')), $b)),
+                implode('|', array_map(fn (array $chars) => sprintf('(%s\s*%s)', preg_quote($chars[0], '/'), preg_quote($chars[1], '/')), $b)),
             );
 
             // If we find a match, we can set the cutoff point.
@@ -199,6 +200,9 @@ class AnnotationsTransformer extends AbstractTransformer implements RequiresGram
             }
         }
 
+        // Add CSS variables for theme colors
+        $this->addThemeColorVariables($pre);
+
         return $pre;
     }
 
@@ -213,5 +217,98 @@ class AnnotationsTransformer extends AbstractTransformer implements RequiresGram
         }
 
         return $span;
+    }
+
+    public function gutter(Element $span, int $index): Element
+    {
+        if ($this->annotations === [] || ! isset($this->annotations[$index])) {
+            return $span;
+        }
+
+        // Check if this line has diff annotations
+        foreach ($this->annotations[$index] as $annotation) {
+            if ($annotation->type === AnnotationType::Insert) {
+                // Replace the line number with '+' symbol
+                $span->children = [new Text(' +')];
+                break;
+            } elseif ($annotation->type === AnnotationType::Remove) {
+                // Replace the line number with '-' symbol
+                $span->children = [new Text(' -')];
+                break;
+            }
+        }
+
+        return $span;
+    }
+
+    /**
+     * Add CSS variables for theme colors to the pre element.
+     */
+    protected function addThemeColorVariables(Element $pre): void
+    {
+        if (empty($this->themes)) {
+            return;
+        }
+
+        $style = $pre->properties->get('style') ?? '';
+        $cssVariables = [];
+
+        // Collect all annotation types used
+        $usedTypes = [];
+        foreach ($this->annotations as $annotations) {
+            foreach ($annotations as $annotation) {
+                if (! in_array($annotation->type, $usedTypes, true)) {
+                    $usedTypes[] = $annotation->type;
+                }
+            }
+        }
+
+        // Process each theme
+        foreach ($this->themes as $themeName => $theme) {
+            $extractor = new ThemeColorExtractor($theme);
+            $prefix = count($this->themes) > 1 ? "--phiki-{$themeName}-" : '--phiki-';
+
+            // Add CSS variables for each annotation type used
+            foreach ($usedTypes as $type) {
+                switch ($type) {
+                    case AnnotationType::Highlight:
+                        $colors = $extractor->getColorForType('highlight');
+                        if ($colors && ! empty($colors['background'])) {
+                            $cssVariables[] = "{$prefix}line-highlight: {$colors['background']}";
+                        }
+                        break;
+
+                    case AnnotationType::Insert:
+                        $colors = $extractor->getColorForType('insert');
+                        if ($colors) {
+                            if (! empty($colors['background'])) {
+                                $cssVariables[] = "{$prefix}diff-insert-bg: {$colors['background']}";
+                            }
+                            if (! empty($colors['foreground'])) {
+                                $cssVariables[] = "{$prefix}diff-insert-fg: {$colors['foreground']}";
+                            }
+                        }
+                        break;
+
+                    case AnnotationType::Remove:
+                        $colors = $extractor->getColorForType('remove');
+                        if ($colors) {
+                            if (! empty($colors['background'])) {
+                                $cssVariables[] = "{$prefix}diff-remove-bg: {$colors['background']}";
+                            }
+                            if (! empty($colors['foreground'])) {
+                                $cssVariables[] = "{$prefix}diff-remove-fg: {$colors['foreground']}";
+                            }
+                        }
+                        break;
+                }
+            }
+        }
+
+        if (! empty($cssVariables)) {
+            $newStyle = implode('; ', $cssVariables);
+            $style = $style ? "$style; $newStyle" : $newStyle;
+            $pre->properties->set('style', $style);
+        }
     }
 }

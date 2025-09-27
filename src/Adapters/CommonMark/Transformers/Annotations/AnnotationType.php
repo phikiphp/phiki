@@ -6,10 +6,12 @@ enum AnnotationType
 {
     case Highlight;
     case Focus;
+    case Insert;
+    case Remove;
 
     /**
      * Get the keywords used to denote this annotation type.
-     * 
+     *
      * e.g. highlight can be denoted by `[code! highlight]`.
      */
     public function keywords(): array
@@ -17,6 +19,8 @@ enum AnnotationType
         return match ($this) {
             self::Highlight => ['highlight', 'hl', '~~'],
             self::Focus => ['focus', 'f', '**'],
+            self::Insert => ['insert', 'add', '++'],
+            self::Remove => ['remove', 'del', 'delete', '--'],
         };
     }
 
@@ -28,6 +32,8 @@ enum AnnotationType
         return match ($this) {
             self::Highlight => ['highlight'],
             self::Focus => ['focus'],
+            self::Insert => ['insert'],
+            self::Remove => ['remove'],
         };
     }
 
@@ -50,6 +56,8 @@ enum AnnotationType
         return match ($keyword) {
             'highlight', 'hl', '~~' => self::Highlight,
             'focus', 'f', '**' => self::Focus,
+            'insert', 'add', '++' => self::Insert,
+            'remove', 'del', 'delete', '--' => self::Remove,
             default => throw new \InvalidArgumentException("Unknown annotation keyword: {$keyword}"),
         };
     }

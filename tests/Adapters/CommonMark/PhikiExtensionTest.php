@@ -83,3 +83,37 @@ it('falls back to txt if the grammar doesnt exist', function () {
 
     expect($generated)->toMatchSnapshot();
 });
+
+it('shows diff symbols in gutter for insert and remove annotations', function () {
+    $environment = new Environment;
+
+    $environment
+        ->addExtension(new CommonMarkCoreExtension)
+        ->addExtension(new PhikiExtension(Theme::GithubLight, withGutter: true));
+
+    $markdown = new MarkdownConverter($environment);
+
+    $generated = $markdown->convert(<<<'MD'
+    ```php
+    echo 'Normal line';
+    echo 'Remove line'; // [code! remove]
+    echo 'Insert line'; // [code! insert]
+    echo 'Another normal line';
+    ```
+    MD);
+
+    $content = $generated->getContent();
+
+    // Check that normal lines show numbers
+    expect($content)->toContain('<span class="line-number"'); // Has line numbers
+    expect($content)->toContain('> 1</span>'); // First line shows number
+    expect($content)->toContain('> 4</span>'); // Last line shows number
+
+    // Check that diff lines show symbols
+    expect($content)->toContain('> -</span>'); // Remove line shows -
+    expect($content)->toContain('> +</span>'); // Insert line shows +
+
+    // Ensure diff lines have proper classes
+    expect($content)->toContain('<span class="line remove">');
+    expect($content)->toContain('<span class="line insert">');
+});
