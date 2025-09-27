@@ -1,8 +1,6 @@
 <?php
 
-namespace Phiki\Adapters\CommonMark\Transformers;
-
-use Phiki\Theme\ParsedTheme;
+namespace Phiki\Theme;
 
 class ThemeColorExtractor
 {

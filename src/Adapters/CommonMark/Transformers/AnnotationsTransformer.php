@@ -12,6 +12,7 @@ use Phiki\Grammar\Grammar;
 use Phiki\Phast\Element;
 use Phiki\Phast\Text;
 use Phiki\Support\Arr;
+use Phiki\Theme\ThemeColorExtractor;
 use Phiki\Transformers\AbstractTransformer;
 use Phiki\Transformers\Concerns\RequiresGrammar;
 use Phiki\Transformers\Concerns\RequiresThemes;
