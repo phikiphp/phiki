@@ -17,7 +17,6 @@ class PhikiExtension implements ConfigurableExtensionInterface
      */
     public function __construct(
         private string|array|Theme $theme = Theme::Nord,
-        private Phiki $phiki = new Phiki,
         private bool $withGutter = false,
     ) {}
 
@@ -38,7 +37,7 @@ class PhikiExtension implements ConfigurableExtensionInterface
 
         $environment->addRenderer(
             FencedCode::class,
-            new CodeBlockRenderer($theme, $this->phiki, $withGutter),
+            new CodeBlockRenderer($theme, resolve(Phiki::class), $withGutter),
             10,
         );
     }
