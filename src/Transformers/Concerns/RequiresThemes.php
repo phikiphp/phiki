@@ -10,7 +10,7 @@ trait RequiresThemes
     protected array $themes;
 
     /**
-     * @param array<string, \Phiki\Theme\ParsedTheme> $themes
+     * @param  array<string, \Phiki\Theme\ParsedTheme>  $themes
      */
     public function withThemes(array $themes): void
     {

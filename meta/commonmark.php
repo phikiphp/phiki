@@ -6,9 +6,9 @@ use League\CommonMark\MarkdownConverter;
 use Phiki\Adapters\CommonMark\PhikiExtension;
 use Phiki\Theme\Theme;
 
-require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__.'/../vendor/autoload.php';
 
-$environment = new Environment();
+$environment = new Environment;
 $environment->addExtension(new CommonMarkCoreExtension)->addExtension(new PhikiExtension(Theme::GithubLight));
 $converter = new MarkdownConverter($environment);
 
