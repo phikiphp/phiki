@@ -1,10 +1,18 @@
 import { pascalCase } from "change-case";
-import { grammars } from "tm-grammars";
+import { grammars as tmGrammars } from "tm-grammars";
 import { themes } from "tm-themes";
 import fs from 'node:fs'
 import { basePath } from './utils.js'
 
 console.log("Updating grammars...");
+
+const grammars = [
+    ...tmGrammars,
+    {
+        name: "MAML",
+        scopeName: "source.maml",
+    }
+]
 
 const cases = {}
 const aliases = {}
@@ -21,7 +29,7 @@ grammars.forEach(grammar => {
         console.warn(`Skipping grammar ${grammar.name} as it is in the exclusions list.`);
         return;
     }
-    
+
     cases[pascalCase(grammar.name)] = grammar.name;
     aliases[pascalCase(grammar.name)] = grammar.aliases ?? [];
     scopeNames[pascalCase(grammar.name)] = grammar.scopeName;
