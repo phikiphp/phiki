@@ -9,7 +9,7 @@ enum AnnotationType
 
     /**
      * Get the keywords used to denote this annotation type.
-     * 
+     *
      * e.g. highlight can be denoted by `[code! highlight]`.
      */
     public function keywords(): array

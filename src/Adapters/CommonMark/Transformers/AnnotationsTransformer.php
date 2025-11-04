@@ -40,15 +40,15 @@ class AnnotationsTransformer extends AbstractTransformer implements RequiresGram
 
     /**
      * The collected list of annotations.
-     * 
+     *
      * @var array<int, array<Annotation>>
      */
     protected array $annotations = [];
 
     /**
      * Create a new instance.
-     * 
-     * @param string $prefix The prefix used to denote annotations, e.g. `code` for `[code! highlight]`.
+     *
+     * @param  string  $prefix  The prefix used to denote annotations, e.g. `code` for `[code! highlight]`.
      */
     public function __construct(protected string $prefix = 'code') {}
 
@@ -120,10 +120,10 @@ class AnnotationsTransformer extends AbstractTransformer implements RequiresGram
             // We store a list of these in a constant:
             //    - strings are characters for line comments
             //    - arrays are beginning and ending comment pairs (block comments)
-            [$l, $b] = Arr::partition($commentChars, fn(string|array $chars) => is_string($chars));
+            [$l, $b] = Arr::partition($commentChars, fn (string|array $chars) => is_string($chars));
 
             // We'll first check for line comments.
-            $processedLineCommentRegex = sprintf(self::DANGLING_LINE_COMMENT_REGEX, implode('|', array_map(fn(string $char) => preg_quote($char, '/'), $l)));
+            $processedLineCommentRegex = sprintf(self::DANGLING_LINE_COMMENT_REGEX, implode('|', array_map(fn (string $char) => preg_quote($char, '/'), $l)));
 
             // If we find a match, we can set the cutoff point and skip checking for block comments.
             if (preg_match($processedLineCommentRegex, $trimmed, $lineCommentMatches, PREG_OFFSET_CAPTURE) === 1) {
@@ -133,7 +133,7 @@ class AnnotationsTransformer extends AbstractTransformer implements RequiresGram
 
             $processedBlockCommentRegex = sprintf(
                 '/%s$/',
-                implode('|', array_map(fn(array $chars) => sprintf('(%s\s*%s)', preg_quote($chars[0], '/'), preg_quote($chars[1], '/')), $b)),
+                implode('|', array_map(fn (array $chars) => sprintf('(%s\s*%s)', preg_quote($chars[0], '/'), preg_quote($chars[1], '/')), $b)),
             );
 
             // If we find a match, we can set the cutoff point.

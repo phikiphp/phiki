@@ -83,7 +83,7 @@ class Phiki
         return $this;
     }
 
-    public function alias(string $alias, string | Grammar $for): static
+    public function alias(string $alias, string|Grammar $for): static
     {
         $this->environment->grammars->alias($alias, $for instanceof Grammar ? $for->value : $for);
 
