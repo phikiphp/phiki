@@ -9,7 +9,7 @@ console.log("Updating grammars...");
 const grammars = [
     ...tmGrammars,
     {
-        name: "MAML",
+        name: "maml",
         scopeName: "source.maml",
     }
 ]
