@@ -231,7 +231,7 @@ enum Grammar: string
     case Yaml = 'yaml';
     case Zenscript = 'zenscript';
     case Zig = 'zig';
-    case Maml = 'MAML';
+    case Maml = 'maml';
 
     public function aliases(): array
     {
