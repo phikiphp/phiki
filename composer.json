@@ -57,6 +57,7 @@
             "Composer\\Config::disableProcessTimeout",
             "npm update",
             "node meta/update-grammars-and-themes.js",
+            "./meta/minify-grammars-and-themes.sh",
             "php meta/generate-vscode-token-dumps.php"
         ],
         "update-grammars-and-themes:only": [

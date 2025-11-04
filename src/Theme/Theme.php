@@ -70,7 +70,7 @@ enum Theme: string
     public function path(): string
     {
         return match ($this) {
-            default => __DIR__."/../../resources/themes/{$this->value}.json",
+            default => __DIR__ . "/../../resources/themes/{$this->value}.json",
         };
     }
 
