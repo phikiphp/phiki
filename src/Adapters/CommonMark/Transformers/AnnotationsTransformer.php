@@ -10,7 +10,9 @@ use Phiki\Contracts\RequiresGrammarInterface;
 use Phiki\Contracts\RequiresThemesInterface;
 use Phiki\Grammar\Grammar;
 use Phiki\Phast\Element;
+use Phiki\Phast\Text;
 use Phiki\Support\Arr;
+use Phiki\Theme\ThemeColorExtractor;
 use Phiki\Transformers\AbstractTransformer;
 use Phiki\Transformers\Concerns\RequiresGrammar;
 use Phiki\Transformers\Concerns\RequiresThemes;
@@ -199,6 +201,9 @@ class AnnotationsTransformer extends AbstractTransformer implements RequiresGram
             }
         }
 
+        // Add CSS variables for theme colors
+        $this->addThemeColorVariables($pre);
+
         return $pre;
     }
 
@@ -213,5 +218,97 @@ class AnnotationsTransformer extends AbstractTransformer implements RequiresGram
         }
 
         return $span;
+    }
+
+    public function gutter(Element $span, int $index): Element
+    {
+        if ($this->annotations === [] || ! isset($this->annotations[$index])) {
+            return $span;
+        }
+
+        // Check if this line has diff annotations
+        foreach ($this->annotations[$index] as $annotation) {
+            $gutterSymbol = $annotation->type->getGutterSymbol();
+            
+            if (! $gutterSymbol) {
+                continue;
+            }
+            
+            $span->children = [new Text($gutterSymbol)];
+            break;
+        }
+
+        return $span;
+    }
+
+    /**
+     * Add CSS variables for theme colors to the pre element.
+     */
+    protected function addThemeColorVariables(Element $pre): void
+    {
+        if (empty($this->themes)) {
+            return;
+        }
+
+        $style = $pre->properties->get('style') ?? '';
+        $cssVariables = [];
+
+        // Collect all annotation types used
+        $usedTypes = [];
+        foreach ($this->annotations as $annotations) {
+            foreach ($annotations as $annotation) {
+                if (! in_array($annotation->type, $usedTypes, true)) {
+                    $usedTypes[] = $annotation->type;
+                }
+            }
+        }
+
+        // Process each theme
+        foreach ($this->themes as $themeName => $theme) {
+            $extractor = new ThemeColorExtractor($theme);
+            $prefix = count($this->themes) > 1 ? "--phiki-{$themeName}-" : '--phiki-';
+
+            // Add CSS variables for each annotation type used
+            foreach ($usedTypes as $type) {
+                switch ($type) {
+                    case AnnotationType::Highlight:
+                        $colors = $extractor->getColorForType('highlight');
+                        if ($colors && ! empty($colors['background'])) {
+                            $cssVariables[] = "{$prefix}line-highlight: {$colors['background']}";
+                        }
+                        break;
+
+                    case AnnotationType::Insert:
+                        $colors = $extractor->getColorForType('insert');
+                        if ($colors) {
+                            if (! empty($colors['background'])) {
+                                $cssVariables[] = "{$prefix}diff-insert-bg: {$colors['background']}";
+                            }
+                            if (! empty($colors['foreground'])) {
+                                $cssVariables[] = "{$prefix}diff-insert-fg: {$colors['foreground']}";
+                            }
+                        }
+                        break;
+
+                    case AnnotationType::Remove:
+                        $colors = $extractor->getColorForType('remove');
+                        if ($colors) {
+                            if (! empty($colors['background'])) {
+                                $cssVariables[] = "{$prefix}diff-remove-bg: {$colors['background']}";
+                            }
+                            if (! empty($colors['foreground'])) {
+                                $cssVariables[] = "{$prefix}diff-remove-fg: {$colors['foreground']}";
+                            }
+                        }
+                        break;
+                }
+            }
+        }
+
+        if (! empty($cssVariables)) {
+            $newStyle = implode('; ', $cssVariables);
+            $style = $style ? "$style; $newStyle" : $newStyle;
+            $pre->properties->set('style', $style);
+        }
     }
 }

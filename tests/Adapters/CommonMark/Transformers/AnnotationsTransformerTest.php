@@ -177,3 +177,173 @@ describe('focus', function () {
         expect($output)->toMatchSnapshot();
     });
 })->with(AnnotationType::Focus->keywords());
+
+describe('insert', function () {
+    it('can mark a single line as inserted', function (string $keyword) {
+        $output = markdown("echo 'Hello, world!'; // [code! {$keyword}]", Theme::GithubLight, Grammar::Php);
+
+        expect($output)->toMatchSnapshot();
+    });
+
+    it('can mark a fixed set of lines as inserted', function (string $keyword) {
+        $output = markdown(<<<PHP
+        echo "Hello, world!"; // [code! {$keyword}:2]
+        echo "This line is inserted.";
+        echo "This is also inserted.";
+        echo "This line is not inserted.";
+        PHP, Theme::GithubLight, Grammar::Php);
+
+        expect($output)->toMatchSnapshot();
+    });
+
+    it('can mark a fixed negative range of lines as inserted', function (string $keyword) {
+        $output = markdown(<<<PHP
+        echo "This line is not inserted!";
+        echo "This line is inserted.";
+        echo "This is also inserted.";
+        echo "This line is inserted."; // [code! {$keyword}:-2]
+        PHP, Theme::GithubLight, Grammar::Php);
+
+        expect($output)->toMatchSnapshot();
+    });
+
+    it('can mark a range of lines in the middle of a block as inserted', function (string $keyword) {
+        $output = markdown(<<<PHP
+        echo "This line is not inserted!";
+        echo "This line is inserted."; // [code! {$keyword}:1]
+        echo "This is also inserted.";
+        echo "This line is not inserted.";
+        PHP, Theme::GithubLight, Grammar::Php);
+
+        expect($output)->toMatchSnapshot();
+    });
+
+    it('can mark a range with negative offset as inserted', function (string $keyword) {
+        $output = markdown(<<<PHP
+        echo "This line is not inserted!";
+        echo "This line is inserted.";
+        echo "This is also inserted."; // [code! {$keyword}:-1]
+        echo "This line is not inserted.";
+        PHP, Theme::GithubLight, Grammar::Php);
+
+        expect($output)->toMatchSnapshot();
+    });
+
+    it('can mark with an open ended range as inserted', function (string $keyword) {
+        $output = markdown(<<<PHP
+        echo "This line is not inserted!";
+        echo "This line is inserted."; // [code! {$keyword}:start]
+        echo "This is also inserted."; // [code! {$keyword}:end]
+        echo "This line is not inserted.";
+        PHP, Theme::GithubLight, Grammar::Php);
+
+        expect($output)->toMatchSnapshot();
+    });
+
+    it('can mark an offset with total as inserted', function (string $keyword) {
+        $output = markdown(<<<PHP
+        echo "This line is not inserted!"; // [code! {$keyword}:1,2]
+        echo "This line is inserted.";
+        echo "This is also inserted.";
+        echo "This line is not inserted.";
+        PHP, Theme::GithubLight, Grammar::Php);
+
+        expect($output)->toMatchSnapshot();
+    });
+
+    it('can mark a negative offset with total as inserted', function (string $keyword) {
+        $output = markdown(<<<PHP
+        echo "This line is inserted!";
+        echo "This line is inserted."; // [code! {$keyword}:-1,3]
+        echo "This is also inserted.";
+        echo "This line is not inserted.";
+        PHP, Theme::GithubLight, Grammar::Php);
+
+        expect($output)->toMatchSnapshot();
+    });
+})->with(AnnotationType::Insert->keywords());
+
+describe('remove', function () {
+    it('can mark a single line as removed', function (string $keyword) {
+        $output = markdown("echo 'Hello, world!'; // [code! {$keyword}]", Theme::GithubLight, Grammar::Php);
+
+        expect($output)->toMatchSnapshot();
+    });
+
+    it('can mark a fixed set of lines as removed', function (string $keyword) {
+        $output = markdown(<<<PHP
+        echo "Hello, world!"; // [code! {$keyword}:2]
+        echo "This line is removed.";
+        echo "This is also removed.";
+        echo "This line is not removed.";
+        PHP, Theme::GithubLight, Grammar::Php);
+
+        expect($output)->toMatchSnapshot();
+    });
+
+    it('can mark a fixed negative range of lines as removed', function (string $keyword) {
+        $output = markdown(<<<PHP
+        echo "This line is not removed!";
+        echo "This line is removed.";
+        echo "This is also removed.";
+        echo "This line is removed."; // [code! {$keyword}:-2]
+        PHP, Theme::GithubLight, Grammar::Php);
+
+        expect($output)->toMatchSnapshot();
+    });
+
+    it('can mark a range of lines in the middle of a block as removed', function (string $keyword) {
+        $output = markdown(<<<PHP
+        echo "This line is not removed!";
+        echo "This line is removed."; // [code! {$keyword}:1]
+        echo "This is also removed.";
+        echo "This line is not removed.";
+        PHP, Theme::GithubLight, Grammar::Php);
+
+        expect($output)->toMatchSnapshot();
+    });
+
+    it('can mark a range with negative offset as removed', function (string $keyword) {
+        $output = markdown(<<<PHP
+        echo "This line is not removed!";
+        echo "This line is removed.";
+        echo "This is also removed."; // [code! {$keyword}:-1]
+        echo "This line is not removed.";
+        PHP, Theme::GithubLight, Grammar::Php);
+
+        expect($output)->toMatchSnapshot();
+    });
+
+    it('can mark with an open ended range as removed', function (string $keyword) {
+        $output = markdown(<<<PHP
+        echo "This line is not removed!";
+        echo "This line is removed."; // [code! {$keyword}:start]
+        echo "This is also removed."; // [code! {$keyword}:end]
+        echo "This line is not removed.";
+        PHP, Theme::GithubLight, Grammar::Php);
+
+        expect($output)->toMatchSnapshot();
+    });
+
+    it('can mark an offset with total as removed', function (string $keyword) {
+        $output = markdown(<<<PHP
+        echo "This line is not removed!"; // [code! {$keyword}:1,2]
+        echo "This line is removed.";
+        echo "This is also removed.";
+        echo "This line is not removed.";
+        PHP, Theme::GithubLight, Grammar::Php);
+
+        expect($output)->toMatchSnapshot();
+    });
+
+    it('can mark a negative offset with total as removed', function (string $keyword) {
+        $output = markdown(<<<PHP
+        echo "This line is removed!";
+        echo "This line is removed."; // [code! {$keyword}:-1,3]
+        echo "This is also removed.";
+        echo "This line is not removed.";
+        PHP, Theme::GithubLight, Grammar::Php);
+
+        expect($output)->toMatchSnapshot();
+    });
+})->with(AnnotationType::Remove->keywords());

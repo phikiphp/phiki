@@ -174,13 +174,50 @@ echo "Hello, world!"; // [code! f]
 echo "Hello, world!"; // [code! **]
 ```
 
+#### Diff annotations
+
+Diff annotations are useful for displaying changes in a piece of code, e.g. inserting a line or removing a line.
+
+```php
+$user = User::find(1); // [code! remove]
+$user = User::findOrFail(1); // [code! insert]
+```
+
+This will add `insert` and `remove` classes to the corresponding line elements.
+
+If you don't want to write out the full keywords, you can use these shorthands:
+
+```php
+$user = User::find(1); // [code! --]
+$user = User::findOrFail(1); // [code! ++]
+```
+
+You can also use `add`, `del`, or `delete` as alternative keywords for insert and remove respectively.
+
+##### **Gutter diff symbols**
+
+When the gutter is enabled, line numbers will be replaced with the following symbols based on which type of diff annotation is used:
+
+- Inserted lines show `+` instead of the line number.
+- Removed lines show `-` instead of the line number
+
+```php
+$environment = new Environment;
+$environment
+    ->addExtension(new CommonMarkCoreExtension)
+    ->addExtension(new PhikiExtension(Theme::GithubLight, withGutter: true));
+```
+
 #### Sample CSS
 
 ##### **Highlighted lines**
 
-When you use an inline highlight annotation, Phiki will try to find an `editor.lineHighlightBackground` or `editor.selectionHighlightBackground` color inside of your chosen theme(s) and add a CSS variable to the `<pre>` element.
+When you use an inline highlight annotation, Phiki will automatically try to find an `editor.lineHighlightBackground` or `editor.selectionHighlightBackground` color inside of your chosen theme(s) and add a CSS variable to the `<pre>` element.
 
 If it can't find one, it will fallback to the default background color of the theme.
+
+Phiki automatically adds the following CSS variables:
+- `--phiki-line-highlight` - Background color for highlighted lines
 
 Those CSS variables are then applied to the line element the same as other styled elements.
 
@@ -209,5 +246,48 @@ pre.phiki.focus .line:not(.focus) {
 pre.phiki.focus:hover .line {
     transition: all 250ms;
     filter: blur(0);
+}
+```
+
+##### **Diff annotations**
+
+When you use diff annotations, Phiki will automatically try to find `markup.inserted` and `markup.deleted` colors inside of your chosen theme(s) and add CSS variables to the `<pre>` element.
+
+Phiki automatically adds the following CSS variables to the `<pre>` element:
+
+- `--phiki-diff-insert-bg` - Background color for inserted lines
+- `--phiki-diff-insert-fg` - Text color for inserted lines
+- `--phiki-diff-remove-bg` - Background color for removed lines
+- `--phiki-diff-remove-fg` - Text color for removed lines
+
+You can use these variables in your CSS:
+
+```css
+.phiki .line.insert {
+    background-color: var(--phiki-diff-insert-bg);
+    color: var(--phiki-diff-insert-fg);
+}
+
+.phiki .line.remove {
+    background-color: var(--phiki-diff-remove-bg);
+    color: var(--phiki-diff-remove-fg);
+}
+```
+
+<Note>
+If you're using multiple themes, Phiki will also add CSS variables for each theme so you can style them differently in dark mode, for example.
+</Note>
+
+```css
+@media (prefers-color-scheme: dark) {
+    .phiki .line.insert {
+        background-color: var(--phiki-dark-diff-insert-bg) !important;
+        color: var(--phiki-dark-diff-insert-fg) !important;
+    }
+
+    .phiki .line.remove {
+        background-color: var(--phiki-dark-diff-remove-bg) !important;
+        color: var(--phiki-dark-diff-remove-fg) !important;
+    }
 }
 ```
