@@ -200,7 +200,6 @@ When the gutter is enabled, line numbers will be replaced with the following sym
 
 - Inserted lines show `+` instead of the line number.
 - Removed lines show `-` instead of the line number
-- Regular lines continue to show normal line numbers
 
 ```php
 $environment = new Environment;
@@ -208,8 +207,6 @@ $environment
     ->addExtension(new CommonMarkCoreExtension)
     ->addExtension(new PhikiExtension(Theme::GithubLight, withGutter: true));
 ```
-
-This provides a visual indication in the gutter that matches standard diff format conventions.
 
 #### Sample CSS
 
@@ -255,8 +252,6 @@ pre.phiki.focus:hover .line {
 ##### **Diff annotations**
 
 When you use diff annotations, Phiki will automatically try to find `markup.inserted` and `markup.deleted` colors inside of your chosen theme(s) and add CSS variables to the `<pre>` element.
-
-If it can't find them, it will fallback to the default background color of the theme.
 
 Phiki automatically adds the following CSS variables to the `<pre>` element:
 
