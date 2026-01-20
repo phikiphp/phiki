@@ -47,6 +47,18 @@ enum AnnotationType
             default => [],
         };
     }
+    
+    /**
+     * Get the gutter symbol to insert.
+     */
+    public function getGutterSymbol(): ?string
+    {
+        return match ($this) {
+            self::Insert => ' +',
+            self::Remove => ' -',
+            default => null,
+        };
+    }
 
     /**
      * Get the type from the given keyword.

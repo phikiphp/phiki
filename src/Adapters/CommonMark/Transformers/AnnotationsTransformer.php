@@ -228,15 +228,14 @@ class AnnotationsTransformer extends AbstractTransformer implements RequiresGram
 
         // Check if this line has diff annotations
         foreach ($this->annotations[$index] as $annotation) {
-            if ($annotation->type === AnnotationType::Insert) {
-                // Replace the line number with '+' symbol
-                $span->children = [new Text(' +')];
-                break;
-            } elseif ($annotation->type === AnnotationType::Remove) {
-                // Replace the line number with '-' symbol
-                $span->children = [new Text(' -')];
-                break;
+            $gutterSymbol = $annotation->type->getGutterSymbol();
+            
+            if (! $gutterSymbol) {
+                continue;
             }
+            
+            $span->children = [new Text($gutterSymbol)];
+            break;
         }
 
         return $span;
