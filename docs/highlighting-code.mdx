@@ -81,3 +81,37 @@ $html = (new Phiki)
 ```
 
 The first line of code will now be numbered `5`, the second line `6`, and so on.
+
+## ANSI Terminal Output
+
+Phiki includes special support for highlighting terminal output containing ANSI escape codes. This is useful for displaying colorized command-line output, build logs, or any text that includes ANSI color sequences.
+
+```php
+use Phiki\Phiki;
+use Phiki\Grammar\Grammar;
+use Phiki\Theme\Theme;
+
+// Terminal output with ANSI escape codes
+$terminalOutput = "\x1b[32m✓ All tests passed\x1b[0m\n\x1b[31m✗ 2 errors found\x1b[0m";
+
+$html = (new Phiki)
+    ->codeToHtml($terminalOutput, Grammar::Ansi, Theme::GithubDark)
+    ->toString();
+```
+
+The ANSI grammar supports:
+- **Standard colors**: Black, red, green, yellow, blue, magenta, cyan, white (codes 30-37, 40-47)
+- **Bright colors**: Bright variants of standard colors (codes 90-97, 100-107)
+- **256-color mode**: Extended palette using `\x1b[38;5;Nm` syntax
+- **True color (RGB)**: Full RGB support using `\x1b[38;2;R;G;Bm` syntax
+- **Text decorations**: Bold, italic, underline, strikethrough, dim, reverse
+
+You can also use `'ansi'` or `'terminal'` as string aliases:
+
+```php
+$html = (new Phiki)
+    ->codeToHtml($terminalOutput, 'ansi', Theme::GithubDark)
+    ->toString();
+```
+
+Theme colors from `terminal.ansi*` keys (e.g., `terminal.ansiRed`) are used when available, with VSCode-compatible defaults as fallback.

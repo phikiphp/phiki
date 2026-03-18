@@ -2,6 +2,9 @@
 
 namespace Phiki;
 
+use Phiki\Ansi\AnsiPalette;
+use Phiki\Ansi\AnsiToken;
+use Phiki\Ansi\AnsiTokenizer;
 use Phiki\Contracts\ExtensionInterface;
 use Phiki\Grammar\Grammar;
 use Phiki\Grammar\ParsedGrammar;
@@ -11,6 +14,7 @@ use Phiki\Support\Arr;
 use Phiki\TextMate\Tokenizer;
 use Phiki\Theme\ParsedTheme;
 use Phiki\Theme\Theme;
+use Phiki\Theme\TokenSettings;
 use Psr\SimpleCache\CacheInterface;
 
 class Phiki
@@ -54,10 +58,54 @@ class Phiki
 
     public function codeToHtml(string $code, string|Grammar $grammar, string|array|Theme $theme): PendingHtmlOutput
     {
-        return (new PendingHtmlOutput($code, $this->environment->grammars->resolve($grammar), $this->wrapThemes($theme)))
+        $themes = $this->wrapThemes($theme);
+
+        if ($this->isAnsiGrammar($grammar)) {
+            return $this->ansiCodeToHtml($code, $themes);
+        }
+
+        return (new PendingHtmlOutput($code, $this->environment->grammars->resolve($grammar), $themes))
             ->cache($this->environment->cache)
             ->generateTokensUsing(fn (string $code, ParsedGrammar $grammar) => $this->codeToTokens($code, $grammar))
             ->highlightTokensUsing(fn (array $tokens, array $themes) => $this->tokensToHighlightedTokens($tokens, $themes));
+    }
+
+    protected function isAnsiGrammar(string|Grammar|ParsedGrammar $grammar): bool
+    {
+        if ($grammar instanceof ParsedGrammar) {
+            return $grammar->scopeName === 'text.ansi';
+        }
+
+        if ($grammar instanceof Grammar) {
+            return $grammar === Grammar::Ansi;
+        }
+
+        return $grammar === 'ansi' || $grammar === 'terminal';
+    }
+
+    protected function ansiCodeToHtml(string $code, array $themes): PendingHtmlOutput
+    {
+        $firstTheme = Arr::first($themes);
+        $palette = AnsiPalette::fromTheme($firstTheme);
+
+        // Create a stub ParsedGrammar for ANSI
+        $ansiGrammar = ParsedGrammar::fromArray([
+            'scopeName' => 'text.ansi',
+            'name' => 'ansi',
+            'patterns' => [],
+        ]);
+
+        return (new PendingHtmlOutput($code, $ansiGrammar, $themes))
+            ->cache($this->environment->cache)
+            ->generateTokensUsing(fn (string $code, ParsedGrammar $grammar) => (new AnsiTokenizer($palette))->tokenize($code))
+            ->highlightTokensUsing(fn (array $tokens, array $themes) => $this->ansiTokensToHighlightedTokens($tokens, $themes));
+    }
+
+    protected function ansiTokensToHighlightedTokens(array $tokens, array $themes): array
+    {
+        $highlighter = new Highlighter($themes);
+
+        return $highlighter->highlight($tokens);
     }
 
     protected function wrapThemes(string|array|Theme $themes): array
