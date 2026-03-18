@@ -9,6 +9,11 @@ console.log("Updating grammars...");
 const grammars = [
     ...tmGrammars,
     {
+        name: "djot",
+        scopeName: "text.djot",
+        aliases: ["dj"],
+    },
+    {
         name: "maml",
         scopeName: "source.maml",
     }

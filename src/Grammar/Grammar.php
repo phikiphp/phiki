@@ -54,6 +54,7 @@ enum Grammar: string
     case Dax = 'dax';
     case Desktop = 'desktop';
     case Diff = 'diff';
+    case Djot = 'djot';
     case Docker = 'docker';
     case Dotenv = 'dotenv';
     case DreamMaker = 'dream-maker';
@@ -281,6 +282,7 @@ enum Grammar: string
             self::Dax => [],
             self::Desktop => [],
             self::Diff => [],
+            self::Djot => ["dj"],
             self::Docker => ["dockerfile"],
             self::Dotenv => [],
             self::DreamMaker => [],
@@ -512,6 +514,7 @@ enum Grammar: string
             self::Dax => 'source.dax',
             self::Desktop => 'source.desktop',
             self::Diff => 'source.diff',
+            self::Djot => 'text.djot',
             self::Docker => 'source.dockerfile',
             self::Dotenv => 'source.dotenv',
             self::DreamMaker => 'source.dm',
