@@ -12,9 +12,11 @@
     ],
     "require": {
         "php": "^8.2",
-        "league/commonmark": "^2.5.3",
         "ext-mbstring": "*",
         "psr/simple-cache": "^3.0"
+    },
+    "suggest": {
+        "league/commonmark": "Required to use the CommonMark adapter (^2.5.3)"
     },
     "autoload": {
         "psr-4": {
@@ -35,7 +37,8 @@
         "phpstan/phpstan": "^2.0",
         "phpstan/extension-installer": "^1.4.3",
         "illuminate/support": "^11.45",
-        "orchestra/testbench": "^9.15"
+        "orchestra/testbench": "^9.15",
+        "league/commonmark": "^2.5.3"
     },
     "config": {
         "allow-plugins": {
