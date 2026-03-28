@@ -1,0 +1,265 @@
+{
+  "displayName": "NEON",
+  "fileTypes": [
+    "neon"
+  ],
+  "name": "neon",
+  "patterns": [
+    {
+      "begin": "(#)",
+      "end": "$",
+      "name": "comment.line.number-sign.neon",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.comment.neon"
+        }
+      }
+    },
+    {
+      "include": "#value"
+    }
+  ],
+  "repository": {
+    "value": {
+      "patterns": [
+        {
+          "include": "#constant"
+        },
+        {
+          "include": "#number"
+        },
+        {
+          "include": "#string"
+        },
+        {
+          "include": "#array"
+        },
+        {
+          "include": "#mapping"
+        },
+        {
+          "include": "#entity"
+        },
+        {
+          "include": "#service"
+        },
+        {
+          "include": "#variables"
+        }
+      ]
+    },
+    "array": {
+      "patterns": [
+        {
+          "begin": "\\[",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.array.begin.neon"
+            }
+          },
+          "end": "\\]",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.array.end.neon"
+            }
+          },
+          "name": "meta.structure.array.neon",
+          "patterns": [
+            {
+              "include": "#value"
+            },
+            {
+              "match": ",",
+              "name": "punctuation.separator.array.neon"
+            }
+          ]
+        },
+        {
+          "begin": "\\(",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.parameters.begin.neon"
+            }
+          },
+          "end": "\\)",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.parameters.end.neon"
+            }
+          },
+          "name": "meta.structure.parameters.neon",
+          "patterns": [
+            {
+              "include": "#value"
+            },
+            {
+              "match": ",",
+              "name": "punctuation.separator.parameters.neon"
+            }
+          ]
+        }
+      ]
+    },
+    "entity": {
+      "patterns": [
+        {
+          "match": "([A-Z][a-zA-Z0-9_]*(?:\\\\[A-Z][a-zA-Z0-9_]*)*)(?=\\(|::|$|\\s)",
+          "name": "entity.name.class.neon"
+        },
+        {
+          "match": "(::)([a-zA-Z_][a-zA-Z0-9_]*)",
+          "captures": {
+            "1": {
+              "name": "punctuation.accessor.double-colon.neon"
+            },
+            "2": {
+              "name": "constant.other.class.neon"
+            }
+          }
+        }
+      ]
+    },
+    "mapping": {
+      "patterns": [
+        {
+          "captures": {
+            "1": {
+              "name": "entity.name.tag.neon"
+            },
+            "2": {
+              "name": "punctuation.separator.key-value.neon"
+            }
+          },
+          "match": "^(\\s*)([a-zA-Z_][a-zA-Z0-9._-]*)(:)(?=\\s|$)",
+          "name": "meta.mapping.key.neon"
+        },
+        {
+          "captures": {
+            "1": {
+              "name": "support.other.neon"
+            },
+            "2": {
+              "name": "punctuation.separator.key-value.neon"
+            }
+          },
+          "match": "^(\\s*)([a-zA-Z._-]*)(:)(?=\\s*\\S+)",
+          "name": "meta.mapping.neon"
+        }
+      ]
+    },
+    "constant": {
+      "patterns": [
+        {
+          "match": "\\b(true|false|yes|no|on|off|null|TRUE|FALSE|YES|NO|ON|OFF|NULL|True|False|Yes|No|On|Off|Null)\\b",
+          "name": "constant.language.neon"
+        },
+        {
+          "match": "\\b(\\d+)\\s*(days?|hours?|minutes?|seconds?|weeks?|months?|years?)\\b",
+          "name": "constant.other.timestamp.neon"
+        }
+      ]
+    },
+    "number": {
+      "patterns": [
+        {
+          "match": "\\b0[xX][0-9a-fA-F]+\\b",
+          "name": "constant.numeric.hex.neon"
+        },
+        {
+          "match": "\\b0[oO][0-7]+\\b",
+          "name": "constant.numeric.octal.neon"
+        },
+        {
+          "match": "\\b0[bB][01]+\\b",
+          "name": "constant.numeric.binary.neon"
+        },
+        {
+          "match": "\\b[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:[eE][+-]?\\d+)?\\b",
+          "name": "constant.numeric.neon"
+        }
+      ]
+    },
+    "string": {
+      "patterns": [
+        {
+          "begin": "'''",
+          "end": "'''",
+          "name": "string.quoted.single.block.neon"
+        },
+        {
+          "begin": "\"\"\"",
+          "end": "\"\"\"",
+          "name": "string.quoted.double.block.neon",
+          "patterns": [
+            {
+              "include": "#string-escapes"
+            },
+            {
+              "include": "#variables"
+            }
+          ]
+        },
+        {
+          "begin": "\"",
+          "end": "\"",
+          "name": "string.quoted.double.neon",
+          "patterns": [
+            {
+              "include": "#string-escapes"
+            },
+            {
+              "include": "#variables"
+            }
+          ]
+        },
+        {
+          "begin": "'",
+          "end": "'",
+          "name": "string.quoted.single.neon",
+          "patterns": [
+            {
+              "match": "''",
+              "name": "constant.character.escape.neon"
+            },
+            {
+              "include": "#variables"
+            }
+          ]
+        }
+      ]
+    },
+    "string-escapes": {
+      "patterns": [
+        {
+          "match": "\\\\[\\\\\"nrtfb0/]",
+          "name": "constant.character.escape.neon"
+        },
+        {
+          "match": "\\\\x[0-9a-fA-F]{2}",
+          "name": "constant.character.escape.hex.neon"
+        },
+        {
+          "match": "\\\\u[0-9a-fA-F]{4}",
+          "name": "constant.character.escape.unicode.neon"
+        }
+      ]
+    },
+    "variables": {
+      "patterns": [
+        {
+          "match": "(%[^%]*%)",
+          "name": "variable.other.neon"
+        }
+      ]
+    },
+    "service": {
+      "patterns": [
+        {
+          "match": "(@[a-zA-Z_][a-zA-Z0-9_\\\\.]*)",
+          "name": "variable.other.service.neon"
+        }
+      ]
+    }
+  },
+  "scopeName": "source.neon"
+}

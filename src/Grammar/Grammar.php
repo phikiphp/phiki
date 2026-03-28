@@ -136,6 +136,7 @@ enum Grammar: string
     case Mojo = 'mojo';
     case Move = 'move';
     case Narrat = 'narrat';
+    case Neon = 'neon';
     case Nextflow = 'nextflow';
     case Nginx = 'nginx';
     case Nim = 'nim';
@@ -364,6 +365,7 @@ enum Grammar: string
             self::Mojo => [],
             self::Move => [],
             self::Narrat => ["nar"],
+            self::Neon => [],
             self::Nextflow => ["nf"],
             self::Nginx => [],
             self::Nim => [],
@@ -596,6 +598,7 @@ enum Grammar: string
             self::Mojo => 'source.mojo',
             self::Move => 'source.move',
             self::Narrat => 'source.narrat',
+            self::Neon => 'source.neon',
             self::Nextflow => 'source.nextflow',
             self::Nginx => 'source.nginx',
             self::Nim => 'source.nim',
