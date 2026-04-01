@@ -54,7 +54,6 @@ enum Grammar: string
     case Dax = 'dax';
     case Desktop = 'desktop';
     case Diff = 'diff';
-    case Djot = 'djot';
     case Docker = 'docker';
     case Dotenv = 'dotenv';
     case DreamMaker = 'dream-maker';
@@ -136,7 +135,6 @@ enum Grammar: string
     case Mojo = 'mojo';
     case Move = 'move';
     case Narrat = 'narrat';
-    case Neon = 'neon';
     case Nextflow = 'nextflow';
     case Nginx = 'nginx';
     case Nim = 'nim';
@@ -233,7 +231,9 @@ enum Grammar: string
     case Yaml = 'yaml';
     case Zenscript = 'zenscript';
     case Zig = 'zig';
+    case Djot = 'djot';
     case Maml = 'maml';
+    case Neon = 'neon';
 
     public function aliases(): array
     {
@@ -283,7 +283,6 @@ enum Grammar: string
             self::Dax => [],
             self::Desktop => [],
             self::Diff => [],
-            self::Djot => ["dj"],
             self::Docker => ["dockerfile"],
             self::Dotenv => [],
             self::DreamMaker => [],
@@ -365,7 +364,6 @@ enum Grammar: string
             self::Mojo => [],
             self::Move => [],
             self::Narrat => ["nar"],
-            self::Neon => [],
             self::Nextflow => ["nf"],
             self::Nginx => [],
             self::Nim => [],
@@ -462,7 +460,9 @@ enum Grammar: string
             self::Yaml => ["yml"],
             self::Zenscript => [],
             self::Zig => [],
+            self::Djot => ["dj"],
             self::Maml => [],
+            self::Neon => [],
             self::Antlers => [],
             self::Txt => ['plaintext', 'text', 'plain'],
         };
@@ -516,7 +516,6 @@ enum Grammar: string
             self::Dax => 'source.dax',
             self::Desktop => 'source.desktop',
             self::Diff => 'source.diff',
-            self::Djot => 'text.djot',
             self::Docker => 'source.dockerfile',
             self::Dotenv => 'source.dotenv',
             self::DreamMaker => 'source.dm',
@@ -598,7 +597,6 @@ enum Grammar: string
             self::Mojo => 'source.mojo',
             self::Move => 'source.move',
             self::Narrat => 'source.narrat',
-            self::Neon => 'source.neon',
             self::Nextflow => 'source.nextflow',
             self::Nginx => 'source.nginx',
             self::Nim => 'source.nim',
@@ -695,7 +693,9 @@ enum Grammar: string
             self::Yaml => 'source.yaml',
             self::Zenscript => 'source.zenscript',
             self::Zig => 'source.zig',
+            self::Djot => 'text.djot',
             self::Maml => 'source.maml',
+            self::Neon => 'source.neon',
             self::Antlers => 'text.html.statamic',
             self::Txt => 'text.plain'
         };
