@@ -16,6 +16,10 @@ const grammars = [
     {
         name: "maml",
         scopeName: "source.maml",
+    },
+    {
+        name: "neon",
+        scopeName: "source.neon",
     }
 ]
 
