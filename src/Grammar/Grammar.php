@@ -234,6 +234,7 @@ enum Grammar: string
     case Djot = 'djot';
     case Maml = 'maml';
     case Neon = 'neon';
+    case Ansi = 'ansi';
 
     public function aliases(): array
     {
@@ -463,6 +464,7 @@ enum Grammar: string
             self::Djot => ["dj"],
             self::Maml => [],
             self::Neon => [],
+            self::Ansi => ["terminal"],
             self::Antlers => [],
             self::Txt => ['plaintext', 'text', 'plain'],
         };
@@ -696,6 +698,7 @@ enum Grammar: string
             self::Djot => 'text.djot',
             self::Maml => 'source.maml',
             self::Neon => 'source.neon',
+            self::Ansi => 'text.ansi',
             self::Antlers => 'text.html.statamic',
             self::Txt => 'text.plain'
         };

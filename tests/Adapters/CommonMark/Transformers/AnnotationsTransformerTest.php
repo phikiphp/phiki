@@ -382,3 +382,26 @@ describe('theme css variables', function () {
             ->not->toContain(';;');
     });
 });
+
+describe('multibyte', function () {
+    it('does not corrupt multibyte characters that contain line-separator bytes', function () {
+        // "ą" is U+0105 (0xC4 0x85). Splitting lines without the `u` modifier makes
+        // `\R` match the trailing 0x85 byte as a NEL character, cutting the string
+        // mid-character and producing invalid UTF-8. See #143.
+        $output = markdown('echo "połączenia";', Theme::GithubLight, Grammar::Php);
+
+        expect($output)->toContain('połączenia');
+    });
+
+    it('handles multibyte characters on annotated lines', function () {
+        $output = markdown(<<<'PHP'
+        echo "połączenia"; // [code! highlight]
+        echo "zażółć gęślą jaźń";
+        PHP, Theme::GithubLight, Grammar::Php);
+
+        expect($output)
+            ->toContain('połączenia')
+            ->toContain('zażółć gęślą jaźń')
+            ->not->toContain('[code! highlight]');
+    });
+});

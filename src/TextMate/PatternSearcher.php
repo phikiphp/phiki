@@ -81,8 +81,11 @@ class PatternSearcher
         // extract the relevant portion of the input string to reduce the
         // search grid for subsequent matches.
         $substr = mb_substr($lineText, $bestLocation, $bestLength);
+        $substrLength = mb_strlen($substr);
         $keyToIndexMap = array_flip(array_keys($bestMatches));
         $wellFormedMatches = [];
+        $previousStart = 0;
+        $previousEnd = 0;
 
         foreach ($bestMatches as $key => $match) {
             // The first match is the full match, so we can just use the start position.
@@ -103,9 +106,29 @@ class PatternSearcher
             }
 
             // For subsequent matches, we can use the reduced search grid to find the position
-            // of the match within the substring. We need to adjust the position based on the
-            // original input string's start position.
-            $pos = mb_strpos($substr, $match);
+            // of the match within the substring. Capture groups are numbered by opening
+            // parenthesis, so capture N + 1 can never start before capture N. Searching from
+            // a cursor instead of from the start keeps a capture that repeats earlier text -
+            // the closing delimiter of `(\*)([^*]+)(\*)`, for example - from resolving to the
+            // position of the opening one.
+            $pos = mb_strpos($substr, $match, min($previousStart, $substrLength));
+
+            // A candidate starting exactly where the previous capture did, but longer than it,
+            // cannot be nested inside it, so the real match has to be further along.
+            if ($pos === $previousStart && mb_strlen($match) > $previousEnd - $previousStart) {
+                $sibling = mb_strpos($substr, $match, min($previousEnd, $substrLength));
+
+                if ($sibling !== false) {
+                    $pos = $sibling;
+                }
+            }
+
+            if ($pos === false) {
+                $pos = (int) mb_strpos($substr, $match);
+            }
+
+            $previousStart = $pos;
+            $previousEnd = max($previousEnd, $pos + mb_strlen($match));
 
             // We can then store the value in the matches array with the adjusted position.
             $wellFormedMatches[$key] = [$match, $bestLocation + $pos];
