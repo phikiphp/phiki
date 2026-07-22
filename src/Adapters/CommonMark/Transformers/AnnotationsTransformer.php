@@ -12,6 +12,7 @@ use Phiki\Grammar\Grammar;
 use Phiki\Phast\Element;
 use Phiki\Phast\Text;
 use Phiki\Support\Arr;
+use Phiki\Support\Styles;
 use Phiki\Theme\ThemeColorExtractor;
 use Phiki\Transformers\AbstractTransformer;
 use Phiki\Transformers\Concerns\RequiresGrammar;
@@ -306,9 +307,7 @@ class AnnotationsTransformer extends AbstractTransformer implements RequiresGram
         }
 
         if (! empty($cssVariables)) {
-            $newStyle = implode('; ', $cssVariables);
-            $style = $style ? "$style; $newStyle" : $newStyle;
-            $pre->properties->set('style', $style);
+            $pre->properties->set('style', Styles::join([$style, ...$cssVariables]));
         }
     }
 }
