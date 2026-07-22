@@ -274,7 +274,7 @@ class AnnotationsTransformer extends AbstractTransformer implements RequiresGram
                     case AnnotationType::Highlight:
                         $colors = $extractor->getColorForType('highlight');
                         if ($colors && ! empty($colors['background'])) {
-                            $cssVariables[] = "{$prefix}line-highlight: {$colors['background']}";
+                            $cssVariables[] = "{$prefix}line-highlight: {$colors['background']};";
                         }
                         break;
 
@@ -282,10 +282,10 @@ class AnnotationsTransformer extends AbstractTransformer implements RequiresGram
                         $colors = $extractor->getColorForType('insert');
                         if ($colors) {
                             if (! empty($colors['background'])) {
-                                $cssVariables[] = "{$prefix}diff-insert-bg: {$colors['background']}";
+                                $cssVariables[] = "{$prefix}diff-insert-bg: {$colors['background']};";
                             }
                             if (! empty($colors['foreground'])) {
-                                $cssVariables[] = "{$prefix}diff-insert-fg: {$colors['foreground']}";
+                                $cssVariables[] = "{$prefix}diff-insert-fg: {$colors['foreground']};";
                             }
                         }
                         break;
@@ -294,10 +294,10 @@ class AnnotationsTransformer extends AbstractTransformer implements RequiresGram
                         $colors = $extractor->getColorForType('remove');
                         if ($colors) {
                             if (! empty($colors['background'])) {
-                                $cssVariables[] = "{$prefix}diff-remove-bg: {$colors['background']}";
+                                $cssVariables[] = "{$prefix}diff-remove-bg: {$colors['background']};";
                             }
                             if (! empty($colors['foreground'])) {
-                                $cssVariables[] = "{$prefix}diff-remove-fg: {$colors['foreground']}";
+                                $cssVariables[] = "{$prefix}diff-remove-fg: {$colors['foreground']};";
                             }
                         }
                         break;
@@ -306,9 +306,16 @@ class AnnotationsTransformer extends AbstractTransformer implements RequiresGram
         }
 
         if (! empty($cssVariables)) {
-            $newStyle = implode('; ', $cssVariables);
-            $style = $style ? "$style; $newStyle" : $newStyle;
-            $pre->properties->set('style', $style);
+            // Every declaration carries its own trailing separator, so chunks can be
+            // concatenated without producing doubled or missing semicolons. An earlier
+            // transformer may have left the attribute unterminated, so make sure of it.
+            $style = rtrim($style);
+
+            if ($style !== '' && ! str_ends_with($style, ';')) {
+                $style .= ';';
+            }
+
+            $pre->properties->set('style', $style . implode('', $cssVariables));
         }
     }
 }

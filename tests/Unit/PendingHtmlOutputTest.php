@@ -129,3 +129,24 @@ it('passes meta to transformers', function () {
 
     expect($transformer->meta())->toBe($meta);
 });
+
+it('generates well formed style attributes when using multiple themes', function () {
+    $html = (new Phiki)
+        ->codeToHtml(
+            <<<'PHP'
+            echo "Hello, world!";
+            PHP,
+            Grammar::Php,
+            ['light' => Theme::GithubLight, 'dark' => Theme::GithubDark],
+        )
+        ->toString();
+
+    expect(preg_match_all('/style="([^"]*)"/', $html, $matches))->toBeGreaterThan(0);
+
+    foreach ($matches[1] as $style) {
+        expect($style)
+            ->not->toContain(';;')
+            ->not->toStartWith(';')
+            ->toEndWith(';');
+    }
+});

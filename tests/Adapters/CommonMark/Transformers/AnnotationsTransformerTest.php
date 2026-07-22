@@ -1,8 +1,14 @@
 <?php
 
 use Phiki\Adapters\CommonMark\Transformers\Annotations\AnnotationType;
+use Phiki\Adapters\CommonMark\Transformers\AnnotationsTransformer;
 use Phiki\Grammar\Grammar;
+use Phiki\Grammar\GrammarRepository;
+use Phiki\Phast\ClassList;
+use Phiki\Phast\Element;
+use Phiki\Phast\Properties;
 use Phiki\Theme\Theme;
+use Phiki\Theme\ThemeRepository;
 
 describe('highlight', function () {
     it('can highlight a single line', function (string $keyword) {
@@ -347,3 +353,32 @@ describe('remove', function () {
         expect($output)->toMatchSnapshot();
     });
 })->with(AnnotationType::Remove->keywords());
+
+describe('theme css variables', function () {
+    it('terminates an existing style before appending its variables', function () {
+        $transformer = new AnnotationsTransformer;
+        $transformer->withGrammar(Grammar::Php->toParsedGrammar(new GrammarRepository));
+        $transformer->withThemes(['default' => Theme::GithubLight->toParsedTheme(new ThemeRepository)]);
+        $transformer->preprocess('echo "Hello, world!"; // [code! highlight]');
+
+        $pre = new Element('pre', new Properties(['class' => new ClassList, 'style' => 'border: 1px solid red']));
+
+        expect($transformer->pre($pre)->properties->get('style'))
+            ->toStartWith('border: 1px solid red;--phiki-line-highlight:')
+            ->toEndWith(';')
+            ->not->toContain(';;');
+    });
+
+    it('appends its variables to an already terminated style', function () {
+        $transformer = new AnnotationsTransformer;
+        $transformer->withGrammar(Grammar::Php->toParsedGrammar(new GrammarRepository));
+        $transformer->withThemes(['default' => Theme::GithubLight->toParsedTheme(new ThemeRepository)]);
+        $transformer->preprocess('echo "Hello, world!"; // [code! highlight]');
+
+        $pre = new Element('pre', new Properties(['class' => new ClassList, 'style' => 'border: 1px solid red;']));
+
+        expect($transformer->pre($pre)->properties->get('style'))
+            ->toStartWith('border: 1px solid red;--phiki-line-highlight:')
+            ->not->toContain(';;');
+    });
+});

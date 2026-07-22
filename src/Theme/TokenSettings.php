@@ -48,13 +48,13 @@ class TokenSettings
     public function toCssVarString(string $prefix): string
     {
         $styles = $this->toStyleArray();
-        $vars = [];
+        $varString = '';
 
         foreach ($styles as $property => $value) {
-            $vars[] = "--phiki-{$prefix}-{$property}: {$value}";
+            $varString .= "--phiki-{$prefix}-{$property}: {$value};";
         }
 
-        return implode(';', $vars);
+        return $varString;
     }
 
     public function toStyleArray(): array

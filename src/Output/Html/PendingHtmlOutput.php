@@ -217,7 +217,7 @@ class PendingHtmlOutput implements Stringable
             $pre->properties->set('data-language', $this->grammar->name);
         }
 
-        $pre->properties->set('style', implode(';', $preStyles));
+        $pre->properties->set('style', implode('', array_filter($preStyles)));
 
         $code = new Element('code', new Properties(['class' => new ClassList]));
 
@@ -231,9 +231,9 @@ class PendingHtmlOutput implements Stringable
 
                 $lineNumberColor = $this->getDefaultTheme()->colors['editorLineNumber.foreground'] ?? null;
 
-                $gutter->properties->set('style', implode(';', array_filter([
-                    $lineNumberColor ? "color: $lineNumberColor" : null,
-                    '-webkit-user-select: none',
+                $gutter->properties->set('style', implode('', array_filter([
+                    $lineNumberColor ? "color: {$lineNumberColor};" : null,
+                    '-webkit-user-select: none;',
                 ])));
 
                 $gutter->children[] = new Text(sprintf('%2d', $this->startingLineNumber + $index));
@@ -255,7 +255,7 @@ class PendingHtmlOutput implements Stringable
                 }
 
                 $span->properties->set('class', new ClassList(['token']));
-                $span->properties->set('style', implode(';', array_filter($tokenStyles)));
+                $span->properties->set('style', implode('', array_filter($tokenStyles)));
                 $span->children[] = new Text(htmlspecialchars($token->token->text));
 
                 [$span] = $this->callTransformerMethod('token', $span, $token, $j, $index);

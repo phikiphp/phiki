@@ -66,4 +66,16 @@ describe('TokenSettings', function () {
 
         expect($settings->toStyleString())->toBe('background-color: #000;text-decoration: underline;font-style: italic;');
     });
+
+    it('can generate a css variable string', function () {
+        $settings = new TokenSettings('#000', '#fff', null);
+
+        expect($settings->toCssVarString('dark'))->toBe('--phiki-dark-background-color: #000;--phiki-dark-color: #fff;');
+    });
+
+    it('generates an empty css variable string when there is nothing to declare', function () {
+        $settings = new TokenSettings(null, null, null);
+
+        expect($settings->toCssVarString('dark'))->toBe('');
+    });
 });
