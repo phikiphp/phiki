@@ -56,7 +56,6 @@ enum Grammar: string
     case Dax = 'dax';
     case Desktop = 'desktop';
     case Diff = 'diff';
-    case Djot = 'djot';
     case Docker = 'docker';
     case Dotenv = 'dotenv';
     case DreamMaker = 'dream-maker';
@@ -234,7 +233,9 @@ enum Grammar: string
     case Yaml = 'yaml';
     case Zenscript = 'zenscript';
     case Zig = 'zig';
+    case Djot = 'djot';
     case Maml = 'maml';
+    case Neon = 'neon';
 
     public function aliases(): array
     {
@@ -284,7 +285,6 @@ enum Grammar: string
             self::Dax => [],
             self::Desktop => [],
             self::Diff => [],
-            self::Djot => ["dj"],
             self::Docker => ["dockerfile"],
             self::Dotenv => [],
             self::DreamMaker => [],
@@ -462,7 +462,9 @@ enum Grammar: string
             self::Yaml => ["yml"],
             self::Zenscript => [],
             self::Zig => [],
+            self::Djot => ["dj"],
             self::Maml => [],
+            self::Neon => [],
             self::Antlers => [],
             self::Ansi => ['terminal'],
             self::Txt => ['plaintext', 'text', 'plain'],
@@ -517,7 +519,6 @@ enum Grammar: string
             self::Dax => 'source.dax',
             self::Desktop => 'source.desktop',
             self::Diff => 'source.diff',
-            self::Djot => 'text.djot',
             self::Docker => 'source.dockerfile',
             self::Dotenv => 'source.dotenv',
             self::DreamMaker => 'source.dm',
@@ -695,7 +696,9 @@ enum Grammar: string
             self::Yaml => 'source.yaml',
             self::Zenscript => 'source.zenscript',
             self::Zig => 'source.zig',
+            self::Djot => 'text.djot',
             self::Maml => 'source.maml',
+            self::Neon => 'source.neon',
             self::Antlers => 'text.html.statamic',
             self::Ansi => 'text.ansi',
             self::Txt => 'text.plain'
