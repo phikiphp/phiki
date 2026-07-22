@@ -27,6 +27,8 @@ class Composite implements InjectionMatcherInterface
         $carry = false;
 
         foreach ($this->expressions as $expression) {
+            // $carry already determines the outcome for this operator, so we can skip
+            // evaluating the expression entirely.
             if (
                 ($carry && $expression->operator === Operator::Or) ||
                 (! $carry && $expression->operator === Operator::And) ||
@@ -37,12 +39,10 @@ class Composite implements InjectionMatcherInterface
 
             $matches = $expression->matches($scopes);
 
-            match ($expression->operator) {
-                Operator::None => $carry = $matches,
-                Operator::And => $carry = $carry && $matches,
-                Operator::Or => $carry = $carry || $matches,
-                Operator::Not => $carry = $carry && ! $matches,
-            };
+            // Getting past the short-circuit above tells us what $carry must be: true for
+            // And and Not, false for Or. That makes it redundant in the boolean algebra,
+            // so the outcome only depends on $matches, negated for Not.
+            $carry = $expression->operator === Operator::Not ? ! $matches : $matches;
         }
 
         return $carry;
