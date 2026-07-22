@@ -129,3 +129,40 @@ it('passes meta to transformers', function () {
 
     expect($transformer->meta())->toBe($meta);
 });
+
+describe('style attributes', function () {
+    it('does not emit doubled separators or glued declarations with multiple themes', function () {
+        $output = (string) (new Phiki)->codeToHtml('echo "Hello, world!";', Grammar::Php, [
+            'light' => Theme::GithubLight,
+            'dark' => Theme::GithubDark,
+        ]);
+
+        preg_match_all('/style="([^"]*)"/', $output, $matches);
+
+        expect($matches[1])->not->toBeEmpty();
+
+        foreach ($matches[1] as $style) {
+            expect($style)->not->toContain(';;');
+
+            // Every declaration must be a well-formed `property: value` pair. A glued
+            // run like `#e1e4e8--theme-selection-background: #e2e5e9` would produce a
+            // declaration with two colons in it. See #142.
+            foreach (explode(';', rtrim($style, ';')) as $declaration) {
+                expect($declaration)->toMatch('/^[^:]+: [^:]+$/');
+            }
+        }
+    });
+
+    it('terminates style attributes so appended declarations cannot glue on', function () {
+        $output = (string) (new Phiki)->codeToHtml('echo "Hello, world!";', Grammar::Php, [
+            'light' => Theme::GithubLight,
+            'dark' => Theme::GithubDark,
+        ]);
+
+        preg_match_all('/style="([^"]*)"/', $output, $matches);
+
+        foreach ($matches[1] as $style) {
+            expect($style)->toEndWith(';');
+        }
+    });
+});
