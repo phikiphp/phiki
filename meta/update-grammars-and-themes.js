@@ -20,6 +20,12 @@ const grammars = [
     {
         name: "neon",
         scopeName: "source.neon",
+    },
+    {
+        // Special grammar, handled by the ANSI tokenizer instead of a TextMate grammar file.
+        name: "ansi",
+        scopeName: "text.ansi",
+        aliases: ["terminal"],
     }
 ]
 
