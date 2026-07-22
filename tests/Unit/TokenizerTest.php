@@ -130,6 +130,64 @@ describe('match', function () {
             ],
         ]);
     });
+
+    it('can tokenize a match where a capture repeats the text of an earlier capture', function () {
+        $tokens = tokenize('*bold*', [
+            'scopeName' => 'source.test',
+            'patterns' => [
+                [
+                    'match' => '(\\*)([^*]+)(\\*)',
+                    'captures' => [
+                        '1' => [
+                            'name' => 'punctuation.definition.bold.test',
+                        ],
+                        '2' => [
+                            'name' => 'markup.bold.test',
+                        ],
+                        '3' => [
+                            'name' => 'punctuation.definition.bold.test',
+                        ],
+                    ],
+                ],
+            ],
+        ]);
+
+        expect($tokens)->toEqualCanonicalizing([
+            [
+                new Token(['source.test', 'punctuation.definition.bold.test'], '*', 0, 1),
+                new Token(['source.test', 'markup.bold.test'], 'bold', 1, 5),
+                new Token(['source.test', 'punctuation.definition.bold.test'], '*', 5, 6),
+                new Token(['source.test'], "\n", 6, 7),
+            ],
+        ]);
+    });
+
+    it('can tokenize a match where a capture is nested inside the previous one', function () {
+        $tokens = tokenize('ab', [
+            'scopeName' => 'source.test',
+            'patterns' => [
+                [
+                    'match' => '((a)b)',
+                    'captures' => [
+                        '1' => [
+                            'name' => 'meta.outer.test',
+                        ],
+                        '2' => [
+                            'name' => 'meta.inner.test',
+                        ],
+                    ],
+                ],
+            ],
+        ]);
+
+        expect($tokens)->toEqualCanonicalizing([
+            [
+                new Token(['source.test', 'meta.outer.test', 'meta.inner.test'], 'a', 0, 1),
+                new Token(['source.test', 'meta.outer.test'], 'b', 1, 2),
+                new Token(['source.test'], "\n", 2, 3),
+            ],
+        ]);
+    });
 });
 
 describe('begin/end', function () {
