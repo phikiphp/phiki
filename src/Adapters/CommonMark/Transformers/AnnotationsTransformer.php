@@ -59,7 +59,7 @@ class AnnotationsTransformer extends AbstractTransformer implements RequiresGram
      */
     public function preprocess(string $code): string
     {
-        $lines = preg_split('/\R/', $code);
+        $lines = preg_split('/\R/u', $code);
         $annotations = [];
         $unclosedAnnotationsStack = [];
         $processedAnnotationRegex = sprintf(self::ANNOTATION_REGEX, preg_quote($this->prefix, '/'), implode('|', array_map(fn (string $keyword) => preg_quote($keyword, '/'), array_merge(...array_map(fn (AnnotationType $type) => $type->keywords(), AnnotationType::cases())))));
