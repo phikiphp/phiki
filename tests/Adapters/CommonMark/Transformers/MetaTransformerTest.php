@@ -118,16 +118,38 @@ it('ignores invalid line numbers', function () {
     expect(substr_count($output, '<span class="line focus">'))->toBe(0);
 });
 
-it('ignores invalid ranges', function () {
-    $output = markdown(<<<'MD'
-    ```php {2-1,3-2}{2-1,3-2}
+it('ignores reversed ranges', function () {
+    $highlighted = markdown(<<<'MD'
+    ```php {2-1,3-2}
     class A {}
     function b() {}
     ```
     MD);
 
-    expect(substr_count($output, '<span class="line highlight">'))->toBe(0);
-    expect(substr_count($output, '<span class="line focus">'))->toBe(0);
+    $focused = markdown(<<<'MD'
+    ```php {}{2-1,3-2}
+    class A {}
+    function b() {}
+    ```
+    MD);
+
+    expect(substr_count($highlighted, '<span class="line highlight">'))->toBe(0);
+    expect(substr_count($focused, '<span class="line focus">'))->toBe(0);
+});
+
+it('does not expand ranges that extend beyond the code', function () {
+    $memoryBefore = memory_get_peak_usage();
+
+    $output = markdown(<<<'MD'
+    ```php {1-100000000}{1-100000000}
+    class A {}
+    function b() {}
+    ```
+    MD);
+
+    // Expanding the range into individual line numbers would need over 2 GB.
+    expect(memory_get_peak_usage() - $memoryBefore)->toBeLessThan(16 * 1024 * 1024);
+    expect(substr_count($output, '<span class="line highlight focus">'))->toBe(2);
 });
 
 it('can highlight and focus the same line', function () {
