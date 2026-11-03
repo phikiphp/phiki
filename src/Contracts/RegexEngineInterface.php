@@ -3,14 +3,14 @@
 namespace Phiki\Contracts;
 
 use Phiki\Grammar\MatchedPattern;
+use Phiki\TextMate\Engines\Engine;
 
 interface RegexEngineInterface
 {
     /**
-     * The name of the directory in `resources/grammars` holding the bundled grammars written
-     * for this engine, such as `oniguruma` or `pcre`.
+     * The engine whose bundled grammars should be loaded.
      */
-    public function identifier(): string;
+    public function identifier(): Engine;
 
     /**
      * Find the earliest match of the given patterns in the line, starting the search at the

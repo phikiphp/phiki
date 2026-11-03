@@ -7,12 +7,13 @@
  */
 
 use Phiki\Support\OnigurumaToPcre;
+use Phiki\TextMate\Engines\Engine;
 
 require_once __DIR__.'/../vendor/autoload.php';
 
 $check = in_array('--check', $argv, true);
-$source = __DIR__.'/../resources/grammars/oniguruma';
-$target = __DIR__.'/../resources/grammars/pcre';
+$source = __DIR__.'/../resources/grammars/'.Engine::Oniguruma->value;
+$target = __DIR__.'/../resources/grammars/'.Engine::Pcre->value;
 $stale = [];
 
 if (! $check && ! is_dir($target)) {

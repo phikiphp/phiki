@@ -22,9 +22,9 @@ class PcreEngine implements RegexEngineInterface
      */
     protected const FLAGS = 'umJ';
 
-    public function identifier(): string
+    public function identifier(): Engine
     {
-        return 'pcre';
+        return Engine::Pcre;
     }
 
     public function findNextMatch(array $patterns, string $lineText, int $linePos): ?MatchedPattern

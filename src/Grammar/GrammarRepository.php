@@ -4,6 +4,7 @@ namespace Phiki\Grammar;
 
 use Phiki\Contracts\GrammarRepositoryInterface;
 use Phiki\Exceptions\UnrecognisedGrammarException;
+use Phiki\TextMate\Engines\Engine;
 
 class GrammarRepository implements GrammarRepositoryInterface
 {
@@ -22,7 +23,7 @@ class GrammarRepository implements GrammarRepositoryInterface
     /**
      * The regex engine whose bundled grammars are loaded.
      */
-    protected string $engine = 'oniguruma';
+    protected Engine $engine = Engine::Oniguruma;
 
     protected array $scopesToGrammar = [];
 
@@ -55,7 +56,7 @@ class GrammarRepository implements GrammarRepositoryInterface
 
         // Bundled grammars are written for each engine. Registered files are used as they are.
         [$key, $path] = $grammar instanceof Grammar
-            ? ["{$this->engine}:{$name}", $grammar->path($this->engine)]
+            ? ["{$this->engine->value}:{$name}", $grammar->path($this->engine)]
             : [$name, $grammar];
 
         return $this->parsed[$key] ??= (new GrammarParser)->parse(json_decode(file_get_contents($path), true));
@@ -64,9 +65,9 @@ class GrammarRepository implements GrammarRepositoryInterface
     /**
      * Load the bundled grammars written for the given regex engine.
      */
-    public function engine(string $identifier): void
+    public function engine(Engine $engine): void
     {
-        $this->engine = $identifier;
+        $this->engine = $engine;
     }
 
     public function getFromScope(string $scope): ParsedGrammar

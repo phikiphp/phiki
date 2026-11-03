@@ -21,9 +21,9 @@ class OnigurumaEngine implements RegexEngineInterface
         }
     }
 
-    public function identifier(): string
+    public function identifier(): Engine
     {
-        return 'oniguruma';
+        return Engine::Oniguruma;
     }
 
     public static function isSupported(): bool
