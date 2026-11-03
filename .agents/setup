@@ -57,9 +57,6 @@ install_composer() {
 
 install_php_deps() {
   # composer.lock is gitignored, so mirror CI and resolve with `composer update`.
-  # The dev-only orchestra/testbench ^9 constraint needs Laravel 11 releases that
-  # Composer's security-advisory blocking rejects, so allow them in this sandbox.
-  export COMPOSER_NO_SECURITY_BLOCKING=1
   if [ -f composer.lock ] && [ -d vendor ]; then
     composer install --no-interaction --prefer-dist --no-progress
   else
