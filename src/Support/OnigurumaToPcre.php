@@ -69,14 +69,89 @@ class OnigurumaToPcre
     protected int $pos = 0;
 
     /**
+     * How many subexpression calls and backreferences came before each capturing group, by group number.
+     *
+     * @var array<int, int>
+     */
+    protected array $groupReferencesBefore = [0];
+
+    /**
+     * The number of each named group.
+     *
+     * @var array<string, int>
+     */
+    protected array $groupNames = [];
+
+    /**
+     * Each subexpression call (`g`) and backreference (`k`) by name or number, with its target
+     * and the number of groups opened before it.
+     *
+     * @var list<array{string, string, int}>
+     */
+    protected array $references = [];
+
+    /**
      * Translate the given Oniguruma pattern into a PCRE pattern body (without delimiters).
      */
     public static function translate(string $pattern): string
     {
         // Some grammars contain the raw character PcreEngine uses as its delimiter, so spell it as an escape.
-        $pattern = str_replace(PcreEngine::DELIMITER, '\\x'.bin2hex(PcreEngine::DELIMITER), $pattern);
+        // The same goes for the NUL character, which marks subexpression calls during translation.
+        $pattern = str_replace([PcreEngine::DELIMITER, "\x00"], ['\\x'.bin2hex(PcreEngine::DELIMITER), '\\x00'], $pattern);
 
-        return self::rewriteLookbehinds((new self($pattern))->translatePattern());
+        $translator = new self($pattern);
+        $pattern = $translator->wrapCalls($translator->translatePattern());
+
+        foreach (self::LOOKBEHIND_REPEAT_LIMITS as $repeatLimit) {
+            $translated = self::rewriteLookbehinds($pattern, $repeatLimit);
+
+            if (@preg_match(PcreEngine::DELIMITER.$translated.PcreEngine::DELIMITER.PcreEngine::FLAGS, '') !== false) {
+                break;
+            }
+        }
+
+        return $translated;
+    }
+
+    /**
+     * Oniguruma sets a group's capture when a subexpression call such as `\g<name>` runs it, where
+     * PCRE leaves the capture as it was. Each call is wrapped in a group named after the group it
+     * calls, so PcreEngine can take the called group's capture from the last call that matched.
+     * The wrapping groups take numbers too, so references by number are renumbered to match.
+     */
+    protected function wrapCalls(string $out): string
+    {
+        $numbers = array_map(fn (array $reference): int => match (true) {
+            isset($this->groupNames[$reference[1]]) => $this->groupNames[$reference[1]],
+            $reference[1][0] === '-' => $reference[2] + 1 + (int) $reference[1],
+            $reference[1][0] === '+' => $reference[2] + (int) $reference[1],
+            ctype_digit($reference[1]) => (int) $reference[1],
+            default => 0,
+        }, $this->references);
+
+        // The PCRE number of a group is its own number plus the number of wrapped calls before it.
+        $pcreNumber = function (int $group) use ($numbers): int {
+            $before = $this->groupReferencesBefore[$group] ?? count($numbers);
+            $wrapped = 0;
+
+            foreach (array_slice($numbers, 0, $before, true) as $index => $number) {
+                $wrapped += (int) ($number > 0 && $this->references[$index][0] === 'g');
+            }
+
+            return $group + $wrapped;
+        };
+
+        return preg_replace_callback('/\x00(\d+)\x00/', function (array $m) use ($numbers, $pcreNumber): string {
+            [$kind, $target] = $this->references[(int) $m[1]];
+            $number = $numbers[(int) $m[1]];
+            $reference = isset($this->groupNames[$target]) || $number <= 0 ? $target : (string) $pcreNumber($number);
+
+            if ($kind === 'k' || $number <= 0) {
+                return '\\'.$kind.'<'.$reference.'>';
+            }
+
+            return '(?<'.PcreEngine::CALL_GROUP_PREFIX.$m[1].'_'.$number.'>\\g<'.$reference.'>)';
+        }, $out);
     }
 
     /**
@@ -106,13 +181,22 @@ class OnigurumaToPcre
     protected const MAX_LOOKBEHIND_ALTERNATIVES = 256;
 
     /**
+     * How many repeats an unbounded quantifier inside a lookbehind is expanded to, such as
+     * `\s*` becoming `\s{0,40}`. PCRE has no unbounded lookbehind, so beyond this the lookbehind
+     * stops matching where Oniguruma's would. Lower limits are tried in turn when the pattern
+     * becomes too large to compile.
+     */
+    protected const LOOKBEHIND_REPEAT_LIMITS = [40, 10, 3];
+
+    /**
      * Rewrite bounded variable-length lookbehinds, such as `(?<=(?:a|bc)\s?)`, as lists of
      * fixed-length alternatives. Oniguruma accepts them, but PCRE2 before 10.43 only accepts
      * alternatives of different lengths at the top level of a lookbehind.
      *
-     * Lookbehinds with unbounded quantifiers cannot be expanded and are left unchanged.
+     * PCRE has no unbounded lookbehind, so quantifiers such as `*` and `+` are capped at the
+     * given number of repeats when there is no other way to compile the lookbehind.
      */
-    protected static function rewriteLookbehinds(string $pattern): string
+    protected static function rewriteLookbehinds(string $pattern, int $repeatLimit): string
     {
         $length = strlen($pattern);
         $out = '';
@@ -141,7 +225,7 @@ class OnigurumaToPcre
                 $end = self::groupEnd($pattern, $i);
                 $body = substr($pattern, $i + 4, $end - $i - 5);
                 $negative = $pattern[$i + 3] === '!';
-                $alternatives = self::expandAlternation($body);
+                $alternatives = self::expandAlternation($body) ?? self::expandAlternation($body, $repeatLimit);
 
                 if ($alternatives === null || count($alternatives) <= count(self::splitAlternation($body))) {
                     $out .= substr($pattern, $i, $end - $i);
@@ -168,15 +252,16 @@ class OnigurumaToPcre
     /**
      * Expand a PCRE pattern into the list of patterns without alternation inside groups or
      * bounded quantifiers that together match the same text, or null when that is impossible.
+     * Unbounded quantifiers are capped at the given number of extra repeats, or rejected when it is 0.
      *
      * @return list<string>|null
      */
-    protected static function expandAlternation(string $pattern): ?array
+    protected static function expandAlternation(string $pattern, int $repeatLimit = 0): ?array
     {
         $expanded = [];
 
         foreach (self::splitAlternation($pattern) as $alternative) {
-            $options = self::expandSequence($alternative);
+            $options = self::expandSequence($alternative, $repeatLimit);
 
             if ($options === null) {
                 return null;
@@ -195,7 +280,7 @@ class OnigurumaToPcre
     /**
      * @return list<string>|null
      */
-    protected static function expandSequence(string $sequence): ?array
+    protected static function expandSequence(string $sequence, int $repeatLimit = 0): ?array
     {
         $results = [''];
         $length = strlen($sequence);
@@ -232,7 +317,7 @@ class OnigurumaToPcre
                     // Lookarounds, inline options and comments are zero-width: keep them as they are.
                     $options = [$group];
                 } else {
-                    $inner = self::expandAlternation(substr($group, strlen($opening), -1));
+                    $inner = self::expandAlternation(substr($group, strlen($opening), -1), $repeatLimit);
 
                     if ($inner === null) {
                         return null;
@@ -253,11 +338,21 @@ class OnigurumaToPcre
             if ($i < $length && preg_match('/\G(?:([?*+])|\{(\d+)(,?)(\d*)\})[?+]?/', $sequence, $q, 0, $i)) {
                 $i += strlen($q[0]);
 
-                if ($q[1] === '*' || $q[1] === '+' || ($q[1] === '' && $q[3] === ',' && $q[4] === '')) {
-                    return null;
-                }
+                [$min, $max] = match (true) {
+                    $q[1] === '?' => [0, 1],
+                    $q[1] === '*' => [0, null],
+                    $q[1] === '+' => [1, null],
+                    $q[3] === ',' && $q[4] === '' => [(int) $q[2], null],
+                    default => [(int) $q[2], $q[3] === '' ? (int) $q[2] : (int) $q[4]],
+                };
 
-                [$min, $max] = $q[1] === '?' ? [0, 1] : [(int) $q[2], $q[3] === '' ? (int) $q[2] : (int) $q[4]];
+                if ($max === null) {
+                    if ($repeatLimit === 0) {
+                        return null;
+                    }
+
+                    $max = $min + $repeatLimit;
+                }
                 $repeated = [];
 
                 for ($count = $min; $count <= $max; $count++) {
@@ -364,7 +459,7 @@ class OnigurumaToPcre
      */
     protected static function escapeEnd(string $pattern, int $i): int
     {
-        if (preg_match('/\G\\\\(?:[xopPgk]\{[^}]*\}|[gk]<[^>]*>|x[0-9a-fA-F]{0,2}|c.|[pP].|.)/s', $pattern, $m, 0, $i)) {
+        if (preg_match('/\G\\\\(?:[xopPgk]\{[^}]*\}|[gk]<[^>]*>|x[0-9a-fA-F]{0,2}|c.|[pP].|0[0-7]{0,2}|[\xC0-\xF7][\x80-\xBF]*|.)/s', $pattern, $m, 0, $i)) {
             return $i + strlen($m[0]);
         }
 
@@ -515,6 +610,22 @@ class OnigurumaToPcre
                 }
 
                 $groups[] = [$extended, ')', strlen($out)];
+
+                // Oniguruma allows `-` in group names, which PCRE does not.
+                if (preg_match('/\G\(\?P?(?:<([A-Za-z_][\w-]*)>|\'([A-Za-z_][\w-]*)\')/', $this->pattern, $m, 0, $this->pos)) {
+                    $name = str_replace('-', '_', $m[1] !== '' ? $m[1] : $m[2]);
+                    $this->groupReferencesBefore[] = count($this->references);
+                    $this->groupNames[$name] ??= count($this->groupReferencesBefore) - 1;
+                    $out .= '(?<'.$name.'>';
+                    $this->pos += strlen($m[0]);
+
+                    continue;
+                }
+
+                if (($this->pattern[$this->pos + 1] ?? '') !== '?') {
+                    $this->groupReferencesBefore[] = count($this->references);
+                }
+
                 $out .= '(';
                 $this->pos++;
 
@@ -541,13 +652,16 @@ class OnigurumaToPcre
                 continue;
             }
 
-            if ($char === '{' && preg_match('/\G\{(\d*)(,?)(\d*)\}(\+?)/', $this->pattern, $m, 0, $this->pos) && ($m[1] !== '' || ($m[2] !== '' && $m[3] !== ''))) {
+            if ($char === '{' && preg_match('/\G\{(\d*)(,?)(\d*)\}([+?]?)/', $this->pattern, $m, 0, $this->pos) && ($m[1] !== '' || ($m[2] !== '' && $m[3] !== ''))) {
                 $this->pos += strlen($m[0]);
                 $quantifier = '{'.($m[1] === '' ? '0' : $m[1]).$m[2].$m[3].'}';
 
-                if ($m[4] === '+') {
-                    // Oniguruma reads `a{2}+` as `(?:a{2})+`, where PCRE would make it possessive.
-                    $out = substr($out, 0, $atomStart).'(?:'.substr($out, $atomStart).$quantifier.')+';
+                // Oniguruma reads `a{2}+` as `(?:a{2})+` and `a{2}?` as `(?:a{2})?`, where PCRE would make them
+                // possessive and lazy. A `?` after a range, such as `a{1,2}?`, is lazy in both.
+                if ($m[4] === '+' || ($m[4] === '?' && $m[2] === '')) {
+                    $out = substr($out, 0, $atomStart).'(?:'.substr($out, $atomStart).$quantifier.')'.$m[4];
+                } elseif ($m[4] === '?') {
+                    $out .= $quantifier.'?';
                 } else {
                     $out .= $quantifier;
                 }
@@ -625,16 +739,38 @@ class OnigurumaToPcre
                 }
 
                 break;
+            case 'g':
+            case 'k':
+                if (preg_match('/\G\\\\[gk](?:<([\w+-]+)>|\'([\w+-]+)\')/', $this->pattern, $m, 0, $this->pos)) {
+                    $this->pos += strlen($m[0]);
+                    $target = $m[1] !== '' ? $m[1] : $m[2];
+
+                    // Relative targets such as `-1` keep their sign, but names lose their `-` as their groups do.
+                    if (! preg_match('/^[+-]?\d+$/', $target)) {
+                        $target = str_replace('-', '_', $target);
+                    }
+
+                    $this->references[] = [$next, $target, count($this->groupReferencesBefore) - 1];
+
+                    return "\x00".(count($this->references) - 1)."\x00";
+                }
+
+                break;
         }
 
-        $this->pos += 2;
-
         // Oniguruma reads an escaped letter it does not know as the letter itself, where PCRE fails to compile.
-        if (str_contains(self::UNKNOWN_ESCAPES, $next)) {
+        if ($next !== '' && str_contains(self::UNKNOWN_ESCAPES, $next)) {
+            $this->pos += 2;
+
             return $next;
         }
 
-        return '\\'.$next;
+        // Copy the whole escape, such as `\x5C` or `\k<name>`, so a following quantifier applies to all of it.
+        $end = self::escapeEnd($this->pattern, $this->pos);
+        $escape = substr($this->pattern, $this->pos, $end - $this->pos);
+        $this->pos = $end;
+
+        return $escape;
     }
 
     /**

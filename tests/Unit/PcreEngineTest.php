@@ -42,6 +42,19 @@ it('matches translated Oniguruma patterns', function (string $pattern, string $s
     'Unicode word characters' => ['\w+', 'naïve!', 'naïve'],
     'Unicode POSIX classes' => ['[[:alpha:]]+', 'é1', 'é'],
     'lookbehind with nested alternatives of different lengths' => ['(?<=(?:x|yy))b', 'yyb', 'b'],
+    'interval followed by ? is optional' => ['a{2}?', 'ab', ''],
+    'escape followed by interval and + repeats' => ['\x41{2}+', 'AAAAA', 'AAAA'],
+    'lookbehind with an unbounded quantifier' => ['(?<=\.\s*)await', 'x .  await', 'await'],
+]);
+
+it('sets the captures of groups run by subexpression calls', function (string $pattern, string $subject, array $expected) {
+    expect(pcreMatch($pattern, $subject))->toBe($expected);
+})->with([
+    'named call' => ['(\$)(?<name>[a-z]+)(?:(->)(\g<name>))?', '$post->title', ['$post->title', '$', 'title', '->', 'title']],
+    'numbered call keeps later group numbers' => ['(a)\g<1>(b)', 'aab', ['aab', 'a', 'b']],
+    'relative call' => ['(\[)(?:x|\g<-1>)*', '[[x', ['[[x', '[']],
+    'recursive call' => ['(?<conid>[A-Z][a-z]*(\.\g<conid>)?)', 'Data.Maybe', ['Data.Maybe', 'Data.Maybe', '.Maybe']],
+    'group name with a dash' => ['(?<type-name>[a-z]+)=\g<type-name>', 'ab=cd', ['ab=cd', 'cd']],
 ]);
 
 it('keeps captures in rewritten lookbehinds', function () {
