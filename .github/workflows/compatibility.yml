@@ -29,8 +29,16 @@ jobs:
                   extensions: mbstring
                   tools: composer:v2
 
+            - name: Setup Node
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 22
+                  cache: npm
+
             - name: Install Dependencies
-              run: composer update --no-interaction --prefer-dist
+              run: |
+                  composer update --no-interaction --prefer-dist
+                  npm ci
 
             - name: Generate report
               run: composer compatibility

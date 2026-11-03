@@ -20,7 +20,13 @@ class PcreEngine implements RegexEngineInterface
      * `u` matches Unicode code points and properties, `m` makes `^` and `$` line anchors
      * as they always are in Oniguruma, and `J` allows duplicate group names.
      */
-    protected const FLAGS = 'umJ';
+    public const FLAGS = 'umJ';
+
+    /**
+     * Prefix of the groups the translator wraps subexpression calls in, followed by a counter
+     * and the number of the called group, such as `_phikicall0_3`.
+     */
+    public const CALL_GROUP_PREFIX = '_phikicall';
 
     public function identifier(): Engine
     {
@@ -54,14 +60,44 @@ class PcreEngine implements RegexEngineInterface
         }
 
         $wellFormedMatches = [];
+        $calledGroup = null;
+        $calls = [];
 
         foreach ($bestMatches as $key => [$match, $offset]) {
-            // Named groups are also returned under their number, so we only keep the numbered keys.
+            // Named groups are also returned under their number, just after their name, so we only keep the
+            // numbered keys. The translator wraps each subexpression call in a group named after the group it
+            // calls; those groups are left out, so the others keep the numbers they have in the grammar.
             if (is_string($key)) {
+                if (str_starts_with($key, self::CALL_GROUP_PREFIX)) {
+                    $calledGroup = (int) substr($key, strrpos($key, '_') + 1);
+                }
+
                 continue;
             }
 
-            $wellFormedMatches[$key] = $match === null ? ['', -1] : [$match, $offset];
+            if ($calledGroup !== null) {
+                if ($match !== null) {
+                    $calls[$calledGroup][] = [$match, $offset];
+                }
+
+                $calledGroup = null;
+
+                continue;
+            }
+
+            $wellFormedMatches[] = $match === null ? ['', -1] : [$match, $offset];
+        }
+
+        // Oniguruma sets a group's capture whenever it runs, including through a call, so the capture
+        // that ends last wins.
+        foreach ($calls as $group => $captures) {
+            foreach ($captures as $capture) {
+                $current = $wellFormedMatches[$group] ?? null;
+
+                if ($current !== null && ($current[1] < 0 || $capture[1] + strlen($capture[0]) > $current[1] + strlen($current[0]))) {
+                    $wellFormedMatches[$group] = $capture;
+                }
+            }
         }
 
         return new MatchedPattern($bestPattern, $wellFormedMatches);
