@@ -1,0 +1,46 @@
+---
+title: Regex engines
+description: "Learn about Phiki's regex engines and how to choose which one is used."
+keywords: ['engine', 'regex', 'pcre', 'oniguruma', 'mbstring', 'mbregex']
+---
+
+TextMate grammars describe a language with regular expressions, so Phiki needs a regex engine to tokenize code. Phiki includes two engines:
+
+* **Oniguruma**, through the `mb_ereg_search_*` functions from mbstring's `mbregex` or the `mb_onig` extension. Oniguruma is the regex engine that TextMate grammars are written for, and the same engine used by VS Code and Shiki.
+* **PCRE**, through PHP's `preg_*` functions, which are included in every PHP build.
+
+## Why are there multiple engines?
+
+PHP 8.6 deprecates the `mbregex` functions and PHP 9 removes them, and some PHP builds do not include them at all. The PCRE engine lets Phiki keep working in those environments without any extra extensions.
+
+The bundled grammars are written in Oniguruma syntax, so Phiki also ships a copy of every bundled grammar translated to PCRE syntax ahead of time. When you pick an engine, Phiki loads the bundled grammars written for that engine.
+
+## Choosing an engine
+
+By default, Phiki uses the Oniguruma engine when the `mb_ereg_search_*` functions are available, and the PCRE engine when they aren't.
+
+To choose an engine yourself, pass an instance of it to the `Phiki::engine()` method.
+
+```php
+use Phiki\Phiki;
+use Phiki\TextMate\Engines\PcreEngine;
+
+$phiki = (new Phiki)
+    ->engine(new PcreEngine);
+```
+
+To use Oniguruma, pass an instance of `Phiki\TextMate\Engines\OnigurumaEngine` instead. Creating an `OnigurumaEngine` throws a `Phiki\Exceptions\UnsupportedRegexEngineException` when the `mb_ereg_search_*` functions are not available.
+
+<Note>
+Custom grammars registered with `Phiki::grammar()` are used as they are, so their patterns need to use syntax the chosen engine understands.
+</Note>
+
+## Compatibility
+
+<Warning>
+The engines are not 100% compatible with each other. Oniguruma and PCRE support different regex syntax and features, and some patterns can't be translated exactly, so the same code can be tokenized slightly differently depending on the engine.
+
+We try our best to keep the engines compatible, and compare both of them against [vscode-textmate](https://github.com/microsoft/vscode-textmate), the tokenizer used by VS Code and Shiki, which is our reference for tokenization. In some cases, the PCRE engine is actually more accurate than the Oniguruma engine when compared to vscode-textmate.
+</Warning>
+
+The [compatibility report](https://github.com/phikiphp/phiki/blob/3.x/COMPATIBILITY.md) shows how closely each engine matches vscode-textmate for every bundled grammar. If you notice a difference that affects your code, please [open an issue](https://github.com/phikiphp/phiki/issues).
