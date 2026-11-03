@@ -16,3 +16,198 @@ void main()
 }
 
 // From https://dlang.org/
+/++
+ + A small ring buffer and event log, showing more of the language.
+ +/
+module app.events;
+
+import std.algorithm : filter, map, sum;
+import std.array : array;
+import std.conv : to;
+import std.format : format;
+import std.regex : regex, matchFirst;
+import io = std.stdio;
+
+version (Windows)
+    enum lineEnding = "\r\n";
+else
+    enum lineEnding = "\n";
+
+debug = verboseLog;
+version = UseRingBuffer;
+
+alias Callback = void delegate(in Event) @safe;
+alias Ids = int[];
+
+enum Severity : ubyte
+{
+    debug_ = 0,
+    info = 1,
+    warning = 0x02,
+    error = 0b100,
+}
+
+/// An entry in the log.
+struct Event
+{
+    align(8) ulong id;
+    Severity severity = Severity.info;
+    string message;
+    double latency = 1.5e-3;
+
+    string toString() const pure @safe
+    {
+        return format!"%s[%d] %s"(severity, id, message);
+    }
+}
+
+/**
+ * Fixed-size ring buffer.
+ * Params: T = element type; capacity = number of slots
+ */
+struct RingBuffer(T, size_t capacity = 16)
+    if (capacity > 0 && (capacity & (capacity - 1)) == 0)
+{
+    private T[capacity] items;
+    private size_t head, count;
+
+    @property bool empty() const nothrow @nogc { return count == 0; }
+    @property size_t length() const nothrow @nogc { return count; }
+
+    void put(T value) nothrow @nogc
+    {
+        items[(head + count) % capacity] = value;
+        if (count < capacity)
+            ++count;
+        else
+            head = (head + 1) & (capacity - 1);
+    }
+
+    ref inout(T) opIndex(size_t index) inout
+    {
+        assert(index < count, "index out of range");
+        return items[(head + index) % capacity];
+    }
+
+    int opApply(scope int delegate(ref T) dg)
+    {
+        foreach (i; 0 .. count)
+        {
+            if (auto result = dg(items[(head + i) % capacity]))
+                return result;
+        }
+        return 0;
+    }
+}
+
+interface Sink
+{
+    void write(in Event event);
+}
+
+abstract class BaseSink : Sink
+{
+    protected shared static int instances;
+
+    this() { synchronized { ++instances; } }
+    ~this() {}
+
+    abstract void flush();
+}
+
+final class ConsoleSink : BaseSink
+{
+    private Callback[] listeners;
+
+    override void write(in Event event)
+    {
+        final switch (event.severity) with (Severity)
+        {
+        case debug_:
+            debug (verboseLog) io.writeln("debug: ", event);
+            break;
+        case info, warning:
+            io.writeln(event.toString());
+            break;
+        case error:
+            io.stderr.writeln("\x1b[31m", event, "\x1b[0m");
+            break;
+        }
+        foreach_reverse (listener; listeners)
+            listener(event);
+    }
+
+    override void flush() { io.stdout.flush(); }
+}
+
+@("parses durations")
+unittest
+{
+    auto pattern = regex(`(\d+)(ms|s)`);
+    auto m = matchFirst("took 250ms", pattern);
+    assert(!m.empty && m[1].to!int == 250);
+}
+
+mixin template Counter(string name)
+{
+    mixin("int " ~ name ~ "Count;");
+}
+
+enum string generated = q{
+    static if (is(typeof(this) == class))
+        private immutable int answer = 42;
+    void reset() nothrow { this.answer.init; }
+};
+
+T clampTo(T)(long value) if (__traits(isIntegral, T))
+{
+    return value > T.max ? T.max : value < T.min ? T.min : cast(T) value;
+}
+
+int run(string[] args)
+{
+    RingBuffer!(Event, 8) buffer;
+    auto sink = new ConsoleSink;
+    scope (exit) sink.flush();
+
+    char quote = '\'';
+    wchar wide = 'é';
+    dchar smile = '\U0001F600';
+    string raw = r"C:\logs\events.txt";
+    string hex = x"48 65 6C 6C 6F";
+    string delimited = q"(nested (parens) kept)";
+    string heredoc = q"EOS
+multi-line text
+EOS";
+    auto mask = 0xFFFF_0000u & ~0x0Ful | 1UL << 3;
+    real ratio = 0x1.8p1;
+
+    foreach (i, word; ["start", "load", "fail"])
+    {
+        auto severity = word == "fail" ? Severity.error : Severity.info;
+        buffer.put(Event(i, severity, word ~ lineEnding));
+    }
+
+    auto slow = buffer.length > 2 ? [1, 2, 3][0 .. $ - 1] : null;
+    int total = [1, 2, 3, 4].filter!(n => n % 2 == 0).map!(n => n * n).sum;
+
+    try
+    {
+        if (args.length > 1 && args[1] !is null)
+            throw new Exception("unexpected argument: " ~ args[1]);
+    }
+    catch (Exception e)
+    {
+        io.stderr.writefln("error: %s (%s)", e.msg, quote);
+        return 1;
+    }
+    finally
+    {
+        foreach (ref event; buffer)
+            sink.write(event);
+    }
+
+    pragma(msg, "compiling " ~ __MODULE__);
+    static assert(Event.sizeof >= 16);
+    return total + cast(int) slow.length + clampTo!ubyte(300) - (smile > wide);
+}

@@ -1,0 +1,96 @@
+# Nette application configuration (config/common.neon)
+# Values in %percent% signs are parameters; @name refers to a service.
+
+parameters:
+	appName: "Field Notes"
+	debugMode: %debugMode%
+	tempDir: %appDir%/../temp
+	locale: 'en_GB'
+	itemsPerPage: 25
+	maxUploadSize: 0x1F400000
+	filePermissions: 0o644
+	featureMask: 0b1011
+	ratio: 0.75
+	threshold: -1.5e-3
+	sessionLifetime: 14 days
+	cacheTtl: 30 minutes
+	maintenance: off
+	allowRegistration: yes
+	legacyApi: No
+	trackingId: null
+	greeting: "Hello,\t\"world\"\n\u00e9\x41"
+	motto: 'It''s %appName%, not a blog'
+	footer: '''
+		Raw block string.
+		Backslashes \n stay as they are.
+	'''
+	about: """
+		Multi-line text with an escape \t and %appName%.
+	"""
+	mailer:
+		from: noreply@example.com
+		smtp: true
+		host: smtp.example.com
+		port: 587
+
+application:
+	errorPresenter: Error
+	mapping:
+		*: App\*Module\Presenters\*Presenter
+
+session:
+	expiration: %sessionLifetime%
+	autoStart: smart
+
+database:
+	dsn: 'mysql:host=127.0.0.1;dbname=notes'
+	user: notes
+	password: %env.DB_PASSWORD%
+	options: [lazy: true, charset: utf8mb4]
+
+latte:
+	strictTypes: true
+	extensions:
+		- App\Latte\FormatExtension
+
+services:
+	- App\Model\NoteRepository
+	- App\Model\TagRepository(@database.default.connection)
+	router: App\Router\RouterFactory::createRouter
+	cache.storage: Nette\Caching\Storages\FileStorage(%tempDir%/cache)
+	mailer:
+		create: Nette\Mail\SmtpMailer(%mailer%)
+		autowired: false
+	noteFacade:
+		factory: App\Model\NoteFacade
+		arguments:
+			perPage: %itemsPerPage%
+			repository: @App\Model\NoteRepository
+			clock: @clock
+		setup:
+			- setLogger(@logger)
+			- $locale = %locale%
+			- addFilters([trim, strip_tags, 'nl2br'])
+	clock: App\Support\SystemClock
+	logger:
+		create: Tracy\Bridges\Psr\TracyToPsrLoggerAdapter(@Tracy\ILogger)
+		tags: [logger, monolog.channel: app]
+	authenticator: App\Security\Authenticator(
+		passwords: @security.passwords
+		lockout: 5
+	)
+
+extensions:
+	console: Contributte\Console\DI\ConsoleExtension(%consoleMode%)
+	translation: Contributte\Translation\DI\TranslationExtension
+
+translation:
+	locales:
+		whitelist: [en, de, cs]
+		default: en
+	dirs:
+		- %appDir%/lang
+
+includes:
+	- services.neon
+	- local.neon

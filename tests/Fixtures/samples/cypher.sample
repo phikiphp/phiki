@@ -19,3 +19,69 @@ SET article.created = articleProperties.created,
     article.readingTime = duration(articleProperties.readingTime)
 
 // https://neo4j.com/developer/cypher/dates-datetimes-durations/
+
+// Schema: unique titles and an index on author names
+CREATE CONSTRAINT ON (a:Article) ASSERT a.title IS UNIQUE;
+CREATE INDEX ON :Author(name);
+
+// Import authors from a CSV file
+USING PERIODIC COMMIT 500
+LOAD CSV WITH HEADERS FROM 'file:///authors.csv' AS row FIELDTERMINATOR ';'
+MERGE (author:Author {name: trim(row.name)})
+ON CREATE SET author.joined = date(row.joined), author.active = true
+ON MATCH SET author.lastSeen = timestamp();
+
+// Link articles to their authors and tags
+MATCH (article:Article), (author:Author {name: "Mark Needham"})
+WHERE article.title STARTS WITH 'Cypher' AND NOT (author)-[:WROTE]->(article)
+CREATE (author)-[:WROTE {at: datetime()}]->(article);
+
+/* Find co-authors within three hops, ignoring
+   inactive accounts and `legacy` nodes. */
+MATCH path = (me:Author {name: $name})-[:WROTE|:REVIEWED*1..3]-(other:Author)
+WHERE other <> me
+  AND other.active = TRUE
+  AND NOT other:`Legacy Author`
+  AND other.email =~ '(?i).*@neo4j\\.com'
+  AND other.nickname IS NOT NULL
+WITH other, length(path) AS hops, collect(DISTINCT me.name) AS seenBy
+OPTIONAL MATCH (other)<-[r:FOLLOWS]-(fan)
+RETURN other.name AS author,
+       hops,
+       count(fan) AS fans,
+       avg(r.weight) * 100 / 3 AS score,
+       coalesce(other.bio, "No bio\tyet") AS bio,
+       CASE
+         WHEN hops = 1 THEN 'direct'
+         WHEN hops IN [2, 3] THEN "indirect"
+         ELSE 'distant'
+       END AS distance
+ORDER BY fans DESC, author ASC
+SKIP 0
+LIMIT 25;
+
+// Collections and predicates
+MATCH (a:Article)
+WITH collect(a) AS articles
+RETURN size(articles) AS total,
+       [x IN articles WHERE x.readingTime.minutes > 2 | upper(x.title)] AS longReads,
+       reduce(acc = 0, x IN articles | acc + x.readingTime.minutes) AS minutes,
+       all(x IN articles WHERE x.title IS NOT NULL) AS allTitled,
+       range(1, 10, 2) AS odds,
+       round(rand() * 10.5) AS dice,
+       head(articles).title + ' & more' AS headline;
+
+// Shortest path between two authors
+MATCH (a:Author {name: 'Alice'}), (b:Author {name: 'Bob'})
+MATCH p = shortestPath((a)-[*..15]-(b))
+UNWIND nodes(p) AS n
+RETURN id(n), labels(n), type(relationships(p)[0]);
+
+// Clean up stale relationships
+MATCH (a:Author)-[old:FOLLOWS]->()
+WHERE old.since < date('2015-01-01') OR old.weight IS NULL XOR false
+DETACH DELETE old
+REMOVE a.lastSeen;
+
+START n = node(1, 2) RETURN n;
+DROP INDEX ON :Author(name);

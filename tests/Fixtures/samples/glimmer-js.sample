@@ -1,5 +1,14 @@
 import { helper } from '@ember/component/helper';
 import { modifier } from 'ember-modifier';
+import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
+import { on } from '@ember/modifier';
+import { fn } from '@ember/helper';
+import { precompileTemplate } from '@ember/template-compilation';
+import { hbs } from 'ember-cli-htmlbars';
+import Avatar from './avatar';
+import UserCard from './user-card';
 
 const plusOne = helper(([num]) => num + 1);
 
@@ -7,12 +16,93 @@ const setScrollPosition = modifier((element, [position]) => {
   element.scrollTop = position
 });
 
-<template>
-  <div class="scroll-container" {{setScrollPosition @scrollPos}}>
-    {{#each @items as |item index|}}
-      Item #{{plusOne index}}: {{item}}
-    {{/each}}
-  </div>
-</template>
+/* A tiny template-only component */
+const Badge = <template>
+  <span class="badge badge--{{@kind}}" ...attributes>{{yield}}</span>
+</template>;
+
+export default class TodoList extends Component {
+  @tracked filter = 'all';
+  @tracked items = [];
+
+  get visibleItems() {
+    // TODO: memoize this
+    return this.filter === 'done'
+      ? this.items.filter((item) => item.done)
+      : this.items;
+  }
+
+  @action
+  toggle(item) {
+    item.done = !item.done;
+    this.items = [...this.items];
+  }
+
+  <template>
+    <style>
+      .todo-list { margin: 0 auto; max-width: 40rem; }
+      .todo-list li.done { text-decoration: line-through; }
+    </style>
+
+    {{! A short inline comment }}
+    {{!-- A longer block comment that
+          spans several lines --}}
+    <!-- plain HTML comment -- with dashes -->
+
+    <section class="todo-list scroll-container" {{setScrollPosition @scrollPos}}>
+      <h2 title='Things &amp; stuff'>Todo &mdash; {{this.visibleItems.length}} left &#9733;</h2>
+
+      {{#if @user}}
+        <UserCard @user={{@user}} @size="small" as |card|>
+          <card.Avatar @src={{@user.avatarUrl}} />
+          <Avatar::Image @alt="It's \"me\"" />
+        </UserCard>
+      {{else if @guest}}
+        <p>Welcome, guest!</p>
+      {{else}}
+        {{outlet}}
+      {{/if}}
+
+      <ul>
+        {{#each this.visibleItems key="id" as |item index|}}
+          <li class={{if item.done "done"}} data-index={{index}}>
+            Item #{{plusOne index}}: {{item.title}}
+            <button type="button" {{on "click" (fn this.toggle item)}}>
+              {{if item.done 'Undo' "Done"}}
+            </button>
+            {{#unless item.done}}
+              <Badge @kind="pending">pending</Badge>
+            {{/unless}}
+          </li>
+        {{else}}
+          <li>Nothing to do {{true}} {{null}} {{42}} {{3.5}}</li>
+        {{/each}}
+      </ul>
+
+      {{{@rawFooterHtml}}}
+      {{~yield this.visibleItems~}}
+    </section>
+
+    <script type="text/javascript">
+      // inline script inside the template
+      window.todoListLoaded = true;
+    </script>
+  </template>
+}
+
+export const Legacy = precompileTemplate('<p class="legacy">{{@message}}</p>', {
+  strictMode: true,
+});
+
+export const greeting = hbs`
+  <Greeting @name={{this.name}} />
+  {{#let (concat "Hello, " @name) as |message|}}
+    <h1>{{message}}</h1>
+  {{/let}}
+`;
+
+export const WithArgs = <template lang="hbs" id="with-args">
+  <p>{{@label}}: {{(plusOne @count)}}</p>
+</template>;
 
 // From https://github.com/ember-template-imports/ember-template-imports

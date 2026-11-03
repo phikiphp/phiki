@@ -16,3 +16,222 @@ msg	db 'Hello, world!',0xa   ;our dear string
 len	equ	$ - msg          ;length of our dear string
 
 ;From https://www.tutorialspoint.com/assembly_programming/assembly_memory_segments.htm
+
+; ---------------------------------------------------------------------------
+; vecmath.asm - x86-64 NASM routines for summing and scaling float arrays
+; Build: nasm -f elf64 vecmath.asm && ld -o vecmath vecmath.o
+; ---------------------------------------------------------------------------
+        bits 64
+        default rel
+
+%include "syscalls.inc"
+%define SYS_WRITE   1
+%define SYS_EXIT    60
+%define STDOUT      1
+%assign BUFFER_SIZE 4096
+
+%ifdef DEBUG
+    %warning "Building with debug output enabled"
+%elif __?BITS?__ != 64
+    %error "This file must be assembled in 64-bit mode"
+%endif
+
+%if 0
+    This block is disabled and treated as a comment.
+%endif
+
+; Write a buffer to stdout: WRITE buf, len
+%macro WRITE 2
+        mov     rax, SYS_WRITE
+        mov     rdi, STDOUT
+        lea     rsi, [%1]
+        mov     rdx, %2
+        syscall
+%endmacro
+
+%macro PROLOGUE 0
+        push    rbp
+        mov     rbp, rsp
+%endmacro
+
+        section .rodata
+banner:     db  "Vector math demo", 10, 0
+banner_len  equ $ - banner
+quoted:     db  `tab\there\n`, 0
+hexval:     dq  0xDEAD_BEEF
+hexalt:     dd  0FFh
+binval:     db  0b1010_0101
+binalt:     db  1100b
+octval:     dw  0o777
+octalt:     dw  777q
+decval:     dd  0d1234
+floatval:   dd  3.14159
+expval:     dq  6.02e23
+tword_pi:   dt  3.141592653589793238
+nanval:     dd  __?QNaN?__
+infval:     dq  __?Infinity?__
+scales:     dd  1.0, 0.5, 0.25, 0.125
+            align 16
+
+        section .bss
+buffer:     resb BUFFER_SIZE
+results:    resq 8
+
+        section .text
+        global  sum_floats
+        global  scale_floats:function
+        extern  printf
+
+; float sum_floats(const float *values, size_t count)
+sum_floats:
+        PROLOGUE
+        xorps   xmm0, xmm0
+        test    rsi, rsi
+        jz      .done
+        xor     rcx, rcx
+.loop:
+        addss   xmm0, dword [rdi + rcx*4]
+        inc     rcx
+        cmp     rcx, rsi
+        jb      .loop
+.done:
+        pop     rbp
+        ret
+
+; void scale_floats(float *values, size_t count, float factor) using AVX
+scale_floats:
+        vbroadcastss ymm1, xmm0
+        mov     rax, rsi
+        shr     rax, 3
+        jz      .tail
+.vector:
+        vmovups ymm2, [rdi]
+        vmulps  ymm2, ymm2, ymm1
+        vmovups [rdi], ymm2
+        add     rdi, 32
+        dec     rax
+        jnz     .vector
+.tail:
+        and     rsi, 7
+        jz      .exit
+.scalar:
+        movss   xmm2, [rdi]
+        mulss   xmm2, xmm0
+        movss   [rdi], xmm2
+        add     rdi, 4
+        sub     rsi, 1
+        jnz     .scalar
+.exit:
+        vzeroupper
+        ret
+
+; double dot_sse2(const double *a, const double *b) for two elements
+dot_sse2:
+        movupd  xmm0, [rdi]
+        movupd  xmm1, [rsi]
+        mulpd   xmm0, xmm1
+        movapd  xmm1, xmm0
+        unpckhpd xmm1, xmm1
+        addsd   xmm0, xmm1
+        cvtsd2ss xmm0, xmm0
+        ret
+
+; x87: compute sqrt(a*a + b*b)
+hypot_x87:
+        fld     qword [rdi]
+        fmul    st0, st0
+        fld     qword [rsi]
+        fmul    st0, st0
+        faddp   st1, st0
+        fsqrt
+        fstp    qword [results]
+        fldpi
+        fsin
+        fstp    st0
+        ret
+
+; Copy a string with rep movsb and count bits
+copy_and_count:
+        cld
+        mov     rcx, rdx
+        rep movsb
+        popcnt  rax, rdx
+        bsf     r8, rdx
+        lzcnt   r9, rdx
+        setnz   al
+        movzx   eax, al
+        cmovz   eax, r10d
+        lock xadd [results], rax
+        ret
+
+; Read the time stamp counter and CPU features
+cpu_info:
+        push    rbx
+        rdtsc
+        shl     rdx, 32
+        or      rax, rdx
+        mov     [results + 8], rax
+        mov     eax, 1
+        cpuid
+        bt      ecx, 28                 ; AVX support bit
+        setc    byte [results + 16]
+        pop     rbx
+        ret
+
+; AES-128 encrypt one block: xmm0 = state, rdi = expanded key schedule
+aes128_encrypt:
+        pxor    xmm0, [rdi]
+%assign i 1
+%rep 9
+        aesenc  xmm0, [rdi + i*16]
+%assign i i+1
+%endrep
+        aesenclast xmm0, [rdi + 160]
+        ret
+
+; Find the first byte of xmm1's set in the string at rdi (SSE4.2)
+find_any:
+        movdqu  xmm2, [rdi]
+        pcmpistri xmm1, xmm2, 0x00
+        pshufb  xmm2, xmm1
+        pminub  xmm2, xmm1
+        pmovmskb eax, xmm2
+        ptest   xmm2, xmm2
+        ret
+
+; Copy 64 bytes with AVX-512, zero-masking the tail with k1
+copy64_masked:
+        kmovq   k1, rdx
+        vmovdqu8 zmm0{k1}{z}, [rsi]
+        vmovdqu8 [rdi]{k1}, zmm0
+        vpaddd  zmm1, zmm0, [rsi]{1to16}
+        vpternlogd zmm2, zmm1, zmm0, 0x96
+        vpbroadcastd ymm3, xmm0
+        vpermd  ymm4, ymm3, ymm0
+        vpand   ymm5, ymm4, ymm3
+        vfmadd231ps ymm6, ymm5, ymm4
+        vcvtdq2ps ymm7, ymm6
+        vextracti128 xmm0, ymm7, 1
+        ret
+
+; Hash helpers using SHA and CRC instructions
+hash_step:
+        sha256rnds2 xmm1, xmm2
+        crc32   eax, byte [rdi]
+        rdrand  rax
+        jnc     hash_step
+        pause
+        mfence
+        prefetchnta [rdi + 64]
+        ret
+
+_main:
+        WRITE   banner, banner_len
+        lea     rdi, [rel scales]
+        mov     esi, 4
+        call    sum_floats
+        mov     rax, SYS_EXIT
+        xor     edi, edi
+        syscall
+
+        /* end of vecmath.asm */

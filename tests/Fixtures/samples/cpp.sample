@@ -19,3 +19,227 @@ int main() {
 }
 
 // From https://www.programiz.com/cpp-programming/type-conversion
+/**
+ * @file inventory.hpp
+ * @brief A small inventory library exercising modern C++ (C++20).
+ */
+#pragma once
+#include <algorithm>
+#include <concepts>
+#include <cstdint>
+#include <map>
+#include <memory>
+#include <optional>
+#include <regex>
+#include <string>
+#include <string_view>
+#include <vector>
+#include "config.hpp"
+
+#define INVENTORY_VERSION "2.1.0"
+#define CHECK(expr) \
+    do { if (!(expr)) throw std::runtime_error(#expr); } while (0)
+
+#if defined(_WIN32) && !defined(NOMINMAX)
+#  define NOMINMAX
+#elif __cplusplus >= 202002L
+#  define HAS_CXX20 1
+#else
+#  error "C++20 is required"
+#endif
+#undef CHECK_LEGACY
+
+extern "C" {
+int legacy_checksum(const unsigned char* data, std::size_t length);
+}
+
+namespace shop::inventory {
+
+using namespace std::string_literals;
+using Quantity = std::uint32_t;
+typedef unsigned long long Sku;
+
+constexpr double kTaxRate = 0.21;
+constexpr auto kMaxItems = 1'000'000;
+constexpr auto kMask = 0xFF'FFu;
+constexpr auto kFlags = 0b1010'0101;
+constexpr auto kOctal = 0755;
+constexpr float kEpsilon = 1.0e-6f;
+inline constexpr char kSeparator = '\t';
+static const wchar_t* kWide = L"wide \u00e9";
+static const char8_t* kUtf8 = u8"utf-8 text";
+
+static_assert(sizeof(Sku) == 8, "Sku must be 64 bits");
+
+union Tag {
+    std::uint32_t id;
+    char code[4];
+};
+
+enum class Category : std::uint8_t { Food, Tools, Toys = 10 };
+
+struct [[nodiscard]] Price {
+    std::int64_t cents{0};
+
+    constexpr Price operator+(const Price& other) const noexcept {
+        return Price{cents + other.cents};
+    }
+    constexpr auto operator<=>(const Price&) const = default;
+};
+
+template <typename T>
+concept Priced = requires(const T& item) {
+    { item.price() } -> std::convertible_to<Price>;
+    { item.name() } -> std::convertible_to<std::string_view>;
+};
+
+class Item {
+public:
+    Item(std::string name, Price price, Category category)
+        : name_{std::move(name)}, price_{price}, category_{category} {}
+    virtual ~Item() = default;
+
+    [[nodiscard]] std::string_view name() const noexcept { return name_; }
+    [[nodiscard]] Price price() const noexcept { return price_; }
+    virtual std::string describe() const;
+
+protected:
+    std::string name_;
+
+private:
+    Price price_;
+    Category category_;
+    mutable int lookups_ = 0;
+    friend class Warehouse;
+};
+
+class Perishable final : public Item {
+public:
+    using Item::Item;
+    std::string describe() const override {
+        return "perishable "s + std::string{name()};
+    }
+};
+
+template <Priced T, typename Allocator = std::allocator<T>>
+class Shelf {
+public:
+    void add(T item) { items_.push_back(std::move(item)); }
+
+    template <typename Predicate>
+    std::optional<T> find_if(Predicate&& pred) const {
+        auto it = std::ranges::find_if(items_, std::forward<Predicate>(pred));
+        if (it == items_.end()) {
+            return std::nullopt;
+        }
+        return *it;
+    }
+
+    Price total() const {
+        Price sum{};
+        for (const auto& item : items_) {
+            sum = sum + item.price();
+        }
+        return sum;
+    }
+
+private:
+    std::vector<T, Allocator> items_;
+};
+
+class Warehouse {
+public:
+    static Warehouse& instance() {
+        static Warehouse warehouse;
+        return warehouse;
+    }
+
+    Warehouse(const Warehouse&) = delete;
+    Warehouse& operator=(const Warehouse&) = delete;
+
+    void stock(Sku sku, std::unique_ptr<Item> item, Quantity count) {
+        CHECK(item != nullptr);
+        auto& entry = stock_[sku];
+        entry.first = std::move(item);
+        entry.second += count;
+    }
+
+    bool remove(Sku sku, Quantity count) {
+        if (auto it = stock_.find(sku); it != stock_.end() && it->second >= count) {
+            it->second -= count;
+            ++it->second.first->lookups_;
+            return true;
+        }
+        return false;
+    }
+
+    template <typename Fn>
+    void each(Fn fn) const {
+        for (const auto& [sku, entry] : stock_) {
+            fn(sku, *entry.first, entry.second);
+        }
+    }
+
+private:
+    Warehouse() = default;
+    std::map<Sku, std::pair<std::unique_ptr<Item>, Quantity>> stock_;
+};
+
+std::string Item::describe() const {
+    switch (category_) {
+    case Category::Food:
+        return "food: " + name_;
+    case Category::Tools:
+        [[fallthrough]];
+    default:
+        break;
+    }
+    return name_;
+}
+
+/// @brief Checks the shape of a stock keeping unit.
+/// @param text the candidate SKU, e.g. "ABC-1234"
+/// @return true when @p text matches the expected pattern
+bool is_valid_sku(const std::string& text) {
+    static const std::regex pattern{R"(^[A-Z]{3}-\d{4,6}$)"};
+    return std::regex_match(text, pattern);
+}
+
+const char* kQuery = R"sql(SELECT sku, name FROM items WHERE price > 100)sql";
+
+template class Shelf<Perishable>;
+
+}  // namespace shop::inventory
+
+namespace inv = shop::inventory;
+
+int run_inventory() {
+    using namespace inv;
+
+    auto& warehouse = Warehouse::instance();
+    warehouse.stock(42ULL, std::make_unique<Perishable>("milk", Price{129}, Category::Food), 12);
+
+    auto counter = 0;
+    auto log = [&counter](Sku sku, const Item& item, Quantity count) mutable {
+        ++counter;
+        std::cout << sku << kSeparator << item.describe() << " x" << count << '\n';
+    };
+    warehouse.each(log);
+
+    const char* raw = "line one\nline \"two\"\\";
+    int* buffer = new int[16]{};
+    std::fill_n(buffer, 16, -1);
+    unsigned bits = (static_cast<unsigned>(buffer[0]) >> 4) & ~kMask | (1u << 3);
+    delete[] buffer;
+
+    try {
+        if (!is_valid_sku("ABC-12345") || sizeof(Price) != 8) {
+            throw std::invalid_argument{"bad sku"};
+        }
+    } catch (const std::exception& error) {
+        std::cerr << "error: " << error.what() << std::endl;
+        return 1;
+    }
+
+    return counter > 0 ? static_cast<int>(bits % 7) : -1;
+}

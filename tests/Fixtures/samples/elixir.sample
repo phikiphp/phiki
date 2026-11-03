@@ -24,3 +24,159 @@ nil = Keyword.get([a: 1, b: 2, a: 3], :c)
 [a: 1, b: 2, a: 3].a
 
 # From https://elixir-examples.github.io/single-page
+## ---------------------------------------------------------------
+## A rate limiter GenServer with a protocol and a LiveView template
+## ---------------------------------------------------------------
+
+defprotocol Shop.Describable do
+  @doc "Returns a human readable description."
+  def describe(value)
+end
+
+defmodule Shop.RateLimiter do
+  @moduledoc """
+  Token bucket rate limiter.
+
+  Each `key` gets a fixed number of tokens that refill every second.
+  """
+  use GenServer
+  require Logger
+  alias Shop.{Repo, Order}
+  import Bitwise, only: [band: 2, bor: 2]
+
+  @capacity 10
+  @refill_ms 1_000
+  @mask 0xFF
+  @perms 0o755
+  @flags 0b1010
+  @ratio 1.5e-3
+
+  defstruct buckets: %{}, hits: 0, name: nil
+
+  @type key :: String.t() | atom()
+  @typedoc false
+
+  ## Client API
+
+  @doc """
+  Starts the limiter.
+
+  ## Examples
+
+      iex> {:ok, pid} = Shop.RateLimiter.start_link(name: :limiter)
+      iex> is_pid(pid)
+      true
+  """
+  @spec start_link(keyword()) :: GenServer.on_start()
+  def start_link(opts \\ []) do
+    GenServer.start_link(__MODULE__, opts, name: Keyword.get(opts, :name, __MODULE__))
+  end
+
+  @doc ~S"""
+  Checks out a token for `key`; returns `:ok` or `{:error, :rate_limited}`.
+  """
+  def check(server \\ __MODULE__, key) when is_binary(key) or is_atom(key),
+    do: GenServer.call(server, {:check, key})
+
+  ## Server callbacks
+
+  @impl true
+  def init(opts) do
+    Process.send_after(self(), :refill, @refill_ms)
+    {:ok, %__MODULE__{name: opts[:name]}}
+  end
+
+  @impl GenServer
+  def handle_call({:check, key}, _from, %{buckets: buckets} = state) do
+    case Map.get(buckets, key, @capacity) do
+      0 ->
+        Logger.warning("rate limited: #{inspect(key)}")
+        {:reply, {:error, :rate_limited}, state}
+
+      tokens when tokens > 0 ->
+        state = %{state | buckets: Map.put(buckets, key, tokens - 1), hits: state.hits + 1}
+        {:reply, :ok, state}
+    end
+  end
+
+  @impl true
+  def handle_info(:refill, state) do
+    Process.send_after(self(), :refill, @refill_ms)
+    {:noreply, %{state | buckets: %{}}}
+  end
+
+  defp score(%Order{total: total, items: [_ | _] = items}) do
+    weight = Enum.reduce(items, 0, fn %{qty: qty}, acc -> acc + qty end)
+    bor(band(trunc(total * 100), @mask), weight) |> rem(97)
+  end
+
+  defp score(_order), do: 0
+
+  defmacrop log_call(name) do
+    quote do
+      Logger.debug("calling " <> unquote(name))
+    end
+  end
+end
+
+defimpl Shop.Describable, for: Shop.Order do
+  def describe(%{id: id, status: status}) when status in [:paid, :shipped] do
+    "Order ##{id} is #{status}\n\tthanks!"
+  end
+
+  def describe(order), do: "Order #{order.id} (#{order.status})"
+end
+
+defmodule Shop.Report do
+  def summarize(orders) do
+    orders
+    |> Enum.filter(&(&1.status != :cancelled))
+    |> Enum.group_by(& &1.customer)
+    |> Enum.map(fn {customer, list} -> {customer, length(list)} end)
+    |> Enum.sort_by(&elem(&1, 1), :desc)
+    |> Enum.take(5)
+  end
+
+  def parse(line) do
+    with [date, amount] <- String.split(line, ","),
+         {value, ""} <- Float.parse(amount),
+         true <- Regex.match?(~r/^\d{4}-\d{2}-\d{2}$/, date) do
+      {:ok, %{date: date, amount: value}}
+    else
+      _ -> {:error, :invalid_line}
+    end
+  end
+
+  def misc do
+    words = ~w(alpha beta gamma)a
+    chars = 'charlist'
+    quoted = :"quoted atom"
+    single = :'single atom'
+    path = ~S(C:\no\escapes)
+    sql = ~s"""
+    SELECT * FROM orders WHERE total > #{100}
+    """
+    raw = ~S'''
+    literal heredoc
+    '''
+    bin = <<1, 2, 3::size(8), "abc"::binary>>
+    list = [1, 2] ++ [3] -- [2]
+    ok = not false and (1 <= 2 or 3 === 3.0) && !nil || 1 != 2
+    sum = for x <- 1..10//2, rem(x, 3) != 0, into: [], do: x * x
+    pid = spawn(fn -> receive do: (msg -> IO.puts(msg)) end)
+    send(pid, "hello")
+    {words, chars, quoted, single, path, sql, raw, bin, list, ok, sum, ?a, __ENV__.line}
+  rescue
+    e in ArgumentError -> {:error, Exception.message(e)}
+  after
+    :ok
+  end
+
+  def render(assigns) do
+    ~H"""
+    <ul class="orders">
+      <li :for={order <- @orders}><%= order.id %> — {order.status}</li>
+    </ul>
+    """
+  end
+end

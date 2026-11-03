@@ -44,4 +44,170 @@
     </x-slot>
 </x-app-layout>
 
+{{-- Post archive page with filters, a form and inline scripts --}}
+@extends('layouts.app')
+
+@section('title', 'Archive')
+
+@push('styles')
+    <style>
+        .post-card { border: 1px solid #e5e7eb; padding: 1rem; }
+        .post-card:hover { box-shadow: 0 2px 6px rgba(0, 0, 0, .15); }
+    </style>
+@endpush
+
+@php
+    use App\Models\Post;
+    use Illuminate\Support\Str;
+
+    $perPage = (int) request('per_page', 15);
+    $filters = ['draft' => false, 'tags' => [], 'sort' => "published_at"];
+    $search = trim(request()->query('q', ''));
+    $pattern = '/^[a-z0-9\-]+$/i';
+    $isSlug = preg_match($pattern, $search) === 1;
+    $total = $posts->total() ?? 0;
+    $pages = $total > 0 ? intdiv($total, $perPage) + 1 : 1;
+    $label = sprintf("Showing %d of %d posts\n", $posts->count(), $total);
+    $query = "SELECT id, title FROM posts WHERE published = 1 ORDER BY id DESC";
+    $legacy = array('a' => 1, 'b' => 0x1F, 'c' => 0b101, 'd' => 1.5e3);
+@endphp
+
+@section('content')
+    <h1>{{ __('Archive') }} <small>{{ $label }}</small></h1>
+    {{{ $legacyEscaped ?? '' }}}
+    <p>Use @{{ title }} in Vue templates and @@verbatim to escape directives.</p>
+
+    @verbatim
+        <div id="app">{{ message }}</div>
+    @endverbatim
+
+    <form method="POST" action="{{ route('posts.search') }}">
+        @csrf
+        @method('PUT')
+        <input type="text" name="q" value="{{ old('q', $search) }}" @class(['input', 'is-invalid' => $errors->has('q')])>
+        @error('q')
+            <span class="error">{{ $message }}</span>
+        @enderror
+        <input type="checkbox" name="draft" @checked($filters['draft'])>
+        <select name="sort">
+            <option value="title" @selected($filters['sort'] === 'title')>Title</option>
+        </select>
+        <button type="submit" @disabled($posts->isEmpty())>Search</button>
+    </form>
+
+    @auth
+        <a href="{{ route('posts.create') }}">New post</a>
+    @else
+        <a href="{{ route('login') }}">Log in</a>
+    @endauth
+
+    @can('update', $post)
+        <a href="{{ route('posts.edit', $post) }}">Edit</a>
+    @endcan
+
+    @isset($featured)
+        <x-featured :post="$featured" />
+    @endisset
+
+    @forelse($posts as $item)
+        <article class="post-card" wire:key="post-{{ $item->id }}">
+            @if($loop->first)
+                <span class="badge">Newest</span>
+            @elseif($loop->last && !$loop->first)
+                <span class="badge">Oldest</span>
+            @endif
+            <h2>{{ Str::limit($item->title, 60) }}</h2>
+            @switch($item->status)
+                @case('draft')
+                    <em>Draft</em>
+                    @break
+                @case('published')
+                    <time>{{ $item->published_at->diffForHumans() }}</time>
+                    @break
+                @default
+                    <em>Unknown</em>
+            @endswitch
+        </article>
+    @empty
+        <p>No posts found.</p>
+    @endforelse
+
+    @for($i = 1; $i <= $pages; $i++)
+        <a href="?page={{ $i }}">{{ $i }}</a>
+    @endfor
+
+    @while($queue->isNotEmpty())
+        {{ $queue->pop() }}
+    @endwhile
+
+    @env('local')
+        @dump($filters)
+    @endenv
+
+    @once
+        @push('scripts')
+            <script>
+                document.querySelectorAll('.post-card').forEach((card) => {
+                    card.addEventListener('click', () => console.log(card.dataset.id));
+                });
+            </script>
+        @endpush
+    @endonce
+
+    @includeWhen($showFooter, 'partials.footer', ['year' => now()->year])
+    @each('partials.tag', $tags, 'tag', 'partials.no-tags')
+    @livewire('comments', ['post' => $post])
+    @json($filters, JSON_PRETTY_PRINT)
+@endsection
+
+<?php
+namespace App\View\Components;
+
+use Illuminate\View\Component;
+use function Illuminate\Support\enum_value;
+
+/**
+ * Renders a compact post card.
+ *
+ * @param string $title
+ * @return void
+ */
+final class PostCard extends Component implements \Stringable
+{
+    public const MAX_LENGTH = 120;
+    private static int $rendered = 0;
+
+    public function __construct(public string $title, protected ?array $tags = null)
+    {
+        self::$rendered++;
+    }
+
+    public function render(): string
+    {
+        $html = <<<HTML
+            <div class="card">{$this->title}</div>
+            HTML;
+        $raw = <<<'TEXT'
+            No $interpolation here
+            TEXT;
+
+        try {
+            return $html . $raw;
+        } catch (\RuntimeException | \LogicException $e) {
+            throw new \RuntimeException('Render failed: ' . $e->getMessage(), 0, $e);
+        } finally {
+            static::$rendered--;
+        }
+    }
+
+    public function __toString(): string
+    {
+        $mapper = function (string $tag) use (&$count): string {
+            return strtoupper($tag);
+        };
+        return implode(', ', array_map($mapper, $this->tags ?? []));
+    }
+}
+?>
+
 #From https://freek.dev/2024-how-to-render-markdown-with-perfectly-highlighted-code-snippets

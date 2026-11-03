@@ -1,5 +1,88 @@
 import gleam/io
+import gleam/int
+import gleam/list
+import gleam/string
+import gleam/result.{try}
+
+/// A shape we can measure.
+pub type Shape {
+  Circle(radius: Float)
+  Rectangle(width: Float, height: Float)
+}
+
+pub type Account {
+  Account(id: Int, owner: String, balance: Int)
+}
+
+const max_retries = 3
+
+const flags = 0b1010_0011
+
+const mask = 0xFF_FF
+
+const permissions = 0o755
 
 pub fn main() {
   io.println("hello, friend!")
+  io.println("tab:\t quote:\" newline:\n")
+
+  let shapes = [Circle(radius: 1.5), Rectangle(width: 2.0, height: 3.25e2)]
+  let total =
+    shapes
+    |> list.map(area)
+    |> list.fold(0.0, fn(acc, x) { acc +. x })
+
+  io.println("Total area: " <> string.inspect(total))
+
+  let assert Ok(account) = open_account(42, "Lucy")
+  let _ignored = describe(account)
+  io.debug(classify(max_retries))
+}
+
+pub fn area(shape: Shape) -> Float {
+  case shape {
+    Circle(radius: r) -> 3.14159 *. r *. r
+    Rectangle(width: w, height: h) -> w *. h
+  }
+}
+
+fn open_account(id: Int, owner: String) -> Result(Account, String) {
+  use name <- try(validate(owner))
+  Ok(Account(id: id, owner: name, balance: 0))
+}
+
+fn validate(name: String) -> Result(String, String) {
+  case string.length(name) {
+    0 -> Error("empty name")
+    n if n > 64 || n < 2 -> Error("bad length")
+    _ -> Ok(name)
+  }
+}
+
+fn describe(account: Account) -> String {
+  let Account(owner: owner, ..) = account
+  let updated = Account(..account, balance: account.balance + 10 * 2 - 1)
+  case updated.balance >= 100 && updated.balance != 0 {
+    True -> owner <> " is rich"
+    False -> owner <> " has " <> int.to_string(updated.balance / 2 % 7)
+  }
+}
+
+fn classify(n: Int) -> String {
+  case n {
+    0 | 1 -> "tiny"
+    x if x <= 10 -> "small"
+    _ -> "large"
+  }
+}
+
+fn compare_floats(a: Float, b: Float) -> Bool {
+  a <. b || a >=. b -. 1.0 && a /. 2.0 >. b
+}
+
+fn sum(items: List(Int)) -> Int {
+  case items {
+    [] -> 0
+    [first, ..rest] -> first + sum(rest)
+  }
 }

@@ -1,17 +1,232 @@
+// Package main serves a tiny key-value store over HTTP.
 package main
 
 import (
+    "context"
+    "encoding/json"
+    "errors"
     "fmt"
     "log"
     "net/http"
+    "regexp"
+    "sort"
+    "strings"
+    "sync"
+    "time"
+
+    _ "embed"
+    str "strings"
 )
 
+//go:embed banner.txt
+var banner string
+
+/*
+ * Limits and defaults.
+ */
+const (
+    MaxKeyLength        = 256
+    DefaultTTL          = 30 * time.Second
+    hexMask      uint32 = 0xFF_FF_00_00
+    octPerm             = 0o644
+    legacyPerm          = 0755
+    flags               = 0b1010_1010
+    ratio               = 1_000.5e-3
+    hexFloat            = 0x1p-2
+    imaginary           = 2.5i
+)
+
+type Level int
+
+const (
+    Debug Level = iota
+    Info
+    Warn
+    Error
+)
+
+var (
+    ErrNotFound = errors.New("key not found")
+    keyPattern  = regexp.MustCompile(`^[a-z0-9_\-]{1,64}$`)
+    started     time.Time
+)
+
+// Number is a constraint for generic helpers.
+type Number interface {
+    ~int | ~int64 | ~float64
+}
+
+type Entry[V any] struct {
+    Value     V         `json:"value"`
+    ExpiresAt time.Time `json:"expires_at,omitempty"`
+    hits      uint64
+}
+
+type Store[K comparable, V any] struct {
+    mu      sync.RWMutex
+    entries map[K]*Entry[V]
+    events  chan<- string
+}
+
+type Getter interface {
+    Get(ctx context.Context, key string) (any, error)
+    fmt.Stringer
+}
+
+type HandlerFunc func(w http.ResponseWriter, r *http.Request) error
+
+func NewStore[K comparable, V any](events chan<- string) *Store[K, V] {
+    return &Store[K, V]{entries: make(map[K]*Entry[V]), events: events}
+}
+
+func (s *Store[K, V]) Set(key K, value V, ttl time.Duration) {
+    s.mu.Lock()
+    defer s.mu.Unlock()
+    s.entries[key] = &Entry[V]{Value: value, ExpiresAt: time.Now().Add(ttl)}
+    select {
+    case s.events <- fmt.Sprintf("set %v", key):
+    default:
+    }
+}
+
+func (s *Store[K, V]) Get(key K) (v V, ok bool) {
+    s.mu.RLock()
+    defer s.mu.RUnlock()
+    e, found := s.entries[key]
+    if !found || time.Now().After(e.ExpiresAt) {
+        return v, false
+    }
+    e.hits++
+    return e.Value, true
+}
+
+func Sum[T Number](values ...T) (total T) {
+    for _, v := range values {
+        total += v
+    }
+    return
+}
+
+func (l Level) String() string {
+    switch l {
+    case Debug:
+        return "DEBUG"
+    case Info, Warn:
+        return strings.ToUpper([]string{"info", "warn"}[l-1])
+    default:
+        return fmt.Sprintf("Level(%d)", int(l))
+    }
+}
+
+func describe(x interface{}) string {
+    switch v := x.(type) {
+    case nil:
+        return "nil"
+    case int, int64:
+        return fmt.Sprintf("integer %d", v)
+    case string:
+        return "string " + strconvQuote(v)
+    case error:
+        return "error: " + v.Error()
+    }
+    return "unknown"
+}
+
+func strconvQuote(s string) string {
+    var b strings.Builder
+    b.WriteRune('"')
+    for i := 0; i < len(s); i++ {
+        switch c := s[i]; {
+        case c == '"' || c == '\\':
+            b.WriteByte('\\')
+            b.WriteByte(c)
+        case c < 0x20:
+            fmt.Fprintf(&b, "\\x%02x", c)
+        default:
+            b.WriteByte(c)
+        }
+    }
+    b.WriteRune('\u0022')
+    return b.String()
+}
+
 func handler(w http.ResponseWriter, r *http.Request) {
-    fmt.Fprintf(w, "Hi there, I love %s!", r.URL.Path[1:])
+    fmt.Fprintf(w, "Hi there, I love %s!\n\t(%q)", r.URL.Path[1:], r.Method)
+}
+
+func jsonHandler(store *Store[string, string]) http.HandlerFunc {
+    return func(w http.ResponseWriter, r *http.Request) {
+        key := str.TrimPrefix(r.URL.Path, "/kv/")
+        if len(key) > MaxKeyLength || !keyPattern.MatchString(key) {
+            http.Error(w, "invalid key", http.StatusBadRequest)
+            return
+        }
+        value, ok := store.Get(key)
+        if !ok {
+            http.Error(w, ErrNotFound.Error(), http.StatusNotFound)
+            return
+        }
+        w.Header().Set("Content-Type", "application/json")
+        _ = json.NewEncoder(w).Encode(map[string]string{"key": key, "value": value})
+    }
+}
+
+func worker(ctx context.Context, id int, jobs <-chan int, results chan<- int, wg *sync.WaitGroup) {
+    defer wg.Done()
+    for {
+        select {
+        case <-ctx.Done():
+            return
+        case j, more := <-jobs:
+            if !more {
+                return
+            }
+            results <- j*j + id&1 | j<<2 ^ (j >> 1) &^ 3
+        }
+    }
 }
 
 func main() {
+    started = time.Now()
+    events := make(chan string, 16)
+    store := NewStore[string, string](events)
+    store.Set("greeting", "hello", DefaultTTL)
+
+    go func() {
+        for e := range events {
+            log.Printf("[%s] %s", Info, e)
+        }
+    }()
+
+    ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
+    defer cancel()
+
+    jobs, results := make(chan int), make(chan int, 10)
+    var wg sync.WaitGroup
+    for i := 1; i <= 3; i++ {
+        wg.Add(1)
+        go worker(ctx, i, jobs, results, &wg)
+    }
+    for n := range 10 {
+        jobs <- n
+    }
+    close(jobs)
+    wg.Wait()
+    close(results)
+
+    squares := []int{}
+    for r := range results {
+        squares = append(squares, r)
+    }
+    sort.Ints(squares)
+    fmt.Println(Sum(squares...), Sum(1.5, 2.25), describe(ErrNotFound))
+
+    var matrix [3][3]float64
+    matrix[1][2] = 4.0
+    _ = matrix[:2]
+
     http.HandleFunc("/", handler)
+    http.Handle("/kv/", jsonHandler(store))
     log.Fatal(http.ListenAndServe(":8080", nil))
 }
 

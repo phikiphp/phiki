@@ -1,27 +1,153 @@
-private function createParticles( count ):void{
-    var anchorPoint = 0;
-    for(var i:uint = 0; i < count; i++){
-     
-        var particle:Object;
-        if( inactiveFireParticles.length > 0 ){ 
-            particle = inactiveFireParticles.shift();
-        }else {
-            particle = new Object(); 
-            fireParticles.push( particle );                 
-        }               
-         
-        particle.x = uint( Math.random() * frame.width * 0.1 ) + anchors[anchorPoint];
-        particle.y = frame.bottom;
-        particle.life = 70 + uint( Math.random() * 30 ); 
-        particle.size = 5 + uint( Math.random() * 10 );
-         
-        if(particle.size > 12){
-            particle.size = 10;
+package com.example.effects
+{
+    import flash.display.Sprite;
+    import flash.events.Event;
+    import flash.events.TimerEvent;
+    import flash.geom.Rectangle;
+    import flash.utils.*;
+
+    /**
+     * Renders a simple fire effect using pooled particles.
+     *
+     * @param frame The area the fire is drawn into.
+     * @see flash.display.Sprite
+     */
+    [Event(name="burnOut", type="flash.events.Event")]
+    [SWF(width="800", height="600", frameRate="30", backgroundColor="#000000")]
+    public final class FireEffect extends Sprite implements IEffect, IDisposable
+    {
+        public static const MAX_PARTICLES:int = 0x200;
+        public static const GRAVITY:Number = -9.81e-2;
+        private static const LABEL_PATTERN:RegExp = /^fire-(\d+)[a-z]*$/gi;
+
+        [Embed(source="assets/spark.png")]
+        private var SparkImage:Class;
+
+        /* Particle pools: live particles and recycled ones. */
+        private var fireParticles:Array = [];
+        private var inactiveFireParticles:Array = [];
+        private var anchors:Vector.<Number> = new Vector.<Number>(10, true);
+        private var frame:Rectangle;
+        private var timer:Timer;
+        private var settings:Object = { speed: 1.5, colors: [0xFF6600, 0xFFCC00], label: 'flame' };
+
+        namespace effects_internal = "http://example.com/effects";
+        use namespace effects_internal;
+
+        public function FireEffect(frame:Rectangle = null)
+        {
+            super();
+            this.frame = frame || new Rectangle(0, 0, 800, 600);
+            timer = new Timer(1000 / 30, 0);
+            timer.addEventListener(TimerEvent.TIMER, onTick, false, 0, true);
+            addEventListener(Event.ADDED_TO_STAGE, function(e:Event):void {
+                trace("Added to stage: " + e.target + "\tready\n");
+            });
         }
-        particle.anchor = anchors[anchorPoint] + uint( Math.random() * 5 );
-         
-        anchorPoint = (anchorPoint == 9)? 0 : anchorPoint + 1;
-    }       
+
+        public function get particleCount():uint
+        {
+            return fireParticles.length;
+        }
+
+        public function set speed(value:Number):void
+        {
+            if (isNaN(value) || !isFinite(value)) {
+                throw new ArgumentError('Speed must be a finite number, got \'' + value + '\'');
+            }
+            settings.speed = value;
+        }
+
+        override public function toString():String
+        {
+            return "[FireEffect particles=" + particleCount + "]";
+        }
+
+        effects_internal function reset(...rest):void
+        {
+            var options:* = rest.length > 0 ? rest[0] : undefined;
+            fireParticles.length = 0;
+            inactiveFireParticles = [];
+            delete settings.label;
+        }
+
+        private function createParticles( count ):void{
+            var anchorPoint = 0;
+            for(var i:uint = 0; i < count; i++){
+
+                var particle:Object;
+                if( inactiveFireParticles.length > 0 ){
+                    particle = inactiveFireParticles.shift();
+                }else {
+                    particle = new Object();
+                    fireParticles.push( particle );
+                }
+
+                particle.x = uint( Math.random() * frame.width * 0.1 ) + anchors[anchorPoint];
+                particle.y = frame.bottom;
+                particle.life = 70 + uint( Math.random() * 30 );
+                particle.size = 5 + uint( Math.random() * 10 );
+
+                if(particle.size > 12){
+                    particle.size = 10;
+                }
+                particle.anchor = anchors[anchorPoint] + uint( Math.random() * 5 );
+
+                anchorPoint = (anchorPoint == 9)? 0 : anchorPoint + 1;
+            }
+        }
+
+        protected function onTick(event:TimerEvent):void
+        {
+            var alive:int = 0;
+            for each (var p:Object in fireParticles) {
+                p.life -= 1;
+                p.y += GRAVITY * settings.speed;
+                if (p.life <= 0 && p is Object) {
+                    inactiveFireParticles.push(p);
+                    continue;
+                }
+                alive++;
+            }
+
+            switch (alive) {
+                case 0:
+                    dispatchEvent(new Event("burnOut"));
+                    break;
+                default:
+                    createParticles(MAX_PARTICLES >> 4);
+            }
+
+            var label:String = "fire-42abc";
+            if (LABEL_PATTERN.test(label) && label.match(/[0-9]+/)) {
+                trace(encodeURIComponent(label), parseInt("ff", 16));
+            }
+        }
+
+        public function dispose():void
+        {
+            try {
+                timer.stop();
+                timer.removeEventListener(TimerEvent.TIMER, onTick);
+            } catch (error:TypeError) {
+                trace(error.message);
+            } finally {
+                timer = null;
+            }
+        }
+    }
 }
 
-// From https://code.tutsplus.com/tutorials/actionscript-30-optimization-a-practical-example--active-11295
+// From https://code.tutsplus.com/tutorials/actionscript-30-optimization-a-practical-example--active-1129517/
+
+package com.example.effects
+{
+    public interface IEffect extends IDisposable
+    {
+        function get particleCount():uint;
+    }
+}
+
+<![CDATA[
+    var markup:XML = <effect name="fire" />;
+]]>

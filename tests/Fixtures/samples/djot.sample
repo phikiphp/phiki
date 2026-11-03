@@ -1,0 +1,125 @@
+---
+title: Getting started with the garden planner
+author: Ada Lovelace
+---
+
+{% This comment is not rendered. Use it for editorial notes. %}
+
+%%%
+A fenced comment can span
+several lines.
+%%%
+
+{#intro .lead}
+# Getting started
+
+The *garden planner* helps you decide _what_ to plant and _when_. It is
+written in Rust, configured with KDL and documented in Djot -- a light
+markup language that's "easier" to parse than Markdown... mostly.
+
+Use `cargo run --release` to build it, press [Ctrl+C]{.kbd} to stop, and
+read the [installation guide][install] or <https://example.com/docs> for
+details. Questions go to <help@example.com>.
+
+## Text formatting
+
+Djot has {=highlighted=}, {+inserted+} and {-deleted-} text, H~2~O and
+E = mc^2^, plus *strong*, _emphasis_ and *_both at once_*. A span can carry
+[attributes]{#note-1 .warning key="value"} and so can `code`{.rust}.
+
+Inline math works too: $`\sum_{i=1}^n i = \frac{n(n+1)}{2}`, and raw HTML
+can be passed through with `<kbd>Esc</kbd>`{=html}.
+
+Symbols like :sunflower: and :tomato: become emoji, a backslash escapes
+\*literal asterisks\*, and a trailing backslash forces a line break\
+right here. Write x{^2^} or x{~i~}, use 'single quotes', and
+an em dash---like this. See [the guide][] or [the FAQ](faq.dj), and
+![a logo][logo] or ![a badge][]. Comments {% like this %} can also sit inline.
+
+![Raised beds in spring](beds.jpg){width=600}
+
+See the footnote for history.[^history]
+
+## Lists
+
+1. Choose a site with at least six hours of sun.
+2. Test the soil:
+   - pH between 6.0 and 7.0
+   - good drainage
+3. Plan your beds.
+
+- [ ] order seeds
+- [x] build compost bin
+
+---
+
+a) first option
+b) second option
+
+: Perennial
+
+  A plant that lives for more than two years.
+
+: Annual
+
+  A plant that completes its life cycle in one season.
+
+Companion planting
+: Growing plants together so they help each other.
+
+## Quotes and line blocks
+
+> Plant the seeds of kindness,
+> and you will grow a garden of joy.
+>
+> -- an old saying
+
+| Roses are red,
+| violets are blue,
+| the planner is written
+| with you in mind too.
+
+## Code
+
+```rust
+fn days_to_harvest(sown: Date, crop: &Crop) -> i64 {
+    (crop.maturity - sown).num_days()
+}
+```
+
+``` =html
+<details><summary>Raw HTML block</summary>Only rendered by the HTML writer.</details>
+```
+
+$$`
+\int_0^T \text{sunlight}(t)\,dt \geq 6\,\text{h}
+`$$
+
+$$
+A_{bed} = w \times l
+$$
+
+::: warning
+Frost can arrive as late as *mid-May*. Keep fleece at hand.
+:::
+
+***
+
+## Tables
+
+| Crop     | Sow     | Harvest |
+|:---------|:-------:|--------:|
+| Tomato   | March   | August  |
+| Lettuce  | April   | June    |
+| Garlic   | October | July    |
+^ When to sow and harvest common crops
+
+{.compact}
+| a | b |
+
+[install]: https://example.com/docs/install
+[the guide]: guide.dj
+[logo]: logo.png
+[^history]: The first version was a spreadsheet kept in a shed.
+
+*[KDL]: KDL Document Language

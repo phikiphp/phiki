@@ -31,3 +31,198 @@ int main(void) {
 */
 
 // From https://en.wikipedia.org/wiki/Objective-C
+
+// ---- An Objective-C++ bridge between a C++ cache and Cocoa ----
+
+#import <Foundation/Foundation.h>
+#include <string>
+#include <vector>
+#include <unordered_map>
+#include <memory>
+#include <mutex>
+
+#define CACHE_LIMIT 256
+#if defined(__cplusplus) && __cplusplus >= 201703L
+#  define HAS_CXX17 1
+#else
+#  define HAS_CXX17 0
+#endif
+
+namespace cache {
+
+/** A tiny LRU-ish cache keyed by string. */
+template <typename Value>
+class StringCache final {
+public:
+    explicit StringCache(std::size_t limit = CACHE_LIMIT) : limit_(limit) {}
+    ~StringCache() = default;
+
+    void put(const std::string &key, Value value) {
+        std::lock_guard<std::mutex> guard(mutex_);
+        if (entries_.size() >= limit_) {
+            entries_.erase(entries_.begin());
+        }
+        entries_[key] = std::move(value);
+    }
+
+    [[nodiscard]] const Value *get(const std::string &key) const noexcept {
+        auto it = entries_.find(key);
+        return it == entries_.end() ? nullptr : &it->second;
+    }
+
+    std::size_t size() const { return entries_.size(); }
+
+private:
+    std::size_t limit_;
+    mutable std::mutex mutex_;
+    std::unordered_map<std::string, Value> entries_;
+};
+
+} // namespace cache
+
+@protocol CacheDelegate <NSObject>
+- (void)cacheDidEvict:(NSString *)key;
+@end
+
+@interface ImageCache : NSObject
+@property (nonatomic, weak) id<CacheDelegate> delegate;
+@property (nonatomic, readonly) NSUInteger count;
++ (instancetype)sharedCache;
+- (void)storeData:(NSData *)data forKey:(NSString *)key;
+- (nullable NSData *)dataForKey:(NSString *)key;
+@end
+
+@implementation ImageCache {
+    std::unique_ptr<cache::StringCache<std::vector<uint8_t>>> _storage;
+}
+
++ (instancetype)sharedCache {
+    static ImageCache *shared = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        shared = [[ImageCache alloc] init];
+    });
+    return shared;
+}
+
+- (instancetype)init {
+    if (self = [super init]) {
+        _storage = std::make_unique<cache::StringCache<std::vector<uint8_t>>>(CACHE_LIMIT);
+    }
+    return self;
+}
+
+- (NSUInteger)count {
+    return static_cast<NSUInteger>(_storage->size());
+}
+
+- (void)storeData:(NSData *)data forKey:(NSString *)key {
+    const auto *bytes = static_cast<const uint8_t *>(data.bytes);
+    std::vector<uint8_t> buffer(bytes, bytes + data.length);
+    _storage->put(std::string(key.UTF8String), std::move(buffer));
+    [self.delegate cacheDidEvict:@"oldest"];
+}
+
+- (NSData *)dataForKey:(NSString *)key {
+    if (const auto *found = _storage->get(key.UTF8String)) {
+        return [NSData dataWithBytes:found->data() length:found->size()];
+    }
+    return nil;
+}
+
+@end
+
+int run_demo() {
+    ImageCache *cache = [ImageCache sharedCache];
+    for (int i = 0; i < 3; ++i) {
+        NSString *key = [NSString stringWithFormat:@"image-%d", i];
+        [cache storeData:[key dataUsingEncoding:NSUTF8StringEncoding] forKey:key];
+    }
+    auto lambda = [cache](int n) -> bool { return cache.count >= static_cast<NSUInteger>(n); };
+    std::string label = u8"caché \t done";
+    constexpr double ratio = 0.75;
+    long flags = 0x1F | 0b0101;
+    try {
+        if (!lambda(3)) throw std::runtime_error("cache too small");
+    } catch (const std::exception &e) {
+        NSLog(@"error: %s", e.what());
+    }
+    NSLog(@"%lu entries, %s, %.2f, %ld, %d", (unsigned long)cache.count, label.c_str(), ratio, flags, HAS_CXX17);
+    return 0;
+}
+
+#pragma mark - Cocoa helpers
+#pragma clang diagnostic ignored "-Wunused-function"
+#import "CacheEntry.h"
+#undef CACHE_LIMIT
+#define CACHE_LIMIT 512
+
+#if 0
+static void legacy_dump(void) {}
+#else
+static void current_dump(void) {}
+#endif
+
+#ifndef __OBJC__
+#error "This file must be compiled as Objective-C++"
+#endif
+
+@class CacheEntry;
+
+@interface CacheEntry : NSObject {
+@public
+    CGRect frame;
+    uint32_t _generation;
+    pthread_mutex_t _lock;
+    NSString *const kDefaultKey;
+@private
+    NSUInteger _hits;
+}
+@property (nonatomic, copy) NSString *key;
+- (void)touch API_AVAILABLE(macos(10.15), ios(13.0));
+@end
+
+@protocol CacheInspector
+@required
+- (NSArray<CacheEntry *> *)entriesMatching:(NSString *)prefix;
+@optional
+- (void)reset;
+@end
+
+@implementation CacheEntry
+@synthesize key = _key;
+
+- (void)dealloc {
+    pthread_mutex_destroy(&_lock);
+}
+
+- (void)touch {
+    @synchronized (self) {
+        _hits += 1;
+    }
+    for (NSString *alias in @[@"primary", @"backup"]) {
+        if (alias == NULL || [alias isEqualToString:kDefaultKey]) continue;
+    }
+    NSLog(@"%@ called %s with \"%@\"\t(%lu hits)\n", NSStringFromSelector(_cmd), @encode(CGRect), self.key, (unsigned long)_hits);
+}
+
+- (BOOL)matchesPrefix:(NSString *)prefix {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"key BEGINSWITH[c] %@ AND hits > 0", prefix];
+    return [predicate evaluateWithObject:self] && [self.key rangeOfString:prefix].location != NSNotFound;
+}
+
+- (void)validate {
+    @try {
+        if (self.key.length == 0) {
+            @throw [NSException exceptionWithName:NSInvalidArgumentException reason:@"empty key" userInfo:nil];
+        }
+    } @catch (NSException *exception) {
+        [NSApp presentError:[NSError errorWithDomain:@"Cache" code:1 userInfo:nil]];
+    } @finally {
+        SEL action = @selector(touch);
+        Protocol *inspector = @protocol(CacheInspector);
+        NSLog(@"%@ %@", NSStringFromSelector(action), NSStringFromProtocol(inspector));
+    }
+}
+
+@end

@@ -9,3 +9,183 @@ def set(_x: int128):
   self.storedData = _x
 
 # https://github.com/vyperlang/vyper/blob/master/examples/storage/storage.vy
+
+# ---------------------------------------------------------------------------
+# A second, larger example: a small vesting vault for an ERC-20 token.
+# ---------------------------------------------------------------------------
+
+# pragma version ^0.4.0
+"""
+@title Token Vesting Vault
+@license MIT
+@notice Releases tokens to beneficiaries on a linear schedule.
+@dev Written as a sample; it has not been audited. TODO: add cliffs per grant.
+"""
+
+from ethereum.ercs import IERC20
+from . import ownable
+import math_utils as mu
+
+implements: IERC20
+initializes: ownable
+exports: ownable.owner
+
+interface PriceOracle:
+    def latest_price(asset: address) -> uint256: view
+    def update(asset: address, price: uint256): nonpayable
+
+
+flag Role:
+    ADMIN
+    RELEASER
+    AUDITOR
+
+
+struct Grant:
+    beneficiary: address
+    total: uint256
+    released: uint256
+    start: uint64
+    duration: uint64
+    revoked: bool
+
+
+event GrantCreated:
+    grant_id: indexed(uint256)
+    beneficiary: indexed(address)
+    amount: uint256
+
+event Released:
+    grant_id: indexed(uint256)
+    amount: uint256
+    memo: String[64]
+
+
+MAX_GRANTS: constant(uint256) = 128
+PRECISION: constant(uint256) = 10 ** 18
+FEE_BPS: constant(uint256) = 25
+MAGIC: constant(bytes4) = 0x150b7a02
+DEFAULT_MEMO: constant(String[64]) = "release \"scheduled\"\n"
+
+token: public(immutable(IERC20))
+oracle: public(PriceOracle)
+grants: public(HashMap[uint256, Grant])
+roles: public(HashMap[address, Role])
+grant_ids: DynArray[uint256, MAX_GRANTS]
+next_id: uint256
+fee_ratio: public(decimal)
+paused: bool
+
+
+@deploy
+@payable
+def __init__(_token: IERC20, _oracle: address):
+    ownable.__init__()
+    token = _token
+    self.oracle = PriceOracle(_oracle)
+    self.roles[msg.sender] = Role.ADMIN | Role.RELEASER
+    self.fee_ratio = 0.0025
+    self.next_id = 1
+
+
+@internal
+@view
+def _vested(g: Grant, now: uint256) -> uint256:
+    if now <= convert(g.start, uint256):
+        return 0
+    elif now >= convert(g.start + g.duration, uint256) or g.revoked:
+        return g.total
+    else:
+        elapsed: uint256 = now - convert(g.start, uint256)
+        return g.total * elapsed // convert(g.duration, uint256)
+
+
+@internal
+@pure
+def _fee(amount: uint256) -> uint256:
+    # Round up so dust never escapes the fee
+    return unsafe_div(amount * FEE_BPS + 9_999, 10_000)
+
+
+@external
+def create_grant(beneficiary: address, amount: uint256, duration: uint64) -> uint256:
+    assert Role.ADMIN in self.roles[msg.sender], "vault: not admin"
+    assert beneficiary != empty(address), "vault: zero beneficiary"
+    assert len(self.grant_ids) < MAX_GRANTS
+
+    grant_id: uint256 = self.next_id
+    self.grants[grant_id] = Grant(
+        beneficiary=beneficiary,
+        total=amount,
+        released=0,
+        start=convert(block.timestamp, uint64),
+        duration=duration,
+        revoked=False,
+    )
+    self.grant_ids.append(grant_id)
+    self.next_id += 1
+
+    success: bool = extcall token.transferFrom(msg.sender, self, amount)
+    assert success, "vault: transfer failed"
+
+    log GrantCreated(grant_id, beneficiary, amount)
+    return grant_id
+
+
+@external
+@nonreentrant
+def release(grant_id: uint256, memo: String[64] = DEFAULT_MEMO):
+    assert not self.paused
+    g: Grant = self.grants[grant_id]
+    assert g.beneficiary == msg.sender or Role.RELEASER in self.roles[msg.sender]
+
+    amount: uint256 = self._vested(g, block.timestamp) - g.released
+    if amount == 0:
+        raise "vault: nothing to release"
+
+    self.grants[grant_id].released += amount
+    fee: uint256 = self._fee(amount)
+    extcall token.transfer(g.beneficiary, amount - fee)
+    log Released(grant_id, amount, memo)
+
+
+@external
+@view
+def total_locked() -> uint256:
+    total: uint256 = 0
+    for grant_id: uint256 in self.grant_ids:
+        g: Grant = self.grants[grant_id]
+        if g.revoked:
+            continue
+        total += g.total - g.released
+    return total
+
+
+@external
+@view
+def locked_value(asset: address) -> uint256:
+    price: uint256 = staticcall self.oracle.latest_price(asset)
+    return price * (staticcall token.balanceOf(self)) // PRECISION
+
+
+@external
+def sweep_ether(receiver: address):
+    ownable._check_owner()
+    digest: bytes32 = keccak256(concat(b"sweep", convert(receiver, bytes32)))
+    send(receiver, self.balance)
+    raw_call(receiver, abi_encode(digest, method_id=MAGIC), max_outsize=0, value=0)
+
+
+@external
+def set_paused(flag_value: bool):
+    assert msg.sender == tx.origin and chain.id == 1, "vault: eoa on mainnet only"
+    self.paused = flag_value
+    bits: uint256 = shift(1, 8) ^ 0b1010 & 0o17 | 0xFF
+    assert max_value(uint256) > bits >= min_value(uint256)
+
+
+@external
+@payable
+def __default__():
+    # Accept plain ether, refuse calls with data
+    assert len(msg.data) == 0, "vault: unknown selector"

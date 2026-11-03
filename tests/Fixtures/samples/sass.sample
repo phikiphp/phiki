@@ -25,3 +25,79 @@
   border-color: yellow
 
 // From https://sass-lang.com/guide/
+
+@use "sass:math"
+@use 'theme/colors' as c with ($primary: #0055ff)
+@import "base/reset", "base/typography"
+
+// import css-variables from "./tokens.css"
+
+/// Documentation comment for the spacing map
+/// @param {Number} $step
+$base-size: 16px !default
+$font-stack: "Helvetica Neue", Arial, sans-serif
+$breakpoints: (small: 576px, medium: 768px, large: 992px)
+$spacing: 1.5rem !global
+
+=button-variant($background, $border: darken($background, 5%))
+  background-color: $background
+  border: 1px solid $border
+  &:hover, &:focus
+    background-color: lighten($background, 10%)
+  &.is-disabled
+    opacity: .65
+
+@mixin respond-to($name)
+  @if map-has-key($breakpoints, $name)
+    @media (min-width: map-get($breakpoints, $name))
+      @content
+  @else
+    @warn "Unknown breakpoint: #{$name}"
+
+@function rem($px, $context: $base-size)
+  @return math.div($px, $context) * 1rem
+
+body
+  font: 100% $font-stack
+  margin: 0 auto
+  background: url(images/bg.png) no-repeat
+  color: var(--text-color)
+
+nav ul
+  list-style: none
+  li
+    display: inline-block
+    + li
+      margin-left: rem(12px)
+  a[href^="https"], a[target="_blank"]
+    color: c.$primary
+    text-decoration: none !important
+
+#main-header > .logo
+  width: calc(100% - #{$spacing * 2})
+  content: "Version #{1 + 2}"
+  font-family: 'Fira Code', monospace
+
+input:not([type=submit])::placeholder
+  color: rgba(0, 0, 0, .5)
+
+.btn-primary
+  +button-variant(#337ab7)
+  @include respond-to(medium)
+    padding: $spacing / 2 $spacing
+
+@each $name, $size in $breakpoints
+  .container-#{$name}
+    max-width: $size
+
+@for $i from 1 through 3
+  .mt-#{$i}
+    margin-top: $i * 4px
+
+$i: 6
+@while $i > 0 and $i != 3
+  .item-#{$i}
+    width: 2em * $i
+  $i: $i - 2
+
+@debug "Done: #{true}"

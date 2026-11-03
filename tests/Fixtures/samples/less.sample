@@ -29,3 +29,183 @@
 }
 
 // From https://lesscss.org/features/#parent-selectors-feature
+
+/* ==========================================================================
+   Theme: variables, mixins, guards and functions
+   ========================================================================== */
+@charset "UTF-8";
+@import (reference) "bootstrap/mixins.less";
+@import (css, optional) url("print.css");
+@namespace svg url(http://www.w3.org/2000/svg);
+
+@primary: #3a7bd5;
+@accent: #f0a;
+@ink: rgba(20, 20, 20, 0.87);
+@base-size: 16px;
+@ratio: 1.25;
+@radius: .25rem;
+@prefix: ~"app";
+@selector: ~".card";
+@breakpoint-md: ~"(min-width: 768px)";
+@font-stack: "Inter", Helvetica, Arial, sans-serif;
+@name: primary;
+@detached: { background: red; };
+
+.mixin-border(@width: 1px; @style: solid; @color: @primary) {
+  border: @width @style @color;
+}
+
+.rounded(@r) when (isnumber(@r)) and (@r > 0) {
+  border-radius: @r;
+}
+.rounded(@r) when (default()) {
+  border-radius: 0;
+}
+
+.theme(@mode) when (@mode = dark) {
+  color: lighten(@ink, 60%);
+  background-color: darken(@primary, 30%);
+}
+.theme(@mode) when not (@mode = dark) {
+  color: @ink;
+}
+
+.loop(@i) when (@i > 0) {
+  .col-@{i} { width: percentage((@i / 12)); }
+  .loop(@i - 1);
+}
+.loop(12);
+
+#namespace {
+  .button() { padding: 4px 8px !important; }
+}
+
+.@{prefix}-header {
+  @media @breakpoint-md { font-size: (@base-size * @ratio); }
+  font: italic small-caps bold 1.5em/2 @font-stack;
+  font-family: Georgia, serif;
+  color: fade(@primary, 50%);
+  background: linear-gradient(to right, @primary 0%, spin(@primary, 30) 100%);
+  background-image: radial-gradient(circle at top left, #fff, transparent 70%);
+  box-shadow: 0 1px 2px fadeout(black, 80%), inset 0 0 0 1px tint(@accent, 20%);
+  transition: opacity 250ms ease-in-out, transform .3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translate(-50%, 10px) rotate(45deg) scale(1.05) skewX(5deg);
+  filter: blur(2px) drop-shadow(0 0 4px #000) hue-rotate(.5turn) grayscale(100%);
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  width: calc(100% - (2 * @base-size));
+  margin: -@base-size auto 0;
+  z-index: 10;
+  #namespace.button();
+  .mixin-border(2px; dashed);
+  .rounded(@radius);
+  .theme(dark);
+  @detached();
+  &:extend(.base all);
+  @{name}-color: saturate(mix(@primary, @accent, 50%), 10%);
+  --brand-hue: hue(@primary);
+  --gap: e("calc(1rem + 2vw)");
+  content: "\201C quoted \"text\"";
+  quotes: '\00AB' '\00BB';
+}
+
+@{selector} {
+  .mixin-border();
+  width: ~"calc(100% - @{base-size})";
+  @r: { color: red };
+  height: unit(5, px);
+  line-height: round(1.6666, 2);
+  opacity: if((iscolor(@accent)), 1, 0);
+  max-width: min(100%, 960px);
+  padding: max(1rem, 2vh) clamp(1rem, 2.5vw, 2rem);
+  aspect-ratio: 16 / 9;
+  inline-size: fit-content(20em);
+  background: url(data:image/png;base64,iVBORw0KGgo=) no-repeat center / cover;
+  color: hsl(210, 50%, 40%);
+  border-color: hsla(0, 0%, 0%, .1) currentColor;
+  outline-color: oklch(70% 0.1 200);
+  accent-color: light-dark(#000, #fff);
+  counter-increment: section 1;
+  will-change: transform, opacity;
+  animation: pulse 2s infinite alternate both;
+  animation-timing-function: steps(4, jump-end);
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  shape-outside: circle(50% at center);
+  font-size: 1.2e1px;
+  transform-origin: 0 0;
+  width: sqrt(16px) + pow(2, 3) * pi() - abs(-4) / mod(11, 3);
+  color: contrast(@primary, black, white);
+  border-color: multiply(@primary, #ccc) screen(#fff, @accent);
+  color: argb(@primary) extract(@font-stack, 1) length(@font-stack);
+  width: convert(9s, ms) get-unit(5em) image-width("logo.png");
+  background: svg-gradient(to right, red, green 30%, blue);
+  margin: e(%("%d/%d", @base-size, 2));
+  content: replace("Hello, Mars", "Mars", "World");
+  content: counter(section, upper-roman) ". " counters(item, ".");
+
+  &::before { content: attr(data-label); }
+  &:hover:not(.disabled), &:focus-visible { color: red; }
+  &:nth-child(2n + 1) { background: #fafafa; }
+  &:nth-of-type(odd) { opacity: .9; }
+  &:is(h1, h2) { margin-block: 0; }
+  &:lang(en) { quotes: '"' '"'; }
+  &:dir(rtl) { direction: rtl; }
+  > .title + .subtitle ~ p { margin: 0; }
+  a[href^="https"], input[type='text' i], [data-state] { cursor: pointer; }
+  * { box-sizing: border-box; }
+  #main ul li a { text-decoration: none; }
+  ::slotted(span) { color: inherit; }
+  ::part(label) { font-weight: 600; }
+}
+
+.guard when (@mode = dark) {
+  color: white;
+}
+
+@plugin "my-plugin";
+@min768: ~"(min-width: 768px)";
+
+@media screen and (max-width: 600px), print and (orientation: landscape) {
+  .@{prefix}-header { display: none; }
+}
+
+@media (min-resolution: 2dppx) and (-webkit-min-device-pixel-ratio: 2) {
+  .logo { background-image: url("logo@2x.png"); }
+}
+
+@supports (display: grid) and (not (display: inline-grid)) {
+  .layout { display: grid; gap: 1rem 2rem; }
+}
+
+@container sidebar (min-width: 400px) {
+  .card { flex-direction: row; }
+}
+
+@keyframes pulse {
+  from { transform: scale(1); }
+  50% { transform: scale(1.1); opacity: .5; }
+  to { transform: scale(1); }
+}
+
+@font-face {
+  font-family: "Inter";
+  src: local("Inter"), url("/fonts/inter.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131;
+  font-display: swap;
+}
+
+@page :first {
+  margin: 1in;
+}
+
+@counter-style thumbs {
+  system: cyclic;
+  symbols: "👍";
+  suffix: " ";
+}
+
+@custom-media --small-viewport (max-width: 30em);
+
+@plugin-test: isdefined(@primary);
+@check: isunit(10px, px) ispixel(10px) isstring("a") iscolor(#fff) iskeyword(foo) isurl(url(a));
+@lum: luma(@primary) red(@primary) alpha(@ink);
+@shaded: shade(@primary, 10%) greyscale(@accent) desaturate(@accent, 20%) fadein(@ink, 10%);

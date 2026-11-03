@@ -5,3 +5,67 @@ v2=format_datetime(dt, 'yyyy-M-dd [H:mm:ss]'),
 v3=format_datetime(dt, 'yy-MM-dd [hh:mm:ss tt]')
 
 // From https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/
+
+// Failed sign-ins over the last week, by hour
+let lookback = 7d;
+let threshold = 25;
+let ignoredUsers = dynamic(["svc-backup", "svc-monitor"]);
+SigninLogs
+| where TimeGenerated > ago(lookback) and ResultType != "0"
+| where UserPrincipalName !in~ (ignoredUsers) or isempty(UserPrincipalName)
+| where AppDisplayName has_any ("Azure Portal", "Graph") and Location !contains "US"
+| extend Hour = bin(TimeGenerated, 1h), Domain = tostring(split(UserPrincipalName, "@")[1])
+| summarize Failures = count(), Users = dcount(UserPrincipalName), LastSeen = max(TimeGenerated) by Hour, Domain
+| where Failures between (threshold .. 1000)
+| order by Failures desc nulls last
+| top 10 by Failures
+| render timechart
+
+// Join with a datatable of known IPs
+let KnownIps = datatable(Ip: string, Owner: string, Trusted: bool)
+[
+    "10.0.0.1", "Ops", true,
+    "10.0.0.2", "Dev", false,
+];
+StormEvents
+| join kind=leftouter hint.strategy=shuffle (KnownIps) on $left.SourceIp == $right.Ip
+| project StartTime, EventType, Owner, Damage = DamageProperty + DamageCrops
+| extend Path = @"C:\logs\storm", Quoted = "say \"hi\"", Escaped = 'it\'s'
+| extend Seconds = 90s, Small = 250ms, Ticks = 10ticks, Ratio = 0.75, Neg = -3
+| extend Masked = binary_and(Flags, 0x0F), Ones = bitset_count_ones(Flags)
+| extend Dist = geo_distance_2points(Lon1, Lat1, Lon2, Lat2)
+| extend Code = extract(@"(\d{3})-(\d{4})", 1, Phone), Matched = Name matches regex "^[A-Z]"
+| where isnotnull(Owner) and Name startswith_cs "Storm" and Name hasprefix "St"
+| sort by StartTime asc
+| take 100
+| as StormSample
+
+// Window functions and series
+range x from 1 to 50 step 1
+| extend y = x * 2, prevY = prev(y), rn = row_number()
+| sample 5
+| sample-distinct 3 of EventType
+| top-hitters 5 of State by Damage
+| summarize make_list(y), arg_max(y, *), avgif(y, y > 10) by bag_pack("k", x)
+| mv-expand y to typeof(long)
+| facet by State
+| invoke CleanUp()
+| evaluate bag_unpack(Properties)
+
+let series = range(1, 10, 1);
+print s = series_add(series, series), z = series_abs(series)
+
+.create-or-alter function with (folder = "Security", docstring = "Recent errors", skipvalidation = "true")
+RecentErrors(since: timespan = 1d, sev: int = 3) {
+    cluster("help").database("Samples").Logs
+    | where Timestamp > ago(since) and Severity >= sev
+    | parse Message with "Error " Code:long " in " Module
+    | limit 50
+}
+
+table("Logs") | union withsource=Src (materialized_view("LogsView")) | count
+let longQuery = ```
+multi-line string
+```;
+let f = (s: string, n: real, g: guid, d: decimal) { strcat(s, tostring(n), " {not interpolated}") };
+print null, false, h"hidden", toscalar(Logs | count), any(x), array_length(dynamic([1, 2, 3]))

@@ -1,0 +1,66 @@
+# NavigateToPose.action -- drive the robot to a goal pose.
+# Goal, result and feedback are separated by three dashes.
+
+# Goal
+geometry_msgs/PoseStamped pose
+string behavior_tree                 # optional BT XML file to use
+string planner_id "GridBased"
+string controller_id 'FollowPath'
+float32 max_speed 0.5
+uint8 retries 3
+bool allow_reverse false
+@optional
+int32[] waypoint_ids
+float64[3] tolerance [0.05, 0.05, .1]
+string[] tags ["indoor", 'warehouse', dock_a]
+string<=32 frame_id "map"
+wstring display_name "Gang \"Süd\" \u00e9\t\x41\101"
+duration timeout
+time deadline
+
+# Constants
+uint8 MODE_NORMAL=0
+uint8 MODE_PRECISE=1
+int16 MIN_HEADING=-180
+float64 GRAVITY=9.806_65
+float32 EPSILON=1.0e-6
+float32 HALF=5.
+bool DEFAULT_REVERSE=True
+string DEFAULT_PLANNER=GridBased
+string ROBOT_PREFIX=robot_\x2d # escape in an unquoted string
+---
+# Result
+uint16 error_code
+uint16 NONE=0
+uint16 TIMEOUT=101
+string error_msg
+---
+# Feedback
+geometry_msgs/PoseStamped current_pose
+builtin_interfaces/Duration navigation_time
+builtin_interfaces/Duration estimated_time_remaining
+int16 number_of_recoveries
+float32 distance_remaining
+byte[16] uuid
+char status_char
+uint64 sequence
+int8[<=4] recent_errors [1, -2, +3]
+
+================================================================================
+MSG: geometry_msgs/PoseStamped
+# A Pose with reference coordinate frame and timestamp
+std_msgs/Header header
+Pose pose
+
+================================================================================
+MSG: std_msgs/Header
+# Standard metadata for higher-level stamped data types.
+uint32 seq
+time stamp
+string frame_id
+
+================================================================================
+MSG: geometry_msgs/Pose
+# A representation of pose in free space, composed of position and orientation.
+Point position
+Quaternion orientation

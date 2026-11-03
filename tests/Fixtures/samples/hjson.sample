@@ -22,4 +22,70 @@
     Now you are half full.
     '''
   // From: https://hjson.github.io/
+
+  # Application settings
+  name: "Phiki \"demo\" server\n"
+  title: 'It\'s a single-quoted string'
+  path: "C:\\data\\logs\tunicode: \u00e9"
+  version: 2.5
+  build: -17
+  ratio: 6.02e23
+  debug: false
+  verbose: true
+  parent: null
+
+  /* Network settings,
+     spanning several lines. */
+  server: {
+    host: localhost
+    port: 8080,
+    "base-url": "https://example.com/api"
+    'timeout-ms': 1500
+    tls: {
+      enabled: true  # inline hash comment
+      cert: /etc/ssl/cert.pem
+      ciphers: [ "TLS_AES_128_GCM_SHA256", 'TLS_CHACHA20_POLY1305_SHA256' ]
+    }
+    # nested comment
+    // and a slash comment
+    /* and a block comment */
+  }
+
+  users: [
+    {
+      id: 1
+      name: Ada Lovelace
+      roles: [ admin, "editor" ]
+    }
+    {
+      id: 2
+      name: "Grace Hopper"
+      roles: []
+      bio:
+        '''
+        Wrote one of the first compilers.
+        '''
+    }
+  ]
+
+  matrix: [
+    [ 1, 2, 3 ]
+    [ 4.5, -6, 7e-2 ]
+    [ true, false, null ]
+  ]
+
+  notes: [
+    # comments inside arrays
+    // are allowed too
+    /* block */
+    "first"
+    'second'
+    third value without quotes
+    '''
+    a multiline
+    array entry
+    '''
+  ]
+
+  empty: {}
 }

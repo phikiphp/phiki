@@ -63,3 +63,112 @@ i32.const 0 ;; return false
 ) ;; end of module
 
 ;; From https://github.com/battlelinegames/ArtOfWasm/blob/main/Chapter3/is_prime.wat
+
+(; ----------------------------------------------------------------------
+   A second module: a bump allocator, string helpers, a dispatch table,
+   SIMD and threads. Written in the WebAssembly text format.
+   ---------------------------------------------------------------------- ;)
+(module $runtime
+  (type $binop (func (param i32 i32) (result i32)))
+  (type $point (struct (field $x (mut f64)) (field $y (mut f64))))
+  (type $bytes (array (mut i8)))
+
+  (import "env" "log" (func $log (param i32 i32)))
+  (import "env" "memory" (memory $mem 1 16 shared))
+  (import "env" "counter" (global $counter (mut i64)))
+
+  (global $heap_top (mut i32) (i32.const 0x1000))
+  (global $pi f64 (f64.const 3.141592653589793))
+  (global $tiny f32 (f32.const 0x1.8p-3))
+  (global $nothing externref (ref.null extern))
+
+  (table $ops 4 funcref)
+  (elem (table $ops) (i32.const 0) func $add $sub $mul)
+
+  (data (i32.const 16) "Hello, \"wasm\"!\n\00")
+  (data $greeting passive "caf\c3\a9\t\\done")
+
+  (func $add (type $binop) (i32.add (local.get 0) (local.get 1)))
+  (func $sub (type $binop) (i32.sub (local.get 0) (local.get 1)))
+  (func $mul (type $binop) (i32.mul (local.get 0) (local.get 1)))
+
+  ;; Bump allocator: align to 8 bytes and grow memory when needed
+  (func $alloc (export "alloc") (param $size i32) (result i32)
+    (local $ptr i32)
+    (local.set $ptr (i32.and (i32.add (global.get $heap_top) (i32.const 7)) (i32.const -8)))
+    (global.set $heap_top (i32.add (local.get $ptr) (local.get $size)))
+    (if (i32.gt_u (global.get $heap_top) (i32.shl (memory.size) (i32.const 16)))
+      (then
+        (drop (memory.grow (i32.const 1)))))
+    (local.get $ptr))
+
+  (func $strlen (export "strlen") (param $s i32) (result i32)
+    (local $p i32)
+    (local.set $p (local.get $s))
+    (block $done
+      (loop $next
+        (br_if $done (i32.eqz (i32.load8_u offset=0 (local.get $p))))
+        (local.set $p (i32.add (local.get $p) (i32.const 1)))
+        (br $next)))
+    (i32.sub (local.get $p) (local.get $s)))
+
+  (func $dispatch (export "dispatch") (param $op i32) (param $a i32) (param $b i32) (result i32)
+    (call_indirect $ops (type $binop) (local.get $a) (local.get $b) (local.get $op)))
+
+  (func $hypot (export "hypot") (param $x f64) (param $y f64) (result f64)
+    (f64.sqrt (f64.add (f64.mul (local.get $x) (local.get $x))
+                       (f64.mul (local.get $y) (local.get $y)))))
+
+  (func $to_fixed (param $v f32) (result i64)
+    (i64.trunc_sat_f32_s (f32.mul (local.get $v) (f32.const 1e6))))
+
+  (func $widen (param $v i32) (result f64)
+    (f64.convert_i64_s (i64.extend_i32_s (local.get $v))))
+
+  (func $store_pair (param $addr i32) (param $value i64)
+    (i64.store align=8 (local.get $addr) (local.get $value))
+    (f32.store offset=8 (local.get $addr) (f32.demote_f64 (global.get $pi)))
+    (i32.store16 offset=12 (local.get $addr) (i32.wrap_i64 (local.get $value))))
+
+  (func $pick (param $c i32) (result f64)
+    (select (f64.const inf) (f64.const -nan:0x7ffff) (local.get $c)))
+
+  (func $sum4 (export "sum4") (param $p i32) (result i32)
+    (local $v v128)
+    (local.set $v (v128.load (local.get $p)))
+    (local.set $v (i32x4.add (local.get $v) (v128.const i32x4 0x1 0x2 0x3 0x4)))
+    (i32.add
+      (i32.add (i32x4.extract_lane 0 (local.get $v)) (i32x4.extract_lane 1 (local.get $v)))
+      (i32.add (i32x4.extract_lane 2 (local.get $v)) (i32x4.extract_lane 3 (local.get $v)))))
+
+  (func $tick (export "tick") (result i32)
+    (atomic.fence)
+    (i32.atomic.rmw.add (i32.const 8) (i32.const 1)))
+
+  (func $copy_greeting (param $dest i32)
+    (memory.init $greeting (local.get $dest) (i32.const 0) (i32.const 13))
+    (data.drop $greeting)
+    (memory.fill (i32.const 64) (i32.const 0) (i32.const 32)))
+
+  (func $fact (param $n i64) (result i64)
+    (if (result i64) (i64.le_s (local.get $n) (i64.const 1))
+      (then (i64.const 1))
+      (else (return_call $fact_acc (local.get $n) (i64.const 1)))))
+
+  (func $fact_acc (param $n i64) (param $acc i64) (result i64)
+    (if (result i64) (i64.eqz (local.get $n))
+      (then (local.get $acc))
+      (else (return_call $fact_acc (i64.sub (local.get $n) (i64.const 1))
+                                   (i64.mul (local.get $n) (local.get $acc))))))
+
+  (func $new_point (param $x f64) (param $y f64) (result (ref $point))
+    (struct.new $point (local.get $x) (local.get $y)))
+
+  (func $main
+    (call $log (i32.const 16) (call $strlen (i32.const 16)))
+    (unreachable))
+
+  (export "memory" (memory $mem))
+  (export "table" (table $ops))
+  (start $main)
+)

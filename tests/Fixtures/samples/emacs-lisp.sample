@@ -27,6 +27,127 @@
                        nil nil nil "-o" (expand-file-name filename))
   (message "ncgen in progress...done"))
 
+(defgroup cdl nil
+  "Utilities for netCDF files."
+  :group 'data
+  :prefix "cdl-")
+
+(defcustom cdl-ncdump-program "ncdump"
+  "Name of the \"ncdump\" program.
+Run \\[cdl-get-file] to insert a dump, see `cdl-put-region' for
+the reverse.  Bindings: \\{cdl-mode-map}, \\<cdl-mode-map>\\[cdl-describe]."
+  :type 'string
+  :safe #'stringp)
+
+(defconst cdl-max-dimensions 1024
+  "Largest number of dimensions accepted.")
+
+(defvar cdl-history nil
+  "Files converted during this session.")
+
+(defface cdl-variable-face
+  '((((class color) (background dark)) :foreground "LightSkyBlue" :weight bold)
+    (((class color) (background light)) :foreground "Blue1")
+    (((type tty) (min-colors 8)) :inherit font-lock-variable-name-face)
+    (t :underline t))
+  "Face for CDL variable names.")
+
+(defvar cdl-mode-map
+  (let ((map (make-sparse-keymap)))
+    (define-key map (kbd "C-c C-f") #'cdl-get-file)
+    (define-key map (kbd "C-c C-r") #'cdl-put-region)
+    (define-key map [remap save-buffer] #'cdl-save)
+    (keymap-set map "M-<f5>" 'cdl-describe)
+    map)
+  "Keymap for `cdl-mode'.")
+
+(defvar cdl-font-lock-keywords
+  `((,(rx bol (* space) (group (+ (any alnum "_"))) (* space) "=") 1 'cdl-variable-face)
+    ("\\<\\(dimensions\\|variables\\|data\\):" . font-lock-keyword-face)
+    ,@(mapcar (lambda (word) (cons (regexp-quote word) 'font-lock-type-face))
+              '("byte" "char" "short" "int" "float" "double")))
+  "Highlighting for `cdl-mode'.")
+
+;;;###autoload
+(define-derived-mode cdl-mode prog-mode "CDL"
+  "Major mode for editing netCDF CDL files."
+  (setq-local comment-start "// ")
+  (setq-local font-lock-defaults '(cdl-font-lock-keywords)))
+
+(cl-defstruct (cdl-dimension (:constructor cdl-make-dimension))
+  name (size 0 :type integer) unlimited)
+
+(defun cdl-parse-dimensions (&optional buffer limit &rest _ignored)
+  "Return the dimensions declared in BUFFER, at most LIMIT of them."
+  (with-current-buffer (or buffer (current-buffer))
+    (save-excursion
+      (goto-char (point-min))
+      (let ((case-fold-search nil)
+            (dims '()))
+        (when (re-search-forward "^dimensions:" nil t)
+          (while (and (re-search-forward "^\\s-*\\([[:alnum:]_]+\\) = \\([0-9]+\\|UNLIMITED\\)" nil t)
+                      (< (length dims) (or limit cdl-max-dimensions)))
+            (let* ((name (match-string-no-properties 1))
+                   (raw (match-string-no-properties 2))
+                   (unlimited (string= raw "UNLIMITED")))
+              (push (cdl-make-dimension :name name
+                                        :size (if unlimited 0 (string-to-number raw))
+                                        :unlimited unlimited)
+                    dims))))
+        (nreverse dims)))))
+
+(defun cdl-describe ()
+  "Show a summary of the dimensions in the current buffer."
+  (interactive)
+  (let* ((dims (cdl-parse-dimensions))
+         (total (apply #'* (or (delq 0 (mapcar #'cdl-dimension-size dims)) '(1)))))
+    (cond
+     ((null dims) (user-error "No dimensions found"))
+     ((> total #x7fffffff)
+      (warn "Total size %d overflows a 32-bit index" total))
+     (t
+      (message "%d dimension%s, %.1f%% of the limit, total size %s"
+               (length dims)
+               (if (= (length dims) 1) "" "s")
+               (* 100.0 (/ (float (length dims)) cdl-max-dimensions))
+               (number-to-string total))))))
+
+(defun cdl-save ()
+  "Save the buffer, then record it in `cdl-history'."
+  (interactive)
+  (condition-case err
+      (progn
+        (save-buffer)
+        (add-to-list 'cdl-history (buffer-file-name)))
+    (file-error
+     (display-warning 'cdl (format "Could not save: %S" err) :error))))
+
+(defun cdl-summary-string (dims)
+  "Join DIMS into a string such as \"time(0) lat(73)\"."
+  (cl-loop for dim in dims
+           for size = (cdl-dimension-size dim)
+           when (or (> size 0) (cdl-dimension-unlimited dim))
+           collect (format "%s(%d)" (cdl-dimension-name dim) size) into parts
+           finally return (mapconcat #'identity parts " ")))
+
+(defmacro cdl-with-dump (file &rest body)
+  "Insert a dump of FILE into a temporary buffer and evaluate BODY."
+  (declare (indent 1) (debug t))
+  `(with-temp-buffer
+     (call-process cdl-ncdump-program nil t nil "-h" (expand-file-name ,file))
+     ,@body))
+
+(defun cdl-flags (n)
+  "Return the low bits of N as a list of booleans."
+  (let ((mask #b1011) (chars (list ?a ?\n ?\t ?\x41 ?\101)))
+    (ignore chars)
+    (dotimes (i 4)
+      (setq n (logand n (lognot (ash 1 i)))))
+    (list (/= n 0) (eq (logand n mask) 0) (cons 1.5e3 -0.25))))
+
+(advice-add 'cdl-get-file :after
+            (lambda (filename) (push filename cdl-history)))
+
 (provide 'cdl)
 
 ;;; cdl.el ends here

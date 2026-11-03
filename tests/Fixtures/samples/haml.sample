@@ -4,10 +4,26 @@
 		%title Example HAML
 		/[if IE]
 			%link{ :rel => "stylesheet", :href => "/css/ie.css" }
-	%body
+		%meta(charset="utf-8" name="viewport" content="width=device-width")
+		%script{ src: asset_path("app.js"), defer: true }
+		:css
+			.hcard { border: 1px solid #ccc; }
+			#main p { margin: 0 0 1em; }
+		:scss
+			$brand: #336699;
+			.hero { color: darken($brand, 10%); }
+		:sass
+			.footer
+				font-size: 0.8em
+	%body{ class: [current_page_class, ("admin" if admin?)], data: { turbo: "false" } }
 		#container
 			%header
 				%h1 Our Awesome HTML5 Template
+				%nav
+					%ul.menu
+						- @links.each_with_index do |link, index|
+							%li{ class: ("active" if index.zero?) }
+								= link_to link.title, link.url, title: "Go to #{link.title}"
 			#main
 				Did we mention this was awesome?
 
@@ -28,6 +44,57 @@
 					rendered output
 
 				%p= Time.now
+				%p== Signed in as #{current_user.name} (#{@role}, #@@count visits, #$stage)
+				%p!= raw_html_snippet
+				%p&= "<escaped> & safe"
+				%br/
+				%img{ src: "/logo.png", alt: 'Logo' }/
+
+				- if @user.nil?
+					%p.notice Please sign in.
+				- elsif @user.admin?
+					%p.notice.admin You have admin rights.
+				- else
+					%p.notice Welcome back!
+
+				%article[@post, :featured]
+					%h2= @post.title
+					%section.body
+						~ @post.body_html
+					%p.meta
+						Posted on
+						= l(@post.created_at, format: :long) # localised date
+						by
+						%span.author= @post.author.name
+
+				%form{ action: "/search", method: "get" }
+					%input{ type: "text", name: "q", value: params[:q], placeholder: "Search \"posts\"" }
+					%button(type="submit" class="btn") Search
+
+				= form_for @comment do |f|
+					= f.text_area :body,
+						rows: 4 |
+					= f.submit "Post"
+
+			:markdown
+				# Release notes
+				* Faster rendering
+				* **Bold** new look
+
+			:javascript
+				document.addEventListener("DOMContentLoaded", function () {
+				  console.log("ready: " + #{@links.size});
+				});
+
+			:coffee
+				greet = (name) -> alert "Hello, #{name}"
+
+			:ruby
+				total = @links.sum { |l| l.clicks }
+				puts "Total clicks: #{total}"
+
+			:plain
+				This text is rendered as-is, <b>tags</b> and all.
 
 			%footer
 				%address
@@ -36,5 +103,7 @@
 						.adr
 							.locality Newcastle-upon-Tyne
 							.country-name England
+				%p
+					&copy; #{Date.today.year} Example Ltd.
 
 / From https://gist.github.com/ianoxley/1147666

@@ -11,3 +11,36 @@
 27.01.2018 19:38:28,982 [8988] E/Subservice: It crashed!
 
 // From https://github.com/emilast/vscode-logfile-highlighter/blob/master/test/integrationtest/testLogs/firstLog.log
+
+2024-03-14T09:26:53.589Z [api-7f9c] [info] Server listening on http://0.0.0.0:8080 (pid 0x1a2b)
+2024-03-14T09:26:53,601+01:00 [api-7f9c] [debug] Loaded config from "/etc/app/config.yaml" in 12ms
+2024-03-14T092654Z DEBUG app.cache.redis: connected to redis.internal:6379
+2024-03-14 09:26:54.002 TRACE: entering handler for request id=3f2b8c1e-9d4a-4e7b-a1c2-7f3e9b0d5a61
+2024-03-14 09:26:54.010 [warn] Retrying connection to 'db-primary' (attempt 2/5)
+2024-03-14 09:26:54.011 WARNING Disk usage at 91% on /dev/sda1
+2024-03-14 09:26:54.012 warning: certificate expires in 7 days
+2024-03-14 09:26:54.013 [W] Slow query took 2.4s
+2024-03-14 09:26:54.020 [error] Failed to process job 42: timeout
+2024-03-14 09:26:54.021 ERROR Unhandled exception in worker thread
+2024-03-14 09:26:54.022 [fatal] Out of memory, shutting down
+2024-03-14 09:26:54.023 CRITICAL payment gateway unreachable
+2024-03-14 09:26:54.024 error: could not open socket
+System.InvalidOperationException: Sequence contains no elements
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at MyApp.Services.OrderService.GetLatest() in C:\src\OrderService.cs:line 87
+java.lang.NullPointerException: Cannot invoke "String.length()" because "name" is null
+	at com.example.users.UserController.show(UserController.java:42)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:897)
+14/03/2024 09:27:00 I Request completed in 34ms
+14/03/2024 09:27:01 W Cache miss ratio high
+14/03/2024 09:27:02 D Pool size = 16
+14/03/2024 09:27:03 V Heartbeat
+03-14 09:27:04.512  1234  1250 I ActivityManager: Start proc com.example.app
+03-14 09:27:04.513  1234  1250 W Choreographer: Skipped 31 frames!
+03-14 09:27:04.514  1234  1250 E AndroidRuntime: FATAL EXCEPTION: main
+Mar 14 09:27:05 web01 sshd[2211]: Accepted publickey for deploy from 10.0.4.17 port 52144
+Mar 14 09:27:06 web01 kernel: eth0: link up, MAC 00:1a:2b:3c:4d:5e
+[2024-03-14 09:27:07] production.INFO: Deployed commit 4f2a9c1 (full sha 4f2a9c1d8e7b6a5f4e3d2c1b0a9f8e7d6c5b4a39)
+[2024-03-14 09:27:08] [Information] Health check OK for service.payments.v2
+[2024-03-14 09:27:09] [Debug] payload={"user":"alice","roles":["admin"]}
+[2024-03-14 09:27:10] Fatal: segmentation fault at address 0xdeadbeef

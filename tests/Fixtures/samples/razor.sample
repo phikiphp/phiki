@@ -1,3 +1,27 @@
+@page "/orders/{id:int}"
+@model OrdersModel
+@using System.Globalization
+@using static System.Math
+@namespace Shop.Pages.Orders
+@inherits Microsoft.AspNetCore.Mvc.RazorPages.Page
+@inject IOrderService OrderService
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@removeTagHelper Microsoft.AspNetCore.Mvc.TagHelpers.ImageTagHelper, Microsoft.AspNetCore.Mvc.TagHelpers
+@tagHelperPrefix th:
+@layout MainLayout
+@implements IDisposable
+@attribute [Authorize(Roles = "Admin")]
+@rendermode InteractiveServer
+@preservewhitespace true
+@typeparam TItem where TItem : class
+
+@{
+    ViewData["Title"] = $"Order #{Model.Id}";
+    Layout = "_Layout";
+    var culture = CultureInfo.GetCultureInfo("en-US");
+}
+
+@* Razor comment: not rendered *@
 @{
     string message = "foreignObject example with Scalable Vector Graphics (SVG)";
 }
@@ -23,3 +47,91 @@
 } while (i < people.Length);
 
 <!-- From https://learn.microsoft.com/en-us/aspnet/core/mvc/views/razor?view=aspnetcore-7.0 -->
+
+<h1>@ViewData["Title"]</h1>
+<p>Placed on @Model.PlacedAt.ToString("D", culture) by @(Model.Customer?.Name ?? "guest")</p>
+<p>Contact: support@@example.com</p>
+<img src="~/images/logo.png" alt="Logo" />
+<br>
+
+@if (Model.Lines.Count == 0)
+{
+    <p class="empty">No items in this order.</p>
+}
+else if (Model.IsCancelled)
+{
+    <p class="warning">This order was cancelled.</p>
+}
+else
+{
+    <table class="lines">
+        @foreach (var line in Model.Lines)
+        {
+            <tr class="@(line.Quantity > 1 ? "multi" : "single")">
+                <td>@line.Sku</td>
+                <td>@line.Name</td>
+                <td>@line.Price.ToString("C", culture)</td>
+            </tr>
+        }
+    </table>
+}
+
+@for (var i = 0; i < Model.Pages; i++)
+{
+    <a href="?page=@i">@(i + 1)</a>
+}
+
+@switch (Model.Status)
+{
+    case OrderStatus.Paid:
+        <span class="badge badge-paid">Paid</span>
+        break;
+    default:
+        <text>Pending since @Model.PlacedAt.ToShortDateString()</text>
+        break;
+}
+
+@try
+{
+    var total = await OrderService.GetTotalAsync(Model.Id);
+    @:Total due: @total
+}
+catch (InvalidOperationException ex)
+{
+    <p class="error">@ex.Message</p>
+}
+finally
+{
+    <!-- totals rendered -->
+}
+
+@lock (Model.SyncRoot)
+{
+    <p>Visitors: @Model.VisitorCount</p>
+}
+
+@using (Html.BeginForm("Cancel", "Orders", FormMethod.Post))
+{
+    <input type="hidden" name="id" value="@Model.Id" />
+    <button type="submit" disabled="@Model.IsCancelled">Cancel order</button>
+}
+
+@section Scripts {
+    <script src="~/js/orders.js" asp-append-version="true"></script>
+}
+
+@functions {
+    public string FormatSku(string sku) => sku.ToUpperInvariant();
+}
+
+@code {
+    [Parameter] public int Id { get; set; }
+    private List<TItem> items = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        items = await OrderService.LoadAsync<TItem>(Id);
+    }
+
+    public void Dispose() => items.Clear();
+}

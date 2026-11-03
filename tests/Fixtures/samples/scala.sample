@@ -1,3 +1,142 @@
+#!/usr/bin/env -S scala-cli shebang
+//> using scala 3.3.1
+//> using dep com.lihaoyi::os-lib:0.9.1
+
+package com.example.shop
+
+import scala.collection.mutable
+import scala.concurrent.{Future, ExecutionContext}
+import scala.util.{Try, Success as Ok, Failure}
+import java.time.*
+import given ExecutionContext
+
+/**/
+
+/**
+ * A product in the catalogue.
+ *
+ * @param id the unique identifier
+ * @tparam A the payload type
+ * @return nothing, see [[Catalogue]]
+ */
+final case class Product[+A](id: Long, name: String, price: BigDecimal, payload: A)
+
+sealed trait Shape:
+  def area: Double
+
+enum Color(val rgb: Int):
+  case Red extends Color(0xFF0000)
+  case Green extends Color(0x00FF00)
+  case Blue extends Color(0x0000FF)
+
+opaque type Cents = Long /* stored as minor units */
+
+object Facade:
+  private val catalogue = new Catalogue
+  export catalogue.{find, size as count}
+  val banner = """Shop \u00A9 2024"""
+  val (left, right) = (1, 2)
+
+object Cents:
+  def apply(value: Long): Cents = value
+  extension (c: Cents)
+    infix def plus(other: Cents): Cents = c + other
+    def show: String = f"$$${c / 100.0}%.2f"
+
+abstract class Repository[K, V <: AnyRef](protected val name: String):
+  private[shop] val store = mutable.Map.empty[K, V]
+  @volatile private var hits = 0
+  lazy val created: Instant = Instant.now()
+
+  def find(key: K): Option[V] =
+    hits += 1
+    store.get(key)
+
+  def size: Int = store.size
+
+trait Logger:
+  def log(msg: => String)(using level: Int = 1): Unit =
+    if level > 0 then println(s"[${this.getClass.getSimpleName}] $msg")
+
+class Catalogue extends Repository[Long, Product[String]]("catalogue") with Logger:
+  type Key = Long
+  given ordering: Ordering[Product[String]] = Ordering.by(_.price)
+
+  override def find(key: Key): Option[Product[String]] =
+    val result = super.find(key)
+    log(s"lookup $key -> ${result.map(_.name).getOrElse("missing")}")
+    result
+
+  def cheapest: Option[Product[String]] = store.values.minOption
+
+  def search(pattern: String): List[Product[String]] =
+    val regex = raw"(?i)\b$pattern\w*".r
+    store.values.filter(p => regex.findFirstIn(p.name).isDefined).toList
+
+  def report(): String =
+    s"""Catalogue report
+       |  items: ${store.size}
+       |  hits:  $hits\t(cached)
+       |""".stripMargin
+
+inline def debug(inline cond: Boolean): Unit =
+  inline if cond then println("debug") else ()
+
+def describe(x: Any): String = x match
+  case n: Int if n < 0         => "negative"
+  case 0 | 1                   => "binary digit"
+  case s: String               => s"string of ${s.length}"
+  case (a, b)                  => s"pair $a, $b"
+  case p @ Product(_, name, _, _) => s"product $name"
+  case Color.Red               => "red"
+  case _: Shape                => "a shape"
+  case null                    => "null"
+  case _                       => x.getClass.getName
+
+def loadAll(ids: Seq[Long])(using ec: ExecutionContext): Future[Seq[String]] =
+  Future.traverse(ids) { id =>
+    Future {
+      try
+        if id % 2L == 0 then throw new IllegalArgumentException("even id")
+        else id.toString
+      catch
+        case e: IllegalArgumentException => e.getMessage
+      finally
+        ()
+    }
+  }
+
+@main def run(args: String*): Unit =
+  val catalogue = new Catalogue
+  var total = 0.0
+  val big = 1_000_000L
+  val tiny = 3.14e-2f
+  val half = .5d
+  val mask = 0b1010_1010
+  val quote = '\''
+  val letter = 'x'
+  val symbol = Symbol("legacy")
+  val tab = "a\tb\u0041\\"
+  val path = raw"C:\temp\$big"
+  val `type` = classOf[Catalogue]
+  val xml = <item id="1" class={catalogue.name}>Price &amp; tax</item>
+  val empty = <br/>
+  for
+    i <- 1 to 10
+    if i % 3 != 0
+  do total += i * 1.5
+
+  while total > 100 && !args.isEmpty do
+    total -= 10
+  end while
+
+  val ok = Try(args.head.toInt) match
+    case Success(n) => n
+    case Failure(_) => -1
+  println(catalogue.report() + Cents(250).show + xml + empty + symbol)
+  println(s"$tab $path ${`type`} $quote$letter $ok $big $tiny $half $mask")
+end run
+
 class Date(y: Int, m: Int, d: Int) extends Ord:
   // previous decls here
 

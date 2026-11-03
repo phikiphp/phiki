@@ -1,0 +1,36 @@
+pick 4f2c1a9 Add Paginator value object
+reword 9b3e77d Fix off-by-one in pagination
+edit 1d0f5e2 Extract page-link rendering into a component
+squash c81a6b0 Tidy up component props
+fixup 7e4490f fixup! Extract page-link rendering into a component
+exec composer test -- --filter=Pagination && echo "pagination ok"
+pick a03b2d8 Hide the next link on the last page
+break
+drop 5c6d7e8 WIP: debugging output
+p 0e1f2a3 Update CHANGELOG for 2.4.1
+r 2b3c4d5 Bump version
+x git log --oneline -3 | cat
+f 6a7b8c9 Fix typo in changelog
+d ff00ee1 Revert "Temporarily disable cache"
+b
+
+# Rebase 8a1b2c3..ff00ee1 onto 8a1b2c3 (15 commands)
+#
+# Commands:
+# p, pick <commit> = use commit
+# r, reword <commit> = use commit, but edit the commit message
+# e, edit <commit> = use commit, but stop for amending
+# s, squash <commit> = use commit, but meld into previous commit
+# f, fixup [-C | -c] <commit> = like "squash" but keep only the previous
+#                    commit's log message, unless -C is used
+# x, exec <command> = run command (the rest of the line) using shell
+# b, break = stop here (continue rebase later with 'git rebase --continue')
+# d, drop <commit> = remove commit
+# l, label <label> = label current HEAD with a name
+# t, reset <label> = reset HEAD to a label
+#
+# These lines can be re-ordered; they are executed from top to bottom.
+#
+# If you remove a line here THAT COMMIT WILL BE LOST.
+#
+# However, if you remove everything, the rebase will be aborted.

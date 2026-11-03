@@ -24,3 +24,127 @@ module 0xCAFE::BasicCoin {
         assert!(borrow_global<Coin>(addr).value == 10, 0);
     }
 }
+
+/// A small marketplace module showing Move 2024 features.
+module marketplace::listing {
+    use std::string::{Self, String};
+    use std::vector as vec;
+    use sui::coin::{Coin};
+    use sui::sui::SUI;
+    use fun string::utf8 as vector.to_string;
+
+    friend marketplace::admin;
+
+    /// Error codes
+    const ENotOwner: u64 = 1;
+    const EInsufficientFunds: u64 = 2;
+    const MAX_LISTINGS: u64 = 1_000;
+    const FEE_BPS: u16 = 250u16;
+    const ADMIN: address = @0x1;
+    const GREETING: vector<u8> = b"hello\n\x41";
+    const RAW_HEX: vector<u8> = x"deadbeef";
+
+    /// The status of a listing.
+    public enum Status has copy, drop, store {
+        Active,
+        Sold { buyer: address, price: u64 },
+        Cancelled(u64),
+    }
+
+    public struct Listing<phantom T> has key, store {
+        id: UID,
+        seller: address,
+        price: u64,
+        status: Status,
+        tags: vector<String>,
+    }
+
+    public struct Receipt(address, u64) has drop;
+
+    /* Create a new listing for `item`. */
+    public(package) fun new<T: key + store>(seller: address, price: u64, ctx: &mut TxContext): Listing<T> {
+        assert!(price > 0 && price <= 18446744073709551615, EInsufficientFunds);
+        let mut tags = vector[string::utf8(b"new"), b"sale".to_string()];
+        vec::push_back(&mut tags, string::utf8(b"featured"));
+        Listing { id: object::new(ctx), seller, price, status: Status::Active, tags }
+    }
+
+    public entry fun buy<T>(listing: &mut Listing<T>, payment: Coin<SUI>, ctx: &TxContext) {
+        let buyer = tx_context::sender(ctx);
+        let price = listing.price;
+        if (payment.value() < price) {
+            abort EInsufficientFunds
+        } else if (buyer == listing.seller) {
+            abort ENotOwner
+        };
+        listing.status = Status::Sold { buyer, price };
+        transfer::public_transfer(payment, copy listing.seller);
+    }
+
+    public fun describe(status: &Status): u64 {
+        match (status) {
+            Status::Active => 0,
+            Status::Sold { buyer: _, price } => *price,
+            Status::Cancelled(code) => *code,
+        }
+    }
+
+    public(friend) fun fee(price: u64): u64 {
+        let mut i = 0;
+        let mut total = 0u64;
+        'outer: loop {
+            i = i + 1;
+            if (i > 10) break 'outer;
+            if (i % 2 == 0) continue;
+            total = total + ((price * (FEE_BPS as u64)) / 10_000 << 1 >> 1);
+        };
+        while (total > MAX_LISTINGS) { total = total - 1 };
+        let r = Receipt(ADMIN, total);
+        let Receipt(_, amount) = r;
+        move amount
+    }
+
+    public macro fun do_times($n: u64, $f: |u64|) {
+        let mut i = 0;
+        while (i < $n) { $f(i); i = i + 1; }
+    }
+
+    inline fun is_even(x: u64): bool { x % 2 == 0 && !(x == 1) || false }
+
+    native fun hash(data: &vector<u8>): vector<u8>;
+
+    fun self_call(): u64 { Self::fee(100) }
+
+    #[test, expected_failure(abort_code = ENotOwner)]
+    fun test_fail() { abort ENotOwner }
+}
+
+spec marketplace::listing {
+    spec fee {
+        pragma aborts_if_is_partial;
+        ensures result <= price;
+        aborts_if price > MAX_U64;
+    }
+    spec module {
+        invariant forall a: address: exists<Listing<u8>>(a) ==> true;
+    }
+    spec fun total_supply(): num { 0 }
+    spec schema Positive {
+        x: u64;
+        requires x > 0;
+    }
+}
+
+address 0x42 {
+    module counter {
+        struct Counter has key { value: u64 }
+        public fun increment(c: &mut Counter) { c.value = c.value + 1 }
+    }
+}
+
+script {
+    use 0x42::counter;
+    fun main(account: signer) {
+        let _ = account;
+    }
+}

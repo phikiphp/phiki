@@ -1,6 +1,12 @@
+#!/usr/bin/env groovy
+package com.example.jetty
+
 import org.mortbay.jetty.Server
 import org.mortbay.jetty.servlet.*
 import groovy.servlet.*
+import static java.util.concurrent.TimeUnit.SECONDS
+import groovy.transform.CompileStatic
+import groovy.transform.ToString
 
 @Grab(group='org.mortbay.jetty', module='jetty-embedded', version='6.1.14')
 def startJetty() {
@@ -14,5 +20,153 @@ def startJetty() {
 
 println "Starting Jetty on port 9090, press Ctrl+C to stop."
 startJetty()
+
+/**/
+/*
+ * A small inventory domain model.
+ */
+enum Category {
+    FRUIT, VEGETABLE,
+    DAIRY('cold'),
+    BAKERY
+
+    final String storage
+
+    Category(String storage = 'shelf') {
+        this.storage = storage
+    }
+}
+
+interface Priced {
+    BigDecimal price()
+}
+
+@ToString(includeNames = true)
+@CompileStatic
+class Item implements Priced, Comparable<Item> {
+    static final int MAX_STOCK = 1_000
+    private String name
+    protected Category category
+    public int quantity = 0
+    transient double unitPrice
+    List<String> tags = []
+    Map<String, Integer> history = [:]
+
+    Item(String name, Category category, double unitPrice) {
+        this.name = name
+        this.category = category
+        this.unitPrice = unitPrice
+    }
+
+    BigDecimal price() {
+        return (unitPrice * quantity) as BigDecimal
+    }
+
+    int compareTo(Item other) {
+        name <=> other.name
+    }
+
+    synchronized void restock(int amount) throws IllegalArgumentException {
+        if (amount <= 0 || amount + quantity > MAX_STOCK) {
+            throw new IllegalArgumentException("Invalid amount: ${amount}")
+        }
+        quantity += amount
+        history[new Date().format('yyyy-MM-dd')] = amount
+    }
+
+    String getName() { name }
+}
+
+abstract class Report {
+    abstract String render(List<Item> items)
+
+    protected String header(String title) {
+        """\
+        |==== ${title.toUpperCase()} ====
+        |Generated: $now
+        |""".stripMargin()
+    }
+
+    private static String getNow() { new Date().toString() }
+}
+
+class TextReport extends Report {
+    String render(List<Item> items) {
+        def sb = new StringBuilder(header('Inventory'))
+        items.each { Item item ->
+            sb << "${item.name.padRight(12)}\t${item.quantity}\n"
+        }
+        sb.toString()
+    }
+}
+
+def items = [
+    new Item('apple', Category.FRUIT, 0.35),
+    new Item('carrot', Category.VEGETABLE, 0.12d),
+    new Item('cheese', Category.DAIRY, 4.5f),
+]
+
+items*.restock(10)
+items[0].restock(25)
+
+def expensive = items.findAll { it.price() > 2.0 }.collect { it.name }
+def byCategory = items.groupBy { it.category }
+def total = items.sum { Item i -> i.price() } ?: 0
+def firstDairy = items.find { it.category == Category.DAIRY }?.name
+def range = (1..10).step(2)
+def config = [host: 'localhost', port: 8080, *: [debug: true]]
+
+def multiline = '''
+Single-quoted multiline text,
+with an escaped \' quote.
+'''
+
+def pattern = ~/^[a-z]+\d*$/
+def matcher = 'apple42' =~ /([a-z]+)(\d+)/
+def isWord = 'banana' ==~ /\w+/
+def slashy = /C:\path\to\file/
+def compiled = ~"[0-9]{3}-[0-9]{4}"
+
+for (item in items) {
+    switch (item.category) {
+        case Category.FRUIT:
+            println "Fruit: ${item.name} costs \$${item.price()}"
+            break
+        case [Category.VEGETABLE, Category.DAIRY]:
+            println "Other: $item.name"
+            break
+        default:
+            continue
+    }
+}
+
+int counter = 0
+while (counter < 3) {
+    counter++
+}
+
+try {
+    items[1].restock(-5)
+} catch (IllegalArgumentException | IllegalStateException e) {
+    println "Failed: ${e.message}"
+} finally {
+    counter--
+}
+
+def greet = { String who = 'world', int times = 1 -> ("Hello, ${who}! " * times).trim() }
+assert greet('Groovy', 2) == 'Hello, Groovy! Hello, Groovy!' : 'greeting mismatch'
+assert items.size() == 3
+assert !(null instanceof Item)
+
+def result = items.size() > 2 ? 'many' : 'few'
+long big = 0xFFL + 017 + 1e3.toLong()
+boolean[] flags = new boolean[4]
+
+shouldFail(IllegalArgumentException) {
+    items[0].restock(0)
+}
+
+println new TextReport().render(items.sort())
+println "Total: ${String.format('%.2f', total)} for ${items.size()} items in ${SECONDS.toMillis(1)}ms"
 
 // From https://gist.github.com/saltnlight5/3756240

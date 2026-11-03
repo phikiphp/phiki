@@ -12,3 +12,85 @@ local result : string
 result = ispositive(1)
 
 -- From https://luau-lang.org/getting-started
+
+--[[
+    Typed inventory service for a Roblox experience.
+]]
+
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local MAX_ITEMS = 0x40
+local FLAGS = 0b1010_0011
+local BIG = 1_000_000
+
+export type Item = {
+    name: string,
+    weight: number?,
+    read id: number,
+    write tags: { string },
+    [string]: any,
+}
+
+type Callback<T...> = (T...) -> ()
+type Result<T, E = string> = { ok: true, value: T } | { ok: false, err: E }
+type Handler = typeof(function(player: Player) end)
+type Shape = Item & { color: Color3 }
+export type function Partial(t)
+    return t
+end
+
+local Inventory = {}
+Inventory.__index = Inventory
+
+--- Creates a new inventory.
+--- @param owner The owning player
+function Inventory.new(owner: Player, ...: Item): Inventory
+    local self = setmetatable({}, Inventory)
+    self.owner = owner
+    self.items = {} :: { Item }
+    for _, item in { ... } do
+        table.insert(self.items, item)
+    end
+    return self
+end
+
+@native
+function Inventory:add(item: Item): Result<number>
+    if #self.items >= MAX_ITEMS then
+        return { ok = false, err = `inventory for {self.owner.Name} is full` }
+    end
+    table.insert(self.items, item)
+    return { ok = true, value = #self.items }
+end
+
+function Inventory:totalWeight(): number
+    local total = 0
+    for i: number, item: Item in ipairs(self.items) do
+        total += (item.weight or 0) * 1.5 // 1 % 100 ^ 1
+    end
+    return total
+end
+
+local function onPlayerAdded<T>(player: Player, extra: T?)
+    local inv = Inventory.new(player)
+    local result = inv:add({ name = "Sword", weight = 3.5, id = 1, tags = { "melee" } })
+    if result.ok and not (result.value == nil) then
+        print(`added item #{result.value} for {player.Name}\n`)
+    else
+        warn("failed: " .. tostring(result.err), 'single \'quoted\'', "\x41\65\u{1F600}\z
+            continued")
+    end
+end
+
+local doc = [[
+Multi-line text
+]]
+
+Players.PlayerAdded:Connect(onPlayerAdded)
+task.delay(1, function()
+    print(math.floor(math.pi * 100), bit32.band(FLAGS, 0x0F), string.format("%d", BIG))
+end)
+print(_VERSION, typeof(workspace), Enum.KeyCode.E, script.Parent, nil, true, false)
+
+return Inventory

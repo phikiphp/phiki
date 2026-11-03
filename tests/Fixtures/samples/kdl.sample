@@ -1,0 +1,75 @@
+// A KDL v2 configuration for a small static site generator.
+/*
+   Block comments can span lines
+   /* and they nest */
+*/
+/** Documentation comment for the site node */
+site title="Field Notes" lang=en-GB draft=#false {
+    base-url "https://notes.example.com/"
+    author "Ada Lovelace" email="ada@example.com"
+    description """
+        Short essays on gardening, \"weather\" and
+        whatever else\tturns up.\n
+        """
+    copyright #"© 2026 — all rights "reserved""#
+    banner ##"He said "hi" and left"##
+    timezone Europe/London
+    edited #null
+}
+
+build {
+    output-dir "public"
+    workers 4
+    max-file-size 0x10_0000
+    file-mode 0o644
+    feature-flags 0b1010_0001
+    image-quality 0.85
+    cache-ttl 3.6e3
+    min-delta -12
+    offset +7
+    precision 1.5E-4
+    scale #inf
+    floor #-inf
+    ratio #nan
+    minify #true
+    /-sourcemaps #true
+    verbose /-#true #false
+}
+
+/-legacy-theme "classic" version=1
+/-deprecated-plugins {
+    rss-v1
+    sitemap-old
+}
+
+collections {
+    posts path="content/posts" sort=date-desc paginate=10 {
+        permalink "/{year}/{month}/{slug}/"
+        template "post.html"
+    }
+    pages path="content/pages"; projects path="content/projects" sort=title
+}
+
+menu {
+    item "Home" href="/"
+    item "Archive" href="/archive/" weight=20
+    item "About" href="/about/" weight=30 {
+        child "Colophon" href="/about/colophon/"
+        child "Contact" href="mailto:ada@example.com"
+    }
+}
+
+deploy target=s3 {
+    bucket "notes-example-com"
+    region eu-west-2
+    headers {
+        "Cache-Control" "public, max-age=3600"
+        "X-Unicode" "\u{1F33F} leaf"
+    }
+    exclude "*.draft.md" "**/.DS_Store"
+}
+
+// Type annotations on nodes and values
+(date)published "2026-11-03"
+(u8)retries 3
+(duration)timeout "30s"

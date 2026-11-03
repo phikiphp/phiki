@@ -19,3 +19,108 @@
 (define cim current-inexact-milliseconds)
 
 ;; From https://racket-lang.org/#little-macros
+
+#| ------------------------------------------------------------
+   A tiny bank-account module: structs, contracts, match,
+   hash tables, regexps and keyword arguments.
+   ------------------------------------------------------------ |#
+
+(require racket/match
+         racket/string
+         (only-in racket/list first rest empty?))
+
+(provide (struct-out account)
+         (contract-out [deposit (-> account? positive? account?)]))
+
+(struct account (id owner [balance #:mutable]) #:transparent)
+(struct savings account (rate) #:transparent)
+(struct point (x y))
+
+(define interest-rate 0.025)
+(define max-balance #e1e9)
+(define flags #b1010)
+(define perms #o755)
+(define color #xFF00AA)
+(define ratio 3/4)
+(define tiny 1.5e-10)
+(define-values (low high) (values 0 100))
+
+(define (deposit acct amount)
+  (set-account-balance! acct (+ (account-balance acct) amount))
+  acct)
+
+(define (withdraw acct amount #:fee [fee 0])
+  (define total (+ amount fee))
+  (cond
+    [(> total (account-balance acct))
+     (raise-user-error 'withdraw "insufficient funds: ~a < ~a" (account-balance acct) total)]
+    [else
+     (set-account-balance! acct (- (account-balance acct) total))
+     acct]))
+
+(define (describe acct)
+  (match acct
+    [(savings id owner bal rate) (format "~a's savings #~a: ~a @ ~a%" owner id bal (* rate 100))]
+    [(account id owner (? positive? bal)) (format "~a has ~a" owner bal)]
+    [(account _ owner _) (string-append owner " is broke")]
+    [_ "unknown"]))
+
+(define accounts (make-hash))
+(hash-set! accounts 'alice (account 1 "Alice" 100))
+(hash-set! accounts 'bob (savings 2 "Bob" 2500 interest-rate))
+
+(define ledger #hash((deposits . 12) (withdrawals . 3)))
+(define history '(10 -5 20 -15))
+(define quoted-sym 'balance)
+(define chars (list #\a #\space #\newline #\u03BB))
+(define grid #(1 2 3))
+(define bytes-data #"raw\x00bytes")
+(define pt-prefab #s(pt 1 2))
+(define iban-rx #rx"^[A-Z]{2}[0-9]{2}")
+(define word-px #px"\\b\\w+\\b")
+(define greeting "Hello,\tbank\n\u00e9 \"quoted\"")
+(define active? #t)
+(define closed? #false)
+(define fast-index #hasheq([alice . 1] [bob . 2]))
+(define statement #<<END
+Monthly statement
+  No escapes \n here
+END
+  )
+
+(define (apply-history acct entries)
+  (for/fold ([a acct])
+            ([e (in-list entries)])
+    (if (positive? e)
+        (deposit a e)
+        (withdraw a (abs e) #:fee 1))))
+
+(define total-deposits
+  (for/sum ([e history] #:when (> e 0)) e))
+
+(let loop ([i 0] [acc '()])
+  (when (< i 3)
+    (loop (add1 i) (cons (* i i) acc))))
+
+(define add-interest
+  (lambda (acct)
+    (λ (years) (* (account-balance acct) (expt (+ 1 interest-rate) years)))))
+
+(define-syntax-rule (swap! a b)
+  (let ([tmp a]) (set! a b) (set! b tmp)))
+
+(define-syntax unless-zero
+  (syntax-rules ()
+    [(_ n body ...) (if (zero? n) (void) (begin body ...))]))
+
+(with-handlers ([exn:fail:user? (λ (e) (displayln (exn-message e)))])
+  (withdraw (hash-ref accounts 'alice) 1000))
+
+#;(displayln "this whole form is commented out")
+(printf "~a\n" (describe (apply-history (hash-ref accounts 'alice) history)))
+(displayln (regexp-match iban-rx "DE89370400440532013000"))
+(displayln `(total ,total-deposits ,@history))
+(displayln (string-join (map number->string '(1 2 3)) ", "))
+(module+ test
+  (require rackunit)
+  (check-equal? (account-balance (deposit (account 9 "T" 0) 5)) 5))

@@ -31,3 +31,157 @@ button, a {
 </style>
 
 <!-- from https://vuejs.org/examples/#handling-input -->
+
+<!-- A second single-file component: a generic, sortable data table. -->
+
+<script lang="ts">
+export interface Column<T> {
+  key: keyof T & string
+  label: string
+  sortable?: boolean
+}
+</script>
+
+<script setup lang="ts" generic="T extends { id: number }, K extends keyof T">
+import { computed, ref, watch } from 'vue'
+import type { Column } from './DataTable.vue'
+
+const props = withDefaults(defineProps<{
+  rows: T[]
+  columns: Column<T>[]
+  pageSize?: number
+}>(), { pageSize: 10 })
+
+const emit = defineEmits<{
+  (e: 'select', row: T): void
+  (e: 'sort', key: K, direction: 'asc' | 'desc'): void
+}>()
+
+const sortKey = ref<K | null>(null)
+const ascending = ref(true)
+const page = ref(0)
+const query = defineModel<string>('query', { default: '' })
+
+const visible = computed(() => {
+  const needle = query.value.trim().toLowerCase()
+  let rows = props.rows.filter(row =>
+    JSON.stringify(row).toLowerCase().includes(needle),
+  )
+  if (sortKey.value !== null) {
+    const key = sortKey.value
+    rows = [...rows].sort((a, b) => (a[key] > b[key] ? 1 : -1) * (ascending.value ? 1 : -1))
+  }
+  return rows.slice(page.value * props.pageSize, (page.value + 1) * props.pageSize)
+})
+
+watch(query, () => { page.value = 0 })
+
+function toggleSort(key: K) {
+  ascending.value = sortKey.value === key ? !ascending.value : true
+  sortKey.value = key
+  emit('sort', key, ascending.value ? 'asc' : 'desc')
+}
+</script>
+
+<template lang="html">
+  <section class="table" :class="{ empty: visible.length === 0 }" :style="{ '--cols': columns.length }">
+    <header>
+      <slot name="title" :count="rows.length">
+        <h2>{{ rows.length }} rows</h2>
+      </slot>
+      <input v-model.trim="query" type="search" placeholder="Filter…" @keydown.esc="query = ''" />
+    </header>
+
+    <table style="width: 100%; border-collapse: collapse">
+      <thead>
+        <tr>
+          <th
+            v-for="col in columns"
+            :key="col.key"
+            :aria-sort="sortKey === col.key ? (ascending ? 'ascending' : 'descending') : 'none'"
+            @click="col.sortable && toggleSort(col.key as K)"
+          >
+            {{ col.label }}
+            <span v-if="sortKey === col.key">{{ ascending ? '▲' : '▼' }}</span>
+            <span v-else-if="col.sortable" class="hint">⇅</span>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <template v-if="visible.length">
+          <tr v-for="(row, index) in visible" :key="row.id" @click.stop="emit('select', row)">
+            <td v-for="col in columns" :key="col.key" :[`data-${col.key}`]="index">
+              <slot :name="`cell-${col.key}`" v-bind="{ row, value: row[col.key] }">
+                {{ row[col.key] }}
+              </slot>
+            </td>
+          </tr>
+        </template>
+        <tr v-else>
+          <td :colspan="columns.length" v-text="'No matching rows'" />
+        </tr>
+      </tbody>
+    </table>
+
+    <footer v-show="rows.length > pageSize">
+      <!-- @vue-ignore -->
+      <button :disabled="page === 0" @click="page--">Previous</button>
+      <span>Page {{ page + 1 }}</span>
+      <button v-on:click="page++" #default>Next</button>
+    </footer>
+
+    <Teleport to="body">
+      <Transition name="fade">
+        <template #default>
+          <p v-if="query" class="toast">Filtering by “{{ query }}”</p>
+        </template>
+      </Transition>
+    </Teleport>
+  </section>
+</template>
+
+<style scoped lang="scss">
+$accent: #42b883;
+
+.table {
+  --gap: 0.5rem;
+  display: grid;
+  gap: var(--gap);
+
+  &.empty td { color: rgba(0, 0, 0, 0.4); }
+
+  th {
+    cursor: pointer;
+    &:hover { color: darken($accent, 10%); }
+  }
+}
+</style>
+
+<style module>
+.toast {
+  position: fixed;
+  inset-block-end: 1rem;
+  animation: fade 200ms ease-in;
+}
+</style>
+
+<i18n lang="json">
+{
+  "en": { "rows": "{count} rows", "empty": "No matching rows" },
+  "de": { "rows": "{count} Zeilen", "empty": "Keine passenden Zeilen" }
+}
+</i18n>
+
+<route lang="yaml">
+name: data-table
+meta:
+  requiresAuth: true
+</route>
+
+<docs lang="md">
+# DataTable
+
+A generic table. Pass `rows` and `columns`; listen for **select** and **sort**.
+</docs>
+
+<i18n src="./locales/data-table.json" />

@@ -3,6 +3,30 @@
 \documentclass{article} % \documentclass{} is the first command in any LaTeX code.  It is used to define what kind of document you are creating such as an article or a book, and begins the document preamble
 
 \usepackage{amsmath} % \usepackage is a command that allows you to add functionality to your LaTeX code
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{minted}
+\usepackage{listings}
+\usepackage{luacode}
+\usepackage{pythontex}
+\usepackage{tikz}
+\usepackage{fancyvrb}
+\usepackage{alltt}
+\usepackage{expl3}
+
+\newcommand{\vect}[1]{\mathbf{#1}}
+\renewcommand{\vec}[2][x]{\overrightarrow{#2_{#1}}}
+\DeclareRobustCommand{\project}{\textsc{Phiki}}
+\newenvironment{note}[1][Note]{\par\textbf{#1:}\itshape}{\par}
+
+\ExplSyntaxOn
+\tl_new:N \l_report_title_tl
+\tl_set:Nn \l_report_title_tl { Engine~comparison }
+\int_new:N \g_report_count_int
+\ExplSyntaxOff
+
 
 \title{Simple Sample} % Sets article title
 \author{My Name} % Sets authors name
@@ -26,6 +50,154 @@
 
     For a new paragraph I can leave a blank space in my code.
 
+
+\section{Introduction}\label{chap:intro}
+
+This report compares two engines for \project{}. See Chapter~\ref{chap:results}
+and Equation~\eqref{eq:energy}, pages \pageref{sec:method} and \cref{fig:plot}.
+Prior work~\cite{knuth1984,lamport1994} and \citet[p.~12]{doe2020} discuss
+this, as does \parencite[see][ch.~3]{smith2019}. \bibentry{knuth1984}
+\Vrefrange{sec:method}{sec:results} covers the method.
+
+Some text is \emph{emphasized}, some is \textit{italic}, and some is
+\texttt{monospaced}. A dollar sign is written as \$5, and a percent as 50\%.
+Inline math also works with \(e^{i\pi} + 1 = 0\), and \verb|\verb| prints verbatim.
+\footnote{A footnote with \emph{emphasis}.}\marginpar{Margin note}
+Prices: \textsterling 10, \textyen 200, \textsection 3.
+Visit \url{https://example.com/docs} or \href{https://example.com}{our site}.
+\newline
+\input{chapters/background}
+\include{chapters/appendix}
+
+\section{Method}\zlabel{sec:method}
+
+\begin{itemize}
+  \item First, tokenize each sample with Oniguruma.
+  \item Second, tokenize it with PCRE.
+  \item[--] Finally, compare every token.
+\end{itemize}
+
+\begin{enumerate}
+  \item Prepare the grammar;
+  \item Run the benchmark.
+\end{enumerate}
+
+\begin{description}
+  \item[Coverage] the share of rules that matched.
+\end{description}
+
+\subsection{Mathematics}
+
+The total energy is
+\begin{equation}\label{eq:energy}
+  E = \frac{1}{2} m v^2 + m g h \quad \text{with } g \approx 9.81
+\end{equation}
+and the system of equations is
+\begin{align*}
+  x + y &= 10 \\
+  x - y &= 2
+\end{align*}
+Display math with brackets:
+\[
+  \int_0^\infty e^{-x^2}\,dx = \frac{\sqrt{\pi}}{2}
+\]
+and with double dollars:
+$$ \sum_{k=1}^{n} k = \frac{n(n+1)}{2} $$
+\begin{empheq}[box=\fbox]{align}
+  a &= b + c \\
+  d &= e
+\end{empheq}
+
+\subsection{Results}\label{sec:results}
+
+\begin{table}[htbp]
+  \centering
+  \begin{tabular}{|l|r|>{$}c<{$}|}
+    \hline
+    Grammar & Coverage & \Delta \\
+    \hline
+    julia & 76.9\% & +56 \\
+    latex & 30.0\% & +27 \\
+    \hline
+  \end{tabular}
+  \caption{Rule coverage per grammar.}
+\end{table}
+
+\begin{figure}[h]
+  \centering
+  \begin{tikzpicture}
+    \draw[->] (0,0) -- (4,0) node[right] {$x$};
+    \draw[thick, blue] (0,0) circle (1cm);
+  \end{tikzpicture}
+  \caption{A plot.}\label{fig:plot}
+\end{figure}
+
+\section{Code listings}
+
+\begin{minted}[linenos]{python}
+def tokenize(line: str) -> list[str]:
+    return line.split()
+\end{minted}
+
+\begin{lstlisting}[language=C]
+int main(void) { return 0; }
+\end{lstlisting}
+
+\begin{luacode}
+for i = 1, 3 do tex.print(i) end
+\end{luacode}
+
+\begin{pycode}
+print(r"\textbf{from Python}")
+\end{pycode}
+
+\begin{Verbatim}
+  raw   text   kept   as-is
+\end{Verbatim}
+
+\begin{alltt}
+  \textbf{bold} inside alltt
+\end{alltt}
+
+\begin{comment}
+This block is ignored entirely.
+\end{comment}
+
+Inline code: \mintinline{js}{const x = 1;}, \pyc{print(1)}, and
+\directlua{tex.print("Lua says hi")}.
+
+\begin{frame}{Slide title}
+  \pause
+  Beamer content.
+\end{frame}
+
+\begin{note}[Remark]
+  Custom environments use the general rule.
+\end{note}
+
+\clearpage
+
+\begin{juliacode}
+x = sum(abs2, 1:10)
+\end{juliacode}
+
+\begin{VerbatimOut}{snippet.txt}
+written to a file
+\end{VerbatimOut}
+
+\begin{markdown}
+Some *Markdown* inside LaTeX.
+\end{markdown}
+
+\begin{tikzpicture}
+  \begin{axis}
+    \addplot gnuplot [id=sine] {sin(x)};
+  \end{axis}
+\end{tikzpicture}
+
+\begin{frame}<2->[fragile]{Overlays}
+  \only<2>{Shown on slide two.}
+\end{frame}
 \end{document} % This is the end of the document
 
 % From https://guides.nyu.edu/LaTeX/sample-document

@@ -1,22 +1,63 @@
 {# templates/results.html #}
+{% extends "layouts/base.html" %}
+{% import 'macros/forms.html' as forms %}
+{% from "macros/badges.html" import badge, pill with context %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Results</title>
-</head>
+{% macro score_row(student, max_score=100, show_rank=false) -%}
+  <tr class="{{ loop.cycle('odd', 'even') if loop is defined else '' }}">
+    <td>{{ student.name | title | e }}</td>
+    <td>{{ "%d/%d" | format(student.score, max_score) }}</td>
+    {% if show_rank %}<td>#{{ kwargs.rank | default(none) }}</td>{% endif %}
+  </tr>
+{%- endmacro %}
 
-<body>
+{% block title %}{{ super() }} &ndash; Results{% endblock %}
+
+{% block content %}
+  {% set passing = students | selectattr("score", ">=", 50) | list %}
+  {% set ratio = (passing | length) / (students | length) * 100 if students else 0 %}
+  {% set label = 'It\'s "done"\n\t\u00e9 \x41' ~ " \\ ok" %}
+
   <h1>{{ test_name }} Results</h1>
+  <p>{{ passing | length }} of {{ students | count }} passed ({{ ratio | round(1) }}%).</p>
+
+  <table>
+  {% for student in students | sort(attribute='score', reverse=true) %}
+    {{ score_row(student, max_score, show_rank=true, rank=loop.index) }}
+    {% if loop.first %}<!-- top scorer -->{% endif %}
+  {% else %}
+    <tr><td colspan="3">No students yet.</td></tr>
+  {% endfor %}
+  </table>
+
   <ul>
-  {% for student in students %}
-    <li>
-      <em>{{ student.name }}:</em> {{ student.score }}/{{ max_score }}
-    </li>
+  {% for key, value in config.items() if key is not none and key != "secret" %}
+    <li>{{ key }}: {{ value[0] if value is sequence else value }}</li>
   {% endfor %}
   </ul>
-</body>
-</html>
+
+  {% if ratio > 90 and not failed %}
+    {{ badge("excellent") }}
+  {% elif ratio <= 50 or failed == true %}
+    {{ pill('needs work', level=2 ** 3 // 4 % 3 - 1 + 1) }}
+  {% else %}
+    {{ forms.input("note", value="", type="text") }}
+  {% endif %}
+
+  {% filter upper %}
+    This block is shouted.
+  {% endfilter %}
+
+  {% with total = students | sum(attribute="score"), names = {"a": 1, "b": [1, 2]} %}
+    <p>Total: {{ total }}</p>
+  {% endwith %}
+
+  {% raw %}
+    {{ this is not rendered }} {% neither is this %}
+  {% endraw %}
+
+  {% autoescape false %}{{ html_blob }}{% endautoescape %}
+  {% include "partials/footer.html" ignore missing %}
+{% endblock %}
 
 {# From https://realpython.com/primer-on-jinja-templating/#use-if-statements #}

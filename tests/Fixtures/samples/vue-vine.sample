@@ -27,3 +27,226 @@ export function App() {
     </div>
   `
 }
+
+// ---------------------------------------------------------------------------
+// A small kanban board written as Vue Vine components (*.vine.ts)
+// ---------------------------------------------------------------------------
+
+import { onMounted, watch, type Ref } from 'vue'
+import * as api from './api'
+import type { User } from './types'
+import defaultAvatar from './assets/avatar.png'
+import config from './board.json' with { type: 'json' }
+export * from './types'
+export { default as BoardHeader } from './BoardHeader.vine'
+
+export enum Status {
+  Todo = 'todo',
+  Doing = 'doing',
+  Done = 'done',
+}
+
+const enum Limits {
+  MaxCards = 0x40,
+  MaxTitle = 120,
+}
+
+export interface Card {
+  readonly id: number
+  title: string
+  status: Status
+  assignee?: User | null
+  tags: string[]
+  estimate: [min: number, max?: number]
+}
+
+type CardPatch = Partial<Omit<Card, 'id'>>
+type ByStatus = { [S in Status]: Card[] }
+type Unwrap<T> = T extends Ref<infer U> ? U : T
+type Handler<E extends keyof HTMLElementEventMap = 'click'> = (event: HTMLElementEventMap[E]) => void
+
+declare global {
+  interface Window { __BOARD_VERSION__: string }
+}
+
+namespace Format {
+  export const percent = (n: number): string => `${(n * 100).toFixed(1)}%`
+}
+
+/**
+ * Keeps the cards in memory and syncs them with the server.
+ * @param initial - cards to start with
+ * @returns the store instance
+ */
+abstract class BaseStore<T extends { id: number }> {
+  protected items = new Map<number, T>()
+  static #instances = 0
+
+  constructor(public readonly name: string, private debounceMs = 250) {
+    BaseStore.#instances++
+  }
+
+  abstract validate(item: T): asserts item is T
+
+  *[Symbol.iterator](): IterableIterator<T> {
+    yield* this.items.values()
+  }
+}
+
+function logged(_target: object, key: string, descriptor: PropertyDescriptor) {
+  const original = descriptor.value
+  descriptor.value = function (this: unknown, ...args: unknown[]) {
+    console.debug(`[store] ${key}`, args)
+    return original.apply(this, args)
+  }
+}
+
+class CardStore extends BaseStore<Card> implements Iterable<Card> {
+  private static readonly TITLE_RE = /^[\p{L}\d][\p{L}\d\s\-_.,!?]{0,119}$/u
+
+  validate(card: Card): asserts card is Card {
+    if (!CardStore.TITLE_RE.test(card.title)) {
+      throw new TypeError(`Invalid title: "${card.title}"`)
+    }
+  }
+
+  @logged
+  async move(id: number, status: Status): Promise<Card | undefined> {
+    const card = this.items.get(id)
+    if (card === undefined) return undefined
+    try {
+      const updated = await api.patch<Card>(`/cards/${id}`, { status } satisfies CardPatch)
+      this.items.set(id, { ...card, ...updated })
+      return updated
+    } catch (err: unknown) {
+      if (err instanceof Error && err.name !== 'AbortError') console.error(err.message)
+      return card
+    } finally {
+      console.info(`${Format.percent(this.items.size / Limits.MaxCards)} full`)
+    }
+  }
+
+  grouped(): ByStatus {
+    const result = { todo: [], doing: [], done: [] } as ByStatus
+    for (const card of this) {
+      result[card.status].push(card)
+    }
+    return result
+  }
+}
+
+export const store = new CardStore('board')
+
+/**
+ * Parses a card from the clipboard format `title #tag ~est`.
+ *
+ * @example
+ *   parseCard("Write docs #writing ~3")
+ * @see {@link CardStore.validate} for the title rules
+ * @param {string} text - the raw clipboard text
+ * @throws {SyntaxError} when the text is empty
+ */
+export function parseCard(text: string, id = Date.now()): Card {
+  const [head = '', ...rest] = text.trim().split(/\s+(?=[#~])/)
+  const { length } = head
+  if (length === 0) throw new SyntaxError("Empty card text\n")
+  let estimate: Card['estimate'] = [1]
+  const tags: string[] = []
+  outer: for (const token of rest) {
+    switch (token[0]) {
+      case '#':
+        tags.push(token.slice(1))
+        break
+      case '~': {
+        const hours = Number.parseFloat(token.slice(1))
+        if (Number.isNaN(hours)) continue outer
+        estimate = [hours, hours * 1.5]
+        break
+      }
+      default:
+        break outer
+    }
+  }
+  return { id, title: head, status: Status.Todo, tags, estimate } as const satisfies Card
+}
+
+export function* idGenerator(start = 0b1, step = 0o10): Generator<bigint, never, void> {
+  let next = BigInt(start)
+  do {
+    yield next
+    next += BigInt(step) * 1_000n
+  } while (true)
+}
+
+const settings = {
+  theme: <'light' | 'dark'>'light',
+  get compact(): boolean { return localStorage.getItem("compact") === 'true' },
+  set compact(value: boolean) { localStorage.setItem('compact', String(value)) },
+  [Symbol.toStringTag]: 'Settings',
+  async load(this: typeof settings) { return (await api.list<string>('/settings'))[0] },
+}
+
+export type SettingsKey = keyof typeof settings
+let pending: number | undefined = void 0
+pending = typeof pending === 'number' ? pending >>> 1 : ~~(Math.random() * 1e-3 + 0.5)
+
+function CardItem(props: { card: Card; onMove: (status: Status) => void }) {
+  const expanded = ref(false)
+  const label = computed(() => props.card.tags.length > 0 ? props.card.tags.join(', ') : 'untagged')
+  const avatar = computed(() => props.card.assignee?.avatarUrl ?? defaultAvatar)
+
+  vineStyle.scoped(scss`
+    $radius: 6px;
+    .card {
+      border-radius: $radius;
+      padding: 0.5rem 1rem;
+      &.expanded { box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); }
+    }
+  `)
+
+  return vine`
+    <article :class="['card', { expanded }]" @click="expanded = !expanded">
+      <img :src="avatar" alt="" width="24" height="24" />
+      <h4>{{ card.title }}</h4>
+      <small v-if="expanded">{{ label }} · {{ card.estimate[0] }}h</small>
+      <button v-for="s in ['todo', 'doing', 'done']" :key="s" @click.stop="onMove(s)">
+        &rarr; {{ s }}
+      </button>
+    </article>
+  `
+}
+
+export function Board() {
+  const title = vineProp.withDefault('My board')
+  const columns = ref<ByStatus>(store.grouped())
+  const filter = ref('')
+  const emit = vineEmits<{ moved: [id: number, to: Status] }>()
+  const progress = computed(() => {
+    const total = Object.values(columns.value).flat().length
+    return total === 0 ? 0 : columns.value.done.length / total
+  })
+
+  onMounted(async () => {
+    const cards = await api.list<Card>('/cards?limit=' + Limits.MaxCards)
+    cards.forEach((c, i) => void (i < 1e3 && store.validate(c)))
+    window.__BOARD_VERSION__ ??= config.version
+  })
+
+  vineStyle(css`
+    .board {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+  `)
+
+  return vine`
+    <section class="board" :aria-label="title">
+      <h2>{{ title }} — {{ Format.percent(progress) }} done <input v-model="filter" /></h2>
+      <div v-for="(cards, status) in columns" :key="status" class="column">
+        <h3>{{ status }} ({{ cards.length }})</h3>
+        <CardItem v-for="card in cards" :key="card.id" :card="card" :on-move="(to) => store.move(card.id, to).then(() => emit('moved', card.id, to))" />
+      </div>
+    </section>
+  `
+}

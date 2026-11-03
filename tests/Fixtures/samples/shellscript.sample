@@ -26,3 +26,114 @@ case $1 in
 esac
 
 # From https://github.com/ruanyf/simple-bash-scripts/blob/master/scripts/weather.sh
+
+# ---------------------------------------------------------------------------
+# Helpers used by the deploy script below
+# ---------------------------------------------------------------------------
+set -euo pipefail
+shopt -s extglob nullglob
+
+readonly LOG_DIR="${HOME}/.cache/deploy"
+declare -a SERVERS=(web-01 web-02 "db primary")
+declare -A PORTS=([http]=80 [https]=443)
+export PATH="$PATH:/usr/local/bin" TZ=UTC
+local_count=0x1F
+mask=0755
+retries=$((3 + 2 * 4))
+alias ll='ls -la'
+
+log() {
+	local level=$1; shift
+	printf '%s [%-5s] %s\n' "$(date +%T)" "$level" "$*" >&2
+}
+
+function die {
+	log ERROR "${1:-unknown error}"
+	exit "${2:-1}"
+}
+
+cleanup() { rm -rf -- "$tmp_dir"; }
+trap cleanup EXIT INT TERM
+
+tmp_dir=$(mktemp -d)
+cd ~/projects || die "no projects dir"
+
+if [[ -z ${DEPLOY_ENV+x} ]]; then
+	DEPLOY_ENV=staging
+elif [[ $DEPLOY_ENV =~ ^(prod|production)$ && ! -f ./approved ]]; then
+	die "production deploys need approval" 2
+else
+	log INFO "deploying to ${DEPLOY_ENV^^}"
+fi
+
+[ -d "$LOG_DIR" ] || mkdir -p "$LOG_DIR"
+test -w "$LOG_DIR" && echo "log dir is writable"
+
+for server in "${SERVERS[@]}"; do
+	echo "Pinging ${server// /_} on port ${PORTS[https]}"
+	ping -c 1 "$server" &>/dev/null || log WARN "$server unreachable"
+done
+
+for ((i = 0; i < ${#SERVERS[@]}; i++)); do
+	(( local_count += i ))
+	echo "index $i -> ${SERVERS[$i]}"
+done
+
+count=0
+while read -r line; do
+	[[ $line == \#* ]] && continue
+	count=$((count + 1))
+done < <(grep -v '^$' /etc/hosts)
+
+until [ "$retries" -le 0 ]; do
+	retries=$(( retries - 1 ))
+	sleep 0.5
+	break
+done
+
+select choice in deploy rollback quit; do
+	case "$choice" in
+		deploy) echo "deploying" ;;
+		rollback|undo) echo 'rolling back' ;;
+		[qQ]*) break ;;
+		*) echo "invalid: $REPLY" ;;
+	esac
+done
+
+files=( *.@(sh|bash) )
+version=`git describe --tags 2>/dev/null`
+name=${0##*/}
+base=${name%.sh}
+echo $'Tab:\t Bell:\a Hex:\x41 Octal:\101 Ctrl:\cA'
+echo "Escapes: \"quoted\" \$HOME \`tick\` done"
+echo "Args: $# first=$1 all=$@ pid=$$ status=$?"
+
+cat <<EOF2 > "$tmp_dir/config.ini"
+[deploy]
+env = $DEPLOY_ENV
+host = $(hostname)
+EOF2
+
+cat <<-'RAW'
+	No $expansion happens here
+	RAW
+
+tr 'a-z' 'A-Z' <<< "upper case me"
+
+{ echo "grouped"; echo "output"; } | tee -a "$LOG_DIR/run.log" | wc -l
+( cd /tmp && ls ) 2>&1 >/dev/null
+sort file.txt | uniq -c | sort -rn > counts.txt
+diff <(ls dir1) <(ls dir2) || true
+
+long_command --flag=value \
+	--another-flag \
+	positional
+
+: <<'COMMENT'
+This block is ignored by the shell.
+COMMENT
+
+exec 3>&1
+eval "echo evaluated"
+wait
+exit 0

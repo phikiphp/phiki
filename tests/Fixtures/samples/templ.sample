@@ -10,3 +10,103 @@ templ body() {
 }
 
 // From https://templ.guide/syntax-and-usage/script-templates
+
+import (
+	"fmt"
+	"strings"
+)
+
+/* Shared view models */
+type Item struct {
+	ID    int
+	Name  string
+	Price float64
+}
+
+type Status int
+
+// buttonStyle returns the CSS class for a primary button.
+css buttonStyle(color string) {
+	background-color: { color };
+	padding: 4px 8px;
+	border-radius: 4px;
+}
+
+script greet(name string) {
+	console.log("Hello, " + name);
+}
+
+templ layout(title string) {
+	<!DOCTYPE html>
+	<html lang="en">
+		<head>
+			<meta charset="utf-8"/>
+			<title>{ title }</title>
+			<style type="text/css">
+				body { font-family: sans-serif; margin: 0 auto; }
+				.price { color: #2a7; }
+			</style>
+		</head>
+		<body>
+			<!-- page content goes here -->
+			<header id="top" class="site-header">
+				<h1>{ strings.ToUpper(title) }</h1>
+			</header>
+			<main>
+				{ children... }
+			</main>
+			<footer>&copy; 2024 Example &amp; Co.</footer>
+		</body>
+	</html>
+}
+
+templ itemList[T any](items []Item, status Status, selected T) {
+	@layout("Items") {
+		<section>
+			if len(items) == 0 {
+				<p class="empty">No items found.</p>
+			} else if len(items) > 100 {
+				<p>Showing the first 100 items.</p>
+			} else {
+				<p>{ fmt.Sprintf("%d items", len(items)) }</p>
+			}
+			<ul>
+				for _, item := range items {
+					<li id={ fmt.Sprintf("item-%d", item.ID) } class="item">
+						<span>{ item.Name }</span>
+						<span class="price">{ fmt.Sprintf("$%.2f", item.Price) }</span>
+						@priceBadge(item.Price)
+					</li>
+				}
+			</ul>
+			switch status {
+				case 0:
+					<span>Draft</span>
+				case 1:
+					<span>Published</span>
+				default:
+					<span>Unknown</span>
+			}
+			<button
+				class={ buttonStyle("#08f") }
+				onClick={ greet("world") }
+				if status == 1 {
+					disabled
+				}
+			>Greet</button>
+			<input type="checkbox" id='agree' checked?={ status > 0 }/>
+			<div>{! itemFooter(len(items)) }</div>
+			{{ total := 0.0 }}
+		</section>
+	}
+}
+
+templ priceBadge(price float64) {
+	if price > 50 {
+		<em>premium</em>
+	}
+}
+
+templ itemFooter(count int) {
+	<small>{ fmt.Sprint(count) } total</small>
+}

@@ -11,3 +11,93 @@ function fish_prompt
 end
 
 # From https://fishshell.com/docs/current/language.html#functions
+# ---------------------------------------------------------------
+# ~/.config/fish/functions/backup.fish
+# Back up project directories into dated archives.
+# ---------------------------------------------------------------
+
+set -gx BACKUP_ROOT $HOME/backups
+set -g backup_excludes node_modules vendor .cache
+
+function backup --description 'Archive project directories' --argument-names target
+    argparse 'h/help' 'n/dry-run' 'k/keep=' -- $argv
+    or return 1
+
+    if set -q _flag_help
+        echo "Usage: backup [-n] [-k COUNT] DIR..."
+        return 0
+    end
+
+    set -l keep 5
+    test -n "$_flag_keep"; and set keep $_flag_keep
+
+    if not test -d $BACKUP_ROOT
+        mkdir -p $BACKUP_ROOT 2>/dev/null
+        or begin
+            echo "cannot create $BACKUP_ROOT" >&2
+            return 1
+        end
+    end
+
+    set -l stamp (date +%Y-%m-%d_%H%M)
+    for dir in $argv
+        set -l name (basename $dir)
+        set -l archive "$BACKUP_ROOT/$name-$stamp.tar.gz"
+        set -l excludes
+        for pattern in $backup_excludes
+            set -a excludes --exclude=$pattern
+        end
+
+        switch $name
+            case '.*'
+                echo "skipping hidden directory $name"
+                continue
+            case 'tmp*' scratch
+                echo "skipping scratch directory \"$name\""
+                continue
+            case '*'
+                if set -q _flag_dry_run
+                    echo "would write $archive ($excludes[1..-1])"
+                else
+                    tar czf $archive $excludes -C (dirname $dir) $name >>$BACKUP_ROOT/backup.log 2>&1
+                    and echo (set_color green)"✔"(set_color normal) $archive
+                    or echo (set_color red)"✘ $name failed"(set_color normal) >&2
+                end
+        end
+
+        # Remove all but the newest $keep archives.
+        set -l old (ls -t $BACKUP_ROOT/$name-*.tar.gz 2>/dev/null)
+        if test (count $old) -gt $keep
+            rm -- $old[(math $keep + 1)..-1]
+        end
+    end
+
+    set -l total (du -sh $BACKUP_ROOT | string split \t)[1]
+    printf 'Backups use %s in %s\n' $total $BACKUP_ROOT
+    echo "Took $CMD_DURATION ms, status $status, pid $fish_pid"
+end
+
+function fish_greeting
+    set -l hour (date +%H)
+    if test $hour -lt 12
+        echo "Good morning, $USER!"
+    else if test $hour -lt 18
+        echo 'Good afternoon!'
+    else
+        echo "Good evening\x21 Escapes: tab\there \u2603 \U0001F600 \101 \X41 \cA \$HOME"
+    end
+
+    while read -l line
+        string match -qr '^#' -- $line; and continue
+        echo "config: $line"
+    end < ~/.config/fish/motd
+
+    set -l files **/*.fish ?.md
+    echo "found "(count $files)" files, first: $files[1]"
+    echo "nested: $(string upper $USER)"
+    sleep 1 &
+    command ls | grep -v '\.tmp$' | sort -u > /tmp/listing.txt
+end
+
+abbr -a gco 'git checkout'
+alias ll 'ls -lah'

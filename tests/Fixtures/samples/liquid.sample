@@ -12,3 +12,109 @@
 </ul>
 
 {%- comment -%} From https://www.codeshopify.com/blog_posts/related-products-with-product_list-sections-metafields {%- endcomment -%}
+
+{% comment %}
+  Product card with variants, pricing and pagination.
+  Rendered by sections/collection.liquid
+{% endcomment %}
+
+{% doc %}
+  Renders a product card.
+
+  @param {product} product - The product to show
+  @param {string} [size] - Optional image size
+  @example
+  {% render 'product-card', product: product, size: 'large' %}
+  @description Used on collection pages.
+{% enddoc %}
+
+{%- liquid
+  # Work out the display price
+  assign price = product.price | money_without_currency
+  assign on_sale = false
+  if product.compare_at_price > product.price
+    assign on_sale = true
+  endif
+  echo price
+-%}
+
+{% capture title_html %}<span class="title">{{ product.title | escape | truncate: 40, "…" }}</span>{% endcapture %}
+
+<div class="product-card{% if on_sale %} product-card--sale{% endif %}" data-id="{{ product.id }}">
+  {{ title_html }}
+
+  {% if product.available and product.tags contains "featured" %}
+    <span class="badge">{{ 'products.badge.featured' | t }}</span>
+  {% elsif product.variants.size == 0 or product.title == blank %}
+    <span class="badge badge--muted">Unavailable</span>
+  {% else %}
+    <span class="badge">{{ product.variants.first.title | default: "Default" }}</span>
+  {% endif %}
+
+  {% unless customer %}
+    <a href="/account/login">Log in to see member prices</a>
+  {% endunless %}
+
+  {% case product.type %}
+    {% when "Shirt", "Hoodie" %}
+      {% render 'size-chart', type: product.type %}
+    {% when 'Gift Card' %}
+      {% render 'gift-card-note' with product as item %}
+    {% else %}
+      {% include 'generic-details' %}
+  {% endcase %}
+
+  <ul>
+  {% for variant in product.variants limit: 5 offset: 1 reversed %}
+    {% if variant.available == false %}{% continue %}{% endif %}
+    <li class="{% cycle 'odd', 'even' %}">
+      {{ forloop.index }}. {{ variant.title }} &ndash; {{ variant.price | times: 1.2 | money }}
+      {% if forloop.last %}{% break %}{% endif %}
+    </li>
+  {% else %}
+    <li>No variants</li>
+  {% endfor %}
+  </ul>
+
+  {% for i in (1..3) %}<span class="star">{{ i }}</span>{% endfor %}
+  {% assign images = product.images | where: "alt", "hero" | map: "src" | sort | uniq %}
+  {{ images[0] | image_url: width: 600 | image_tag }}
+  {% increment card_counter %}{% decrement card_counter %}
+  {{ "now" | date: "%Y-%m-%d %H:%M" }} &middot; {{ product.description | strip_html | split: " " | size | plus: 1 }}
+</div>
+
+<table>
+{% tablerow item in collection.products cols: 3 limit: 9 %}
+  {{ item.title }}
+{% endtablerow %}
+</table>
+
+{% paginate collection.products by 12 %}
+  {{ paginate | default_pagination }}
+{% endpaginate %}
+
+{% form 'product', product %}
+  <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+  <button type="submit">Add to cart</button>
+{% endform %}
+
+{% raw %}{{ this.is.not.liquid }}{% endraw %}
+
+{% style %}
+  .product-card--sale { border-color: {{ settings.sale_color }}; }
+{% endstyle %}
+
+{% stylesheet %}
+  .product-card { display: grid; gap: 1rem; }
+{% endstylesheet %}
+
+{% javascript %}
+  document.querySelectorAll('.product-card').forEach((el) => el.classList.add('ready'));
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Product card",
+  "settings": [{ "type": "color", "id": "sale_color", "label": "Sale color", "default": "#e00" }]
+}
+{% endschema %}

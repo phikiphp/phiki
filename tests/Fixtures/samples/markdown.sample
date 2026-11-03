@@ -1,3 +1,8 @@
+---
+title: Quick Markdown Example
+tags: [markdown, example]
+---
+
 An h1 header
 ============
 
@@ -166,5 +171,82 @@ which you wish to be displayed literally, ex.: \`foo\`, \*bar\*, etc.
 - [x] Write the press release
 - [ ] Update the website
 - [ ] Contact the media
+
+# ATX h1 header
+## ATX h2 header ##
+
+#### An h4 header
+##### An h5 header
+###### An h6 header
+
+Some ~~deleted text~~ and *emphasis with **nested bold** inside*. Escaped
+\*literal asterisks\* and an HTML entity &copy; 2024 &mdash; plus <kbd>Ctrl</kbd>+<kbd>C</kbd>.
+
+Autolinks: <https://example.com/docs> and <mailto:someone@example.com> or
+<someone@example.com>. Reference links: [the guide][guide], [Guide][], and
+an image by reference: ![logo][logo-ref].
+
+[guide]: https://example.com/guide "The Guide"
+[logo-ref]: ./images/logo.png
+
+- - -
+___
+
+<div align="center">
+  <img src="banner.png" alt="Banner" width="600">
+</div>
+
+<details>
+<summary>Click to expand</summary>
+
+Hidden *markdown* content.
+
+</details>
+
+<script>
+  console.log("inline script in markdown");
+</script>
+
+```js
+// JavaScript
+const greet = (name) => `Hello, ${name}!`;
+```
+```typescript
+interface User { id: number; name?: string }
+```
+```php
+<?php echo strtoupper("phiki");
+```
+```json
+{ "name": "phiki", "private": true }
+```
+```bash
+composer require phiki/phiki && echo "done"
+```
+```css
+body { margin: 0; font-family: system-ui, sans-serif; }
+```
+```html
+<p class="lead">Hello <strong>world</strong></p>
+```
+```sql
+SELECT id, name FROM users WHERE active = 1 ORDER BY name;
+```
+```yaml
+on: [push, pull_request]
+```
+```diff
+- old line
++ new line
+```
+```rust
+fn main() { println!("{}", 1 + 2); }
+```
+```go
+func add(a, b int) int { return a + b }
+```
+```xml
+<config enabled="true"/>
+```
 
 <!--- From http://www.unexpected-vortices.com/sw/rippledoc/quick-markdown-example.html -->

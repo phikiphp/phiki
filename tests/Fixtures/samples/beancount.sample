@@ -1,3 +1,30 @@
+;; -*- mode: beancount -*-
+;; Personal ledger for 2012
+
+option "title" "Personal Ledger"
+option "operating_currency" "USD"
+plugin "beancount.plugins.auto_accounts"
+plugin "beancount.plugins.check_commodity" "strict"
+include "prices/2012.beancount"
+
+1980-05-12 commodity USD
+  name: "US Dollar"
+  asset-class: "cash"
+
+2010-01-01 commodity VTI
+  name: "Vanguard Total Stock Market ETF"
+
+2012-01-01 open Assets:MyBank:Checking       USD, CAD
+2012-01-01 open Assets:FR:SocGen:Checking    CAD
+2012-01-01 open Assets:Brokerage:VTI         VTI "FIFO"
+2012-01-01 open Liabilities:CreditCard       USD
+2012-01-01 open Income:Salary                USD
+2012-01-01 open Expenses:Food:Groceries
+2012-01-01 open Expenses:Rent
+2012-01-01 open Equity:Opening-Balances
+
+2012-01-02 pad Assets:MyBank:Checking Equity:Opening-Balances
+
 2012-11-03 * "Transfer to pay credit card"
   Assets:MyBank:Checking            -400.00 USD
   Liabilities:CreditCard             400.00 USD
@@ -7,3 +34,47 @@
   Assets:FR:SocGen:Checking          436.01 CAD
 
 ; https://beancount.github.io/docs/beancount_language_syntax.html#costs-and-prices
+
+pushtag #trip-montreal
+
+2012-11-05 * "Le Marché" "Groceries for the week" #food ^receipt-2012-11-05
+  invoice: "INV-0042"
+  paid: TRUE
+  Expenses:Food:Groceries             82.17 CAD
+  Assets:FR:SocGen:Checking
+
+2012-11-06 ! "Hotel \"Le Petit\" deposit" ^booking-981
+  Liabilities:CreditCard            -150.00 USD
+  ! Expenses:Rent                    150.00 USD
+
+poptag #trip-montreal
+
+2012-11-15 txn "Employer Inc" "Salary"
+  Income:Salary                   -4,250.00 USD
+  Assets:MyBank:Checking           4,250.00 USD
+
+2012-11-20 * "Buy index fund shares"
+  Assets:Brokerage:VTI                   10 VTI {74.25 USD, 2012-11-20, "lot-1"}
+  Assets:MyBank:Checking            -742.50 USD
+
+2012-12-01 * "Sell some shares"
+  Assets:Brokerage:VTI                   -4 VTI {} @ 76.10 USD
+  Assets:Brokerage:VTI                   -1 VTI {{74.25 USD}} @@ 76.10 USD
+  Assets:MyBank:Checking             380.50 USD
+  Income:Salary
+
+2012-12-15 P "Unrealized gain adjustment"
+  Assets:Brokerage:VTI                0 VTI
+
+2012-11-30 price VTI                  75.80 USD
+2012-12-31 price CAD                   1.01 USD
+
+2012-12-01 balance Assets:MyBank:Checking    3,107.50 USD
+2012-12-01 balance Liabilities:CreditCard       -150.00 ~ 0.01 USD
+
+2012-12-02 note Assets:MyBank:Checking "Called the bank about the wire fee"
+2012-12-03 document Liabilities:CreditCard "statements/2012-11.pdf"
+2012-12-04 event "location" "Montreal, Canada"
+2012-12-05 custom "budget" Expenses:Food:Groceries "monthly" 400.00 USD TRUE
+
+2012-12-31 close Assets:FR:SocGen:Checking

@@ -13,3 +13,155 @@ variables {
 }
 
 # From https://docs.github.com/en/graphql/guides/forming-calls-with-graphql
+
+"""
+The root schema of the bookshop API.
+"""
+schema {
+  query: Query
+  mutation: Mutation
+  subscription: Subscription
+}
+
+scalar DateTime @specifiedBy(url: "https://tools.ietf.org/html/rfc3339")
+
+directive @cacheControl(maxAge: Int = 60, scope: CacheScope = PUBLIC) on FIELD_DEFINITION | OBJECT
+
+enum CacheScope {
+  PUBLIC
+  PRIVATE
+}
+
+enum Genre {
+  FICTION
+  NON_FICTION
+  POETRY @deprecated(reason: "Merged into \"FICTION\"")
+}
+
+interface Node {
+  id: ID!
+}
+
+interface Timestamped {
+  createdAt: DateTime!
+  updatedAt: DateTime
+}
+
+"A person who writes books."
+type Author implements Node & Timestamped @cacheControl(maxAge: 3600) {
+  id: ID!
+  name: String!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  books(first: Int = 10, after: String, genres: [Genre!] = [FICTION, POETRY]): BookConnection!
+}
+
+type Book implements Node {
+  id: ID!
+  title: String!
+  isbn: String
+  price(currency: String = "EUR"): Float
+  rating: Float @deprecated
+  author: Author!
+  tags: [String!]!
+}
+
+type BookConnection {
+  edges: [BookEdge]
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type BookEdge {
+  cursor: String!
+  node: Book
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  endCursor: String
+}
+
+union SearchResult = Author | Book
+
+input BookInput {
+  title: String!
+  authorId: ID!
+  price: Float = 9.99
+  genres: [Genre!] = []
+  metadata: MetadataInput = { language: "en", pages: 320, illustrated: false, notes: null }
+}
+
+input MetadataInput {
+  language: String
+  pages: Int
+  illustrated: Boolean
+  notes: String
+}
+
+type Query {
+  node(id: ID!): Node
+  search(term: String!, limit: Int = 20): [SearchResult!]!
+}
+
+type Mutation {
+  addBook(input: BookInput!): Book
+}
+
+type Subscription {
+  bookAdded(genre: Genre): Book
+}
+
+extend type Author {
+  website: String
+}
+
+fragment BookFields on Book {
+  id
+  title
+  price(currency: "USD")
+  author {
+    ...AuthorFields
+  }
+}
+
+fragment AuthorFields on Author {
+  id
+  name
+}
+
+query SearchBooks($term: String!, $withAuthor: Boolean = true, $after: String) {
+  search(term: $term, limit: 5) {
+    __typename
+    ... on Book {
+      ...BookFields
+      tags @include(if: $withAuthor)
+    }
+    ... on Author {
+      name
+      books(first: 3, after: $after, genres: [FICTION]) {
+        totalCount
+        edges { cursor node { title } }
+      }
+    }
+  }
+}
+
+mutation AddBook {
+  addBook(input: {
+    title: "Caf\u00e9 \"Stories\"\n"
+    authorId: "QXV0aG9yOjE="
+    price: -12.5e+1
+    genres: [FICTION, NON_FICTION]
+    metadata: { language: "fr", pages: 0, illustrated: true }
+  }) {
+    id
+    newTitle: title
+  }
+}
+
+subscription OnBookAdded {
+  bookAdded(genre: POETRY) {
+    ...BookFields
+  }
+}

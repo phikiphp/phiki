@@ -10,3 +10,116 @@ endwhile
 unlet i
 
 " From https://en.wikipedia.org/wiki/Vim_%28text_editor%29#Vim_script
+
+""" Settings {{{1
+""" A small personal vimrc that shows off the usual building blocks:
+""" options, mappings, autocommands, functions and syntax rules.
+
+set nocompatible
+set number relativenumber
+set tabstop=4 shiftwidth=4 expandtab
+set noswapfile nobackup
+setlocal spell spelllang=en_gb
+set background=dark
+colorscheme desert
+
+let g:mapleader = ","
+let s:cache_dir = expand('~/.cache/vim')
+let g:netrw_banner = 0
+let b:did_ftplugin = true
+
+" Plugins {{{1
+call plug#begin('~/.vim/plugged')
+Plug 'tpope/vim-surround'
+Plug 'junegunn/fzf.vim'
+call plug#end()
+" }}}
+
+" Mappings {{{1
+nnoremap <leader>w :w<CR>
+nnoremap <silent> <leader>n :nohlsearch<CR>
+inoremap jk <Esc>
+vnoremap <C-c> "+y
+nmap <F5> <Plug>(RunCurrentFile)
+noremap <buffer> <expr> <Space> foldlevel('.') ? 'za' : 'l'
+tnoremap <Esc> <C-\><C-n>
+
+" Functions {{{1
+function! s:EnsureDir(path) abort
+  if !isdirectory(a:path)
+    call mkdir(a:path, 'p')
+  endif
+  return a:path
+endfunction
+
+function! StripTrailing() range
+  let l:save = winsaveview()
+  try
+    silent! keeppatterns %s/\s\+$//e
+  catch /^Vim\%((\a\+)\)\=:E486/
+    echomsg "Nothing to strip"
+  finally
+    call winrestview(l:save)
+  endtry
+endfunction
+
+function! s:Summarise(...) abort
+  let l:parts = []
+  for l:item in a:000
+    if empty(l:item)
+      continue
+    elseif l:item ==# 'stop'
+      break
+    endif
+    call add(l:parts, printf('%s=%d', l:item, len(l:item)))
+  endfor
+  let l:total = len(l:parts) >= 3 ? 'many' : 'few'
+  echohl WarningMsg | echo join(l:parts, ', ') | echohl None
+  return extend({'total': l:total}, get(g:, 'summary_defaults', {}))
+endfunction
+
+func! ToggleWrap()
+  if &wrap && &paste
+    setlocal nowrap
+  else
+    setlocal wrap
+  endif
+  execute "normal! zz"
+  redraw
+endfunc
+
+if has('nvim') || v:version >= 800
+  let &shellredir = '>%s 2>&1'
+  let &rtp .= ',' . s:EnsureDir(s:cache_dir)
+endif
+
+" Commands {{{1
+command! -nargs=* -bang -complete=file Summary call s:Summarise(<f-args>)
+com! -nargs=0 Strip call StripTrailing()
+command! Reload source $MYVIMRC | echo "reloaded " . v:servername
+
+" Autocommands {{{1
+augroup vimrc_local
+  autocmd!
+  autocmd BufWritePre *.py,*.js call StripTrailing()
+  autocmd FileType markdown setlocal wrap linebreak
+  au BufNewFile,BufRead *.sample setf text
+  au VimEnter * if argc() == 0 | Explore | endif
+augroup END
+
+" Syntax {{{1
+syntax on
+syntax case ignore
+syn keyword todoKeyword TODO FIXME XXX contained
+syn match todoComment /#.*$/ contains=todoKeyword
+syn region todoString start=+"+ skip=+\\"+ end=+"+ oneline
+hi def link todoKeyword Todo
+hi def link todoComment Comment
+highlight default link todoString String
+
+" Deferred work
+call timer_start(500, {-> execute('doautocmd User LazyLoad')})
+sleep 10m
+wincmd p
+
+" vim: set foldmethod=marker foldlevel=0:

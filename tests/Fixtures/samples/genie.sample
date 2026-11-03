@@ -30,3 +30,79 @@ namespace Entitas
                 listener.event(e, index, component)
 
 // From https://github.com/darkoverlordofdata/libentitas/blob/master/src/Events/EntityChanged.gs
+
+
+/*
+ * A small command line tool that uses the event system above.
+ */
+uses
+    GLib
+    Entitas
+
+const MAX_ENTITIES : int = 0x400
+const VERSION : string = "1.2.0"
+
+enum Severity
+    INFO
+    WARNING
+    ERROR
+
+class Counter : Object implements IComponent
+    prop count : uint = 0
+    prop ratio : double = 1.5e-3
+    prop name : string = "counter"
+    prop flags : uint8 = 0b1010
+    prop symbol : unichar = 'é'
+
+    def increment(by : int = 1) : uint
+        count += by
+        return count
+
+    def describe() : string
+        return @"$name has $count events (ratio $(ratio * 100)%)"
+
+init
+    var counter = new Counter()
+    var changed = new EntityChanged()
+    var total = 0
+
+    for var i = 1 to 10
+        if i % 2 == 0 and i != 4
+            total += i
+        else if i > 8 or i < 0
+            continue
+        counter.increment(i)
+
+    var words = new array of string[3]
+    words[0] = "alpha"
+    words[1] = "beta\tgamma"
+    words[2] = """multi "quoted" text"""
+
+    var pattern = /^[a-z]+\t?[a-z]*$/
+    var matches = 0
+    for word in words
+        if pattern.match(word)
+            matches++
+
+    case total
+        when 0
+            print "nothing counted"
+        when 1, 2, 3
+            print "a few"
+        default
+            print "total: %d, matches: %d", total, matches
+
+    try
+        var contents = ""
+        FileUtils.get_contents("/tmp/counter.txt", out contents)
+        stdout.printf("read %ld bytes\n", contents.length)
+    except e : FileError
+        stderr.printf("error: %s\n", e.message)
+
+    #if DEBUG
+    print "debug build %s", VERSION
+    #endif
+
+    changed.clear()
+    print counter.describe()
+    print "char %c, max %d, mask %x", 'x', MAX_ENTITIES, 0xFF

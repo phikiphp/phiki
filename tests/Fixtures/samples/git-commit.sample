@@ -1,0 +1,63 @@
+Fix off-by-one in pagination when the last page is full
+
+When the number of results was an exact multiple of the page size, the
+paginator reported one extra, empty page. The "next" link on the last
+page then led to a 404. This subject line is deliberately left a little too long to show the warnings
+
+Compute the page count with integer ceiling division instead of adding
+one unconditionally, and add regression tests for 0, 1, n-1, n and n+1
+results.
+
+  * Paginator::pageCount() now returns 0 for an empty result set
+  * The template hides the "next" link on the last page
+
+Fixes: #482
+Reviewed-by: Dana Smith <dana@example.com>
+Co-authored-by: Lee Wong <lee@example.org>
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# Date:      Tue Nov 3 14:02:11 2026 +0100
+#
+# On branch fix/pagination-last-page
+# Your branch is up to date with 'origin/fix/pagination-last-page'.
+#
+# Changes to be committed:
+#	modified:   src/Pagination/Paginator.php
+#	renamed:    tests/PaginatorTest.php -> tests/Pagination/PaginatorTest.php
+#	new file:   tests/Pagination/LastPageTest.php
+#	deleted:    tests/Fixtures/legacy-pages.json
+#	typechange: resources/views/pager.blade.php
+#
+# Untracked files:
+#	notes.txt
+#
+# ------------------------ >8 ------------------------
+# Do not modify or remove the line above.
+# Everything below it will be ignored.
+diff --git a/src/Pagination/Paginator.php b/src/Pagination/Paginator.php
+index 3f2a9c1..b7e04d2 100644
+--- a/src/Pagination/Paginator.php
++++ b/src/Pagination/Paginator.php
+@@ -41,7 +41,11 @@ final class Paginator
+     public function pageCount(): int
+     {
+-        return intdiv($this->total, $this->perPage) + 1;
++        if ($this->total === 0) {
++            return 0;
++        }
++
++        return intdiv($this->total + $this->perPage - 1, $this->perPage);
+     }
+ 
+     public function hasMorePages(): bool
+diff --git a/tests/Fixtures/legacy-pages.json b/tests/Fixtures/legacy-pages.json
+deleted file mode 100644
+index 9d1c0e4..0000000
+--- a/tests/Fixtures/legacy-pages.json
++++ /dev/null
+@@ -1,3 +0,0 @@
+-{
+-    "pages": [1, 2, 3]
+-}

@@ -17,3 +17,124 @@
 }
 
 // From https://nextjs.org/docs/pages/building-your-application/configuring/post-css
+
+/* styles/components/card.pcss — processed with postcss-nested, postcss-mixins and postcss-simple-vars */
+
+@import "settings/colors.pcss";
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+@import base/reset.pcss;
+
+$card-radius: 8px;
+$card-gap: 1.5rem;
+$breakpoint-md: 768px;
+
+:root {
+  --brand: #3a7bd5;
+  --brand-dark: #1f4e96;
+  --shadow: 0 2px 6px rgba(0, 0, 0, .15);
+}
+
+@define-mixin truncate $lines {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  overflow: hidden;
+}
+
+@mixin button-variant($color, $hover: darken($color, 10%)) {
+  background-color: $color;
+  &:hover { background-color: $hover; }
+}
+
+@function rem($px) {
+  @return $px / 16px * 1rem;
+}
+
+%visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  clip: rect(0 0 0 0);
+}
+
+.card {
+  display: grid;
+  gap: $card-gap;
+  padding: calc($card-gap * 2) 1em;
+  border-radius: $card-radius;
+  color: var(--brand);
+  box-shadow: var(--shadow);
+  transition: transform 150ms ease-in-out, opacity .2s;
+  background: url(images/card-bg.png) no-repeat center / cover;
+
+  &__title {
+    font-size: rem(24px);
+    font-weight: 600;
+    @mixin truncate 2;
+  }
+
+  &--featured {
+    border: 2px solid #ffcc00;
+    transform: rotate(-1.5deg) scale(1.02);
+  }
+
+  & + & {
+    margin-top: 0;
+  }
+
+  .icon:not(.icon--large) {
+    width: 16px;
+  }
+
+  a:hover,
+  a:focus-visible {
+    text-decoration: underline;
+  }
+
+  &::after {
+    content: '';
+    content: attr(data-badge);
+  }
+
+  > img[src$=".svg"] {
+    max-width: 100%;
+  }
+
+  .is-#{$state} {
+    opacity: 0.5;
+  }
+
+  @media (min-width: $breakpoint-md) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include button-variant(#e53e3e);
+  @extend %visually-hidden;
+}
+
+#sidebar ul li {
+  list-style: none;
+  margin: 0 auto;
+}
+
+@each $name, $glyph in (add: "+", remove: "-") {
+  .icon-$(name)::before { content: $glyph; }
+}
+
+@for $i from 1 through 3 {
+  .mt-$i { margin-top: calc($i * 4px); }
+}
+
+@if $card-radius > 4px {
+  .rounded { border-radius: $card-radius; }
+} @else {
+  .rounded { border-radius: 0; }
+}
+
+@supports (display: grid) and (not (display: inline-grid)) {
+  body { font: 16px/1.5 "Inter", sans-serif; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

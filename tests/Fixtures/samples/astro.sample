@@ -2,8 +2,22 @@
 // Your component script here!
 import Banner from '../components/Banner.astro';
 import ReactPokemonComponent from '../components/ReactPokemonComponent.jsx';
+import Layout from '../layouts/Layout.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+interface Props {
+  title: string;
+  limit?: number;
+}
+
 const myFavoritePokemon = [/* ... */];
-const { title } = Astro.props;
+const { title, limit = 10 } = Astro.props;
+const posts: CollectionEntry<'blog'>[] = (await getCollection('blog'))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, limit);
+const isLoggedIn = Astro.cookies.has('session');
+const jsonLd = { '@context': 'https://schema.org', '@type': 'Blog', name: title };
 ---
 <!-- HTML comments supported! -->
 {/* JS comment syntax is also valid! */}
@@ -26,3 +40,82 @@ const { title } = Astro.props;
 <p class:list={["add", "dynamic", {classNames: true}]} />
 
 <!-- From https://docs.astro.build/en/core-concepts/astro-components/ -->
+
+<Layout title={`${title} &mdash; Blog`} description="Latest posts">
+  <header>
+    <nav-menu data-open="false">
+      <a href="/" aria-current={Astro.url.pathname === '/' ? 'page' : undefined}>Home</a>
+      <a href=/about>About</a>
+    </nav-menu>
+    <img src="/logo.svg" alt="Site logo" width="120" height="40" />
+    <hr>
+  </header>
+
+  <main>
+    {isLoggedIn ? (
+      <p>Welcome back! &#128075; &#x1F44B;</p>
+    ) : (
+      <a href="/login">Sign in &amp; comment</a>
+    )}
+
+    {posts.length > 0 && (
+      <section>
+        {posts.map(({ slug, data }) => (
+          <article>
+            <h2><a href={`/blog/${slug}/`}>{data.title}</a></h2>
+            <time datetime={data.pubDate.toISOString()}>{data.pubDate.toLocaleDateString('en-US')}</time>
+            <Fragment set:html={data.summary} />
+          </article>
+        ))}
+      </section>
+    )}
+
+    <button type="button" onclick="this.dataset.count = String(Number(this.dataset.count || '0') + 1) // count clicks">
+      Like
+    </button>
+    <input type="search" name="q" placeholder='Search posts' onkeydown='if (event.key === "Escape") this.value = "" /* reset */' />
+
+    <pre is:raw>{ this is not an expression }</pre>
+    <slot name="footer" />
+    <slot />
+  </main>
+</Layout>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('button[type="button"]');
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => console.log('clicked', button.dataset.count));
+  });
+</script>
+
+<script type="module" is:inline>
+  import confetti from 'https://cdn.example.com/confetti.mjs';
+  window.addEventListener('load', () => confetti({ particleCount: 50 }));
+</script>
+
+<script lang="ts">
+  type Theme = 'light' | 'dark';
+  const theme: Theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  document.documentElement.dataset.theme = theme;
+</script>
+
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>
+
+<style>
+  h1 {
+    color: rebeccapurple;
+    font-size: clamp(1.5rem, 4vw, 3rem);
+  }
+  article + article { margin-top: 2rem; }
+</style>
+
+<style lang="scss">
+  $accent: #ff5d01;
+  nav-menu {
+    a { color: $accent; &:hover { text-decoration: underline; } }
+  }
+</style>
+
+<style is:global lang="css">
+  :root { --max-width: 72ch; }
+</style>

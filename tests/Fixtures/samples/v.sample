@@ -36,3 +36,167 @@ fn main() {
 }
 
 // From https://github.com/vlang/v/blob/master/examples/fibonacci.v
+module inventory
+
+import strings
+import json as js
+import time { Duration }
+
+/*
+ * A small inventory model showing structs, enums, interfaces,
+ * generics, error handling and string interpolation.
+ */
+
+pub const max_items = 1_000
+const default_tax = 0.2
+const mask = 0xFF_FF
+const perms = 0o755
+const flags = 0b1010_0101
+const avogadro = 6.022e23
+
+pub type ItemId = u32
+
+type Price = f64 | int
+
+pub enum Category {
+	tools
+	food
+	books = 10
+}
+
+[heap]
+pub struct Item {
+pub:
+	id   ItemId
+	name string
+mut:
+	stock    int = 1
+	price    f64
+	category Category
+	tags     []string
+}
+
+pub mut struct Warehouse {
+	items map[string]Item
+	log   strings.Builder
+}
+
+union Bits {
+	word u32
+	raw  [4]u8
+}
+
+pub interface Describer {
+	describe() string
+}
+
+pub fn (it Item) describe() string {
+	return '${it.name} (#${it.id}): ${it.stock} in stock at \$${it.price:.2f}'
+}
+
+pub fn (mut w Warehouse) add(item Item) ! {
+	if w.items.len >= max_items {
+		return error('warehouse is full')
+	}
+	if item.name in w.items {
+		return error('duplicate item "${item.name}"')
+	}
+	w.items[item.name] = item
+}
+
+fn (w &Warehouse) find(name string) ?Item {
+	return w.items[name] or { return none }
+}
+
+fn (a Item) + (b Item) Item {
+	return Item{
+		...a
+		stock: a.stock + b.stock
+	}
+}
+
+[inline]
+fn tax(p Price) f64 {
+	return match p {
+		f64 { p * default_tax }
+		int { f64(p) * default_tax }
+	}
+}
+
+fn max<T>(values []T) T {
+	mut best := values[0]
+	for v in values[1..] {
+		if v > best {
+			best = v
+		}
+	}
+	return best
+}
+
+fn describe_all(things []Describer) string {
+	mut sb := strings.new_builder(64)
+	for i, t in things {
+		sb.write_string('${i + 1}. ${t.describe()}\n')
+	}
+	return sb.str()
+}
+
+fn label(c Category) string {
+	return match c {
+		.tools { 'Tools' }
+		.food { 'Food' }
+		else { 'Other' }
+	}
+}
+
+fn checksum(data []u8) u32 {
+	mut sum := u32(0)
+	for b in data {
+		sum = (sum << 3) ^ u32(b) & u32(mask) | ~sum >> 29
+	}
+	unsafe {
+		bits := Bits{ word: sum }
+		_ = bits.raw[0]
+	}
+	return sum
+}
+
+fn worker(id int, ch chan string) {
+	defer {
+		println('worker ${id} done')
+	}
+	time.sleep(10 * time.millisecond)
+	ch <- 'result from ${id}'
+}
+
+fn demo() {
+	mut w := Warehouse{}
+	w.add(Item{ id: 1, name: 'hammer', price: 12.5, category: .tools }) or {
+		eprintln('failed: ${err}')
+		return
+	}
+	hammer := w.find('hammer') or { panic('missing') }
+	assert hammer.stock == 1, 'one hammer'
+	println(describe_all([hammer]))
+	println(max([3, 9, 4]))
+	raw := r'C:\path\without\escapes'
+	c_str := c"native"
+	tab := '\t\x41\u00e9'
+	letter := `a`
+	println('${raw} ${tab} ${letter} ${c_str} ${label(.books)}')
+	ch := chan string{cap: 2}
+	spawn worker(1, ch)
+	go worker(2, ch)
+	msg := <-ch
+	if msg.len > 0 && !msg.contains('error') || false {
+		println(msg)
+	}
+	data := js.encode(hammer)
+	is_item := hammer is Describer
+	println('${data} ${is_item} ${typeof(hammer).name} ${sizeof(Item)}')
+	$if debug {
+		println('debug build')
+	} $else {
+		println('release build')
+	}
+}

@@ -15,3 +15,135 @@ nav {
 }
 
 // From https://sass-lang.com/guide/
+
+@charset "UTF-8";
+@use "sass:math";
+@use 'config/theme' as theme with ($primary: #0d6efd, $radius: 4px);
+@forward "src/list" hide list-reset, $horizontal-list-gap;
+@import 'normalize', "vendor/grid";
+@namespace svg url(http://www.w3.org/2000/svg);
+
+/**
+ * Design tokens
+ */
+/* Plain block comment */
+$font-stack: "Inter", Helvetica, sans-serif !default;
+$base-spacing: 1.25rem;
+$z-layers: (
+  "modal": 100,
+  "dropdown": 50,
+  'tooltip': 25
+);
+$enabled: true !global;
+$nothing: null;
+
+%card-base {
+  border-radius: theme.$radius;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .12);
+}
+
+@mixin truncate($lines: 1, $args...) {
+  @if $lines == 1 and $enabled {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  } @else if $lines > 1 or not $enabled {
+    -webkit-line-clamp: $lines;
+  } @else {
+    @warn "Invalid line count: #{$lines}";
+  }
+  @content;
+}
+
+@function z($layer) {
+  @if not map-has-key($z-layers, $layer) {
+    @error "No layer `#{$layer}`";
+  }
+  @return map-get($z-layers, $layer);
+}
+
+@function strip-unit($value) {
+  @return math.div($value, ($value * 0 + 1));
+}
+
+@font-face {
+  font-family: "Brand Sans";
+  src: url("/fonts/brand.woff2") format("woff2"), url(fonts/brand.woff) format('woff');
+  font-display: swap;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  50% { opacity: .5; }
+  to { opacity: 1; }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1199.98px) {
+  .sidebar { width: calc(100% - #{$base-spacing * 2}); }
+}
+
+@supports (display: grid) and (not (display: inline-grid)) {
+  .layout { display: grid; grid-template-columns: repeat(3, 1fr); }
+}
+
+@page :first {
+  margin: 1in;
+}
+
+.card {
+  @extend %card-base;
+  @include truncate(2) {
+    color: darken(theme.$primary, 10%);
+  }
+  position: relative;
+  z-index: z("modal");
+  font: #{$base-spacing}/1.5 $font-stack;
+  margin: -$base-spacing auto 0 !important;
+
+  &__title {
+    font-weight: 700;
+    &:hover, &:focus-visible { text-decoration: underline; }
+  }
+
+  & + & { margin-top: $base-spacing * 1.5; }
+  > .icon ~ span { padding-left: .25em; }
+
+  &::before {
+    content: "\201C";
+    color: #FFF;
+  }
+
+  a[href^='http']:not([href*="example.com"]),
+  input[type="checkbox" i] {
+    color: hsl(210, 50%, 40%);
+  }
+
+  li:nth-child(2n + 1) { background: lighten(#eee, 5%); }
+
+  #main-nav, .nav\:item, * {
+    box-sizing: border-box;
+  }
+
+  @at-root .theme-dark & {
+    background: mix(black, theme.$primary, 80%);
+  }
+
+  my-element {
+    display: contents;
+  }
+}
+
+@each $name, $value in $z-layers {
+  .z-#{$name} { z-index: $value; }
+}
+
+@for $i from 1 through 4 {
+  .gap-#{$i} { gap: $i * 0.25rem; }
+}
+
+$step: 6;
+@while $step > 0 {
+  .w-#{$step * 10} { width: percentage($step / 10); }
+  $step: $step - 2;
+}
+
+@debug "Spacing is #{$base-spacing}";

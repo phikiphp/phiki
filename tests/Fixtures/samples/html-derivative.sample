@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Order confirmation</title>
+  <link rel="stylesheet" href="/css/app.css">
+  <style>
+    .order { display: grid; gap: 1rem; }
+    .order__total { font-weight: 700; color: #1a7f37; }
+  </style>
+  <script type="module">
+    import { formatPrice } from '/js/money.js';
+    document.querySelectorAll('[data-price]').forEach((el) => {
+      el.textContent = formatPrice(Number(el.dataset.price), 'EUR');
+    });
+  </script>
+</head>
+<body class="page page--order">
+  <!-- Layout shared by the server-side templates -->
+  <header id="top">
+    <nav aria-label="Main">
+      <a href="/" class="logo"><img src="/img/logo.svg" alt="Shop" width="120" height="32"></a>
+      <ul>
+        <li><a href="/orders">Orders</a></li>
+        <li><a href="/account" aria-current="page">Account</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="order" data-order-id="10482">
+      <h1>Thanks for your order&nbsp;&mdash; it&#8217;s on its way!</h1>
+      <p>We sent a confirmation to <strong>ada@example.com</strong>. Delivery takes 2&ndash;4 days.</p>
+
+      <table>
+        <thead>
+          <tr><th scope="col">Item</th><th scope="col">Qty</th><th scope="col">Price</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Notebook, A5 dotted</td><td>2</td><td data-price="1290">12.90</td></tr>
+          <tr><td>Fountain pen &amp; ink</td><td>1</td><td data-price="3450">34.50</td></tr>
+        </tbody>
+        <tfoot>
+          <tr><td colspan="2">Total</td><td class="order__total" data-price="6030">60.30</td></tr>
+        </tfoot>
+      </table>
+
+      <order-tracker carrier="dhl" tracking-id="JD014600006281234567"></order-tracker>
+      <shop:recommendations limit=4 source='order'></shop:recommendations>
+      <x-rating value="4.5" readonly />
+
+      <form action="/orders/10482/feedback" method="post" novalidate>
+        <input type="hidden" name="_token" value="c2VjcmV0LXRva2Vu">
+        <label for="comment">How did we do?</label>
+        <textarea id="comment" name="comment" rows="3" placeholder="Optional"></textarea>
+        <label><input type="checkbox" name="newsletter" checked> Keep me posted</label>
+        <button type="submit" disabled>Send feedback</button>
+      </form>
+
+      <p class="note">Orders < 20 EUR ship by letter post; larger ones by parcel.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Shop Ltd. Prices include VAT. <a href="/terms">Terms</a> &bull; <a href="/privacy">Privacy</a></p>
+  </footer>
+</body>
+</html>

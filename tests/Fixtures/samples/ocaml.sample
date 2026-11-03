@@ -1,3 +1,119 @@
+(* ---- A small library-management module ---- *)
+
+open Printf
+module SMap = Map.Make(String)
+
+[@@@warning "-32"]
+
+type genre = Fiction | Science | History of int | Other of string
+
+type book = {
+  title : string;
+  author : string;
+  year : int;
+  mutable available : bool;
+  genre : genre;
+}
+
+type 'a result_t = ('a, string) result
+
+exception Not_found_book of string
+
+let max_loans = 5
+let fine_per_day = 0.25
+let hex_id = 0xFF_A0
+let bin_mask = 0b1010_1100
+let octal = 0o755
+let big = 1_000_000L
+let native = 42n
+let small = 7l
+let ratio = 1.5e-3
+let initial = 'A'
+let newline = '\n'
+let greeting = "Hello,\tlibrary\x21 \"quoted\" \\ end"
+let raw = {|raw string with "quotes" and \n no escapes|}
+let tagged = {sql|SELECT * FROM books|sql}
+
+module type CATALOG = sig
+  type t
+  val empty : t
+  val add : book -> t -> t
+  val find : string -> t -> book option
+end
+
+module Catalog : CATALOG with type t = book SMap.t = struct
+  type t = book SMap.t
+  let empty = SMap.empty
+  let add b cat = SMap.add b.title b cat
+  let find title cat = SMap.find_opt title cat
+end
+
+let describe_genre = function
+  | Fiction -> "fiction"
+  | Science -> "science"
+  | History century when century < 0 -> "ancient history"
+  | History century -> sprintf "history (%dth century)" century
+  | Other s -> String.lowercase_ascii s
+
+let rec count_available ?(acc = 0) = function
+  | [] -> acc
+  | { available = true; _ } :: rest -> count_available ~acc:(acc + 1) rest
+  | _ :: rest -> count_available ~acc rest
+
+let checkout (cat : Catalog.t) ~title : book result_t =
+  match Catalog.find title cat with
+  | None -> Error ("no such book: " ^ title)
+  | Some b when not b.available -> Error (b.title ^ " is on loan")
+  | Some b ->
+      b.available <- false;
+      Ok b
+
+let fine days =
+  if days <= 0 then 0.0
+  else if days > 30 then float_of_int days *. fine_per_day *. 2.0
+  else float_of_int days *. fine_per_day
+
+let titles books = List.map (fun b -> b.title) books |> List.sort compare
+
+let () =
+  let books =
+    [ { title = "Dune"; author = "Herbert"; year = 1965; available = true; genre = Fiction };
+      { title = "Cosmos"; author = "Sagan"; year = 1980; available = false; genre = Science };
+      { title = "SPQR"; author = "Beard"; year = 2015; available = true; genre = History 1 } ]
+  in
+  let catalog = List.fold_left (fun acc b -> Catalog.add b acc) Catalog.empty books in
+  (match checkout catalog ~title:"Dune" with
+   | Ok b -> printf "checked out %s by %s\n" b.title b.author
+   | Error msg -> eprintf "error: %s\n" msg);
+  let total = ref 0 in
+  for i = 1 to 3 do
+    total := !total + i
+  done;
+  while !total > 0 do
+    decr total
+  done;
+  let arr = [| 1; 2; 3 |] in
+  arr.(0) <- arr.(1) lsl 2 lor arr.(2) land 0xF;
+  let pair = (fst (1, 2), snd ("a", 'b')) in
+  try
+    if count_available books < 1 then raise (Not_found_book "any")
+  with
+  | Not_found_book name -> prerr_endline ("missing " ^ name)
+  | Invalid_argument _ | Failure _ -> ()
+
+class counter (start : int) =
+  object (self)
+    val mutable count = start
+    method incr = count <- count + 1; self#get
+    method get = count
+  end
+
+let c = new counter 10
+let _ = c#incr
+let poly : 'a. 'a list -> int = fun l -> List.length l
+let lazy_value = lazy (print_endline "forced"; 42)
+let variant = `Red
+let%test "fine is positive" = fine 3 > 0.0
 
 utop # type person = { name: string ; age: int ; human : bool };;
 type person = { name : string; age : int; human : bool; }

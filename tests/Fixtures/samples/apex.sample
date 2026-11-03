@@ -17,3 +17,196 @@ String body = 'Thank you for speaking at the conference.';
 EmailManager.sendMail(address, subject, body);
 
 // From http://ccoenraets.github.io/salesforce-developer-workshop/Creating-an-Apex-Class.html
+
+/**
+ * Service that keeps Opportunity totals in sync with their Account.
+ * @author Example Team
+ */
+public with sharing class OpportunityService implements Database.Batchable<SObject>, Schedulable {
+    public enum Stage { PROSPECTING, NEGOTIATION, CLOSED_WON, CLOSED_LOST }
+
+    public static final Integer BATCH_SIZE = 200;
+    private static final Decimal DISCOUNT_RATE = 0.15;
+    private final Map<Id, Account> accountsById = new Map<Id, Account>();
+    @TestVisible private static Boolean skipTrigger = false;
+
+    public String region { get; private set; }
+    public Integer processedCount {
+        get { return processedCount == null ? 0 : processedCount; }
+        set { processedCount = value; }
+    }
+
+    public OpportunityService() {
+        this('EMEA');
+    }
+
+    public OpportunityService(String region) {
+        this.region = region;
+    }
+
+    public Database.QueryLocator start(Database.BatchableContext context) {
+        return Database.getQueryLocator([
+            SELECT Id, Name, Amount, StageName, AccountId, CloseDate
+            FROM Opportunity
+            WHERE CloseDate = LAST_N_DAYS:30
+              AND Amount > 1000
+              AND StageName IN ('Prospecting', 'Negotiation')
+            ORDER BY CloseDate DESC NULLS LAST
+            LIMIT 50000
+        ]);
+    }
+
+    public void execute(Database.BatchableContext context, List<Opportunity> scope) {
+        Set<Id> accountIds = new Set<Id>();
+        for (Opportunity opp : scope) {
+            if (opp.AccountId != null) {
+                accountIds.add(opp.AccountId);
+            }
+        }
+
+        List<AggregateResult> totals = [
+            SELECT AccountId, SUM(Amount) total, COUNT(Id) cnt
+            FROM Opportunity
+            WHERE AccountId IN :accountIds AND IsClosed = false
+            GROUP BY AccountId
+            HAVING SUM(Amount) > 0
+        ];
+
+        List<Account> updates = new List<Account>();
+        for (AggregateResult ar : totals) {
+            Id accountId = (Id) ar.get('AccountId');
+            Decimal total = (Decimal) ar.get('total');
+            updates.add(new Account(Id = accountId, AnnualRevenue = total * (1 - DISCOUNT_RATE)));
+        }
+
+        try {
+            Database.SaveResult[] results = Database.update(updates, false);
+            for (Integer i = 0; i < results.size(); i++) {
+                if (!results[i].isSuccess()) {
+                    System.debug(LoggingLevel.ERROR, 'Failed: ' + results[i].getErrors()[0].getMessage());
+                }
+            }
+            processedCount += updates.size();
+        } catch (DmlException e) {
+            System.debug('DML error\n' + e.getMessage() + '\t(line ' + e.getLineNumber() + ')');
+            throw new OpportunityException('Could not update accounts', e);
+        } finally {
+            skipTrigger = false;
+        }
+    }
+
+    public void finish(Database.BatchableContext context) {
+        AsyncApexJob job = [SELECT Id, Status, NumberOfErrors FROM AsyncApexJob WHERE Id = :context.getJobId()];
+        String summary = String.format('Job {0} finished with {1} errors', new List<Object>{ job.Id, job.NumberOfErrors });
+        EmailManager.sendMail(UserInfo.getUserEmail(), 'Batch complete', summary);
+    }
+
+    public void execute(SchedulableContext context) {
+        Database.executeBatch(new OpportunityService(), BATCH_SIZE);
+    }
+
+    public static String describe(Stage stage) {
+        switch on stage {
+            when PROSPECTING, NEGOTIATION {
+                return 'Open';
+            }
+            when CLOSED_WON {
+                return 'Won';
+            }
+            when else {
+                return 'Lost';
+            }
+        }
+    }
+
+    public static String classify(SObject record) {
+        switch on record {
+            when Account a {
+                return 'Account: ' + a.Name;
+            }
+            when Contact c {
+                return 'Contact: ' + c.LastName;
+            }
+            when null {
+                return 'nothing';
+            }
+            when else {
+                return 'other';
+            }
+        }
+    }
+
+    @AuraEnabled(cacheable=true)
+    public static List<Contact> searchContacts(String term) {
+        String pattern = '%' + String.escapeSingleQuotes(term) + '%';
+        List<List<SObject>> found = [FIND :term IN NAME FIELDS RETURNING Contact(Id, Name)];
+        Integer attempts = 0;
+        while (attempts < 3) {
+            attempts++;
+            if (attempts == 2) continue;
+            if (found.isEmpty()) break;
+        }
+        do {
+            attempts--;
+        } while (attempts > 0);
+        return [SELECT Id, Name, Email FROM Contact WHERE Name LIKE :pattern WITH SECURITY_ENFORCED LIMIT 25];
+    }
+
+    public static Long checksum(Long value) {
+        Long seed = 9007199254740991L;
+        Double ratio = 3.5e2;
+        Boolean flag = value instanceof Long && value >= 0 || value <= -1;
+        value = (value << 3) ^ (seed >> 2) | 0;
+        value = flag ? value : -value;
+        Account acct = accountsByIdOrNull()?.get(null);
+        return value;
+    }
+
+    private static Map<Id, Account> accountsByIdOrNull() {
+        return null;
+    }
+
+    public class OpportunityException extends Exception {}
+
+    public interface Notifier {
+        void notify(String message);
+    }
+
+    public abstract class BaseNotifier implements Notifier {
+        protected abstract String channel();
+        public virtual void notify(String message) {
+            System.debug(channel() + ': ' + message);
+        }
+    }
+
+    public class SlackNotifier extends BaseNotifier {
+        protected override String channel() {
+            return '#sales';
+        }
+    }
+}
+
+trigger OpportunityTrigger on Opportunity (before insert, before update, after delete) {
+    if (Trigger.isBefore && Trigger.isInsert) {
+        for (Opportunity opp : Trigger.new) {
+            opp.Description = 'Created by trigger';
+        }
+    } else if (Trigger.isDelete) {
+        insert new Task(Subject = 'Opportunities deleted: ' + Trigger.old.size());
+    }
+}
+
+@IsTest
+private class OpportunityServiceTest {
+    @TestSetup
+    static void setup() {
+        insert new Account(Name = 'Acme');
+    }
+
+    @IsTest
+    static void describesStages() {
+        Test.startTest();
+        System.assertEquals('Won', OpportunityService.describe(OpportunityService.Stage.CLOSED_WON));
+        Test.stopTest();
+    }
+}

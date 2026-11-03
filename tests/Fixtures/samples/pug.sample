@@ -16,3 +16,71 @@ html(lang="en")
         strong focus on performance and powerful features.
 
 //- From https://github.com/pugjs/pug
+
+//- views/products/index.pug
+extends ../layouts/main.pug
+include ../partials/_helpers.pug
+
+block append scripts
+  script(src="/js/products.js" defer)
+
+mixin price(amount, currency)
+  span.price&attributes(attributes)= currency + ' ' + amount.toFixed(2)
+
+mixin productCard(product)
+  - const inStock = product.stock > 0
+  article.card(class={ 'card--sold-out': !inStock } data-id=product.id)
+    h2.card__title #{product.name}
+    p.card__meta Added on #[time(datetime=product.created)= product.createdLabel]
+    +price(product.price, 'EUR')(class="price--large")
+    if block
+      block
+
+block content
+  // Buffered comment: rendered into the HTML
+  //- Unbuffered comment: only in the template
+  <!-- raw HTML comment -->
+  - var total = 0
+  -
+    const featured = products.filter(p => p.featured)
+    const title = `Products (${products.length})`
+  h1= title
+  p.lead Showing #{products.length} items &mdash; prices include VAT &amp; shipping.
+  p!= description
+  ul#product-list.grid
+    each product, index in products
+      - total += product.price
+      li(class=index % 2 === 0 ? 'even' : 'odd')
+        +productCard(product)
+          a.button(href=`/products/${product.slug}` title='View details') View
+    else
+      li.empty No products found.
+  case sort
+    when 'price'
+      p Sorted by price
+    when 'name': p Sorted by name
+    default
+      p Unsorted
+  while total > 1000
+    - total -= 1000
+  unless user.isAdmin
+    p.notice
+      | You are browsing as a guest.
+      | Sign in to see member prices.
+  form(action="/search" method="get")
+    input(type="search" name="q" value=query placeholder="Search…" required)
+    button(type="submit" disabled=!query) Search
+  div.markdown
+    :markdown-it
+      ## Shipping
+      Free shipping on orders over **€50**.
+  style.
+    .grid { display: grid; gap: 1rem; }
+  :less
+    @accent: #ff6600;
+    .price { color: @accent; }
+  :coffee-script
+    console.log "loaded"
+  script.
+    window.cart = !{JSON.stringify(cart)};
+  <div class="footer-note">Inline HTML is allowed too.</div>

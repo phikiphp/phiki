@@ -7,3 +7,169 @@ iStochasticityAssumptions[sm_SparseArray] := SquareMatrixQ[sm] &&
     Apply[And, Thread [Total [sm, {2}] = 1]]
 
 (* https://github.com/WolframResearch/vscode-wolfram/blob/master/docs/highlighting.png *)
+
+(* ::Package:: *)
+(* :Title: MarkovTools *)
+(* :Summary: Small helpers for working with discrete Markov chains. (* nested *) *)
+
+BeginPackage["MarkovTools`", {"GeneralUtilities`"}]
+
+StationaryVector::usage = "StationaryVector[m] gives the stationary distribution of the stochastic matrix m."
+SimulateChain::usage = "SimulateChain[m, start, n] walks n steps from state start."
+StationaryVector::notstoch = "The matrix `1` is not row-stochastic."
+
+Begin["`Private`"]
+
+Options[SimulateChain] = {RandomSeeding -> Automatic, "Labels" -> None};
+Attributes[StationaryVector] = {Protected, ReadProtected};
+
+StationaryVector[m_?SquareMatrixQ] /; iStochasticityAssumptions[m] :=
+  Module[{vals, vecs, idx},
+    {vals, vecs} = Eigensystem[Transpose[N[m]]];
+    idx = First @ Ordering[Abs[vals - 1.], 1];
+    Normalize[Re @ vecs[[idx]], Total]
+  ]
+
+StationaryVector[m_] := (Message[StationaryVector::notstoch, MatrixForm[m]]; $Failed)
+
+SimulateChain[m_, start_Integer : 1, n_Integer?Positive, opts : OptionsPattern[]] :=
+  BlockRandom[
+    NestList[RandomChoice[m[[#]] -> Range[Length[m]]] &, start, n],
+    RandomSeeding -> OptionValue[RandomSeeding]
+  ]
+
+(* Patterns: blanks, sequences, defaults and alternatives *)
+countRuns[list : {___Integer}] := Length /@ Split[list]
+joinAll[first_, rest__] := StringJoin[first, Sequence @@ ToString /@ {rest}]
+scale[x_, factor_. ] := factor x
+shape[_Circle | _Disk] := "round"
+shape[other_] := Head[other]
+
+(* Pure functions, slots and the newer arrow syntax *)
+squares = Table[i^2, {i, 1, 10}];
+evens = Select[squares, EvenQ];
+pairs = MapIndexed[{#2[[1]], #1} &, evens];
+labels = Function[{k, v}, k <> ": " <> ToString[v]] @@@ {{"a", 1}, {"b", 2}};
+summed = Fold[#1 + #2 &, 0, squares];
+counts = Map[x |-> x^3 - 2 x + 1, Range[-3, 3]];
+argsDemo = f[##] & [1, 2, 3];
+named = StringTemplate["`name` is `age`"][<|"name" -> "Ada", "age" -> 36|>];
+slotted = #name <> " (" <> ToString[#age] <> ")" & /@ {<|"name" -> "Bo", "age" -> 4|>};
+
+(* Associations and parts *)
+config = <|"tolerance" -> 1.*^-8, "maxSteps" -> 10^6, "method" -> "Arnoldi"|>;
+config["maxSteps"] += 500;
+KeyDropFrom[config, "method"];
+matrix = {{0.9, 0.1, 0}, {0.2, 0.7, 0.1}, {0, 0.3, 0.7}};
+firstRow = matrix[[1, All]];
+corner = matrix[[2 ;; 3, -2 ;;]];
+matrix[[3, 3]] = 0.7`20;
+
+(* Assignment operators *)
+total = 0; total += 5; total -= 1; total *= 3; total /= 2;
+counter++; counter--; ++counter;
+values //= Sort;
+cache =.
+area /: Area[Square[s_]] := s^2
+Square /: Perimeter[Square[s_]] = 4 s;
+g[x_] ^:= gUp[x]
+h[y_] ^= 42
+
+(* Numbers in different forms *)
+numbers = {42, -17, 3.14159, .5, 6.022*^23, 1.5`30, 2.5``10, 16^^FF, 8^^777, 2^^1011, 16^^1F.8, 10!, 5!!};
+precise = N[Pi, 50] - E + Degree + GoldenRatio + EulerGamma + Catalan;
+complex = 3 + 4 I;
+interval = Infinity - ComplexInfinity;
+
+(* Logic and comparison *)
+check[x_] := Which[
+  x === Null, "null",
+  x =!= 0 && x != 1, "other",
+  x < 0 || x > 100, "out of range",
+  x <= 10, "small",
+  True, "big"
+]
+If[!TrueQ[$Notebooks], Print["Running from a script"], Null]
+
+(* Control flow *)
+result = Catch[
+  Do[If[Mod[k, 7] == 0, Throw[k]], {k, 1, 100}];
+  Missing["NotFound"]
+];
+fib[0] = 0; fib[1] = 1;
+fib[n_Integer /; n > 1] := fib[n] = fib[n - 1] + fib[n - 2]
+collatz[n_] := NestWhileList[If[EvenQ[#], #/2, 3 # + 1] &, n, # != 1 &]
+For[i = 1, i <= 3, i++, Echo[i, "step"]]
+While[total > 1, total = Floor[total / 2]]
+Switch[Head[result], Integer, "found", Missing, "none", _, "unknown"]
+Scan[Print, Reverse[Range[3]]];
+
+(* Derivatives, solving and calculus *)
+deriv = D[Sin[x] Exp[-x], x];
+fPrime = f';
+sol = DSolve[{y''[t] + y[t] == 0, y[0] == 1, y'[0] == 0}, y[t], t];
+roots = Solve[x^3 - 6 x^2 + 11 x - 6 == 0, x, Reals];
+integral = Integrate[1/(1 + x^2), {x, -Infinity, Infinity}];
+series = Series[Log[1 + x], {x, 0, 5}] // Normal;
+simplified = FullSimplify[Sqrt[x^2], Assumptions -> x > 0];
+expr //. {a_ + b_ :> b + a};
+rules = {x -> 1, y :> RandomReal[]};
+
+(* Strings, escapes and named characters *)
+greeting = "Tab:\t quote:\" backslash:\\ newline:\n done";
+special = "\[Alpha] + \[Beta] \[Element] \[DoubleStruckCapitalR] and \[Infinity]";
+codes = "\:00e9 \.41 \101 \|01F600";
+fileText = StringReplace[ReadString["data.txt"], RegularExpression["\\s+"] -> " "];
+words = StringSplit[ToUpperCase["the quick brown fox"]];
+padded = StringPadLeft[ToString[7], 3, "0"];
+
+(* Graphics *)
+plot = Plot[{Sin[x], Cos[x]}, {x, 0, 2 Pi},
+  PlotStyle -> {Red, Dashed}, PlotLegends -> Automatic, ImageSize -> Large];
+Graphics[{Blue, Thick, Circle[{0, 0}, 1], Opacity[0.5], Disk[{1, 1}, 0.5]}, Axes -> True]
+ListLinePlot[Accumulate[RandomVariate[NormalDistribution[0, 1], 200]], Frame -> True]
+
+BarChart[{3, 5, 2}, ChartLabels -> {"Mon", "Tue", "Wed"}, BarSpacing -> Small,
+  Background -> White, LabelStyle -> Directive[Medium, Bold], ColorFunction -> "Rainbow"]
+DateListPlot[series, DateFunction -> Automatic, Joined -> True, Mesh -> Full,
+  GridLines -> Automatic, Filling -> Bottom, PlotTheme -> "Business", AspectRatio -> 1/GoldenRatio]
+Graph[{1 -> 2, 2 -> 3, 3 -> 1}, VertexLabels -> "Name", EdgeStyle -> Orange, EdgeWeight -> {1, 2, 3},
+  VertexSize -> Tiny, GraphLayout -> "SpringEmbedding", TableHeadings -> None]
+Style["warning", Yellow, Underlined, FontFamily -> "Courier", Magnification -> 1.2]
+Total[TimeSeries[{1, 2, 3}], Weights -> {1, 1, 2}];
+NIntegrate[Exp[-x^2], {x, 0, Infinity}, WorkingPrecision -> MachinePrecision, Method -> "GlobalAdaptive"]
+StringCases["a1 b22", WordCharacter.. ~~ DigitCharacter ..]
+DayName[Today] === Monday
+Zeta[2] == \[Pi]^2/6
+URLEncode["a b&c"]
+Xor[True, False]
+\[ExponentialE]^(\[ImaginaryI] \[Pi]) + 1
+
+(* Datasets and queries *)
+ds = Dataset[{<|"city" -> "Oslo", "temp" -> -3|>, <|"city" -> "Lima", "temp" -> 19|>}];
+ds[Select[#temp > 0 &], "city"]
+GroupBy[{1, 2, 3, 4, 5, 6}, OddQ, Total]
+Association[Thread[{"x", "y", "z"} -> Range[3]]]
+Values @ KeySort @ Counts[Characters["mississippi"]]
+
+(* Contexts, messages and I/O *)
+System`Print["fully qualified"];
+GeneralUtilities`PrintDefinitions[StationaryVector];
+data = Import["measurements.csv", "Dataset", HeaderLines -> 1];
+Export["out.json", Normal[ds], "RawJSON"];
+Get["MarkovTools`"]
+<< MarkovTools`
+expr >> "saved.m"
+expr >>> "saved.m"
+Information[SimulateChain]
+Off[General::stop]
+Quiet[Check[1/0, $Failed]]
+lastOutput = %;
+twoBack = %%;
+third = %3;
+linear = \(x \^ 2\);
+Map[f, {a, b}] // Timing
+
+End[]
+
+EndPackage[]

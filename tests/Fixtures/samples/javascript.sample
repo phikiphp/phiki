@@ -149,3 +149,103 @@ console.log(myTask);
 // Importing everything as a namespace (simulated for demonstration)
 console.log(Module.person);  // { name: "Alice", age: 30 }
 console.log(Module.add(10, 20));  // 30
+
+// --- Classes, private members and static blocks ---
+
+export * from './shapes.js';
+export { add as sum, person as personRecord } from './module.js';
+
+@sealed
+class Shape {
+  static #count = 0;
+  #id;
+  name = 'shape';
+
+  static {
+    Shape.registry = new Map();
+  }
+
+  constructor(name) {
+    this.#id = ++Shape.#count;
+    this.name = name ?? this.name;
+    if (new.target === Shape) throw new TypeError(`Shape is abstract`);
+  }
+
+  get id() { return this.#id; }
+  set label(value) { this.name = String(value).trim(); }
+  static create(...args) { return Reflect.construct(this, args); }
+  #secret() { return #id in this; }
+  async *[Symbol.asyncIterator]() { yield* [1, 2, 3]; }
+  toString() { return `${this.constructor.name}(${this.name})`; }
+}
+
+class Circle extends Shape {
+  constructor(radius = 1) {
+    super('circle');
+    this.radius = radius;
+  }
+  get area() { return Math.PI * this.radius ** 2; }
+}
+
+// --- Numbers, operators and regular expressions ---
+
+const hex = 0xFF_FF, oct = 0o755, bin = 0b1010_1010, big = 9_007_199_254_740_993n;
+const sci = 6.022e23, small = .5e-3, float = 3.14159, infinity = Infinity, nan = NaN;
+let flags = (hex & 0x0f) | (bin ^ ~oct) << 2 >> 1 >>> 0;
+flags &&= flags > 0; flags ||= 1; flags ??= 0; flags **= 2; flags %= 7;
+const isCircle = new Circle(2) instanceof Shape && 'radius' in { radius: 1 };
+const pattern = /^(?<user>[\w.+-]+)@(?:[a-z\d-]+\.)+[a-z]{2,}$/giu;
+const lookaround = /(?<=\$)\d+(?=\.\d{2})|(?<!x)y(?!z)|[^\s\]\\]+\b\1?/m;
+const match = 'jane@example.com'.match(pattern)?.groups?.user ?? 'anonymous';
+const escaped = 'tab\tquote\'s \u{1F600} \x41 \u00e9 \\ end\
+continued line';
+const tagged = String.raw`C:\path\${'not interpolated'}`;
+const html = /* html */ `<p class="${match}">${[1, 2].map((n) => n * 2).join(', ')}</p>`;
+void 0, delete car.model, typeof undefined === 'undefined';
+
+// --- Destructuring, spread and control flow ---
+
+const { name: shapeName = 'none', ...restProps } = new Circle(3);
+const [first, , third = 0, ...others] = [1, 2, 3, 4, 5];
+const merged = { ...car, ['computed' + key]: true, method() { return this; }, get size() { return 1; } };
+
+outer: for (let i = 0; i < 3; i++) {
+  for (let j = 0; j < 3; j += 1) {
+    if (j === 1) continue outer;
+    if (i > 1) break outer;
+  }
+}
+
+let attempts = 0;
+do {
+  attempts--;
+} while (attempts > -3);
+
+switch (typeof merged) {
+  case 'object':
+    console.info('object');
+    break;
+  case 'function':
+  default:
+    console.warn('unexpected');
+}
+
+const load = async () => {
+  const { default: lodash } = await import('lodash');
+  for await (const chunk of stream) process(chunk);
+  const results = await Promise.allSettled([fetch('/a'), fetch('/b')]);
+  return results.filter(({ status }) => status === 'fulfilled');
+};
+
+try {
+  JSON.parse('{"bad json"');
+} catch {
+  console.error(new SyntaxError('invalid'));
+} finally {
+  debugger;
+}
+
+console.log(import.meta.url, globalThis, this, arguments?.length, null, true, false);
+document.querySelector('#app').addEventListener('click', (event) => event.preventDefault());
+window.localStorage.setItem('key', JSON.stringify({ when: Date.now(), parsed: parseInt('42', 10) }));
+setTimeout(() => clearInterval(timer), 1_000);

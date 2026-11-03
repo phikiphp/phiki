@@ -1,6 +1,12 @@
+#!/usr/bin/env node
+/// <reference types="node" />
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CartService } from './cart.service';
+import type { Product } from './product';
+import * as rxjs from 'rxjs';
+import data from './data.json' with { type: 'json' };
+import fs = require('fs');
 
 @Component({
   selector: 'app-cart-button',
@@ -26,3 +32,177 @@ export class CartButtonComponent {
 }
 
 // From https://github.com/niklas-wortmann/signals-observable-example/blob/main/src/app/cart/cart-button.component.ts
+
+/**
+ * Status of an order as it moves through checkout.
+ * @see {@link OrderService}
+ * @param {string} id - the order identifier
+ */
+export enum OrderStatus {
+  Pending = 'PENDING',
+  Paid = 'PAID',
+  Shipped = 1 << 2,
+}
+
+export const enum Flags { None = 0, Gift = 0x1, Express = 0b10, Fragile = 0o4 }
+
+export interface LineItem<T extends Product = Product> {
+  readonly id: string;
+  product: T;
+  quantity: number;
+  note?: string | null;
+  [key: string]: unknown;
+  total(): number;
+}
+
+type Nullable<T> = T | null | undefined;
+type ReadonlyDeep<T> = { readonly [K in keyof T]: T[K] extends object ? ReadonlyDeep<T[K]> : T[K] };
+type ElementOf<T> = T extends readonly (infer U)[] ? U : never;
+type Handler = (event: CustomEvent<string>, ...rest: any[]) => void;
+type Pair = [first: string, second?: number];
+type EventName = `on${Capitalize<string>}`;
+type Ctor<T> = new (...args: any[]) => T;
+
+declare global {
+  interface Window { __cartDebug: boolean; }
+}
+
+export namespace Pricing {
+  export const TAX_RATE = 0.0825;
+  export function withTax(amount: number): number {
+    return Math.round(amount * (1 + TAX_RATE) * 100) / 100;
+  }
+}
+
+function isLineItem(value: unknown): value is LineItem {
+  return typeof value === 'object' && value !== null && 'product' in value;
+}
+
+export abstract class Repository<TEntity extends { id: string }, TKey = string> {
+  private readonly cache = new Map<TKey, TEntity>();
+  protected static instances = 0;
+  #secret = Symbol('repo');
+
+  constructor(protected readonly baseUrl: string, private retries: number = 3) {
+    Repository.instances++;
+  }
+
+  abstract fetchOne(id: TKey): Promise<TEntity>;
+
+  get size(): number {
+    return this.cache.size;
+  }
+
+  set debug(value: boolean) {
+    window.__cartDebug = value;
+  }
+
+  async fetchAll(this: Repository<TEntity, TKey>, ids: readonly TKey[]): Promise<TEntity[]> {
+    const results: TEntity[] = [];
+    for (const id of ids) {
+      const cached = this.cache.get(id);
+      if (cached !== undefined) {
+        results.push(cached);
+        continue;
+      }
+      try {
+        const entity = await this.fetchOne(id);
+        this.cache.set(id, entity);
+        results.push(entity);
+      } catch (error: unknown) {
+        console.error(`Failed to load ${String(id)}: ${(error as Error).message}`);
+        throw error;
+      } finally {
+        this.retries--;
+      }
+    }
+    return results;
+  }
+
+  *keys(): Generator<TKey, void, unknown> {
+    yield* this.cache.keys();
+  }
+}
+
+@Injectable({ providedIn: 'root' })
+export class OrderService extends Repository<LineItem> implements OnDestroy {
+  @Input() currency: 'USD' | 'EUR' = 'USD';
+  @Output() readonly changed = new EventEmitter<LineItem[]>();
+
+  private items = signal<LineItem[]>([]);
+  readonly count = computed(() => this.items().length);
+  private subscription?: rxjs.Subscription;
+
+  override async fetchOne(id: string): Promise<LineItem> {
+    const response = await fetch(`${this.baseUrl}/items/${encodeURIComponent(id)}`, {
+      method: 'GET',
+      headers: { 'Accept': "application/json", 'X-Retry': '\u0031' },
+    });
+    if (!response.ok) throw new Error('Request failed:\t' + response.status);
+    return (await response.json()) as LineItem;
+  }
+
+  add({ product, quantity = 1, ...extra }: Partial<LineItem> & { product: Product }): void {
+    const [first, ...others] = this.items();
+    const item = <LineItem>{ id: crypto.randomUUID(), product, quantity, ...extra, total: () => product.price * quantity };
+    this.items.update(list => [...list, item]);
+    this.changed.emit(this.items());
+    void first, others;
+  }
+
+  totals(): Record<string, number> {
+    const subtotal = this.items().reduce((sum, item) => sum + item.total(), 0);
+    const discount = subtotal >= 100 ? subtotal * 0.1 : 0;
+    let shipping = subtotal > 50 && this.currency === 'USD' ? 0 : 4.99;
+    shipping ??= 0;
+    shipping ||= 1;
+    return { subtotal, discount, shipping, grand: Pricing.withTax(subtotal - discount + shipping) };
+  }
+
+  validateCoupon(code: string): boolean {
+    const pattern = /^[A-Z]{3,5}-\d{2}(?:[a-z]+)?$/i;
+    return pattern.test(code.trim()) && !code.includes('\\');
+  }
+
+  describe(status: OrderStatus): string {
+    switch (status) {
+      case OrderStatus.Pending:
+        return 'Waiting for payment';
+      case OrderStatus.Paid:
+      case OrderStatus.Shipped:
+        return "On its way";
+      default: {
+        const exhaustive: never = status;
+        return exhaustive;
+      }
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
+    delete (window as any).__cart;
+    let i = 0;
+    do {
+      i += 2;
+    } while (i < 10);
+    outer: while (true) {
+      if (i-- % 3 === 0) break outer;
+    }
+  }
+}
+
+export function memoize<Args extends unknown[], R>(fn: (...args: Args) => R): (...args: Args) => R {
+  const store = new WeakMap<object, R>();
+  return function (this: unknown, ...args: Args): R {
+    const key = args[0] as object;
+    if (store.has(key)) return store.get(key)!;
+    const value = fn.apply(this, args);
+    store.set(key, value);
+    return value;
+  };
+}
+
+export default class extends OrderService {}
+
+export { OrderStatus as Status, type Nullable };
+export * from './cart.service';

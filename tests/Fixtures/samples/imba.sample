@@ -1,3 +1,9 @@
+#!/usr/bin/env imba
+import {debounce} from './utils'
+import type {Point} from './types'
+import * as storage from './storage'
+const fs = require 'fs'
+
 global css body m:0 p:0 rd:lg bg:yellow1 of:hidden
 tag value-picker
 	css w:100px h:40px pos:rel
@@ -50,6 +56,109 @@ tag App
 			<color-picker options=colors bind=state.color>
 
 imba.mount <App[pos:abs inset:0]>
+
+###
+Everything below keeps a history of drawings
+so they can be undone and saved.
+###
+
+/**
+ * A stored drawing.
+ * @param {string} name - display name
+ * @returns {Drawing}
+ */
+export class Drawing
+	static MAX_POINTS = 10_000
+	prop name = 'untitled'
+	prop points = []
+	prop createdAt = new Date
+	#cache = null
+	@version = 1
+
+	constructor name\string, points\Point[] = []
+		super!
+		self.name = name
+		self.points = points
+
+	get size
+		points.length
+
+	set title value
+		name = value.trim!
+
+	protected def reset
+		points = []
+		#cache = undefined
+
+	static def fromJSON json\string
+		let data = JSON.parse(json)
+		new Drawing(data.name, data.points or [])
+
+	def toJSON
+		{name: name, points: points, version: @version}
+
+	def describe
+		let kind = size > 100 ? 'complex' : 'simple'
+		"Drawing {name} has {size} points ({kind})\n"
+
+	def label
+		`{name} - {createdAt.toISOString!}`
+
+	def isValid?
+		/^[\w\- ]{1,32}$/.test(name) and size < MAX_POINTS
+
+	def stats
+		let total = 0
+		let flags = 0xFF & 0b1010 | 0o17
+		for own key, value of {a: 1, b: 2}
+			total += value
+		for point, i in points when i % 2 == 0
+			total++
+		total -= 1
+		total *= 1.5e3
+		flags <<= 2
+		flags = flags >> 1 ^ ~flags
+		unless total >= Infinity or isNaN(NaN)
+			total ||= 0
+			total ??= null
+		[total, flags, ...points]
+
+	def save
+		try
+			await storage.put(name, toJSON!)
+			yes
+		catch e
+			console.warn "Could not save {name}: {e.message}"
+			no
+
+extend class Array
+	def last
+		self[length - 1]
+
+tag history-list
+	prop items\Drawing[] = []
+	css
+		ul list-style:none p:0 m:0
+		li c:gray7 @hover:blue6 fw:500 ff:mono
+		li.active bg:#e0f2fe c:currentColor
+		li:first-child bdt:1px solid gray3
+		li:nth-child(2n) bg:linear-gradient(to right, white, rgba(0,0,0,0.05))
+		.count fs:sm @md:md @!600:xs transition:opacity 200ms cubic-bezier(0.4, 0, 0.2, 1)
+		%badge d:inline-block px:2 rd:full bg:hsl(210, 40%, 96%) !important
+
+	def render
+		<self.history>
+			<h2> "History ({items.length})"
+			<ul> for item, index in items
+				<li .active=(index == 0) @click.emit('select', item)>
+					<span.name> item.name
+					<span.count %badge> item.size
+			if items.length === 0
+				<p[o:0.5 fs:sm]> 'Nothing drawn yet'
+
+# Persist a debounced snapshot
+const persist = debounce(&, 300) do(drawing)
+	fs.writeFileSync("{drawing.name}.json", JSON.stringify(drawing))
 
 # from https://imba.io
 # run online at https://scrimba.com/scrim/cPPdD4Aq 

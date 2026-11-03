@@ -16,3 +16,104 @@
 </html>
 
 {# From https://twig.symfony.com/doc/3.x/templates.html #}
+
+{# ------------------------------------------------------------------
+   Product listing page
+   ------------------------------------------------------------------ #}
+{% extends 'layouts/base.html.twig' %}
+{% import "macros/forms.html.twig" as forms %}
+{% from 'macros/ui.html.twig' import badge, icon %}
+
+{% macro price(amount, currency = '€') %}
+    <span class="price">{{ currency }}&nbsp;{{ amount|number_format(2, ',', '.') }}</span>
+{% endmacro %}
+
+{% set columns = 3 %}
+{% set filters = {'sort': 'name', "order": 'asc', limit: 24, featured: true, tag: null} %}
+{% set sizes = ['S', 'M', 'L', 'XL'] %}
+{% set greeting = "Hello #{app.user.firstName ?? 'guest'}!" %}
+
+{% block title %}{{ parent() }} &ndash; {{ 'products.title'|trans }}{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .grid { display: grid; grid-template-columns: repeat({{ columns }}, 1fr); }
+        .price { color: #2a7; }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <!-- rendered by ProductController::index -->
+    <h1 class="page-title">{{ greeting|upper }}</h1>
+
+    {% if products is empty %}
+        <p>{{ 'No products found.'|e }}</p>
+    {% elseif products|length > 100 and not filters.featured %}
+        <p>Showing the first {{ filters['limit'] }} of {{ products|length }} products.</p>
+    {% else %}
+        <div class="grid" data-columns="{{ columns }}">
+        {% for product in products|filter(p => p.visible)|sort((a, b) => a.price <=> b.price) %}
+            <article id="product-{{ product.id }}" class="{{ cycle(['odd', 'even'], loop.index0) }}">
+                <h2>{{ loop.index }}. {{ product.name|title }}</h2>
+                {{ _self.price(product.price * 1.21) }}
+                {{ badge(product.stock > 0 ? 'In stock' : 'Sold out') }}
+                {% if product.tags is defined and product.tags is iterable %}
+                    <small>{{ product.tags|join(', ') }}</small>
+                {% endif %}
+                {% if loop.index is divisible by(columns) %}<hr>{% endif %}
+                <p>{{ product.description|striptags|slice(0, 120) ~ '…' }}</p>
+                <time datetime="{{ product.createdAt|date('c') }}">{{ product.createdAt|date('d/m/Y') }}</time>
+                {{ product.attributes['color']|default('n/a') }}
+                {{ attribute(product, 'sku') }}
+                {{ product.discount b-and 1 }}
+                {{ (product.price - product.cost) / product.price * 100 }}%
+            </article>
+        {% else %}
+            <p>Nothing here.</p>
+        {% endfor %}
+        </div>
+    {% endif %}
+
+    {% for i in 1..5 %}{{ i }}{% if not loop.last %}, {% endif %}{% endfor %}
+    {% for size in sizes|reverse %}{{ size|lower }} {% endfor %}
+    {{ random(10) + max(1, 2) // 2 ** 3 % 4 }}
+    {{ forms.input('email', '', 'email') }}
+    {{ include('partials/_pagination.html.twig', {page: app.request.get('page', 1)}, with_context = false) }}
+    {{ dump(filters) }}
+    {{ "it\'s escaped"|raw }}
+
+    {% filter upper %}
+        This text becomes uppercase.
+    {% endfilter %}
+
+    {% apply spaceless %}
+        <div>  <strong>compact</strong>  </div>
+    {% endapply %}
+
+    {% verbatim %}
+        {{ this is not parsed }}
+    {% endverbatim %}
+
+    {% with { title: 'Inner' } only %}
+        {{ title }}
+    {% endwith %}
+
+    {% embed 'components/card.html.twig' with {heading: 'Promo'} %}
+        {% block content %}{{ icon('star') }} Save 10%{% endblock %}
+    {% endembed %}
+
+    <script>
+        // Data handed over to the front end
+        const config = {{ filters|json_encode|raw }};
+        /* Initialise the grid */
+        document.querySelectorAll('.grid').forEach(el => el.dataset.ready = 'yes');
+    </script>
+
+    {% js %}
+        console.log("registered via the js tag");
+    {% endjs %}
+
+    {% css %}
+        .promo { border: 1px dashed #f90; }
+    {% endcss %}
+{% endblock %}

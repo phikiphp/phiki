@@ -1,3 +1,8 @@
+@charset "UTF-8";
+@import url("reset.css") screen and (min-width: 40em);
+@import 'print.css' print;
+@namespace svg url(http://www.w3.org/2000/svg);
+
 html {
 	margin: 0;
 	background: black;
@@ -44,3 +49,128 @@ body > div {
 }
 
 /* From https://github.com/mdn/css-examples/blob/main/object-fit-gallery/style.css */
+
+
+/* ---------------------------------------------------------------
+ * Theme, layout and components for the gallery
+ * ------------------------------------------------------------- */
+
+:root {
+  --accent: #3b82f6;
+  --accent-dark: #1E40AF;
+  --gap: clamp(0.5rem, 2vw + 1px, 2rem);
+  --shadow: 0 1px 3px rgba(0, 0, 0, .25), 0 0 0 1px hsl(210deg 40% 50% / 0.1);
+  --font-stack: "Inter", Helvetica, Arial, sans-serif;
+}
+
+@font-face {
+  font-family: "Gallery Sans";
+  src: url(fonts/gallery.woff2) format("woff2"),
+       url('fonts/gallery.woff') format("woff");
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131;
+}
+
+@font-feature-values Gallery Sans {
+  @styleset { fancy: 2; }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font: 400 1rem/1.5 var(--font-stack);
+  color: currentColor;
+  -webkit-text-size-adjust: 100%;
+}
+
+a:not([href^="http"]):hover,
+a[target="_blank" i]:focus-visible {
+  color: var(--accent-dark, navy);
+  text-decoration: underline dotted;
+  outline: 2px solid rebeccapurple !important;
+}
+
+input[type='checkbox']:checked + label::after {
+  content: "\2713 done";
+  margin-inline-start: .5em;
+}
+
+li:nth-child(2n + 1),
+tr:nth-of-type(odd) {
+  background-color: #f8fafc80;
+}
+
+#gallery > .thumb ~ .thumb:first-of-type,
+svg|circle {
+  fill: lightgoldenrodyellow;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+  grid-template-areas: "header header" "sidebar main";
+  gap: var(--gap);
+  aspect-ratio: 16 / 9;
+  transform: translate3d(-50%, 0, 0) rotate(45deg) scale(1.05);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1), opacity .3s steps(4, end);
+  background-image: linear-gradient(to right, rgba(255 255 255 / 0%), #fff 75%),
+                    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'/>");
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  filter: drop-shadow(0 0 4px black) blur(2px);
+  width: calc(100% - (2 * var(--gap)));
+  list-style-type: lower-roman;
+  direction: ltr;
+}
+
+.legacy {
+  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#000));
+  -moz-user-select: none;
+}
+
+@media screen and (max-width: 600px), print and (orientation: landscape) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .thumb { width: 50%; }
+}
+
+@media (prefers-reduced-motion: reduce) and (min-resolution: 2dppx) {
+  * { animation: none !important; }
+}
+
+@supports (display: grid) and (not (display: inline-grid)) {
+  .grid { float: none; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(-10px); }
+  50% { opacity: .5; }
+  to { opacity: 1; transform: none; }
+}
+
+.blowup {
+  animation: fade-in 0.4s ease-in-out 1 forwards;
+}
+
+@page :first {
+  margin: 1in 0.75in;
+}
+
+@counter-style thumbs {
+  system: cyclic;
+  symbols: "\1F44D";
+  suffix: " ";
+}
+
+@viewport {
+  width: device-width;
+}
+
+@-moz-document url-prefix() {
+  .thumb { object-fit: fill; }
+}

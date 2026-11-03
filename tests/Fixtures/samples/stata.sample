@@ -28,3 +28,115 @@ program exit_message
 end
 
 * From https://github.com/mcaceresb/stata-gtools/blob/fad519ef0454936d450802ac732728ba953957ac/src/test/gtools_tests.do
+
+/* ---------------------------------------------------------------------------
+   Wage analysis do-file
+   @author  Data team
+   --------------------------------------------------------------------------- */
+version 17
+clear all
+set more off
+set type double
+global root "C:/projects/wages"
+global outdir "${root}/output"
+local today : display %td date(c(current_date), "DMY")
+
+use "$root/data/nlsw88.dta", clear
+merge 1:m idcode using "${root}/data/jobs.dta", keep(match) nogenerate
+
+* Clean variables
+drop if missing(wage) | wage <= 0
+keep idcode wage hours age race grade industry union
+generate double lnwage = ln(wage)
+gen byte young = age < 35 & !missing(age)
+egen float mean_wage = mean(wage), by(industry)
+replace hours = . if hours > 80
+replace grade = 12 if grade == .a
+destring industry, replace force
+tostring idcode, generate(id_str)
+format wage %9.2f
+label variable lnwage "Log hourly wage"
+label define yesno 0 "No" 1 "Yes"
+label values union yesno
+label variable young `"Under 35 ("young")"'
+note: Sample restricted to positive wages
+assert wage > 0
+set seed 20240101
+scalar define alpha = 0.05
+scalar n_obs = 1.5e3
+
+// Regex helpers
+gen has_digit = regexm(id_str, "^[0-9]+$")
+gen cleaned = regexr(id_str, "[^a-z]", "")
+gen ucode = ustrregexm(id_str, "(?i)^[a-z]{2,4}\d+")
+gen rcode = ustrregexra(id_str, "\s+", "_")
+
+/* Loops over variables and numbers */
+foreach var of varlist wage hours age {
+    summarize `var', detail
+    local m_`var' = r(mean)
+    display as text "Mean of `var': " as result %6.2f `m_`var''
+}
+
+foreach g in 1 2 3 {
+    count if race == `g'
+}
+
+forvalues i = 1(1)5 {
+    quietly tabulate grade if industry == `i'
+}
+
+local n = 0
+while `n' < 3 {
+    local ++n
+    if `n' == 2 continue
+    display "iteration `n' of ${outdir}"
+}
+
+local vars wage hours
+local first : word 1 of `vars'
+local nwords : word count `vars'
+local nchars : strlen local vars
+local dups : list uniq vars
+local where : list posof "hours" in vars
+local both : list vars | vars
+local vlab : variable label wage
+local pwd : environment HOME
+local files : dir "." files "*.dta"
+local c = count(local vars)
+
+tempvar resid
+tempfile scratch
+macro list _all
+
+bysort industry: egen max_wage = max(wage)
+regress lnwage c.age##c.age i.race i(1/3).grade ib2.industry union [pweight=hours], vce(robust)
+estimates store base
+predict `resid', residuals
+reghdfe lnwage age, absorb(industry) cluster(idcode)
+matrix b = e(b)
+matrix list b
+display _b[age] + _se[age] * 1.96 - _cons / _N
+
+twoway (scatter lnwage age) || (lfit lnwage age), title("Wages by age") ///
+    note("Source: NLSW 1988")
+
+save "`scratch'", replace
+export delimited using "$outdir/wages_`today'.csv", replace
+capture noisily odbc load, exec("SELECT * FROM wages") dsn("warehouse")
+
+program define summarize_by, rclass
+    syntax varlist(numeric) [if] [in], by(varname) [Format(string)]
+    marksample touse
+    return scalar N = _N
+end
+
+mata:
+    real matrix scale(real matrix X, real scalar k)
+    {
+        if (k == 0) return(X)
+        return(X :* k)
+    }
+    string scalar label
+    pointer(real matrix) scalar p
+end

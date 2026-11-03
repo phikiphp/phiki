@@ -19,3 +19,187 @@ class LotteryTicket
 end
 
 # From https://poignant.guide/book/chapter-5.html
+
+# frozen_string_literal: true
+
+require "json"
+require_relative "support/helpers"
+
+=begin
+A small order-processing module showing common Ruby syntax.
+=end
+
+module Shop
+  VERSION = "1.4.2"
+  TAX_RATE = 0.0825
+  LIMITS = { small: 1_000, large: 1e6, hex: 0xFF, bin: 0b1010, oct: 0o17 }.freeze
+  CODES = %w[new paid shipped].freeze
+  SYMBOLS = %i[draft final]
+
+  class Error < StandardError; end
+
+  class Order
+    include Comparable
+    extend Forwardable
+
+    attr_accessor :id, :items
+    def_delegators :@items, :size, :each
+
+    @@count = 0
+
+    def self.create(**attrs, &block)
+      @@count += 1
+      new(attrs.fetch(:id, @@count), attrs[:items] || []).tap(&block)
+    end
+
+    def initialize(id, items = [])
+      @id = id
+      @items = items
+      $stderr.puts "created order #{id}" if $DEBUG
+    end
+
+    def total(discount: 0.0)
+      subtotal = items.sum { |item| item[:price] * item.fetch(:qty, 1) }
+      (subtotal * (1 + TAX_RATE) - discount).round(2)
+    end
+
+    def <=>(other)
+      total <=> other.total
+    end
+
+    def to_s
+      format("Order #%05d: %.2f", id, total)
+    end
+
+    def status_for(code)
+      case code
+      when 0..9 then :pending
+      when Integer, Float then :numeric
+      when /\Aship(ped)?\z/i then :shipped
+      when nil then :unknown
+      else
+        raise Error, "unknown code: #{code.inspect}"
+      end
+    end
+
+    def search(pattern)
+      items.select { |i| i[:name] =~ %r{^#{Regexp.escape(pattern)}/\d+}x }
+    end
+
+    def each_pair
+      return enum_for(:each_pair) unless block_given?
+
+      items.each_with_index do |item, index|
+        yield index, item
+      end
+    end
+
+    protected
+
+    def secret?
+      !items.empty? && id.positive? || false
+    end
+
+    private
+
+    def summary
+      <<~TEXT
+        Order: #{id}
+        Items: #{items.map { _1[:name] }.join(", ")}
+        Tab:\tdone
+      TEXT
+    end
+
+    def raw_sql
+      <<-'EOS'
+        Literal text: #{not_interpolated}
+      EOS
+    end
+  end
+end
+
+order = Shop::Order.create(id: 42) do |o|
+  o.items << { name: "widget", price: 9.99, qty: 3 }
+  o.items.push({ "name" => 'gadget', :price => 19.5 })
+end
+
+begin
+  puts order, order.total(discount: 1.5)
+  data = JSON.parse('{"a": 1}', symbolize_names: true)
+  value = data&.dig(:a) || -1
+  value ||= 0
+  value **= 2
+  puts value.between?(1, 10) ? "ok" : "out of range"
+rescue Shop::Error, JSON::ParserError => e
+  warn "failed: #{e.message}"
+  retry if (attempts = (attempts || 0) + 1) < 3
+ensure
+  puts "done at #{Time.now}"
+end
+
+squares = (1..10).step(2).map { |n| n**2 }.reject(&:zero?)
+lookup = Hash.new { |hash, key| hash[key] = key.to_s * 2 }
+until squares.empty?
+  squares.pop
+end
+while false do break end
+handler = ->(x, y = 2) { x * y }
+legacy = lambda { |s| s.upcase }
+puts handler.(3), legacy["hi"], ?a, :"quoted sym", __FILE__, __method__.inspect
+puts %q(single 'quoted'), %Q(double "#{1 + 1}"), `echo shell`
+puts "escape \e[1m bold \u00e9 \x41 \n" unless defined?(Foo)
+Struct.new(:x, :y, keyword_init: true)
+alias_method :old, :new if respond_to?(:alias_method)
+obj = Object.new
+def obj.singleton = "endless method"
+$stdout.sync = true
+
+# Renders reports for a list of orders.
+#
+# @author Shop Team
+# @see Shop::Order
+# @!attribute [r] orders
+class ReportRenderer
+  # @param orders [Array<Shop::Order>] the orders to render
+  # @option opts [Symbol] :format the output format
+  # @return [String] rendered output
+  # @raise [ArgumentError] when no orders are given
+  # @private
+  def render(orders, opts = {})
+    raise ArgumentError, 'it\'s empty' if orders.empty?
+    self.class.send(:"render_#{opts[:format] || :html}", orders)
+  end
+
+  def self.render_html(orders)
+    <<~HTML
+      <ul class="orders">#{orders.map { |o| "<li>#{o}</li>" }.join}</ul>
+    HTML
+  end
+
+  def self.queries
+    sql = <<~SQL
+      SELECT id, total FROM orders WHERE status = 'paid' ORDER BY total DESC;
+    SQL
+    script = <<~JS
+      document.querySelectorAll(".orders li").forEach((li) => li.classList.add("ready"));
+    JS
+    style = <<~CSS
+      .orders li { color: #333; margin: 0 4px; }
+    CSS
+    config = <<~YAML
+      orders:
+        limit: 25
+    YAML
+    deploy = <<~SHELL
+      bundle exec rake db:migrate && echo "done"
+    SHELL
+    [sql, script, style, config, deploy, ENV["HOME"], ENV.fetch("SHOP_ENV", "dev")]
+  end
+end
+
+ZIP = /\A[0-9]{5}(?:-[0-9]{4})?\z/
+SLUG = %r[^/products/(?<slug>[a-z\-]+)$]
+QUOTED = [%q{curly 'quote'}, %Q[square #{ZIP.source}], %(paren #{1}), %<angle>]
+NAMES = %w(alpha beta), %W{#{VERSION_TAG = "v1"} gamma}, %i<one two>, %I(sym#{2})
+sym = %s(plain_symbol)
+puts :'single quoted', sym, $0, $!, $~, __dir__, self.inspect

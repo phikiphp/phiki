@@ -20,3 +20,206 @@ begin
 end fizz_buzz;
 
 -- From https://github.com/kylelk/ada-examples/blob/master/fizz_buzz.adb
+
+-- Sensors -- a small package exercising the rest of the language --
+with Ada.Containers.Vectors;
+with Ada.Calendar; use Ada.Calendar;
+
+package Sensors with SPARK_Mode => On is
+   pragma Preelaborate;
+
+   -- @summary Readings from hardware sensors
+   Max_Sensors : constant := 16#10#;
+   Scale       : constant Float := 1.0E-3;
+   Mask        : constant := 2#1111_0000#;
+
+   type Sensor_Id is range 1 .. Max_Sensors;
+   type Status is (Idle, Active, Faulted);
+   type Byte is mod 2 ** 8;
+   type Celsius is digits 6 range -273.15 .. 1_000.0;
+   type Fixed_Volt is delta 0.01 range 0.0 .. 5.0;
+   subtype Warm is Celsius range 20.0 .. 40.0;
+   subtype Name_String is String (1 .. 12);
+
+   type Reading_Array is array (Sensor_Id range <>) of aliased Celsius;
+   type Matrix is array (1 .. 3, 1 .. 3) of Float;
+
+   type Sensor is tagged record
+      Id      : Sensor_Id := 1;
+      State   : Status    := Idle;
+      Last    : Celsius   := 0.0;
+   end record;
+
+   type Sensor_Access is access all Sensor'Class;
+   type Const_Ref is not null access constant Sensor;
+
+   type Smart_Sensor is new Sensor with record
+      Threshold : Celsius := 25.0;
+   end record;
+
+   type Empty_Base is abstract tagged null record;
+
+   type Packet (Kind : Status := Idle) is record
+      Seq : Natural;
+      case Kind is
+         when Idle =>
+            null;
+         when Active | Faulted =>
+            Value : Byte;
+      end case;
+   end record;
+
+   for Packet use record
+      Seq at 0 range 0 .. 15;
+   end record;
+
+   type Observer is limited interface;
+   procedure Notify (Self : in out Observer; Value : Celsius) is abstract;
+
+   Sensor_Error, Calibration_Error : exception;
+
+   function Average (Values : Reading_Array) return Celsius
+     with Pre => Values'Length > 0, Post => Average'Result >= Celsius'First;
+
+   function "+" (Left, Right : Celsius) return Celsius;
+
+   procedure Reset (S : in out Sensor; Hard : Boolean := False);
+
+   generic
+      type Element is private;
+      with function "<" (A, B : Element) return Boolean is <>;
+   function Generic_Max (A, B : Element) return Element;
+
+   package Reading_Vectors is new Ada.Containers.Vectors
+     (Index_Type => Positive, Element_Type => Celsius);
+
+private
+   type Calibration is record
+      Offset : Float := 0.0;
+   end record;
+end Sensors;
+
+package body Sensors is
+
+   function Average (Values : Reading_Array) return Celsius is
+      Total : Float := 0.0;
+   begin
+      for V of Values loop
+         Total := Total + Float (V);
+      end loop;
+      return Celsius (Total / Float (Values'Length));
+   end Average;
+
+   function "+" (Left, Right : Celsius) return Celsius is
+     (Celsius (Float (Left) + Float (Right)));
+
+   function Generic_Max (A, B : Element) return Element is
+   begin
+      return (if A < B then B else A);
+   end Generic_Max;
+
+   procedure Reset (S : in out Sensor; Hard : Boolean := False) is
+      Count : Natural := 0;
+      Label : Character := 'R';
+      Id_Copy : Sensor_Id renames S.Id;
+   begin
+      S.State := Idle;
+      if Hard and not (S.Last = 0.0) then
+         S.Last := 0.0;
+      elsif S.Last > 100.0 or else S.State = Faulted then
+         raise Sensor_Error with "sensor" & Sensor_Id'Image (Id_Copy) & " overheated";
+      end if;
+
+      while Count < 10 loop
+         Count := Count + 1;
+         exit when Count rem 4 = 0;
+      end loop;
+
+      Outer :
+      for J in reverse 1 .. 3 loop
+         if abs (J - 2) /= 0 then
+            goto Done;
+         end if;
+      end loop Outer;
+
+      <<Done>>
+      declare
+         Tmp : Float := 3.14_159 * 2.0 ** 2;
+      begin
+         case S.State is
+            when Idle | Active =>
+               Text_IO.Put_Line ("ok: " & Label);
+            when others =>
+               null;
+         end case;
+      end;
+   exception
+      when E : Sensor_Error =>
+         Text_IO.Put_Line ("error");
+         raise;
+      when Constraint_Error | Program_Error =>
+         S.State := Faulted;
+      when others =>
+         null;
+   end Reset;
+
+   protected type Buffer is
+      entry Put (Item : in Celsius);
+      entry Get (Item : out Celsius);
+      function Size return Natural;
+   private
+      Data  : Reading_Array (1 .. 8);
+      Count : Natural := 0;
+   end Buffer;
+
+   protected body Buffer is
+      entry Put (Item : in Celsius) when Count < Data'Length is
+      begin
+         Count := Count + 1;
+         Data (Sensor_Id (Count)) := Item;
+      end Put;
+
+      entry Get (Item : out Celsius) when Count > 0 is
+      begin
+         Item := Data (Sensor_Id (Count));
+         Count := Count - 1;
+      end Get;
+
+      function Size return Natural is (Count);
+   end Buffer;
+
+   task type Poller (Id : Sensor_Id) is
+      entry Start (Period : Duration);
+      entry Stop;
+   end Poller;
+
+   task body Poller is
+      Interval : Duration := 0.5;
+      Next     : Time := Clock;
+   begin
+      accept Start (Period : Duration) do
+         Interval := Period;
+      end Start;
+      loop
+         select
+            accept Stop;
+            exit;
+         or
+            delay until Next;
+            Next := Next + Interval;
+         or
+            terminate;
+         end select;
+      end loop;
+   end Poller;
+
+   function Make return Sensor is
+   begin
+      return Result : Sensor do
+         Result.State := Active;
+      end return;
+   end Make;
+
+begin
+   delay 0.1;
+end Sensors;

@@ -10,3 +10,196 @@ def fib(n):    # write Fibonacci series up to n
 fib(2000)
 
 # From https://docs.python.org/3/tutorial/controlflow.html#defining-functions
+
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""Inventory service: a small example module with typing, async and dataclasses."""
+
+from __future__ import annotations
+
+import asyncio
+import re
+import sys as system
+from collections.abc import Iterator, Mapping
+from dataclasses import dataclass, field
+from typing import Any, Generic, Optional, TypeVar
+
+T = TypeVar("T")
+SKU_PATTERN = re.compile(r"^(?P<prefix>[A-Z]{3})-(?P<num>\d{4,6})$", re.IGNORECASE)
+RAW_BYTES = rb"\x00\xff raw bytes"
+DATA = b"binary \x7f\n data"
+UNICODE = u"caf\u00e9 \N{BULLET} \U0001F600"
+PATH = R"C:\temp\new"
+
+MAX_ITEMS: int = 1_000_000
+RATIO = 0.75e-3
+HEX, OCT, BIN = 0xFF_FF, 0o755, 0b1010_0101
+COMPLEX = 3.14j + 2
+LONG_FLOAT = .5 + 10. - 1e10
+
+
+class InventoryError(Exception):
+    """Raised when stock operations fail."""
+
+    def __init__(self, message: str, *, code: int = 400) -> None:
+        super().__init__(message)
+        self.code = code
+
+    def __repr__(self) -> str:
+        return f"{type(self).__name__}({self.args[0]!r}, code={self.code:>5d})"
+
+
+@dataclass(frozen=True, slots=True)
+class Item:
+    sku: str
+    name: str
+    price: float = 0.0
+    tags: list[str] = field(default_factory=list)
+
+    @property
+    def label(self) -> str:
+        return "%s (%.2f)" % (self.name, self.price)
+
+    @classmethod
+    def parse(cls, line: str) -> "Item":
+        sku, name, price = line.split(",", maxsplit=2)
+        if not SKU_PATTERN.match(sku):
+            raise InventoryError(f"bad sku: {sku!s}", code=422)
+        return cls(sku=sku.strip(), name=name.strip(), price=float(price))
+
+    @staticmethod
+    def normalize(text: str) -> str:
+        return text.lower().replace("\t", " ").strip()
+
+
+class Repository(Generic[T]):
+    __slots__ = ("_items", "_lock")
+
+    def __init__(self) -> None:
+        self._items: dict[str, T] = {}
+        self._lock = asyncio.Lock()
+
+    def __len__(self) -> int:
+        return len(self._items)
+
+    def __iter__(self) -> Iterator[T]:
+        yield from self._items.values()
+
+    def __getitem__(self, key: str) -> T:
+        return self._items[key]
+
+    async def put(self, key: str, value: T) -> None:
+        async with self._lock:
+            self._items[key] = value
+
+    def find(self, predicate=lambda item: True) -> list[T]:
+        return [item for item in self if predicate(item)]
+
+
+def summarize(items: Mapping[str, Item], /, limit: Optional[int] = None, **options: Any) -> str:
+    total = sum(i.price for i in items.values())
+    names = {i.name for i in items.values() if i.price > 0}
+    by_tag = {tag: i.sku for i in items.values() for tag in i.tags}
+    width = options.get("width", 20)
+    header = f"{'Name':<{width}}|{'Price':>10}"
+    lines = [header, "-" * len(header)]
+    for index, item in enumerate(items.values(), start=1):
+        if limit is not None and index > limit:
+            break
+        elif item.price == 0:
+            continue
+        lines.append(f"{item.name:<{width}}|{item.price:>10.2f}")
+    else:
+        lines.append(f"total: {total:,.2f} ({len(names)} unique, {len(by_tag)} tags)")
+    return "\n".join(lines)
+
+
+def classify(value: object) -> str:
+    match value:
+        case {"sku": str(sku), **rest}:
+            return f"item {sku} with {len(rest)} extra fields"
+        case [first, *others] if others:
+            return f"list starting with {first}"
+        case int() | float() as number if number < 0:
+            return "negative"
+        case None:
+            return "nothing"
+        case _:
+            return "unknown"
+
+
+async def restock(repo: Repository[Item], skus: list[str]) -> int:
+    count = 0
+    try:
+        for sku in skus:
+            await asyncio.sleep(0.01)
+            await repo.put(sku, Item(sku, sku.title()))
+            count += 1
+    except (KeyError, ValueError) as exc:
+        print(f"failed: {exc}", file=system.stderr)
+        raise
+    except* TimeoutError:
+        pass
+    finally:
+        print("restock finished")
+    return count
+
+
+def flags(a, b):
+    global MAX_ITEMS
+    result = a & b | (a ^ b) << 2 >> 1
+    result //= 3
+    result **= 2
+    assert result is not None and a not in [b], "sanity"
+    if (n := len(str(result))) >= 3:
+        del n
+    return ~result if a != b else -result
+
+
+SQL = """
+SELECT sku, name
+FROM items
+WHERE price > 10
+"""
+
+TEMPLATE = '''Dear {name},
+your order #{order_id:06d} is ready.\
+'''
+
+if __name__ == "__main__":
+    repo: Repository[Item] = Repository()
+    created = asyncio.run(restock(repo, ["ABC-1234", "XYZ-99999"]))
+    with open("report.txt", "w", encoding="utf-8") as handle, open(__file__) as source:
+        handle.write(summarize({i.sku: i for i in repo}, limit=10, width=24))
+    print(classify({"sku": "ABC-1234", "qty": 3}), created, ..., NotImplemented, True, False)
+    print(TEMPLATE.format(name="Ada", order_id=42), r'\d+', f"{created=}", f'{"nested"}')
+
+
+class Meta(type):
+    def __new__(mcs, name, bases, namespace, **kwargs):
+        return super().__new__(mcs, name, bases, namespace)
+
+
+class Plugin(object, metaclass=Meta):
+    registry = []  # type: List[str]
+    callback = None  # type: ignore
+
+    def hook(self, *args, **kwargs):
+        handler = lambda: None
+        merge = lambda *a, **kw: (a, kw)
+        return handler, merge(*args, **kwargs), self.registry[1:-1:2]
+
+
+PHONE = re.compile(r"""
+    (?P<area>\(\d{3}\))?   # optional area code
+    [-.\s]*(?P<line>[0-9a-f]{3}[^\n]?\d{4})
+    (?#comment group)(?i)\1|(?P=area)\.\u00e9\x41\t
+""", re.VERBOSE)
+WORD = re.compile(rb'''\b\w+\b''')
+TAG = re.compile(Rb"<(\w+)>.*?</\1>")
+BRACES = rf"{{\d{{2,4}}}}-{MAX_ITEMS}"
+DOC = f"""
+    {Plugin.registry!r:>{10}} {{literal}} {RATIO:+#,.3%}
+"""
+BLOB = b"""multi
+line"""

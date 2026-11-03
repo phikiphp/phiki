@@ -17,3 +17,121 @@ class ntp::service {
 }
 
 # From https://www.puppet.com/docs/puppet/8/bgtm.html
+
+/*
+ * profile::webserver — installs nginx and deploys a site.
+ */
+class profile::webserver (
+  String               $site_name   = 'example.com',
+  Integer[1, 65535]    $port        = 80,
+  Optional[String]     $ssl_cert    = undef,
+  Array[String]        $packages    = ['nginx', 'logrotate'],
+  Hash[String, String] $env         = {},
+  Float                $cpu_share   = 0.5,
+  Boolean              $manage_fw,
+) inherits profile::base {
+
+  include profile::monitoring
+  require stdlib
+  contain profile::webserver::config
+
+  $docroot = "/var/www/${site_name}"
+  $worker_count = $facts['processors']['count'] * 2
+  $umask = 0x1FF
+  $timeout = 3.0e1
+
+  package { $packages:
+    ensure => installed,
+    before => File[$docroot],
+  }
+
+  file { $docroot:
+    ensure  => directory,
+    owner   => 'www-data',
+    mode    => '0755',
+    recurse => true,
+  }
+
+  file { "/etc/nginx/sites-available/${site_name}.conf":
+    ensure  => file,
+    content => epp('profile/nginx/site.conf.epp', {
+      'port'    => $port,
+      'docroot' => $docroot,
+    }),
+    notify  => Service['nginx'],
+  }
+
+  if $ssl_cert =~ /\.pem$/ {
+    notice("Using certificate ${ssl_cert} for ${site_name}")
+  } elsif $port == 443 {
+    fail("Port 443 requires \$ssl_cert to be set")
+  } else {
+    warning('Serving plain HTTP only')
+  }
+
+  case $facts['os']['family'] {
+    'Debian': { $service_name = 'nginx' }
+    'RedHat', 'Suse': { $service_name = 'nginx' }
+    default: { fail("Unsupported OS ${facts['os']['family']}") }
+  }
+
+  unless $manage_fw {
+    debug('firewall management disabled')
+  }
+
+  $env.each |String $key, String $value| {
+    file_line { "env-${key}":
+      path => '/etc/environment',
+      line => "${key}=${value}",
+    }
+  }
+
+  $enabled = $packages.filter |$pkg| { $pkg =~ /^nginx/ }.map |$pkg| { "${pkg}-enabled" }
+
+  if $::osfamily == 'Debian' and $facts['virtual'] != 'docker' {
+    exec { 'reload-systemd':
+      command     => '/bin/systemctl daemon-reload',
+      refreshonly => true,
+    }
+  }
+
+  $motd = @("MOTD"/L)
+    Welcome to ${site_name}
+    Managed by Puppet on ${facts['networking']['fqdn']}\
+    | MOTD
+
+  $raw = @(EOT)
+    No ${interpolation} here.
+    | EOT
+
+  File[$docroot] -> Package['nginx'] ~> Service['nginx']
+}
+
+define profile::vhost (
+  String $docroot,
+  Integer $port = 80,
+) {
+  $_safe_name = regsubst($title, '[^a-z0-9]', '_', 'G')
+  notify { "vhost ${_safe_name} on ${port}": }
+}
+
+function profile::port_for(String $scheme) >> Integer {
+  $scheme ? {
+    'https' => 443,
+    default => 80,
+  }
+}
+
+node 'web01.example.com', /^web\d+\.example\.com$/ {
+  class { 'profile::webserver':
+    site_name => 'shop.example.com',
+    manage_fw => true,
+  }
+  profile::vhost { 'shop':
+    docroot => '/srv/shop',
+  }
+}
+
+node default {
+  notify { 'unclassified node': }
+}

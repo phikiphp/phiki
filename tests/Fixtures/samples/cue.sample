@@ -1,5 +1,14 @@
 package kube
 
+import (
+	"strings"
+	"list"
+	m "math"
+	"encoding/yaml"
+)
+
+import "strconv"
+
 service: [ID=_]: {
 	apiVersion: "v1"
 	kind:       "Service"
@@ -106,3 +115,77 @@ for x in [deployment, daemonSet, statefulSet] for k, v in x {
 		]
 	}
 }
+
+/* Cluster-wide settings and validation
+   for the generated objects. */
+
+#Env: "dev" | "staging" | "prod" @tag(env, type=string)
+
+#Settings: {
+	env:      #Env
+	region?:  string & =~"^[a-z]+-[a-z]+-[0-9]$"
+	replicas: int & >=1 & <=10 | *2
+	cpu:      *"500m" | string
+	memory:   int | *512Mi
+	quota:    1.5Gi
+	ratio:    0.75
+	burst:    1e3
+	fraction: .5
+	mask:     0xFF_FF
+	perms:    0o644
+	flags:    0b1010
+	retries:  3 & !=0
+	nothing:  null
+	owner:    string & !~"^root$"
+	optional: bool | *false @json(omitempty)
+	...
+}
+
+settings: #Settings & {
+	env:    "prod"
+	region: "eu-west-1"
+}
+
+_greeting: "Hello, \(settings.env)!\n\tregion: \(settings.region)"
+_unicode:  "snowman \u2603 and \U0001F600"
+_single:   'bytes \x41\101 \(settings.env)'
+_raw:      #"no \(interpolation) here, but \#(settings.env) is"#
+_rawBytes: #'raw bytes \#x41'#
+_script: """
+	#!/bin/sh
+	echo "deploying \(settings.env)" \
+	  --replicas=\(settings.replicas)
+	"""
+_rawMulti: #"""
+	literal \n and \#(settings.region)
+	"""#
+_bytesMulti: '''
+	binary \x00\x01 block
+	'''
+
+_regions: ["eu-west-1", "us-east-2"]
+_sorted:  list.Sort(_regions, list.Ascending)
+_upper:   strings.ToUpper(settings.env)
+_count:   len(_regions)
+_portStr: strconv.FormatInt(8080, 10)
+_maxCpu:  m.Max([1, 4, 2])
+_manifest: yaml.Marshal(settings)
+_ok:      _count > 0 && _upper != "" || !settings.optional
+_math:    (7 div 2) + (7 mod 2) - (7 quo 2) * (7 rem 2) / 1
+_bottom:  _|_
+_isa:     int :: 3
+_comp:    "a" == "a" && 1 < 2 && 2 >= 1
+
+#Port: {
+	name?:        string
+	containerPort: uint16
+	protocol:     "TCP" | "UDP" | *"TCP"
+}
+
+_ports: [for i, p in [80, 443] if p > 0 {
+	name:          "port-\(i)"
+	containerPort: p
+}]
+
+_byName: {for p in _ports {(p.name): p.containerPort}}
+

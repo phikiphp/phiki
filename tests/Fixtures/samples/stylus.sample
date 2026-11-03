@@ -31,3 +31,102 @@ form input {
 }
 
 // From https://stylus-lang.com/docs/css-style.html#example
+
+@charset "utf-8"
+@import 'mixins/reset'
+@require "nib"
+
+/* Theme settings */
+brand-color = #1e88e5
+$gutter ?= 16px
+font-stack := "Helvetica Neue", Helvetica, sans-serif
+breakpoints = { small: 576px, large: 992px }
+debug = false
+
+add(a, b = a)
+  a + b
+
+clamp-width(min, max)
+  if min > max
+    error('min must not exceed max')
+  else if min is defined
+    return min
+  unless max is a 'unit'
+    return null
+  max
+
+.card
+  position relative
+  width add(100px, $gutter)
+  padding $gutter ($gutter / 2)
+  color darken(brand-color, 10%)
+  background linear-gradient(to bottom, white, rgba(0, 0, 0, .05))
+  transform rotate(45deg) scale(1.2)
+  transition opacity .3s cubic-bezier(0.25, 0.1, 0.25, 1), width 1s steps(4, end)
+  filter blur(2px)
+  height calc(100% - 20px)
+  content attr(data-label string)
+  counter-reset section
+  margin-left -@padding
+  font 14px/1.5 font-stack
+  border 1px solid aliceblue !important
+  --shadow-size 4px
+  &:hover
+    color lighten(brand-color, 20%)
+  &--active
+    font-weight bold
+  & > .title, & + .card
+    margin-top 0
+  &:not(.disabled):nth-child(2n+1)
+    opacity 1
+  &::before
+    content "\201C"
+  &:lang(en):dir(ltr)
+    quotes "\"" "\""
+  input:checked, input:disabled
+    cursor default
+  a:first-child:visited
+    text-decoration none
+  [data-state="open"]
+    display block
+  #main
+    float left
+  svg circle
+    fill currentColor
+  *
+    box-sizing border-box
+
+.badge
+  @extend .card
+  background url("images/badge.png") no-repeat
+  src local("Badge"), url(fonts/badge.woff) format("woff")
+
+for i in 1..3
+  .m-{i}
+    margin (i * 4)px
+
+@media screen and (min-width: 768px) and (orientation: landscape)
+  .card
+    width 50%
+
+@media print
+  .card
+    display none
+
+@keyframes pulse
+  from
+    opacity 0
+  50%
+    opacity .5
+  to
+    opacity 1
+
+@font-face
+  font-family "Brand"
+  src url("brand.woff2")
+
+@css {
+  .raw { color: red; }
+}
+
+.empty {}

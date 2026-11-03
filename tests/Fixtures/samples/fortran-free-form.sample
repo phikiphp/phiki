@@ -1,3 +1,164 @@
+#include "config.h"
+#define PRECISION 8
+#if defined(USE_MPI) && PRECISION > 4
+#  include <mpif.h>
+#endif
+
+!> Particle simulation utilities (Fortran 2018).
+module particles
+    use, intrinsic :: iso_fortran_env, only: real64, int32, output_unit
+    use, intrinsic :: ieee_arithmetic
+    implicit none
+    private
+
+    public :: particle_t, system_t, kinetic_energy, step, norm
+
+    integer, parameter :: dp = real64
+    real(dp), parameter :: G = 6.674_dp * 10.0_dp**(-11)
+    real(dp), parameter :: TOLERANCE = 1.0d-12
+    integer(int32), parameter :: MASK = int(z'00FF', int32)
+    integer, parameter :: FLAGS = int(b'1010'), PERMS = int(o'755')
+
+    enum, bind(c)
+        enumerator :: STATE_IDLE = 0, STATE_RUNNING, STATE_DONE
+    end enum
+
+    type :: particle_t
+        real(dp) :: position(3) = 0.0_dp
+        real(dp) :: velocity(3) = 0.0_dp
+        real(dp) :: mass = 1.0_dp
+    contains
+        procedure :: momentum => particle_momentum
+        procedure, pass(self) :: describe
+    end type particle_t
+
+    type, extends(particle_t) :: charged_t
+        real(dp) :: charge = -1.602e-19_dp
+    end type charged_t
+
+    type :: system_t
+        type(particle_t), allocatable :: bodies(:)
+        integer :: state = STATE_IDLE
+        character(len=:), allocatable :: label
+    contains
+        procedure :: total_mass
+        final :: destroy_system
+    end type system_t
+
+    interface norm
+        module procedure norm_vector, norm_matrix
+    end interface norm
+
+    abstract interface
+        pure function force_law(a, b) result(f)
+            import :: particle_t, dp
+            type(particle_t), intent(in) :: a, b
+            real(dp) :: f(3)
+        end function force_law
+    end interface
+
+contains
+
+    pure function particle_momentum(self) result(p)
+        class(particle_t), intent(in) :: self
+        real(dp) :: p(3)
+        p = self%mass * self%velocity
+    end function particle_momentum
+
+    subroutine describe(self, unit)
+        class(particle_t), intent(in) :: self
+        integer, intent(in), optional :: unit
+        integer :: u
+        u = output_unit
+        if (present(unit)) u = unit
+        select type (self)
+        type is (charged_t)
+            write(u, '(a, es12.4)') 'charged particle, q = ', self%charge
+        class default
+            write(u, '(a, 3f10.3)') 'particle at ', self%position
+        end select
+    end subroutine describe
+
+    elemental real(dp) function kinetic_energy(p)
+        type(particle_t), intent(in) :: p
+        kinetic_energy = 0.5_dp * p%mass * dot_product(p%velocity, p%velocity)
+    end function kinetic_energy
+
+    real(dp) function total_mass(self)
+        class(system_t), intent(in) :: self
+        total_mass = sum(self%bodies(:)%mass)
+    end function total_mass
+
+    subroutine destroy_system(self)
+        type(system_t), intent(inout) :: self
+        if (allocated(self%bodies)) deallocate(self%bodies)
+    end subroutine destroy_system
+
+    pure real(dp) function norm_vector(v)
+        real(dp), intent(in) :: v(:)
+        norm_vector = sqrt(sum(v**2))
+    end function norm_vector
+
+    pure real(dp) function norm_matrix(m)
+        real(dp), intent(in) :: m(:, :)
+        norm_matrix = sqrt(sum(m**2))
+    end function norm_matrix
+
+    subroutine step(sys, dt, ierr)
+        type(system_t), intent(inout) :: sys
+        real(dp), value :: dt
+        integer, intent(out) :: ierr
+        real(dp), allocatable :: accel(:, :)
+        integer :: i, j, n
+
+        ierr = 0
+        n = size(sys%bodies)
+        if (n == 0 .or. dt <= 0.0_dp) then
+            ierr = 1
+            return
+        end if
+
+        allocate(accel(3, n), source=0.0_dp, stat=ierr)
+        if (ierr /= 0) error stop 'allocation failed'
+
+        outer: do i = 1, n
+            do j = i + 1, n
+                if (i == j) cycle
+                associate (d => sys%bodies(j)%position - sys%bodies(i)%position)
+                    if (norm(d) < TOLERANCE) exit outer
+                    accel(:, i) = accel(:, i) + G * sys%bodies(j)%mass * d / norm(d)**3
+                    accel(:, j) = accel(:, j) - G * sys%bodies(i)%mass * d / norm(d)**3
+                end associate
+            end do
+        end do outer
+
+        where (abs(accel) < TOLERANCE)
+            accel = 0.0_dp
+        elsewhere
+            accel = accel * dt
+        end where
+
+        forall (i = 1:n) sys%bodies(i)%velocity = sys%bodies(i)%velocity + accel(:, i)
+
+        select case (sys%state)
+        case (STATE_IDLE)
+            sys%state = STATE_RUNNING
+        case (STATE_RUNNING:STATE_DONE)
+            continue
+        case default
+            stop 'invalid state'
+        end select
+
+        block
+            logical :: finite
+            finite = all(ieee_is_finite(accel)) .and. .not. any(accel /= accel)
+            if (.not. finite) print *, "warning: non-finite acceleration, it's ""unstable"""
+        end block
+        deallocate(accel)
+    end subroutine step
+
+end module particles
+
 program mandel
     implicit none
     integer, parameter :: N = 99  ! smaller than half of terminal width

@@ -1,6 +1,25 @@
-#version 330
+#version 330 compatibility
+#extension GL_ARB_gpu_shader_fp64 : enable
+
+/*
+ * Water surface vertex shader.
+ * Displaces a flat grid with two sine waves.
+ */
+#define WAVE_COUNT 2
+#define SATURATE(x) clamp((x), 0.0, 1.0)
+
+#ifdef GL_ES
+precision highp float;
+#endif
 
 const float PI = 3.1415926535897932384626433832795;
+const float INV_SQRT2 = inversesqrt(2.0);
+const int maxLights = gl_MaxLights;
+const uint seedMask = 0xFFu;
+const float tiny = 1e-4;
+
+uniform double highPrecisionTime;
+vec4 fallbackColour = gl_Color;
 
 const float waveLength = 20.0;
 const float waveAmplitude = 1.0;
@@ -50,6 +69,19 @@ float generateOffset(float x, float z){
 	float radiansX = (x / waveLength + waveTime) * 2.0 * PI;
 	float radiansZ = (z / waveLength + waveTime) * 2.0 * PI;
 	return waveAmplitude * 0.5 * (sin(radiansZ) + cos(radiansX));
+}
+
+float sumWaves(vec2 p, int count){
+	float total = 0.0;
+	for (int i = 0; i < WAVE_COUNT; ++i) {
+		if (i >= count) break;
+		float k = float(i + 1);
+		total += sin(p.x * k + waveTime) * cos(p.y / k) * 0.5;
+	}
+	switch (count) {
+		case 0: return 0.0;
+		default: return SATURATE(total);
+	}
 }
 
 vec3 applyDistortion(vec3 vertex){
