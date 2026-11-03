@@ -13,3 +13,58 @@
 </div>
 
 // From https://vuejs.org/examples/#list-transition
+
+<!-- A checkout form template, as it would appear in a Vue template string -->
+<form id="checkout" class="checkout" novalidate @submit.prevent="submit">
+  <fieldset :disabled="loading">
+    <legend>Shipping &amp; billing</legend>
+
+    <label for="email">E-mail</label>
+    <input id="email" v-model.trim="form.email" type=email required autocomplete='email'>
+
+    <label for="country">Country</label>
+    <select id="country" v-model="form.country">
+      <option disabled value="">Please select one</option>
+      <option v-for="(name, code) in countries" :key="code" :value="code">{{ name }}</option>
+    </select>
+
+    <p v-if="errors.length" class="errors" role="alert">
+      Please fix {{ errors.length }} {{ errors.length === 1 ? 'error' : 'errors' }}:
+    </p>
+    <ul v-else-if="warnings.length">
+      <li v-for="w in warnings" :key="w.id" v-html="w.message"></li>
+    </ul>
+    <p v-else>All good &#x2714; ready to pay &euro;{{ total.toFixed(2) }}</p>
+  </fieldset>
+
+  <table class="summary">
+    <tr v-for="line in cart" :key="line.sku" :class="{ discounted: line.discount > 0 }">
+      <td><img :src="line.image" :alt='`Photo of ${line.name}`' width="48" height="48"></td>
+      <td><strong>{{ line.name }}</strong><br><small>{{ line.sku }}</small></td>
+      <td><input v-model.number="line.qty" type="number" min="1" :max="line.stock" @change="recalc(line)"></td>
+      <td>{{ formatPrice(line.price * line.qty) }}</td>
+    </tr>
+  </table>
+
+  <MyCoupon v-model:code="form.coupon" @applied="(c) => (discount = c.amount)"></MyCoupon>
+  <PaymentPicker :methods="['card', 'paypal', 'invoice']" v-bind="pickerProps" />
+
+  <template v-if="step === 2">
+    <AddressForm ref="address" :key="`address-${step}`" v-on="addressListeners"></AddressForm>
+  </template>
+  <template #footer="{ close }">
+    <button type="button" @click="close">Cancel</button>
+    <button type="submit" :disabled="!valid || loading" :style="{ opacity: valid ? 1 : 0.5 }">
+      <span v-show="loading" class="spinner" aria-hidden="true"></span>
+      Pay now
+    </button>
+  </template>
+
+  <component :is="currentStep" v-slot:default="slotProps" @keyup.enter.exact="next">
+    {{ slotProps.label }}
+  </component>
+  <a :[attributeName]="url" href="/help" target="_blank" rel="noopener">Need help?</a>
+  <blockquote v-once>Prices include VAT where applicable.</blockquote>
+  <pre v-pre>{{ this will not be compiled }}</pre>
+  <span>Tom & Jerry say 1 < 2</span>
+</form>

@@ -19,3 +19,63 @@ goto endif
 :endif
 
 :: From https://github.com/Archive-projects/Batch-File-examples/blob/master/files/tf5.bat
+
+@echo off
+REM.Build and package script for the release pipeline
+setlocal EnableDelayedExpansion
+
+set "PROJECT=Orbit"
+set VERSION=2.1.0
+set /a BUILD_NUMBER=%RANDOM% %% 1000 + 1
+set /a FLAGS^=0x10, COUNT+=1
+set /p TARGET="Target directory: "
+set /a "MASK=(1<<4)|2"
+
+if not defined TARGET set "TARGET=%~dp0dist"
+if not exist "%TARGET%\" mkdir "%TARGET%" 2>NUL
+if errorlevel 1 (
+    echo Failed to create "%TARGET%" >&2
+    exit /b 1
+)
+
+:: Substrings and substitutions
+set "SHORT=%PROJECT:~0,3%"
+set "SAFE_NAME=%PROJECT: =_%"
+echo Building %SHORT% version %VERSION% (build %BUILD_NUMBER%)
+
+for %%F in (src\*.c src\*.h) do (
+    echo Compiling %%~nxF
+    set /a COUNT+=1
+    copy /y "%%F" "%TARGET%\" > nul
+)
+
+for /f "tokens=1,2 delims==" %%A in (config.ini) do (
+    if /i "%%A"=="mode" set "MODE=%%B"
+)
+
+for /l %%i in (1,1,3) do echo Pass %%i
+
+set "TOTAL=0"
+for %%N in (5 10 15) do (
+    set /a TOTAL+=%%N
+    echo Running total: !TOTAL!
+)
+echo Final: !TOTAL:~-2! and !PROJECT:Orbit=Satellite!
+
+dir /b "%TARGET%" | findstr /i ".exe" && echo Found executables || echo No executables
+type build.log >> "%TARGET%\all.log"
+call :package "%TARGET%" %VERSION%
+if %ERRORLEVEL% neq 0 goto :error
+echo Done ^& ready.
+endlocal
+exit /b 0
+
+:package
+setlocal
+set "OUT=%~1\%PROJECT%-%~2.zip"
+powershell -NoProfile -Command "Compress-Archive -Path '%~1\*' -DestinationPath '%OUT%'"
+endlocal & exit /b %ERRORLEVEL%
+
+:error
+echo Build failed with code %ERRORLEVEL%
+pause

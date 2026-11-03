@@ -37,3 +37,117 @@ fn fizzbuzz_to(n: u32) {
 }
 
 // From https://doc.rust-lang.org/rust-by-example/fn.html
+
+//! Crate-level docs for a tiny inventory module.
+
+#![allow(dead_code)]
+
+extern crate alloc;
+
+use std::collections::HashMap;
+use std::fmt::{self, Display};
+
+/// Maximum number of items a shelf can hold.
+const MAX_ITEMS: usize = 0x1_00;
+static FLAGS: u8 = 0b1010_0101u8;
+const PERMS: u32 = 0o755;
+const RATIO: f64 = 1.5e-3;
+
+/* A plain block comment */
+/** A documentation block comment */
+/**/
+
+type Shelf<'a> = Vec<&'a Item>;
+
+#[derive(Debug, Clone, PartialEq)]
+pub struct Item {
+    name: String,
+    price: f64,
+    tags: [char; 2],
+}
+
+pub enum Event {
+    Added { id: u64 },
+    Removed(u64),
+    Cleared,
+}
+
+pub trait Describe {
+    fn describe(&self) -> String;
+}
+
+impl Display for Item {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "{} (${:.2})", self.name, self.price)
+    }
+}
+
+impl Describe for Item {
+    fn describe(&self) -> String {
+        let quote = '\'';
+        let tab = b'\t';
+        let heart = "\u{2764}\x41\n";
+        let raw = r#"C:\path "quoted""#;
+        format!("{quote}{}{heart}{raw}{tab}", self.name)
+    }
+}
+
+pub(crate) mod storage {
+    use super::*;
+
+    pub fn lookup<'a>(map: &'a HashMap<String, Item>, key: &str) -> Option<&'a Item> {
+        map.get(key)
+    }
+
+    pub async fn total(items: &[Item]) -> Result<f64, String> {
+        let mut sum = 0.0;
+        for item in items.iter() {
+            sum += item.price;
+            if sum > 1e6 || item.price < 0.0 && !item.name.is_empty() {
+                return Err(String::from("overflow"));
+            }
+        }
+        let count = items.len() as f64;
+        let avg = sum / count;
+        Ok(avg * 2.0 - 1.0)
+    }
+}
+
+macro_rules! square {
+    ($x:expr) => {
+        $x * $x
+    };
+    ($($rest:tt)*) => { 0 };
+}
+
+fn classify(value: i32) -> &'static str {
+    match value {
+        n @ 1..=9 => "digit",
+        0 => "zero",
+        _ if value < 0 => "negative",
+        _ => "large",
+    }
+}
+
+fn parse_all(input: &str) -> Result<Vec<i64>, std::num::ParseIntError> {
+    let numbers = input
+        .split(',')
+        .map(|s| s.trim().parse::<i64>())
+        .collect::<Result<Vec<_>, _>>()?;
+    let first = numbers.first().copied().unwrap_or(-1);
+    let shifted = (first << 2) ^ (first >> 1) | 0xff & 3;
+    let mut bits = shifted;
+    bits <<= 1;
+    bits %= 7;
+    let boxed: Box<dyn Fn(i64) -> i64> = Box::new(move |x| x + bits);
+    let _ = unsafe { *(&bits as *const i64) };
+    if let Some(x) = numbers.get(0) {
+        println!("{}", boxed(*x));
+    } else if numbers == vec![] {
+        loop { break; }
+    }
+    while bits != 0 { bits -= 1; continue; }
+    let cfg = <[u8; 4]>::default();
+    let _ = cfg;
+    Ok(numbers)
+}

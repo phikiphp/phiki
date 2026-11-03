@@ -19,3 +19,133 @@ write: / t-name1, t-lifnr.
 endloop.
 
 *- From https://sapbrainsonline.com/abap-tutorial/codes/reading-logical-database-using-abap-program.html -*
+
+*&---------------------------------------------------------------------*
+*& Vendor report with a local class, string templates and Open SQL
+*&---------------------------------------------------------------------*
+INTERFACE lif_printer PUBLIC.
+  METHODS print IMPORTING iv_text TYPE string.
+ENDINTERFACE.
+
+CLASS lcl_vendor_report DEFINITION FINAL CREATE PUBLIC.
+  PUBLIC SECTION.
+    INTERFACES lif_printer.
+    TYPES: BEGIN OF ty_vendor,
+             lifnr TYPE lifnr,
+             name1 TYPE name1_gp,
+             land1 TYPE land1_gp,
+             amount TYPE p LENGTH 15 DECIMALS 2,
+           END OF ty_vendor,
+           tt_vendors TYPE STANDARD TABLE OF ty_vendor WITH EMPTY KEY.
+    CONSTANTS gc_max_rows TYPE i VALUE 500.
+    METHODS constructor IMPORTING iv_country TYPE land1_gp DEFAULT 'DE'.
+    METHODS run RETURNING VALUE(rt_vendors) TYPE tt_vendors
+                RAISING   cx_sy_open_sql_db.
+  PROTECTED SECTION.
+    DATA mv_country TYPE land1_gp.
+  PRIVATE SECTION.
+    DATA mt_cache TYPE tt_vendors.
+    METHODS format_amount IMPORTING iv_amount      TYPE p
+                          RETURNING VALUE(rv_text) TYPE string.
+ENDCLASS.
+
+CLASS lcl_vendor_report IMPLEMENTATION.
+  METHOD constructor.
+    me->mv_country = iv_country.
+  ENDMETHOD.
+
+  METHOD run.
+    DATA lv_count TYPE i.
+    SELECT lifnr, name1, land1
+      FROM lfa1
+      WHERE land1 = @mv_country
+        AND loevm = @abap_false
+      ORDER BY name1
+      INTO CORRESPONDING FIELDS OF TABLE @rt_vendors
+      UP TO @gc_max_rows ROWS.
+
+    IF sy-subrc <> 0.
+      MESSAGE 'No vendors found'(001) TYPE 'S'.
+      RETURN.
+    ENDIF.
+
+    LOOP AT rt_vendors ASSIGNING FIELD-SYMBOL(<ls_vendor>).
+      lv_count += 1.
+      <ls_vendor>-amount = lv_count * '1.5' + 100.
+      IF <ls_vendor>-name1 CS 'GmbH' OR <ls_vendor>-name1 CP '*AG'.
+        CONTINUE.
+      ELSEIF strlen( <ls_vendor>-name1 ) > 30 AND NOT <ls_vendor>-land1 IS INITIAL.
+        <ls_vendor>-name1 = to_upper( <ls_vendor>-name1 ).
+      ENDIF.
+    ENDLOOP.
+
+    DATA(lv_summary) = |Found { lv_count } vendors in { mv_country } on { sy-datum DATE = ISO }|.
+    lif_printer~print( lv_summary ).
+    mt_cache = rt_vendors.
+  ENDMETHOD.
+
+  METHOD format_amount.
+    rv_text = |{ iv_amount NUMBER = USER DECIMALS = 2 ALIGN = RIGHT WIDTH = 15 }|.
+  ENDMETHOD.
+
+  METHOD lif_printer~print.
+    DATA(lv_line) = `Report: ` && iv_text && ` ``done```.
+    WRITE: / lv_line, / 'It''s finished'.
+    WRITE / text-002.
+  ENDMETHOD.
+ENDCLASS.
+
+CLASS lcl_amdp DEFINITION.
+  PUBLIC SECTION.
+    INTERFACES if_amdp_marker_hdb.
+    CLASS-METHODS get_totals FOR TABLE FUNCTION zcds_totals.
+ENDCLASS.
+
+CLASS lcl_amdp IMPLEMENTATION.
+  METHOD get_totals BY DATABASE FUNCTION FOR HDB LANGUAGE SQLSCRIPT
+                    OPTIONS READ-ONLY USING lfa1.
+    RETURN SELECT mandt, lifnr, count( * ) AS total FROM lfa1 GROUP BY mandt, lifnr;
+  ENDMETHOD.
+ENDCLASS.
+
+FORM print_header USING pv_title TYPE string CHANGING cv_lines TYPE i.
+  " Print a simple header line
+  WRITE: / pv_title COLOR COL_HEADING.
+  cv_lines = cv_lines + 1.
+  ULINE.
+ENDFORM.
+
+START-OF-SELECTION.
+  DATA lo_report TYPE REF TO lcl_vendor_report.
+  DATA lv_lines TYPE i VALUE 0.
+  DATA(lt_names) = VALUE string_table( ( `Alpha` ) ( `Beta` ) ).
+  FIELD-SYMBOLS <lv_name> TYPE string.
+
+  lo_report = NEW #( iv_country = 'US' ).
+  PERFORM print_header USING 'Vendors' CHANGING lv_lines.
+
+  TRY.
+      DATA(lt_result) = lo_report->run( ).
+      DATA(lv_rows) = lines( lt_result ).
+      DATA(lv_ratio) = COND f( WHEN lv_rows > 0 THEN lv_rows / 10 ELSE 0 ).
+      CASE lv_rows.
+        WHEN 0.
+          WRITE / 'Empty'.
+        WHEN OTHERS.
+          WRITE: / 'Rows:', lv_rows, lv_ratio.
+      ENDCASE.
+    CATCH cx_sy_open_sql_db INTO DATA(lx_sql).
+      MESSAGE lx_sql->get_text( ) TYPE 'E'.
+  ENDTRY.
+
+  DO 3 TIMES.
+    READ TABLE lt_names INDEX sy-index ASSIGNING <lv_name>.
+    CHECK sy-subrc EQ 0.
+    WRITE / <lv_name>.
+  ENDDO.
+
+  WHILE lv_lines LT 5.
+    lv_lines = lv_lines + 1. "#EC CI_NOORDER
+  ENDWHILE.
+
+  DATA(lv_ok) = xsdbool( lv_lines GE 5 ) ##NEEDED.

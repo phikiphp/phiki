@@ -26,4 +26,63 @@
   {/if}
 {/template}
 
+{delpackage examples.travel.premium}
+{namespace examples.travel}
+
+{alias examples.common.formatting}
+{alias examples.common.icons as icon}
+
+/**
+ * Renders a list of trips with optional pricing.
+ * @param trips The trips to show.
+ * @param? showPrices Whether to include prices.
+ */
+{template tripList}
+  {@param trips: list<map<string, string>>}
+  {@param? showPrices: bool}
+  {@param? discount: number}
+
+  {let $count: length($trips) /}
+  {let $quote: 'It\'s a \u00e9 trip' /}
+  {let $title kind="text"}
+    {if $count > 1 and not $showPrices}Trips ({$count}){else}Trip{/if}
+  {/let}
+
+  <h2 class="{css('trip-title')}" id="{xid('trip-list')}">{$title}</h2>
+  <ul>
+    {for $trip in $trips}
+      <li>
+        {call .tripReport_}
+          {param name: $trip['name'] /}
+          {param destination kind="text"}{$trip['city'] ?: 'somewhere'}{/param}
+        {/call}
+        {if $showPrices ?? false}
+          {sp}-{sp}{round(($trip['price'] ?? 0) * (1 - ($discount ?? 0.15)), 2)}
+        {/if}
+        {if $trip['note'] != null}
+          <p>{$trip['note'] |changeNewlineToBr |truncate:120}</p>
+        {/if}
+      </li>
+    {ifempty}
+      <li>{msg desc="Shown when there are no trips."}No trips yet.{/msg}</li>
+    {/for}
+  </ul>
+
+  {foreach $i in range(3)}
+    {if $i % 2 == 0}{$i}{nil}{else}{lb}odd{rb}{/if}{\n}
+  {/foreach}
+
+  {delcall examples.travel.footer variant="'compact'" /}
+  {call formatting.separator data="all" /}
+  {literal}
+    This {text} is not parsed: {if true}.
+  {/literal}
+  <script>var greeting = 'Hello\n\u00e9 \'world\'';</script>
+  {switch $count}
+    {case 0}none
+    {case 1, 2}a few
+    {default}{$count} trips with -{$discount ?: .5}
+  {/switch}
+{/template}
+
 // From https://github.com/google/closure-templates/blob/master/examples/features.soy

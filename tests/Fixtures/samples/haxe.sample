@@ -1,5 +1,28 @@
 // Game.hx
+package game;
+
+import haxe.ds.StringMap;
+import haxe.Json as JsonParser;
+import sys.io.*;
+using StringTools;
+using Lambda;
+
+/**
+ * Rock, paper, scissors.
+ * @author Simon
+ * @since 1.0.0
+ */
+@:keep
 class Game {
+  static inline final MAX_ROUNDS:Int = 0x0A;
+  static var scores = new StringMap<Int>();
+  public var rounds(default, null):Int = 0;
+  public var label(get, set):String;
+  var history:Array<Result> = [];
+
+  function get_label():String return 'Round $rounds';
+  function set_label(value:String):String return value;
+
   // Haxe applications have a static entry point called main
   static function main() {
     // Anonymous structures.
@@ -20,11 +43,66 @@ class Game {
     }
     // Paper vs Rock, who wins?
     trace('result: $result');
+
+    var game = new Game();
+    for (i in 0...MAX_ROUNDS) {
+      game.play(i % 2 == 0 ? playerA : playerB);
+    }
+    trace('Scores: ${scores.toString()} after ${game.rounds} rounds');
+  }
+
+  public function new() {}
+
+  /**
+   * Plays one round.
+   * @param player The player who moves first.
+   * @return The outcome of the round.
+   */
+  public function play(player:Player, ?seed:Int):Result {
+    rounds++;
+    final opponent:Move = randomMove(seed ?? Std.random(3));
+    var outcome = if (player.move == opponent) Draw else Winner(player);
+    history.push(outcome);
+    switch outcome {
+      case Winner(p) if (p.name.startsWith("S")):
+        scores.set(p.name, (scores.get(p.name) ?? 0) + 1);
+      case Winner({name: n}):
+        trace("winner: " + n + "\n");
+      case Draw:
+    }
+    return outcome;
+  }
+
+  static function randomMove(seed:Int):Move {
+    return switch seed {
+      case 0: Rock;
+      case 1: Paper;
+      default: Scissors;
+    }
+  }
+
+  private static function parseScores(path:String):Null<Dynamic> {
+    try {
+      var content = File.getContent(path);
+      var cleaned = ~/[^a-z0-9{}":,\s]+/gi.replace(content, "");
+      if (~/^\{(?:"\w+":\d+,?)*\}$/.match(cleaned) && !cleaned.contains("\\")) {
+        return JsonParser.parse(cleaned);
+      }
+    } catch (e:haxe.Exception) {
+      trace('Could not read $path: ${e.message}');
+      throw e;
+    }
+    return null;
   }
 }
 
 // Allow anonymous structure named as type.
 typedef Player = { name: String, move: Move }
+
+typedef Scored = Player & {
+  var score:Int;
+  @:optional var bonus:Float;
+}
 
 // Define multiple enum values.
 enum Move { Rock; Paper; Scissors; }
@@ -33,6 +111,61 @@ enum Move { Rock; Paper; Scissors; }
 enum Result {
   Winner(player:Player);
   Draw;
+}
+
+interface Scoreboard<T:Player> {
+  function record(player:T, points:Int):Void;
+  var leader(default, never):Null<T>;
+}
+
+/* Points can never be negative. */
+abstract Points(Int) from Int to Int {
+  public inline function new(value:Int) {
+    this = value < 0 ? 0 : value;
+  }
+
+  @:op(A + B)
+  public function add(other:Points):Points return new Points(this + other.toInt());
+
+  public function toInt():Int return this;
+}
+
+@:generic
+final class Cache<K, V> {
+  var items:Map<K, V> = [];
+  public function new() {}
+  public function getOr(key:K, make:K -> V):V {
+    if (!items.exists(key)) items[key] = make(key);
+    return items[key];
+  }
+}
+
+class Utils {
+  public static function demo():Void {
+    var nums = [1, 2, 3, 0b1010, 0xFF, 1_000];
+    var floats = [3.14, .5, 1e-3, 2.5e10];
+    var evens = nums.filter(n -> n % 2 == 0).map((n:Int) -> n * 2);
+    var total = nums.fold((n, acc) -> acc + n, 0);
+    var escaped = "tab\t quote\" unicode\u00E9 hex\x41";
+    var unsafe:Dynamic = untyped __js__("window");
+    var asFloat = cast(total, Float);
+    var maybe:Null<String> = null;
+    var len = maybe?.length;
+    var shifted = (total << 2) >> 1 & 0xF | 1 ^ ~0;
+    var dict = ["a" => 1, "b" => 2];
+    for (key => value in dict) trace('$key=$value');
+    var i = 10;
+    while (i-- > 0) if (i == 5) break else continue;
+    do i++ while (i < 3);
+    #if (js && !nodejs)
+    js.Browser.console.log(evens, total, escaped, unsafe, asFloat, len, shifted);
+    #elseif sys
+    Sys.println('${evens.length} values');
+    #else
+    trace($type(total));
+    #end
+    trace(Std.isOfType(total, Int) && true || false);
+  }
 }
 
 // From https://haxe.org/

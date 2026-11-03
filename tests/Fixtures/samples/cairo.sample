@@ -96,3 +96,60 @@ pub mod PizzaFactory {
 }
 
 // From https://github.com/github-linguist/linguist/blob/main/samples/Cairo/pizza_factory.cairo
+// Legacy Cairo 0 version of a balance contract, kept for reference.
+%lang starknet
+
+from starkware.cairo.common.cairo_builtins import HashBuiltin
+from starkware.cairo.common.math import assert_nn
+
+const MAX_AMOUNT = 0x7fffffff;
+
+@storage_var
+func balance() -> (res: felt) {
+}
+
+@external
+func increase_balance{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_ptr}(
+    amount: felt
+) {
+    with_attr error_message("Amount must be positive. Got: {amount}.") {
+        assert_nn(amount);
+    }
+    let (res) = balance.read();
+    balance.write(res + amount);
+    return ();
+}
+
+func sum_array(arr: felt*, size: felt) -> (sum: felt) {
+    alloc_locals;
+    local total;
+    if (size == 0) {
+        return (sum=0);
+    } else {
+        tempvar next = size - 1;
+    }
+    let (rest) = sum_array(arr=arr + 1, size=size - 1);
+    return (sum=[arr] + rest);
+}
+
+func low_level(x: felt) -> (y: felt) {
+    [ap] = [fp - 3] * 2, ap++;
+    jmp done if [ap - 1] != 0;
+    [ap] = 'empty', ap++;
+    done:
+    call abs sum_array;
+    ret;
+}
+
+func get_frame_size() -> (size: felt) {
+    return (size=SIZEOF_LOCALS);
+}
+
+func print_value(value: felt) {
+    %{
+        print(f"value = {ids.value}")
+    %}
+    with value {
+        return ();
+    }
+}

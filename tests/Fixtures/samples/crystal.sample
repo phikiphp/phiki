@@ -41,3 +41,143 @@ puts User.new("osman", 3).name
 User.new("ali", 9).print
 
 # From https://github.com/askn/crystal-by-example/blob/master/struct/struct.cr
+
+# ---
+# A tiny HTTP-ish router with macros, generics and C bindings.
+require "json"
+require "./router/*"
+
+@[Link("z")]
+lib LibZ
+  type ZStream = Void*
+  fun crc32(crc : UInt64, buf : UInt8*, len : UInt32) : UInt64
+end
+
+module Router
+  VERSION = "0.3.1"
+  MAX_ROUTES = 0x100
+  FLAGS = 0b1010_u8
+  MODE = 0o644
+  TIMEOUT = 2.5e3_f64
+  RATIO = 0.75_f32
+
+  alias Handler = Proc(Request, String)
+
+  class Request
+    getter method : String
+    getter path : String
+    property params = {} of String => String
+
+    def initialize(@method, @path)
+    end
+  end
+
+  abstract class Base(T)
+    @@instances = 0
+    @routes = [] of Tuple(String, Regex, Handler)
+
+    def self.instances
+      @@instances
+    end
+
+    abstract def call(request : T) : String
+
+    macro get(path, &block)
+      add_route "GET", {{path}} do |request|
+        {{block.body}}
+      end
+    end
+
+    {% for verb in %w(post put delete) %}
+      def {{verb.id}}(path : String, &handler : Handler)
+        add_route {{verb.upcase}}, path, &handler
+      end
+    {% end %}
+
+    private def add_route(method : String, path : String, &handler : Handler)
+      pattern = Regex.new("^" + path.gsub(/:(\w+)/) { "(?<#{$1}>[^/]+)" } + "$")
+      @routes << {method, pattern, handler}
+      @@instances += 1
+    end
+  end
+
+  class App < Base(Request)
+    include Enumerable(String)
+
+    def call(request : Request) : String
+      @routes.each do |(method, pattern, handler)|
+        next unless method == request.method
+        if match = pattern.match(request.path)
+          match.named_captures.each { |key, value| request.params[key] = value.to_s }
+          return handler.call(request)
+        end
+      end
+      %({"error": "no route for #{request.path}"})
+    end
+
+    def each(&)
+      @routes.each { |route| yield route[0] }
+    end
+  end
+end
+
+app = Router::App.new
+app.get "/users/:id" do |request|
+  id = request.params["id"]?.try &.to_i? || -1
+  case id
+  when 0..10    then "small #{id}"
+  when Int32    then "user #{id}"
+  else               "unknown"
+  end
+end
+
+words = %w[alpha beta gamma]
+symbols = %i(read write)
+quoted = %q(single 'quoted' text)
+interpolated = %Q{total: #{words.size}}
+pattern = %r{^/api/v(\d+)/}i
+shell = `ls -la #{__DIR__}`
+char = 'x'
+escape = "tab\tnewline\n unicode \u{1F600} hex \x41"
+symbol = :ok
+quoted_symbol = :"with space"
+named = {name: "osman", age: 3}
+hash = {"key" => 1, :other => 2}
+home = ENV["HOME"]? || "/tmp"
+$verbose = true
+
+sql = <<-SQL
+  SELECT id, name FROM users WHERE id = #{1}
+  SQL
+
+text = <<-'TEXT'
+  raw #{not} interpolated
+  TEXT
+
+value = 10
+value **= 2
+value //= 3
+value <<= 1
+value |= 0b1
+puts value <=> 20, value === 20, "abc" =~ /b/, !$verbose && true
+
+begin
+  raise ArgumentError.new("bad") if value > 100
+rescue ex : ArgumentError
+  STDERR.puts "error: #{ex.message}"
+ensure
+  puts "done in #{__FILE__}:#{__LINE__}"
+end
+
+ptr = pointerof(value)
+size = sizeof(Int64)
+typeof(ptr) # => Pointer(Int32)
+square = ->(x : Int32) { x * x }
+puts square.call(4), words.map(&.upcase).join(", ")
+_unused = nil
+
+describe Router do
+  it "matches routes" do
+    app.call(Router::Request.new("GET", "/users/7")).should eq("user 7")
+  end
+end

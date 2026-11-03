@@ -16,3 +16,142 @@ ball:move(100, 120)
 ball.move(ball, 100, 120)
 
 -- From https://pico-8.fandom.com/wiki/Lua
+
+--[[
+  Inventory module: a small class with metatables, varargs,
+  coroutines, string patterns and LuaLS annotations.
+]]
+
+---@meta
+---@module 'inventory'
+---@version 5.4
+---@diagnostic disable: lowercase-global
+
+local json <const> = require("dkjson")
+local fmt = string.format
+local MAX_SLOTS = 0x20
+local WEIGHT_LIMIT = 1.5e2
+local RATIO = .75
+local HEX_FLOAT = 0x1.8p+1
+
+---@alias ItemKind "tool"|"food"|"misc"
+
+---@enum Rarity
+local Rarity = { COMMON = 1, RARE = 2, EPIC = 3 }
+
+---@class Item
+---@field name string
+---@field kind ItemKind
+---@field weight? number
+---@field [string] any
+
+---@class Inventory
+---@field items Item[]
+---@field private _count integer
+local Inventory = {}
+Inventory.__index = Inventory
+
+---Create a new inventory.
+---@generic T
+---@param owner string The owner's name
+---@param ... Item Initial items
+---@return Inventory
+---@nodiscard
+---@see Inventory.add
+function Inventory.new(owner, ...)
+  local self = setmetatable({ owner = owner, items = {}, _count = 0 }, Inventory)
+  for _, item in ipairs({ ... }) do
+    self:add(item)
+  end
+  return self
+end
+
+---@param item Item
+---@return boolean ok, string? err
+---@overload fun(self: Inventory, name: string): boolean
+function Inventory:add(item)
+  if type(item) == "string" then item = { name = item, kind = "misc" } end
+  if #self.items >= MAX_SLOTS then
+    return false, "inventory full"
+  elseif (item.weight or 0) > WEIGHT_LIMIT and not self.strong then
+    return false, fmt("%q is too heavy (%.1f kg)", item.name, item.weight)
+  end
+  self.items[#self.items + 1] = item
+  self._count = self._count + 1
+  return true
+end
+
+---@deprecated Use Inventory:find instead
+---@private
+function Inventory:lookup(name) return self:find(name) end
+
+---@protected
+---@package
+function Inventory:find(pattern)
+  for i = #self.items, 1, -1 do
+    local it = self.items[i]
+    if it.name:match("^" .. pattern .. "%d*$") then
+      goto found
+    end
+    if i == 1 then return nil end
+    ::found::
+    return it, i
+  end
+end
+
+---@type table<string, integer>
+local counts = {}
+
+---@cast counts table<string, integer>
+---@operator add(Inventory): Inventory
+function Inventory.__add(a, b)
+  local merged = Inventory.new(a.owner)
+  for _, list in pairs({ a.items, b.items }) do
+    for _, it in next, list do merged:add(it) end
+  end
+  return merged
+end
+
+function Inventory:__tostring()
+  return ("Inventory<%s, %d items>"):format(self.owner, self._count)
+end
+
+---@async
+local function producer()
+  return coroutine.wrap(function()
+    for n = 1, 3 do coroutine.yield(n * 2 ^ n // 3 % 5) end
+  end)
+end
+
+local escapes = "tab\tnewline\nquote\"bell\a\x41\65\u{263A}\z
+                 continued"
+local raw = [==[
+  long string with ]] inside and no \escapes
+]==]
+local single = 'it\'s'
+
+local ok, err = pcall(function()
+  local inv <close> = setmetatable({}, { __close = function() print("closed") end })
+  error({ code = 42 })
+end)
+if not ok then print(err.code ~= nil and err.code or "?") end
+
+local bits = (5 & 3) | (1 << 4) ~ ~0 >> 1
+local cmp = 1 <= 2 and 3 >= 2 and 1 ~= 2 and "a" < "b"
+print(math.floor(math.pi * 100) / 100, math.huge, _VERSION, os.time(), table.concat({ 1, 2 }, ","))
+io.write(tostring(#escapes), "\n")
+
+local ffi = require("ffi")
+ffi.cdef[[
+  int printf(const char *fmt, ...);
+]]
+
+while counts.misc and counts.misc > 0 do
+  counts.misc = counts.misc - 1
+end
+
+repeat
+  local line = io.read("l")
+until line == nil or line == ""
+
+return Inventory

@@ -1,3 +1,10 @@
+module Shop.Billing
+
+open System
+open System.Text.RegularExpressions
+open type System.Math
+module Str = Microsoft.FSharp.Core.String
+
 type Customer(firstName, middleInitial, lastName) = 
     member this.FirstName = firstName
     member this.MiddleInitial = middleInitial
@@ -11,3 +18,138 @@ let customer = Customer("Emillia", "C", "Miller")
 printfn $"Hello, I'm {customer.SayFullName()}!"
 
 // From https://dotnet.microsoft.com/languages/fsharp
+
+(* ---------------------------------------------------------------
+   Invoices: unions, records, active patterns and computation
+   expressions.
+   --------------------------------------------------------------- *)
+
+/// <summary>A monetary amount in a given currency.</summary>
+[<Struct>]
+type Money = { Amount: decimal; Currency: string }
+
+[<Measure>] type kg
+
+/// The state of an invoice.
+type InvoiceStatus =
+    | Draft
+    | Sent of sentAt: DateTime
+    | Paid of amount: Money * paidAt: DateTime
+    | Cancelled of reason: string
+
+type Line =
+    { Sku: string
+      Quantity: int
+      UnitPrice: Money
+      Weight: float<kg> }
+
+type Invoice =
+    { Id: Guid
+      Customer: Customer
+      Lines: Line list
+      mutable Status: InvoiceStatus }
+
+[<AbstractClass>]
+type Notifier() =
+    abstract member Notify: Invoice -> Async<unit>
+    abstract member Name: string
+    default this.Name = "notifier"
+
+type IRepository<'T> =
+    abstract member Find: Guid -> 'T option
+    abstract member Save: 'T -> unit
+
+[<RequireQualifiedAccess>]
+module Invoice =
+    [<Literal>]
+    let MaxLines = 100
+
+    let private skuPattern = Regex(@"^[A-Z]{3}-\d{4}$", RegexOptions.Compiled)
+    let mutable created = 0L
+
+    let (|ValidSku|_|) (sku: string) =
+        if skuPattern.IsMatch sku then Some sku else None
+
+    let (|Even|Odd|) n = if n % 2 = 0 then Even else Odd
+
+    let total (invoice: Invoice) : Money =
+        let amount =
+            invoice.Lines
+            |> List.sumBy (fun line -> line.UnitPrice.Amount * decimal line.Quantity)
+        { Amount = Round(amount, 2); Currency = "EUR" }
+
+    let describe invoice =
+        match invoice.Status with
+        | Draft -> "draft"
+        | Sent sentAt when sentAt < DateTime.UtcNow.AddDays(-30.0) -> "overdue"
+        | Sent _ -> "sent"
+        | Paid ({ Amount = a }, at) -> sprintf "paid %M on %O" a at
+        | Cancelled reason -> $"cancelled: {reason}"
+
+    let addLine sku quantity price invoice =
+        match sku with
+        | ValidSku s when invoice.Lines.Length < MaxLines ->
+            created <- created + 1L
+            Ok { invoice with Lines = { Sku = s; Quantity = quantity; UnitPrice = price; Weight = 0.5<kg> } :: invoice.Lines }
+        | _ -> Error (sprintf "invalid sku %s" sku)
+
+    let rec retry attempts (work: unit -> Async<'a>) =
+        async {
+            try
+                return! work ()
+            with
+            | :? TimeoutException as ex when attempts > 0 ->
+                do! Async.Sleep 500
+                printfn "retrying after %s" ex.Message
+                return! retry (attempts - 1) work
+        }
+
+    let send (notifier: Notifier) invoice =
+        task {
+            let! () = notifier.Notify invoice |> Async.StartAsTask
+            invoice.Status <- Sent DateTime.UtcNow
+            return invoice
+        }
+
+let numbers = [ 1; 2; 3; 0x1F; 0b1010; 0o17; 1_000_000 ]
+let floats = [| 1.5; 2.0e-3; 3.14f; 10m |]
+let bigOnes = (9_000_000_000L, 42uy, 7un, 255n)
+let chars = [ 'a'; '\n'; '\t'; '\u0041' ]
+let escaped = "Tab:\tQuote:\" Unicode:\u00e9"
+let verbatim = @"C:\invoices\""archive"""
+let triple = """{ "status": "draft", "lines": [] }"""
+let bytes = "raw"B
+let isReady = true && not false || (1 <> 2)
+
+let evens = [ for n in numbers do if n % 2 = 0 then yield n * n ]
+let squares = seq { 1 .. 10 } |> Seq.map (fun x -> x * x) |> Seq.filter (fun x -> x > 10)
+let compose = List.map ((+) 1) >> List.rev
+let pipeline = numbers |> compose |> List.fold (fun acc x -> acc + x) 0
+
+let classify n =
+    match n with
+    | Even -> "even"
+    | Odd -> "odd"
+
+let rec factorial n = if n <= 1 then 1I else bigint n * factorial (n - 1)
+
+let mutable counter = 0
+while counter < 3 do
+    counter <- counter + 1
+
+for i in 0 .. 2 .. 10 do
+    printfn "%d is %s (%A)" i (classify i) (factorial i)
+
+let tryParse (text: string) =
+    match Int32.TryParse text with
+    | true, value -> Some value
+    | false, _ -> None
+
+let shape = struct (1, "one")
+let lazyValue = lazy (printfn "computed"; 42)
+let (a, b) = (lazyValue.Force(), Str.length "abc")
+let timer = new Timers.Timer(1000.0)
+
+#if DEBUG
+printfn "debug build %s" __SOURCE_DIRECTORY__
+#endif

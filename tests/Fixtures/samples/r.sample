@@ -19,3 +19,87 @@ ggplot(q, aes(x = Year.Release, y = Total.Sales, label = q$count)) +
   scale_x_discrete("Year.Release", labels = as.character(Year.Release), breaks = Year.Release)
 
 # From https://gexijin.github.io/learnR/the-game-sales-dataset.html#analysis-of-sales
+
+#pragma mark Helpers
+
+#' Summarise sales by region
+#'
+#' @param data A data frame with `region` and `sales` columns.
+#' @param min_sales Minimum total to keep.
+#' @return A tibble sorted by total sales.
+#' @export
+summarise_sales <- function(data, min_sales = 0, ...) {
+  stopifnot(is.data.frame(data), "region" %in% names(data))
+  out <- data |>
+    dplyr::group_by(region) |>
+    dplyr::summarise(total = sum(sales, na.rm = TRUE), n = dplyr::n(), .groups = "drop")
+  out[out$total >= min_sales & !is.na(out$region), , drop = FALSE]
+}
+
+`%+%` <- function(a, b) paste0(a, b)
+
+normalise <- function(x) {
+  if (!is.numeric(x)) {
+    stop("x must be numeric, got ", class(x)[[1]])
+  } else if (length(x) == 0L) {
+    return(numeric(0))
+  }
+  rng <- range(x, na.rm = TRUE)
+  (x - rng[1]) / (rng[2] - rng[1])
+}
+
+counter <- local({
+  count <- 0
+  function() {
+    count <<- count + 1
+    count
+  }
+})
+
+set.seed(42)
+values <- c(1.5, .25, 3e-2, 0x1F, 10L, 0xFFL, 2i, NA, NA_real_, Inf, -Inf, NaN)
+mat <- matrix(1:6, nrow = 2) %*% t(matrix(1:6, nrow = 2))
+idx <- 7 %/% 2 + 7 %% 2 + 2^3 + 2 ** 2
+flags <- c(TRUE, FALSE) && TRUE || is.null(NULL)
+cats <- factor(sample(letters[1:3], 20, replace = TRUE), levels = LETTERS[1:3])
+info <- list(name = 'sales report', month = month.abb[1], radius = pi * 2)
+info[["path"]] <- r"(C:\data\sales.csv)"
+pattern <- R"[\d+\.\d{2}]"
+label <- "Tab\tseparated\nline with \"quotes\" and \u00e9"
+"done" -> status
+
+for (i in seq_len(3)) {
+  if (i == 2) next
+  message(sprintf("Iteration %d of %d", i, 3))
+}
+
+k <- 0
+while (k < 5) {
+  k <- k + 1
+  if (k > 3) break
+}
+
+repeat {
+  k <- k - 1
+  if (k <= 0) break
+}
+
+result <- tryCatch(
+  normalise(c(1, 2, 3)),
+  warning = function(w) NULL,
+  error = function(e) {
+    warning("normalise failed: ", conditionMessage(e))
+    NA
+  },
+  finally = cat("done\n")
+)
+
+squares <- vapply(1:5, \(n) n^2, numeric(1))
+by_cyl <- split(mtcars$mpg, mtcars$cyl)
+model <- stats::lm(mpg ~ wt + hp, data = mtcars)
+plot(mtcars$wt, mtcars$mpg, main = "Weight vs MPG", col = "steelblue")
+abline(model, lty = 2)
+dt <- data.table::data.table(x = 1:3)
+dt[, y := x * 2]
+setClass("Account", representation(owner = "character", balance = "numeric"))
+utils::head(utils:::.romans, 3); invisible(NULL)

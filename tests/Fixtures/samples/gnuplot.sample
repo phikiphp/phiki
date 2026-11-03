@@ -1,9 +1,13 @@
+#!/usr/bin/env gnuplot
+reset session
+
 set title 'Hello, world'                       # plot title
 set xlabel 'Time'                              # x-axis label
 set ylabel 'Distance'                          # y-axis label
 
 # labels
 set label "boiling point" at 10, 212
+set label 2 sprintf("max = %.2f\n", 212.0) at graph 0.5, 0.9 center
 
 # key/legend
 set key top right
@@ -16,5 +20,92 @@ set nokey     # no key
 
 # arrow
 set arrow from 1,1 to 5,10
+
+# terminal and output
+set terminal pngcairo size 1200,800 enhanced font 'Helvetica,12'
+set output 'distance.png'
+set encoding utf8
+set datafile separator ','
+set grid xtics ytics lc rgb '#cccccc' lw 1
+set style line 1 lc rgb '#0060ad' lt 1 lw 2 pt 7 ps 1.5
+set style line 2 lc rgb 0xdd181f dashtype 2
+set xrange [0:*]
+set yrange [-1.5:1.5]
+set format y "%.1f"
+set xtics 0, 0.5, 2*pi
+
+# user variables and functions
+a = 1.5e-2
+b = 0x1F
+c = 017
+n = 0
+greeting = "It's a \"great\" day"
+quoted = 'single '' quote'
+gauss(x, mu, sigma) = exp(-(x - mu)**2 / (2 * sigma**2)) / (sigma * sqrt(2*pi))
+clip(x) = (x < 0) ? 0 : (x > 1 ? 1 : x)
+label(i) = "series " . i
+is_same(s) = s eq "same" || s ne "other" && !(n == 1)
+bits = (b << 2) | (b >> 1) & 0xF ^ ~0
+remainder = 17 % 5
+
+# inline data block
+$measurements << EOD
+0  0.0   0.1
+1  0.8   0.2
+2  0.9   0.15
+3  0.1   0.3
+EOD
+
+array weights[4] = [0.1, 0.2, 0.3, 0.4]
+total = sum [i=1:4] weights[i]
+
+# plot with column expressions and filters
+plot $measurements using 1:2:3 with yerrorbars ls 1 title 'measured', \
+     '' using 1:($2 * 2) every 2 with linespoints ls 2 notitle, \
+     gauss(x, 1, 0.5) with lines lw 3 title label(3)
+
+plot 'data.csv' index 0 using (column("time")):(stringcolumn(2) eq "ok" ? $3 : NaN) \
+     smooth csplines with lines
+
+splot [x=-2:2][y=-2:2] sin(x) * cos(y) with pm3d
+
+# loops and conditionals
+do for [i=1:3] {
+    set output sprintf('frame_%02d.png', i)
+    if (i % 2 == 0) {
+        print "even frame ", i
+    } else {
+        print "odd frame ", i
+    }
+    replot
+}
+
+while (n < 3) {
+    n = n + 1
+}
+
+if (exists("ARG1")) print "first argument: ", ARG1; else print "no arguments"
+
+stats $measurements using 2 nooutput
+print sprintf("mean = %g, max = %g", STATS_mean, STATS_max)
+print GPVAL_TERM, " ", strlen(greeting)
+
+# fitting
+f(x) = m*x + q
+fit f(x) $measurements using 1:2 via m, q
+
+# shell commands
+now = `date +%s`
+!echo "rendered"
+system("ls -l *.png")
+
+set pm3d at s hidden3d
+set palette defined (0 "blue", 1 "white", 2 "red")
+show variables all
+unset key
+undefine greeting
+pause -1 "Press enter"
+load 'common.gp'
+cd '..'
 
 # From https://alvinalexander.com/technology/gnuplot-charts-graphs-examples/

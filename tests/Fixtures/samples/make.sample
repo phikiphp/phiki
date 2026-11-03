@@ -1,26 +1,116 @@
 edit : main.o kbd.o command.o display.o \
        insert.o search.o files.o utils.o
-        cc -o edit main.o kbd.o command.o display.o \
-                   insert.o search.o files.o utils.o
+	cc -o edit main.o kbd.o command.o display.o \
+	           insert.o search.o files.o utils.o
 
 main.o : main.c defs.h
-        cc -c main.c
+	cc -c main.c
 kbd.o : kbd.c defs.h command.h
-        cc -c kbd.c
+	cc -c kbd.c
 command.o : command.c defs.h command.h
-        cc -c command.c
+	cc -c command.c
 display.o : display.c defs.h buffer.h
-        cc -c display.c
+	cc -c display.c
 insert.o : insert.c defs.h buffer.h
-        cc -c insert.c
+	cc -c insert.c
 search.o : search.c defs.h buffer.h
-        cc -c search.c
+	cc -c search.c
 files.o : files.c defs.h buffer.h command.h
-        cc -c files.c
+	cc -c files.c
 utils.o : utils.c defs.h
-        cc -c utils.c
+	cc -c utils.c
 clean :
-        rm edit main.o kbd.o command.o display.o \
-           insert.o search.o files.o utils.o
+	rm edit main.o kbd.o command.o display.o \
+	   insert.o search.o files.o utils.o
 
 # From https://www.gnu.org/software/make/manual/html_node/Simple-Makefile.html
+
+# ---------------------------------------------------------------------------
+# A more complete project Makefile
+# ---------------------------------------------------------------------------
+
+SHELL := /bin/bash
+.DEFAULT_GOAL := all
+.SUFFIXES:
+
+PREFIX ?= /usr/local
+CC = gcc
+CFLAGS += -Wall -Wextra -O2
+LDLIBS := -lm
+VERSION != git describe --tags --always
+override DEBUG ?= 0
+private SECRET = do-not-export
+export PATH := $(CURDIR)/bin:$(PATH)
+unexport GREP_OPTIONS
+
+SRC_DIR := src
+BUILD_DIR := build
+SRCS := $(wildcard $(SRC_DIR)/*.c)
+OBJS := $(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRCS))
+DEPS := ${OBJS:.o=.d}
+NAMES := $(sort $(notdir $(basename $(SRCS))))
+FIRST := $(firstword $(NAMES))
+HAS_CLANG := $(shell command -v clang 2>/dev/null)
+ORIGIN := $(origin CC)
+FLAVOR := ${flavor CFLAGS}
+
+vpath %.h include
+-include $(DEPS)
+include config.mk
+
+ifeq ($(DEBUG),1)
+  CFLAGS += -g -DDEBUG
+else ifneq ($(strip $(HAS_CLANG)),)
+  CC := clang
+else
+  $(info Using $(CC) from $(ORIGIN))
+endif
+
+ifdef CI
+  CFLAGS += -Werror
+endif
+
+ifndef VERSION
+  $(warning VERSION is not set)
+endif
+
+define compile-banner
+@echo "==> Building $(1) with $(CC)"
+@echo "    flags: $(CFLAGS)"
+endef
+
+.PHONY: all clean distclean install test help
+
+all: $(BUILD_DIR)/app ## Build everything
+
+$(BUILD_DIR)/app: $(OBJS) | $(BUILD_DIR)
+	$(call compile-banner,$@)
+	$(CC) $(LDFLAGS) -o $@ $^ $(LDLIBS)
+
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(@D)
+	$(CC) $(CFLAGS) -MMD -MP -c $< -o $@
+
+$(BUILD_DIR):
+	mkdir -p $@
+
+install: all
+	install -d $(DESTDIR)$(PREFIX)/bin
+	install -m 0755 $(BUILD_DIR)/app $(DESTDIR)$(PREFIX)/bin/app
+
+test: all
+	@for t in tests/*.sh; do \
+		echo "running $$t"; \
+		bash "$$t" || exit 1; \
+	done
+	-$(MAKE) -C tests MAKEFLAGS="$(MAKEFLAGS)"
+
+help:
+	@grep -E '^[a-zA-Z_-]+:.*?## ' $(MAKEFILE_LIST) | \
+		awk 'BEGIN {FS = ":.*?## "}; {printf "%-12s %s\n", $$1, $$2}'
+
+distclean::
+	+rm -rf $(BUILD_DIR) $(filter-out README.md,$(wildcard *.tmp))
+	$(foreach f,$(NAMES),$(info removed $(f)))
+	$(if $(VERBOSE),@echo cleaned,)
+	@echo $(addprefix count-,$(words $(NAMES)))

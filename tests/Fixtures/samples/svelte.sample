@@ -1,2 +1,136 @@
-<script>
+<!-- @component
+  A filterable todo list.
+  Usage: <TodoList items={todos} on:change={save} />
+-->
+<svelte:options immutable={true} />
+
+<script context="module">
+  export const STORAGE_KEY = 'todos';
+</script>
+
+<svelte:window on:keydown={(e) => e.key === 'Escape' && (draft = '')} />
+<svelte:head>
+  <title>{title} ({items.length})</title>
+</svelte:head>
+
+<section class="todos" class:empty={items.length === 0} style:--accent="tomato" style:opacity={0.9}>
+  <h1 use:tooltip={{ text: 'Your tasks' }}>{title}</h1>
+
+  <form on:submit|preventDefault={add}>
+    <input bind:this={input} bind:value={draft} placeholder="What needs doing?" maxlength="120" />
+    <button type="submit" disabled={!draft}>Add</button>
+  </form>
+
+  <Ui.Tabs bind:selected={filter} options={['all', 'open', 'done']} />
+
+  {#await promise}
+    <p>Loading…</p>
+  {:then loaded}
+    <p>Loaded {loaded.length} items from the server.</p>
+  {:catch error}
+    <p class="error">{error.message}</p>
+  {/await}
+
+  {#if visible.length === 0}
+    <p in:fade>Nothing to show.</p>
+  {:else if remaining > 5}
+    <p>Lots of hidden items ({remaining}).</p>
+  {:else}
+    <ul>
+      {#each visible as item, index (item.id)}
+        {@const label = `${index + 1}. ${item.title}`}
+        <li animate:flip={{ duration: 200 }} transition:fly|local={{ y: 20 }}>
+          <Icon name="check" size="16" />
+          <span>{label}</span>
+          <my-badge count={index}></my-badge>
+        </li>
+      {/each}
+    </ul>
+  {/if}
+
+  {#key count}
+    <span in:fade out:fade>{count}</span>
+  {/key}
+
+  <button on:click={() => count++}>Clicked {count} {count === 1 ? 'time' : 'times'}</button>
+  {@html '<em>Raw HTML</em>'}
+  {@debug count, filter}
+  <hr />
+  <br>
+  <img src="/logo.png" alt="Logo" width=48 />
+
+  <slot name="footer" {remaining}>
+    <p>Default footer</p>
+  </slot>
+</section>
+
+{#snippet row(item: T, highlighted = false)}
+  <tr class:highlighted><td>{item.id}</td><td>{item.title}</td></tr>
+{/snippet}
+
+<table>
+  {#each items as { id, title: name }}
+    {@render row({ id, title: name } as T)}
+  {/each}
+</table>
+
+<style lang="scss">
+  $accent: var(--accent);
+
+  .todos {
+    max-width: 40rem;
+    margin: 0 auto;
+
+    h1 {
+      color: $accent;
+    }
+  }
+
+  :global(body) {
+    font-family: system-ui, sans-serif;
+  }
+
+  .error { color: #c00; }
+</style>
+
+<script lang="ts" generics="T extends { id: number; title: string }">
+  import { onMount, createEventDispatcher } from 'svelte';
+  import { fade, fly } from 'svelte/transition';
+  import { flip } from 'svelte/animate';
+  import Icon from './Icon.svelte';
+  import * as Ui from './ui';
+  import { tooltip } from './actions';
+
+  export let items: T[] = [];
+  export let title = "Todos";
+
+  let filter: 'all' | 'open' | 'done' = 'all';
+  let input: HTMLInputElement;
+  let draft = '';
+  let count = 0;
+  const dispatch = createEventDispatcher<{ change: T[] }>();
+
+  $: visible = items.filter((item) => filter === 'all' || (filter === 'done') === Boolean((item as any).done));
+  $: remaining = items.length - visible.length;
+  $: if (count > 10) console.warn(`Too many clicks: ${count}`);
+
+  function add(): void {
+    if (!draft.trim()) return;
+    items = [...items, { id: Date.now(), title: draft } as T];
+    draft = '';
+    dispatch('change', items);
+  }
+
+  async function load(): Promise<T[]> {
+    const res = await fetch(`/api/${STORAGE_KEY}?limit=${20}`);
+    if (!res.ok) throw new Error(res.statusText);
+    return res.json();
+  }
+
+  let promise = load();
+
+  onMount(() => {
+    input?.focus();
+    return () => console.log('destroyed', $$props, $$restProps);
+  });
 </script>

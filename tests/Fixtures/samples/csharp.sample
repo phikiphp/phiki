@@ -31,3 +31,208 @@ namespace KCTest.API
 }
 
 // From https://github.com/Jadhielv/KCTest/blob/master/Backend/src/KCTest.API/Program.cs
+namespace KCTest.Domain.Orders;
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
+using System.Threading;
+using System.Threading.Tasks;
+using Json = System.Text.Json.JsonSerializer;
+
+/// <summary>
+/// The lifecycle of an order. See <see cref="Order"/> for details.
+/// </summary>
+[Flags]
+public enum OrderState : byte
+{
+    None = 0,
+    Placed = 1 << 0,
+    Paid = 1 << 1,
+    Shipped = 0x04,
+    Archived = 0b_1000,
+}
+
+public readonly record struct Money(decimal Amount, string Currency = "EUR")
+{
+    public static Money operator +(Money left, Money right) =>
+        left.Currency == right.Currency
+            ? new Money(left.Amount + right.Amount, left.Currency)
+            : throw new InvalidOperationException($"Cannot add {left.Currency} to {right.Currency}");
+
+    public static implicit operator decimal(Money money) => money.Amount;
+
+    public override string ToString() => $"{Amount,10:N2} {Currency}";
+}
+
+public sealed record OrderLine(string Sku, int Quantity, Money UnitPrice);
+
+public interface IRepository<TEntity, in TKey>
+    where TEntity : class, new()
+    where TKey : notnull
+{
+    Task<TEntity?> FindAsync(TKey id, CancellationToken cancellationToken = default);
+    IAsyncEnumerable<TEntity> StreamAsync();
+}
+
+public delegate void OrderChanged(object sender, OrderState previous);
+
+public partial class Order
+{
+    private const int MaxLines = 1_000;
+    private static readonly Regex SkuPattern = new(@"^[A-Z]{3}-\d{4}$", RegexOptions.Compiled);
+    private readonly List<OrderLine> _lines = new();
+    private OrderState _state;
+
+    public event OrderChanged? Changed;
+
+    public Guid Id { get; init; } = Guid.NewGuid();
+    public string Customer { get; set; } = string.Empty;
+    public IReadOnlyList<OrderLine> Lines => _lines;
+    public OrderLine this[int index] => _lines[index];
+
+    public OrderState State
+    {
+        get => _state;
+        private set
+        {
+            if (value == _state) return;
+            var previous = _state;
+            _state = value;
+            Changed?.Invoke(this, previous);
+        }
+    }
+
+    public Money Total => _lines
+        .Select(line => line.UnitPrice with { Amount = line.UnitPrice.Amount * line.Quantity })
+        .Aggregate(new Money(0m), (sum, next) => sum + next);
+
+    public void Add(string sku, int quantity, decimal price)
+    {
+        ArgumentException.ThrowIfNullOrEmpty(sku);
+        if (!SkuPattern.IsMatch(sku) || quantity <= 0 || _lines.Count >= MaxLines)
+        {
+            throw new ArgumentOutOfRangeException(nameof(sku), sku, "Invalid order line");
+        }
+
+        _lines.Add(new OrderLine(sku, quantity, new Money(price)));
+        State |= OrderState.Placed;
+    }
+
+    public string Describe() => State switch
+    {
+        OrderState.None => "empty",
+        var s when s.HasFlag(OrderState.Shipped) => "on its way",
+        OrderState.Placed or OrderState.Paid => "processing",
+        _ => "archived",
+    };
+
+    public async Task<bool> PayAsync(IPaymentGateway gateway, CancellationToken token)
+    {
+        try
+        {
+            var receipt = await gateway.ChargeAsync(Customer, Total, token).ConfigureAwait(false);
+            State = receipt is { Succeeded: true } ? State | OrderState.Paid : State;
+            return receipt?.Succeeded ?? false;
+        }
+        catch (TimeoutException ex) when (ex.Message.Contains("gateway"))
+        {
+            Console.Error.WriteLine($"Payment timed out: {ex.Message}\n\tRetry later.");
+            return false;
+        }
+        finally
+        {
+            Console.WriteLine("payment attempted for {0}", Id);
+        }
+    }
+}
+
+public interface IPaymentGateway
+{
+    Task<Receipt?> ChargeAsync(string customer, Money amount, CancellationToken token);
+}
+
+public class Receipt
+{
+    public bool Succeeded { get; set; }
+}
+
+public static class OrderQueries
+{
+    public static IEnumerable<(string Customer, decimal Total)> TopCustomers(this IEnumerable<Order> orders, int count = 5) =>
+        from order in orders
+        where order.State != OrderState.None
+        group order by order.Customer into byCustomer
+        let total = byCustomer.Sum(o => (decimal)o.Total)
+        orderby total descending
+        select (byCustomer.Key, total);
+
+    public static unsafe int Checksum(ReadOnlySpan<byte> data)
+    {
+        int hash = 17;
+        fixed (byte* ptr = data)
+        {
+            for (var i = 0; i < data.Length; i++)
+            {
+                hash = unchecked(hash * 31 + ptr[i]) ^ (hash >> 3);
+            }
+        }
+        return hash;
+    }
+
+    [DllImport("libc", EntryPoint = "getpid")]
+    private static extern int GetProcessId();
+
+    public static void Demo()
+    {
+        char tab = '\t';
+        double ratio = 1.5e-3, other = .25d;
+        long big = 9_000_000_000L;
+        uint mask = 0xFFFF_FFFFu;
+        string path = @"C:\orders\""archive""";
+        string json = """
+            { "id": 1, "note": "raw string literal" }
+            """;
+        object boxed = big;
+        int[] numbers = { 1, 2, 3, 4, 5 };
+        var slice = numbers[1..^1];
+        int counter = 0;
+        counter++;
+        counter -= 2;
+        mask &= ~0x0Fu;
+
+        if (boxed is long value and > 0 && path is not null)
+        {
+            Console.WriteLine($"{tab}{value:X} {ratio:P1} {slice.Length} {(other > 0 ? "yes" : "no")}");
+        }
+
+        var lookup = new Dictionary<string, List<int>>
+        {
+            ["even"] = numbers.Where(n => n % 2 == 0).ToList(),
+            ["odd"] = numbers.Where(static n => n % 2 != 0).ToList(),
+        };
+
+        foreach (var (key, list) in lookup)
+        {
+            if (list.Count == 0) continue;
+            Console.WriteLine($"{key}: {string.Join(", ", list)}");
+        }
+
+        _ = Json.Serialize(lookup, typeof(Dictionary<string, List<int>>));
+        lock (lookup) { counter = sizeof(int) + GetProcessId(); }
+        goto done;
+    done:
+        return;
+    }
+}
+
+// Preprocessor directives are kept at the end of the sample.
+#region Diagnostics
+#define TRACE_ORDERS
+#if TRACE_ORDERS && !RELEASE
+#warning Tracing is enabled
+#endif
+#pragma warning disable CS0168
+#endregion

@@ -1,0 +1,137 @@
+/// Configuration schema and values for a web service deployment.
+///
+/// Rendered to YAML with `pkl eval -f yaml service.pkl`.
+@ModuleInfo { minPklVersion = "0.25.0" }
+module com.example.deploy.Service
+
+amends "package://pkg.pkl-lang.org/pkl-k8s/k8s@1.0.1#/K8sResource.pkl"
+
+import "pkl:math"
+import "pkl:semver" as sv
+import* "env/*.pkl" as environments
+
+/*
+ * Types
+ */
+typealias Port = Int(isBetween(1, 65535))
+typealias LogLevel = "debug" | "info" | "warn" | "error"
+typealias Labels = Mapping<String, String>
+
+abstract class Resource {
+  /// Human-readable name, used in labels and dashboards.
+  name: String(!isEmpty, length <= 63)
+  hidden labels: Labels = new { ["app"] = name }
+}
+
+open class Container extends Resource {
+  image: String
+  port: Port = 8080
+  env: Mapping<String, String> = new {}
+  cpu: Duration?
+  memory: DataSize = 256.mib
+  fixed protocol: "TCP" | "UDP" = "TCP"
+  const local defaultArgs: Listing<String> = new { "--serve" }
+}
+
+class Service extends Container {
+  replicas: UInt8 = 2
+  logLevel: LogLevel = "info"
+  external healthPath: String
+  version: sv.Version
+}
+
+/*
+ * Helpers
+ */
+local function scaled(base: Int, factor: Float): Int = math.round(base * factor).toInt()
+
+function imageRef(repo: String, tag: String): String = "\(repo):\(tag)"
+
+local isProduction: Boolean = read?("env:DEPLOY_ENV") == "production"
+
+/*
+ * Values
+ */
+service: Service = new {
+  name = "orders-api"
+  image = imageRef("ghcr.io/example/orders", "1.4.2")
+  port = 0x1F90
+  replicas = if (isProduction) scaled(3, 1.5) else 1
+  logLevel = if (isProduction) "warn" else "debug"
+  healthPath = "/healthz"
+  version = sv.Version("1.4.2")
+  cpu = 500.ms
+  memory = 1.gib
+  env {
+    ["DATABASE_URL"] = read("env:DATABASE_URL")
+    ["FEATURE_FLAGS"] = "search,\tcheckout\n"
+    ["GREETING"] = #"Raw "quoted" text with \n and \#n escaped"#
+    ["BANNER"] = ##"Double ##"pounds"## and \##(interpolation)"##
+    ["UNICODE"] = "leaf: \u{1F33F}"
+    ["BAD"] = "unknown escape \q here"
+  }
+}
+
+ports: Listing<Port> = new {
+  80
+  443
+  0o17520
+  0b1_1111_1001_0000
+  service.port
+}
+
+limits {
+  maxBodyBytes = 10_485_760
+  ratio = 0.75
+  growth = 1.5e3
+  timeout = 30.s
+  retries = 3
+  backoff = List(1, 2, 4, 8).map((n) -> n * 100)
+}
+
+replicasPerZone: Map<String, Int> = Map("eu-west-1a", 2, "eu-west-1b", 2)
+
+alerts = new Listing {
+  for (level in List("warn", "error")) {
+    new {
+      name = "orders-\(level)"
+      threshold = when (level == "error") { 1 } else { 10 }
+    }
+  }
+  when (isProduction) {
+    new { name = "orders-pager"; threshold = 1 }
+  }
+}
+
+description = """
+  Orders API, version \(service.version).
+  Runs \(service.replicas) replicas on port \(service.port).
+  Literal backslash: \\ and a "quote".
+  """
+
+rawDescription = #"""
+  Nothing is \(interpolated) here, but \#(service.name) is.
+  """#
+
+checks {
+  portIsValid = service.port is Port
+  name = service.name as String
+  first = ports.first ?? 80
+  nested = this.service.labels["app"]
+  sum = ports.fold(0, (acc, p) -> acc + p)
+  big = !(service.replicas > 10) && service.replicas >= 1 || false
+  nothing = null
+  shouldNeverHappen = if (ports.isEmpty) throw("no ports") else trace(ports.length)
+  outerRef = outer.service.name
+  modRef = module.service.image
+  unknownValue: unknown = 42
+  imports = import("env/staging.pkl").service
+}
+
+output {
+  renderer = new YamlRenderer {
+    converters {
+      [Duration] = (d) -> "\(d.value)\(d.unit)"
+    }
+  }
+}

@@ -28,3 +28,123 @@ alert "I knew it!" if elvis?
 cubes = (math.cube num for num in list)
 
 # From https://coffeescript.org/#overview
+
+###
+A small task queue with events, retries and string formatting.
+Written for the CoffeeScript 2 compiler.
+###
+
+{EventEmitter} = require 'events'
+fs = require 'fs'
+[first, rest...] = process.argv[2..]
+
+MAX_RETRIES = 0x0A
+FLAGS = 0b1011
+MODE = 0o755
+TIMEOUT = 1.5e3
+ESCAPED = 'tab\there \x41 \'quoted\''
+
+class Task
+  @count: 0
+
+  constructor: (@name, @run, @retries = 3) ->
+    Task.count++
+    @attempts = 0
+
+  toString: -> "Task(#{@name}, attempt #{@attempts + 1} of #{@retries})"
+
+class TaskQueue extends EventEmitter
+  constructor: (options = {}) ->
+    super()
+    {@concurrency, @verbose} = options
+    @concurrency ?= 2
+    @tasks = []
+    @running = 0
+
+  push: (name, fn) =>
+    task = new Task name, fn
+    @tasks.push task
+    @emit 'queued', task
+    @next()
+    this
+
+  next: ->
+    return if @running >= @concurrency or @tasks.length is 0
+    task = @tasks.shift()
+    @running += 1
+    task.attempts++
+    try
+      result = await task.run()
+      @emit 'done', task, result
+    catch error
+      if task.attempts < task.retries and not (error instanceof TypeError)
+        console.warn "retrying #{task}: #{error.message}"
+        @tasks.unshift task
+      else
+        @emit 'failed', task, error
+    finally
+      @running -= 1
+      @next()
+
+  pending: -> (task.name for task in @tasks when task.attempts is 0)
+
+Task::describe = -> "#{@name} (#{typeof @run})"
+
+queue = new TaskQueue concurrency: 4, verbose: yes
+
+queue.on 'done', (task, result) ->
+  console.log "\u2713 #{task.name}", result ? 'no result'
+
+queue.on 'failed', (task, error) ->
+  console.error """
+    Task "#{task.name}" failed after #{task.attempts} attempts:
+      #{error.stack}
+  """
+
+readJson = (path) -> new Promise (resolve, reject) ->
+  fs.readFile path, 'utf8', (err, data) ->
+    if err? then reject err else resolve JSON.parse data
+
+queue.push 'config', -> readJson "#{__dirname}/config.json"
+queue.push 'sum', -> [1..10].reduce ((a, b) -> a + b), 0
+
+EMAIL = /^([\w.+-]+)@([a-z\d-]+(?:\.[a-z\d-]+)+)$/i
+VERSION = ///
+  ^ v? (\d+)       # major
+  \. (\d+)        # minor
+  (?: \. (\d+) )? # patch
+  (?! [a-z] )
+///
+
+parseVersion = (text) ->
+  match = VERSION.exec text
+  return null unless match?
+  [major, minor, patch] = (parseInt(part ? '0', 10) for part in match[1..3])
+  {major, minor, patch}
+
+switch typeof first
+  when 'string'
+    console.log 'email' if EMAIL.test first
+  when 'undefined' then console.log 'no arguments'
+  else throw new Error "unexpected #{first}"
+
+total = 0
+total += n for n in [0...20] by 2 when n % 3 isnt 0
+mask = FLAGS & ~MODE | (FLAGS ^ 1) << 2 >>> 1
+ready = total > 10 && mask != 0 || !queue.verbose
+config = null
+config or= {}
+config.level ?= 'info'
+delete config.debug
+
+sleep = (ms) => new Promise (resolve) -> setTimeout resolve, ms
+countdown = (n) ->
+  while n > 0
+    yield n--
+  return
+
+squares = Math.max (x * x for own key, x of {a: 1, b: 2})...
+console.log Object.keys(config), Array.isArray(squares), Number.isFinite(TIMEOUT)
+html = `'<div>' + 1 + '</div>'`
+debugger if process.env.DEBUG is 'yes'
+

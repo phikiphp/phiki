@@ -22,3 +22,102 @@
             break
 
 // From https://spacestation13.github.io/DMByExample/flow/loops.html
+// ======== Station objects ========
+
+/* A small slice of a space station:
+   macros, datums, procs and verbs. */
+
+#define MAX_HEALTH 100
+#define CLAMP(value, low, high) min(max(value, low), high)
+#define LONG_MACRO(a, b) \
+	((a) * (b) + 1)
+#include "code/__defines/atmos.dm"
+
+#ifdef DEBUG
+#warn Debug build: extra logging is enabled
+#endif
+
+#if 0
+/obj/item/broken_prototype
+	name = "never compiled"
+#endif
+
+#ifndef STATION_NAME
+#define STATION_NAME "Space Station 13"
+#endif
+
+/datum/reagent
+	var/name = "reagent"
+	var/volume = 0
+	var/const/max_volume = 50
+	var/tmp/list/listeners = null
+	var/global/total_created = 0
+
+/datum/reagent/New(amount)
+	..()
+	volume = CLAMP(amount, 0, max_volume)
+	total_created++
+
+/datum/reagent/proc/describe()
+	return "[volume]u of [name]"
+
+/obj/item/beaker
+	name = "beaker"
+	desc = {"A glass beaker.
+It can hold up to [MAX_HEALTH] units."}
+	icon = 'icons/obj/chemical.dmi'
+	icon_state = "beaker"
+	density = FALSE
+	var/list/contents_list = list()
+	var/health = MAX_HEALTH
+
+/obj/item/beaker/proc/add_reagent(datum/reagent/R)
+	if(!istype(R) || contents_list.len >= 5)
+		return FALSE
+	contents_list += R
+	return TRUE
+
+/obj/item/beaker/attack_self(mob/user)
+	if(!length(contents_list))
+		to_chat(user, "<span class='notice'>\The [src] is empty.</span>")
+		return
+	for(var/datum/reagent/R in contents_list)
+		to_chat(user, "\icon[src] [R.describe()]\n")
+	var/total = 0
+	for(var/i = 1, i <= contents_list.len, i++)
+		var/datum/reagent/R = contents_list[i]
+		total += R.volume
+	user.visible_message("[user] swirls [user.p_their()] beaker ([total]u).")
+
+/obj/item/beaker/verb/empty()
+	set name = "Empty Beaker"
+	set category = "Object"
+	set src in usr
+	for(var/datum/reagent/R in contents_list)
+		del(R)
+	contents_list.Cut()
+
+/obj/item/beaker/bullet_act(obj/item/projectile/P)
+	health -= P.damage * 0.5
+	switch(health)
+		if(75 to MAX_HEALTH)
+			return
+		if(25 to 74)
+			icon_state = "beaker_cracked"
+		else
+			shatter()
+
+/obj/item/beaker/proc/shatter()
+	var/turf/T = get_turf(src)
+	new /obj/item/shard(T)
+	playsound(T, 'sound/effects/glassbr1.ogg', 70, 1)
+	spawn(10)
+		qdel(src)
+
+/proc/station_report()
+	var/datum/reagent/water = new /datum/reagent(25)
+	water.name = "water"
+	var/mask = (1 << 4) | 0x0F & ~2
+	var/ratio = 1.5e2 / 3
+	world.log << "[STATION_NAME]: [water.describe()] mask=[mask] ratio=[ratio]"
+	return null

@@ -18,3 +18,103 @@ BEGIN
 END;
 
 -- From https://docs.oracle.com/cd/B10500_01/appdev.920/a96624/01_oview.htm#7106
+
+REM Order processing package for the shop schema
+PROMPT Creating order_pkg...
+WHENEVER SQLERROR EXIT FAILURE
+DEFINE schema_owner = SHOP
+
+/*
+ * Tables used by the package.
+ */
+CREATE TABLE orders (
+   order_id     NUMBER(10) CONSTRAINT orders_pk PRIMARY KEY,
+   customer_id  NUMBER(10) NOT NULL REFERENCES customers (customer_id),
+   status       VARCHAR2(20) DEFAULT 'NEW' CHECK (status IN ('NEW', 'PAID', 'SHIPPED')),
+   total        NUMBER(12, 2),
+   created_at   DATE DEFAULT SYSDATE
+);
+
+ALTER TABLE orders ADD notes CLOB;
+GRANT SELECT, INSERT ON orders TO app_user;
+
+CREATE OR REPLACE TYPE "ORDER_LINE_T" AS OBJECT (sku VARCHAR2(30), qty NUMBER);
+/
+
+CREATE OR REPLACE PACKAGE order_pkg AS
+   TYPE id_list IS TABLE OF orders.order_id%TYPE INDEX BY PLS_INTEGER;
+   e_invalid_status EXCEPTION;
+   PRAGMA EXCEPTION_INIT(e_invalid_status, -20001);
+
+   FUNCTION order_total(pi_order_id IN NUMBER) RETURN NUMBER;
+   PROCEDURE ship_orders(pi_ids IN id_list, po_count OUT NUMBER);
+END order_pkg;
+/
+
+CREATE OR REPLACE PACKAGE BODY order_pkg AS
+
+   FUNCTION order_total(pi_order_id IN NUMBER) RETURN NUMBER IS
+      l_total NUMBER := 0;
+   BEGIN
+      SELECT NVL(SUM(price * qty), 0)
+        INTO l_total
+        FROM order_lines
+       WHERE order_id = pi_order_id;
+      RETURN ROUND(l_total * 1.21, 2);
+   EXCEPTION
+      WHEN NO_DATA_FOUND THEN
+         RETURN NULL;
+   END order_total;
+
+   PROCEDURE log_event(pi_message IN VARCHAR2) IS
+      PRAGMA AUTONOMOUS_TRANSACTION;
+   BEGIN
+      INSERT INTO event_log (logged_at, message) VALUES (SYSTIMESTAMP, SUBSTR(pi_message, 1, 4000));
+      COMMIT;
+   END log_event;
+
+   PROCEDURE ship_orders(pi_ids IN id_list, po_count OUT NUMBER) IS
+      CURSOR c_orders IS
+         SELECT order_id, status FROM orders WHERE status = 'PAID' FOR UPDATE;
+      l_status orders.status%TYPE;
+   BEGIN
+      po_count := 0;
+      FOR i IN pi_ids.FIRST .. pi_ids.LAST LOOP
+         SELECT status INTO l_status FROM orders WHERE order_id = pi_ids(i);
+         IF l_status IS NOT NULL AND l_status NOT LIKE 'SHIP%' THEN
+            UPDATE orders SET status = 'SHIPPED' WHERE order_id = pi_ids(i);
+            po_count := po_count + SQL%ROWCOUNT;
+         ELSIF l_status = 'NEW' OR l_status IS NULL THEN
+            RAISE e_invalid_status;
+         END IF;
+      END LOOP;
+      DBMS_OUTPUT.PUT_LINE('Shipped ' || TO_CHAR(po_count) || ' orders on ' || TO_CHAR(SYSDATE, 'YYYY-MM-DD'));
+      log_event(UPPER('ship_orders done'));
+   EXCEPTION
+      WHEN e_invalid_status THEN
+         RAISE_APPLICATION_ERROR(-20001, 'Order not paid: ' || SQLERRM);
+      WHEN OTHERS THEN
+         log_event('error ' || SQLCODE);
+         RAISE;
+   END ship_orders;
+
+END order_pkg;
+/
+
+CREATE OR REPLACE TRIGGER orders_bu
+   BEFORE UPDATE ON orders
+   FOR EACH ROW
+BEGIN
+   IF :new.status <> :old.status THEN
+      :new.created_at := COALESCE(:old.created_at, SYSDATE);
+   END IF;
+END;
+/
+
+SELECT LPAD(' ', LEVEL * 2) || name AS category, COUNT(*) OVER (PARTITION BY parent_id) AS siblings
+  FROM categories
+ START WITH parent_id IS NULL
+ CONNECT BY PRIOR category_id = parent_id
+ ORDER SIBLINGS BY name;
+
+EXEC order_pkg.ship_orders(order_pkg.id_list(), :shipped);

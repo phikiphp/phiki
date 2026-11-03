@@ -43,4 +43,119 @@ resource "aws_instance" "example" {
 }
 
 
+terraform {
+  required_version = ">= 1.5.0"
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+}
+
+/* Input variables */
+variable "environment" {
+  type        = string
+  default     = "staging"
+  description = "Deployment environment"
+
+  validation {
+    condition     = contains(["staging", "production"], var.environment)
+    error_message = "Environment must be \"staging\" or \"production\"."
+  }
+}
+
+variable "subnets" {
+  type = map(object({
+    cidr = string
+    az   = optional(string, "eu-west-1a")
+    tags = list(any)
+  }))
+  default = {}
+}
+
+variable "instance_count" {
+  type    = number
+  default = 2
+}
+
+locals {
+  name_prefix = "${var.environment}-app"
+  is_prod     = var.environment == "production"
+  replicas    = local.is_prod ? var.instance_count * 2 : max(1, var.instance_count - 1)
+  disk_gb     = 20.5
+  big_number  = 1e6
+  ratio       = 3 / 4 + 10 % 3
+  has_subnets = length(var.subnets) > 0 && !local.is_prod || var.instance_count >= 3
+  low_count   = var.instance_count <= 1 || var.instance_count < 0 || var.instance_count != 2
+  subnet_ids  = [for name, s in var.subnets : s.cidr if s.az != null]
+  subnet_map  = { for name, s in var.subnets : name => upper(s.az)... }
+  all_tags    = merge(var.common_tags, { Name = local.name_prefix })
+  user_data   = <<-EOT
+    #!/bin/bash
+    echo "Booting ${local.name_prefix}"
+    %{ if local.is_prod ~}
+    systemctl enable monitoring
+    %{~ endif }
+  EOT
+  greeting    = "Hello, %{ for n in ["a", "b"] }${n} %{ endfor }!\n\t\u00e9"
+  encoded     = provider::terraform::encode_tfvars({ a = 1 })
+}
+
+data "aws_ami" "ubuntu" {
+  most_recent = true
+  owners      = ["099720109477"]
+
+  filter {
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd/ubuntu-*-amd64-server-*"]
+  }
+}
+
+module "network" {
+  source  = "./modules/network"
+  cidr    = "10.0.0.0/16"
+  subnets = local.subnet_ids
+}
+
+resource "aws_instance" "web" {
+  count         = local.replicas
+  ami           = data.aws_ami.ubuntu.id
+  instance_type = local.is_prod ? "m5.large" : "t3.micro"
+  subnet_id     = element(module.network.private_subnet_ids, count.index)
+  user_data     = local.user_data
+
+  root_block_device {
+    volume_size = local.disk_gb
+  }
+
+  dynamic "ebs_block_device" {
+    for_each = toset(["sdf", "sdg"])
+    content {
+      device_name = "/dev/${ebs_block_device.value}"
+      volume_size = 10
+    }
+  }
+
+  tags = local.all_tags
+
+  lifecycle {
+    create_before_destroy = true
+    ignore_changes        = [tags["UpdatedAt"]]
+  }
+}
+
+output "instance_ips" {
+  value     = aws_instance.web[*].private_ip
+  sensitive = false
+}
+
+output "first_ip" {
+  value = aws_instance.web.*.private_ip[0]
+}
+
+output "module_path" {
+  value = "${path.module}/${terraform.workspace}"
+}
+
 // From https://developer.hashicorp.com/terraform/language/meta-arguments/depends_on

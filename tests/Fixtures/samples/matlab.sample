@@ -20,3 +20,95 @@ else
 end
 
 % From https://www.math.colostate.edu/~yzhou/course/matlab_doc/matlab_programming_intro.html
+
+%% Signal processing demo
+% A cell section with a header comment.
+
+%{
+Block comment describing the script.
+It spans several lines.
+%}
+
+global SAMPLE_RATE
+SAMPLE_RATE = 44.1e3;
+t = (0:1/SAMPLE_RATE:0.5)';
+f0 = 440;
+x = 0.8 * sin(2*pi*f0*t) + 0.1 .* randn(size(t));
+A = [1 2 3; 4 5 6; 7 8 10];
+B = A.' * A';
+C = A \ [1; 2; 3];
+mask = x > 0.5 | x < -0.5 & ~isnan(x);
+names = {'alpha', "beta", 'it''s'};
+s = "He said ""hi""";
+label = sprintf('f0 = %6.2f Hz\n', f0);
+fprintf("%d samples, peak %.3e\t(%s)\n", numel(x), max(abs(x)), label);
+total = 1 + 2 + ...
+        3 + 4;   % continuation
+z = 3 + 4i;
+big = [Inf, -inf, NaN, eps, pi, realmax];
+!echo running from the shell
+
+for k = 1:numel(names)
+    if strcmp(names{k}, 'beta')
+        continue
+    elseif k > 2
+        break
+    end
+    disp(names{k});
+end
+
+n = 10;
+while n > 0
+    n = n - 1;
+end
+
+switch lower(names{1})
+    case {'alpha', 'gamma'}
+        disp('first letter');
+    case 'beta'
+        disp('second');
+    otherwise
+        warning('unknown name');
+end
+
+try
+    y = filterSignal(x, 'Order', 4, 'Cutoff', 1e3);
+catch err
+    fprintf(2, 'Error: %s\n', err.message);
+    rethrow(err);
+end
+
+parfor i = 1:4
+    results(i) = i^2;
+end
+
+spmd
+    labindex
+end
+
+format long
+hold on
+
+function y = filterSignal(x, options)
+%FILTERSIGNAL Low-pass filter a signal.
+%   y = FILTERSIGNAL(x, Name, Value) filters x.
+    arguments
+        x (:,1) double
+        options.Order (1,1) {mustBePositive} = 2
+        options.Cutoff (1,1) double = 500
+    end
+    persistent callCount
+    if isempty(callCount), callCount = 0; end
+    callCount = callCount + 1;
+    [b, a] = butter(options.Order, options.Cutoff / 22050);
+    y = filter(b, a, x);
+    if nargin < 1 || nargout > 1
+        return
+    end
+end
+
+function varargout = multiOut(varargin)
+    for k = 1:nargout
+        varargout{k} = varargin{k};
+    end
+end

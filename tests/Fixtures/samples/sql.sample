@@ -15,3 +15,93 @@ ALTER DATABASE AdventureWorks2022 SET RECOVERY FULL;
 GO
 
 -- From https://learn.microsoft.com/en-us/sql/t-sql/queries/select-examples-transact-sql
+
+/*
+ * Reporting schema for the online store.
+ * Run inside a transaction so a failure leaves nothing behind.
+ */
+BEGIN TRANSACTION;
+
+CREATE TABLE customers (
+    id          integer PRIMARY KEY,
+    email       varchar(255) NOT NULL UNIQUE,
+    full_name   text,
+    created_at  timestamp with time zone DEFAULT now(),
+    balance     numeric(10, 2) CHECK (balance >= 0)
+);
+
+CREATE TABLE orders (
+    id           bigint PRIMARY KEY,
+    customer_id  integer REFERENCES customers (id) ON DELETE CASCADE,
+    status       varchar(20) DEFAULT 'pending',
+    total        decimal(12, 2) NOT NULL,
+    placed_on    date
+);
+
+CREATE UNIQUE INDEX idx_orders_customer ON orders (customer_id, placed_on);
+COMMENT ON TABLE orders IS 'One row per checkout';
+
+INSERT INTO customers (id, email, full_name, balance)
+VALUES (1, 'ada@example.com', 'Ada O''Neil', 120.50),
+       (2, "bob@example.com", 'Bob \'The Builder\'', 0);
+
+UPDATE orders SET status = 'shipped' WHERE placed_on < '2024-01-01' AND status IN ('pending', 'paid');
+DELETE FROM orders WHERE total = 0 OR customer_id IS NULL;
+
+COMMIT;
+
+GRANT SELECT, INSERT ON orders TO reporting_role;
+REVOKE DELETE ON customers FROM reporting_role;
+
+-- Monthly revenue with a running total
+WITH monthly AS (
+    SELECT DATEPART(year, o.placed_on) AS yr,
+           DATEPART(month, o.placed_on) AS mon,
+           SUM(o.total) AS revenue,
+           COUNT(DISTINCT o.customer_id) AS buyers
+    FROM orders AS o
+    INNER JOIN customers c ON c.id = o.customer_id
+    WHERE o.status <> 'cancelled'
+    GROUP BY DATEPART(year, o.placed_on), DATEPART(month, o.placed_on)
+    HAVING SUM(o.total) > 1000
+)
+SELECT yr, mon, revenue,
+       SUM(revenue) OVER (ORDER BY yr, mon) AS running_total,
+       LAG(revenue, 1) OVER (ORDER BY yr, mon) AS previous,
+       ROW_NUMBER() OVER (PARTITION BY yr ORDER BY revenue DESC) AS rank_in_year,
+       ROUND(revenue / NULLIF(buyers, 0), 2) AS per_buyer,
+       CAST(revenue AS int) * 1.5e2 - 10 AS adjusted
+FROM monthly
+ORDER BY yr DESC, mon ASC;
+
+-- T-SQL specifics
+DECLARE @cutoff datetime = GETDATE();
+DECLARE @name nvarchar(50) = N'Widget';
+
+SELECT TOP (10) [p].[Name],
+       UPPER(LTRIM(p.Name)) + ' - ' + CONVERT(varchar(10), p.ListPrice) AS label,
+       ISNULL(p.Color, 'n/a') AS color,
+       IIF(p.ListPrice > 100, 'premium', 'standard') AS tier,
+       COALESCE(p.Size, p.Weight, '0') AS dims,
+       JSON_VALUE(p.Attributes, '$.vendor') AS vendor,
+       PATINDEX('%[0-9]%', p.ProductNumber) AS first_digit,
+       CHECKSUM(p.Name) AS hash,
+       USER_NAME() AS who,
+       @@ROWCOUNT AS affected
+FROM Production.Product p
+LEFT OUTER JOIN Production.ProductSubcategory s ON s.ProductSubcategoryID = p.ProductSubcategoryID
+WHERE p.Name LIKE @name + '%'
+  AND p.SellStartDate BETWEEN DATEADD(day, -30, @cutoff) AND @cutoff
+  AND NOT EXISTS (SELECT 1 FROM Sales.SalesOrderDetail d WHERE d.ProductID = p.ProductID);
+
+SELECT value FROM STRING_SPLIT('a,b,c', ',');
+
+-- MySQL and PostgreSQL flavours
+SELECT `user`.`id`, first_name || ' ' || last_name AS display_name
+FROM `user`
+WHERE email ~* '^[a-z]+@example\.com$'
+LIMIT 20 OFFSET 40;
+
+DROP TABLE staging_orders CASCADE;
+ALTER TABLE orders ADD COLUMN notes text;
+TRUNCATE TABLE audit_log;

@@ -1,8 +1,53 @@
+/*
+ * Basic lit scene effect with a compute pass for particles.
+ */
+#include "Common.hlsli"
+#define MAX_LIGHTS 4
+#ifndef USE_SHADOWS
+#define USE_SHADOWS 1
+#endif
+#pragma pack_matrix(row_major)
+
+typedef float4 Colour;
+
+cbuffer PerFrame : register(b0)
+{
+    float4x4 g_mWorldViewProjection : packoffset(c0);
+    float4x4 g_mWorld               : packoffset(c4);
+    float3   g_LightDir[MAX_LIGHTS];
+    float    g_fTime;
+    uint     g_Flags = 0xFF;
+};
+
+Texture2D    g_MeshTexture : register(t0);
+TextureCube  g_EnvMap      : register(t1);
+SamplerState g_LinearSampler : register(s0);
+SamplerComparisonState g_ShadowSampler : register(s1);
+texture2D    g_LegacyTexture;
+sampler2D    g_LegacySampler = sampler_state { Texture = <g_LegacyTexture>; };
+
+StructuredBuffer<float4>   g_Positions : register(t2);
+RWStructuredBuffer<float4> g_Velocities : register(u0);
+RWTexture2D<unorm float4>  g_Output : register(u1);
+ByteAddressBuffer          g_RawData;
+AppendStructuredBuffer<uint> g_Visible;
+RasterizerOrderedTexture2D<float4> g_Accum;
+
+static const string g_EffectName = "Basic \"lit\" scene\n";
+
 struct VS_OUTPUT
 {
     float4 Position   : SV_POSITION;
     float4 Diffuse    : COLOR0;
     float2 TextureUV  : TEXCOORD0;
+    nointerpolation uint InstanceId : TEXCOORD1;
+    centroid float3 Normal : NORMAL;
+};
+
+struct GS_OUTPUT
+{
+    float4 Position : SV_POSITION;
+    linear float2 UV : TEXCOORD0;
 };
 
 VS_OUTPUT RenderSceneVS( float4 vPos : POSITION,
@@ -13,8 +58,109 @@ VS_OUTPUT RenderSceneVS( float4 vPos : POSITION,
                          uniform bool bAnimate )
 {
     VS_OUTPUT Output;
-    ...
+    float3 vNormalWorld = normalize(mul(vNormal, (float3x3)g_mWorld));
+    float4 vAnimatedPos = vPos;
+
+    if (bAnimate)
+        vAnimatedPos += float4(vNormal, 0) * (sin(g_fTime + 5.5) + 0.5f) * .25;
+
+    Output.Position = mul(vAnimatedPos, g_mWorldViewProjection);
+
+    float3 vTotalLightDiffuse = float3(0, 0, 0);
+    [unroll]
+    for (int i = 0; i < nNumLights; i++)
+        vTotalLightDiffuse += max(0, dot(vNormalWorld, g_LightDir[i]));
+
+    Output.Diffuse.rgb = vTotalLightDiffuse;
+    Output.Diffuse.a = 1.0f;
+    Output.TextureUV = bTexture ? vTexCoord0 : float2(0, 0);
+    Output.InstanceId = 0;
+    Output.Normal = vNormalWorld;
     return Output;
+}
+
+[maxvertexcount(3)]
+void ExpandGS(triangle VS_OUTPUT input[3], inout TriangleStream<GS_OUTPUT> stream)
+{
+    for (uint v = 0; v < 3; ++v)
+    {
+        GS_OUTPUT o;
+        o.Position = input[v].Position;
+        o.UV = input[v].TextureUV;
+        stream.Append(o);
+    }
+    stream.RestartStrip();
+}
+
+float4 RenderScenePS(VS_OUTPUT In, bool isFront : SV_IsFrontFace) : SV_TARGET
+{
+    Colour albedo = g_MeshTexture.Sample(g_LinearSampler, In.TextureUV);
+    float3 reflected = g_EnvMap.Sample(g_LinearSampler, reflect(-g_LightDir[0], In.Normal)).rgb;
+    clip(albedo.a - 0.1);
+    return lerp(albedo, float4(reflected, 1), isFront ? 0.25 : 0.0) * In.Diffuse;
+}
+
+[numthreads(64, 1, 1)]
+void UpdateParticlesCS(uint3 id : SV_DispatchThreadID, uint gi : SV_GroupIndex)
+{
+    float4 velocity = g_Velocities[id.x];
+    velocity.y -= 9.81 * g_fTime;
+    g_Velocities[id.x] = velocity;
+    if ((g_Flags & 1u) != 0 && velocity.w > 0)
+        g_Visible.Append(id.x);
+}
+
+BlendState AlphaBlend
+{
+    BlendEnable[0] = TRUE;
+    SrcBlend = SRC_ALPHA;
+    DestBlend = INV_SRC_ALPHA;
+    BlendOp = ADD;
+};
+
+DepthStencilState DepthLess
+{
+    DepthEnable = true;
+    DepthWriteMask = ALL;
+    DepthFunc = LESS_EQUAL;
+    StencilEnable = FALSE;
+    FrontFaceStencilPass = KEEP;
+};
+
+RasterizerState CullBack
+{
+    FillMode = SOLID;
+    CullMode = BACK;
+    FrontCounterClockwise = false;
+};
+
+SamplerState WrapSampler
+{
+    Filter = MIN_MAG_MIP_LINEAR;
+    AddressU = WRAP;
+    AddressV = CLAMP;
+};
+
+technique11 RenderScene
+{
+    pass P0
+    {
+        SetVertexShader(CompileShader(vs_5_0, RenderSceneVS(MAX_LIGHTS, true, false)));
+        SetGeometryShader(CompileShader(gs_5_0, ExpandGS()));
+        SetPixelShader(CompileShader(ps_5_0, RenderScenePS()));
+        SetBlendState(AlphaBlend, float4(0, 0, 0, 0), 0xFFFFFFFF);
+        SetDepthStencilState(DepthLess, 0);
+        SetRasterizerState(CullBack);
+    }
+}
+
+technique LegacyRender
+{
+    pass P0
+    {
+        VertexShader = compile vs_3_0 RenderSceneVS(1, true, false);
+        PixelShader  = compile ps_3_0 RenderScenePS();
+    }
 }
 
 // From https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl-function-syntax

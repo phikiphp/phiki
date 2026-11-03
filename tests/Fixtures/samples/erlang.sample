@@ -48,3 +48,153 @@ register_two_hackers() ->
                               phone = [0,8,3,2,4,5,3,1]}}.
 
 %% From https://erlang.org/doc/programming_examples/records.html#a-longer-example
+
+%%% ===========================================================
+%%% A counter server with a cache, binaries and documentation.
+%%% ===========================================================
+-module(counter_server).
+-moduledoc """
+A small `gen_server` that counts named events.
+""".
+-behaviour(gen_server).
+
+-export([start_link/0, bump/1, bump/2, value/1, stop/0]).
+-export([init/1, handle_call/3, handle_cast/2, handle_info/2, terminate/2]).
+-import(lists, [foldl/3, keyfind/3]).
+
+-define(SERVER, ?MODULE).
+-define(TIMEOUT, 5000).
+-define(LOG(Format, Args), io:format("[~p] " Format "~n", [?MODULE | Args])).
+
+-ifdef(TEST).
+-include_lib("eunit/include/eunit.hrl").
+-endif.
+
+-ifndef(MAX_COUNT).
+-define(MAX_COUNT, 16#FFFF).
+-endif.
+-undef(DEBUG).
+
+-record(state, {counts = #{} :: #{atom() => non_neg_integer()},
+                started :: integer()}).
+
+-type name() :: atom() | binary().
+-spec bump(name()) -> ok.
+
+-doc "Starts the server and links it to the caller.".
+start_link() ->
+    gen_server:start_link({local, ?SERVER}, ?MODULE, [], []).
+
+bump(Name) -> bump(Name, 1).
+
+bump(Name, By) when is_integer(By), By > 0 ->
+    gen_server:cast(?SERVER, {bump, to_atom(Name), By}).
+
+value(Name) ->
+    gen_server:call(?SERVER, {value, to_atom(Name)}, ?TIMEOUT).
+
+stop() -> gen_server:stop(?SERVER).
+
+%% Callbacks
+
+init([]) ->
+    process_flag(trap_exit, true),
+    {ok, #state{started = erlang:monotonic_time(millisecond)}}.
+
+handle_call({value, Name}, _From, #state{counts = Counts} = State) ->
+    {reply, maps:get(Name, Counts, 0), State};
+handle_call(Request, From, State) ->
+    ?LOG("unexpected call ~p from ~p", [Request, From]),
+    {reply, {error, unknown_request}, State}.
+
+handle_cast({bump, Name, By}, State = #state{counts = Counts}) ->
+    New = case maps:find(Name, Counts) of
+              {ok, Old} when Old + By > ?MAX_COUNT -> ?MAX_COUNT;
+              {ok, Old} -> Old + By;
+              error -> By
+          end,
+    {noreply, State#state{counts = Counts#{Name => New}}}.
+
+handle_info({'EXIT', _Pid, Reason}, State) ->
+    {stop, Reason, State};
+handle_info(_Info, State) ->
+    {noreply, State}.
+
+terminate(_Reason, #state{started = Started}) ->
+    Uptime = erlang:monotonic_time(millisecond) - Started,
+    ?LOG("stopping after ~.2f seconds", [Uptime / 1000.0]),
+    ok.
+
+%% Helpers
+
+to_atom(Name) when is_atom(Name) -> Name;
+to_atom(Name) when is_binary(Name) -> binary_to_atom(Name, utf8).
+
+parse_header(<<Version:4, Flags:4/bits, Length:16/big-unsigned-integer, Rest/binary>>) ->
+    <<Payload:Length/binary, _/binary>> = Rest,
+    {Version, Flags, Payload};
+parse_header(_) ->
+    {error, truncated}.
+
+checksum(Bin) ->
+    foldl(fun(Byte, Acc) -> (Acc bxor Byte) band 16#FF end, 0, binary_to_list(Bin)).
+
+describe(N) ->
+    if
+        N rem 2 =:= 0 andalso N > 0 -> even;
+        N < 0 orelse N == 0 -> not_positive;
+        true -> odd
+    end.
+
+safe_divide(A, B) ->
+    try A div B of
+        Result -> {ok, Result}
+    catch
+        error:badarith:Stack -> {error, {badarith, Stack}}
+    after
+        ok
+    end.
+
+wait_for(Ref) ->
+    receive
+        {Ref, Reply} -> Reply;
+        {'DOWN', Ref, process, _, Reason} -> exit(Reason)
+    after ?TIMEOUT ->
+        timeout
+    end.
+
+maybe_sum(Map) ->
+    maybe
+        {ok, A} ?= maps:find(a, Map),
+        {ok, B} ?= maps:find(b, Map),
+        {ok, A + B}
+    else
+        error -> {error, missing}
+    end.
+
+examples() ->
+    Squares = [X * X || X <- lists:seq(1, 10), X rem 3 =/= 0],
+    Bytes = << <<C>> || <<C>> <= <<"abc">>, C >= $b >>,
+    Masks = {2#1010, 8#755, 36#ZZ, 1.5e-3, 3.14},
+    Chars = [$a, $\n, $\x41, $\s],
+    Quoted = 'hello world',
+    Escaped = "tab:\t quote:\" octal:\101",
+    Sigil = ~"utf-8 binary with \"quotes\"",
+    Raw = ~S[no \escapes here],
+    Doc = """
+        Multi-line string
+        with ~p placeholders
+        """,
+    Fun = fun(Y) -> Y + 1 end,
+    Ref = fun lists:reverse/1,
+    Local = fun describe/1,
+    Pid = spawn(fun() -> wait_for(make_ref()) end),
+    Pid ! {self(), ping},
+    Total = begin
+        A = length(Squares),
+        A + byte_size(Bytes)
+    end,
+    Found = keyfind(name, 1, [{name, Quoted}]),
+    Ok = not (Total < 0) and (Found /= false) xor false,
+    io:format("~p ~s ~w~n", [Masks, Escaped, {Chars, Sigil, Raw, Doc}]),
+    {Fun(1), Ref([1, 2]), Local(3), Ok, bnot 1 bsl 2 bsr 1, Total}.

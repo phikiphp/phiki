@@ -37,3 +37,111 @@ DocumentRoot "${GITPOD_REPO_ROOT}/www"
 IncludeOptional /etc/apache2/conf-enabled/*.conf
 
 # https://github.com/gitpod-io/apache-example/blob/master/apache/apache.conf
+
+# ---------------------------------------------------------------------------
+# Production virtual host for example.com
+# ---------------------------------------------------------------------------
+LoadModule rewrite_module modules/mod_rewrite.so
+LoadModule ssl_module modules/mod_ssl.so
+LoadFile /usr/lib/libxml2.so
+
+ExtendedStatus On
+UserDir disabled
+
+<IfModule mod_ssl.c>
+<VirtualHost *:443>
+    ServerName www.example.com
+    ServerAlias example.com
+    ServerAdmin webmaster@example.com
+    DocumentRoot /var/www/example/public
+
+    SSLEngine on
+    SSLCertificateFile /etc/ssl/certs/example.crt
+    SSLCertificateKeyFile /etc/ssl/private/example.key
+    SSLCertificateChainFile /etc/ssl/certs/chain.pem
+    SSLProtocol all -SSLv3 -TLSv1 -TLSv1.1
+
+    # URL rewriting
+    RewriteEngine On
+    RewriteBase /
+    RewriteCond %{HTTP_HOST} ^example\.com$ [NC]
+    RewriteRule ^(.*)$ https://www.example.com/$1 [R=301,L]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ index.php [QSA,L]
+
+    Redirect permanent /old-blog https://blog.example.com/
+    RedirectMatch 301 ^/docs/v1/(.*)$ /docs/v2/$1
+    Alias /static /var/www/example/static
+    AliasMatch ^/icons/(.*)\.svg$ /usr/share/icons/$1.svg
+    ScriptAlias /cgi-bin/ /usr/lib/cgi-bin/
+
+    # Legacy access control
+    <Location /server-status>
+        SetHandler server-status
+        Order deny,allow
+        Deny from all
+        Allow from 10.0.0.0/8
+    </Location>
+
+    <Directory /var/www/example/admin>
+        AuthType Basic
+        AuthName "Restricted Area"
+        AuthBasicProvider file
+        AuthUserFile /etc/apache2/.htpasswd
+        AuthGroupFile /etc/apache2/.htgroups
+        Require group admins
+    </Directory>
+
+    <FilesMatch "\.(php|phtml)$">
+        SetHandler "proxy:unix:/run/php/php8.4-fpm.sock|fcgi://localhost"
+    </FilesMatch>
+
+    php_value upload_max_filesize 64M
+    php_flag display_errors off
+    php_admin_value open_basedir "/var/www/example:/tmp"
+
+    # Compression and caching
+    AddOutputFilterByType DEFLATE text/html text/css application/javascript
+    DeflateCompressionLevel 6
+    ExpiresActive On
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresDefault "access plus 2 days"
+    CacheEnable disk /assets
+    CacheDefaultExpire 3600
+
+    AddType application/wasm .wasm
+    AddCharset UTF-8 .html
+    AddHandler cgi-script .cgi .pl
+    DefaultLanguage en
+    LanguagePriority en de fr
+    AddIcon /icons/folder.gif ^^DIRECTORY^^
+    IndexOptions FancyIndexing HTMLTable
+
+    # Headers and environment
+    Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains"
+    Header unset X-Powered-By
+    RequestHeader set X-Forwarded-Proto "https"
+    SetEnv APP_ENV production
+    UnsetEnv DEBUG
+    PassEnv HOME
+    SetEnvIf User-Agent "^Googlebot" is_bot=1
+    BrowserMatchNoCase "MSIE [6-8]" legacy_browser
+
+    CookieTracking on
+    CookieName visitor
+
+    # Reverse proxy to the API backend
+    ProxyPreserveHost On
+    ProxyPass /api/ http://127.0.0.1:3000/
+    ProxyPassReverse /api/ http://127.0.0.1:3000/
+    <Proxy balancer://cluster>
+        BalancerMember http://10.0.0.11:8080 loadfactor=1
+        BalancerMember http://10.0.0.12:8080 loadfactor=2
+    </Proxy>
+
+    Substitute "s|http://internal|https://www.example.com|i"
+    ErrorDocument 404 /errors/404.html
+    LogLevel warn rewrite:trace2
+</VirtualHost>
+</IfModule>

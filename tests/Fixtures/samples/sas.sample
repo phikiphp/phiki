@@ -14,4 +14,61 @@ DATALINES;
 ;
 RUN;
 
-* From https://www.tutorialspoint.com/sas/sas_program_structure.htm
+* From https://www.tutorialspoint.com/sas/sas_program_structure.htm;
+
+/* Summarise employee commission by department.                    */
+/* Note: each statement is annotated with a leading step comment.  */
+/* opts */ options nodate nonumber;
+/* vars */ %let cutoff = 600;
+/* vars */ %let title = "Payroll &sysdate";
+
+/* macro */ %macro report(ds=, var=salary);
+/* macro */   %if &var ne %then %do;
+/* means */     proc means data=&ds.(keep=department &var) mean max;
+/* means */       class department;
+/* means */       var &var;
+/* means */     run;
+/* macro */   %end;
+/* macro */ %mend report;
+
+/* step */ data work.high_earners(drop=i compress=yes) work.others / debug;
+/* step */   set temp(where=(salary > 0)) end=last;
+/* step */   length band $ 12;
+/* step */   format hired date9.;
+/* step */   hired = '15MAR2021'd;
+/* step */   stamp = "01JAN2024:08:30:00"dt;
+/* step */   mask = '1F'x;
+/* step */   array bonus{3} _temporary_ (100 200 300);
+/* step */   do i = 1 to 3;
+/* step */     comm = comm + bonus{i} * 0.5 ** 2 / 4 - 1.5e2;
+/* step */   end;
+/* step */   if salary ge &cutoff and department in ('IT', 'Finance') then do;
+/* step */     band = "high";
+/* step */     output work.high_earners;
+/* step */   end;
+/* step */   else if not missing(salary) or _n_ = 1 then band = 'other';
+/* step */   else band = upcase(substr(name, 1, 3));
+/* step */   if _error_ then put "ERROR: bad row " _n_=;
+/* step */   if salary ^= . and salary <= 900 then flag = 1;
+/* step */   label band = 'Salary band';
+/* step */   output work.others; * keep everything else;
+/* step */ run;
+
+/* sort */ proc sort data=work.others out=sorted nodupkey;
+/* sort */   by descending salary;
+/* sort */ run;
+
+/* sql */ proc sql;
+/* sql */   create table dept_totals as
+/* sql */   select department, sum(salary) as total format=dollar12.2
+/* sql */   from temp
+/* sql */   where salary between 500 and 900
+/* sql */   group by department
+/* sql */   order by total desc;
+/* sql */ quit;
+
+/* run */ %report(ds=sorted);
+
+/* print */ proc print data=dept_totals(obs=5) noobs label;
+/* print */   title &title;
+/* print */ run;

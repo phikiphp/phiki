@@ -17,4 +17,212 @@ class Residence {
     var address: Address?
 }
 
+import Foundation
+import struct SwiftUI.Color
+@testable import InventoryKit
+
+#if os(iOS) && !targetEnvironment(simulator)
+let platform = "device"
+#elseif canImport(AppKit)
+let platform = "mac"
+#else
+let platform = "other"
+#endif
+
+#warning("Remove before release")
+
+/// A simple 2D vector.
+/// - Parameter x: horizontal component
+struct Vector2: Equatable, Hashable, CustomStringConvertible {
+    var x: Double
+    var y: Double
+
+    static let zero = Vector2(x: 0, y: 0)
+
+    var length: Double { (x * x + y * y).squareRoot() }
+    var description: String { "(\(x), \(y))" }
+
+    static func + (lhs: Vector2, rhs: Vector2) -> Vector2 {
+        Vector2(x: lhs.x + rhs.x, y: lhs.y + rhs.y)
+    }
+
+    mutating func scale(by factor: Double) {
+        x *= factor
+        y *= factor
+    }
+}
+
+precedencegroup DotProductPrecedence {
+    associativity: left
+    higherThan: MultiplicationPrecedence
+}
+
+infix operator •: DotProductPrecedence
+prefix operator √
+
+func • (lhs: Vector2, rhs: Vector2) -> Double { lhs.x * rhs.x + lhs.y * rhs.y }
+prefix func √ (value: Double) -> Double { value.squareRoot() }
+
+enum NetworkError: Error {
+    case badURL(String)
+    case timeout(seconds: Int)
+    case unknown
+}
+
+enum Planet: Int, CaseIterable {
+    case mercury = 1, venus, earth
+    case mars
+}
+
+indirect enum Expr {
+    case number(Int)
+    case add(Expr, Expr)
+}
+
+protocol Repository {
+    associatedtype Item: Identifiable
+    var count: Int { get }
+    init(items: [Item])
+    func find(id: Item.ID) async throws -> Item?
+}
+
+typealias Completion<T> = (Result<T, NetworkError>) -> Void
+
+@propertyWrapper
+struct Clamped<Value: Comparable> {
+    private var value: Value
+    let range: ClosedRange<Value>
+    var wrappedValue: Value {
+        get { value }
+        set { value = min(max(newValue, range.lowerBound), range.upperBound) }
+    }
+    init(wrappedValue: Value, _ range: ClosedRange<Value>) {
+        self.range = range
+        self.value = min(max(wrappedValue, range.lowerBound), range.upperBound)
+    }
+}
+
+@MainActor
+final class Store<Element>: ObservableObject where Element: Codable & Sendable {
+    @Published private(set) var items: [Element] = []
+    @Clamped(0...100) var volume: Int = 50
+    weak var delegate: AnyObject?
+    lazy var formatter = NumberFormatter()
+    private let queue = DispatchQueue(label: "store.queue", qos: .userInitiated)
+
+    nonisolated init() {}
+
+    deinit {
+        print("Store deallocated")
+    }
+
+    @available(iOS 15.0, macOS 12, *)
+    func load(from url: URL) async throws -> [Element] {
+        let (data, response) = try await URLSession.shared.data(from: url)
+        guard let http = response as? HTTPURLResponse, (200..<300).contains(http.statusCode) else {
+            throw NetworkError.badURL(url.absoluteString)
+        }
+        return try JSONDecoder().decode([Element].self, from: data)
+    }
+
+    func update(_ transform: (inout [Element]) -> Void) {
+        defer { objectWillChange.send() }
+        transform(&items)
+    }
+
+    subscript(safe index: Int) -> Element? {
+        indices.contains(index) ? items[index] : nil
+    }
+
+    private var indices: Range<Int> { items.startIndex..<items.endIndex }
+}
+
+extension Array where Element: Numeric {
+    func sum() -> Element { reduce(0, +) }
+}
+
+actor Counter {
+    private var value = 0
+    func increment() -> Int {
+        value += 1
+        return value
+    }
+}
+
+func describe(_ error: Error) -> String {
+    switch error {
+    case NetworkError.badURL(let url):
+        return "Bad URL: \(url)"
+    case NetworkError.timeout(let seconds) where seconds > 30:
+        return "Very slow"
+    case let error as NetworkError:
+        return "Network error \(error)"
+    default:
+        return error.localizedDescription
+    }
+}
+
+func numbers() {
+    let decimal = 1_000_000
+    let hex = 0xFF_EC_DE
+    let octal = 0o755
+    let binary = 0b1010_1010
+    let float = 6.022e23
+    let hexFloat = 0x1.8p3
+    let negative = -42
+    var flags = binary & 0x0F | 0b1 << 2 ^ ~octal
+    flags >>= 1
+    let ratio = Double(decimal) / float * 2.5 - Double(negative)
+    let maybe: Int? = nil
+    let value = maybe ?? hex
+    let isBig = value > 100 && ratio < 1 || !true
+    print(decimal, hexFloat, flags, isBig ? "big" : "small", 10 % 3)
+}
+
+func strings(name: String) -> String {
+    let escaped = "Tab:\t Quote:\" Unicode:\u{1F600} Null:\0"
+    let raw = #"Raw \n stays, but \#(name) interpolates"#
+    let multiline = """
+        Hello, \(name)!
+        Line two \
+        continues here.
+        """
+    let pattern = /(?<word>[a-z]+)\s*=\s*(\d{2,4})/
+    let extended = #/
+        ^ (?<key> \w+ ) : \s* (?: yes | no ) $   # flag lines
+        /#
+    if let match = name.firstMatch(of: pattern) {
+        print(match.word, extended)
+    }
+    return escaped + raw + multiline
+}
+
+let doubled = [1, 2, 3].map { $0 * 2 }.filter { value in value > 2 }
+let sorted = ["b", "a"].sorted(by: <)
+let keyPath = \Vector2.length
+let counter = Counter()
+
+Task { @MainActor [weak counter] in
+    for await _ in AsyncStream<Int>(unfolding: { nil }) { break }
+    if #available(iOS 17, *) {
+        let next = await counter?.increment()
+        print(next ?? 0)
+    }
+    do {
+        try await Task.sleep(nanoseconds: 1_000)
+    } catch is CancellationError {
+        print("cancelled")
+    } catch {
+        print(describe(error))
+    }
+}
+
+repeat {
+    print(√16.0, Vector2.zero • Vector2(x: 1, y: 2), keyPath, sorted, doubled)
+} while false
+
+for case let planet in Planet.allCases where planet.rawValue.isMultiple(of: 2) {
+    print(planet, #file, #line, #function)
+}
+
 // From https://docs.swift.org/swift-book/documentation/the-swift-programming-language/optionalchaining#Defining-Model-Classes-for-Optional-Chaining

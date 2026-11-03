@@ -48,4 +48,125 @@ contract Array {
     }
 }
 
+import "./Array.sol";
+import {IERC20, SafeMath as Math} from "./interfaces/IERC20.sol";
+import './utils/Strings.sol';
+
+type Price is uint128;
+
+/* Shared errors and events.
+   TODO: move these into a separate file. */
+error InsufficientBalance(uint256 available, uint256 required);
+
+interface IVault is IERC165 {
+    event Deposited(address indexed owner, uint256 amount);
+    function balanceOf(address owner) external view returns (uint256);
+}
+
+library Fees {
+    uint16 internal constant BPS = 10_000;
+
+    function apply(uint256 amount, uint16 rate) internal pure returns (uint256) {
+        return amount * rate / BPS;
+    }
+}
+
+/// @title A simple ether vault
+/// @author Example Labs
+/// @notice Holds deposits and charges a withdrawal fee
+/// @dev Uses checks-effects-interactions
+/// @custom:security-contact security@example.com
+contract Vault is IVault, Ownable {
+    using Fees for uint256;
+
+    enum State { Open, Paused, Closed }
+
+    struct Account {
+        uint256 balance;
+        uint64 lastDeposit;
+        bool frozen;
+    }
+
+    mapping(address => Account) private accounts;
+    mapping(address => mapping(bytes32 => bool)) public approvals;
+
+    address public immutable treasury;
+    uint256 public constant MIN_DEPOSIT = 0.01 ether;
+    uint256 public constant LOCK_TIME = 2 days + 12 hours;
+    uint256 transient lock;
+    bytes4 private constant SELECTOR = 0x70a08231;
+    uint256 private _totalFees;
+    State public state = State.Open;
+
+    event Withdrawn(address indexed owner, uint256 amount, uint256 fee);
+
+    modifier whenOpen() {
+        require(state == State.Open, "Vault: not open");
+        _;
+    }
+
+    constructor(address treasury_) payable Ownable(msg.sender) {
+        treasury = treasury_;
+    }
+
+    receive() external payable {
+        deposit();
+    }
+
+    /**
+     * @notice Deposit ether into the vault
+     * @inheritdoc IVault
+     */
+    function deposit() public payable whenOpen {
+        if (msg.value < MIN_DEPOSIT) revert InsufficientBalance(msg.value, MIN_DEPOSIT);
+        Account storage acct = accounts[msg.sender];
+        acct.balance += msg.value;
+        acct.lastDeposit = uint64(block.timestamp);
+        emit Deposited(msg.sender, msg.value);
+    }
+
+    /// @param amount The amount to withdraw, in wei
+    /// @return fee The fee charged
+    function withdraw(uint256 amount) external whenOpen returns (uint256 fee) {
+        Account storage acct = accounts[msg.sender];
+        require(!acct.frozen && acct.balance >= amount, 'Vault: insufficient');
+        assert(block.timestamp >= acct.lastDeposit + LOCK_TIME || tx.origin == owner());
+        fee = amount.apply(25);
+        unchecked {
+            acct.balance -= amount;
+            _totalFees += fee;
+        }
+        (bool ok, ) = payable(msg.sender).call{value: amount - fee}("");
+        require(ok, "transfer failed");
+        emit Withdrawn(msg.sender, amount, fee);
+    }
+
+    function balanceOf(address owner) external view override returns (uint256) {
+        return accounts[owner].balance;
+    }
+
+    function digest(string calldata note) public view returns (bytes32) {
+        bytes32 h = keccak256(abi.encodePacked(note, address(this), blockhash(block.number - 1)));
+        uint256 flags = uint256(h) >> 248 & 0xff | 1 << 3;
+        return flags != 0 ? h : sha256(bytes(unicode"✓ ok"));
+    }
+
+    function codeSize(address target) public view returns (uint256 size) {
+        assembly {
+            let s := extcodesize(target)
+            size := s
+        }
+        size = size > 0 ? size : gasleft() % 1e3;
+    }
+
+    function maxPrice() public pure returns (uint256) {
+        return type(uint128).max;
+    }
+
+    function close() external onlyOwner {
+        state = State.Closed;
+        selfdestruct(payable(treasury));
+    }
+}
+
 // From https://solidity-by-example.org/array/

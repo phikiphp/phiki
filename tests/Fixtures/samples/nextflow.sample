@@ -61,3 +61,77 @@ process QUANT {
     salmon quant --threads $task.cpus --libType=U -i $index -1 ${reads[0]} -2 ${reads[1]} -o $pair_id
     """
 }
+
+// ---------------------------------------------------------------------------
+// A newer DSL2 pipeline with typed params, named workflows and outputs
+// ---------------------------------------------------------------------------
+
+nextflow.enable.dsl = 2
+
+include { ALIGN; SORT_BAM as SORT } from './modules/align'
+include { MULTIQC } from './modules/multiqc'
+
+params {
+    input: Path = 'samplesheet.csv'
+    genome: String = 'GRCh38'
+    min_quality: Integer = 20
+    skip_qc: Boolean = false
+}
+
+enum Strandedness {
+    FORWARD,
+    REVERSE,
+    UNSTRANDED
+}
+
+def sampleName(Map meta, String suffix = '') {
+    return "${meta.id}${suffix}".toLowerCase()
+}
+
+List<String> splitIds(String csv, int limit = 10) {
+    csv.tokenize(',').take(limit)
+}
+
+workflow ALIGN_READS {
+    take:
+    reads_ch
+    index
+
+    main:
+    ALIGN(reads_ch, index)
+    SORT(ALIGN.out.bam)
+    ch_versions = ALIGN.out.versions.mix(SORT.out.versions)
+
+    emit:
+    bam = SORT.out.bam
+    versions = ch_versions
+}
+
+workflow {
+    main:
+    samples = channel
+        .fromPath(params.input)
+        .splitCsv(header: true)
+        .map { row -> tuple([id: row.sample, single: row.fastq_2 == null], file(row.fastq_1)) }
+        .filter { meta, fq -> meta.id =~ /^S\d+$/ }
+
+    ALIGN_READS(samples, file("${params.genome}.idx"))
+
+    if (!params.skip_qc) {
+        MULTIQC(ALIGN_READS.out.bam.collect())
+    }
+
+    publish:
+    aligned = ALIGN_READS.out.bam
+}
+
+output {
+    aligned {
+        path 'alignments'
+        mode 'copy'
+    }
+}
+
+workflow.onComplete {
+    log.info "Pipeline finished: ${workflow.success ? 'OK' : 'failed'} in ${workflow.duration}"
+}

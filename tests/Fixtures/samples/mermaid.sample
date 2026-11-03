@@ -23,3 +23,201 @@ graph TB
 ```
 
 <!-- From https://mermaid.js.org/syntax/examples.html -->
+
+```mermaid
+flowchart LR
+    direction LR
+    %% Release pipeline
+    start([Commit pushed]) --> lint{{Lint}}
+    lint -->|passes| test[[Unit tests]]
+    lint -- fails --> fix[/Fix issues/]
+    test --o build[(Artifacts DB)]
+    build ==> deploy>Deploy]
+    deploy -.->|"manual approval"| prod{Production?}
+    prod --x rollback[\Rollback\]
+    api@{ shape: rounded, label: "API gateway" }
+    subgraph ci [Continuous Integration]
+        lint
+        test
+    end
+    click deploy callback "Open the deployment dashboard"
+    style deploy fill:#bbf,stroke:#f66,stroke-width:2px
+```
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant B as Browser
+    actor U as User
+    U->>B: Open checkout page
+    B->>+API: POST /orders
+    API-->>-B: 201 Created
+    activate API
+    deactivate API
+    Note over B,API: TLS everywhere
+    Note right of U: User waits
+    loop Every 5 seconds
+        B->>API: GET /orders/42/status
+    end
+    alt payment succeeded
+        API-)B: push event "paid"
+    else payment failed
+        API--xB: error 402
+    end
+    opt retry
+        B->>API: POST /orders/42/retry
+    end
+    par notify
+        API->>Email: send receipt
+    and log
+        API->>Audit: record
+    end
+    critical charge card
+        API->>Bank: authorize
+    end
+    rect rgb(240, 240, 255)
+        B->>B: render receipt
+    end
+    box transparent Backend
+    end
+```
+
+```mermaid
+classDiagram
+    direction RL
+    class Animal {
+        <<abstract>>
+        +String name
+        -int age
+        +makeSound()* void
+        +move(int distance) bool
+    }
+    class Duck~T~ {
+        +swim()
+    }
+    Animal <|-- Duck : inherits
+    Animal "1" *-- "many" Leg : has
+    Duck ..> Water : uses
+    Duck o-- Feather
+    Zoo --> Animal
+    note for Duck "Can fly and swim"
+```
+
+```mermaid
+stateDiagram-v2
+    direction LR
+    [*] --> Idle
+    Idle --> Loading : fetch()
+    Loading --> Ready : ok
+    Loading --> Failed : error
+    state "Waiting for input" as Waiting {
+        [*] --> Typing
+        Typing --> Typing
+    }
+    state fork_state <<fork>>
+    state Ready {
+        Viewing
+        --
+        Editing
+    }
+    note right of Failed : retry after 5s
+    note left of Idle
+        initial state
+    end note
+    Failed --> [*]
+```
+
+```mermaid
+erDiagram
+    CUSTOMER ||--o{ ORDER : places
+    ORDER ||--|{ LINE_ITEM : contains
+    PRODUCT }|..|{ LINE_ITEM : "ordered in"
+    CUSTOMER {
+        string id PK "uuid"
+        string email UK
+        int age
+    }
+    ORDER["Order record"] {
+        int id PK
+        string customer_id FK
+    }
+```
+
+```mermaid
+gantt
+    title Release plan
+    dateFormat YYYY-MM-DD
+    axisFormat %d/%m
+    tickInterval 1week
+    excludes weekends
+    todayMarker stroke-width:5px,stroke:#0f0
+    section Design
+    Wireframes      :done, des1, 2024-01-06, 2024-01-08
+    Review          :active, des2, after des1, 3d
+    section Build
+    Implementation  :crit, impl, after des2, 10d
+```
+
+```mermaid
+pie showData
+    title Browser share
+    "Chrome" : 64.5
+    "Firefox" : 18
+    "Safari" : 17.5
+```
+
+```mermaid
+gitGraph
+    commit id: "init"
+    branch develop order: 1
+    checkout develop
+    commit id: "feature" type: HIGHLIGHT tag: "v0.1"
+    checkout main
+    merge develop tag: "v1.0"
+    cherry-pick id: "feature"
+```
+
+```mermaid
+journey
+    title Checkout experience
+    section Browse
+      Find product: 5: Me
+      Add to cart: 3: Me, Cat
+    section Pay
+      Enter card: 1: Me
+```
+
+```mermaid
+quadrantChart
+    title Reach and engagement
+    x-axis Low Reach --> High Reach
+    y-axis Low Engagement --> High Engagement
+    quadrant-1 Expand
+    quadrant-2 Promote
+    Campaign A: [0.3, 0.6]
+    Campaign B: [0.45, 0.23]
+```
+
+```mermaid
+requirementDiagram
+    requirement test_req {
+        id: 1
+        text: the system shall respond in 200ms
+        risk: high
+        verifymethod: test
+    }
+    element test_entity {
+        type: simulation
+        docref: reqs/test_entity
+    }
+    test_entity - satisfies -> test_req
+```
+
+```mermaid
+xychart-beta
+    title "Sales revenue"
+    x-axis [jan, feb, mar, apr]
+    y-axis "Revenue (in $)" 4000 --> 11000
+    bar [5000, 6000, 7500, 8200]
+    line [5000, 6000, 7500, 8200]
+```

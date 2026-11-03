@@ -28,3 +28,186 @@ export default function PackingList() {
 }
 
 // From https://react.dev/learn/conditional-rendering
+
+// --- A larger component module ---
+
+import React, { useState, useEffect, useMemo, useCallback, Fragment } from 'react';
+import * as api from './api.js';
+import styles from './TodoApp.module.css';
+
+const PRIORITY = Object.freeze({ LOW: 0b01, HIGH: 0b10 });
+const MAX_TODOS = 1_000;
+const EMAIL = /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i;
+
+/**
+ * A single todo row.
+ * @param {{ todo: { id: number, title: string, done: boolean }, onToggle: Function }} props
+ * @returns {JSX.Element}
+ */
+function TodoItem({ todo, onToggle, onDelete = () => {} }) {
+  const { id, title, done = false, ...rest } = todo;
+  return (
+    <li
+      key={id}
+      className={`${styles.item} ${done ? styles.done : ''}`}
+      data-priority={rest.priority ?? PRIORITY.LOW}
+      aria-checked={done}
+      {...rest.attrs}
+    >
+      <input type="checkbox" checked={done} onChange={() => onToggle(id)} />
+      <span title='Double-click to edit' style={{ fontWeight: done ? 400 : 600, opacity: 0.8 }}>
+        {title.length > 40 ? title.slice(0, 40) + '…' : title}
+      </span>
+      {/* Only show the delete button for finished items */}
+      {done && <button onClick={(e) => { e.stopPropagation(); onDelete(id); }}>&times; Delete</button>}
+    </li>
+  );
+}
+
+class ErrorBoundary extends React.Component {
+  static defaultProps = { fallback: <p>Something went wrong.</p> };
+  state = { error: null };
+
+  static getDerivedStateFromError(error) {
+    return { error };
+  }
+
+  componentDidCatch(error, info) {
+    console.error('Caught by boundary:', error, info.componentStack);
+  }
+
+  render() {
+    if (this.state.error !== null) return this.props.fallback;
+    return this.props.children;
+  }
+}
+
+export function TodoApp({ user, initial = [] }) {
+  const [todos, setTodos] = useState(initial);
+  const [filter, setFilter] = useState('all');
+  const [email, setEmail] = useState(user?.email ?? '');
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const data = await api.fetchTodos({ limit: MAX_TODOS });
+        if (!cancelled) setTodos(data);
+      } catch (err) {
+        console.warn(`Failed to load todos: ${err.message}`);
+      }
+    })();
+    return () => { cancelled = true; };
+  }, []);
+
+  const visible = useMemo(() => {
+    switch (filter) {
+      case 'done':
+        return todos.filter((t) => t.done);
+      case 'open':
+        return todos.filter((t) => !t.done);
+      default:
+        return todos;
+    }
+  }, [todos, filter]);
+
+  const toggle = useCallback((id) => {
+    setTodos((prev) => prev.map((t) => (t.id === id ? { ...t, done: !t.done } : t)));
+  }, []);
+
+  const remaining = todos.reduce((n, t) => n + (t.done ? 0 : 1), 0);
+  const isValid = EMAIL.test(email);
+
+  return (
+    <ErrorBoundary fallback={<p className="error">Could not render the list.</p>}>
+      <>
+        <header className={styles.header}>
+          <h1>Hello, {user?.name || 'guest'}!</h1>
+          <p>
+            You have <strong>{remaining}</strong> of {todos.length} items left &mdash; keep going.
+          </p>
+        </header>
+
+        <form onSubmit={(e) => e.preventDefault()} noValidate>
+          <label htmlFor="email">Email</label>
+          <input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+          {!isValid && <small role="alert">Please enter a valid address.</small>}
+        </form>
+
+        <nav>
+          {['all', 'open', 'done'].map((f) => (
+            <button key={f} disabled={f === filter} onClick={() => setFilter(f)}>
+              {f[0].toUpperCase() + f.slice(1)}
+            </button>
+          ))}
+        </nav>
+
+        {visible.length === 0 ? (
+          <p className={styles.empty}>Nothing to show.</p>
+        ) : (
+          <ul className={styles.list}>
+            {visible.map((todo, index) => (
+              <Fragment key={todo.id}>
+                <TodoItem todo={todo} onToggle={toggle} />
+                {index < visible.length - 1 && <hr />}
+              </Fragment>
+            ))}
+          </ul>
+        )}
+
+        <svg:rect width="10" height="10" />
+        <Layout.Footer year={new Date().getFullYear()} />
+      </>
+    </ErrorBoundary>
+  );
+}
+
+export const Lazy = React.lazy(() => import('./Settings.jsx'));
+
+// --- Hooks and helpers ---
+
+export * as icons from './icons.jsx';
+
+/**
+ * Debounce a callback.
+ * @template T
+ * @param {(...args: T[]) => void} fn - The callback to debounce
+ * @param {number} [wait=250] Milliseconds to wait
+ * @returns {Function} the debounced function
+ * @see {@link https://developer.mozilla.org/docs/Web/API/setTimeout setTimeout}
+ * @example
+ *   const save = debounce(() => api.save(), 500);
+ */
+export function useDebounce(fn, wait = 0xfa) {
+  const timer = React.useRef(undefined);
+  return (...args) => {
+    clearTimeout(timer.current);
+    timer.current = setTimeout(() => fn.apply(null, args), wait);
+  };
+}
+
+function* pages(total, size = 0o12) {
+  for (let page = 0; page * size < total; page++) yield { page, from: page * size };
+}
+
+const css = (strings, ...values) => strings.reduce((out, s, i) => out + s + (values[i] ?? ''), '');
+const highlight = css`color: ${'tomato'}; font-weight: ${700};`;
+const SLUG = /[^\w\-]+|\s{2,}|(\d)\1|\x20|\cJ|[\u00C0-\u017F]/g;
+
+export const slugify = (text) => text.toLowerCase().replace(SLUG, '-').replace(/^-+|-+$/g, '');
+
+export function Badge({ count = NaN, max = Infinity, children }) {
+  let label = count;
+  label >>= 0;
+  label |= 0;
+  if (Number.isNaN(count) || count === undefined) label = '?';
+  else if (count > max) label = `${max}+`;
+  delete Badge.cache;
+  void Promise.resolve(label).then((value) => console.debug(value));
+  return (
+    <span className="badge" title={typeof label === 'string' ? label : String(label)} hidden={!children}>
+      {children}
+      <sup>{label}</sup>
+    </span>
+  );
+}

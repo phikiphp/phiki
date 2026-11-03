@@ -1,0 +1,169 @@
+# Smoke tests for the orders API.
+# Run with: hurl --test --variable host=https://api.example.com orders.hurl
+
+# Log in and capture the session token
+POST https://api.example.com/v1/login
+Content-Type: application/json
+Accept: application/json
+User-Agent: hurl-smoke/1.0
+```json
+{
+  "username": "{{username}}",
+  "password": "{{password}}"
+}
+```
+HTTP 200
+[Captures]
+token: jsonpath "$.token"
+user_id: jsonpath "$.user.id"
+[Asserts]
+header "Content-Type" contains "application/json"
+jsonpath "$.token" matches "^[A-Za-z0-9._-]+$"
+jsonpath "$.user.roles" includes "customer"
+duration < 1000
+
+
+# List orders with query parameters
+GET https://api.example.com/v1/users/{{user_id}}/orders
+Authorization: Bearer {{token}}
+[QueryStringParams]
+status: shipped
+page: 1
+per_page: 25
+[Options]
+retry: 3
+retry-interval: 500ms
+HTTP/2 200
+[Asserts]
+jsonpath "$.orders" count >= 1
+jsonpath "$.orders[0].total" isFloat
+jsonpath "$.orders[0].currency" == "EUR"
+jsonpath "$.meta.next" not exists
+
+
+# Create an order from a form submission
+POST https://api.example.com/v1/orders
+Authorization: Bearer {{ token }}
+[FormParams]
+sku: NB-A5-DOT
+quantity: 2
+note: "Gift wrap, please \"fragile\"\n"
+[Cookies]
+session: abc123
+HTTP 201
+[Captures]
+order_id: header "Location" regex "/orders/(\\d+)$"
+
+
+# Upload an invoice as multipart form data
+POST https://api.example.com/v1/orders/{{order_id}}/attachments
+Authorization: Bearer {{token}}
+[MultipartFormData]
+kind: invoice
+file: file,invoice-10482.pdf; application/pdf
+HTTP 201
+
+
+# Query the same data through GraphQL
+POST https://api.example.com/graphql
+Authorization: Bearer {{token}}
+```graphql
+query Order($id: ID!) {
+  order(id: $id) {
+    id
+    status
+    lines { sku quantity }
+  }
+}
+
+variables {
+  "id": "{{order_id}}"
+}
+```
+HTTP 200
+[Asserts]
+jsonpath "$.data.order.status" == "PENDING"
+jsonpath "$.errors" not exists
+
+
+# Legacy SOAP endpoint
+POST https://legacy.example.com/soap/OrderService
+Content-Type: text/xml; charset=utf-8
+SOAPAction: "urn:GetOrderStatus"
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <GetOrderStatus><OrderId>{{order_id}}</OrderId></GetOrderStatus>
+  </soap:Body>
+</soap:Envelope>
+```
+HTTP 200
+[Asserts]
+xpath "string(//Status)" == "PENDING"
+
+
+# Binary payloads, raw text and inline bodies
+PATCH https://api.example.com/v1/orders/{{order_id}}/signature
+Content-Type: application/octet-stream
+```hex
+89504e470d0a1a0a0000000d49484452
+```
+HTTP 200
+
+PATCH https://api.example.com/v1/orders/{{order_id}}/thumbnail
+```base64
+iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk
+```
+HTTP 200
+
+PUT https://api.example.com/v1/orders/{{order_id}}/note
+Content-Type: text/plain
+```
+Leave the parcel with the neighbour at number 12.
+Thanks!
+```
+HTTP 200
+
+PUT https://api.example.com/v1/orders/{{order_id}}/label
+Content-Type: text/plain
+`Deliver after 18:00 \u{1F4E6}\tring twice`
+HTTP 200
+
+POST https://api.example.com/v1/checksums
+base64,SGVsbG8gd29ybGQ=;
+HTTP 200
+
+POST https://api.example.com/v1/checksums
+hex,48656c6c6f;
+HTTP 200
+
+
+# Basic auth, HEAD and OPTIONS checks
+HEAD https://api.example.com/v1/health
+[BasicAuth]
+monitor: s3cr3t
+HTTP 200
+
+OPTIONS https://api.example.com/v1/orders
+Origin: https://shop.example.com
+HTTP/1.1 204
+[Asserts]
+header "Access-Control-Allow-Methods" contains "DELETE"
+
+# Clean up
+DELETE https://api.example.com/v1/orders/{{order_id}}
+Authorization: Bearer {{token}}
+X-Request-Id: smoke-{{newUuid}}
+HTTP 204
+
+
+# Bulk import as CSV
+PUT https://api.example.com/v1/stock
+Content-Type: text/csv
+```csv
+sku,quantity,warehouse
+NB-A5-DOT,120,berlin
+PEN-FT-01,35,lisbon
+```
+HTTP 204

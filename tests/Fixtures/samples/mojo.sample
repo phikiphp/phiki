@@ -9,3 +9,200 @@ struct NDArray:
 struct SIMD[type: DType, width: Int]:
   def max(self, rhs: Self) -> Self:
     return (self >= rhs).select(self, rhs)
+
+
+"""Vector math utilities written in Mojo.
+
+Demonstrates structs, traits, parameters, SIMD and Python interop.
+"""
+
+from math import sqrt, exp
+from memory import UnsafePointer
+from python import Python
+import benchmark as bench
+
+alias FloatType = DType.float32
+alias WIDTH: Int = 8
+alias MASK = 0xFF
+alias FLAGS = 0b1010
+alias PERMS = 0o755
+alias EPS = 1e-6
+
+
+trait Shape:
+    fn area(self) -> Float64: ...
+    fn name(self) -> String: ...
+
+
+@value
+struct Circle(Shape, Stringable):
+    var radius: Float64
+
+    fn area(self) -> Float64:
+        return 3.14159 * self.radius ** 2
+
+    fn name(self) -> String:
+        return "circle"
+
+    fn __str__(self) -> String:
+        return "Circle(r=" + str(self.radius) + ")"
+
+
+struct Matrix[rows: Int, cols: Int]:
+    var data: UnsafePointer[Float32]
+
+    fn __init__(out self):
+        self.data = UnsafePointer[Float32].alloc(rows * cols)
+
+    fn __del__(owned self):
+        self.data.free()
+
+    @always_inline
+    fn __getitem__(self, r: Int, c: Int) -> Float32:
+        return self.data.load(r * cols + c)
+
+    fn __setitem__(mut self, r: Int, c: Int, val: Float32):
+        self.data.store(r * cols + c, val)
+
+    @staticmethod
+    fn identity() -> Self:
+        var m = Self()
+        for i in range(min(rows, cols)):
+            m[i, i] = 1.0
+        return m^
+
+
+fn dot[width: Int](a: SIMD[FloatType, width], b: SIMD[FloatType, width]) -> Float32:
+    return (a * b).reduce_add()
+
+
+fn normalize(inout values: List[Float64], borrowed scale: Float64 = 1.0) raises:
+    var total: Float64 = 0
+    for v in values:
+        total += v[] ** 2
+    if total == 0:
+        raise Error("cannot normalize a zero vector")
+    let norm = sqrt(total) * scale
+    for i in range(len(values)):
+        values[i] /= norm
+
+
+async def fetch(url: str) -> str:
+    return await client.get(url)
+
+
+def classify(value: Int) -> String:
+    match value:
+        case 0:
+            return "zero"
+        case _ if value < 0:
+            return "negative"
+        case _:
+            return "positive"
+
+
+def main():
+    var circles = List[Circle](Circle(1.0), Circle(2.5))
+    var total_area = 0.0
+    for c in circles:
+        total_area += c[].area()
+    print(f"total area: {total_area:.2f} for {len(circles)!r} circles")
+    print("tab\tnewline\n unicode \u00e9 hex \x41")
+    print(r"raw \d+ string", b"bytes", rb"raw bytes")
+    print("percent %s and %5.2f" % ("x", 3.14159))
+    print("braces {} and {name}".format(1, name="two"))
+
+    var m = Matrix[3, 3].identity()
+    let v = SIMD[FloatType, 4](1, 2, 3, 4)
+    print(dot(v, v), m[0, 0], MASK & FLAGS | PERMS ^ ~0 >> 1 << 2)
+
+    var nums = [1, 2, 3, 4]
+    let squares = [n * n for n in nums if n % 2 == 0]
+    let lookup = {"a": 1, "b": 2}
+    let maybe: Optional[Int] = None
+    if maybe is not None and not lookup.get("c"):
+        pass
+    elif 3 in nums or len(nums) >= 4:
+        print(True, False, squares)
+    else:
+        print(lambda x: x + 1)
+
+    var np = Python.import_module("numpy")
+    var arr = np.arange(10)
+    print(arr.mean())
+
+    var i = 0
+    while i < 10:
+        i += 1
+        if i == 5:
+            continue
+        elif i > 8:
+            break
+
+    try:
+        normalize(nums)
+    except e:
+        print("error:", e)
+    finally:
+        print("done")
+
+    with open("out.txt", "w") as f:
+        f.write("ok")
+
+    global counter
+    del nums
+    assert total_area > 0, "area must be positive"
+    import re
+    let pattern = re.compile(r"(?P<word>\w+)\s*(?:,|;)")
+
+
+# --- Python-style helpers -------------------------------------------------
+# TODO: move these into a separate module. FIXME: add tests. NOTE: untyped.
+
+@register_passable("trivial")
+struct Pair:
+    var first: Int  # type: int
+    var second: Int
+
+
+class Logger(Base, metaclass=Meta):
+    """A plain Python-style class."""
+
+    level = "info"  # type: str
+
+    def __init__(self, name, *args, level="info", **kwargs):
+        self.name = name
+        self.extra = kwargs.get("extra", None)
+        self.__dict__.update(kwargs)
+
+    def log(self, msg, /, *, prefix=">"):
+        print(f"{prefix} [{self.level:>8}] {msg!s:<20} {len(msg):04d} {{literal}}")
+        print(f"{self.name=}")
+        return self
+
+    @property
+    def tag(self):
+        return __name__ + "." + self.__class__.__name__
+
+
+fn apply(owned items: List[Int], borrowed f: fn (Int) -> Int, inout out_list: List[Int]):
+    for x in items:
+        out_list.append(f(x[]))
+
+
+def summarize(*values, **options):
+    key = lambda v, scale=1: v * scale
+    data = sorted(values, key=key, reverse=options.get("desc", False))
+    total = sum(data) \
+        + 0
+    return {"total": total, "count": len(data), **options}
+
+
+def find_prices(text):
+    """Extract prices such as $12.50 from text."""
+    price = re.compile(r"(?<=\$)(?<!\\)\d+(?:\.\d{2})?(?=\s|$)(?!%)[^\w\]]")
+    word = re.compile(r'(?P<tag>[a-z]+)(?#a comment)(?(tag)x|y)')
+    verbose = re.compile(r"""
+        ^(?P<year>\d{4})-(?P<month>\d{2})   # date part
+    """, re.VERBOSE)
+    return price.findall(text), word, verbose

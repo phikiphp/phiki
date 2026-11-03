@@ -34,3 +34,105 @@ add_executable(MyExample simple_example.cpp)
 target_link_libraries(MyExample PRIVATE MyLibExample)
 
 # From https://cliutils.gitlab.io/modern-cmake/chapters/basics/example.html
+#[[
+  Everything below is a more complete configuration for the same project:
+  options, generated files, tests and installation rules.
+]]
+
+option(EXAMPLE_BUILD_TESTS "Build the unit tests" ON)
+option(EXAMPLE_WARNINGS_AS_ERRORS "Treat compiler warnings as errors" OFF)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
+set(EXAMPLE_GREETING "Hello, \"CMake\"!\n" CACHE STRING "Greeting printed on start")
+set_property(CACHE EXAMPLE_GREETING PROPERTY HELPSTRING "Shown by the example binary")
+mark_as_advanced(EXAMPLE_GREETING)
+
+if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
+  message(STATUS "Setting build type to 'Release' as none was specified.")
+  set(CMAKE_BUILD_TYPE Release CACHE STRING "Choose the type of build." FORCE)
+elseif(CMAKE_BUILD_TYPE STREQUAL "Debug")
+  set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -fsanitize=address")
+endif()
+
+if(MSVC)
+  target_compile_options(MyLibExample PRIVATE /W4)
+elseif(UNIX AND NOT APPLE)
+  target_compile_options(MyLibExample PRIVATE -Wall -Wextra -pedantic)
+endif()
+
+if(EXISTS "$ENV{HOME}/.example-config" AND CMAKE_VERSION VERSION_GREATER_EQUAL 3.20)
+  message(STATUS "Using user configuration from $ENV{HOME}")
+endif()
+
+get_property(_languages GLOBAL PROPERTY ENABLED_LANGUAGES)
+set_property(GLOBAL PROPERTY ALLOW_DUPLICATE_CUSTOM_TARGETS FALSE)
+set_directory_properties(PROPERTIES ADDITIONAL_MAKE_CLEAN_FILES "${CMAKE_BINARY_DIR}/generated")
+
+set(_sources)
+foreach(_name IN ITEMS parser lexer printer)
+  list(APPEND _sources "src/${_name}.cpp")
+endforeach()
+
+file(GLOB_RECURSE _headers CONFIGURE_DEPENDS "${PROJECT_SOURCE_DIR}/include/*.hpp")
+target_sources(MyLibExample PRIVATE ${_sources} ${_headers})
+
+configure_file(
+  "${PROJECT_SOURCE_DIR}/version.hpp.in"
+  "${PROJECT_BINARY_DIR}/generated/version.hpp"
+  @ONLY)
+
+set_source_files_properties("${PROJECT_BINARY_DIR}/generated/version.hpp"
+  PROPERTIES GENERATED TRUE COMPILE_FLAGS "-DEXAMPLE_GENERATED=1")
+
+set_target_properties(MyExample PROPERTIES
+  OUTPUT_NAME example
+  DEBUG_POSTFIX "-d"
+  ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/archive")
+
+function(example_add_resource target file)
+  get_filename_component(_stem "${file}" NAME_WE)
+  add_custom_command(
+    OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${_stem}.inc"
+    COMMAND ${CMAKE_COMMAND} -E echo "embedding ${file}"
+    DEPENDS "${file}"
+    COMMENT "Embedding resource ${_stem}")
+  target_sources(${target} PRIVATE "${CMAKE_CURRENT_BINARY_DIR}/${_stem}.inc")
+endfunction()
+
+macro(example_log level)
+  message(${level} "[example] ${ARGN}")
+endmacro()
+
+example_add_resource(MyExample assets/logo.svg)
+example_log(STATUS "configured ${PROJECT_NAME} ${PROJECT_VERSION}")
+
+set(_script [=[
+  local greeting = "bracket arguments keep ${raw} text"
+  print(greeting)
+]=])
+file(WRITE "${CMAKE_BINARY_DIR}/greeting.lua" [[print("hi")]])
+
+math(EXPR _jobs "4 * 2 + 1")
+string(REGEX MATCH "^([0-9]+)\\.([0-9]+)" _version_match "${PROJECT_VERSION}")
+string(TOUPPER "${CMAKE_SYSTEM_NAME}" _system)
+
+if(EXAMPLE_BUILD_TESTS)
+  enable_testing()
+  add_executable(example_tests tests/main.cpp)
+  target_link_libraries(example_tests PRIVATE MyLibExample)
+  add_test(NAME example.unit COMMAND example_tests --reporter compact)
+  set_tests_properties(example.unit PROPERTIES
+    LABELS "unit;fast"
+    ENVIRONMENT "EXAMPLE_DATA=${PROJECT_SOURCE_DIR}/tests/data"
+    TIMEOUT 30)
+endif()
+
+# BUILD_NAME is deprecated; CTest uses BUILDNAME instead.
+set(BUILD_NAME "legacy")
+
+install(TARGETS MyExample MyLibExample
+  RUNTIME DESTINATION bin
+  ARCHIVE DESTINATION lib)

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-GRAMMARS_DIR="$(realpath $(dirname "$0")/../resources/grammars)"
+GRAMMARS_DIR="$(realpath $(dirname "$0")/../resources/grammars/oniguruma)"
 
 echo "Minifying grammars in $GRAMMARS_DIR"
 

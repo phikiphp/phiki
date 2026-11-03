@@ -27,3 +27,186 @@ class Kernel extends ConsoleKernel
 }
 
 // From https://github.com/laravel/laravel/blob/10.x/app/Console/Kernel.php
+
+namespace App\Billing;
+
+use App\Models\{Invoice, Customer as Client};
+use function array_map, sprintf;
+use const PHP_EOL;
+use InvalidArgumentException;
+
+/**
+ * Calculates and renders invoices.
+ *
+ * @template T of Invoice
+ * @property-read string $currency
+ */
+#[\Attribute(\Attribute::TARGET_CLASS)]
+final readonly class InvoiceService implements \Countable, \JsonSerializable
+{
+    use Concerns\HasLogger, Concerns\FormatsMoney {
+        Concerns\FormatsMoney::format as protected formatMoney;
+    }
+
+    public const string DEFAULT_CURRENCY = 'EUR';
+    private const RATES = ['EUR' => 1.0, 'USD' => 1.08, 'GBP' => 0.86];
+
+    public function __construct(
+        private Repository $repository,
+        protected ?Client $client = null,
+        public int|float $taxRate = 0.21,
+        private array $lines = [],
+    ) {}
+
+    #[Override]
+    public function count(): int
+    {
+        return \count($this->lines);
+    }
+
+    /**
+     * @param  array<int, array{name: string, price: float}>  $items
+     * @return static
+     */
+    public function withLines(array $items): static
+    {
+        $clone = clone $this;
+        foreach ($items as $index => ['name' => $name, 'price' => $price]) {
+            if ($price < 0) {
+                throw new InvalidArgumentException("Line {$index} ({$name}) has a negative price: $price");
+            } elseif ($price === 0.0) {
+                continue;
+            }
+            $clone->lines[] = compact('name', 'price');
+        }
+        return $clone;
+    }
+
+    public function total(string $currency = self::DEFAULT_CURRENCY): float
+    {
+        $sum = array_reduce($this->lines, fn (float $carry, array $line): float => $carry + $line['price'], 0.0);
+        $rate = self::RATES[$currency] ?? throw new \DomainException('Unknown currency');
+        return round($sum * (1 + $this->taxRate) * $rate, 2);
+    }
+
+    public function status(Invoice $invoice): string
+    {
+        return match (true) {
+            $invoice->paid_at !== null => 'paid',
+            $invoice->due_at < new \DateTimeImmutable() => 'overdue',
+            default => 'open',
+        };
+    }
+
+    public static function make(mixed ...$args): self
+    {
+        static $instances = 0;
+        $instances++;
+        return new static(...$args);
+    }
+
+    public function jsonSerialize(): mixed
+    {
+        return ['total' => $this->total(), 'lines' => $this->lines, 'client' => $this->client?->name];
+    }
+}
+
+enum Status: string
+{
+    case Draft = 'draft';
+    case Sent = 'sent';
+
+    public function label(): string
+    {
+        return ucfirst($this->value);
+    }
+}
+
+interface Repository
+{
+    public function find(int $id): ?Invoice;
+}
+
+abstract class BaseReport
+{
+    abstract protected function rows(): iterable;
+
+    public function __toString(): string
+    {
+        $out = '';
+        foreach ($this->rows() as $row) {
+            $out .= implode("\t", $row) . PHP_EOL;
+        }
+        return $out;
+    }
+}
+
+function numbers(): \Generator
+{
+    $values = [0x1F, 0b1010, 0o17, 017, 1_000_000, 1.5e-3, .25, PHP_INT_MAX];
+    yield from $values;
+    yield 'key' => true && !false || null;
+}
+
+$query = "SELECT id, total FROM invoices WHERE customer_id = ? AND status = 'paid'";
+$heredoc = <<<HTML
+    <div class="invoice">
+        <h1>{$client->name}</h1>
+        <p>Total: ${total} \u{20AC} \x41\t</p>
+    </div>
+    HTML;
+$nowdoc = <<<'TXT'
+    Raw $text with no {$interpolation}
+    TXT;
+$sql = <<<SQL
+    SELECT * FROM invoices WHERE id = {$id}
+    SQL;
+
+$pattern = '/^INV-(\d{4})-([A-Z]+)$/i';
+if (preg_match($pattern, $number, $matches) === 1) {
+    [, $year, $code] = $matches;
+}
+
+$a = 10; $b = 3;
+$a += $b; $a -= 1; $a *= 2; $a /= 4; $a %= 3; $a **= 2; $a .= ''; $a ??= 5;
+$bits = ($a & $b) | ($a ^ $b) << 1 >> 2;
+$cmp = $a <=> $b;
+$same = $a == $b || $a != $b && $a <> $b and $a !== $b or $a instanceof \Stringable xor true;
+$i = $j = 0;
+while ($i++ < 10) { $j--; }
+do { $j++; } while ($j < 0);
+for ($k = 0; $k < 3; ++$k): echo $k; endfor;
+switch ($cmp) {
+    case -1:
+        echo 'less';
+        break;
+    default:
+        echo 'other';
+}
+try {
+    $service = InvoiceService::make(new FakeRepository());
+    $callback = $service->total(...);
+    $fn = function (int $x) use (&$total): int { return $x * 2; };
+    echo $service::class, (string) $service->count(), (int) '42', @$undefined['x'];
+} catch (\TypeError | \ValueError $e) {
+    error_log($e->getMessage());
+} finally {
+    unset($service);
+}
+$object = new class ($a) extends BaseReport {
+    public function __construct(private int $n) {}
+    protected function rows(): iterable { return [[$this->n]]; }
+};
+global $config;
+list($first, $second) = [1, 2];
+isset($config['debug']) ? print 'debug' : exit(0);
+goto end;
+end:
+echo __LINE__, __FILE__, __CLASS__, __FUNCTION__, __METHOD__, __NAMESPACE__;
+?>
+<ul>
+    <?php foreach ($items as $item): ?>
+        <li><?= htmlspecialchars($item->name) ?></li>
+    <?php endforeach; ?>
+</ul>
+<script>console.log(<?= json_encode($data) ?>);</script>

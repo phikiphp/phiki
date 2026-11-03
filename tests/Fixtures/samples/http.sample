@@ -1,3 +1,6 @@
+@baseUrl = https://api.example.com
+@token = {{login.response.body.token}}
+
 // Basic authentication
 GET http://example.com
 Authorization: Basic username password
@@ -14,5 +17,77 @@ Content-Type: application/json
 Cookie: key=first-value
 
 { "key" : "value", "list": [1, 2, 3] }
+
+### Log in and keep the token
+# @name login
+POST {{baseUrl}}/auth/login HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "username": "ada",
+  "password": "{{$dotenv PASSWORD}}"
+}
+
+###
+// @name listUsers
+// @prompt pageSize Number of users per page
+GET {{baseUrl}}/users
+    ?page=2
+    &limit={{pageSize}}
+    &sort=-created_at
+Authorization: Bearer {{token}}
+X-Request-Id: {{$guid}}
+
+###
+# @note
+# @prompt reason Why are you deleting this user?
+DELETE {{baseUrl}}/users/42 HTTP/2
+Authorization: Bearer {{token}}
+X-Audit-Reason: {{reason}}
+
+###
+// @note
+PUT {{baseUrl}}/users/42/avatar HTTP/1.1
+Content-Type: application/xml
+
+<avatar>
+  <url>https://cdn.example.com/a/42.png</url>
+  <size unit="px">128</size>
+</avatar>
+
+###
+POST {{baseUrl}}/graphql HTTP/1.1
+Content-Type: application/json
+X-Request-Type: GraphQL
+
+query UserById($id: ID!) {
+  user(id: $id) {
+    id
+    name
+  }
+}
+
+{
+  "id": "42"
+}
+
+###
+PATCH {{baseUrl}}/users/42 HTTP/1.1
+Content-Type: application/json
+
+[
+  { "op": "replace", "path": "/name", "value": "Ada L." }
+]
+
+###
+curl -X GET "https://api.example.com/health" -H "Accept: text/plain"
+
+###
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Cache-Control: no-cache
+
+{ "status": "ok", "uptime": 12345 }
 
 // From https://www.jetbrains.com/help/idea/exploring-http-syntax.html#use-multipart-form-data

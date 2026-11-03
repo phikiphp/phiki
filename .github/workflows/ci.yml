@@ -41,6 +41,9 @@ jobs:
 
             - name: Run PHPStan
               run: composer lint -- --error-format=github
+
+            - name: Check PCRE grammars are up to date
+              run: composer translate-grammars -- --check
     test:
         runs-on: ${{ matrix.os }}
         strategy:

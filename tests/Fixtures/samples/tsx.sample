@@ -1,3 +1,4 @@
+/// <reference types="react/next" />
 // posts will be populated at build time by getStaticProps()
 function Blog({ posts }) {
   return (
@@ -22,5 +23,196 @@ export async function getStaticProps() {
 }
 
 export default Blog
+
+// ---------------------------------------------------------------------------
+// A typed, filterable product table
+// ---------------------------------------------------------------------------
+import React, { useState, useMemo, useCallback, type ReactNode } from "react";
+import type { NextPage, GetServerSideProps } from 'next';
+import styles from "./Products.module.css";
+
+/** A product returned by the API. */
+export interface Product {
+  readonly id: number;
+  name: string;
+  price: number;
+  tags?: string[];
+  status: "draft" | "live" | "archived";
+}
+
+type SortKey = keyof Pick<Product, "name" | "price">;
+type Props<T> = { items: T[]; render: (item: T, index: number) => ReactNode; empty?: ReactNode };
+
+enum Currency { USD = "$", EUR = "€" }
+
+const formatPrice = (value: number, currency: Currency = Currency.USD): string =>
+  `${currency}${value.toFixed(2)}`;
+
+function List<T extends { id: number }>({ items, render, empty = <em>Nothing here</em> }: Props<T>) {
+  if (items.length === 0) return <>{empty}</>;
+  return <ul className={styles.list}>{items.map((item, i) => <li key={item.id}>{render(item, i)}</li>)}</ul>;
+}
+
+class ErrorBoundary extends React.Component<{ children: ReactNode }, { error?: Error }> {
+  state: { error?: Error } = {};
+
+  static getDerivedStateFromError(error: Error) {
+    return { error };
+  }
+
+  render() {
+    return this.state.error ? <p role="alert">Something went wrong: {this.state.error.message}</p> : this.props.children;
+  }
+}
+
+const Products: NextPage<{ products: Product[] }> = ({ products }) => {
+  const [query, setQuery] = useState<string>("");
+  const [sortKey, setSortKey] = useState<SortKey>("name");
+  const [ascending, setAscending] = useState(true);
+  const pattern = /^[\w\s-]{0,40}$/i;
+
+  const visible = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    return products
+      .filter((p) => p.status !== "archived" && (q === "" || p.name.toLowerCase().includes(q)))
+      .sort((a, b) => (a[sortKey] > b[sortKey] ? 1 : -1) * (ascending ? 1 : -1));
+  }, [products, query, sortKey, ascending]);
+
+  const onChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+    if (pattern.test(event.target.value)) setQuery(event.target.value);
+  }, []);
+
+  const total = visible.reduce((sum, p) => sum + p.price, 0) * 1.2e0 - 0x0;
+
+  return (
+    <ErrorBoundary>
+      {/* Search and sorting controls */}
+      <header className={`${styles.header} sticky`} data-count={visible.length}>
+        <label htmlFor="search">Search&nbsp;products</label>
+        <input id="search" type="search" value={query} onChange={onChange} placeholder='e.g. "lamp"' autoFocus />
+        <select value={sortKey} onChange={(e) => setSortKey(e.target.value as SortKey)} disabled={!visible.length}>
+          <option value="name">Name</option>
+          <option value="price">Price</option>
+        </select>
+        <button type="button" onClick={() => setAscending((v) => !v)} aria-pressed={ascending}>
+          {ascending ? "↑" : "↓"}
+        </button>
+      </header>
+
+      <List
+        items={visible}
+        render={(p, index) => (
+          <article className={styles.card} style={{ opacity: p.status === "draft" ? 0.5 : 1 }}>
+            <h2>
+              {index + 1}. {p.name}
+            </h2>
+            <p>{formatPrice(p.price, Currency.EUR)}</p>
+            {p.tags?.length ? <small>{p.tags.join(", ")}</small> : null}
+            <svg:circle cx="5" cy="5" r="4" />
+          </article>
+        )}
+      />
+
+      <footer>
+        Total: <strong>{formatPrice(total)}</strong> &mdash; {visible.length} of {products.length}
+      </footer>
+    </ErrorBoundary>
+  );
+};
+
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  const page = Number(query.page ?? 1);
+  const res = await fetch(`https://api.example.com/products?page=${page}&limit=${20}`);
+  if (!res.ok) {
+    return { notFound: true };
+  }
+  const products = (await res.json()) as Product[];
+  return { props: { products } };
+};
+
+// ---------------------------------------------------------------------------
+// Utilities shared by the pages above
+// ---------------------------------------------------------------------------
+import config = require("./config.json");
+import Utils = Shared.Utils;
+import data from "./seed.json" with { type: "json" };
+
+namespace Shared {
+  export namespace Utils {
+    export const VERSION = "1.0.0";
+  }
+}
+
+type Awaited2<T> = T extends PromiseLike<infer U> ? Awaited2<U> : T;
+type Mutable<T> = { -readonly [K in keyof T]: T[K] };
+type Route = `/${string}` | `/products/${number}`;
+type Factory = new (name: string) => object;
+type Tail<T extends unknown[]> = T extends [unknown, ...infer R] ? R : never;
+
+interface Cache {
+  [key: string]: Product | undefined;
+  get(key: string): Product | undefined;
+}
+
+function isProduct(value: unknown): value is Product {
+  return typeof value === "object" && value !== null && "id" in value && !(value instanceof Array);
+}
+
+function invariant(condition: unknown, message?: string): asserts condition {
+  if (!condition) throw new Error(message ?? "Invariant failed");
+}
+
+/**
+ * Debounce a callback.
+ * @param {Function} fn - The function to delay. See {@link useCallback}.
+ * @param wait Milliseconds to wait.
+ * @example
+ *   const save = debounce(() => persist(), 300);
+ */
+export function debounce<A extends unknown[]>(fn: (...args: A) => void, wait = 300): (...args: A) => void {
+  let timer: ReturnType<typeof setTimeout> | undefined = undefined;
+  return function (this: unknown, ...args: A) {
+    clearTimeout(timer);
+    timer = setTimeout(() => fn.apply(this, args), wait);
+  };
+}
+
+function track(target: object, key: string | symbol): void {
+  console.info(`tracked ${String(key)}`);
+}
+
+export abstract class Store<T> {
+  @track protected items: T[] = [];
+  private static count = 0;
+  abstract validate(item: T): boolean;
+  add = (item: T): this => {
+    if (this.validate(item)) this.items = [...this.items, item];
+    return this;
+  };
+}
+
+const Anonymous = class implements Cache {
+  [key: string]: any;
+  get(key: string) { return this[key] as Product | undefined; }
+};
+
+const [first, , third = 3, ...others] = [1, 2, 3, 4, 5];
+const { name: productName, price = 0, ...restProps } = data as Product;
+const methods = {
+  async fetchAll({ page }: { page: number }, [offset]: [number]) {
+    return page * offset;
+  },
+  *ids() { yield 1; },
+};
+
+outer: for (const [key, value] of Object.entries(config)) {
+  switch (typeof value) {
+    case "string":
+      if (/^https?:\/\/(?=\w)(www\.)?/.test(value)) continue outer;
+      break;
+    default:
+      void key;
+  }
+}
 
 // From https://nextjs.org/docs/basic-features/data-fetching

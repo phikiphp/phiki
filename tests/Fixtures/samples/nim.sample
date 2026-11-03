@@ -21,29 +21,156 @@ let joe = Animal(name : "Joe",
 assert(not carl.dead)
 for i in 0..10:
   carl.sleep()
-assert carl.deadtype
-  Animal* = object
-    name*, species*: string
-    age: int
-
-proc sleep*(a: var Animal) =
-  a.age += 1
-
-proc dead*(a: Animal): bool =
-  result = a.age > 20
-
-var carl: Animal
-carl = Animal(name : "Carl",
-              species : "L. glama",
-              age : 12)
-
-let joe = Animal(name : "Joe",
-                 species : "H. sapiens",
-                 age : 23)
-
-assert(not carl.dead)
-for i in 0..10:
-  carl.sleep()
 assert carl.dead
 
 # From https://nim-by-example.github.io/types/objects/
+
+## Task queue module: an original example of common Nim features.
+
+import std/[strutils, tables, sequtils, options, strformat]
+from std/times import epochTime
+
+const
+  MaxRetries = 3
+  Version = "0.2.1"
+  Mask = 0xFF'u8
+  Flags = 0b1010_0101
+  Perms = 0o755
+  Ratio = 2.5e-3
+  Big = 1_000_000'i64
+
+type
+  Priority* = enum
+    pLow = "low", pNormal = "normal", pHigh = "high"
+
+  TaskState = enum tsPending, tsRunning, tsDone
+
+  Task* = ref object of RootObj
+    id*: int
+    title*: string
+    priority*: Priority
+    tags: seq[string]
+    case state: TaskState
+    of tsDone:
+      finishedAt: float
+    else: discard
+
+  Queue*[T] = object
+    items: seq[T]
+
+  TaskError* = object of CatchableError
+
+#[
+  Multi-line comment:
+  queue helpers below are generic.
+]#
+
+proc push*[T](q: var Queue[T], item: T) {.inline.} =
+  q.items.add item
+
+proc pop*[T](q: var Queue[T]): Option[T] =
+  if q.items.len == 0:
+    return none(T)
+  result = some(q.items[0])
+  q.items.delete(0)
+
+func `$`*(t: Task): string =
+  fmt"#{t.id:03} {t.title} [{t.priority}]"
+
+method run(t: Task): bool {.base, raises: [TaskError].} =
+  if t.title.len == 0:
+    raise newException(TaskError, "task " & $t.id & " has no title")
+  true
+
+iterator byPriority(tasks: openArray[Task], p: Priority): Task =
+  for t in tasks:
+    if t.priority == p:
+      yield t
+
+template measure(label: string, body: untyped) =
+  let start = epochTime()
+  body
+  echo label, ": ", formatFloat(epochTime() - start, ffDecimal, 3), "s"
+
+macro debugEcho(args: varargs[untyped]): untyped =
+  result = newCall(bindSym"echo")
+
+proc parseTask(line: string, id: int): Task =
+  let parts = line.split('|')
+  var prio = pNormal
+  case parts[1].strip.toLowerAscii
+  of "high", "urgent": prio = pHigh
+  of "low": prio = pLow
+  else: discard
+  Task(id: id, title: parts[0].strip, priority: prio, state: tsPending)
+
+var
+  queue: Queue[Task]
+  counts = initTable[Priority, int]()
+  retries = 0
+
+let lines = @["Write docs | high", "Fix bug #42 | urgent", "Refactor | low"]
+for i, line in lines.pairs:
+  let task = parseTask(line, i + 1)
+  queue.push task
+  counts.mgetOrPut(task.priority, 0).inc
+
+measure "processing":
+  while true:
+    let next = queue.pop()
+    if next.isNone: break
+    try:
+      discard next.get.run()
+    except TaskError as e:
+      echo "failed: ", e.msg
+      inc retries
+    finally:
+      if retries >= MaxRetries: break
+
+let titles = lines.mapIt(it.split('|')[0]).filterIt(it.len > 5)
+let raw = r"C:\tasks\new"
+let multi = """
+Tasks: $1
+Version: $2
+""" % [$titles.len, Version]
+echo multi, raw, "\tTab\x41\n", 'c', '\n', counts, not (Mask and 0x0F'u8) == 0, Flags shl 1, Perms div 2, Ratio, Big
+when defined(release):
+  echo "release build"
+elif isMainModule:
+  assert retries in 0..MaxRetries
+block outer:
+  for x in countdown(10, 1):
+    if x mod 4 == 0: break outer
+var p: ptr int = nil
+let anon = proc (x: int): int = x * 2
+echo anon(21), p.isNil, cast[uint](-1) xor 7'u
+
+##[
+  Doc comment block describing the helpers below.
+]##
+
+discard """
+  This block is ignored, a common way to comment out code.
+"""
+
+let
+  gain = 0.5'f32
+  scale = 3'f64
+  limit = 0x7F'f64
+  bell = "ring\a quote\" slash\\ esc\e uni\u{1F600} code\u00E9 cr\r ff\f"
+  dollars = &"Total: {Big} tasks"
+  pattern = r"""\d+\s*(\w+)"""
+  report = fmt"""
+Done: {retries} retries
+"""
+  html = html"""<div class="task">$title</div>"""
+
+proc fastHash(x: cint): cint {.importc: "hash_fn", header: "hash.h".}
+
+{.emit: """
+static int hash_fn(int x) { return x * 31; }
+""".}
+
+{.push hint[XDeclaredButNotUsed]: off.}
+proc `+=`(a: var Queue[Task], t: Task) = a.push(t)
+{.pop.}

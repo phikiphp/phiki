@@ -17,3 +17,109 @@ tell application "Address Book"
 end tell
 
 -- From https://developer.apple.com/library/archive/documentation/AppleScript/Conceptual/AppleScriptLangGuide/reference/ASLR_cmds.html
+# Run with: osascript archive.applescript
+(*
+    Photo archiver: copies recent files from the Desktop into a dated
+    folder, (* nested comment *) then reports what it did.
+*)
+use AppleScript version "2.4"
+use scripting additions
+
+property archiveName : "Archive"
+property maxItems : 25
+global totalCopied, lastError
+local tempList
+
+set totalCopied to 0
+set settings to {name:"Photos", extensions:{"jpg", "png", "heic"}, |max size|:1.5E+6}
+set pathText to "Users/me/Desktop" & return & tab & "done \"quoted\""
+set rawValue to «data utxt0041» as Unicode text
+
+on makeFolderName(baseName, theDate)
+    set {year:y, month:m, day:d} to theDate
+    return baseName & " " & y & "-" & (m as integer) & "-" & d
+end makeFolderName
+
+on archive of theFiles into destination
+    repeat with aFile in theFiles
+        tell application "Finder"
+            duplicate aFile to folder destination
+        end tell
+        set totalCopied to totalCopied + 1
+        if totalCopied ≥ maxItems then exit repeat
+    end repeat
+end archive
+
+to reportResults()
+    display alert "Archived " & totalCopied & " items" message "Finished at " & time string of (current date)
+end reportResults
+
+script Logger
+    property entries : {}
+    on log_line(msg)
+        set end of entries to msg
+    end log_line
+end script
+
+tell application "Finder"
+    set recentFiles to every file of desktop whose modification date > ((current date) - 2 * days)
+    set destName to my makeFolderName(archiveName, current date)
+    if not (exists folder destName of home) then
+        make new folder at home with properties {name:destName}
+    end if
+    reveal folder destName of home
+end tell
+
+tell application "System Events"
+    tell application process "Finder"
+        set frontmost to true
+        keystroke "n" using {command down, shift down}
+    end tell
+end tell
+
+try
+    archive of recentFiles into destName
+on error errMsg number errNum
+    set lastError to errMsg
+    tell Logger to log_line("Error " & errNum & ": " & errMsg)
+end try
+
+considering case but ignoring white space, punctuation
+    if "Hello World" is equal to "hello world" then
+        set sameText to true
+    else if "abc" contains "b" then
+        set sameText to false
+    else
+        set sameText to missing value
+    end if
+end considering
+
+repeat 3 times
+    beep
+end repeat
+
+set counter to 10
+repeat while counter > 0
+    set counter to counter - 2
+end repeat
+
+repeat until counter ≥ 10
+    set counter to counter + 3
+end repeat
+
+repeat with i from 1 to 10 by 2
+    if i mod 3 = 0 then log "divisible: " & i
+end repeat
+
+set AppleScript's text item delimiters to {", "}
+set joined to {"a", "b", "c"} as text
+set AppleScript's text item delimiters to ""
+
+with timeout of 30 seconds
+    set answer to text returned of (display dialog "Name?" default answer "" buttons {"OK"})
+end timeout
+
+set shellOutput to do shell script "ls -l " & quoted form of POSIX path of (path to desktop)
+set n to random number from 1 to 100
+set ratio to (n div 7) / 3.5
+my reportResults()

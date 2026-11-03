@@ -22,3 +22,148 @@ use Email::Sender::Simple qw(sendmail);
 sendmail($message);
 
 # From https://learn.perl.org/examples/email.html
+
+package Inventory::Report;
+
+use strict;
+use warnings;
+use feature qw(say signatures);
+use List::Util qw(sum max first);
+use constant { MAX_ROWS => 500, RATE => 0.0825 };
+
+our $VERSION = '0.03';
+my %stock = (apples => 12, pears => 0x1F, plums => 0b101, figs => 0o17, kiwis => 1_200);
+my @items = sort { $stock{$b} <=> $stock{$a} } keys %stock;
+my $total = sum(values %stock) // 0;
+my $ratio = 3.5e-2;
+
+=pod
+
+=head1 NAME
+
+Inventory::Report - print a stock report
+
+=head2 SYNOPSIS
+
+Call B<report> on a C<Inventory::Report> object, see I<perlobj> and L<List::Util>.
+
+=begin html
+
+<p class="note">Rendered only by HTML formatters.</p>
+
+=end html
+
+=cut
+
+BEGIN { $ENV{TZ} //= 'UTC' }
+END { print "exiting ", __PACKAGE__, " at line ", __LINE__, "\n" }
+
+sub new {
+    my ($class, %args) = @_;
+    my $self = bless { file => $args{file} || 'stock.csv', rows => [] }, $class;
+    return $self;
+}
+
+sub load ($self) {
+    open(my $fh, '<', $self->{file}) or die "Cannot open $self->{file}: $!";
+    while (my $line = <$fh>) {
+        chomp $line;
+        next if $line =~ /^\s*(#|$)/;
+        last if $line eq '__END__';
+        my ($name, $qty) = split(/\s*,\s*/, $line, 2);
+        $qty =~ s/[^\d]//g;
+        $name =~ tr/a-z/A-Z/;
+        push @{ $self->{rows} }, { name => $name, qty => int($qty) };
+    }
+    close $fh;
+    return scalar @{ $self->{rows} };
+}
+
+sub report {
+    my $self = shift;
+    local $, = "\t";
+    my $out = '';
+    for my $row (@{ $self->{rows} }) {
+        my $flag = $row->{qty} > 10 ? 'ok' : $row->{qty} == 0 ? 'empty' : 'low';
+        $out .= sprintf("%-10s %5d %s\n", $row->{name}, $row->{qty}, $flag);
+    }
+    unless (length $out) {
+        warn "nothing to report\n";
+    }
+    return $out;
+}
+
+my $report = Inventory::Report->new(file => "$ENV{HOME}/stock.csv");
+my $count = eval { $report->load } // do { say STDERR "load failed: $@"; 0 };
+
+foreach my $i (0 .. $#items) {
+    printf "%2d. %s => %d\n", $i + 1, $items[$i], $stock{ $items[$i] };
+}
+
+my @words = qw/alpha beta gamma/;
+my $joined = join ', ', map { uc } grep { length > 4 } @words;
+my $re = qr{(\w+)\@(\w+\.com)}ix;
+if ("user\@example.com" =~ $re) {
+    say "user: $1, domain: $2";
+}
+(my $copy = $joined) =~ s/,\s*/;/g;
+my $text = q(single quoted 'text');
+my $interp = qq{Total is $total and items are @items[0..1]};
+my @lines = `ls -l /tmp`;
+my $cmd = qx(date);
+my $sum = 0;
+$sum += $_ for 1 .. 10;
+$sum **= 2; $sum %= 7; $sum ||= 1; $sum &&= 2;
+my $bits = (5 & 3) | (5 ^ 3) << 1 >> 1;
+until ($sum > 100) { $sum *= 2 }
+my $ref = \@items;
+my $code = sub { return "called with @_" };
+print $code->(1, 2), "\n", $$ref[0], "\n", ${$ref}[1], "\n";
+print <<"END_TEXT";
+Report for $ENV{USER}
+Total: $total\tRows: $count
+END_TEXT
+print <<'RAW';
+No $interpolation here.
+RAW
+print <<~EOT;
+    Indented heredoc with ${\ scalar(@items)} items.
+    EOT
+say for reverse sort @items;
+die "missing config" unless -e "$ENV{HOME}/.stockrc" && -r _;
+if ("apples and pears" =~ m{(\w+) and}) { say "before: $`, match: $&, after: $'" }
+my @parts = ("2024-01-31" =~ m[(\d+)-(\d+)-(\d+)]);
+my $date_re = qr[\d{4}-\d{2}];
+my $word_re = qr(\b\w+\b);
+my $snow = "\x{2603} \N{U+263A} \t\e\0";
+my $msg = qq[Program $0 found @{[ scalar @parts ]} parts];
+my @flags = qw<-v --quiet>;
+my $host = qx{hostname};
+(my $clean = $snow) =~ s/
+    \s+    # collapse whitespace
+/ /gx;
+my $dbh_sql = <<"SQL";
+SELECT name, qty FROM stock WHERE qty > 0 ORDER BY name
+SQL
+my $page = <<~HTML;
+    <ul><li class="item">$items[0]</li></ul>
+    HTML
+my $style = <<'CSS';
+.item { color: #c00; font-weight: bold; }
+CSS
+my $js = <<JAVASCRIPT;
+document.title = "Stock";
+JAVASCRIPT
+format STDOUT =
+@<<<<<<<<<< @>>>>
+$items[0],  $total
+.
+write;
+say "match" if $joined !~ m!delta!;
+my %h; @h{qw(a b)} = (1, 2);
+exists $h{a} and delete $h{b};
+wantarray ? return @items : return;
+1;
+
+__END__
+Anything after this line is ignored by perl.

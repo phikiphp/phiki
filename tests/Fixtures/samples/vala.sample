@@ -22,3 +22,149 @@ public class ExampleApp : Gtk.Application {
 }
 
 // From https://vala.dev/
+
+/**
+ * A tiny note store that shows signals, properties, generics,
+ * async methods, errors and string templates.
+ */
+namespace Notes {
+    public errordomain StoreError {
+        NOT_FOUND,
+        READ_ONLY
+    }
+
+    public enum Priority {
+        LOW = 0,
+        NORMAL,
+        HIGH;
+
+        public string to_label () {
+            switch (this) {
+                case HIGH: return "high";
+                case LOW: return "low";
+                default: return "normal";
+            }
+        }
+    }
+
+    public struct Point {
+        public double x;
+        public double y;
+    }
+
+    public interface Persistable : Object {
+        public abstract bool save (string path) throws Error;
+    }
+
+    [Compact]
+    public class Tag {
+        public string name;
+        public Tag (string name) { this.name = name; }
+    }
+
+    public class Note : Object, Persistable {
+        public const int MAX_TITLE = 120;
+        private static uint next_id = 0x10u;
+
+        public uint id { get; private set; }
+        public string title { get; set; default = "Untitled"; }
+        public Priority priority { get; set; default = Priority.NORMAL; }
+        public DateTime? due { get; set; }
+
+        public signal void changed (string property);
+
+        construct {
+            id = next_id++;
+        }
+
+        public Note (string title) {
+            Object (title: title);
+            notify["title"].connect (() => changed ("title"));
+        }
+
+        public bool save (string path) throws Error {
+            var text = @"$title [$(priority.to_label ())] #$id\n";
+            return FileUtils.set_contents (path, text);
+        }
+    }
+
+    public class Store<T> : Object {
+        private Gee.ArrayList<T> items = new Gee.ArrayList<T> ();
+        private bool read_only = false;
+
+        public int size { get { return items.size; } }
+
+        public void add (owned T item) throws StoreError {
+            if (read_only) {
+                throw new StoreError.READ_ONLY ("store is read-only");
+            }
+            items.add ((owned) item);
+        }
+
+        public T? find (Gee.Predicate<T> pred) {
+            foreach (var item in items) {
+                if (pred (item)) {
+                    return item;
+                }
+            }
+            return null;
+        }
+
+        public async int count_async (Cancellable? cancellable = null) {
+            Idle.add (count_async.callback);
+            yield;
+            return items.size;
+        }
+    }
+
+    void run () {
+        var store = new Store<Note> ();
+        var note = new Note ("Buy milk");
+        note.changed.connect ((prop) => {
+            stdout.printf ("changed: %s\n", prop);
+        });
+
+        try {
+            store.add (note);
+            note.save ("/tmp/note.txt");
+        } catch (StoreError.READ_ONLY e) {
+            warning ("read-only: %s", e.message);
+        } catch (Error e) {
+            critical (e.message);
+        } finally {
+            debug ("done");
+        }
+
+        unowned Note? found = store.find ((n) => n.title.has_prefix ("Buy"));
+        int total = 0;
+        double ratio = 1.5e3;
+        float half = .5f;
+        long big = 42L;
+        char sep = ',';
+        unichar heart = '\u2665';
+        string multi = """Raw text with "quotes"
+and $no interpolation""";
+        var re = /^[a-z]+\d*$/;
+        for (int i = 0; i < 10 && total <= 100; i += 2) {
+            total += i * 3 % 7;
+        }
+        while (total > 0) {
+            total >>= 1;
+            if (total == 4 || total != 8) break;
+        }
+        var label = found != null ? found.title : "none";
+        var p = Point () { x = 1.0, y = -2.0 };
+        stdout.printf ("%s %d %g %f %ld %c %s %s %f\n",
+            label, total, ratio, half, big, sep, heart.to_string (), multi, p.x);
+        print ("%s\n", re.match ("abc1") ? "yes" : "no");
+
+        /**/
+#if DEBUG
+        message ("max title is %d", Note.MAX_TITLE);
+#elif VERBOSE
+        message ("verbose");
+#else
+        assert (store.size >= 0);
+#endif
+    }
+}

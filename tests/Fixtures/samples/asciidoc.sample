@@ -26,3 +26,223 @@ AsciiDoc supports tables and much more.
     - And again
 
 // From https://github.com/asciidoctor/asciidoctor-vscode/blob/master/examples/simple.adoc
+
+'''
+
+= Deployment Guide
+Jane Doe <jane@example.com>
+v2.1, 2026-10-01
+:toc: left
+:icons: font
+:source-highlighter: rouge
+:project-name: Orbit
+:!sectnums:
+:description: A service that keeps orbits stable \
+  and predictable.
+
+[[intro]]
+== Introduction
+
+Welcome to {project-name}. This guide explains how to install, configure and
+operate the service. See <<configuration>> or xref:faq.adoc#limits[the FAQ] for details.
+Words can be **strongly** bold, __constrained__ italic, `monospace`, ``mono``spaced,
+#highlighted#, ##partly##marked, H~2~O and E=mc^2^.
+"`Smart quotes`" and '`single smart quotes`' render typographically.
+Press kbd:[Ctrl+Shift+P] and choose menu:View[Command Palette > Reload].
+A trademark(TM), an ellipsis... and an arrow -> look nice. &copy; &#169;
+The value is pass:[<u>raw HTML</u>] and +++<b>passthrough</b>+++ text.
+Inline math: stem:[sqrt(4) = 2] and latexmath:[\alpha + \beta].
+This sentence needs a footnote.footnote:disclaimer[Use at your own risk.] +
+Visit https://example.com[the website], link:docs/index.html[local docs] or mailto:support@example.com[support].
+That line ends with a hard break.
+
+=== Requirements
+
+NOTE: The service requires Java 21 or newer.
+
+WARNING: Never expose the admin port to the internet.
+
+[IMPORTANT]
+====
+Back up your database before upgrading.
+====
+
+. Install the package
+. Create a configuration file
+.. Copy the example
+.. Edit the values
+. Start the service
+
+Term one:: Definition of the first term.
+Term two::: A nested definition.
+
+* [x] Write documentation
+* [ ] Publish release
+
+[[configuration]]
+== Configuration
+
+.Example `config.yaml`
+[source,yaml]
+----
+server:
+  port: 8080 # <1>
+  host: "0.0.0.0"
+database:
+  url: postgres://localhost/orbit
+----
+
+<1> The HTTP port the service listens on.
+
+[source,java]
+----
+public final class Main {
+    public static void main(String[] args) {
+        System.out.println("Starting " + args.length); // <2>
+    }
+}
+----
+
+<2> Prints the argument count.
+
+[source,sql]
+----
+SELECT id, name FROM users WHERE active = true ORDER BY name;
+----
+
+```ruby
+puts "Fenced code blocks work too"
+```
+
+[source,javascript]
+----
+const res = await fetch(`/api/health`);
+console.log(res.ok ? 'up' : 'down');
+----
+
+[source,css]
+--
+.banner { color: #333; margin: 0 auto; }
+--
+
+[source,dockerfile]
+----
+FROM eclipse-temurin:21-jre
+COPY build/orbit.jar /app/orbit.jar
+ENTRYPOINT ["java", "-jar", "/app/orbit.jar"]
+----
+
+[source,diff]
+....
+- port: 80
++ port: 8080
+....
+
+[listing]
+Plain listing text without highlighting.
+
+==== Deeper level
+===== Even deeper
+====== Deepest heading
+
+[comment]
+This paragraph is an editorial comment.
+
+[sidebar]
+A short sidebar paragraph.
+
+[pass]
+<em>Passed through untouched</em>
+
+> Markdown-style quotes are supported as well.
+> They can span lines.
+
+""
+Quoted paragraphs use double quotes.
+""
+
+- [x] Checked in a dash list
+
+As described by citenp:[knuth] the algorithm is fast.
+Counters: {counter:step} and {set:release-date:2026-11-01}.
+Docs live at {uri-docs}[the docs site].
+Long attribute values can be wrapped. \
+
+include::partials/environment.adoc[]
+
+image::diagrams/architecture.png[Architecture,600,role=thumb]
+
+[quote, Ada Lovelace, Notes]
+____
+The Analytical Engine weaves algebraic patterns just as the Jacquard loom weaves flowers and leaves.
+____
+
+[example]
+====
+An example block with a *bold* word.
+====
+
+--
+An open block groups content.
+--
+
+[literal]
+....
+Literal text is shown exactly as written.
+....
+
+ An indented literal paragraph.
+
+////
+This block comment is not rendered.
+////
+
+[cols="1,2,1", options="header"]
+|===
+|Option |Description |Default
+
+|`port`
+|The listening port
+|8080
+
+|`timeout`
+a|Request timeout. Nested table:
+!===
+!Unit !Value
+!seconds !30
+!===
+|30s
+|===
+
+[format=csv]
+,===
+name,role,team
+Ada,engineer,core
+Linus,reviewer,kernel
+,===
+
+:===
+name:role
+Grace:admiral
+:===
+
+[bibliography]
+== References
+
+* [[[knuth]]] Donald Knuth. The Art of Computer Programming.
+
+[appendix]
+== Changelog
+
+[#v2-1.release]
+=== Version 2.1
+Bug fixes and anchor:release-notes[]performance improvements.
+
+.Sidebar
+****
+Sidebars hold content that is related to, but not part of, the main flow.
+****
+
+++++
+<div class="banner">Raw HTML passthrough</div>
+++++

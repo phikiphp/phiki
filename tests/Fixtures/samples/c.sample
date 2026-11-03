@@ -50,3 +50,185 @@ void printArr(int v[], int len)
 }
 
 // From https://github.com/Heatwave/The-C-Programming-Language-2nd-Edition/blob/master/chapter-4-functions-and-program-structure/8.qsort.c
+
+/*
+ * ring_buffer.c - a fixed-size ring buffer with a small test driver.
+ */
+#include <stdarg.h>
+#include <stdbool.h>
+#include <stdint.h>
+#include <stdlib.h>
+#include <string.h>
+#include "ring_buffer.h"
+
+#pragma once
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+
+#define RB_CAPACITY   (1u << 8)
+#define RB_MASK       (RB_CAPACITY - 1)
+#define MIN(a, b)     ((a) < (b) ? (a) : (b))
+#define LOG(fmt, ...) \
+	fprintf(stderr, "[%s:%d] " fmt "\n", __FILE__, __LINE__, ##__VA_ARGS__)
+#define STRINGIFY(x)  #x
+#define CONCAT(a, b)  a##b
+
+#if 0
+	This code is disabled and never compiled.
+	int unused = 42;
+#endif
+
+#ifdef DEBUG
+#	define ASSERT(cond) do { if (!(cond)) { LOG("assert failed: %s", #cond); abort(); } } while (0)
+#elif defined(NDEBUG)
+#	define ASSERT(cond) ((void)0)
+#else
+#	define ASSERT(cond) (void)(cond)
+#endif
+
+#if !defined(__STDC_VERSION__) || __STDC_VERSION__ < 201112L
+#error "C11 or newer is required"
+#endif
+
+#ifndef RB_ELEMENT
+#define RB_ELEMENT int32_t
+#endif
+
+#undef CONCAT
+
+#if defined(_WIN32)
+#	define PATH_SEP '\\'
+#elif 1
+#	define PATH_SEP '/' /* POSIX */
+#endif
+
+_Static_assert(sizeof(uint8_t) == 1, "uint8_t must be one byte");
+static_assert((RB_CAPACITY & RB_MASK) == 0, "capacity must be a power of two");
+
+typedef enum { RB_OK = 0, RB_FULL = -1, RB_EMPTY = -2 } rb_status;
+
+typedef union {
+	uint32_t word;
+	uint8_t bytes[4];
+} word_bytes;
+
+struct ring_buffer {
+	RB_ELEMENT data[RB_CAPACITY];
+	volatile size_t head;
+	volatile size_t tail;
+	unsigned int overflow : 1;
+	unsigned int reserved : 7;
+	void (*on_full)(struct ring_buffer *rb, void *user);
+};
+
+typedef struct ring_buffer ring_buffer_t;
+
+static const double SCALE = 1.5e-3;
+static const float RATIO = 0.75f;
+static const long double PRECISE = 3.141592653589793238L;
+static const double HEX_FLOAT = 0x1.8p3;
+static const unsigned long long BIG = 18446744073709551615ULL;
+static const int OCTAL = 0755;
+static const int BINARY = 0b1010;
+static const int HEX = 0xDEADBEEF;
+static const char ESCAPES[] = "tab\tnewline\nquote\"backslash\\hex\x41oct\101";
+static const char NUL_CHAR = '\0';
+static const wchar_t WIDE[] = L"wide";
+static const char *const UTF8 = u8"caf\u00e9";
+
+/**
+ * Push a value into the ring buffer.
+ * @param rb    the buffer
+ * @param value the value to store
+ * @return RB_OK on success, RB_FULL when there is no space left
+ */
+static inline rb_status rb_push(ring_buffer_t *restrict rb, RB_ELEMENT value)
+{
+	size_t next = (rb->head + 1) & RB_MASK; // wrap around
+	if (next == rb->tail) {
+		rb->overflow = 1;
+		if (rb->on_full != NULL)
+			rb->on_full(rb, NULL);
+		return RB_FULL;
+	}
+	rb->data[rb->head] = value;
+	rb->head = next;
+	return RB_OK;
+}
+
+static rb_status rb_pop(ring_buffer_t *rb, RB_ELEMENT *out)
+{
+	if (rb->head == rb->tail)
+		return RB_EMPTY;
+	*out = rb->data[rb->tail];
+	rb->tail = (rb->tail + 1) & RB_MASK;
+	return RB_OK;
+}
+
+static size_t rb_size(const ring_buffer_t *rb)
+{
+	return (rb->head - rb->tail) & RB_MASK;
+}
+
+static int sum_all(int count, ...)
+{
+	va_list args;
+	int total = 0;
+	va_start(args, count);
+	while (count-- > 0)
+		total += va_arg(args, int);
+	va_end(args);
+	return total;
+}
+
+#define type_name(x) _Generic((x), int: "int", double: "double", default: "other")
+
+static const char *describe(rb_status status)
+{
+	switch (status) {
+	case RB_OK:
+		return "ok";
+	case RB_FULL:
+	case RB_EMPTY: {
+		const char *msg = status == RB_FULL ? "full" : "empty";
+		return msg;
+	}
+	default:
+		break;
+	}
+	return "unknown";
+}
+
+int rb_demo(void)
+{
+	ring_buffer_t *rb = calloc(1, sizeof *rb);
+	RB_ELEMENT value = 0;
+	word_bytes wb = { .word = 0x01020304u };
+	int flags = 0;
+	struct { int x, y; } point = { .x = 1, .y = -2 };
+
+	if (!rb)
+		goto fail;
+
+	for (int i = 0; i < 10; ++i) {
+		if (rb_push(rb, (RB_ELEMENT)(i * i)) != RB_OK)
+			break;
+	}
+
+	do {
+		flags |= 1 << (value % 8);
+		flags ^= ~flags & 0xFF;
+		flags >>= 1;
+	} while (rb_pop(rb, &value) == RB_OK && value < 50);
+
+	LOG("size=%zu last=%d first byte=%#x %s %s", rb_size(rb), value, wb.bytes[0],
+	    describe(RB_EMPTY), type_name(SCALE));
+	printf("%-10s|%5.2f|%+d|%lu\n", STRINGIFY(RB_CAPACITY), SCALE * RATIO, point.y, (unsigned long)BIG);
+	ASSERT(sum_all(3, 1, 2, 3) == 6 && sizeof(word_bytes) >= 4);
+
+	free(rb);
+	return EXIT_SUCCESS;
+
+fail:
+	perror("calloc");
+	return EXIT_FAILURE;
+}

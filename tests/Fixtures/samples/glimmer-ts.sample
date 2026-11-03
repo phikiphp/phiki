@@ -1,7 +1,118 @@
 import type { TemplateOnlyComponent } from '@glimmer/component';
+import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
+import { on } from '@ember/modifier';
+import { fn, hash } from '@ember/helper';
+import { createTemplate } from './testing';
+import { hbs } from 'ember-cli-htmlbars';
 
 const Greet: TemplateOnlyComponent<{ name: string }> = <template>
   <p>Hello, {{@name}}!</p>
 </template>
+
+interface Product {
+  id: number;
+  title: string;
+  price: number;
+  tags?: string[];
+}
+
+interface ProductTableSignature {
+  Element: HTMLTableElement;
+  Args: {
+    products: Product[];
+    currency?: 'EUR' | 'USD';
+    onSelect: (product: Product) => void;
+  };
+  Blocks: {
+    default: [product: Product];
+    empty: [];
+  };
+}
+
+const formatPrice = (value: number, currency = 'EUR'): string =>
+  new Intl.NumberFormat('en', { style: 'currency', currency }).format(value);
+
+/**
+ * Shows a sortable table of products.
+ */
+export default class ProductTable extends Component<ProductTableSignature> {
+  @tracked sortKey: keyof Product = 'title';
+  @tracked descending = false;
+
+  get sorted(): Product[] {
+    // FIXME: localeCompare for titles
+    const sign = this.descending ? -1 : 1;
+    return [...this.args.products].sort(
+      (a, b) => (a[this.sortKey]! > b[this.sortKey]! ? 1 : -1) * sign,
+    );
+  }
+
+  sortBy = (key: keyof Product): void => {
+    this.descending = this.sortKey === key ? !this.descending : false;
+    this.sortKey = key;
+  };
+
+  <template>
+    <style>
+      table.products th { cursor: pointer; }
+      table.products td.price { text-align: right; }
+    </style>
+
+    {{! sortable header }}
+    {{!-- Rows are rendered through the
+          default block when one is given --}}
+    <!-- legacy markup below -->
+
+    <table class="products" ...attributes>
+      <thead>
+        <tr>
+          <th {{on "click" (fn this.sortBy "title")}}>Title &uarr;</th>
+          <th {{on 'click' (fn this.sortBy 'price')}}>Price &#8364;</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each this.sorted key="id" as |product|}}
+          {{#if (has-block)}}
+            {{yield product}}
+          {{else}}
+            <tr {{on "click" (fn @onSelect product)}}>
+              <td>{{product.title}}</td>
+              <td class="price">{{formatPrice product.price @currency}}</td>
+            </tr>
+          {{/if}}
+        {{else}}
+          {{yield to="empty"}}
+        {{/each}}
+      </tbody>
+    </table>
+
+    <Ui::Pagination
+      @page={{1}}
+      @perPage={{25}}
+      @options={{hash compact=true label="Pages"}}
+    />
+
+    {{{@footnoteHtml}}}
+    {{outlet}}
+
+    <script>
+      // analytics hook
+      window.productTableReady = true;
+    </script>
+  </template>
+}
+
+export const Row: TemplateOnlyComponent<{ product: Product }> = <template lang="hbs">
+  <tr><td>{{@product.title}}</td><td>{{@product.price}}</td></tr>
+</template>;
+
+export const rendered = createTemplate("<ProductTable @products={{this.items}} />");
+
+export const fixture = hbs`
+  <ProductTable @products={{this.items}} @onSelect={{this.select}} as |p|>
+    <b>{{p.title}}</b>
+  </ProductTable>
+`;
 
 // From https://rfcs.emberjs.com/id/0779-first-class-component-templates

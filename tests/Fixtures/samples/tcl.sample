@@ -31,6 +31,7 @@ proc set'intersection {a b} {
    set res {}
    foreach el $b {if {[info exists arr($el)]} {lappend res $el}}
    set res
+}
 
 e.g. {set'intersection {1 2 3 4} {2 4 6 8}} -> {2 4}
 
@@ -47,5 +48,114 @@ proc set'difference {a b} {
 }
 
 e.g. {set'difference {1 2 3 4 5} {2 4 6}} -> {1 3 5}
+
+# ---------------------------------------------------------------
+# A small config parser and report generator
+# ---------------------------------------------------------------
+package require Tcl 8.6
+namespace eval ::config {
+    variable defaults [dict create host "localhost" port 8080 debug 0]
+    namespace export load get
+}
+
+proc ::config::load {path} {
+    variable defaults
+    set result $defaults
+    if {![file exists $path]} {
+        return -code error "missing config: $path"
+    }
+    set fh [open $path r]
+    fconfigure $fh -encoding utf-8
+    while {[gets $fh line] >= 0} {
+        set line [string trim $line]
+        if {$line eq "" || [string index $line 0] eq "#"} {
+            continue
+        }
+        if {[regexp {^(\w+)\s*=\s*(.*)$} $line -> key value]} {
+            dict set result $key $value
+        } elseif {[regexp -nocase -- {^include\s+"([^"]+)"} $line -> other]} {
+            set result [dict merge $result [load $other]]
+        } else {
+            puts stderr "Ignoring line: \"$line\"\t(unparsed)"
+        }
+    }
+    close $fh
+    return $result
+}
+
+proc ::config::get {cfg key {default ""}} {
+    if {[dict exists $cfg $key]} then {
+        return [dict get $cfg $key]
+    } else {
+        return $default
+    }
+}
+
+set cfg [::config::load "app.conf"]
+set port [::config::get $cfg port 80]
+set limit [expr {$port * 2 + 0x10 - 3 % 2}]
+set ratio [expr {double($limit) / 1.5e2}]
+set mask [expr {($port & 0xFF) | (1 << 4) ^ ~0}]
+set ok [expr {$port >= 1024 && $port <= 65535 || !$limit}]
+
+regsub -all {\s+} "a   b \t c" " " normalized
+set clean [regsub -all -- {[^[:alnum:]]} $normalized ""]
+
+switch -glob -- $port {
+    80 - 8080 { set scheme http }
+    443       { set scheme https }
+    default   { set scheme unknown }
+}
+
+for {set i 0} {$i < 3} {incr i} {
+    lappend ports [expr {$port + $i}]
+}
+
+foreach {name value} [dict get $cfg] {
+    puts [format "%-10s = %s" $name $value]
+}
+
+set message "Server at ${scheme}://[dict get $cfg host]:$port \u2713 \x41\101"
+set long_list [list alpha beta \
+    gamma delta]
+
+array set stats {requests 0 errors 0}
+incr stats(requests)
+set stats(errors) [expr {$stats(errors) + 1}]
+
+if {[catch {open /nonexistent} err opts]} {
+    puts "Caught: $err (code [dict get $opts -code])"
+}
+
+try {
+    error "boom"
+} on error {msg} {
+    puts "error: $msg"
+} finally {
+    puts "done"
+}
+
+proc counter {} {
+    global total
+    upvar #0 total t
+    uplevel 1 {set local_seen 1}
+    incr t
+}
+
+oo::class create Stack {
+    variable items
+    constructor {} { set items {} }
+    method push {x} { lappend items $x }
+    method pop {} {
+        set top [lindex $items end]
+        set items [lrange $items 0 end-1]
+        return $top
+    }
+}
+
+set s [Stack new]
+$s push 42
+after 100 [list puts "tick \{braced\}"]
+puts "$message [$s pop] $clean $ratio $mask $ok"
 
 # https://en.wikibooks.org/wiki/Tcl_Programming/Examples

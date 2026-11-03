@@ -1,3 +1,49 @@
+import { formatPrice } from "../utils/format";
+import type { Product } from "../types";
+export interface Input {
+  products: Product[];
+  title?: string;
+}
+static const PAGE_SIZE = 12;
+server const region = process.env.REGION ?? "eu";
+client {
+  console.log("hydrated");
+}
+
+style {
+  .product-list { display: grid; gap: 1rem; }
+  .product-list > li:hover { color: #3a7bd5; }
+}
+
+style.scss {
+  $accent: #f0a;
+  .badge { color: $accent; }
+}
+
+style.less {
+  @pad: 4px;
+  .price { padding: @pad; }
+}
+
+// Concise syntax
+div.card
+  -- Plain text line
+  h3 -- Heading text
+  p
+    --
+    Multi-line text
+    in concise mode.
+    --
+  ul
+    li -- One
+    li -- Two
+  footer -- ${title}
+  script -- console.log("inline concise script");
+  style -- .card { padding: 1rem; }
+  html-comment -- concise comment
+  // a line comment
+  /* a block comment */
+
 <await(slowPromise) timeout=5000>
   <@then>Done</@then>
   <@catch|err|>
@@ -11,3 +57,68 @@
 </await>
 
 <!-- from https://markojs.com/docs/core-tags/ -->
+
+<const/{ products, title = "Products" } = input/>
+<let/page = 0/>
+<let/filter: string = ""/>
+<const/visible = products.filter((p) => p.name.toLowerCase().includes(filter)).slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE)/>
+<id/listId/>
+<lifecycle onMount() { console.info(`mounted ${listId}`); } />
+<log=visible.length/>
+
+<html-comment>Server-rendered product list</html-comment>
+
+<section.products#catalog class=["wrapper", { active: visible.length > 0 }] aria-labelledby=listId>
+  <h2 id=listId>${title} (${visible.length})</h2>
+  <input
+    type="search"
+    value:=filter
+    placeholder='Search…'
+    on-input(e) { page = 0; }
+  />
+  <img src="/logo.svg" alt="logo">
+  <br>
+
+  <ul.product-list>
+    <for|product, i| of=visible by=(p) => p.id>
+      <li key=product.id ...product.attrs data-index=i>
+        <span.name>${product.name}</span>
+        <span.price>$!{formatPrice(product.price)}</span>
+        <if=product.stock === 0>
+          <span.badge>Sold out</span>
+        </if>
+        <else-if=product.stock < 5>
+          <span.badge>Only ${product.stock} left</span>
+        </else-if>
+        <else>
+          <button onClick() { cart.add(product); }>Add to cart</button>
+        </else>
+      </li>
+    </for>
+  </ul>
+
+  <for|n| from=1 to=Math.ceil(products.length / PAGE_SIZE)>
+    <button disabled=(n - 1 === page) onClick() { page = n - 1; }>${n}</button>
+  </for>
+
+  <define/Card|{ heading }: { heading: string }|>
+    <article><h3>${heading}</h3></article>
+  </define>
+  <Card heading="Featured"/>
+
+  <my-dialog open=false>
+    <@header>Details</@header>
+    <@body>
+      Escaped \${not interpolated} text.
+    </@body>
+  </my-dialog>
+</section>
+
+<script>
+  const pattern = /^[a-z]+$/i;
+  window.addEventListener("resize", () => console.log(pattern.test("ok")));
+</script>
+
+<style>
+  .wrapper { max-width: 960px; margin: 0 auto; }
+</style>

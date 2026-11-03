@@ -25,3 +25,124 @@ Lorem ipsum [#]_ dolor sit amet ... [#]_
 .. [#] Text of the second footnote.
 
 .. From https://devguide.python.org/documentation/markup/
+
+===================
+Inventory Toolkit
+===================
+
+:Author: Jane Developer
+:Version: 2.3
+:License: MIT
+
+.. contents:: Table of Contents
+   :depth: 2
+
+Introduction
+============
+
+The *inventory toolkit* tracks **stock levels** across warehouses. Use
+``inventory sync`` to refresh data, and see `the project site`_ or
+`Read the Docs <https://inventory.readthedocs.io/>`_ for more. The
+|product| CLI supports Python 3.10 and later. See :ref:`installation` and
+:class:`inventory.Store` for details. Literal asterisks: \*not emphasis\*.
+
+.. |product| replace:: Inventory Toolkit
+.. _the project site: https://example.com/inventory
+
+.. _installation:
+
+Installation
+------------
+
+Install from PyPI:
+
+.. code-block:: console
+
+   $ pip install inventory-toolkit
+   $ inventory --version
+
+Configure it with YAML:
+
+.. code-block:: yaml
+
+   warehouses:
+     - name: north
+       capacity: 1200
+
+Usage
+-----
+
+.. code-block:: python
+
+   from inventory import Store
+
+   store = Store("north")
+   store.add("SKU-1", qty=3)
+
+Command-line options:
+
+-v, --verbose     Print progress information.
+--config <file>   Read settings from *file*.
+-q                Quiet mode.
+
+>>> from inventory import parse_sku
+>>> parse_sku("ABC-0042")
+('ABC', 42)
+
+API
+---
+
+.. py:function:: parse_sku(text)
+
+   Split a SKU into prefix and number.
+
+   :param text: The SKU string, e.g. ``ABC-0042``.
+   :type text: str
+   :returns: A ``(prefix, number)`` tuple.
+   :raises ValueError: If the SKU is malformed.
+
+.. autoclass:: inventory.Store
+   :members:
+
+.. note::
+
+   Stock counts are cached for 0x3C seconds (60 seconds).
+
+.. warning:: Never edit the cache directory by hand.
+
+Comparison
+----------
+
++------------+---------+-----------+
+| Feature    | Free    | Pro       |
++============+=========+===========+
+| Warehouses | 1       | Unlimited |
++------------+---------+-----------+
+| Reports    | Basic   | Advanced  |
++------------+---------+-----------+
+
+=====  =====  ======
+Input  Qty    Result
+=====  =====  ======
+A      10     ok
+B      0      empty
+=====  =====  ======
+
+| Line blocks keep
+| their line breaks.
+
+.. raw:: html
+
+   <p class="badge">Stable</p>
+
+.. image:: images/dashboard.png
+   :alt: Dashboard screenshot
+   :width: 600px
+
+..
+   This whole block is a comment and
+   is not rendered.
+
+Changelog_ entries live in a separate file.
+
+.. _Changelog: CHANGES.rst

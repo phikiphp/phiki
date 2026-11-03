@@ -1,69 +1,75 @@
-require "erb"
+<%# app/views/products/show.html.erb -- product page for the toy store %>
+<%
+  title = "Ruby Toys -- #{@product.name}"
+  on_sale = @product.cost < 10
+%>
+<!DOCTYPE html>
+<html lang="<%= I18n.locale %>">
+  <head>
+    <meta charset="utf-8">
+    <title><%= title %></title>
+    <%= stylesheet_link_tag "application", media: "all" %>
+    <style>
+      .price { font-weight: bold; color: <%= on_sale ? "#c00" : "#333" %>; }
+      .features li + li { margin-top: 0.25em; }
+    </style>
+  </head>
+  <body class="<%= controller_name %> <%= action_name %>">
 
-# Build template data class.
-class Product
-  def initialize( code, name, desc, cost )
-    @code = code
-    @name = name
-    @desc = desc
-    @cost = cost
+    <h1><%= @product.name %> (<%= @product.code %>)</h1>
+    <p><%= simple_format(@product.desc) %></p>
 
-    @features = [ ]
-  end
-
-  def add_feature( feature )
-    @features << feature
-  end
-
-  # Support templating of member data.
-  def get_binding
-    binding
-  end
-
-  # ...
-end
-
-# Create template.
-template = %{
-  <html>
-    <head><title>Ruby Toys -- <%= @name %></title></head>
-    <body>
-
-      <h1><%= @name %> (<%= @code %>)</h1>
-      <p><%= @desc %></p>
-
-      <ul>
-        <% @features.each do |f| %>
-          <li><b><%= f %></b></li>
-        <% end %>
+    <%#
+      Features are rendered as a list; an empty list shows a hint instead.
+    %>
+    <% if @product.features.any? -%>
+      <ul class="features">
+        <% @product.features.each_with_index do |feature, index| -%>
+          <li id="feature-<%= index %>"><b><%= feature %></b></li>
+        <% end -%>
       </ul>
+    <% else %>
+      <p class="hint">No features listed yet.</p>
+    <% end %>
 
-      <p>
-        <% if @cost < 10 %>
-          <b>Only <%= @cost %>!!!</b>
-        <% else %>
-           Call for a price, today!
-        <% end %>
-      </p>
+    <p class="price">
+      <% if on_sale %>
+        <b>Only <%= number_to_currency(@product.cost) %>!!!</b>
+      <% else %>
+         Call for a price, today!
+      <% end %>
+    </p>
 
-    </body>
-  </html>
-}.gsub(/^  /, '')
+    <%= form_with model: @product, url: cart_items_path, local: true do |form| %>
+      <%= form.hidden_field :code %>
+      <%= form.label :quantity, "How many?" %>
+      <%= form.number_field :quantity, min: 1, max: 10, value: 1 %>
+      <%= form.submit "Add to cart", data: { disable_with: "Adding…" } %>
+    <% end %>
 
-rhtml = ERB.new(template)
+    <%== @product.rich_description %>
+    <%- unless current_user.nil? -%>
+      <p>Signed in as <%= current_user.email %> <%# shown for debugging %></p>
+    <%- end -%>
 
-# Set up template data.
-toy = Product.new( "TZ-1002",
-                   "Rubysapien",
-                   "Geek's Best Friend!  Responds to Ruby commands...",
-                   999.95 )
-toy.add_feature("Listens for verbal commands in the Ruby language!")
-toy.add_feature("Ignores Perl, Java, and all C variants.")
-toy.add_feature("Karate-Chop Action!!!")
-toy.add_feature("Matz signature on left leg.")
-toy.add_feature("Gem studded eyes... Rubies, of course!")
+    <% reviews = @product.reviews.order(created_at: :desc).limit(5) %>
+    <section class="reviews">
+      <h2>Reviews (<%= reviews.size %>)</h2>
+      <% reviews.each do |review| %>
+        <article>
+          <header><%= review.author %> &mdash; <%= time_ago_in_words(review.created_at) %> ago</header>
+          <p><%= truncate(review.body, length: 140) { link_to "more", review } %></p>
+        </article>
+      <% end %>
+    </section>
 
-# Produce result.
-rhtml.run(toy.get_binding)
+    <p>Literal tag for the docs: <%%= not evaluated %></p>
 
-# From https://docs.ruby-lang.org/en/2.3.0/ERB.html#class-ERB-label-Examples
+    <script>
+      const product = <%= raw @product.to_json(only: [:code, :name, :cost]) %>;
+      document.querySelectorAll(".features li").forEach((item) => {
+        item.addEventListener("click", () => console.log(product.code, item.id));
+      });
+    </script>
+  </body>
+</html>

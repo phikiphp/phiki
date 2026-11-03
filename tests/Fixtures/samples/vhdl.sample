@@ -41,3 +41,175 @@ begin
 end arch;
 
 -- From https://vhdlguide.readthedocs.io/en/latest/vhdl/dex.html
+
+-------------------------------------------------------------------------------
+-- A small UART transmitter with a helper package and a self-checking bench
+-------------------------------------------------------------------------------
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+use ieee.math_real.all;
+
+package uart_pkg is
+    constant CLK_HZ     : natural := 50_000_000;
+    constant BAUD       : natural := 115_200;
+    constant RESET_HEX  : std_logic_vector(7 downto 0) := x"A5";
+    constant MASK_OCT   : std_logic_vector(8 downto 0) := o"777";
+    constant PATTERN    : std_logic_vector(3 downto 0) := b"10_01";
+    constant TIMEOUT    : time := 1.5 ms;
+    constant BASE16     : integer := 16#FF#;
+
+    type state_t is (IDLE, START_BIT, DATA_BITS, STOP_BIT);
+    subtype byte_t is std_logic_vector(7 downto 0);
+    type byte_array_t is array (natural range <>) of byte_t;
+
+    type frame_t is record
+        data   : byte_t;
+        parity : std_logic;
+        valid  : boolean;
+    end record frame_t;
+
+    function bits_per_tick(clk, baud : natural) return natural;
+    function even_parity(d : byte_t) return std_logic;
+    procedure pulse(signal s : out std_logic; constant width : in time);
+end package uart_pkg;
+
+package body uart_pkg is
+    function bits_per_tick(clk, baud : natural) return natural is
+    begin
+        return integer(ceil(real(clk) / real(baud)));
+    end function bits_per_tick;
+
+    function even_parity(d : byte_t) return std_logic is
+        variable p : std_logic := '0';
+    begin
+        for i in d'range loop
+            p := p xor d(i);
+        end loop;
+        return p;
+    end function;
+
+    procedure pulse(signal s : out std_logic; constant width : in time) is
+    begin
+        s <= '1';
+        wait for width;
+        s <= '0';
+    end procedure pulse;
+end package body uart_pkg;
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+use work.uart_pkg.all;
+
+entity uart_tx is
+    generic (DIVISOR : positive := 434);
+    port (
+        clk, rst : in  std_logic;
+        start    : in  std_logic;
+        data     : in  byte_t;
+        tx       : out std_logic;
+        busy     : out std_logic
+    );
+end entity uart_tx;
+
+architecture rtl of uart_tx is
+    signal state   : state_t := IDLE;
+    signal shreg   : byte_t;
+    signal tick    : unsigned(15 downto 0) := (others => '0');
+    signal bit_idx : integer range 0 to 7 := 0;
+begin
+    busy <= '0' when state = IDLE else '1';
+
+    fsm : process (clk) is
+    begin
+        if rising_edge(clk) then
+            if rst = '1' then
+                state <= IDLE;
+                tx    <= '1';
+            else
+                case state is
+                    when IDLE =>
+                        tx <= '1';
+                        if start = '1' and tx /= 'Z' then
+                            shreg <= data;
+                            state <= START_BIT;
+                        end if;
+                    when START_BIT =>
+                        tx <= '0';
+                        if tick = to_unsigned(DIVISOR - 1, tick'length) then
+                            tick  <= (others => '0');
+                            state <= DATA_BITS;
+                        else
+                            tick <= tick + 1;
+                        end if;
+                    when DATA_BITS =>
+                        tx    <= shreg(0);
+                        shreg <= std_logic_vector(shift_right(unsigned(shreg), 1));
+                        if bit_idx = 7 then
+                            state <= STOP_BIT;
+                        else
+                            bit_idx <= bit_idx + 1;
+                        end if;
+                    when others =>
+                        tx      <= '1';
+                        bit_idx <= 0;
+                        state   <= IDLE;
+                end case;
+            end if;
+        end if;
+    end process fsm;
+
+    lanes : for i in 0 to 3 generate
+        assert DIVISOR > i report "divisor too small" severity failure;
+    end generate lanes;
+
+    guarded_blk : block
+    begin
+        null;
+    end block guarded_blk;
+end architecture rtl;
+
+library ieee;
+use ieee.std_logic_1164.all;
+use std.textio.all;
+use std.env.all;
+use work.uart_pkg.all;
+
+entity uart_tb is
+end entity;
+
+architecture sim of uart_tb is
+    component uart_tx is
+        generic (DIVISOR : positive);
+        port (clk, rst, start : in std_logic; data : in byte_t; tx, busy : out std_logic);
+    end component uart_tx;
+
+    signal clk, rst, start, tx, busy : std_logic := '0';
+    signal data : byte_t := RESET_HEX;
+    constant MESSAGE : string := "Hi ""there""";
+begin
+    clk <= not clk after 10 ns;
+
+    dut : uart_tx
+        generic map (DIVISOR => 4)
+        port map (clk => clk, rst => rst, start => start, data => data, tx => tx, busy => busy);
+
+    stim : process
+        variable l : line;
+    begin
+        pulse(rst, 40 ns);
+        wait until falling_edge(clk);
+        start <= '1';
+        wait until busy = '0' for TIMEOUT;
+        write(l, string'("sent "));
+        write(l, MESSAGE);
+        writeline(output, l);
+        while busy = '1' loop
+            wait on clk;
+        end loop;
+        report "parity: " & std_logic'image(even_parity(data)) severity note;
+        finish;
+    end process stim;
+end architecture sim;

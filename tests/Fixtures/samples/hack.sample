@@ -1,3 +1,165 @@
+<?hh // strict
+/**
+ * Inventory service written in Hack.
+ *
+ * @author Jane Doe <jane@example.com>
+ * @license MIT
+ * @see {@link https://docs.hhvm.com}
+ */
+
+namespace App\Inventory;
+
+use namespace HH\Lib\{C, Dict, Str, Vec};
+use type App\Models\{Product, Warehouse};
+use function App\Util\log_event;
+use const App\Config\MAX_ITEMS;
+
+module inventory.core;
+
+type ProductRow = shape(
+  'id' => int,
+  'name' => string,
+  ?'description' => ?string,
+  'price' => float,
+);
+
+newtype ProductId = int;
+
+enum Status: string as string {
+  ACTIVE = 'active';
+  ARCHIVED = 'archived';
+}
+
+enum class Permission: string {
+  string READ = 'read';
+  string WRITE = 'write';
+}
+
+interface HasStock {
+  public function stock(): int;
+}
+
+trait Loggable {
+  protected function log(string $message): void {
+    log_event(static::class.': '.$message);
+  }
+}
+
+<<__ConsistentConstruct>>
+abstract class Repository<T as HasStock> {
+  abstract public function find(ProductId $id): Awaitable<?T>;
+}
+
+final class ProductRepository extends Repository<Product> implements HasStock {
+  use Loggable;
+
+  const int PAGE_SIZE = 50;
+  private Map<int, Product> $cache = Map {};
+  private ImmVector<string> $columns = ImmVector {'id', 'name', 'price'};
+
+  public function __construct(private \AsyncMysqlConnection $conn) {}
+
+  public function stock(): int {
+    return C\count($this->cache) * self::PAGE_SIZE;
+  }
+
+  <<__Override, __Memoize>>
+  public async function find(ProductId $id): Awaitable<?Product> {
+    if ($this->cache->contains($id)) {
+      return $this->cache[$id];
+    }
+    $result = await $this->conn->queryf(
+      'SELECT id, name, price FROM products WHERE id = %d -- by id',
+      $id,
+    );
+    $row = $result->mapRows()->firstValue();
+    if ($row === null) {
+      $this->log("Product #{$id} not found\n");
+      return null;
+    }
+    $product = new Product((int)$row['id'], $row['name'], (float)$row['price']);
+    $this->cache[$id] = $product;
+    return $product;
+  }
+
+  public function search(string $term): vec<ProductRow> {
+    $sql = "SELECT * FROM products WHERE name LIKE '%term%' AND status = `active` # search";
+    $rows = vec[];
+    foreach ($this->cache as $id => $product) {
+      if (\preg_match(re"/^[a-z]{2,}\d*$/i", $product->name) === 1 && $id > 0) {
+        $rows[] = shape('id' => $id, 'name' => $product->name, 'price' => $product->price);
+      }
+    }
+    return $rows;
+  }
+}
+
+function render_row(ProductRow $row): string {
+  $name = \htmlspecialchars($row['name']);
+  $desc = Shapes::idx($row, 'description') ?? 'n/a';
+  $price = \number_format($row['price'], 2);
+  return "<tr><td>$name</td><td>{$desc}</td><td>\$$price \x41 \101</td></tr>";
+}
+
+function product_card(ProductRow $row): \XHPRoot {
+  $id = 'product-'.$row['id'];
+  /* XHP literal */
+  return <div class="card" id={$id} data-price={$row['price']}>
+      <!-- product card -->
+      <h2>{$row['name']} &amp; more</h2>
+      <p:description text={Shapes::idx($row, 'description', '')} />
+    </div>;
+}
+
+function stats(vec<float> $prices): dict<string, num> {
+  $total = 0.0;
+  $count = 0;
+  foreach ($prices as $p) {
+    $total += $p;
+    $count++;
+  }
+  $flags = 0x0F | 0b1010 & ~0o17 ^ 017;
+  $mean = $count > 0 ? $total / $count : 0;
+  return dict[
+    'total' => $total,
+    'mean' => \round($mean, 2),
+    'max' => \max($prices),
+    'flags' => $flags << 1 >> 2,
+    'ratio' => 1.5e3 % 7,
+  ];
+}
+
+function parse_config(string $path): dict<string, mixed> {
+  $raw = \file_get_contents($path);
+  if ($raw === false || !\is_string($raw)) {
+    throw new \RuntimeException('Cannot read '.$path);
+  }
+  try {
+    $decoded = \json_decode($raw, true, 512, \JSON_THROW_ON_ERROR);
+  } catch (\JsonException | \TypeError $e) {
+    \error_log($e->getMessage());
+    return dict[];
+  } finally {
+    \gc_collect_cycles();
+  }
+  return $decoded as dict<_, _>;
+}
+
+function report(vec<ProductRow> $rows): string {
+  $header = <<<EOT
+Inventory report for {$rows[0]['name']}
+Generated at $now
+EOT;
+  $footer = <<<'EOT'
+No $interpolation happens here.
+EOT;
+  $lines = $rows
+    |> Vec\map($$, $r ==> Str\format('%-20s %8.2f', $r['name'], $r['price']))
+    |> Str\join($$, "\n");
+  $now = \date('Y-m-d H:i:s', \time());
+  return $header.$lines.$footer;
+}
+
 <<__EntryPoint>>
 async function my_example(): Awaitable<void> {
   $user_ids = vec[1, 2, 3];
@@ -11,6 +173,25 @@ async function my_example(): Awaitable<void> {
   // Execution continues after requests complete.
 
   echo Str\join($user_names, ", ");
+
+  $callback = function(int $x) use ($user_ids): int {
+    return $x * C\count($user_ids);
+  };
+  $set = Set {'a', 'b'};
+  $pair = Pair {1, 'one'};
+  $env = $_SERVER['APP_ENV'] ?? $_GET['env'] ?? 'dev';
+  $is_admin = $GLOBALS['admin'] ?? false;
+  $handler = 'strtoupper';
+  echo $handler('done'), \PHP_EOL, \strlen($env), \sha1($env);
+  \usleep(100);
+  \var_dump($callback(2), $set, $pair, $is_admin, $env is string);
+  require_once __DIR__.'/bootstrap.php';
+  switch ($env) {
+    case 'prod':
+      break;
+    default:
+      \ini_set('display_errors', '1');
+  }
 }
 
 async function fetch_user_name(

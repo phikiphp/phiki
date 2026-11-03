@@ -26,4 +26,160 @@ function my_function(): void {
     // ...
 }
 
-https://ara-lang.io/fundamentals/structure.html
+// From https://ara-lang.io/fundamentals/structure.html
+
+/**
+ * An in-memory inventory with typed collections, generics and async loading.
+ */
+namespace App\Inventory;
+
+use Psl\Async;
+use Psl\Str;
+use function Psl\Vec\map;
+
+const int MAX_STOCK = 0x7FFF_FFFF;
+const int FLAGS = 0b1010_0101;
+const int PERMISSIONS = 0o755;
+const int LEGACY_PERMISSIONS = 0644;
+const float TAX = 0.21;
+const float PRECISION = 1.5e-3;
+
+type Sku = string;
+type Price = shape('amount' => float, 'currency' => string, ...);
+type Listener = (fn(Item): void);
+
+enum Status: string {
+    case Available = 'available';
+    case Reserved = 'reserved';
+    case SoldOut = 'sold-out';
+
+    public function label(): string {
+        return match ($this) {
+            Status::Available => 'In stock',
+            Status::Reserved, Status::SoldOut => 'Unavailable',
+        };
+    }
+}
+
+interface Repository<T> {
+    public function find(Sku $sku): ?T;
+
+    public function all(): vec<T>;
+}
+
+final readonly class Item {
+    public function __construct(
+        public Sku $sku,
+        public string $name,
+        public Price $price,
+        public int $quantity = 0,
+        public Status $status = Status::Available,
+    ) {}
+
+    public function total(): float {
+        return $this->price['amount'] * $this->quantity * (1 + TAX);
+    }
+}
+
+abstract class BaseRepository<T> implements Repository<T> {
+    protected dict<Sku, T> $items = dict[];
+    private static int $instances = 0;
+
+    public function __construct() {
+        static::$instances += 1;
+    }
+
+    abstract protected function load(Sku $sku): Async\Awaitable<T>;
+}
+
+final class ItemRepository extends BaseRepository<Item> {
+    private vec<Listener> $listeners = vec[];
+
+    public function find(Sku $sku): ?Item {
+        return $this->items[$sku] ?? null;
+    }
+
+    public function all(): vec<Item> {
+        return vec[...$this->items];
+    }
+
+    public function listen(Listener $listener): void {
+        $this->listeners[] = $listener;
+    }
+
+    public function add(Item $item): void {
+        if ($item->quantity > MAX_STOCK || $item->quantity < 0) {
+            throw new \InvalidArgumentException("Invalid quantity for {$item->sku}:\t{$item->quantity}\n");
+        }
+
+        $this->items[$item->sku] = $item;
+        foreach ($this->listeners as $listener) {
+            $listener($item);
+        }
+    }
+
+    protected function load(Sku $sku): Async\Awaitable<Item> {
+        return async {
+            $price = shape('amount' => 9.99, 'currency' => 'EUR');
+            return new Item($sku, 'Item \'' . $sku . '\'', $price, 1);
+        };
+    }
+
+    public function preload(vec<Sku> $skus): vec<Item> {
+        $loaded = await concurrently {
+            $this->load($skus[0]),
+            $this->load($skus[1]),
+        };
+
+        return map($loaded, fn(Item $item): Item => $item);
+    }
+}
+
+function summarize(ItemRepository $repository): string {
+    $total = 0.0;
+    $count = 0;
+    $names = vec[];
+
+    foreach ($repository->all() as $item) {
+        if ($item->status === Status::SoldOut) {
+            continue;
+        } elseif ($item->status !== Status::Available && $count >= 10) {
+            break;
+        }
+
+        $total += $item->total();
+        $count++;
+        $names[] = Str\uppercase($item->name);
+    }
+
+    $i = 0;
+    while ($i < 3) {
+        $i += 1;
+    }
+
+    do {
+        $i -= 1;
+    } while ($i > 0);
+
+    for ($j = 0; $j <= 2; $j++) {
+        $count = $count % 7 + $j * 2 - 1;
+    }
+
+    $first = $repository->find('sku-1')?->name ?? 'none';
+    $discount = $total > 100 ? $total / 10 : 0.0;
+    $formatter = Str\format(...);
+    $escaped = "Path: C:\\temp \$HOME \x41\101";
+
+    return Str\format('%d items, %.2f total (%s) %s %s', $count, $total - $discount, $first, $escaped, $formatter);
+}
+
+/* Register a listener and print the summary. */
+function main(): void {
+    $repository = new ItemRepository();
+    $repository->listen(function (Item $item): void {
+        echo 'Added ' . $item->sku . "\n";
+    });
+
+    $repository->add(new Item('sku-1', 'Widget', shape('amount' => 4.5, 'currency' => 'EUR'), 3));
+    echo summarize($repository);
+}

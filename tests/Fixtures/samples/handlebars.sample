@@ -1,17 +1,85 @@
-<div class="entry">
+---
+title: Blog post layout
+layout: default
+---
+{{!< default}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{{title}} &mdash; {{site.name}}</title>
+  <link rel="stylesheet" href="{{asset "css/screen.css"}}">
+  <style>
+    .entry h1 { font-size: 2rem; }
+    .comment + .comment { border-top: 1px solid #eee; }
+  </style>
+</head>
+<body class="{{body_class}}">
+{{!-- Main entry. Rendered for every post,
+      including drafts. --}}
+<!-- static HTML comment -->
+<div class="entry" id="post-{{id}}">
   <h1>{{title}}</h1>
   {{#with story}}
     <div class="intro">{{{intro}}}</div>
     <div class="body">{{{body}}}</div>
   {{/with}}
+
+  {{#if author}}
+    <p class="byline">By <a href="/authors/{{author.slug}}">{{author.firstName}} {{author.lastName}}</a></p>
+  {{else if anonymous}}
+    <p class="byline">By an anonymous contributor</p>
+  {{else}}
+    <p class="byline">Unknown author</p>
+  {{/if}}
+
+  {{#unless published}}
+    <span class="badge">Draft &amp; unpublished</span>
+  {{/unless}}
+
+  <ul class="tags">
+    {{#each tags as |tag index|}}
+      <li class="tag {{#if @first}}first{{/if}}" data-index="{{@index}}">
+        {{tag.name}}{{#unless @last}},{{/unless}}
+      </li>
+    {{else}}
+      <li>No tags</li>
+    {{/each}}
+  </ul>
+
+  {{> share-buttons url=permalink title=title}}
+  {{#> card-layout size="large" theme='dark'}}
+    <p>Fallback card body</p>
+  {{/card-layout}}
+
+  <p>{{formatDate published_at format="MMMM D, YYYY"}} &middot; {{reading_time minutes=5}}</p>
+  <p>{{t 'comments.count' count=comments.length}}</p>
+  {{~log "rendered entry" level="debug"~}}
 </div>
 <div class="comments">
   {{#each comments}}
     <div class="comment">
       <h2>{{subject}}</h2>
       {{{body}}}
+      <small>{{../title}} / {{@root.site.name}}</small>
     </div>
   {{/each}}
 </div>
+
+<script id="comment-template" type="text/x-handlebars-template">
+  <div class="comment">
+    <h2>{{subject}}</h2>
+    <p>{{body}}</p>
+  </div>
+</script>
+
+<script>
+  /* compile the client-side template */
+  var source = document.getElementById('comment-template').innerHTML;
+  var template = Handlebars.compile(source); // precompile in production
+  console.log('It\'s ready', "say \"hi\"");
+</script>
+</body>
+</html>
 
 {{! From https://handlebarsjs.com/guide/block-helpers.html#the-with-helper }}

@@ -3,8 +3,34 @@
 {-# LANGUAGE QuasiQuotes #-}
 {-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
+{-# LANGUAGE DerivingVia, DeriveGeneric, PatternSynonyms #-}
+{-# LANGUAGE GADTs, RankNTypes, TypeApplications, MagicHash, UnboxedTuples #-}
+{-# OPTIONS_GHC -Wall -Wno-orphans #-}
+
+{- |
+Module      : Main
+Description : A small Yesod app plus some inventory helpers.
+-}
+module Main
+  ( main
+  , Item (..)
+  , Shape (Circle, Square)
+  , module Data.Maybe
+  ) where
 
 import Yesod
+import qualified Data.Map.Strict as Map
+import Data.List (sortBy, foldl')
+import Data.Maybe hiding (fromJust)
+import Data.Ord (comparing)
+import Data.Monoid (Sum (..))
+import GHC.Generics (Generic)
+import GHC.Exts (Int#, (+#))
+import Text.Printf (printf)
+
+#if MIN_VERSION_base(4,18,0)
+import Data.Functor ((<&>))
+#endif
 
 data WebApp = WebApp
 
@@ -18,6 +44,110 @@ getHomeR = defaultLayout [whamlet|
   <div>Hello, world!
 |]
 
-main = warpEnv WebApp
+-- | An inventory item.
+data Item = Item
+  { itemName  :: !String   -- ^ display name
+  , itemPrice :: {-# UNPACK #-} !Double
+  , itemQty   :: Int
+  } deriving (Show, Eq, Generic)
+
+newtype Total = Total Double
+  deriving stock (Show)
+  deriving (Semigroup, Monoid) via (Sum Double)
+
+data Shape where
+  Circle :: Double -> Shape
+  Square :: Double -> Shape
+
+type Inventory = Map.Map String Item
+
+type family Elem c where
+  Elem [e] = e
+
+type role Box representational
+newtype Box a = Box a
+
+class Container f where
+  empty  :: f a
+  insert :: a -> f a -> f a
+  toL    :: f a -> [a]
+
+instance Container [] where
+  empty  = []
+  insert = (:)
+  toL    = id
+
+pattern Zero :: Int
+pattern Zero = 0
+
+infixl 6 |+|
+(|+|) :: Item -> Item -> Item
+a |+| b = a { itemQty = itemQty a + itemQty b }
+
+foreign import ccall unsafe "math.h sin" c_sin :: Double -> Double
+
+area :: Shape -> Double
+area (Circle r) = pi * r ^ (2 :: Int)
+area (Square s) = s * s
+
+applyAll :: forall a. (forall b. b -> b) -> [a] -> [a]
+applyAll f = map f
+
+totalValue :: Inventory -> Double
+totalValue inv = foldl' step 0 (Map.elems inv)
+  where
+    step acc Item { itemPrice = p, itemQty = q } = acc + p * fromIntegral q
+
+classify :: Int -> String
+classify n
+  | n < 0              = "negative"
+  | n == Zero          = "zero"
+  | n `elem` [1 .. 9]  = "small"
+  | otherwise          = case n `divMod` 10 of
+      (q, 0) -> "round " ++ show q
+      _      -> "large"
+
+restock :: Int -> Item -> Maybe Item
+restock amount item
+  | amount <= 0 = Nothing
+  | otherwise   = Just item { itemQty = itemQty item + amount }
+
+addUnboxed :: Int# -> Int# -> Int#
+addUnboxed x y = x +# y
+
+pairUp :: a -> b -> (# a, b #)
+pairUp a b = (# a, b #)
+
+escapes :: [String]
+escapes = ["tab\there", "nul\NUL", "ctrl\^C", "octal\o101", "hex\x41", "dec\65", "gap\
+           \continued"]
+
+chars :: [Char]
+chars = ['a', '\n', '\'', '\x7F', 'λ']
+
+numbers :: (Int, Int, Int, Double, Double)
+numbers = (42, 0xFF, 0o17, 3.14, 6.02e23)
+
+report :: Inventory -> IO ()
+report inv = do
+  let items  = sortBy (comparing itemPrice) (Map.elems inv)
+      unit   = ()
+      nil    = [] :: [Int]
+      tuple  = (,) 1 2
+  mapM_ (\Item{..} -> printf "%-10s %6.2f\n" itemName itemPrice) items
+  print (unit, nil, tuple, read @Int "7")
+  if totalValue inv > 100
+    then putStrLn "Rich inventory"
+    else putStrLn $ "Total: " <> show (totalValue inv)
+  results <- traverse (pure . classify) [-1, 0, 5, 30]
+  mapM_ putStrLn results
+
+main :: IO ()
+main = do
+  let inv = Map.fromList [("apple", Item "apple" 0.5 10), ("pear", Item "pear" 0.75 4)]
+  report inv
+  print $ area (Circle 1.0) + area (Square 2) + c_sin 0
+  print $ fmap itemQty (restock 5 =<< Map.lookup "apple" inv)
+  warpEnv WebApp
 
 {-# From https://www.schoolofhaskell.com/user/eriks/Simple%20examples }

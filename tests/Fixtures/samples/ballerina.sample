@@ -1,19 +1,7 @@
 import ballerina/io;
-
-// This function definition has two parameters of type `int`. 
-// `returns` clause specifies type of return value.
-function add(int x, int y) returns int {
-
-    int sum = x + y;
-    // `return` statement returns a value.
-    return sum;
-
-}
-
-public function main() {
-    io:println(add(5, 11));
-}
-import ballerina/io;
+import ballerina/http;
+import ballerina/log;
+import ballerina/lang.regexp;
 
 // This function definition has two parameters of type `int`. 
 // `returns` clause specifies type of return value.
@@ -30,3 +18,209 @@ public function main() {
 }
 
 // From https://ballerina.io/learn/by-example/functions
+
+configurable int port = 9090;
+const string API_VERSION = "v1";
+const decimal TAX_RATE = 0.21d;
+final float GRAVITY = 9.81e0;
+final int MASK = 0xFF_00;
+
+public enum Status {
+    PENDING,
+    SHIPPED = "shipped",
+    DELIVERED
+}
+
+# Represents an order line.
+#
+# + sku - Stock keeping unit
+# + quantity - Number of units ordered
+# + price - Unit price
+public type OrderLine record {|
+    string sku;
+    int quantity = 1;
+    decimal price;
+    string? note = ();
+|};
+
+public type Order record {
+    readonly string id;
+    OrderLine[] lines;
+    Status status = PENDING;
+    map<string> tags?;
+};
+
+type InvalidOrder distinct error<record {| string id; |}>;
+
+type Shape object {
+    function area() returns float;
+};
+
+public annotation ServiceInfo Info on service;
+
+type ServiceInfo record {|
+    string owner;
+|};
+
+class Circle {
+    *Shape;
+    private final float radius;
+
+    public function init(float radius) {
+        self.radius = radius;
+    }
+
+    public function area() returns float {
+        return float:PI * self.radius * self.radius;
+    }
+}
+
+isolated table<Order> key(id) orders = table [];
+
+# Calculates the total value of an order.
+#
+# + 'order - The order to total
+# + return - The total including tax, or an error if the order is empty
+public isolated function total(Order 'order) returns decimal|InvalidOrder {
+    if 'order.lines.length() == 0 {
+        return error InvalidOrder("Order has no lines", id = 'order.id);
+    }
+    decimal subtotal = 0;
+    foreach OrderLine line in 'order.lines {
+        subtotal += line.price * <decimal>line.quantity;
+    }
+    return subtotal * (1 + TAX_RATE);
+}
+
+function describe(Status status) returns string {
+    match status {
+        PENDING => {
+            return "Waiting";
+        }
+        SHIPPED|DELIVERED => {
+            return "On its way";
+        }
+        _ => {
+            return "Unknown";
+        }
+    }
+}
+
+function classify(anydata value) returns string {
+    match value {
+        0 => {
+            return "zero";
+        }
+        [var first, ...var rest] => {
+            return string `list starting with ${first.toString()} (${rest.length()} more)`;
+        }
+        {sku: var sku} => {
+            return "line " + sku;
+        }
+        var other if other is string => {
+            return "text";
+        }
+    }
+    return "other";
+}
+
+function cheapLines(Order[] all) returns string[] {
+    return from Order o in all
+        from OrderLine line in o.lines
+        where line.price < 10d && line.quantity > 2
+        order by line.price descending
+        limit 5
+        select line.sku;
+}
+
+function parallelFetch() returns [int, int] {
+    worker alpha returns int {
+        int a = 40;
+        a -> beta;
+        return a + 2;
+    }
+    worker beta returns int {
+        int received = <- alpha;
+        return received * 2;
+    }
+    int x = wait alpha;
+    int y = wait beta;
+    return [x, y];
+}
+
+function forkedSum() returns int {
+    fork {
+        worker w1 returns int {
+            return 10;
+        }
+        worker w2 returns int {
+            return 20;
+        }
+    }
+    map<int> results = wait {w1, w2};
+    function (int, int) returns int combine = add;
+    return combine(results["w1"] ?: 0, results["w2"] ?: 0);
+}
+
+function errorDetails(error err) returns string {
+    var error(message, cause, ...details) = err;
+    return message + (cause is () ? "" : ": " + cause.message());
+}
+
+function markup(string name) returns xml {
+    xml greeting = xml `<p class="greeting">Hello, ${name}!</p>`;
+    xml comment = xml `<!-- generated -->`;
+    return greeting + comment;
+}
+
+function validSku(string sku) returns boolean {
+    string:RegExp pattern = re `^[A-Z]{3}-\d{4}[a-z]?$`;
+    return pattern.isFullMatch(sku) && regexp:find(re `[0-9]+`, sku) !is ();
+}
+
+@Info {owner: "orders-team"}
+service /api/v1 on new http:Listener(port) {
+
+    resource function get orders/[string id]() returns Order|http:NotFound {
+        lock {
+            Order? found = orders[id];
+            if found is () {
+                return http:NOT_FOUND;
+            }
+            return found.clone();
+        }
+    }
+
+    resource function post orders(@http:Payload Order newOrder) returns http:Created|error {
+        decimal value = check total(newOrder);
+        log:printInfo("Created order", id = newOrder.id, total = value);
+        lock {
+            orders.add(newOrder.clone());
+        }
+        return http:CREATED;
+    }
+
+    remote function onMessage(string text) returns error? {
+        int retries = 0;
+        while retries < 3 {
+            retries += 1;
+            if retries % 2 == 0 {
+                continue;
+            }
+            do {
+                int parsed = check int:fromString(text);
+                io:println(parsed >> 1, " ", parsed & MASK, " ", ~parsed);
+                break;
+            } on fail error e {
+                log:printError("Bad input\t\"" + text + "\"", 'error = e);
+            }
+        }
+        transaction {
+            check commit;
+        }
+        var fn = function(int n) returns int => n * n;
+        int[] squares = [1, 2, 3].map(fn);
+        boolean ready = squares.length() > 0 ? true : false;
+        io:println(ready, squares, GRAVITY, API_VERSION);
+    }
+}

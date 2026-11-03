@@ -11,3 +11,166 @@
 @end
 
 // From https://en.wikipedia.org/wiki/Objective-C
+
+#import <Foundation/Foundation.h>
+#import "TaskStore.h"
+#include <stdint.h>
+
+#define MAX_TASKS 128
+#define SQUARE(x) ((x) * (x))
+#ifndef DEBUG
+#  define LOG(fmt, ...) NSLog(@"[Task] " fmt, ##__VA_ARGS__)
+#else
+#  define LOG(...)
+#endif
+
+/* Priority levels for tasks. */
+typedef NS_ENUM(NSInteger, TaskPriority) {
+    TaskPriorityLow = 0,
+    TaskPriorityNormal,
+    TaskPriorityHigh = 0x10
+};
+
+typedef void (^TaskCompletion)(BOOL success, NSError * _Nullable error);
+
+@protocol TaskObserver <NSObject>
+@required
+- (void)taskDidFinish:(id)task;
+@optional
+- (void)taskDidFail:(id)task withError:(NSError *)error;
+@end
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface Task : NSObject <NSCopying, NSSecureCoding>
+
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, assign) TaskPriority priority;
+@property (nonatomic, strong, nullable) NSDate *dueDate;
+@property (nonatomic, weak) id<TaskObserver> observer;
+@property (atomic, readonly, getter=isDone) BOOL done;
+
++ (instancetype)taskWithTitle:(NSString *)title;
+- (instancetype)initWithTitle:(NSString *)title priority:(TaskPriority)priority NS_DESIGNATED_INITIALIZER;
+- (void)completeWithHandler:(TaskCompletion)handler;
+
+@end
+
+@interface Task ()
+@property (atomic, readwrite, getter=isDone) BOOL done;
+@end
+
+NS_ASSUME_NONNULL_END
+
+@implementation Task {
+    NSUInteger _attempts;
+    double _progress;
+}
+
+@synthesize done = _done;
+@dynamic observer;
+
++ (BOOL)supportsSecureCoding {
+    return YES;
+}
+
++ (instancetype)taskWithTitle:(NSString *)title {
+    return [[self alloc] initWithTitle:title priority:TaskPriorityNormal];
+}
+
+- (instancetype)initWithTitle:(NSString *)title priority:(TaskPriority)priority {
+    if ((self = [super init])) {
+        _title = [title copy];
+        _priority = priority;
+        _progress = 0.0f;
+        _attempts = 0u;
+    }
+    return self;
+}
+
+- (id)copyWithZone:(NSZone *)zone {
+    Task *copy = [[[self class] allocWithZone:zone] initWithTitle:self.title priority:self.priority];
+    copy.dueDate = self.dueDate;
+    return copy;
+}
+
+- (void)encodeWithCoder:(NSCoder *)coder {
+    [coder encodeObject:self.title forKey:@"title"];
+    [coder encodeInteger:self.priority forKey:@"priority"];
+}
+
+- (nullable instancetype)initWithCoder:(NSCoder *)coder {
+    NSString *title = [coder decodeObjectOfClass:[NSString class] forKey:@"title"];
+    return [self initWithTitle:title ?: @"Untitled" priority:[coder decodeIntegerForKey:@"priority"]];
+}
+
+- (void)completeWithHandler:(TaskCompletion)handler {
+    __weak typeof(self) weakSelf = self;
+    dispatch_async(dispatch_get_global_queue(QOS_CLASS_UTILITY, 0), ^{
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        if (!strongSelf) {
+            return;
+        }
+        strongSelf->_attempts++;
+        NSError *error = nil;
+        BOOL ok = strongSelf->_attempts <= 3 && SQUARE(2) == 4;
+        if (!ok) {
+            error = [NSError errorWithDomain:@"TaskErrorDomain"
+                                        code:-42
+                                    userInfo:@{NSLocalizedDescriptionKey: @"Too many attempts"}];
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            strongSelf.done = ok;
+            handler(ok, error);
+        });
+    });
+}
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"<%@: %p \"%@\" (%ld)>", NSStringFromClass([self class]), self, self.title, (long)self.priority];
+}
+
+@end
+
+static NSArray<Task *> *SortedTasks(NSArray<Task *> *tasks) {
+    NSSortDescriptor *byPriority = [NSSortDescriptor sortDescriptorWithKey:@"priority" ascending:NO];
+    return [tasks sortedArrayUsingDescriptors:@[byPriority]];
+}
+
+int main(int argc, const char *argv[]) {
+    @autoreleasepool {
+        NSMutableArray<Task *> *tasks = [NSMutableArray arrayWithCapacity:MAX_TASKS];
+        NSDictionary<NSString *, NSNumber *> *weights = @{@"low": @1, @"normal": @2.5, @"high": @(SQUARE(3))};
+        for (NSString *name in @[@"Write docs", @"Ship release", @"Fix crash"]) {
+            [tasks addObject:[Task taskWithTitle:name]];
+        }
+        uint32_t mask = 0xFFu & 0b1010;
+        unsigned long long big = 1000000ULL;
+        float ratio = 1.5e-3f;
+        char initial = 'T';
+        const char *cname = "c string\n";
+        @try {
+            if ([tasks count] > MAX_TASKS) {
+                @throw [NSException exceptionWithName:NSRangeException reason:@"too many" userInfo:nil];
+            }
+            switch (tasks.firstObject.priority) {
+                case TaskPriorityHigh:
+                    LOG(@"high priority first");
+                    break;
+                default:
+                    break;
+            }
+        } @catch (NSException *exception) {
+            NSLog(@"Caught %@", exception.reason);
+        } @finally {
+            NSLog(@"%@ %@ %u %llu %f %c %s", SortedTasks(tasks), weights, mask, big, ratio, initial, cname);
+        }
+        @synchronized (tasks) {
+            [tasks removeAllObjects];
+        }
+        SEL selector = @selector(completeWithHandler:);
+        Protocol *proto = @protocol(TaskObserver);
+        BOOL responds = [Task instancesRespondToSelector:selector] && proto != NULL;
+        return responds ? EXIT_SUCCESS : EXIT_FAILURE;
+    }
+}

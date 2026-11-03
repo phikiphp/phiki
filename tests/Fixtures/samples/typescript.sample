@@ -75,3 +75,185 @@ const numberArray = wrapInArray(42);  // T inferred as number
 function combine<T, U>(first: T, second: U): [T, U] {
   return [first, second];
 }
+
+// ---------------------------------------------------------------------------
+// A small event-sourced inventory service
+// ---------------------------------------------------------------------------
+import fs, { promises as fsp } from "node:fs";
+import type { Readable } from 'node:stream';
+import * as path from "node:path";
+export * from "./events";
+export { default as Logger, type LogLevel } from "./logger";
+
+declare global {
+  interface Window { __APP_VERSION__: string }
+}
+
+declare module "./events" {
+  export interface EventMap { restocked: { sku: string; qty: number } }
+}
+
+namespace Units {
+  export const KG = 1_000;
+  export enum Size { Small = "S", Medium = "M", Large = "L" }
+}
+
+const enum Flags {
+  None = 0,
+  Fragile = 1 << 0,
+  Perishable = 1 << 1,
+  Hazardous = Fragile | Perishable,
+}
+
+type Sku = `${Uppercase<string>}-${number}`;
+type Maybe<T> = T | null | undefined;
+type ReadonlyDeep<T> = { readonly [K in keyof T]: T[K] extends object ? ReadonlyDeep<T[K]> : T[K] };
+type Unwrap<T> = T extends Promise<infer U> ? U : T;
+type Handler = (event: InventoryEvent, ...rest: unknown[]) => void | Promise<void>;
+type Ctor<T = {}> = abstract new (...args: any[]) => T;
+type Pair = [first: string, second?: number];
+type Keys = keyof typeof Units;
+type InventoryEvent =
+  | { kind: "added"; sku: Sku; qty: number }
+  | { kind: "removed"; sku: Sku; reason?: string };
+
+function assertNever(value: never): never {
+  throw new Error(`Unexpected value: ${JSON.stringify(value)}`);
+}
+
+function isAdded(e: InventoryEvent): e is Extract<InventoryEvent, { kind: "added" }> {
+  return e.kind === "added";
+}
+
+function assertSku(value: string): asserts value is Sku {
+  if (!/^[A-Z]+-\d+$/u.test(value)) throw new TypeError("bad sku: " + value);
+}
+
+function sealed(constructor: Function) {
+  Object.seal(constructor);
+  Object.seal(constructor.prototype);
+}
+
+function log(level: string) {
+  return function (target: any, key: string, descriptor: PropertyDescriptor): void {
+    const original = descriptor.value;
+    descriptor.value = function (this: unknown, ...args: unknown[]) {
+      console.debug(`[${level}] ${key}(${args.length})`);
+      return original.apply(this, args);
+    };
+  };
+}
+
+abstract class Repository<TItem extends { sku: Sku }, TKey = Sku> {
+  protected readonly items = new Map<TKey, TItem>();
+  static #instances = 0;
+  #secret?: string;
+  declare readonly name: string;
+
+  constructor(public readonly label: string, private capacity: number = 100) {
+    Repository.#instances++;
+  }
+
+  abstract key(item: TItem): TKey;
+
+  get size(): number {
+    return this.items.size;
+  }
+
+  set limit(value: number) {
+    this.capacity = Math.max(0, value);
+  }
+
+  *entries(): Generator<[TKey, TItem], void, undefined> {
+    yield* this.items.entries();
+  }
+}
+
+@sealed
+export class Inventory extends Repository<{ sku: Sku; qty: number; flags: Flags }> implements Iterable<Sku> {
+  private handlers: Handler[] = [];
+  override readonly name = "inventory";
+
+  key(item: { sku: Sku }): Sku {
+    return item.sku;
+  }
+
+  @log("info")
+  apply(event: InventoryEvent): void {
+    switch (event.kind) {
+      case "added": {
+        const current = this.items.get(event.sku)?.qty ?? 0;
+        this.items.set(event.sku, { sku: event.sku, qty: current + event.qty, flags: Flags.None });
+        break;
+      }
+      case "removed":
+        this.items.delete(event.sku);
+        break;
+      default:
+        assertNever(event);
+    }
+    this.handlers.forEach((h) => void h(event));
+  }
+
+  on(handler: Handler): () => void {
+    this.handlers.push(handler);
+    return () => { this.handlers = this.handlers.filter((h) => h !== handler); };
+  }
+
+  async load(file: string): Promise<number> {
+    let count = 0;
+    try {
+      const raw = await fsp.readFile(path.join(__dirname, file), { encoding: "utf8" });
+      for (const line of raw.split(/\r?\n/g)) {
+        if (line.trim() === "" || line.startsWith("#")) continue;
+        const [sku, qty] = line.split(",") as Pair;
+        assertSku(sku);
+        this.apply({ kind: "added", sku, qty: Number(qty ?? 0) });
+        count++;
+      }
+    } catch (err: unknown) {
+      if (err instanceof Error && "code" in err) console.error(err.message);
+      else throw err;
+    } finally {
+      count ||= 0;
+    }
+    return count;
+  }
+
+  [Symbol.iterator](): Iterator<Sku> {
+    return this.items.keys();
+  }
+}
+
+const inventory = new Inventory("main", 0x1F4);
+const weights: Record<string, number> = { small: 0.5, medium: 1.25e1, large: 0b1010, huge: 0o17, max: 9_007n as unknown as number };
+const sizes = Object.keys(Units.Size) as Array<keyof typeof Units.Size>;
+const label = <const T extends string>(value: T) => value;
+let total = 0, discount = 0.15;
+total += weights.small! * 2 - 1;
+total **= 2;
+total = total > 100 ? total / 2 : total % 7;
+discount ??= 0;
+const isFragile = (Flags.Fragile & Flags.Hazardous) !== 0 && !Number.isNaN(total);
+const shifted = (total >>> 1) ^ ~3;
+const greeting = `Total: ${total.toFixed(2)}\n\tSizes: ${sizes.join(", ")} \u{1F4E6}`;
+const tagged = String.raw`C:\temp\${label("x")}`;
+const lazy = import("./plugins").then(({ default: plugin }) => plugin);
+
+for (let i = 0; i < sizes.length; i++) {
+  if (i % 2 === 0) continue;
+  label(sizes[i]);
+}
+
+label: for (const key in weights) {
+  while (true) { break label; }
+}
+
+do { total--; } while (total > 0);
+
+const unsubscribe = inventory.on(async (e) => {
+  if (isAdded(e)) await new Promise<void>((resolve) => setTimeout(resolve, 10));
+});
+
+export default inventory;
+export { greeting, tagged, lazy, isFragile, shifted, unsubscribe, discount };

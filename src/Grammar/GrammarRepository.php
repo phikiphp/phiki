@@ -4,10 +4,26 @@ namespace Phiki\Grammar;
 
 use Phiki\Contracts\GrammarRepositoryInterface;
 use Phiki\Exceptions\UnrecognisedGrammarException;
+use Phiki\TextMate\Engines\Engine;
 
 class GrammarRepository implements GrammarRepositoryInterface
 {
+    /**
+     * @var array<string, Grammar|string|ParsedGrammar>
+     */
     protected array $grammars = [];
+
+    /**
+     * Grammars parsed from files, keyed by engine for the bundled ones.
+     *
+     * @var array<string, ParsedGrammar>
+     */
+    protected array $parsed = [];
+
+    /**
+     * The regex engine whose bundled grammars are loaded.
+     */
+    protected Engine $engine = Engine::Oniguruma;
 
     protected array $scopesToGrammar = [];
 
@@ -16,7 +32,7 @@ class GrammarRepository implements GrammarRepositoryInterface
     public function __construct()
     {
         foreach (Grammar::cases() as $grammar) {
-            $this->grammars[$grammar->value] = $grammar->path();
+            $this->grammars[$grammar->value] = $grammar;
             $this->scopesToGrammar[$grammar->scopeName()] = $grammar->value;
 
             foreach ($grammar->aliases() as $alias) {
@@ -38,9 +54,20 @@ class GrammarRepository implements GrammarRepositoryInterface
             return $grammar;
         }
 
-        $parser = new GrammarParser;
+        // Bundled grammars are written for each engine. Registered files are used as they are.
+        [$key, $path] = $grammar instanceof Grammar
+            ? ["{$this->engine->value}:{$name}", $grammar->path($this->engine)]
+            : [$name, $grammar];
 
-        return $this->grammars[$name] = $parser->parse(json_decode(file_get_contents($grammar), true));
+        return $this->parsed[$key] ??= (new GrammarParser)->parse(json_decode(file_get_contents($path), true));
+    }
+
+    /**
+     * Load the bundled grammars written for the given regex engine.
+     */
+    public function engine(Engine $engine): void
+    {
+        $this->engine = $engine;
     }
 
     public function getFromScope(string $scope): ParsedGrammar
@@ -65,6 +92,7 @@ class GrammarRepository implements GrammarRepositoryInterface
     public function register(string $name, string|ParsedGrammar $pathOrGrammar): void
     {
         $this->grammars[$name] = $pathOrGrammar;
+        unset($this->parsed[$name]);
     }
 
     public function resolve(string|Grammar|ParsedGrammar $grammar): ParsedGrammar

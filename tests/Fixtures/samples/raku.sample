@@ -35,3 +35,99 @@ for @sorted -> $n {
 }
 
 # From https://docs.raku.org/language/101-basics
+
+=begin pod
+=head1 Shapes
+
+A small module showing classes, roles, grammars and multi dispatch.
+=end pod
+
+use MONKEY-SEE-NO-EVAL;
+
+subset PosNum of Real where * > 0;
+
+enum Color <Red Green Blue>;
+
+role Describable {
+    method describe(--> Str) { "{self.^name} with area {self.area.fmt('%.2f')}" }
+}
+
+class Shape does Describable {
+    has Str $.name is rw = 'shape';
+    has @!history;
+
+    method area(--> Real) { 0 }
+    method info { self.describe ~ ' (' ~ $.name ~ ')' }
+    submethod BUILD(:$!name = 'shape') { @!history.push: 'built' }
+}
+
+class Circle is Shape {
+    has PosNum $.radius is required;
+    method area { pi * $!radius ** 2 }
+}
+
+class Rect is Shape {
+    has PosNum ($.w, $.h);
+    method area { $!w * $!h }
+}
+
+multi sub combine(Circle $a, Circle $b) { Circle.new(radius => $a.radius + $b.radius) }
+multi sub combine(Shape $a, Shape $b)   { $a.area + $b.area }
+proto sub scale(|) {*}
+multi sub scale(Rect $r, Real $f) { Rect.new(w => $r.w * $f, h => $r.h * $f) }
+
+grammar Dimensions {
+    token TOP     { <width> 'x' <height> }
+    token width   { \d+ }
+    token height  { \d+ }
+    regex comment { '#' .* $$ }
+    rule  pair    { <width> ',' <height> }
+}
+
+my @shapes = Circle.new(radius => 1.5), Rect.new(w => 3, h => 4e0), Circle.new(radius => 0x10);
+my %by-kind = @shapes.classify(*.^name);
+my $total = [+] @shapes».area;
+my $big = @shapes.grep({ .area > 10 }).elems;
+my $match = Dimensions.parse('1920x1080');
+say "Parsed width: $match<width>, height: $match<height>" if $match;
+
+for @shapes.kv -> $i, $shape {
+    given $shape {
+        when Circle { say "$i: circle r={.radius}" }
+        when Rect   { say "$i: rect {.w}×{.h}" }
+        default     { say "$i: unknown" }
+    }
+}
+
+my $text = q:to/END/;
+    Shapes report
+    Total area: not interpolated $total
+    END
+my $report = qq:to/END/;
+    Count: {@shapes.elems}
+    Total: $total
+    END
+my @words = qw<alpha beta gamma>;
+my $raw = Q[no $interpolation {here}];
+my $note = q{it's a 'note'} ~ 'it\'s fine';
+my $path = qq[{$*HOME}/shapes.txt];
+my $joined = @words.join(', ') ~ "\n";
+my $cmp = 'a' leg 'b';
+my $both = True and not False;
+my $range = (1..^10).map(* ** 2).grep(* %% 2);
+my $lazy = (1, 1, * + * ... Inf);
+say $lazy[^10], $range, $cmp, $both, NaN, Inf, $joined;
+
+sub risky(Int $n) {
+    die "negative!" if $n < 0;
+    CATCH { default { warn "caught: {.message}"; } }
+    LEAVE { say 'leaving risky' }
+    return $n div 2;
+}
+
+try { risky(-1) }
+say $!.message if $!;
+my $promise = start { sleep 0.1; 42 };
+say await $promise;
+BEGIN { say 'compiling' }
+END   { say 'bye' }

@@ -7,6 +7,9 @@ import 'package:flutter_workshop/screens/product_screen.dart';
 import 'package:flutter_workshop/screens/random_words_screen.dart';
 import 'package:flutter_workshop/screens/unknown_screen.dart';
 import 'package:device_simulator/device_simulator.dart';
+import 'dart:async';
+import 'dart:convert' show jsonDecode, jsonEncode;
+import 'dart:math' as math hide Random;
 
 void main() => runApp(MyApp());
 
@@ -30,3 +33,158 @@ class MyApp extends StatelessWidget {
 }
 
 // From https://github.com/Jadhielv/flutter-workshop/blob/master/lib/main.dart
+
+/*
+ * Product catalogue models and a small repository used by the screens.
+ */
+
+/// A product shown in the catalogue.
+///
+/// Use [Product.fromJson] to build one from the API. Example:
+///
+/// ```dart
+/// final product = Product.fromJson({'id': 1, 'name': 'Mug'});
+/// ```
+@immutable
+class Product implements Comparable<Product> {
+  static const int maxNameLength = 0x40;
+  static final RegExp skuPattern = RegExp(r'^[A-Z]{3}-\d{4}$');
+
+  final int id;
+  final String name;
+  final double price;
+  final List<String> tags;
+  late final String slug = name.toLowerCase().replaceAll(' ', '-');
+
+  const Product({
+    required this.id,
+    required this.name,
+    this.price = 0.0,
+    this.tags = const [],
+  });
+
+  factory Product.fromJson(Map<String, dynamic> json) {
+    return Product(
+      id: json['id'] as int,
+      name: json['name'] as String? ?? 'Unnamed',
+      price: (json['price'] as num?)?.toDouble() ?? 1.5e2,
+      tags: [...?json['tags'] as List<String>?],
+    );
+  }
+
+  Map<String, Object?> toJson() => {'id': id, 'name': name, 'price': price};
+
+  @override
+  int compareTo(Product other) => price.compareTo(other.price);
+
+  @override
+  String toString() => 'Product(#$id, "$name", ${price.toStringAsFixed(2)} \u20AC)';
+}
+
+enum SortOrder { cheapestFirst, newestFirst }
+
+sealed class Result<T> {}
+
+final class Ok<T> extends Result<T> {
+  Ok(this.value);
+  final T value;
+}
+
+final class Failure<T> extends Result<T> {
+  Failure(this.error);
+  final Object error;
+}
+
+mixin Logging {
+  void log(String message) => print('[${runtimeType}] $message');
+}
+
+extension PriceFormatting on double {
+  String get euros => '${toStringAsFixed(2)} EUR';
+}
+
+typedef ProductFilter = bool Function(Product product);
+
+abstract interface class ProductSource {
+  Future<String> fetch(String path);
+}
+
+class ProductRepository with Logging {
+  ProductRepository(this._source);
+
+  final ProductSource _source;
+  final _cache = <int, Product>{};
+  var _requests = 0;
+
+  Future<Result<List<Product>>> load({ProductFilter? where, SortOrder order = SortOrder.cheapestFirst}) async {
+    _requests++;
+    try {
+      final body = await _source.fetch('/products?page=1');
+      final decoded = jsonDecode(body) as List<dynamic>;
+      var products = [
+        for (final item in decoded)
+          if (item is Map<String, dynamic>) Product.fromJson(item),
+      ];
+      if (where != null) products = products.where(where).toList();
+      switch (order) {
+        case SortOrder.cheapestFirst:
+          products.sort();
+        case SortOrder.newestFirst:
+          products.sort((a, b) => b.id - a.id);
+      }
+      for (final p in products) {
+        _cache[p.id] = p;
+      }
+      return Ok(products);
+    } on FormatException catch (e, stack) {
+      log('bad payload: ${e.message}\n$stack');
+      return Failure(e);
+    } catch (e) {
+      rethrow;
+    } finally {
+      log('request #$_requests done');
+    }
+  }
+
+  Stream<Product> watch(int id) async* {
+    while (_cache.containsKey(id)) {
+      yield _cache[id]!;
+      await Future<void>.delayed(const Duration(seconds: 5));
+    }
+  }
+
+  Iterable<int> ids() sync* {
+    yield* _cache.keys;
+  }
+}
+
+String describe(Object? value) => switch (value) {
+      null => 'nothing',
+      int n when n < 0 => 'negative',
+      Product(:final name, :final price) => '$name for ${price.euros}',
+      [var first, ...] => 'list starting with $first',
+      _ => 'unknown',
+    };
+
+void bits() {
+  var flags = 0xFF;
+  flags &= ~0x0F;
+  flags |= 1 << 3;
+  flags ^= flags >>> 1;
+  final ratio = 10 ~/ 3 + 10 % 3;
+  final ok = !(flags == 0) && ratio >= 3 || flags != 1;
+  assert(ok, 'flags should be set');
+  const multiline = """
+Total: ${ratio * 2}
+Flags: $flags
+""";
+  const raw = r'no $interpolation here\n';
+  final big = math.max(1.0, .5);
+  print('$multiline$raw$big ${jsonEncode({'ok': ok})}');
+  var count = 10;
+  do {
+    count--;
+  } while (count > 0);
+  if (ratio is! int) throw StateError('unreachable');
+}
+

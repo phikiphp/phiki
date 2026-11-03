@@ -35,3 +35,129 @@ avg ← { (+/⍵) ÷ ⊃⍴ ⍵ }
 ⍝ putPrice ← { (X×*-r×⍵)×CND(-d2 ⍵)-S×CND(-d1 ⍵) }
 
 ⍝ From https://github.com/melsman/apltail/blob/master/tests/blacksch.apl
+
+⍝ ---------------------------------------------------------------
+⍝ A small statistics workspace in Dyalog APL
+⍝ ---------------------------------------------------------------
+)CLEAR
+]box on -style=max
+⎕IO ← 1 ⋄ ⎕ML ← 1 ⋄ ⎕PP ← 10
+
+prices ← 101.5 99.25 ¯3.5E2 104 1.5J2 ⍬
+names ← 'apple' 'banana' "cherry"
+greeting ← 'It''s a nice day'
+matrix ← 3 4 ⍴ ⍳12
+
+⍝ Dfns: guards, self-reference with ∇ and operands ⍺⍺ ⍵⍵
+fact ← {⍵≤1:1 ⋄ ⍵×∇ ⍵-1}
+mean ← {(+/⍵)÷≢⍵}
+stddev ← {((+/(⍵-mean ⍵)*2)÷≢⍵)*0.5}
+clamp ← {⍺⌈⍵⌊100}
+pow ← {⍺⍺⍣⍵⍵⊢⍵}
+both ← {(⍺⍺ ⍵)∧(⍵⍵ ⍵)}
+
+⍝ Selection, set and structural functions
+evens ← (0=2|⍳20)/⍳20
+unique ← ∪ 3 1 4 1 5 9 2 6 5
+common ← 1 2 3 ∩ 2 3 4
+member ← 3 ∊ 1 2 3
+found ← 'an' ⍷ 'banana'
+sorted ← prices[⍋prices]
+desc ← matrix[⍒matrix[;1];]
+firstTwo ← 2↑names
+rest ← 1↓names
+flipped ← ⌽ matrix
+upside ← ⊖ matrix
+trans ← ⍉ matrix
+joined ← matrix ⍪ 10 20 30 40
+cat ← 1 2 , 3 4
+boxed ← ⊂ 1 2 3
+parts ← (1 1 0 1)⊆'abcd'
+where ← ⍸ 0 1 0 1
+encoded ← 2 2 2 ⊤ 5
+decoded ← 2 ⊥ 1 0 1
+running ← +\ ⍳10
+colSum ← +⌿ matrix
+rowScan ← +⍀ matrix
+inverse ← ⌹ 2 2 ⍴ 4 7 2 6
+same ← matrix ≡ matrix
+diff ← matrix ≢ trans
+keyed ← {⍺,≢⍵}⌸ 'mississippi'
+ranked ← (+/⍤1) matrix
+stencil ← {+/,⍵}⌺3 3 ⊢ matrix
+swapped ← 2 -⍨ 10
+atFn ← (10∘×)@2 4 ⊢ ⍳5
+composed ← (-∘÷) 4
+leftId ← 1 ⊣ 2
+rightId ← 1 ⊢ 2
+squad ← 2 ⌷ names
+text ← ⍕ 3.14159
+value ← ⍎ '1+2'
+roll ← ? 6
+deal ← 5 ? 49
+fac ← ! 5
+logic ← (1 0 1 ∨ 0 0 1) ∧ ~0 1 0
+nand ← 1 ⍲ 1
+nor ← 0 ⍱ 0
+cmp ← (1<2) (2≤2) (3=3) (4≥1) (5>2) (6≠7)
+shape ← ⍴ matrix
+depth ← ≡ names
+tally ← ≢ names
+ns ← #.Stats
+parent ← ##.config
+
+⍝ Traditional function with locals, labels and control structures
+∇ result ← Summarise data;total;i
+  ⍝ Return mean, deviation and largest value
+  total ← 0
+  :If 0=≢data
+      result ← ⍬
+      →0
+  :ElseIf 1=≢data
+      result ← data data 0
+      :Return
+  :EndIf
+  :For i :In data
+      total +← i
+  :EndFor
+  :While total>1000
+      total ÷← 2
+  :EndWhile
+  :Select ⊃data
+  :Case 0
+      ⎕←'starts with zero'
+  :CaseList 1 2 3
+      ⎕←'small start'
+  :Else
+      ⎕←'other'
+  :EndSelect
+  :Trap 11
+      result ← (mean data)(stddev data)(⌈/data)
+  :Else
+      result ← ⎕DMX.Message
+  :EndTrap
+ done:
+∇
+
+:Class Account
+    :Field Public Balance ← 0
+    :Field Private Shared Count ← 0
+    :Field Public Instance ReadOnly Owner ← ''
+
+    ∇ make name
+      :Access Public
+      :Implements Constructor
+      Owner ← name
+      Count +← 1
+    ∇
+
+    ∇ Deposit amount
+      :Access Public
+      Balance +← amount
+    ∇
+:EndClass
+
+acct ← ⎕NEW Account (⊂'Ada')
+acct.Deposit 250
+⎕←Summarise prices
+⍞←'Enter a value: '

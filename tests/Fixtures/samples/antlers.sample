@@ -1,9 +1,16 @@
+---
+title: Song Archive
+layout: default
+show_sidebar: true
+---
 <!DOCTYPE html>
 <html>
     <head>
-        <title>My Webpage</title>
+        <title>{{ title ?? "My Webpage" }} | {{ site:name }}</title>
+        {{ vite src="resources/css/site.css|resources/js/site.js" }}
     </head>
-    <body>
+    <body class="{{ show_sidebar ? 'with-sidebar' : 'full-width' }}">
+        {{# Navigation built from the songs collection #}}
         <ul id="navigation">
         {{ songs }}
           <li>{{ value }} (Next: {{ next:value }}) (Prev: {{ prev:value }})</li>
@@ -12,6 +19,85 @@
 
         <h1>My Webpage</h1>
         {{ a_variable }}
+
+        {{ collection:blog limit="5" sort="date:desc" as="posts" }}
+            {{ posts }}
+                <article>
+                    <h2><a href="{{ url }}">{{ title | upper | truncate:60 }}</a></h2>
+                    <time>{{ date format="F jS, Y" }}</time>
+                    {{ content | widont }}
+                </article>
+            {{ /posts }}
+        {{ /collection:blog }}
+
+        {{ if logged_in && user:is_admin }}
+            <p>Welcome back, {{ user:name }}!</p>
+        {{ elseif logged_in }}
+            <p>Hello, {{ user:email }}.</p>
+        {{ else }}
+            <a href="/login">Sign in</a>
+        {{ /if }}
+
+        {{ unless no_results }}
+            {{ total = items | count; }}
+            {{ total_plus = total + 1 }}
+            {{ average = (score * 100) / total }}
+            {{ remainder = total % 3 }}
+            {{ if total >= 10 or total === 0 }}Lots{{ /if }}
+            {{ if status !== 'draft' and status != "archived" }}Live{{ /if }}
+            {{ label = 'It\'s ' & total & " items" }}
+            {{ cmp = total <=> 5 }}
+            {{ total += 2 }}
+            {{ mask = flags bwa 4 }}
+        {{ /unless }}
+
+        {{ sorted = items orderby (title 'asc') take (3) }}
+        {{ grouped = items groupby (category) }}
+        {{ lookup = arr('home' => '/', 'blog' => '/blog') }}
+        {{ choice = switch(
+            (size == 'sm') => 'small',
+            (size == 'lg') => 'large',
+            default => 'medium'
+        ) }}
+
+        {{ nav:main max_depth="2" include_home="true" }}
+            <a href="{{ url }}" class="{{ is_current ? 'active' : '' }}">{{ title }}</a>
+        {{ /nav:main }}
+
+        {{ form:contact }}
+            {{ if success }}<p>Thanks!</p>{{ /if }}
+            {{ fields }}
+                <label>{{ display }}</label>
+                {{ field }}
+            {{ /fields }}
+        {{ /form:contact }}
+
+        {{ %partial:components/card title="Featured" :image="hero_image" }}
+
+        {{ glide:hero_image width="1200" fit="crop_focal" }}
+
+        {{ is_published = true }}
+        {{ is_hidden = false }}
+        {{ nothing = null }}
+
+        {{ ?
+            $year = date('Y');
+            $greeting = 'Hello';
+        ?}}
+        {{$ $year $}}
+
+        {{ banner = "Hello { user:name }, you have { total } items" }}
+        {{ alt_text = 'Photo of { title }' }}
+        {{ entry->title }}
+
+        <?php echo strtoupper($greeting); ?>
+        <?php
+            $items = [1, 2, 3];
+        ?>
+
+        @{{ this_is_not_parsed }}
+
+        <footer>&copy; {{ now format="Y" }} {{ site:name }}</footer>
     </body>
 </html>
 

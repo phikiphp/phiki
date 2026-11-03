@@ -13,3 +13,97 @@ service "http" "web_proxy" {
 }
 
 # From: https://github.com/hashicorp/hcl/blob/main/README.md
+
+// Typed variables with defaults and validation.
+variable "environment" {
+  type        = string
+  description = "Deployment environment, e.g. \"staging\" or \"prod\"\n"
+  default     = "staging"
+
+  validation {
+    condition     = contains(["staging", "prod"], var.environment)
+    error_message = "Environment must be staging or prod."
+  }
+}
+
+variable "replicas" {
+  type    = number
+  default = 3
+}
+
+variable "tags" {
+  type = map(string)
+  default = {
+    team    = "platform"
+    "owner" = "ops@example.com"
+  }
+}
+
+variable "listeners" {
+  type = list(object({
+    port     = number
+    protocol = optional(string, "tcp")
+    tls      = bool
+  }))
+  default = []
+}
+
+/*
+ * Derived values.
+ */
+locals {
+  is_prod      = var.environment == "prod"
+  name_prefix  = "app-${var.environment}"
+  cpu_limit    = local.is_prod ? 2.5 : 0.5
+  memory_bytes = 512 * 1024 * 1024
+  ratio        = 1.5e3 / 100 - 2 + 10 % 3
+  scale_ok     = var.replicas >= 1 && var.replicas <= 10 || !local.is_prod
+  above_min    = var.replicas > 0 && var.replicas != 7 && var.replicas < 100
+  ports        = [for l in var.listeners : l.port if l.tls]
+  by_port      = { for l in var.listeners : l.port => l.protocol... }
+  all_ids      = aws_instance.web[*].id
+  first_ip     = aws_instance.web.0.private_ip
+  merged_tags  = merge(var.tags, { Name = local.name_prefix })
+  encoded      = provider::terraform::encode_tfvars({ env = var.environment })
+  nothing      = null
+  enabled      = true
+}
+
+resource "aws_instance" "web" {
+  count         = var.replicas
+  ami           = data.aws_ami.ubuntu.id
+  instance_type = local.is_prod ? "m5.large" : "t3.micro"
+  tags          = local.merged_tags
+
+  user_data = <<-EOT
+    #!/bin/bash
+    echo "Booting ${local.name_prefix}-${count.index}"
+    %{ if local.is_prod ~}
+    systemctl enable monitoring
+    %{~ endif }
+  EOT
+
+  dynamic "ebs_block_device" {
+    for_each = toset(["/dev/sdb", "/dev/sdc"])
+    content {
+      device_name = ebs_block_device.value
+      volume_size = 20
+    }
+  }
+
+  lifecycle {
+    create_before_destroy = true
+    ignore_changes        = [tags["LastDeployed"]]
+  }
+}
+
+output "endpoints" {
+  value     = "%{ for ip in aws_instance.web[*].public_ip }http://${ip}:8080 %{ endfor }"
+  sensitive = false
+}
+
+module "network" {
+  source  = "./modules/network"
+  cidr    = cidrsubnet("10.0.0.0/16", 8, 1)
+  enabled = local.scale_ok
+}

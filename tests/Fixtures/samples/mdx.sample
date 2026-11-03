@@ -1,3 +1,124 @@
+---
+title: Getting started with Widgets
+tags: [docs, mdx]
+draft: false
+---
+
+import { Chart } from '../components/chart.js'
+import Callout from './callout.mdx'
+export const meta = { author: 'Jane Doe', updated: new Date(2024, 0, 15) }
+
+# Getting started
+
+Welcome to the **Widgets** docs, written in _MDX_. Thanks to @octocat and
+@acme/docs-team for the review in #123 and GH-456 (see also GHSA-abcd-1234-efgh
+and cve-2024-12345), plus acme/widgets#789 :tada: :rocket:
+
+Visit https://example.com/docs, www.example.org, or mail <help@example.com>
+and docs@example.com. This feature is ~~deprecated~~ ~replaced~ now.  
+That line ended with a hard break\
+and so did this one.
+
+Setext heading
+==============
+
+Another setext heading
+----------------------
+
+## Installation
+
+1. Install the package
+2. Import the component
+   - nested bullet
+   - [x] done task
+   - [ ] open task
+10. Tenth step
+100. Hundredth step
+
+-  Bullet with two spaces
+
+* Star bullet
++ Plus bullet
+
+> **Note**
+> Blockquotes can contain `inline code` and [links](https://example.com "title").
+
+![Diagram of the widget lifecycle](./lifecycle.png)
+See [the reference][ref] and the footnote.[^1]
+
+[ref]: https://example.com/reference "API reference"
+[^1]: Footnotes are supported via GFM.
+
+| Option  | Type      | Default |
+| :------ | :-------: | ------: |
+| `size`  | `number`  | `16`    |
+| `color` | `string`  | `"red"` |
+
+***
+
+### Math
+
+Inline math $E = mc^2$, $$a^2 + b^2$$, and __strong__, ***very important***,
+___also important___ text. Display math:
+
+$$
+\int_0^1 x^2 \, dx = \frac{1}{3}
+$$
+
+#### Code
+
+```js title="widget.js"
+export function widget(size = 16) {
+  return { size, render: () => `<div>${size}</div>` }
+}
+```
+
+```tsx
+const Box = ({ children }: { children: React.ReactNode }) => <div>{children}</div>
+```
+
+```css
+.widget { color: rebeccapurple; }
+```
+
+```bash
+npm install widgets --save
+```
+
+```json
+{ "name": "widgets", "version": "1.0.0" }
+```
+
+```python
+def area(r: float) -> float:
+    return 3.14159 * r ** 2
+```
+
+~~~yaml
+widgets:
+  size: 16
+~~~
+
+```text
+plain text block
+```
+
+    indented code is just a paragraph in MDX
+
+##### Components
+
+<Chart data={[1, 2, 3]} type="line" />
+
+<Callout kind="warning">
+  Props can be *markdown* &amp; JSX, e.g. {meta.author.toUpperCase()}.
+</Callout>
+
+{
+  meta.updated.getFullYear() > 2023 ? <p>Recently updated</p> : null
+}
+
+###### Fine print &copy; 2024 &#169; &#xA9;
+
 <MyComponent id="123" />
 
 You can also use objects with components, such as the `thisOne` component on
