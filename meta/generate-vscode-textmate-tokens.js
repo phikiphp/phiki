@@ -30,11 +30,11 @@ const vscodeOnigurumaLib = oniguruma.loadWASM(wasmBin).then(() => {
     };
 });
 
-const grammarFiles = fs.readdirSync(path.join(import.meta.dirname, "../resources/grammars"))
+const grammarFiles = fs.readdirSync(path.join(import.meta.dirname, "../resources/grammars/oniguruma"))
 const grammars = {}
 
 grammarFiles.forEach(file => {
-    const filePath = path.join(import.meta.dirname, "../resources/grammars", file);
+    const filePath = path.join(import.meta.dirname, "../resources/grammars/oniguruma", file);
     const contents = fs.readFileSync(filePath, 'utf8');
     const grammar = vsctm.parseRawGrammar(contents, file);
 

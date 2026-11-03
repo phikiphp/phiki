@@ -1,9 +1,11 @@
 <?php
 
 use Phiki\Exceptions\UnsupportedRegexEngineException;
+use Phiki\Grammar\Grammar;
 use Phiki\Grammar\MatchPattern;
 use Phiki\Grammar\ParsedGrammar;
 use Phiki\Phiki;
+use Phiki\Support\OnigurumaToPcre;
 use Phiki\Support\Regex;
 use Phiki\TextMate\Engines\OnigurumaEngine;
 use Phiki\TextMate\Engines\PcreEngine;
@@ -14,12 +16,13 @@ use Phiki\TextMate\Engines\PcreEngine;
  */
 function pcreMatch(string $pattern, string $subject): ?array
 {
-    $matched = (new PcreEngine)->findNextMatch([[new MatchPattern(0, new Regex($pattern), null), $pattern]], $subject, 0);
+    $pcre = OnigurumaToPcre::translate($pattern);
+    $matched = (new PcreEngine)->findNextMatch([[new MatchPattern(0, new Regex($pcre), null), $pcre]], $subject, 0);
 
     return $matched === null ? null : array_column($matched->matches, 0);
 }
 
-it('matches Oniguruma patterns', function (string $pattern, string $subject, ?string $expected) {
+it('matches translated Oniguruma patterns', function (string $pattern, string $subject, ?string $expected) {
     expect(pcreMatch($pattern, $subject)[0] ?? null)->toBe($expected);
 })->with([
     'hex digit escape' => ['\h+', 'x af9', 'af9'],
@@ -61,6 +64,14 @@ describe('engine selection', function () {
 
     it('uses the engine it is configured with', function () use ($grammar) {
         expect((new Phiki)->engine(new PcreEngine)->codeToTokens('a', $grammar())[0][0]->text)->toBe('a');
+    });
+
+    it('loads the bundled grammars translated for the configured engine', function () {
+        // The C grammar finds parameter names with a lookbehind that PCRE only compiles once translated.
+        $tokens = (new Phiki)->engine(new PcreEngine)->codeToTokens('void qsort(int v[], int left);', Grammar::C)[0];
+        $parameter = array_values(array_filter($tokens, fn ($token) => $token->text === 'v'))[0] ?? null;
+
+        expect($parameter?->scopes)->toContain('variable.parameter.probably.c');
     });
 
     it('rejects the Oniguruma engine without mbregex', function () {

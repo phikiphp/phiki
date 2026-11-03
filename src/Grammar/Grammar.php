@@ -704,9 +704,12 @@ enum Grammar: string
         };
     }
 
-    public function path(): string
+    /**
+     * Get the path to the grammar file written for the given regex engine.
+     */
+    public function path(string $engine = 'oniguruma'): string
     {
-        return __DIR__ . "/../../resources/grammars/{$this->value}.json";
+        return __DIR__ . "/../../resources/grammars/{$engine}/{$this->value}.json";
     }
 
     public static function parse(array $grammar): ParsedGrammar

@@ -2,6 +2,8 @@
 
 namespace Phiki\Support;
 
+use Phiki\TextMate\Engines\PcreEngine;
+
 /**
  * Translates Oniguruma regular expressions, as written in TextMate grammars, into
  * PCRE patterns with the same behaviour when compiled with the `u` and `m` flags.
@@ -71,7 +73,31 @@ class OnigurumaToPcre
      */
     public static function translate(string $pattern): string
     {
+        // Some grammars contain the raw character PcreEngine uses as its delimiter, so spell it as an escape.
+        $pattern = str_replace(PcreEngine::DELIMITER, '\\x'.bin2hex(PcreEngine::DELIMITER), $pattern);
+
         return self::rewriteLookbehinds((new self($pattern))->translatePattern());
+    }
+
+    /**
+     * Translate every pattern in a decoded TextMate grammar, for use with the PCRE engine.
+     * Decode the grammar into objects so empty objects survive being encoded again.
+     */
+    public static function translateGrammar(mixed $grammar): mixed
+    {
+        if (! is_array($grammar) && ! is_object($grammar)) {
+            return $grammar;
+        }
+
+        foreach ($grammar as $key => $value) {
+            $value = in_array($key, ['match', 'begin', 'end', 'while'], true) && is_string($value)
+                ? self::translate($value)
+                : self::translateGrammar($value);
+
+            is_array($grammar) ? $grammar[$key] = $value : $grammar->{$key} = $value;
+        }
+
+        return $grammar;
     }
 
     /**

@@ -21,6 +21,11 @@ class OnigurumaEngine implements RegexEngineInterface
         }
     }
 
+    public function identifier(): string
+    {
+        return 'oniguruma';
+    }
+
     public static function isSupported(): bool
     {
         return function_exists('mb_ereg_search_init');

@@ -4,18 +4,17 @@ namespace Phiki\TextMate\Engines;
 
 use Phiki\Contracts\RegexEngineInterface;
 use Phiki\Grammar\MatchedPattern;
-use Phiki\Support\OnigurumaToPcre;
 
 /**
- * Matches patterns with PCRE, which every PHP build includes, by translating them from
- * Oniguruma syntax first.
+ * Matches patterns with PCRE, which every PHP build includes. The bundled grammars for this
+ * engine are translated from Oniguruma syntax ahead of time, by `meta/translate-grammars.php`.
  */
 class PcreEngine implements RegexEngineInterface
 {
     /**
-     * PCRE delimiter. Grammar patterns never contain it once raw occurrences are escaped.
+     * PCRE delimiter. Translated grammar patterns never contain it.
      */
-    protected const DELIMITER = "\x01";
+    public const DELIMITER = "\x01";
 
     /**
      * `u` matches Unicode code points and properties, `m` makes `^` and `$` line anchors
@@ -23,16 +22,10 @@ class PcreEngine implements RegexEngineInterface
      */
     protected const FLAGS = 'umJ';
 
-    /**
-     * The most translated patterns to keep. `end` patterns embed text captured by their
-     * `begin` pattern, so a long-running process would otherwise grow the cache forever.
-     */
-    protected const CACHE_SIZE = 10000;
-
-    /**
-     * @var array<string, string>
-     */
-    protected static array $translated = [];
+    public function identifier(): string
+    {
+        return 'pcre';
+    }
 
     public function findNextMatch(array $patterns, string $lineText, int $linePos): ?MatchedPattern
     {
@@ -41,7 +34,7 @@ class PcreEngine implements RegexEngineInterface
 
         foreach ($patterns as [$pattern, $regex]) {
             // Patterns that fail to compile are skipped, the same as a pattern that does not match.
-            if (@preg_match($this->translate($regex), $lineText, $matches, PREG_OFFSET_CAPTURE | PREG_UNMATCHED_AS_NULL, $linePos) !== 1) {
+            if (@preg_match(self::DELIMITER.$regex.self::DELIMITER.self::FLAGS, $lineText, $matches, PREG_OFFSET_CAPTURE | PREG_UNMATCHED_AS_NULL, $linePos) !== 1) {
                 continue;
             }
 
@@ -72,21 +65,5 @@ class PcreEngine implements RegexEngineInterface
         }
 
         return new MatchedPattern($bestPattern, $wellFormedMatches);
-    }
-
-    protected function translate(string $regex): string
-    {
-        if (isset(static::$translated[$regex])) {
-            return static::$translated[$regex];
-        }
-
-        if (count(static::$translated) >= self::CACHE_SIZE) {
-            static::$translated = [];
-        }
-
-        // Some grammars contain the raw delimiter character, so spell it as an escape instead.
-        $pcre = OnigurumaToPcre::translate(str_replace(self::DELIMITER, '\\x01', $regex));
-
-        return static::$translated[$regex] = self::DELIMITER.$pcre.self::DELIMITER.self::FLAGS;
     }
 }

@@ -29,7 +29,7 @@ class Environment
 
         // Oniguruma is the default throughout 2.x. PCRE is used when PHP has no mbregex,
         // as on PHP 9 or builds without the mb_onig extension.
-        $this->engine = OnigurumaEngine::isSupported() ? new OnigurumaEngine : new PcreEngine;
+        $this->engine(OnigurumaEngine::isSupported() ? new OnigurumaEngine : new PcreEngine);
     }
 
     public function extend(ExtensionInterface $extension): static
@@ -63,6 +63,7 @@ class Environment
     public function engine(RegexEngineInterface $engine): static
     {
         $this->engine = $engine;
+        $this->grammars->engine($engine->identifier());
 
         return $this;
     }
