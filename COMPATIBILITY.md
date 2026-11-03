@@ -9,7 +9,7 @@ Regenerate it with `composer compatibility` after changing the PCRE engine, the 
 - **Identical lines** is the share of lines whose tokens are all the same.
 - The newline at the end of each line is not compared. mbregex lets `.` match it and PCRE does not, which never changes the rendered output.
 
-Generated with PHP 8.4.27, PCRE2 10.42 and Oniguruma 6.9.8.
+Generated with PHP 8.4.27, PCRE2 10.42 and Oniguruma 6.9.9.
 
 ## Summary
 
