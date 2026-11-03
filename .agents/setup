@@ -1,0 +1,80 @@
+#!/usr/bin/env bash
+# Prepares an Amp orb (Debian 12) to develop Phiki: PHP 8.4 (matching CI) with
+# mbstring, Composer, PHP dependencies, and the Node packages used by meta/ scripts.
+set -euo pipefail
+
+cd "$(dirname "${BASH_SOURCE[0]}")/.."
+
+PHP_VERSION="8.4"
+
+step() {
+  local label="$1"
+  shift
+  local start=$SECONDS
+  echo "==> ${label}"
+  "$@"
+  echo "    ${label} took $((SECONDS - start))s"
+}
+
+install_php() {
+  local packages=(
+    "php${PHP_VERSION}-cli" "php${PHP_VERSION}-mbstring" "php${PHP_VERSION}-xml"
+    "php${PHP_VERSION}-curl" "php${PHP_VERSION}-zip" "php${PHP_VERSION}-intl"
+  )
+  local missing=()
+  for pkg in "${packages[@]}"; do
+    dpkg-query -W -f='${Status}' "$pkg" 2>/dev/null | grep -q "install ok installed" || missing+=("$pkg")
+  done
+  if [ "${#missing[@]}" -eq 0 ]; then
+    echo "    PHP ${PHP_VERSION} packages already installed"
+    return
+  fi
+
+  # Debian 12 only ships PHP 8.2, so use the sury.org repository for newer versions.
+  if [ ! -f /etc/apt/sources.list.d/php.list ]; then
+    sudo apt-get update -qq
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq ca-certificates curl lsb-release unzip
+    sudo curl -fsSLo /usr/share/keyrings/deb.sury.org-php.gpg https://packages.sury.org/php/apt.gpg
+    echo "deb [signed-by=/usr/share/keyrings/deb.sury.org-php.gpg] https://packages.sury.org/php/ $(lsb_release -sc) main" \
+      | sudo tee /etc/apt/sources.list.d/php.list >/dev/null
+  fi
+  sudo apt-get update -qq
+  sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq "${missing[@]}"
+  sudo update-alternatives --set php "/usr/bin/php${PHP_VERSION}"
+}
+
+install_composer() {
+  if command -v composer >/dev/null 2>&1; then
+    echo "    Composer already installed"
+    return
+  fi
+  local installer
+  installer="$(mktemp)"
+  curl -fsSLo "$installer" https://getcomposer.org/installer
+  sudo php "$installer" --quiet --install-dir=/usr/local/bin --filename=composer
+  rm -f "$installer"
+}
+
+install_php_deps() {
+  # composer.lock is gitignored, so mirror CI and resolve with `composer update`.
+  # The dev-only orchestra/testbench ^9 constraint needs Laravel 11 releases that
+  # Composer's security-advisory blocking rejects, so allow them in this sandbox.
+  export COMPOSER_NO_SECURITY_BLOCKING=1
+  if [ -f composer.lock ] && [ -d vendor ]; then
+    composer install --no-interaction --prefer-dist --no-progress
+  else
+    composer update --no-interaction --prefer-dist --no-progress
+  fi
+}
+
+install_node_deps() {
+  # npm ci installs exactly what package-lock.json pins without rewriting it.
+  npm ci --no-audit --no-fund --loglevel=error
+}
+
+step "Install PHP ${PHP_VERSION}" install_php
+step "Install Composer" install_composer
+step "Install PHP dependencies" install_php_deps
+step "Install Node dependencies" install_node_deps
+
+php -v | head -n 1
