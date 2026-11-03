@@ -12,8 +12,31 @@ class Regex implements Stringable
 
     protected string $pattern;
 
-    public function __construct(string $pattern)
+    protected bool $compiled = false;
+
+    /**
+     * PCRE delimiter. Grammar patterns never contain it, so they need no escaping.
+     */
+    protected const DELIMITER = "\x01";
+
+    /**
+     * `u` matches Unicode code points and properties, `m` makes `^` and `$` line anchors
+     * as they always are in Oniguruma, and `J` allows duplicate group names.
+     */
+    protected const FLAGS = 'umJ';
+
+    public function __construct(protected string $source) {}
+
+    /**
+     * Translate the pattern to PCRE. Most patterns in a grammar are never used, so this
+     * happens the first time a pattern is needed rather than when the grammar is parsed.
+     */
+    protected function compile(): void
     {
+        $this->compiled = true;
+
+        // Some grammars contain the raw delimiter character, so spell it as an escape instead.
+        $pattern = OnigurumaToPcre::translate(str_replace(self::DELIMITER, '\\x01', $this->source));
         $length = strlen($pattern);
         $lastPushedPos = 0;
         $output = [];
@@ -54,19 +77,31 @@ class Regex implements Stringable
         }
     }
 
-    public function get(bool $allowA = false, bool $allowG = false, array $references = []): string
+    /**
+     * Get the PCRE pattern. Back-references are only replaced with the given captures for
+     * `end` patterns, which refer to the captures of their `begin` pattern.
+     */
+    public function get(bool $allowA = false, bool $allowG = false, ?array $references = null): string
     {
+        if (! $this->compiled) {
+            $this->compile();
+        }
+
         $pattern = $this->resolveAnchors($this->pattern, $allowA, $allowG);
+
+        if ($references === null) {
+            return self::DELIMITER.$pattern.self::DELIMITER.self::FLAGS;
+        }
 
         $pattern = preg_replace_callback('/\\\\(\d+)/', function ($matches) use ($references) {
             if (! isset($references[$matches[1]][0])) {
                 return '';
             }
 
-            return $references[$matches[1]][0];
+            return preg_quote($references[$matches[1]][0], self::DELIMITER);
         }, $pattern);
 
-        return $pattern;
+        return self::DELIMITER.$pattern.self::DELIMITER.self::FLAGS;
     }
 
     private function buildAnchorCache(): array

@@ -686,17 +686,20 @@ describe('while', function () {
             [
                 new Token(['source.test', 'markup.quote.block.test', 'punctuation.definition.quote.begin.test'], '>', 0, 1),
                 new Token(['source.test', 'markup.quote.block.test'], ' ', 1, 2),
-                new Token(['source.test', 'markup.quote.block.test', 'markup.quote.block.line.test'], "first line\n", 2, 13),
+                new Token(['source.test', 'markup.quote.block.test', 'markup.quote.block.line.test'], 'first line', 2, 12),
+                new Token(['source.test'], "\n", 12, 13),
             ],
             [
                 new Token(['source.test', 'markup.quote.block.test', 'punctuation.definition.quote.begin.test'], '>', 0, 1),
                 new Token(['source.test', 'markup.quote.block.test'], ' ', 1, 2),
-                new Token(['source.test', 'markup.quote.block.test', 'markup.quote.block.line.test'], "second line\n", 2, 14),
+                new Token(['source.test', 'markup.quote.block.test', 'markup.quote.block.line.test'], 'second line', 2, 13),
+                new Token(['source.test'], "\n", 13, 14),
             ],
             [
                 new Token(['source.test', 'markup.quote.block.test', 'punctuation.definition.quote.begin.test'], '>', 0, 1),
                 new Token(['source.test', 'markup.quote.block.test'], ' ', 1, 2),
-                new Token(['source.test', 'markup.quote.block.test', 'markup.quote.block.line.test'], "third line\n", 2, 13),
+                new Token(['source.test', 'markup.quote.block.test', 'markup.quote.block.line.test'], 'third line', 2, 12),
+                new Token(['source.test'], "\n", 12, 13),
             ],
         ]);
     });
