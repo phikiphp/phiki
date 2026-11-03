@@ -311,7 +311,7 @@ class Tokenizer
      */
     protected function matchRule(ParsedGrammar $grammar, string $lineText, bool $isFirstLine, int $linePos, StateStack &$stack, int $anchorPosition): ?MatchedPattern
     {
-        return (new PatternSearcher($stack->pattern, $grammar, $this->environment->grammars, $isFirstLine, $linePos === $anchorPosition))
+        return (new PatternSearcher($stack->pattern, $grammar, $this->environment->grammars, $isFirstLine, $linePos === $anchorPosition, $this->environment->engine))
             ->findNextMatch($lineText, $linePos);
     }
 
@@ -338,7 +338,7 @@ class Tokenizer
                 continue;
             }
 
-            $searcher = new PatternSearcher($injection, $grammar, $this->environment->grammars, $isFirstLine, $linePos === $anchorPosition);
+            $searcher = new PatternSearcher($injection, $grammar, $this->environment->grammars, $isFirstLine, $linePos === $anchorPosition, $this->environment->engine);
             $matched = $searcher->findNextMatch($lineText, $linePos);
 
             if (! $matched) {
@@ -384,7 +384,7 @@ class Tokenizer
 
         // Process and check each while pattern.
         for ($whileRule = array_pop($whileRules); $whileRule; $whileRule = array_pop($whileRules)) {
-            $searcher = new PatternSearcher($whileRule->rule, $grammar, $this->environment->grammars, $isFirstLine, $linePos === $anchorPosition);
+            $searcher = new PatternSearcher($whileRule->rule, $grammar, $this->environment->grammars, $isFirstLine, $linePos === $anchorPosition, $this->environment->engine);
             $r = $searcher->findNextMatch($lineText, $linePos, while: true);
 
             if (! $r) {

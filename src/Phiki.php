@@ -6,6 +6,7 @@ use Phiki\Ansi\AnsiPalette;
 use Phiki\Ansi\AnsiToken;
 use Phiki\Ansi\AnsiTokenizer;
 use Phiki\Contracts\ExtensionInterface;
+use Phiki\Contracts\RegexEngineInterface;
 use Phiki\Grammar\Grammar;
 use Phiki\Grammar\ParsedGrammar;
 use Phiki\Highlighting\Highlighter;
@@ -148,6 +149,13 @@ class Phiki
     public function cache(CacheInterface $cache): static
     {
         $this->environment->cache($cache);
+
+        return $this;
+    }
+
+    public function engine(RegexEngineInterface $engine): static
+    {
+        $this->environment->engine($engine);
 
         return $this;
     }
