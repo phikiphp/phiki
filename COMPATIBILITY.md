@@ -9,7 +9,7 @@ Regenerate it with `composer compatibility` after changing an engine, the transl
 - **First PCRE difference** is the first line where the PCRE engine's tokens differ from vscode-textmate's.
 - Neighbouring tokens with the same scopes are merged before comparing, and the newline at the end of each line is not compared. Neither changes the rendered output.
 
-Generated with PHP 8.4.27, PCRE2 10.42 and Oniguruma 6.9.8.
+Generated with PHP 8.4.27, PCRE2 10.42 and Oniguruma 6.9.9.
 
 ## Summary
 
