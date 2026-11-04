@@ -1,4 +1,4 @@
-name: Compatibility report
+name: Reports
 
 on:
     push:
@@ -9,14 +9,14 @@ permissions:
     contents: write
 
 concurrency:
-    group: compatibility-report
+    group: reports
     cancel-in-progress: true
 
 jobs:
     report:
         runs-on: ubuntu-latest
 
-        name: Regenerate COMPATIBILITY.md
+        name: Regenerate COMPATIBILITY.md and PERFORMANCE.md
 
         steps:
             - name: Checkout
@@ -40,19 +40,22 @@ jobs:
                   composer update --no-interaction --prefer-dist
                   npm ci
 
-            - name: Generate report
+            - name: Generate compatibility report
               run: composer compatibility
+
+            - name: Generate performance report
+              run: composer performance
 
             # Pushes made with the workflow's token do not trigger other workflows, so this cannot loop.
             - name: Commit and push changes
               run: |
-                  if git diff --quiet -- COMPATIBILITY.md; then
-                      echo "COMPATIBILITY.md is unchanged."
+                  if git diff --quiet -- COMPATIBILITY.md PERFORMANCE.md; then
+                      echo "COMPATIBILITY.md and PERFORMANCE.md are unchanged."
                       exit 0
                   fi
 
                   git config user.name "github-actions[bot]"
                   git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-                  git add COMPATIBILITY.md
-                  git commit -m "Update COMPATIBILITY.md"
+                  git add COMPATIBILITY.md PERFORMANCE.md
+                  git commit -m "Update $(git diff --cached --name-only | paste -sd ' ' | sed 's/ / and /')"
                   git push
