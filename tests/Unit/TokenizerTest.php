@@ -1,5 +1,9 @@
 <?php
 
+use Phiki\Grammar\ParsedGrammar;
+use Phiki\Phiki;
+use Phiki\TextMate\Engines\OnigurumaEngine;
+use Phiki\TextMate\Engines\PcreEngine;
 use Phiki\Token\Token;
 
 describe('match', function () {
@@ -700,4 +704,104 @@ describe('while', function () {
             ],
         ]);
     });
+});
+
+describe('vscode-textmate compatibility', function () {
+    // vscode-textmate tokenizes each case the same way. Tokens are compared by text and scopes, with
+    // neighbouring tokens that have the same scopes merged and the newline at the end of each line left out.
+    it('tokenizes the same way as vscode-textmate', function (array $grammar, string $code, array $expected, string $engine) {
+        if ($engine === OnigurumaEngine::class && ! OnigurumaEngine::isSupported()) {
+            $this->markTestSkipped('mbregex is not available');
+        }
+
+        $lines = array_map(function (array $line) {
+            $merged = [];
+
+            foreach ($line as $token) {
+                $text = rtrim($token->text, "\n");
+                $scopes = implode(' ', array_slice($token->scopes, 1));
+
+                if ($text === '') {
+                    continue;
+                }
+
+                if ($merged !== [] && $merged[count($merged) - 1][1] === $scopes) {
+                    $merged[count($merged) - 1][0] .= $text;
+                } else {
+                    $merged[] = [$text, $scopes];
+                }
+            }
+
+            return $merged;
+        }, (new Phiki)->engine(new $engine)->codeToTokens($code, ParsedGrammar::fromArray($grammar + ['scopeName' => 'source.test'])));
+
+        expect($lines)->toBe($expected);
+    })->with([
+        'a rule repository is searched before the grammar repository' => [
+            [
+                'patterns' => [['patterns' => [['include' => '#word']], 'repository' => ['word' => ['match' => 'a', 'name' => 'inner.test']]]],
+                'repository' => ['word' => ['match' => 'a', 'name' => 'outer.test']],
+            ],
+            'a',
+            [[['a', 'inner.test']]],
+        ],
+        'applyEndPatternLast lets nested patterns win a tie with the end pattern' => [
+            ['patterns' => [['begin' => 'x', 'end' => 'b', 'name' => 'region.test', 'applyEndPatternLast' => 1, 'patterns' => [['match' => 'b', 'name' => 'nested.test']]]]],
+            'xb',
+            [[['x', 'region.test'], ['b', 'region.test nested.test']]],
+        ],
+        'back-references in a match pattern refer to its own groups' => [
+            ['patterns' => [['match' => '(a)\\1', 'name' => 'double.test']]],
+            'ab',
+            [[['ab', '']]],
+        ],
+        'back-references in an end pattern match the begin text literally' => [
+            ['patterns' => [['begin' => '(\\|)', 'end' => '\\1', 'name' => 'region.test']]],
+            '|x|y',
+            [[['|x|', 'region.test'], ['y', '']]],
+        ],
+        'back-references in a while pattern refer to the begin captures' => [
+            ['patterns' => [['begin' => '^(\\w+):', 'while' => '^\\1 ', 'name' => 'block.test']]],
+            "ab: x\nab y\na z",
+            [[['ab: x', 'block.test']], [['ab y', 'block.test']], [['a z', '']]],
+        ],
+        'scope names can transform a capture other than the first' => [
+            ['patterns' => [['match' => '(a)(B)', 'name' => 'x.${2:/downcase}.test']]],
+            'aB',
+            [[['aB', 'x.b.test']]],
+        ],
+        'captures after multibyte text are retokenized within the capture' => [
+            ['patterns' => [['match' => '(é)(x)', 'captures' => ['2' => ['patterns' => [['match' => 'x+', 'name' => 'inner.test']]]]]]],
+            'éxx',
+            [[['é', ''], ['x', 'inner.test'], ['x', '']]],
+        ],
+        'a begin/end rule whose patterns are all missing is left out' => [
+            ['patterns' => [['begin' => '<', 'end' => '>', 'name' => 'region.test', 'patterns' => [['include' => 'source.missing']]]]],
+            '<a>',
+            [[['<a>', '']]],
+        ],
+        'an empty or missing end never matches' => [
+            ['patterns' => [['begin' => 'a', 'end' => '', 'name' => 'region.test', 'patterns' => [['match' => 'b', 'name' => 'b.test']]]]],
+            "ab\nb",
+            [[['a', 'region.test'], ['b', 'region.test b.test']], [['b', 'region.test b.test']]],
+        ],
+        'empty names and missing captures add no scope' => [
+            ['patterns' => [['match' => '(a)(b)', 'name' => '', 'captures' => ['1' => null, '2' => ['name' => '']]]]],
+            'ab',
+            [[['ab', '']]],
+        ],
+        'begin/while captures after a gap are applied' => [
+            ['patterns' => [['begin' => '(x)(y)', 'beginCaptures' => ['2' => ['name' => 'y.test']], 'while' => 'x', 'name' => 'block.test']]],
+            'xy',
+            [[['x', 'block.test'], ['y', 'block.test y.test']]],
+        ],
+        'a capture in a lookahead is scoped past the end of the match' => [
+            ['patterns' => [['match' => 'a(?=(b))', 'captures' => ['1' => ['name' => 'ahead.test']]]]],
+            'ab',
+            [[['a', ''], ['b', 'ahead.test']]],
+        ],
+    ])->with([
+        'oniguruma' => OnigurumaEngine::class,
+        'pcre' => PcreEngine::class,
+    ]);
 });

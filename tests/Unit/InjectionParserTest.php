@@ -160,6 +160,17 @@ describe('InjectionParser', function () {
         expect($second->operator)->toBe(Operator::Or);
         expect($second->child->scopes[0]->__toString())->toBe('meta.tag');
     });
+
+    it('matches scopes the same way as vscode-textmate', function (string $selector, array $scopes, bool $expected) {
+        expect(injection($selector)->matches($scopes))->toBe($expected);
+    })->with([
+        'neighbouring groups must all match' => ['L:(meta.a | meta.b) (meta.c | meta.d) - (meta source)', ['source.x', 'meta.b', 'meta.c'], true],
+        'neighbouring groups when one does not match' => ['L:(meta.a | meta.b) (meta.c | meta.d) - (meta source)', ['source.x', 'meta.b', 'meta.e'], false],
+        'neighbouring groups with an excluded scope' => ['L:(meta.a | meta.b) (meta.c | meta.d) - (meta source)', ['source.x', 'meta.b', 'meta.c', 'meta.embedded', 'source.js'], false],
+        'a hyphen inside a scope name' => ['text.html.vue-html - comment', ['text.html.vue-html'], true],
+        'a hyphen inside a scope name is not an exclusion' => ['text.html.vue-html - comment', ['text.html.vue'], false],
+        'an exclusion binds more tightly than an or' => ['meta.a | meta.b - meta.c', ['meta.a', 'meta.c'], true],
+    ]);
 });
 
 function injection(string $selector): Injection

@@ -19,6 +19,7 @@ class EndPattern implements PatternInterface
         public array $captures = [],
         public array $patterns = [],
         public bool $injection = false,
+        public bool $applyEndPatternLast = false,
     ) {}
 
     public function getScopeName(array $captures): ?string
@@ -42,15 +43,15 @@ class EndPattern implements PatternInterface
      */
     public function compile(ParsedGrammar $grammar, GrammarRepositoryInterface $grammars, bool $allowA, bool $allowG): array
     {
-        $compiled = [
-            [$this, $this->end->get($allowA, $allowG, $this->begin->matches)],
-        ];
+        $end = [$this, $this->end->get($allowA, $allowG, $this->begin->matches)];
+        $compiled = [];
 
         foreach ($this->patterns as $pattern) {
             $compiled = array_merge($compiled, $pattern->compile($grammar, $grammars, $allowA, $allowG));
         }
 
-        return $compiled;
+        // The end pattern wins a tie with the nested patterns, unless `applyEndPatternLast` is set.
+        return $this->applyEndPatternLast ? [...$compiled, $end] : [$end, ...$compiled];
     }
 
     public function getId(): int

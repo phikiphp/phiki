@@ -10,6 +10,11 @@ use Phiki\Support\Str;
 
 class BeginEndPattern implements HasContentNameInterface, PatternInterface
 {
+    /**
+     * Whether every nested pattern includes a rule or grammar that doesn't exist.
+     */
+    private ?bool $missing = null;
+
     public function __construct(
         public int $id,
         public Regex $begin,
@@ -21,6 +26,7 @@ class BeginEndPattern implements HasContentNameInterface, PatternInterface
         public array $captures = [],
         public array $patterns = [],
         public bool $injection = false,
+        public bool $applyEndPatternLast = false,
     ) {}
 
     public function getScopeName(array $captures): ?string
@@ -53,6 +59,11 @@ class BeginEndPattern implements HasContentNameInterface, PatternInterface
      */
     public function compile(ParsedGrammar $grammar, GrammarRepositoryInterface $grammars, bool $allowA, bool $allowG): array
     {
+        // Like vscode-textmate, this is decided once, the first time the rule is compiled.
+        if ($this->missing ??= IncludePattern::allMissing($this->patterns, $grammar, $grammars)) {
+            return [];
+        }
+
         return [
             [$this, $this->begin->get($allowA, $allowG)],
         ];
@@ -73,6 +84,7 @@ class BeginEndPattern implements HasContentNameInterface, PatternInterface
             captures: $this->captures,
             patterns: $this->patterns,
             injection: $this->injection,
+            applyEndPatternLast: $this->applyEndPatternLast,
         );
     }
 
