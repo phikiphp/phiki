@@ -30,7 +30,7 @@ class PatternSearcher
     {
         $patterns = $while && $this->pattern instanceof WhilePattern
             ? [
-                [$this->pattern, $this->pattern->while->get($this->allowA, $this->allowG)],
+                [$this->pattern, $this->pattern->while->get($this->allowA, $this->allowG, $this->pattern->begin->matches)],
             ] : $this->pattern->compile($this->grammar, $this->grammars, $this->allowA, $this->allowG);
 
         return $this->engine->findNextMatch($patterns, $lineText, $linePos);

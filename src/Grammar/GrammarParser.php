@@ -5,7 +5,6 @@ namespace Phiki\Grammar;
 use Phiki\Contracts\InjectionSelectorParserInputInterface;
 use Phiki\Contracts\PatternInterface;
 use Phiki\Exceptions\MissingRequiredGrammarKeyException;
-use Phiki\Exceptions\UnreachableException;
 use Phiki\Grammar\Injections\Composite;
 use Phiki\Grammar\Injections\Expression;
 use Phiki\Grammar\Injections\Filter;
@@ -26,6 +25,21 @@ class GrammarParser
 
     protected int $id = 0;
 
+    /**
+     * Repository keys for the names that `#name` includes refer to in the rule being parsed, for names
+     * defined by the repository of an enclosing rule rather than the grammar's own repository.
+     *
+     * @var array<string, string>
+     */
+    protected array $references = [];
+
+    /**
+     * Rules from the repositories of rules, keyed so they can't clash with the grammar's own repository.
+     *
+     * @var array<string, PatternInterface>
+     */
+    protected array $nestedRepository = [];
+
     public function parse(array $grammar): ParsedGrammar
     {
         if (! isset($grammar['scopeName'])) {
@@ -33,6 +47,8 @@ class GrammarParser
         }
 
         $this->scopeName = $scopeName = $grammar['scopeName'];
+        $this->references = [];
+        $this->nestedRepository = [];
 
         $patterns = $this->patterns($grammar['patterns'] ?? []);
         $repository = [];
@@ -51,11 +67,15 @@ class GrammarParser
 
         $name = $grammar['name'] ?? null;
 
-        return new ParsedGrammar($name, $scopeName, $patterns, $repository, $injections);
+        return new ParsedGrammar($name, $scopeName, $patterns, $repository + $this->nestedRepository, $injections);
     }
 
     protected function pattern(array $pattern): PatternInterface|false
     {
+        // vscode-textmate treats an empty name the same as no name.
+        $pattern = array_filter($pattern, fn ($value, $key) => ! in_array($key, ['name', 'contentName'], true) || ($value !== '' && $value !== null), ARRAY_FILTER_USE_BOTH);
+
+        // The checks below follow how vscode-textmate decides what kind of rule a pattern is.
         if (isset($pattern['match']) && $pattern['match'] !== '') {
             return new MatchPattern(
                 $this->id(),
@@ -66,22 +86,36 @@ class GrammarParser
             );
         }
 
-        if (isset($pattern['begin'], $pattern['end']) && $pattern['begin'] !== '' && $pattern['end'] !== '') {
-            return new BeginEndPattern(
-                $this->id(),
-                new Regex($pattern['begin']),
-                new Regex($pattern['end']),
-                $pattern['name'] ?? null,
-                $pattern['contentName'] ?? null,
-                $this->captures($pattern['beginCaptures'] ?? []),
-                $this->captures($pattern['endCaptures'] ?? []),
-                $this->captures($pattern['captures'] ?? []),
-                $this->patterns($pattern['patterns'] ?? []),
-                injection: $this->injection,
-            );
+        // A rule without `begin` can have its own repository. `#name` includes inside the rule, including
+        // inside that repository, resolve to its rules before the enclosing ones.
+        if (! isset($pattern['begin']) && isset($pattern['repository']) && is_array($pattern['repository'])) {
+            $references = $this->references;
+
+            foreach (array_keys($pattern['repository']) as $name) {
+                $this->references[$name] = $name."\0".$this->id();
+            }
+
+            try {
+                foreach ($pattern['repository'] as $name => $rule) {
+                    if (is_array($rule) && ($parsed = $this->pattern($rule))) {
+                        $this->nestedRepository[$this->references[$name]] = $parsed;
+                    }
+                }
+
+                unset($pattern['repository']);
+
+                return $this->pattern($pattern);
+            } finally {
+                $this->references = $references;
+            }
         }
 
-        if (isset($pattern['begin'], $pattern['while'])) {
+        // An empty begin matches straight away, but mbregex can't search for an empty pattern.
+        if (($pattern['begin'] ?? null) === '') {
+            $pattern['begin'] = '(?:)';
+        }
+
+        if (isset($pattern['begin']) && ($pattern['while'] ?? '') !== '') {
             return new BeginWhilePattern(
                 $this->id(),
                 new Regex($pattern['begin']),
@@ -96,21 +130,31 @@ class GrammarParser
             );
         }
 
-        // This is more of a special case because it shouldn't ever happen, but we want
-        // to be graceful and treat a standalone begin as a match.
-        if (isset($pattern['begin']) && ! isset($pattern['end']) && ! isset($pattern['while'])) {
-            return new MatchPattern(
+        if (isset($pattern['begin'])) {
+            return new BeginEndPattern(
                 $this->id(),
                 new Regex($pattern['begin']),
+                // A missing or empty end never matches, so the rule continues to the end of the code.
+                new Regex(($pattern['end'] ?? '') === '' ? '(?!)' : $pattern['end']),
                 $pattern['name'] ?? null,
-                $this->captures($pattern['beginCaptures'] ?? $pattern['captures'] ?? []),
+                $pattern['contentName'] ?? null,
+                $this->captures($pattern['beginCaptures'] ?? []),
+                $this->captures($pattern['endCaptures'] ?? []),
+                $this->captures($pattern['captures'] ?? []),
+                $this->patterns($pattern['patterns'] ?? []),
                 injection: $this->injection,
+                applyEndPatternLast: (bool) ($pattern['applyEndPatternLast'] ?? false),
             );
+        }
+
+        if (isset($pattern['patterns'])) {
+            return new CollectionPattern($this->id(), $this->patterns($pattern['patterns']), injection: $this->injection);
         }
 
         if (isset($pattern['include'])) {
             if (str_starts_with($pattern['include'], '#')) {
-                [$reference, $scopeName] = [substr($pattern['include'], 1), $this->scopeName];
+                $reference = substr($pattern['include'], 1);
+                [$reference, $scopeName] = [$this->references[$reference] ?? $reference, $this->scopeName];
             } elseif ($pattern['include'] === '$self') {
                 [$reference, $scopeName] = ['$self', $this->scopeName];
             } elseif ($pattern['include'] === '$base') {
@@ -122,10 +166,6 @@ class GrammarParser
             }
 
             return new IncludePattern($this->id(), $reference, $scopeName, injection: $this->injection);
-        }
-
-        if (isset($pattern['patterns'])) {
-            return new CollectionPattern($this->id(), $this->patterns($pattern['patterns']), injection: $this->injection);
         }
 
         if (array_is_list($pattern)) {
@@ -153,6 +193,10 @@ class GrammarParser
         $result = [];
 
         foreach ($captures as $index => $capture) {
+            if ($capture === null) {
+                continue;
+            }
+
             $result[$index] = $this->capture($capture, strval($index));
         }
 
@@ -171,36 +215,40 @@ class GrammarParser
     protected function capture(array|string $capture, string $index): Capture
     {
         if (is_string($capture)) {
-            return new Capture($this->id(), $index, $capture, new CollectionPattern($this->id(), [], $this->injection));
+            return new Capture($this->id(), $index, $capture === '' ? null : $capture, new CollectionPattern($this->id(), [], $this->injection));
         }
 
-        return new Capture($this->id(), $index, $capture['name'] ?? null, new CollectionPattern($this->id(), $this->patterns($capture['patterns'] ?? []), $this->injection));
+        return new Capture($this->id(), $index, ($capture['name'] ?? '') === '' ? null : $capture['name'], new CollectionPattern($this->id(), $this->patterns($capture['patterns'] ?? []), $this->injection));
     }
 
     protected function injection(string $selector, array $injection): Injection
     {
         $input = new class($selector) implements InjectionSelectorParserInputInterface
         {
-            private string $selector;
+            /**
+             * @var list<string>
+             */
+            private array $tokens;
 
             private int $offset = 0;
 
             public function __construct(string $selector)
             {
-                // Remove whitespace from the selector so we don't need to skip it in the parser.
-                // Only exception is when the whitespace is between two letters, because it means
-                // it's part of a path / scope pattern.
-                $this->selector = preg_replace('/(?<![a-zA-Z])\s+|\s+(?![a-zA-Z])/', '', $selector);
+                // Split the selector into tokens the same way vscode-textmate does: prefixes, scope names
+                // (which can contain `-`), and operators. A `-` only negates when it's not inside a name.
+                preg_match_all('/[LR]:|[\w.:][\w.:\-]*|[,|&\-()]/', $selector, $matches);
+
+                $this->tokens = $matches[0];
             }
 
             public function current(): ?string
             {
-                return $this->selector[$this->offset] ?? null;
+                return $this->tokens[$this->offset] ?? null;
             }
 
             public function peek(): ?string
             {
-                return $this->selector[$this->offset + 1] ?? null;
+                return $this->tokens[$this->offset + 1] ?? null;
             }
 
             public function next(): void
@@ -231,119 +279,92 @@ class GrammarParser
         return new Selector($composites);
     }
 
+    /**
+     * Parse operands joined by `|`. Operands next to each other, or joined by `&` or `-`, bind more tightly
+     * than `|`, so `a | b - c` means `a | (b - c)`, as in vscode-textmate.
+     */
     protected function composite(InjectionSelectorParserInputInterface $input): Composite
     {
-        $expressions = [$this->expression($input)];
+        $conjunctions = [$this->conjunction($input)];
 
-        while ($input->current() !== null && in_array($input->current(), ['&', '|', '-'])) {
-            $operator = match ($input->current()) {
-                '&' => Operator::And,
-                '|' => Operator::Or,
-                '-' => Operator::Not,
-            };
-
+        while ($input->current() === '|') {
             $input->next();
-
-            $expressions[] = $this->expression($input, $operator);
+            $conjunctions[] = $this->conjunction($input);
         }
 
-        return new Composite($expressions);
+        if (count($conjunctions) === 1) {
+            return new Composite($conjunctions[0]);
+        }
+
+        return new Composite(array_map(function (array $expressions, int $index) {
+            $operator = $index === 0 ? Operator::None : Operator::Or;
+
+            if (count($expressions) === 1) {
+                return new Expression($expressions[0]->child, $operator, $expressions[0]->negated);
+            }
+
+            return new Expression(new Group(new Selector([new Composite($expressions)])), $operator);
+        }, $conjunctions, array_keys($conjunctions)));
     }
 
-    protected function expression(InjectionSelectorParserInputInterface $input, Operator $operator = Operator::None): Expression
+    /**
+     * @return list<Expression>
+     */
+    protected function conjunction(InjectionSelectorParserInputInterface $input): array
     {
-        $negated = false;
+        $expressions = [];
 
-        if ($input->current() === '-') {
-            $negated = true;
+        while (true) {
+            $operator = $expressions === [] ? Operator::None : Operator::And;
+            $negated = false;
+
+            if ($input->current() === '&') {
+                $input->next();
+            } elseif ($input->current() === '-') {
+                $input->next();
+                $expressions === [] ? $negated = true : $operator = Operator::Not;
+            }
+
+            $child = $this->operand($input);
+
+            if ($child === null) {
+                return $expressions;
+            }
+
+            $expressions[] = new Expression($child, $operator, $negated);
+        }
+    }
+
+    protected function operand(InjectionSelectorParserInputInterface $input): Filter|Group|Path|null
+    {
+        $current = $input->current();
+
+        if ($current === 'L:' || $current === 'R:') {
+            $input->next();
+            $child = $this->operand($input);
+
+            return $child instanceof Filter || $child === null ? $child : new Filter($child, $current === 'L:' ? Prefix::Left : Prefix::Right);
+        }
+
+        if ($current === '(') {
+            $input->next();
+            $child = $this->selector($input);
+
+            if ($input->current() === ')') {
+                $input->next();
+            }
+
+            return new Group($child);
+        }
+
+        $scopes = [];
+
+        while (($current = $input->current()) !== null && preg_match('/^[\w.:]/', $current)) {
+            $scopes[] = Scope::fromString($current);
             $input->next();
         }
 
-        if (in_array($input->current(), ['L', 'R']) && $input->peek() === ':') {
-            $child = $this->filter($input);
-        } elseif ($input->current() === '(') {
-            $child = $this->group($input);
-        } else {
-            $child = $this->path($input);
-        }
-
-        return new Expression($child, $operator, $negated);
-    }
-
-    protected function filter(InjectionSelectorParserInputInterface $input): Filter
-    {
-        $prefix = match ($input->current()) {
-            'L' => Prefix::Left,
-            'R' => Prefix::Right,
-            default => throw new UnreachableException('Unrecognised prefix in filter: '.$input->current()),
-        };
-
-        $input->next();
-        $input->next();
-
-        if ($input->current() === '(') {
-            $child = $this->group($input);
-        } else {
-            $child = $this->path($input);
-        }
-
-        return new Filter($child, $prefix);
-    }
-
-    protected function group(InjectionSelectorParserInputInterface $input): Group
-    {
-        if ($input->current() !== '(') {
-            throw new UnreachableException('Expected "(" in group.');
-        }
-
-        $input->next();
-
-        $child = $this->selector($input);
-
-        if ($input->current() !== ')') {
-            throw new UnreachableException('Expected ")" in group.');
-        }
-
-        $input->next();
-
-        return new Group($child);
-    }
-
-    protected function path(InjectionSelectorParserInputInterface $input): Path
-    {
-        $scopes = [$this->scope($input)];
-
-        while ($input->current() === ' ') {
-            while ($input->current() === ' ') {
-                $input->next();
-            }
-
-            $scopes[] = $this->scope($input);
-        }
-
-        return new Path($scopes);
-    }
-
-    protected function scope(InjectionSelectorParserInputInterface $input): Scope
-    {
-        $parts = [];
-
-        do {
-            if ($input->current() === '.') {
-                $input->next();
-            }
-
-            $part = '';
-
-            while ($input->current() !== null && (ctype_alpha($input->current()) || $input->current() === '*')) {
-                $part .= $input->current();
-                $input->next();
-            }
-
-            $parts[] = $part;
-        } while ($input->current() === '.');
-
-        return new Scope($parts);
+        return $scopes === [] ? null : new Path($scopes);
     }
 
     protected function id(): int

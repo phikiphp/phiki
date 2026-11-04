@@ -232,7 +232,7 @@ class Tokenizer
                 continue;
             }
 
-            if ((strlen($match[0]) + $match[1]) > $maxEnd) {
+            if ($match[1] > $maxEnd) {
                 break;
             }
 
@@ -254,7 +254,7 @@ class Tokenizer
                 $scopeName = $captureRule->getScopeName($matches);
                 $nameScopesList = $stack->contentNameScopesList->push($scopeName);
                 $stackClone = $stack->push($captureRule->pattern, $match[1], -1, false, null, $nameScopesList, $nameScopesList);
-                $this->tokenizeString($grammar, mb_substr($lineText, 0, strlen($match[0]) + $match[1]), $isFirstLine && $match[1] === 0, $match[1], $stackClone, $lineTokens, false);
+                $this->tokenizeString($grammar, substr($lineText, 0, strlen($match[0]) + $match[1]), $isFirstLine && $match[1] === 0, $match[1], $stackClone, $lineTokens, false);
 
                 continue;
             }

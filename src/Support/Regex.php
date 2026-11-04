@@ -54,19 +54,24 @@ class Regex implements Stringable
         }
     }
 
-    public function get(bool $allowA = false, bool $allowG = false, array $references = []): string
+    /**
+     * Get the pattern to match with. For `end` and `while` patterns, pass the begin pattern's captures as
+     * `$references`, and back-references such as `\1` are replaced with the captured text.
+     */
+    public function get(bool $allowA = false, bool $allowG = false, ?array $references = null): string
     {
         $pattern = $this->resolveAnchors($this->pattern, $allowA, $allowG);
 
-        $pattern = preg_replace_callback('/\\\\(\d+)/', function ($matches) use ($references) {
-            if (! isset($references[$matches[1]][0])) {
-                return '';
-            }
+        if ($references === null) {
+            return $pattern;
+        }
 
-            return $references[$matches[1]][0];
-        }, $pattern);
-
-        return $pattern;
+        // The captured text is escaped, so a delimiter such as `|` or `*` matches literally.
+        return preg_replace_callback('/\\\\(\d+)/', fn (array $matches) => preg_replace(
+            '/[\-\\\\{}*+?|^$.,\[\]()#\s]/u',
+            '\\\\$0',
+            $references[$matches[1]][0] ?? '',
+        ), $pattern);
     }
 
     private function buildAnchorCache(): array

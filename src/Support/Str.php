@@ -53,7 +53,8 @@ class Str
     public static function replaceScopeNameCapture(string $scopeName, array $captures): string
     {
         return preg_replace_callback(self::CAPTURING_REGEX_SOURCE, function (array $matches) use ($captures) {
-            $capture = $captures[intval($matches[1])];
+            // `$n` captures its number in the first group and `${n:/downcase}` in the second.
+            $capture = $captures[intval($matches[1] !== '' ? $matches[1] : $matches[2])] ?? null;
 
             if (! $capture) {
                 return $matches[0];
