@@ -210,3 +210,255 @@ echo __LINE__, __FILE__, __CLASS__, __FUNCTION__, __METHOD__, __NAMESPACE__;
     <?php endforeach; ?>
 </ul>
 <script>console.log(<?= json_encode($data) ?>);</script>
+<?php
+
+namespace App\Legacy {
+
+const VERSION = '2.4.1';
+
+/* Legacy helpers kept for the v1 API. */
+# Shell-style comments are still common in older code.
+
+/**
+ * Bootstraps the legacy runtime.
+ * This line has no leading asterisk
+ *
+ * @author Jane Doe <jane@example.com>
+ * @since 1.2.0
+ * @access public
+ * @xlink https://example.com/docs
+ * @param ?int|string $id
+ * @param (int|string)[] $keys
+ * @param Invoice[] $invoices
+ * @return array<string, mixed>|null
+ * @see {@link https://example.com/legacy Legacy docs}
+ * @deprecated Use {@inheritDoc} instead.
+ */
+#[Route('/legacy', methods: ['GET']), Middleware\Auth, \Deprecated]
+function bootstrap($config, $env = 'prod', &$errors = array(), array $flags = array('debug' => false, 'cache' => [1, 2]), Clock $clock = new SystemClock, int $mode = Mode::FAST): never
+{
+    $result = Helpers\normalize(name: $config['name'], strict: true);
+    $copy = &$config;
+    foreach ($flags as &$flag) {
+        $flag = (bool) $flag;
+    }
+    $empty = array();
+    $pairs = array(1 => 'one', 2 => 'two');
+    $handler = $config['handler'];
+    $handler($result);
+    $$handler = $result;
+    ${'dynamic_' . $env} = true;
+    $method = 'boot';
+    $result->{$method}();
+    $result->{'legacy' . $env} = null;
+    $label = $config['label'] ?: 'untitled';
+    $value = $config['strict']
+        ? $result
+        : DEFAULT_RESULT;
+    $obj = new \stdClass;
+    $self = new static;
+    $dyn = new $handler;
+    $id = $_GET['id'] ?? $argv[1] ?? $_POST['id'];
+    $host = $_SERVER['HTTP_HOST'] . $GLOBALS['prefix'] . $_SESSION['user'] . $_ENV['APP_ENV'];
+    $listing = `ls -la {$dir} \`whoami\``;
+    $quote = 'It\'s a \\ backslash';
+    $octal = "\101\102 said \"hi\"";
+    $regex = "/^INV-\d{2,4}[A-Z\]]+\.pdf$/i";
+    $sql = "SELECT `id`, `name` FROM users WHERE email = \"{$email}\" -- active only";
+    $sql2 = "DELETE FROM sessions # stale sessions";
+    $sql3 = "SELECT * FROM users WHERE name = '" . $name . "' AND `" . $column . "` = 1";
+    $sql4 = 'UPDATE users SET `name` = "x", note = \'y\' WHERE id = 1 -- single';
+    $sql5 = 'DELETE FROM logs # purge';
+    $sql6 = 'SELECT `' . $col . '` FROM t WHERE x = "' . $y . '"';
+        switch ($env) {
+            case 'dev':
+                error_reporting(E_ALL);
+                break;
+        }
+    exit(1);
+}
+
+interface Cache extends \Countable, \ArrayAccess
+{
+    public function get(string $key, (Stringable&Countable)|null $default = null): mixed;
+}
+
+trait Greets
+{
+    public function hello() { return 'hello'; }
+}
+
+trait Waves
+{
+    public function hello() { return 'wave'; }
+}
+
+class Greeter extends Base\Controller implements Cache
+{
+    use Greets, Waves {
+        Greets::hello insteadof Waves;
+        Waves::hello as protected;
+        Waves::hello as wave;
+    }
+
+    var $legacy;
+    public static ?string $instance = null;
+    private readonly int|float $ratio;
+    public private(set) array $tags = [];
+    protected static $registry;
+
+    public function load(string $path): array
+    {
+        $closure = function ($item) use ($path, &$cache): string {
+            return $path . $item;
+        };
+        return array_map($closure, scandir($path));
+    }
+}
+
+$xml = <<<XML
+<?xml version="1.0"?>
+<invoice id="{$id}"/>
+XML;
+$js = <<<JS
+console.log({$count});
+JS;
+$json = <<<JSON
+{"id": {$id}, "ok": true}
+JSON;
+$css = <<<CSS
+.invoice { color: {$color}; }
+CSS;
+$re = <<<REGEX
+^\\.(\d{2,4})[^\]a-z]+$ # trailing comment
+REGEX;
+$blade = <<<BLADE
+<x-alert :type="\$type">{{ \$message }}</x-alert>
+BLADE;
+$text = <<<EOT
+Dear {$name}, your total is $total.
+EOT;
+$html = <<<'HTML'
+<p class="raw">$notInterpolated</p>
+HTML;
+$xml2 = <<<'XML'
+<root attr="$x"/>
+XML;
+$dql = <<<'DQL'
+SELECT u FROM App\Entity\User u WHERE u.active = 1
+DQL;
+$js2 = <<<'JAVASCRIPT'
+const x = `${y}`;
+JAVASCRIPT;
+$json2 = <<<'JSON'
+{"literal": "$value"}
+JSON;
+$css2 = <<<'CSS'
+a:hover { text-decoration: underline; }
+CSS;
+$re2 = <<<'REGEXP'
+^\\[a-z\]]{1,3}+$ # nowdoc regex
+REGEXP;
+$blade2 = <<<'BLADE'
+@if($user) {{ $user->name }} @endif
+BLADE;
+
+// Common runtime and extension functions.
+if (!defined('APP_START') && class_exists(Greeter::class) && is_array($tags) && ctype_digit($id)) {
+    $hash = hash('sha256', base64_encode(http_build_query($tags)));
+    $time = strtotime('+1 day') + intval($id);
+    $lower = mb_strtolower(iconv('UTF-8', 'ASCII//TRANSLIT', $name));
+    $sum = bcadd('1.5', '2.25', 2);
+    $valid = filter_var($email, FILTER_VALIDATE_EMAIL);
+    $pw = password_hash($secret, PASSWORD_DEFAULT);
+    $ch = curl_init('https://example.com');
+    $ctx = stream_context_create(['http' => ['timeout' => 5]]);
+    $gz = gzcompress(json_encode($data));
+    $tokens = token_get_all('<?php echo 1;');
+    $xml = simplexml_load_string('<a/>');
+    $finfo = finfo_open(FILEINFO_MIME_TYPE);
+    $files = glob('*.{php,inc}', GLOB_BRACE);
+    $flags = ENT_QUOTES | CASE_LOWER;
+    $isString = T_STRING;
+    $out = shell_exec('uptime');
+    $enc = openssl_encrypt($plain, 'aes-256-cbc', $key);
+    $msg = gettext('Welcome');
+    $res = call_user_func_array([$this, 'run'], $args);
+    $classes = iterator_to_array(new \ArrayIterator($items));
+    $size = getimagesize($file);
+    ini_set('memory_limit', '512M');
+    set_time_limit(30);
+    header('Content-Type: application/json');
+    session_start();
+    ob_start();
+    mail($to, $subject, $body);
+    libxml_use_internal_errors(true);
+    $fmt = numfmt_create('de_DE', \NumberFormatter::DECIMAL);
+    $pid = pcntl_fork();
+    $posix = posix_getpid();
+    $pg = pg_connect('dbname=app');
+    $my = mysqli_connect('localhost', 'root', '', 'app');
+    $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
+    $sem = sem_get(1234);
+    $gmp = gmp_add('123', '456');
+    $exif = exif_read_data($file);
+    $opcache = opcache_get_status();
+    $easter = easter_date(2026);
+    $utf = utf8_encode($latin);
+    $parser = xml_parser_create();
+    $writer = xmlwriter_open_memory();
+    $line = readline('> ');
+    $bz = bzopen('archive.bz2', 'r');
+    $ftp = ftp_connect('ftp.example.com');
+    $imap = imap_open('{imap.example.com:993/ssl}', $user, $pass);
+    $ldap = ldap_connect('ldap://example.com');
+    $zip = zip_open('archive.zip');
+    $odbc = odbc_connect('DSN', $user, $pass);
+    $headers = getallheaders();
+    $dom = dom_import_simplexml($xml);
+    $fault = is_soap_fault($response);
+    $shm = shmop_open(0xff3, 'c', 0644, 100);
+    $sqlite = sqlite_open('db.sqlite');
+    $sqlsrv = sqlsrv_connect('server', []);
+    $mysql = mysql_connect('localhost');
+    $mssql = mssql_connect('server');
+    $oci = oci_connect('user', 'pass');
+    $ibase = ibase_connect('db.fdb');
+    $sybase = sybase_connect('server');
+    $tidy = tidy_parse_string($html);
+    $snmp = snmpget('127.0.0.1', 'public', 'sysDescr.0');
+    $dba = dba_open('db.cdb', 'r');
+    $dbx = dbx_connect(DBX_MYSQL, 'localhost', 'db', 'user', 'pass');
+    $eio = eio_open('file', EIO_O_RDONLY, 0, EIO_PRI_DEFAULT, null);
+    $enchant = enchant_broker_init();
+    $old = ereg_replace('a', 'b', $str);
+    $fann = fann_create_standard(3, 2, 3, 1);
+    $exists = is_dir($path) && file_exists($path);
+    fastcgi_finish_request();
+    $iis = iis_get_server_rights(1, '/');
+    $mc = mcrypt_create_iv(16);
+    memcache_debug(true);
+    $mh = mhash(MHASH_MD5, $data);
+    $bson = bson_encode($doc);
+    $nd = mysqlnd_memcache_get_config($link);
+    $ms = mysqlnd_ms_get_stats();
+    $qc = mysqlnd_qc_get_cache_info();
+    mysqlnd_uh_convert_to_mysqlnd($link);
+    nsapi_request_headers();
+    pspell_new('en');
+    recode_string('us..flat', $text);
+    rrd_create('db.rrd', []);
+    setproctitle('worker');
+    $stats = stats_standard_deviation([1, 2, 3]);
+    taint($input);
+    $sma = trader_sma($prices, 30);
+    uopz_flags(Greeter::class, 'load');
+    wddx_serialize_value($data);
+    xhprof_enable();
+    $rpc = xmlrpc_encode_request('ping', []);
+    $guid = com_create_guid();
+    $apc = apc_fetch('key');
+    $enc = blenc_encrypt($source, 'out.php');
+    $http = http_negotiate_language(['en', 'de']);
+}
+}

@@ -31,17 +31,17 @@ for (const file of fs.readdirSync(grammarsDir)) {
     scopeNames[path.basename(file, '.json')] = grammar.scopeName
 }
 
-const registry = new vsctm.Registry({
-    onigLib: Promise.resolve({
-        createOnigScanner: (patterns) => new oniguruma.OnigScanner(patterns),
-        createOnigString: (string) => new oniguruma.OnigString(string),
-    }),
-    loadGrammar: async (scopeName) => grammars[scopeName] ?? null,
-})
-
 const results = {}
 
 for (const name of names) {
+    // A registry per grammar, disposed afterwards, so compiled scanners don't exhaust the WASM heap.
+    const registry = new vsctm.Registry({
+        onigLib: Promise.resolve({
+            createOnigScanner: (patterns) => new oniguruma.OnigScanner(patterns),
+            createOnigString: (string) => new oniguruma.OnigString(string),
+        }),
+        loadGrammar: async (scopeName) => grammars[scopeName] ?? null,
+    })
     const grammar = await registry.loadGrammar(scopeNames[name])
     const code = fs.readFileSync(path.join(root, `tests/Fixtures/samples/${name}.sample`), 'utf8')
     let ruleStack = vsctm.INITIAL
@@ -60,6 +60,8 @@ for (const name of names) {
             return [start, offset, token.scopes.join(' ')]
         })
     })
+
+    registry.dispose()
 }
 
 fs.writeFileSync(output, JSON.stringify(results))

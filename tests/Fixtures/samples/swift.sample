@@ -1,3 +1,4 @@
+#!/usr/bin/env swift
 class Residence {
     var rooms: [Room] = []
     var numberOfRooms: Int {
@@ -226,3 +227,275 @@ for case let planet in Planet.allCases where planet.rawValue.isMultiple(of: 2) {
 }
 
 // From https://docs.swift.org/swift-book/documentation/the-swift-programming-language/optionalchaining#Defining-Model-Classes-for-Optional-Chaining
+
+// MARK: - More language features
+
+/** Documentation block comment. */
+/*: Playground markup block */
+//: Playground markup line
+/* Block comment /* nested */ still a comment */
+
+#if false
+let unused = "never compiled"
+#elseif arch(arm64) || arch(x86_64)
+let arch = "64-bit"
+#elseif swift(>=5.9) && compiler(<6.0)
+let arch = "modern"
+#elseif DEBUG && true
+let arch = "debug"
+#else
+let arch = "unknown"
+#endif // trailing comment
+
+#sourceLocation(file: "Generated.swift", line: 42)
+#sourceLocation()
+
+import func Darwin.sqrt
+import class Foundation.NSObject
+import Swift.+
+
+@available(*, deprecated, renamed: "newAPI()", message: "Use newAPI instead")
+func oldAPI() {}
+
+@available(iOS, introduced: 13.0, deprecated: 15.4, obsoleted: 17)
+func legacyAPI() {}
+
+@objc(performAction:withSender:)
+func perform(_ action: Selector, with sender: Any?) {}
+
+@objc class LegacyBridge: NSObject {
+    @objc dynamic var title = ""
+    @objc func refresh() {}
+}
+
+protocol Shape: AnyObject {
+    init?(json: [String: Any])
+    func area() -> Double
+}
+
+protocol Drawable: class {}
+
+final class Circle: Shape {
+    let radius: Double
+    required init?(json: [String: Any]) {
+        guard let r = json["radius"] as? Double else { return nil }
+        radius = r
+    }
+    init!(unsafe radius: Double) { self.radius = radius }
+    convenience init?!() { self.init(unsafe: 1) } // invalid: only one of ? or !
+    func area() -> Double { .pi * radius * radius }
+}
+
+func makeShapes() -> some Collection<any Shape> { [Circle]() }
+
+func variadic(_ values: Int...) -> Int { values.reduce(0, +) }
+
+func tuple<each T>(_ value: repeat each T) -> (repeat each T) { (repeat each value) }
+
+struct Vector<let count: Int, Element> {
+    var storage: [count of Element]
+}
+
+func metatypes() {
+    let t: Any.Type = Int.self
+    let p: Shape.Protocol = Shape.self
+    let s = type(of: t)
+    print(MemoryLayout<Int>.size, s, p)
+}
+
+func transfer(_ value: sending NonSendable) -> sending NonSendable { value }
+
+func rethrowing(_ body: () throws -> Void) rethrows {
+    try body()
+}
+
+let handler: (Int) async throws -> Never = { _ in fatalError() }
+
+extension Collection where Element == Int, Index: Comparable {
+    func total() -> Element { reduce(0, +) }
+}
+
+struct UniqueBox<T: ~Copyable>: ~Copyable {
+    var value: T
+    consuming func take() -> T { value }
+}
+
+func ownership(box: consuming UniqueBox<Int>) {
+    let other = consume box
+    let copied = copy other
+    _ = copied
+}
+
+typealias Codec = Encodable & Decodable
+
+enum Command {
+    case move(_ x: Int, y: Int)
+    case rename(from old: String, to new: String)
+    case custom(name: String, [String: Int])
+}
+
+infix operator <~> : AdditionPrecedence
+postfix operator ^^
+prefix operator .<
+infix operator ~> { associativity left precedence 140 assignment }
+infix operator +-: AdditionPrecedence nonsense // invalid trailing tokens
+
+precedencegroup PipePrecedence {
+    associativity: left
+    assignment: true
+    lowerThan: LogicalDisjunctionPrecedence, NilCoalescingPrecedence
+    higherThan: AssignmentPrecedence
+}
+
+@freestanding(expression)
+macro stringify<T>(_ value: T) -> (T, String) = #externalMacro(module: "Macros", type: "StringifyMacro")
+
+func builtins(numbers: [Int], dict: [String: Int?], flag: ImplicitlyUnwrappedOptional<Int>) {
+    let args = CommandLine.arguments
+    let argc = Process.argc
+    let mirror = Mirror(reflecting: numbers)
+    let anyGen = AnyGenerator { nil }
+    let never: Never? = nil
+    let word: Word = 0
+    var gen: GeneratorType? = nil
+    let rev: ReverseCollection<[Int]>? = nil
+    let buffer: ManagedBuffer<Int, Int>? = nil
+    autoreleasepool {
+        print(args, argc, mirror.superclassMirror, anyGen, never as Any, word, gen as Any, rev as Any, buffer as Any)
+    }
+    gen = nil
+    let ok = flag.boolValue
+    let s = "abc".startsWith("a")
+    sort(&numbers)
+    let dist = distance(numbers.startIndex, numbers.endIndex)
+    let (value, code) = #stringify(1 + 2)
+    let color = #colorLiteral(red: 1, green: 0, blue: 0, alpha: 1)
+    let image = #imageLiteral(resourceName: "icon")
+    let path = #keyPath(LegacyBridge.title)
+    let action = #selector(getter: LegacyBridge.title)
+    let tap = #selector(LegacyBridge.refresh)
+    let name = perform(_:with:)
+    let first = numbers.0
+    print(ok, s, dist, value, code, color, image, path, action, tap, name, first)
+}
+
+func moreNumbers() {
+    let hexFloat = 0xFFp-2
+    let weirdHex = 0x1.5abc // invalid: hex fraction needs an exponent
+    let leadingDot = .5
+    let badPrefix = 0x_FF // invalid: separator right after the prefix
+    let badDecimal = 1abc // invalid digits
+    let pair = (1, 2)
+    let second = pair.1
+    print(hexFloat, weirdHex, leadingDot, badPrefix, badDecimal, second)
+}
+
+func moreStrings(name: String) {
+    let raw = #"""
+        Raw multi-line with \#(name) and \#n and \#u{1F600} \#q
+        "quoted" \(not interpolated)
+        """#
+    let rawer = ##"""
+        Two hashes: \##(name)
+        """##
+    let hashed = ##"She said "#hi"# \##t"##
+    let escapes = "Bad \q escape and nested \(name.map { "(\($0))" }.joined())"
+    // Invalid: single-line string literals may not contain a line break.
+    let unterminated = "missing end
+    "
+    let rawOpen = #"also missing
+    "#
+    let doubleOpen = ##"double missing
+    "##
+    print(raw, rawer, hashed, escapes, unterminated, rawOpen, doubleOpen)
+}
+
+func regexes() {
+    let simple = /\d+(?:\.\d+)?/
+    let flags = #/(?i)hello|(?-i:WORLD)|(?^x)/#
+    let refs = #/(?<y>\d{4})-\k<y>-\k{y}-\g{1}-\g-1-\g<y>-\k'y'-\g'1'-\12-(?P=y)-(?&y)-(?R)-(?1)/#
+    let props = #/\p{Letter}\P{Nd}[[:alpha:]][a-z&&[^aeiou]][a-z--[q]][a~~b][\b]/#
+    let scalars = #/\u{1F600}\u0041\x{41}\x41\U0001F600\o{101}\0101\N{U+41}\N{LATIN SMALL LETTER A}/#
+    let misc = #/\Qa.b\E\cA\e(?#comment)(?~abc)(?(1)yes|no)(?(<y>)a|b)(*ACCEPT)(*LIMIT_DEPTH=10)(*UTF)(?C1)(?C"text")(*name[tag]{a,b})(?{code})/#
+    let extended = #/
+        (?<year> \d{4} ) - (?<month> \d{2} )   # date
+        \Q literal \E
+        (?#comment)
+        <{ interpolation }>
+        /#
+    print(simple, flags, refs, props, scalars, misc, extended)
+}
+
+func operatorsDemo(a: inout Int, b: Int, c: Int?) {
+    a += 1; a -= 1; a *= 2; a /= 2; a %= 3
+    a <<= 1; a >>= 1; a &= 1; a |= 2; a ^= 3
+    let sum = a + b - a * b / 2 % 5
+    let overflow = a &+ b &- b &* 1
+    let compare = a == b || a != b && a > b || a < b || a >= b || a <= b
+    let nilc = c ?? 0
+    let bits = a & b | a ^ b << 1 >> 1
+    let identity = (a as AnyObject) === (b as AnyObject) || (a as AnyObject) !== (b as AnyObject)
+    let ternary = compare ? sum : nilc
+    let neg = -a, pos = +a, inv = ~a, not = !compare
+    let range = ..<5, from = 2..., through = ...10
+    let slice = [1, 2, 3][1...]
+    let custom = a <~> b
+    let post = a^^
+    let matched = 5 ~= 1
+    print(overflow, bits, identity, ternary, neg, pos, inv, not, range, from, through, slice, custom, post, matched)
+}
+
+Button("Save") {
+    save()
+} label: {
+    Text("Save")
+}
+
+if #unavailable(iOS 16, bogus) { // invalid platform name
+    print("old OS")
+}
+
+let ids = [String: [Int]]()
+let grid: [[Int]] = [[1], [2]]
+let pairs: [String: Int: Bool] = [:] // invalid: extra colon
+let inferred: [_] = [1, 2]
+let fixed: [3 of Int] = [1, 2, 3]
+var observer: AnyObject? {
+    willSet { print(newValue as Any) }
+    didSet { print(oldValue as Any) }
+}
+
+// Invalid: a stray block-comment terminator.
+*/
+
+class Base {
+    class func make() -> Self { fatalError() }
+    class var shared: Base { Base() }
+    func copy() -> Self { self }
+}
+
+func greet(name: String = "World", times: Int = 1) {
+    for _ in 0..<times { print("Hello, \(name)") }
+}
+
+let metatype = (any Equatable).self
+let buffer = [4 of UInt8](repeating: 0)
+let isolation = #isolation
+let legacyComposition: protocol<Equatable, Hashable>? = nil
+let disposition: MirrorDisposition? = nil
+
+
+// MARK: - Invalid code, kept to exercise the grammar's error-recovery rules
+
+#if DEBUG
+let mode = "debug"
+#endif extra tokens
+
+#sourceLocation(file: "Bad.swift", line: 1, column) trailing
+
+import Foundation extra
+
+protocol Builder {
+    init(value: Int) { }
+    func build() -> Int { 0 }
+}

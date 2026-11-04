@@ -243,3 +243,384 @@ int run_inventory() {
 
     return counter > 0 ? static_cast<int>(bits % 7) : -1;
 }
+
+// ===== geometry.cpp =====
+static int g_instances = 0;
+
+#line 200 "geometry.cpp"
+#pragma mark - Geometry
+#warning 'Shape::area' is deprecated
+#warning Shape::area is deprecated, use Shape::measure
+#undef /* previous */ GEOMETRY_LEGACY /* api */
+#include /* system */ <cmath> /* math */
+#if GEOMETRY_LEVEL > 0x1'0 && __GEOMETRY_ABI__ >= 0b10'01 || GEOMETRY_ID == 07'7 || GEOMETRY_SCALE < 1'000.5 || GEOMETRY_RATIO > 0x1.8p1 || GEOMETRY_EPS < 1e-3
+#  define GEOMETRY_NEW_API 1
+#endif
+#define GEOMETRY_LOG(fmt, ...) std::printf("[geometry] " fmt "\n", __VA_ARGS__)
+#define GEOMETRY_EXPORT __declspec(dllexport)
+
+/// @defgroup geometry Geometry primitives
+/// @param[in,out] shape the shape to normalize, see \a shape and \b bold and \c code
+/// \hideinitializer
+/// @copydoc Shape::area
+/// @code
+///   auto s = Circle{1.0};
+/// @endcode
+/// TODO: support ellipses
+/** @brief Short summary of \a radius, \b bold, \c x, \private, @copydoc Shape, @fn area, @param[in, out] a, b value @note x @code y @endcode NOTE: z */
+/**
+ * @ingroup geometry
+ * @param[out] result where the area is written, see \em result, \b bold, \c code
+ * @param[in,out] a, b the operands
+ * \private
+ * @copydoc Shape::measure
+ * @verbatim raw @endverbatim
+ * FIXME: handle degenerate shapes
+ */
+
+namespace geometry {
+
+typedef struct Point { double x, y; } Point, *PointPtr, &PointRef;
+typedef union Number { int i; double d; } Number;
+typedef class Handle final { public: int fd; } Handle, *HandlePtr;
+typedef struct DLLEXPORT Size final { double w, h; } Size;
+typedef union GEOMETRY_EXPORT Bits { unsigned u; float f; } Bits;
+typedef class GEOMETRY_EXPORT Token { int id; } Token;
+typedef void (*Callback)(int code, void* user);
+
+struct alignas(16) Vec4 { float data[4]; };
+struct GEOMETRY_EXPORT Exported final { int value; } exported_instance;
+union GEOMETRY_EXPORT Raw final { int i; float f; } raw_instance;
+class DLLEXPORT Shape;
+enum class Axis : unsigned char { X, Y, Z } default_axis;
+
+struct Node* list_head = nullptr;
+union Number& number_ref = *static_cast<union Number*>(nullptr);
+enum Axis* axis_ptr = &default_axis;
+class Shape& shape_ref(class Shape&& other);
+
+class GEOMETRY_EXPORT Shape {
+public:
+    Shape() noexcept;
+    explicit Shape(int id);
+    Shape(const Shape& other);
+    virtual ~Shape();
+
+    virtual double area() const = 0;
+    Shape& operator=(const Shape&) &;
+    Shape&& operator()(int index) &&;
+    bool operator==(const Shape& rhs) const;
+    explicit operator bool() const noexcept { return id_ != 0; }
+    friend std::ostream& operator<<(std::ostream& os, const Shape& shape);
+
+protected:
+    int id_;
+    static constexpr std::size_t kMaxSides = alignof(std::max_align_t);
+};
+
+class Circle final : public virtual Shape, private ns::Registered<Circle, 4> {
+public:
+    explicit Circle(double radius) : Shape(1), radius_(radius) {}
+    ~Circle() override { --g_instances; }
+    double area() const override { return 3.14159 * radius_ * radius_; }
+
+private:
+    double radius_;
+};
+
+Shape::Shape() noexcept : id_{0} {}
+Shape::Shape(int id) : id_(id), name_{"shape"}, sides_(0) { ++g_instances; }
+Shape::Shape(const Shape& other) = default;
+Shape::~Shape() { --g_instances; }
+inline Shape::~Shape() = default;
+geometry::Shape& Shape::operator=(const Shape&) & = default;
+bool Shape::operator==(const Shape& rhs) const { return this->id_ == rhs.id_; }
+std::ostream& operator<<(std::ostream& os, const Shape& shape) { return os << shape.id_; }
+
+auto Shape::measure() const -> double { return area(); }
+static struct Point make_point(double x, double y) { return Point{x, y}; }
+const std::vector<int>& Shape::sides() const& { return sides_; }
+std::vector<int>&& Shape::take_sides() && { return std::move(sides_); }
+auto make_size() -> std::pair<geometry::Size, std::vector<int>> { return {}; }
+auto qualified() -> const ::geometry::Size& { static Size s{}; return s; }
+
+template <typename T, typename... Rest>
+constexpr std::size_t count_args(T&&, Rest&&... rest) noexcept(noexcept(T{})) {
+    return 1 + sizeof...(Rest) + sizeof...(rest) * 0;
+}
+
+template <template <typename> class Container, typename T = int>
+using Wrapped = Container<T>;
+
+using PointList = std::vector<struct Point>;
+using ShapeRef = const geometry::Shape&;
+using Matrix = std::array<std::array<double, 4>, 4>;
+using Fn = void (*)(int);
+
+template <typename T>
+typename T::value_type first_of(const T& container) {
+    typename T::const_iterator it = container.begin();
+    return *it;
+}
+
+int compare(const void* a, const void* b);
+void sort_points(Point* points, std::size_t count, int (*cmp)(const void*, const void*));
+void apply(struct Point* p, enum Axis axis, union Number value, class Shape& shape, const struct Size& size, struct Point&& moved);
+void defaults(const int count = 3, volatile double* out = nullptr, int values[] = nullptr, std::string&& name = {}, ...);
+void (*on_error)(int code) = nullptr;
+std::vector<int> (*make_list)(std::size_t count);
+struct Point (*point_factory)(double, double);
+const Point& (*point_getter)(std::size_t index);
+Point&& (*point_mover)(Point&& p);
+
+__attribute__((always_inline, section("fast"))) inline int fast_path(int x) { return x << 1; }
+__declspec(noinline) void slow_path();
+__declspec(align(16)) struct Aligned { int v; };
+[[using gnu: hot, always_inline]] inline void hot_path() {}
+[[deprecated("use measure()"), nodiscard]] double legacy_area(const Shape& shape);
+[[gnu::visibility("default")]] void visible();
+alignas(64) static char cache_line[64];
+alignas(Vec4) unsigned char storage[sizeof(Vec4)];
+
+double Shape::scaled(double factor) const {
+    double result = double(id_) * factor;
+    auto as_int = int(result);
+    auto ch = char{'a'};
+    decltype(result) copy = result;
+    const auto& type = typeid(*this);
+    bool nothrow = noexcept(area());
+    static_assert(alignof(Vec4) == 16, "Vec4 must be 16-byte aligned");
+
+    unsigned flags = 0xF0;
+    flags &= 0x0F;
+    flags ^= 0x01;
+    flags |= 1u << 4;
+    flags <<= 2;
+    flags >>= 1;
+    --flags;
+    if (not (flags and 1) or (flags xor 2) and_eq 0) {
+        return compl 0;
+    }
+
+retry:
+    if (copy < 0 && as_int != 0) {
+        copy = -copy;
+        goto retry;
+    }
+    goto /* again */ done;
+done:
+    auto lambda = [this, factor](double value) -> double { return value * factor + this->id_; };
+    auto generic = [=]<typename U>(U value) mutable noexcept -> decltype(value) { return value; };
+    auto* widget = new (std::nothrow) Circle{1.0};
+    delete widget;
+    return lambda(result) + generic(copy) + type.hash_code() + nothrow + ch + flags;
+}
+
+void Shape::describe() const {
+    std::printf("%5.2f %-10s %lld %% \q\n", 1.0, "name", 1LL);
+    const char* octal = "\101\102";
+    const char* hex = "\x41\x0042 \xZZ";
+    const char single = '\x41';
+    const char* wide_hex = "\x7";
+    auto pattern = std::regex{R"re(^\d+(\.\d+)?$)re"};
+    auto shader = R"glsl(void main() { gl_Position = vec4(0.0); })glsl";
+    __asm__ volatile ("bswap %0" : "=r"(g_instances) : [in] "0"(g_instances) : "cc");
+    asm
+    /* barrier */
+    ("" ::: "memory");
+    std::cout << sizeof(Point) << ' ' << __FILE__ << ':' << __LINE__ << ' ' << __GEOMETRY_ABI__ << ' ' << __func__ << '\n';
+}
+
+constexpr double kHexFloat = 0x1'F.8'0p1'0;
+constexpr double kFloat = 1'000.000'5e1'0;
+constexpr unsigned kOctal = 07'55;
+constexpr double kHexExp = 0x1'0p1'0;
+constexpr unsigned long kDecimal = 1'000'000ul;
+constexpr double kExp = 1'0e1'0;
+constexpr auto kInvalid = 0b102; // invalid binary literal
+
+}  // namespace geometry
+
+// ===== text_buffer.cpp =====
+#if defined(TEXT_BUFFER_SIMD) && \
+    TEXT_BUFFER_SIMD > 0x1'F.8'0p1'0 || TEXT_BUFFER_SCALE > 1'000.000'5e1'0 || TEXT_BUFFER_HEX > 0x1'0p1'0 || TEXT_BUFFER_EXP > 1'0e1'0 || TEXT_BUFFER_BAD == 0b102
+#  include <immintrin.h>
+#endif
+
+namespace text {
+
+struct line {
+    line();
+    ~line();
+    std::string text;
+};
+
+struct error {
+    explicit error(std::string text);
+    ~error();
+    std::string text_;
+    int code_;
+    std::string name_;
+};
+
+line::line() = default;
+line::~line() = default;
+error::error(std::string text) : text_(std::move(text)), code_{0}, name_{} {}
+error::~error() { }
+
+class Counter { int n_ = 0; } counter_instance;
+struct DLLEXPORT Plugin { int version; };
+union DLLEXPORT Payload { int i; char c[4]; };
+class DLLEXPORT Service final : public std::exception, public ::text::Counter {};
+typedef struct TEXT_EXPORT Rect { int w, h; } Rect, &RectRef, &&RectRval;
+typedef union DLLEXPORT Cell { int i; char c; } Cell, &CellRef, &&CellRval;
+typedef class DLLEXPORT Cursor { int pos; } Cursor, &CursorRef, &&CursorRval;
+
+template <typename T> T twice(T value) { return value + value; }
+template <template <typename> class Container, typename T> Container<T> wrap(T value);
+
+struct line&& moved_line = std::move(*static_cast<struct line*>(nullptr));
+struct line& line_ref = moved_line;
+union Payload&& moved_payload = Payload{};
+union Payload& payload_ref = moved_payload;
+enum Mode : int { Insert, Replace };
+enum Mode&& moved_mode = Mode{};
+enum Mode& mode_ref = moved_mode;
+class Counter&& moved_counter = Counter{};
+class Counter& counter_ref = moved_counter;
+
+using Position = std::pair<std::size_t, std::size_t>;
+using LineType = struct line;
+using LineRval = line&&;
+using LineRef = text::line&;
+std::map<int, std::string>::iterator lookup_it;
+std::vector<line>::size_type line_count = 0;
+
+void insert(struct line* target, enum Mode& mode, union Payload&& payload, class Counter& counter) {}
+void insert_all(struct line& first, enum Mode&& mode, union Payload& payload, class Counter&& counter) {}
+void configure(const int tab_width = 4, volatile bool* dirty = nullptr, int widths[] = nullptr, std::string&& name = {}, register int hint = 0) {}
+void sort_lines(line* lines, std::size_t count, int (*compare)(const line&, const line&)) {}
+void each_line(std::vector<line>& lines, std::string (*format)(struct line&&), const line& (*pick)(std::size_t), text::line& (*scoped)(int)) {}
+void move_lines(line&& (*mover)(line&&), line& (*getter)(line&)) {}
+
+line&& take_line(line& source) { return std::move(source); }
+text::line& front_line() { static line l; return l; }
+struct line first_line() { return {}; }
+auto last_line() -> text::line { return {}; }
+auto last_struct_line() -> struct line { return {}; }
+auto count_lines() -> std::size_t { return 0; }
+
+std::vector<int> operator+(const std::vector<int>& lhs, const std::vector<int>& rhs) { return lhs; }
+struct line operator-(const line& lhs, const line& rhs) { return lhs; }
+line&& operator*(line&& lhs, int) { return std::move(lhs); }
+line& operator/(line& lhs, int) { return lhs; }
+std::string text::line::operator()(std::size_t index) const& { return text; }
+std::string text::line::operator[](std::size_t index) && { return text; }
+bool text::operator==(const line& lhs, const line& rhs) { return lhs.text == rhs.text; }
+
+template <typename T>
+void inspect(const T& container) {
+    typename std::vector<T>::iterator it;
+    typename T::template rebind<int>::other rebound;
+    typename text::Counter counter;
+    std::vector<int> values{1, 2, 3};
+    struct line blank{};
+    std::map<std::string, int> counts{{"a", 1}};
+    text::line named{"first"};
+    auto size = values.size();
+    auto label = counter_instance.n_.value.name();
+    auto* self = this->next->prev.owner;
+    auto chained = buffer->lines.front().text.size();
+    __asm__ volatile ("mov %1, %0\n\t" : "=r"(size) : "r"(size));
+}
+
+}  // namespace text
+// ===== annotated.cpp: declarations annotated with inline comments =====
+/* legacy */ #undef TEXT_LEGACY_API
+/* system */ #include /* containers */ <vector> /* for std::vector */
+/* local */ #include /* config */ "text_config.hpp" /* generated */
+/* local */ #include /* config */ TEXT_CONFIG_HEADER /* macro */
+/* next */ #include_next /* wrapper */ <stddef.h> /* chained */
+/* objc */ #import /* framework */ <Foundation/Foundation.h> /* imported */
+/* marker */ #pragma mark Annotated declarations
+/* value */ #define TEXT_ANSWER 42
+#ifdef TEXT_TRACE
+/* TEXT_TRACE */ #endif
+
+namespace annotated {
+
+struct /* tag */ line /* name */ * /* ptr */ * /* ptr */ line_table /* table */ = nullptr;
+union /* tag */ Payload /* name */ & /* ref */ payload_alias /* alias */ = payload_ref;
+enum /* tag */ Mode /* name */ * /* ptr */ mode_ptr /* ptr */ = nullptr;
+class /* tag */ Counter /* name */ & /* ref */ counter_alias /* alias */ = counter_ref;
+
+using /* alias */ LinePtr /* name */ = /* type */ const /* cv */ text::line /* type */ * /* ptr */ ;
+using /* alias */ LineRef /* name */ = /* type */ volatile /* cv */ text::line /* type */ & /* ref */ ;
+
+template </* kind */ typename /* name */ T, /* kind */ class /* name */ U>
+typename /* dependent */ T /* scope */ :: /* member */ value_type /* name */ first(const T& c);
+
+template <typename T, typename Alloc = std::allocator<T>> class Pool;
+struct alignas(std::max_align_t) MaxAligned { char bytes[16]; };
+struct alignas(alignof(double) * 2) DoubleAligned { double value; };
+
+void reset(std::vector<int> values = std::vector<int>{1, 2}, struct line blank = struct line{}, text::line named = ::text::line{"x"}) {}
+Matrix operator*(const Matrix& lhs, register int scale) { return lhs; }
+text::line::operator std::string() const { return text; }
+void on_signal(const int, volatile std::sig_atomic_t) {}
+
+class Annotated : public /* base */ virtual /* virtual */ text::Counter /* base */ {
+/* access */ public:
+    /* ctor */ Annotated() = default;
+};
+
+void annotate(void* raw, std::size_t n) {
+    auto a = (struct line*)raw;
+    auto b = sizeof(struct line);
+    auto c = (struct line&)*a;
+    auto d = (struct line&&)*a;
+    auto e = (enum Mode*)raw;
+    auto f = (enum Mode&&)*e;
+    auto g = (union Payload*)raw;
+    auto h = (union Payload&)*g;
+    auto i = (class Counter&&)*static_cast<Counter*>(raw);
+    auto j = (class Counter&)*static_cast<Counter*>(raw);
+    auto k = (struct /* tag */ line /* name */ * /* ptr */ * /* ptr */)raw;
+    auto l = (enum /* tag */ Mode /* name */ & /* ref */)*e;
+    auto m = (union /* tag */ Payload /* name */ * /* ptr */ * /* ptr */)raw;
+    auto o = (class /* tag */ Counter /* name */ & /* ref */)*i;
+    auto lambda = [](const int count = 3, int widths[], std::string&& name, register int hint) { return count + hint; };
+    auto alt = [](volatile std::size_t* sizes, struct line&& moved, const text::line& (*pick)(std::size_t)) {};
+    auto callbacks = [](struct line (*make)(int), std::vector<int> (*build)(std::size_t), text::line* (*find)(int), ::text::line& (*get)(int)) {};
+    auto unnamed = [](const int, volatile char) {};
+    if (n == 0) goto cleanup;
+cleanup /* error path */ :
+    std::vector</* element */ text::line /* type */ * /* ptr */> pointers;
+    std::map<std::string::size_type, text::detail::Node<int>::type> nodes;
+    this /* self */ ->n_ = n;
+    a /* object */ . /* member */ text = "x";
+    a /* object */ -> /* member */ text.clear();
+    a /* object */ . /* method */ text.size();
+}
+
+}  // namespace annotated
+
+// ===== invalid.cpp: reference types with too many '&' are highlighted as errors =====
+namespace invalid {
+int&&& bad_return() { return 0; }
+int&&& (*bad_pointer)(int value);
+void bad_params(int&&& value) {}
+auto bad_lambda = [](int&&& value) {};
+void bad_callback(int&&& (*callback)(int)) {}
+Matrix&&& operator+(Matrix& lhs, int rhs) { return lhs; }
+Matrix& operator-(Matrix& lhs) &&& { return lhs; }
+struct line&&& bad_line = make_line();
+union Payload&&& bad_payload = make_payload();
+enum Mode&&& bad_mode = make_mode();
+class Counter&&& bad_counter = make_counter();
+auto bad_casts = (struct line&&&)a + (enum Mode&&&)b + (union Payload&&&)c + (class Counter&&&)d;
+using BadRef = line&&&;
+typedef struct BadStruct { int x; } BadStruct, &&&BadStructRef;
+typedef union BadUnion { int x; } BadUnion, &&&BadUnionRef;
+typedef class BadClass { int x; } BadClass, &&&BadClassRef;
+}  // namespace invalid

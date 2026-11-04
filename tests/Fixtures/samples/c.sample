@@ -232,3 +232,205 @@ fail:
 	perror("calloc");
 	return EXIT_FAILURE;
 }
+
+/* =Platform types and configuration= */
+// =Doxygen-documented helpers=
+
+/// @defgroup checksum Checksum helpers
+/// @brief Computes checksums over byte ranges.
+/// @param[in,out] state running checksum, updated in place
+/// @param[in] data pointer to the bytes, see \a data and \b len and \c NULL
+/// @note Uses @ref crc_table internally; @copydoc crc_update
+/// \hideinitializer
+/// @code
+///   crc_update(&state, buf, n);
+/// @endcode
+/// TODO: vectorize the inner loop
+/** @brief One-line summary with \a arg, \b bold, \p param, @ref other and \n newline. FIXME: @todo: */
+/** @fn crc_update @param [in, out] state @code x @endcode */
+/**
+ * @ingroup checksum
+ * @param[out] table  the generated table, see \em table and \b bold and \c code
+ * @copydoc crc_update
+ * \private
+ * @verbatim raw text @endverbatim
+ * NOTE: the table is built lazily.
+ */
+
+#include <pthread.h>
+#include <sys/types.h>
+#include <CoreServices/CoreServices.h>
+
+#pragma mark - Globals
+
+#line 512 "generated_crc.c"
+#warning 'crc' implementation is not constant-time
+#warning crc implementation is not constant-time
+
+static const OSStatus kCrcNoError = noErr;
+static Boolean gCrcInitialized = false;
+static UInt32 sCrcTable[256];
+static uint_least16_t crc16_seed = 0xFFFF;
+static pthread_mutex_t gCrcLock = PTHREAD_MUTEX_INITIALIZER;
+static pid_t owner_pid;
+static u_char last_byte;
+static my_handle_t current_handle;
+int (*crc_hook)(const void *data, size_t len);
+
+#if 1 // fast table-driven implementation
+static const int crc_fast = 1;
+#elif defined(CRC_BITWISE)
+	static const int crc_fast = 0;
+	#ifdef CRC_TRACE
+	#endif
+#else
+	#pragma mark - Fallback
+	#error "no CRC implementation selected"
+#endif
+
+#if 0 /* legacy implementation */
+	unsigned crc_legacy(unsigned c);
+#elif 0
+	unsigned crc_legacy_v2(unsigned c);
+#elif CRC_LEGACY_V3
+static unsigned crc_legacy_v3(unsigned c);
+#endif
+
+#if 0
+	old code
+#elif 1
+static const int crc_v4 = 1;
+#elif CRC_V5
+	disabled v5
+#else
+	disabled default
+#endif
+
+#if 0
+	disabled
+#else
+static const int crc_enabled_else = 1;
+#endif
+
+#if defined(CRC_SMALL) + defined(CRC_FAST) > 1
+#error "CRC_SMALL and CRC_FAST are mutually exclusive"
+#endif
+
+#if defined CRC_SMALL && defined(CRC_FAST) || !defined CRC_TRACE
+#	if CRC_LEVEL > 2 ? TRUE : FALSE
+#	endif
+#endif
+
+/* header guard */ #define CRC_POLY 0xEDB88320u /* reflected **/
+
+static inline uint32_t crc_update(uint32_t crc, const uint8_t *restrict data, size_t len)
+{
+	int notify_progress(size_t done);
+	uint32_t c = ~crc;
+#if 1
+	const int unrolled = 1;
+#elif CRC_UNROLL
+	disabled
+#elif 0
+	disabled too
+#else
+	disabled else
+#endif
+#if 0
+	disabled in block
+#elif 1
+	const int via_elif = 1;
+#elif CRC_OTHER
+	disabled
+#else
+	disabled
+#endif
+#if 0
+	disabled in block
+#elif CRC_DYNAMIC
+	const int dynamic = 1;
+#else
+	const int fixed = 1;
+#endif
+#ifdef CRC_TRACE
+	LOG("crc_update(%u, %p, %zu)", crc, (const void *)data, len);
+#elif 0
+	disabled
+#elif CRC_QUIET
+	(void)0;
+#else
+	(void)len;
+#endif
+
+	for (size_t i = 0; i < len; i++) {
+		c = sCrcTable[(c ^ data[i]) & 0xFF] ^ (c >> 8);
+		crc_ctx->stats.bytes += 1;
+		crc_ctx->ops->progress(crc_ctx, i);
+		if (i % 4096 == 0 && notify_progress(i) != 0)
+			break;
+	}
+
+	switch /* dispatch **/ (len /* bytes **/ & 3) {
+	/* none **/ case 0:
+		break;
+	case 1: /* fall through */
+	/* other **/ default:
+		c = (len > 0 ? c : 0);
+		break;
+	} ;
+
+	__asm__ volatile ("rev %0, %1\n\t" : "=r"(c) : [/* in **/ crc /* reg **/] "r"(c) : "memory");
+	__asm__ volatile
+		("dmb ish" : : : "memory");
+	__asm__
+	/* compiler barrier **/
+	/* no operands **/ ("" ::: "memory");
+
+	return ~c;
+}
+
+static const double SEPARATED_HEX_FLOAT = 0x1'F.8'0p1'0;
+static const double SEPARATED_FLOAT = 1'000.000'5e1'0;
+static const unsigned SEPARATED_BIN = 0b1010'0101;
+static const unsigned SEPARATED_OCT = 07'55;
+static const unsigned SEPARATED_HEX = 0xDEAD'BEEF;
+static const double SEPARATED_HEX_EXP = 0x1'0p1'0;
+static const unsigned long SEPARATED_DEC = 1'000'000ul;
+static const double SEPARATED_EXP = 1'0e1'0;
+static const int64_t FMT_TEST = 0;
+
+void print_crc(uint32_t crc, int64_t total)
+{
+	printf("crc=%08" PRIx32 " total=%" PRId64 " 100%\n", crc, total);
+	const char *kind = _Generic(crc, uint32_t: "u32", default: "other");
+	printf("bad escape: \q\n");
+	int invalid_number = 0b102; // invalid binary literal
+}
+
+/*
+ * Conditional directives that straddle a parenthesized expression or a switch
+ * body are valid C, but the grammar cannot pair them with their #if (it sees
+ * both branches), so this function is kept at the very end of the file.
+ */
+static int classify(const ring_buffer_t *rb, int value)
+{
+	if (rb->head == rb->tail
+#ifdef RB_STRICT
+	    && (rb->overflow == 0
+#else
+	    && (rb->overflow != 0
+#endif
+	    || value == 0))
+		return 1;
+#ifdef RB_STRICT
+	switch (value) {
+#else
+	switch (value & 0xF) {
+#endif
+	case 0:
+		return 0;
+	default:
+		break;
+	}
+	return -1;
+}

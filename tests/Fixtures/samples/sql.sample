@@ -105,3 +105,30 @@ LIMIT 20 OFFSET 40;
 DROP TABLE staging_orders CASCADE;
 ALTER TABLE orders ADD COLUMN notes text;
 TRUNCATE TABLE audit_log;
+
+-- Housekeeping inside a batch
+IF OBJECT_ID('tempdb..#staging') IS NOT NULL DROP TABLE staging_copy CASCADE;
+
+SELECT BIT_COUNT(p.Flags) AS flag_count,
+       GET_BIT(p.Flags, 3) AS is_featured,
+       COLLATIONPROPERTY('SQL_Latin1_General_CP1_CI_AS', 'CodePage') AS code_page,
+       HASHBYTES('SHA2_256', p.Name) AS name_hash,
+       CURSOR_STATUS('global', 'product_cursor') AS cursor_state,
+       DATALENGTH(p.Name) AS name_bytes,
+       IDENT_CURRENT('Production.Product') AS last_id,
+       TEXTPTR(d.Notes) AS notes_ptr,
+       VECTOR_DISTANCE('cosine', e.Embedding, @query_vector) AS distance,
+       @@VERSION() AS server_version
+FROM Production.Product p
+JOIN Production.Document d ON d.ProductID = p.ProductID
+JOIN Production.Embedding e ON e.ProductID = p.ProductID;
+
+# MySQL also accepts hash comments
+SELECT price/qty/100 AS ratio FROM order_lines;
+
+INSERT INTO messages (body, tag, route)
+VALUES ('First line
+second line with an escaped \' quote', "#{tag}", `weird\`name`);
+
+UPDATE templates SET body = "Hello #{name},
+your order shipped" WHERE id = 7;

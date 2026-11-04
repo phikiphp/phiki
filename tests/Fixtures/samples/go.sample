@@ -231,3 +231,382 @@ func main() {
 }
 
 // From https://golang.org/doc/articles/wiki/#tmp_3
+
+// ---- Additional constructs ----
+
+type (
+	Point struct {
+		X, Y int
+	}
+	Celsius float64
+	Visitor interface {
+		Visit(n Node) (w Visitor)
+	}
+	Pair[K comparable, V any] struct{ Key K; Val V }
+)
+
+type Node interface{ Pos() int }
+
+type Empty struct{}
+
+type Wrapper struct{ *Point }
+
+type Labeled struct{ name string }
+
+type Tree[T interface{ ~int | ~string }] struct {
+	Left, Right *Tree[T]
+	Value       T
+	Meta        struct {
+		Created time.Time
+		Tags    []string
+	}
+	Hooks interface {
+		Before()
+		After() error
+		Generic(opts map[string][]int) Pair[string, []byte]
+	}
+	OnChange func(old, new T) bool
+	ch       <-chan T
+	data     map[string]interface{} `json:"data"`
+	buf      [16]byte // fixed buffer
+	*sync.Mutex
+	fmt.Stringer
+}
+
+type List[T any] []T
+
+type Matrix[T Number] [][]T
+
+type Callback = func(int) error
+
+type Alias = map[string][]*Point
+
+func (p *Point) Scale(
+	factor,
+	offset int,
+	opts ...func(*Point),
+) *Point {
+	p.X = p.X*factor + offset
+	return p
+}
+
+func Map[T, U any](
+	items []T,
+	fn func(T) U,
+) []U {
+	out := make([]U, 0, len(items))
+	for _, it := range items {
+		out = append(out, fn(it))
+	}
+	return out
+}
+
+func Reduce[T any, A any, S ~[]T](s S, init A, f func(A, T) A) A {
+	acc := init
+	for _, v := range s {
+		acc = f(acc, v)
+	}
+	return acc
+}
+
+func Keys[M ~map[K]V, K comparable, V any](m M) []K {
+	keys := make([]K, 0, len(m))
+	for k := range m {
+		keys = append(keys, k)
+	}
+	return keys
+}
+
+func Process[T interface{ Len() int }](in chan []T, done chan struct{}) {}
+
+func Visit(fn func(n Node) bool, cfg struct{ Depth int }, hook interface{ Run() }) {}
+
+func pipeline(in <-chan int, out chan<- []byte, ctl chan chan int, fn func() (int, error)) (n int, err error) {
+	return 0, nil
+}
+
+func split(sum int) (x, y int) {
+	x = sum * 4 / 9
+	y = sum - x
+	return
+}
+
+func multiline() (
+	result []string,
+	err error,
+) {
+	return nil, nil
+}
+
+func readByte() byte // implemented in assembly
+
+func newPoint() *Point
+func emptyParams() map[string]int
+func wrapper() [2]int /* see above */
+
+var (
+	x, y, z    int
+	flagsByte  byte    = 0x7f
+	symbol     rune    = 'λ'
+	ptrAddr    uintptr = 0xdead_beef
+	handlers   map[string]func(int) error
+	ch         chan<- int
+	pipe       = make(chan []byte, 8)
+	grid       [3][3]int
+	fn         func() (int, error)
+)
+
+var single, double int = 1, 2
+var typed []string
+var chanPtr *chan int
+var pointerToArr *[4]Point
+
+const big, small = 1 << 62, 1 >> 1
+const Pi float64 = 3.14159
+const typedList [2]int = 0
+
+const (
+	KB, MB = 1 << (10 * (iota + 1)), 1 << (10 * (iota + 2))
+	Mask   uint8 = 0b_1111_0000
+	Hexy   (int) = 0X_AB_cd
+	FloatHex      = 0x1.fp+10
+	Imag          = 0x1p-2i
+	Exp           = 1_0.0_1e+1_0
+	BadOctal      = 089 // invalid: 8 and 9 are not octal digits
+)
+
+func numbers() {
+	a := 0x_1F
+	b := 0o_17
+	c := 0B1_0
+	d := 1e10
+	e := .5
+	f := 5.
+	g := 0x1.8P+3
+	h := 1_000i
+	i := 0o777i
+	j := 07_7
+	k := 0x1Ep-1_0
+	l := 1.5e_10 // invalid: separator right after the exponent marker
+	_ = []any{a, b, c, d, e, f, g, h, i, j, k, l}
+}
+
+func control(items []int, m map[string]int) {
+	cnt := 0
+	cnt--
+	cnt++
+	p := new(Point)
+	q := new(Tree[int])
+	r := new(struct{ a int })
+	_ = (*Point)(nil)
+	_ = ([]byte)("abc")
+	_ = (map[string]int)(m)
+	_ = func(a int, b string) (int, error) {
+		return a, nil
+	}
+	f := func(x int) (y int, err error) { return x, nil }
+	_, _ = f(1)
+	v := Point{X: 1, Y: 2}
+	t := Pair[string, int]{Key: "a", Val: 1}
+	l := List[int]{1, 2, 3}
+	w := Tree[Pair[string, int]]{}
+	ptrs := []*Point{{1, 2}, {3, 4}}
+	nested := map[string][]map[int]*Point{}
+	anyMap := map[Point]struct{}{}
+	chMap := map[string]chan<- int{}
+	fnMap := map[string]func(int) (int, error){}
+	_ = items[1:3]
+	_ = items[:len(items)-1]
+	_ = items[i+1:]
+	_ = items[low:high:max]
+	_, _, _, _, _, _, _, _, _, _ = p, q, r, v, t, l, w, ptrs, nested, anyMap
+	_, _ = chMap, fnMap
+	if x := len(items); x > 0 {
+		_ = x
+	}
+	for i := range items {
+		if items[i] == cnt {
+			continue
+		}
+	}
+	if v.X != cnt && v.Y >= 0 {
+	}
+	if cnt <= v.X {
+	}
+	for key, val := range m {
+		_, _ = key, val
+	}
+	s := []int{}
+	_ = s
+	var iface interface{} = v
+	pt, ok := iface.(Point)
+	pp := iface.(*Point)
+	str := iface.(fmt.Stringer)
+	gen := iface.(Pair[string, int])
+	sl := iface.([]map[string]int)
+	_, _, _, _, _, _ = pt, ok, pp, str, gen, sl
+	switch val := iface.(type) {
+	case Point, *Point:
+		_ = val
+	case []string,
+		map[string]int:
+	case func(int) error:
+	case nil:
+	}
+	switch {
+	case cnt > 0 &&
+		cnt < 10:
+	case cnt == -1:
+	}
+	switch x := cnt * 2; x {
+	case 1, 2:
+	}
+	switch cnt {
+	case items[0],
+		items[1]:
+	}
+	var err error
+	var target *MyError
+	if errors.As(err, &target) {
+	}
+	var bad = "unknown \q escape and \z" // invalid escapes
+	var weird = 'ab' // invalid: more than one character in a rune
+	_ = bad
+	_ = weird
+	var arr = [] int{1, 2} // not gofmt'd
+	_ = arr
+outer:
+	for i := 0; i < 3; i++ {
+		for j := 0; j < 3; j++ {
+			if j == 2 {
+				break outer
+			}
+			if i == 1 {
+				continue outer
+			}
+			goto done
+		}
+	}
+done:
+	println(cap(items), complex(1, 2), real(1i), imag(2i))
+	clear(m)
+	delete(m, "k")
+	defer func() {
+		if r := recover(); r != nil {
+			panic(r)
+		}
+	}()
+	go func(c chan int) {}(make(chan int))
+	ctx := context.TODO()
+	_ = ctx
+	vals := Map[int, string](items, strconv.Itoa)
+	_ = vals
+	a.b.c[0].Method()
+	obj.Generic[int, string]()
+	9invalid() // invalid identifier
+}
+
+type MyError struct{ Code int }
+
+func (e *MyError) Error() string { return fmt.Sprint(e.Code) }
+
+func (Point) String() string { return "" }
+
+func (t *Tree[T]) Walk(visit func(T)) {
+	if t == nil {
+		return
+	}
+	t.Left.Walk(visit)
+	visit(t.Value)
+}
+
+type Set[T comparable] map[T]struct{}
+
+type Factory func() (Point, error)
+
+type Builder func() struct{ name string }
+
+type Handler2 http.Handler
+
+type Reader interface {
+	Read([]byte) (int, error)
+	Do(func() (int, error)) error
+}
+
+type Holder struct{ p Point }
+
+func Zip[
+	A,
+	B any,
+	C int | Set[int] | (bool),
+](as []A, bs []B) {
+}
+
+func apply([]byte, map[string]int) {}
+
+var legacy map [string]int // not gofmt'd
+
+var pipeOfPipes chan (<-chan int)
+
+var (
+	jobsCh  chan (int)
+	results []Point
+)
+
+const Answer MyInt = 42
+
+const (
+	Grid [2]int = 0 // not valid Go: arrays cannot be constants
+)
+
+func literals() {
+	_ = 1_0e1_0
+	_ = .1_2e3_4
+	_ = 0x1_0.f_fp1_0
+	_ = 0x1_fp1_0
+	_ = 0x.f_fp1_0
+	_ = 0o7_7
+	_ = 07_7
+	_ = 1_000.000_1
+}
+
+func conversions(items []int, iface any) {
+	_ = (Set[struct{}])(nil)
+	_ = iface.(Set[struct{}])
+	if len(items) > items[0] {
+	}
+	switch iface.(type) {
+	case Point,
+		MyError:
+	}
+	mk := func() Point {
+		return Point{}
+	}
+	_ = mk
+}
+
+// The following lines are intentionally invalid Go, kept to exercise
+// the grammar's invalid-identifier rules.
+package 9main
+func 9lives() {}
+a, 9b := 1, 2
+c, 9d = 3, 4
+
+// gopls-style hover text, as shown in the editor's hover popup:
+field Name invalid type
+field Owner *User
+returns (n int, err error)
+returns User
+
+func apply2(Set[int], int) {}
+
+func scoped() { type local int; _ = local(0) }
+
+const Ready chan (int) = nil // not valid Go: channels cannot be constants
+
+const (
+	Done chan (struct{}) = nil // not valid Go either
+)
+
+// Not valid Go: a stray type between the result list and the body.
+var broken = func(x int) (y int) [N]struct{} (z) { return }

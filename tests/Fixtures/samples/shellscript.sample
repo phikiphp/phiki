@@ -137,3 +137,63 @@ exec 3>&1
 eval "echo evaluated"
 wait
 exit 0
+
+# ---------------------------------------------------------------------------
+# Odds and ends
+# ---------------------------------------------------------------------------
+alias -g L='| less'
+use_color=true
+[[ $use_color == true ]] && echo "colors on"
+git config --global color.ui false
+opts=(verbose=1 dry_run=0)
+
+case "$file" in
+	(*.tar.gz) tar -xzf "$file" ;;
+	*.@(jpg|png)) echo "image" ;;
+	+([0-9])) echo "number" ;;
+	?(-)v*) echo "version flag" ;;
+	*\ *) echo "has a space" ;;
+	[+\-]*) echo "signed" ;;
+esac
+
+"$HOME/bin/say \"hi\"" --loud
+'./run tests.sh' --verbose
+tr -d '\r' <<< "line one \"quoted\" \$HOME"
+grep -c needle <<< 'single quoted haystack'
+read -r first rest <<< $input
+
+in_tmp() (
+	cd /tmp || exit 1
+	"$@"
+)
+
+cat <<EOF > /etc/motd
+Welcome! Price is \$5 and the path is \`pwd\`
+EOF
+
+cat <<-EOF >> "$LOG_DIR/run.log"
+	finished at $(date)
+	EOF
+
+cat <<HOSTS | while read -r -t 5 host port; do echo "$host:$((port + 1))"; done
+web-01 8080
+HOSTS
+
+commit=`git rev-parse --short HEAD`
+files=`ls;#list files`
+gitdir=`dirname \`which git\``
+py_version=`\`which python3\` --version`
+(( mask = 0xFF & 077 | 2#1010 ))
+LC_ALL=C sort -u names.txt
+[[ -d ~/.ssh ]] || mkdir -m 700 ~/.ssh
+[[ "$dir" == . ]] && dir=$PWD
+time make -j4 build && \
+	make install
+. ./env.sh
+: "${EDITOR:=vi}"
+
+case $mode in
+	wait) while ! nc -z localhost 5432; do sleep 1; done ;;
+	bits) while let 2#1010 0x1F 077; do echo "base#n, hex and octal"; break; done ;;
+esac
+echo $'quote: \042" hex: \x22" ctrl: \cA"'

@@ -147,3 +147,82 @@ $step: 6;
 }
 
 @debug "Spacing is #{$base-spacing}";
+
+// ---------------------------------------------------------------
+// Modules, documentation comments and more selectors
+// ---------------------------------------------------------------
+
+@use "sass:map" as *;
+@forward "src/buttons" as btn-*;
+@import url("legacy.css") screen;
+@namespace url(http://www.w3.org/1999/xhtml);
+
+$breakpoints: (small: 576px, medium: 768px, large: 992px);
+$gutter: 16px;
+
+/// Computes a fluid size between two values.
+/// @param {Number} $min - Smallest size
+/// @return {Number}
+@function fluid($min, $max) {
+  @return calc(#{$min} + #{$max - $min} * 0.5);
+}
+
+@mixin clearfix {
+  &::after {
+    content: '\201D';
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin respond($size) {
+  @media only screen and (min-width: map-get($breakpoints, $size)) {
+    @content;
+  }
+}
+
+@keyframes "pulse\2d slow" {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.1); }
+}
+
+@keyframes 'spin\2d fast' {
+  to { transform: rotate(360deg); }
+}
+
+.toolbar {
+  @include clearfix;
+  @include respond(medium) { padding: $gutter*2; }
+  @extend %card-base !optional;
+  margin: ($gutter + 4px) * 2 auto;
+  width: 100%-$gutter;
+
+  &\@sm { display: none; }
+  &.is-active { color: red; }
+
+  #nav\:main,
+  %menu\:item,
+  .btn-#{$name} {
+    color: inherit;
+  }
+
+  [data-\#{],
+  [data-state=open\:true],
+  [aria-label="Close \"dialog\""],
+  [title='It\'s here'] {
+    cursor: pointer;
+  }
+
+  li:nth-child(2n + first) { color: blue; }
+}
+
+@at-root .toolbar-#{$name} {
+  display: flex;
+}
+
+// Common mistake: variables in selectors need #{} interpolation (highlighted as invalid)
+.icon-$name,
+#row-$id,
+%btn-$kind {
+  display: none;
+}

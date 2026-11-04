@@ -228,6 +228,261 @@ public static class OrderQueries
     }
 }
 
+// A second file: inventory and scripting helpers.
+extern alias LegacyCore;
+global using static System.Math;
+using static System.Console;
+
+namespace KCTest.Domain.Inventory
+{
+    /**
+     * <summary>Stock keeping for a single warehouse.</summary>
+     * <remarks>Quantities are &lt;= capacity &amp; never negative.</remarks>
+     */
+    public abstract class Warehouse : IDisposable, IEnumerable<StockItem>
+    {
+        /* Plain block comment. */
+        private readonly Dictionary<string, int> _stock = new(), _reserved = new();
+        private int _capacity, _version;
+        public event EventHandler? Emptied, Filled = null;
+
+        private EventHandler<StockItem>? _restocked;
+
+        /// <summary>Raised when an item is restocked.</summary>
+        /// <example><code><![CDATA[warehouse.Restocked += (s, e) => Log(e);]]></code></example>
+        /// <para name='hint'>Uses a <c>lock</c> &#169; internally.</para>
+        /// <!-- implementation detail -->
+        public event EventHandler<StockItem> Restocked
+        {
+            add { _restocked += value; }
+            remove => _restocked -= value;
+        }
+
+        protected Warehouse(int capacity) : this(capacity, "default") { }
+
+        protected Warehouse(int capacity, string name) : base()
+        {
+            _capacity = capacity;
+            Name = name;
+        }
+
+        ~Warehouse()
+        {
+            Dispose();
+        }
+
+        public string Name
+        {
+            get { return _name ?? "unnamed"; }
+            set => _name = value;
+        }
+        private string? _name;
+
+        public static explicit operator int(Warehouse warehouse) => warehouse._stock.Count;
+
+        public void Dispose() => GC.SuppressFinalize(this);
+
+        public IEnumerator<StockItem> GetEnumerator()
+        {
+            foreach (KeyValuePair<string, int> entry in _stock)
+            {
+                if (entry.Value == 0)
+                {
+                    continue;
+                }
+                else if (entry.Value < 0)
+                {
+                    yield break;
+                }
+                else
+                {
+                    yield return new StockItem(entry.Key, entry.Value);
+                }
+            }
+        }
+
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => GetEnumerator();
+
+        public bool TryReserve(string sku, int amount, out int remaining, ref int attempts, in Money budget)
+        {
+            const int MaxAttempts = 3, Backoff = 10;
+            attempts++;
+            remaining = 0;
+            if (!_stock.TryGetValue(sku, out var current) || attempts > MaxAttempts)
+            {
+                return false;
+            }
+
+            do
+            {
+                current--;
+                amount--;
+            } while (amount > 0 && current > 0);
+
+            while (_reserved.ContainsKey(sku))
+            {
+                Thread.Sleep(Backoff * attempts);
+                break;
+            }
+
+            remaining = current;
+            return true;
+        }
+
+        public string Classify(object item)
+        {
+            switch (item)
+            {
+                case null:
+                    return "nothing";
+                case (int)OrderState.None:
+                    goto default;
+                case int n when n > 100:
+                    goto case "big";
+                case string s and { Length: > 0 }:
+                    return s;
+                case "big":
+                    return "a lot";
+                default:
+                    return item.ToString() ?? string.Empty;
+            }
+        }
+
+        public static string Shape(object point) => point switch
+        {
+            (0, 0) => "origin",
+            Point(var x, _) { Y: 0 } p => $"on the x axis at {x}",
+            int[] [1, .., var last] => $"starts with one, ends with {last}",
+            int[] [] => "empty array",
+            >= 10 and < 20 => "teens",
+            global::System.String { Length: 0 } => "empty string",
+            System.Int32? => "boxed int",
+            Point { X: var x } and var (a, b) => $"point {a},{b}",
+            _ => "unknown",
+        };
+
+        public async Task RefreshAsync(HttpClient client, CancellationToken cancellationToken = default)
+        {
+            await Task.Yield();
+            using var response = await client.GetAsync("/stock", cancellationToken);
+            var text = await response.Content.ReadAsStringAsync(cancellationToken);
+            var parsed = text as string;
+            var counts = new int[3];
+            var matrix = new double[2, 2];
+            Span<byte> buffer = stackalloc byte[16];
+            System.Text.StringBuilder builder = new();
+            var anonymous = new
+            {
+                Name,
+                Count = counts.Length,
+            };
+
+            var (first, second) = (counts[0], counts[1]);
+            (first, second) = (second, first);
+            (int lo, var hi) = (1, 2);
+            var named = (Sku: "ABC-1234", Quantity: 3);
+            Dictionary<int, string>.KeyCollection keys = new Dictionary<int, string>().Keys;
+            var empty = List<int>.Empty;
+
+            Func<int, int, int> add = delegate (int x, int y) { return x + y; };
+            Action notify = async delegate { await Task.Delay(1); };
+            Func<int, bool> isEven = static delegate (int x) { return x % 2 == 0; };
+            Func<int, int, int> multiply = (int x, int y) => x * y;
+            Func<int, int, int> subtract = (x, y) => x - y;
+            Action<int> ignore = (ref int value) => { };
+
+            int LocalSum(int a, int b = 2) => a + b;
+            static async Task<int> LocalFetchAsync(int delay)
+            {
+                await Task.Delay(delay);
+                return delay;
+            }
+
+            checked
+            {
+                first = LocalSum(first, b: second) * 2;
+            }
+            unchecked
+            {
+                first = int.MaxValue + 1;
+            }
+            unsafe
+            {
+                int* pointer = &first;
+                *pointer = 42;
+            }
+
+            WriteLine(Max(first, await LocalFetchAsync(delay: 5)));
+
+            ref readonly int alias = ref counts[0];
+            ref int Find(int[] values) => ref values[0];
+
+            var query =
+                from item in _stock
+                join reservation in _reserved on item.Key equals reservation.Key into reservations
+                select new { item.Key, Reserved = reservations.Count() };
+
+            uint hex = 0xFF_FF_00u;
+            double precise = 1_000.000_5e1_0;
+            ulong broken = 123abc;  // invalid numeric literal on purpose
+
+            string verbatim = $@"C:\stock\{Name}\""report"".txt";
+            string verbatim2 = @$"{Name}";
+            string quadruple = """"
+                A raw string with """ inside.
+                """";
+            string five = """""
+                Even """" four quotes fit here.
+                """"";
+            string single = $"""
+                {"name"}: {first}
+                """;
+            string doubled = $$"""
+                { "name": "{{Name}}", "count": {{first}} }
+                """;
+            string quadSingle = $""""
+                Value: {first}, with """ quotes
+                """";
+            string quadDouble = $$""""
+                {"value": {{first}}}
+                """";
+            string triple = $$$"""
+                {{literal braces}} and {{{first}}}
+                """;
+            string many = $"""""
+                Five quotes: {first}
+                """"";
+        }
+
+        public static void Swap<T, U, V>(ref T left, ref T right)
+            where T : struct
+            where U : unmanaged
+            where V : default
+        {
+            (left, right) = (right, left);
+        }
+
+        public static unsafe void Fill(int* destination, int length)
+        {
+            for (var i = 0; i < length; i++) destination[i] = i;
+        }
+    }
+
+    public record Pallet(string Id, int Layers) : IComparable<Pallet>
+    {
+        public int CompareTo(Pallet? other) => Layers.CompareTo(other?.Layers ?? 0);
+    }
+
+    public readonly struct Point
+    {
+        public int X { get; }
+        public int Y { get; }
+        public void Deconstruct(out int x, out int y) => (x, y) = (X, Y);
+    }
+
+    public record StockItem(string Sku, int Quantity);
+}
+
 // Preprocessor directives are kept at the end of the sample.
 #region Diagnostics
 #define TRACE_ORDERS
@@ -236,3 +491,12 @@ public static class OrderQueries
 #endif
 #pragma warning disable CS0168
 #endregion
+#if (DEBUG || TRACE_ORDERS) && !false
+#line 200 "Generated.cs"
+#line default
+#line hidden
+#endif
+#pragma warning restore 168, 219
+#pragma checksum "Order.cs" "{ff1816ec-aa5e-4d10-87f7-6f4963833460}" "ab007f1d23d9"
+#r "System.Net.Http.dll"
+#load "helpers.csx"

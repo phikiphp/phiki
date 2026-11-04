@@ -50,3 +50,79 @@ Sorry, your browser doesn't support embedded videos.  Time to upgrade!
 </html>
 
 <!-- From https://github.com/mdn/css-examples/blob/main/backdrop/index.html -->
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<body>
+  <header data-theme="dark" data-sticky>
+    <nav class=main-nav style=color:red>
+      <a href="/" onclick="track('home'); /* analytics */ // log the click
+        return true">Home</a> &amp; <a href='/about' onmouseover='highlight(this) /* hover */ // tooltip'>About &copy; us</a>
+      <span style='font-weight: bold'>&#169; 2024 &#x2014; &Aacute;lvaro &nbsp;</span>
+      <button type="button" onclick=toggleMenu() data-target='#menu'>Menu</button>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <p>Press <kbd>Ctrl</kbd> + <kbd>C</kbd> to <em>copy</em>, <strong>not</strong> <code>cut</code>.<br>
+      Water is H<sub>2</sub>O and E = mc<sup>2</sup>.<wbr/> Published <time datetime="2024-01-01">today</time>.</p>
+      <img src="photo.jpg" alt="A photo" width=640 height=480 loading="lazy">
+      <picture>
+        <source srcset="photo.webp" type="image/webp" />
+        <img src="photo.png" alt="">
+      </picture>
+      <video controls><track kind="captions" src="captions.vtt" srclang="en"></video>
+      <map name="links"><area shape="rect" coords="0,0,10,10" href="#top"></map>
+      <embed src="movie.swf"><object data="file.pdf"><param name="autoplay" value="true"></object>
+    </article>
+
+    <svg width="100" height="100"
+         viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" />
+    </svg>
+
+    <math display="block"
+          xmlns="http://www.w3.org/1998/Math/MathML">
+      <mi>x</mi><mo>=</mo><mn>2</mn>
+    </math>
+
+    <my-widget size="large" aria-label="Custom element"></my-widget>
+    <custom-card ng-if="ready" @click="open" :title="cardTitle"></custom-card>
+
+    <table bgcolor="#eeeeee" border="1" align="center">
+      <tr><td>Legacy table attributes</td></tr>
+    </table>
+
+    <!-- Deprecated elements -->
+    <center><font color="red">Old</font> <big>big</big> <tt>mono</tt> <strike>gone</strike> <acronym title="HyperText">HT</acronym></center>
+    <basefont size="3"><isindex prompt="Search">
+    <frameset cols="50%,50%"><frame src="left.html"><frame src="right.html"></frameset>
+    <noframes>Your browser does not support frames.</noframes>
+    <applet code="Game.class"></applet>
+    <dir><li>item</li></dir>
+    <menuitem label="Refresh"></menuitem>
+  </main>
+
+  <![CDATA[ x < y && y > z ]]>
+
+  <script>
+    // Inline script with comments
+    /* block comment */
+    const greeting = 'hello';
+  </script>
+  <script type="text/template" id="row-template">
+    <tr><td>{{ name }}</td></tr>
+  </script>
+  <script type="importmap">
+    { "imports": { "vue": "/vue.js" } }
+  </script>
+
+  <!-- Invalid markup, kept to exercise error scopes -->
+  <div class="a"=b style="color: red"=x onclick="go()"=y "stray"></div>
+  <_invalid-tag></_invalid-tag>
+  <!-- bad --!>
+  <!--> <!--->
+</body>
+</html>

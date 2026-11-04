@@ -9,14 +9,14 @@ Regenerate it with `composer compatibility` after changing an engine, the transl
 - **First PCRE difference** is the first line where the PCRE engine's tokens differ from vscode-textmate's.
 - Neighbouring tokens with the same scopes are merged before comparing, and the newline at the end of each line is not compared. Neither changes the rendered output.
 
-Generated with PHP 8.4.27, PCRE2 10.42 and Oniguruma 6.9.9.
+Generated with PHP 8.4.27, PCRE2 10.42 and Oniguruma 6.9.8.
 
 ## Summary
 
 | Engine | Grammars identical | Matching tokens |
 | --- | ---: | ---: |
-| Oniguruma | 119 of 227 | 92.6% (157794 of 170495) |
-| PCRE | 167 of 227 | 95.5% (162878 of 170495) |
+| Oniguruma | 113 of 227 | 93.1% (195150 of 209677) |
+| PCRE | 163 of 227 | 96.2% (201734 of 209677) |
 
 ## Grammars
 
@@ -44,7 +44,7 @@ Generated with PHP 8.4.27, PCRE2 10.42 and Oniguruma 6.9.9.
 | bibtex | [bibtex.sample](tests/Fixtures/samples/bibtex.sample) | 42.9% | 124 | 100.0% | 100.0% | ✅ Identical |
 | blade | [blade.sample](tests/Fixtures/samples/blade.sample) | 25.1% | 1928 | 97.4% | 99.7% | [Line 54](tests/Fixtures/samples/blade.sample#L54) |
 | bsl | [bsl.sample](tests/Fixtures/samples/bsl.sample) | 31.1% | 387 | 71.1% | 100.0% | ✅ Identical |
-| c | [c.sample](tests/Fixtures/samples/c.sample) | 43.3% | 1809 | 98.4% | 100.0% | ✅ Identical |
+| c | [c.sample](tests/Fixtures/samples/c.sample) | 90.2% | 3078 | 97.7% | 100.0% | ✅ Identical |
 | cadence | [cadence.sample](tests/Fixtures/samples/cadence.sample) | 78.0% | 1367 | 91.1% | 91.4% | [Line 10](tests/Fixtures/samples/cadence.sample#L10) |
 | cairo | [cairo.sample](tests/Fixtures/samples/cairo.sample) | 100.0% | 338 | 100.0% | 100.0% | ✅ Identical |
 | clarity | [clarity.sample](tests/Fixtures/samples/clarity.sample) | 37.7% | 258 | 76.4% | 76.4% | [Line 1](tests/Fixtures/samples/clarity.sample#L1) |
@@ -53,18 +53,18 @@ Generated with PHP 8.4.27, PCRE2 10.42 and Oniguruma 6.9.9.
 | cobol | [cobol.sample](tests/Fixtures/samples/cobol.sample) | 44.1% | 1370 | 99.1% | 100.0% | ✅ Identical |
 | codeowners | [codeowners.sample](tests/Fixtures/samples/codeowners.sample) | 100.0% | 15 | 100.0% | 100.0% | ✅ Identical |
 | codeql | [codeql.sample](tests/Fixtures/samples/codeql.sample) | 44.4% | 726 | 100.0% | 100.0% | ✅ Identical |
-| coffee | [coffee.sample](tests/Fixtures/samples/coffee.sample) | 73.4% | 1254 | 96.9% | 96.9% | [Line 111](tests/Fixtures/samples/coffee.sample#L111) |
+| coffee | [coffee.sample](tests/Fixtures/samples/coffee.sample) | 73.4% | 1242 | 96.8% | 96.8% | [Line 111](tests/Fixtures/samples/coffee.sample#L111) |
 | common-lisp | [common-lisp.sample](tests/Fixtures/samples/common-lisp.sample) | 48.4% | 199 | 100.0% | 100.0% | ✅ Identical |
 | coq | [coq.sample](tests/Fixtures/samples/coq.sample) | 56.2% | 193 | 100.0% | 100.0% | ✅ Identical |
-| cpp | [cpp.sample](tests/Fixtures/samples/cpp.sample) | 26.7% | 1868 | 96.8% | 97.9% | [Line 39](tests/Fixtures/samples/cpp.sample#L39) |
+| cpp | [cpp.sample](tests/Fixtures/samples/cpp.sample) | 67.1% | 7347 | 97.1% | 98.3% | [Line 39](tests/Fixtures/samples/cpp.sample#L39) |
 | crystal | [crystal.sample](tests/Fixtures/samples/crystal.sample) | 47.6% | 1199 | 100.0% | 100.0% | ✅ Identical |
-| csharp | [csharp.sample](tests/Fixtures/samples/csharp.sample) | 61.7% | 2119 | 83.3% | 99.9% | [Line 94](tests/Fixtures/samples/csharp.sample#L94) |
-| css | [css.sample](tests/Fixtures/samples/css.sample) | 74.2% | 1201 | 96.8% | 96.8% | [Line 2](tests/Fixtures/samples/css.sample#L2) |
+| csharp | [csharp.sample](tests/Fixtures/samples/csharp.sample) | 94.6% | 4482 | 81.2% | 99.9% | [Line 94](tests/Fixtures/samples/csharp.sample#L94) |
+| css | [css.sample](tests/Fixtures/samples/css.sample) | 95.5% | 1605 | 97.1% | 97.3% | [Line 2](tests/Fixtures/samples/css.sample#L2) |
 | csv | [csv.sample](tests/Fixtures/samples/csv.sample) | 100.0% | 25 | 100.0% | 100.0% | ✅ Identical |
 | cue | [cue.sample](tests/Fixtures/samples/cue.sample) | 66.9% | 1298 | 99.9% | 100.0% | ✅ Identical |
 | cypher | [cypher.sample](tests/Fixtures/samples/cypher.sample) | 87.8% | 885 | 100.0% | 100.0% | ✅ Identical |
 | d | [d.sample](tests/Fixtures/samples/d.sample) | 42.4% | 1507 | 100.0% | 100.0% | ✅ Identical |
-| dart | [dart.sample](tests/Fixtures/samples/dart.sample) | 67.0% | 1224 | 100.0% | 100.0% | ✅ Identical |
+| dart | [dart.sample](tests/Fixtures/samples/dart.sample) | 94.3% | 1391 | 100.0% | 100.0% | ✅ Identical |
 | dax | [dax.sample](tests/Fixtures/samples/dax.sample) | 34.5% | 60 | 100.0% | 100.0% | ✅ Identical |
 | desktop | [desktop.sample](tests/Fixtures/samples/desktop.sample) | 41.2% | 84 | 57.1% | 100.0% | ✅ Identical |
 | diff | [diff.sample](tests/Fixtures/samples/diff.sample) | 31.2% | 35 | 100.0% | 100.0% | ✅ Identical |
@@ -90,13 +90,13 @@ Generated with PHP 8.4.27, PCRE2 10.42 and Oniguruma 6.9.9.
 | genie | [genie.sample](tests/Fixtures/samples/genie.sample) | 85.2% | 563 | 100.0% | 100.0% | ✅ Identical |
 | gherkin | [gherkin.sample](tests/Fixtures/samples/gherkin.sample) | 100.0% | 170 | 100.0% | 100.0% | ✅ Identical |
 | git-commit | [git-commit.sample](tests/Fixtures/samples/git-commit.sample) | 90.9% | 87 | 100.0% | 100.0% | ✅ Identical |
-| git-rebase | [git-rebase.sample](tests/Fixtures/samples/git-rebase.sample) | 100.0% | 112 | 100.0% | 100.0% | ✅ Identical |
+| git-rebase | [git-rebase.sample](tests/Fixtures/samples/git-rebase.sample) | 100.0% | 97 | 97.9% | 97.9% | [Line 6](tests/Fixtures/samples/git-rebase.sample#L6) |
 | gleam | [gleam.sample](tests/Fixtures/samples/gleam.sample) | 92.6% | 517 | 100.0% | 100.0% | ✅ Identical |
 | glimmer-js | [glimmer-js.sample](tests/Fixtures/samples/glimmer-js.sample) | 78.8% | 941 | 99.9% | 99.9% | [Line 43](tests/Fixtures/samples/glimmer-js.sample#L43) |
 | glimmer-ts | [glimmer-ts.sample](tests/Fixtures/samples/glimmer-ts.sample) | 74.6% | 1004 | 100.0% | 100.0% | ✅ Identical |
 | glsl | [glsl.sample](tests/Fixtures/samples/glsl.sample) | 85.7% | 888 | 95.2% | 100.0% | ✅ Identical |
 | gnuplot | [gnuplot.sample](tests/Fixtures/samples/gnuplot.sample) | 83.8% | 787 | 99.6% | 100.0% | ✅ Identical |
-| go | [go.sample](tests/Fixtures/samples/go.sample) | 47.9% | 1893 | 95.9% | 100.0% | ✅ Identical |
+| go | [go.sample](tests/Fixtures/samples/go.sample) | 91.1% | 5245 | 96.9% | 100.0% | ✅ Identical |
 | graphql | [graphql.sample](tests/Fixtures/samples/graphql.sample) | 73.0% | 856 | 51.4% | 51.8% | [Line 26](tests/Fixtures/samples/graphql.sample#L26) |
 | groovy | [groovy.sample](tests/Fixtures/samples/groovy.sample) | 83.2% | 1180 | 22.8% | 22.8% | [Line 12](tests/Fixtures/samples/groovy.sample#L12) |
 | hack | [hack.sample](tests/Fixtures/samples/hack.sample) | 49.7% | 1813 | 94.9% | 95.3% | [Line 107](tests/Fixtures/samples/hack.sample#L107) |
@@ -107,7 +107,7 @@ Generated with PHP 8.4.27, PCRE2 10.42 and Oniguruma 6.9.9.
 | hcl | [hcl.sample](tests/Fixtures/samples/hcl.sample) | 86.2% | 791 | 99.6% | 100.0% | ✅ Identical |
 | hjson | [hjson.sample](tests/Fixtures/samples/hjson.sample) | 45.9% | 346 | 5.8% | 100.0% | ✅ Identical |
 | hlsl | [hlsl.sample](tests/Fixtures/samples/hlsl.sample) | 96.2% | 572 | 100.0% | 100.0% | ✅ Identical |
-| html | [html.sample](tests/Fixtures/samples/html.sample) | 32.9% | 302 | 100.0% | 100.0% | ✅ Identical |
+| html | [html.sample](tests/Fixtures/samples/html.sample) | 98.8% | 1263 | 93.7% | 93.7% | [Line 82](tests/Fixtures/samples/html.sample#L82) |
 | html-derivative | [html-derivative.sample](tests/Fixtures/samples/html-derivative.sample) | 100.0% | 843 | 99.9% | 99.9% | [Line 9](tests/Fixtures/samples/html-derivative.sample#L9) |
 | http | [http.sample](tests/Fixtures/samples/http.sample) | 91.7% | 375 | 100.0% | 100.0% | ✅ Identical |
 | hurl | [hurl.sample](tests/Fixtures/samples/hurl.sample) | 92.9% | 450 | 98.4% | 98.4% | [Line 9](tests/Fixtures/samples/hurl.sample#L9) |
@@ -115,20 +115,20 @@ Generated with PHP 8.4.27, PCRE2 10.42 and Oniguruma 6.9.9.
 | hy | [hy.sample](tests/Fixtures/samples/hy.sample) | 41.7% | 185 | 9.7% | 100.0% | ✅ Identical |
 | imba | [imba.sample](tests/Fixtures/samples/imba.sample) | 45.4% | 1489 | 99.1% | 99.5% | [Line 9](tests/Fixtures/samples/imba.sample#L9) |
 | ini | [ini.sample](tests/Fixtures/samples/ini.sample) | 53.3% | 35 | 100.0% | 100.0% | ✅ Identical |
-| java | [java.sample](tests/Fixtures/samples/java.sample) | 82.2% | 2128 | 100.0% | 100.0% | ✅ Identical |
-| javascript | [javascript.sample](tests/Fixtures/samples/javascript.sample) | 42.3% | 2304 | 100.0% | 100.0% | ✅ Identical |
+| java | [java.sample](tests/Fixtures/samples/java.sample) | 92.5% | 2485 | 100.0% | 100.0% | ✅ Identical |
+| javascript | [javascript.sample](tests/Fixtures/samples/javascript.sample) | 93.6% | 6287 | 99.9% | 100.0% | ✅ Identical |
 | jinja | [jinja.sample](tests/Fixtures/samples/jinja.sample) | 91.9% | 723 | 100.0% | 100.0% | ✅ Identical |
 | jison | [jison.sample](tests/Fixtures/samples/jison.sample) | 33.7% | 243 | 70.4% | 70.4% | [Line 4](tests/Fixtures/samples/jison.sample#L4) |
-| json | [json.sample](tests/Fixtures/samples/json.sample) | 56.5% | 242 | 100.0% | 100.0% | ✅ Identical |
+| json | [json.sample](tests/Fixtures/samples/json.sample) | 100.0% | 304 | 100.0% | 100.0% | ✅ Identical |
 | json5 | [json5.sample](tests/Fixtures/samples/json5.sample) | 46.4% | 229 | 100.0% | 100.0% | ✅ Identical |
 | jsonc | [jsonc.sample](tests/Fixtures/samples/jsonc.sample) | 73.9% | 145 | 100.0% | 100.0% | ✅ Identical |
 | jsonl | [jsonl.sample](tests/Fixtures/samples/jsonl.sample) | 52.2% | 228 | 100.0% | 100.0% | ✅ Identical |
 | jsonnet | [jsonnet.sample](tests/Fixtures/samples/jsonnet.sample) | 40.5% | 135 | 100.0% | 100.0% | ✅ Identical |
 | jssm | [jssm.sample](tests/Fixtures/samples/jssm.sample) | 30.0% | 97 | 100.0% | 100.0% | ✅ Identical |
-| jsx | [jsx.sample](tests/Fixtures/samples/jsx.sample) | 43.8% | 2214 | 99.9% | 100.0% | ✅ Identical |
+| jsx | [jsx.sample](tests/Fixtures/samples/jsx.sample) | 93.4% | 6610 | 99.9% | 100.0% | ✅ Identical |
 | julia | [julia.sample](tests/Fixtures/samples/julia.sample) | 76.9% | 1033 | 99.3% | 100.0% | ✅ Identical |
 | kdl | [kdl.sample](tests/Fixtures/samples/kdl.sample) | 82.9% | 241 | 100.0% | 100.0% | ✅ Identical |
-| kotlin | [kotlin.sample](tests/Fixtures/samples/kotlin.sample) | 64.6% | 675 | 58.1% | 100.0% | ✅ Identical |
+| kotlin | [kotlin.sample](tests/Fixtures/samples/kotlin.sample) | 95.4% | 904 | 63.1% | 100.0% | ✅ Identical |
 | kusto | [kusto.sample](tests/Fixtures/samples/kusto.sample) | 95.0% | 551 | 99.5% | 100.0% | ✅ Identical |
 | latex | [latex.sample](tests/Fixtures/samples/latex.sample) | 25.2% | 1151 | 53.3% | 53.6% | [Line 64](tests/Fixtures/samples/latex.sample#L64) |
 | lean | [lean.sample](tests/Fixtures/samples/lean.sample) | 41.5% | 311 | 93.9% | 93.9% | [Line 5](tests/Fixtures/samples/lean.sample#L5) |
@@ -137,11 +137,11 @@ Generated with PHP 8.4.27, PCRE2 10.42 and Oniguruma 6.9.9.
 | llvm | [llvm.sample](tests/Fixtures/samples/llvm.sample) | 34.6% | 203 | 100.0% | 100.0% | ✅ Identical |
 | log | [log.sample](tests/Fixtures/samples/log.sample) | 80.6% | 299 | 96.3% | 100.0% | ✅ Identical |
 | logo | [logo.sample](tests/Fixtures/samples/logo.sample) | 100.0% | 57 | 100.0% | 100.0% | ✅ Identical |
-| lua | [lua.sample](tests/Fixtures/samples/lua.sample) | 77.9% | 1146 | 99.7% | 100.0% | ✅ Identical |
+| lua | [lua.sample](tests/Fixtures/samples/lua.sample) | 91.9% | 1420 | 99.8% | 100.0% | ✅ Identical |
 | luau | [luau.sample](tests/Fixtures/samples/luau.sample) | 88.6% | 760 | 100.0% | 100.0% | ✅ Identical |
 | make | [make.sample](tests/Fixtures/samples/make.sample) | 73.3% | 521 | 100.0% | 100.0% | ✅ Identical |
 | maml | [maml.sample](tests/Fixtures/samples/maml.sample) | 66.7% | 98 | 100.0% | 100.0% | ✅ Identical |
-| markdown | [markdown.sample](tests/Fixtures/samples/markdown.sample) | 33.8% | 700 | 84.9% | 87.6% | [Line 1](tests/Fixtures/samples/markdown.sample#L1) |
+| markdown | [markdown.sample](tests/Fixtures/samples/markdown.sample) | 97.7% | 1606 | 88.6% | 91.9% | [Line 1](tests/Fixtures/samples/markdown.sample#L1) |
 | marko | [marko.sample](tests/Fixtures/samples/marko.sample) | 45.6% | 941 | 80.4% | 80.4% | [Line 14](tests/Fixtures/samples/marko.sample#L14) |
 | matlab | [matlab.sample](tests/Fixtures/samples/matlab.sample) | 59.1% | 435 | 99.8% | 100.0% | ✅ Identical |
 | mdc | [mdc.sample](tests/Fixtures/samples/mdc.sample) | 41.0% | 89 | 67.4% | 79.8% | [Line 1](tests/Fixtures/samples/mdc.sample#L1) |
@@ -162,7 +162,7 @@ Generated with PHP 8.4.27, PCRE2 10.42 and Oniguruma 6.9.9.
 | ocaml | [ocaml.sample](tests/Fixtures/samples/ocaml.sample) | 55.1% | 1370 | 99.0% | 99.0% | [Line 58](tests/Fixtures/samples/ocaml.sample#L58) |
 | pascal | [pascal.sample](tests/Fixtures/samples/pascal.sample) | 32.0% | 316 | 100.0% | 100.0% | ✅ Identical |
 | perl | [perl.sample](tests/Fixtures/samples/perl.sample) | 40.6% | 1330 | 97.0% | 98.5% | [Line 75](tests/Fixtures/samples/perl.sample#L75) |
-| php | [php.sample](tests/Fixtures/samples/php.sample) | 47.0% | 1968 | 99.6% | 100.0% | ✅ Identical |
+| php | [php.sample](tests/Fixtures/samples/php.sample) | 96.8% | 4772 | 99.6% | 100.0% | ✅ Identical |
 | pkl | [pkl.sample](tests/Fixtures/samples/pkl.sample) | 60.3% | 936 | 100.0% | 100.0% | ✅ Identical |
 | plsql | [plsql.sample](tests/Fixtures/samples/plsql.sample) | 86.7% | 695 | 100.0% | 100.0% | ✅ Identical |
 | polar | [polar.sample](tests/Fixtures/samples/polar.sample) | 61.2% | 709 | 97.2% | 100.0% | ✅ Identical |
@@ -175,7 +175,7 @@ Generated with PHP 8.4.27, PCRE2 10.42 and Oniguruma 6.9.9.
 | pug | [pug.sample](tests/Fixtures/samples/pug.sample) | 65.4% | 551 | 96.2% | 97.1% | [Line 10](tests/Fixtures/samples/pug.sample#L10) |
 | puppet | [puppet.sample](tests/Fixtures/samples/puppet.sample) | 67.1% | 810 | 99.9% | 100.0% | ✅ Identical |
 | purescript | [purescript.sample](tests/Fixtures/samples/purescript.sample) | 38.3% | 572 | 98.1% | 99.5% | [Line 19](tests/Fixtures/samples/purescript.sample#L19) |
-| python | [python.sample](tests/Fixtures/samples/python.sample) | 50.0% | 1928 | 100.0% | 100.0% | ✅ Identical |
+| python | [python.sample](tests/Fixtures/samples/python.sample) | 92.0% | 3054 | 100.0% | 100.0% | ✅ Identical |
 | qml | [qml.sample](tests/Fixtures/samples/qml.sample) | 42.3% | 113 | 100.0% | 100.0% | ✅ Identical |
 | qmldir | [qmldir.sample](tests/Fixtures/samples/qmldir.sample) | 100.0% | 22 | 100.0% | 100.0% | ✅ Identical |
 | qss | [qss.sample](tests/Fixtures/samples/qss.sample) | 54.3% | 155 | 100.0% | 100.0% | ✅ Identical |
@@ -189,28 +189,28 @@ Generated with PHP 8.4.27, PCRE2 10.42 and Oniguruma 6.9.9.
 | riscv | [riscv.sample](tests/Fixtures/samples/riscv.sample) | 34.0% | 109 | 100.0% | 100.0% | ✅ Identical |
 | rosmsg | [rosmsg.sample](tests/Fixtures/samples/rosmsg.sample) | 97.9% | 240 | 100.0% | 100.0% | ✅ Identical |
 | rst | [rst.sample](tests/Fixtures/samples/rst.sample) | 64.6% | 271 | 91.1% | 91.1% | [Line 11](tests/Fixtures/samples/rst.sample#L11) |
-| ruby | [ruby.sample](tests/Fixtures/samples/ruby.sample) | 49.2% | 1657 | 96.1% | 98.3% | [Line 7](tests/Fixtures/samples/ruby.sample#L7) |
+| ruby | [ruby.sample](tests/Fixtures/samples/ruby.sample) | 93.9% | 2661 | 94.1% | 96.7% | [Line 7](tests/Fixtures/samples/ruby.sample#L7) |
 | rust | [rust.sample](tests/Fixtures/samples/rust.sample) | 92.6% | 1300 | 100.0% | 100.0% | ✅ Identical |
 | sas | [sas.sample](tests/Fixtures/samples/sas.sample) | 97.1% | 490 | 99.4% | 100.0% | ✅ Identical |
 | sass | [sass.sample](tests/Fixtures/samples/sass.sample) | 85.9% | 492 | 100.0% | 100.0% | ✅ Identical |
-| scala | [scala.sample](tests/Fixtures/samples/scala.sample) | 73.5% | 1363 | 100.0% | 100.0% | ✅ Identical |
+| scala | [scala.sample](tests/Fixtures/samples/scala.sample) | 92.3% | 2003 | 99.7% | 99.7% | [Line 198](tests/Fixtures/samples/scala.sample#L198) |
 | scheme | [scheme.sample](tests/Fixtures/samples/scheme.sample) | 36.8% | 117 | 100.0% | 100.0% | ✅ Identical |
-| scss | [scss.sample](tests/Fixtures/samples/scss.sample) | 73.2% | 1066 | 98.9% | 98.9% | [Line 12](tests/Fixtures/samples/scss.sample#L12) |
+| scss | [scss.sample](tests/Fixtures/samples/scss.sample) | 91.1% | 1551 | 98.5% | 98.5% | [Line 12](tests/Fixtures/samples/scss.sample#L12) |
 | sdbl | [sdbl.sample](tests/Fixtures/samples/sdbl.sample) | 30.4% | 60 | 100.0% | 100.0% | ✅ Identical |
 | shaderlab | [shaderlab.sample](tests/Fixtures/samples/shaderlab.sample) | 30.8% | 134 | 100.0% | 100.0% | ✅ Identical |
-| shellscript | [shellscript.sample](tests/Fixtures/samples/shellscript.sample) | 63.6% | 987 | 93.0% | 94.0% | [Line 45](tests/Fixtures/samples/shellscript.sample#L45) |
-| shellsession | [shellsession.sample](tests/Fixtures/samples/shellsession.sample) | 100.0% | 30 | 100.0% | 100.0% | ✅ Identical |
+| shellscript | [shellscript.sample](tests/Fixtures/samples/shellscript.sample) | 87.2% | 1513 | 94.2% | 94.9% | [Line 45](tests/Fixtures/samples/shellscript.sample#L45) |
+| shellsession | [shellsession.sample](tests/Fixtures/samples/shellsession.sample) | 100.0% | 24 | 87.5% | 87.5% | [Line 1](tests/Fixtures/samples/shellsession.sample#L1) |
 | smalltalk | [smalltalk.sample](tests/Fixtures/samples/smalltalk.sample) | 60.8% | 79 | 100.0% | 100.0% | ✅ Identical |
 | solidity | [solidity.sample](tests/Fixtures/samples/solidity.sample) | 86.4% | 1155 | 100.0% | 100.0% | ✅ Identical |
 | soy | [soy.sample](tests/Fixtures/samples/soy.sample) | 92.9% | 545 | 100.0% | 100.0% | ✅ Identical |
 | sparql | [sparql.sample](tests/Fixtures/samples/sparql.sample) | 75.0% | 43 | 100.0% | 100.0% | ✅ Identical |
 | splunk | [splunk.sample](tests/Fixtures/samples/splunk.sample) | 52.4% | 147 | 100.0% | 100.0% | ✅ Identical |
-| sql | [sql.sample](tests/Fixtures/samples/sql.sample) | 64.4% | 808 | 87.7% | 100.0% | ✅ Identical |
+| sql | [sql.sample](tests/Fixtures/samples/sql.sample) | 90.4% | 1035 | 87.7% | 100.0% | ✅ Identical |
 | ssh-config | [ssh-config.sample](tests/Fixtures/samples/ssh-config.sample) | 64.3% | 131 | 100.0% | 100.0% | ✅ Identical |
 | stata | [stata.sample](tests/Fixtures/samples/stata.sample) | 56.7% | 1162 | 99.8% | 99.8% | [Line 45](tests/Fixtures/samples/stata.sample#L45) |
 | stylus | [stylus.sample](tests/Fixtures/samples/stylus.sample) | 79.2% | 713 | 98.9% | 98.9% | [Line 90](tests/Fixtures/samples/stylus.sample#L90) |
 | svelte | [svelte.sample](tests/Fixtures/samples/svelte.sample) | 52.2% | 1434 | 51.4% | 60.0% | [Line 20](tests/Fixtures/samples/svelte.sample#L20) |
-| swift | [swift.sample](tests/Fixtures/samples/swift.sample) | 52.9% | 1675 | 44.8% | 99.2% | [Line 60](tests/Fixtures/samples/swift.sample#L60) |
+| swift | [swift.sample](tests/Fixtures/samples/swift.sample) | 90.5% | 4002 | 60.9% | 99.5% | [Line 61](tests/Fixtures/samples/swift.sample#L61) |
 | system-verilog | [system-verilog.sample](tests/Fixtures/samples/system-verilog.sample) | 72.3% | 1392 | 75.5% | 100.0% | ✅ Identical |
 | systemd | [systemd.sample](tests/Fixtures/samples/systemd.sample) | 32.5% | 30 | 100.0% | 100.0% | ✅ Identical |
 | talonscript | [talonscript.sample](tests/Fixtures/samples/talonscript.sample) | 31.4% | 502 | 100.0% | 100.0% | ✅ Identical |
@@ -222,11 +222,11 @@ Generated with PHP 8.4.27, PCRE2 10.42 and Oniguruma 6.9.9.
 | toml | [toml.sample](tests/Fixtures/samples/toml.sample) | 40.7% | 133 | 100.0% | 100.0% | ✅ Identical |
 | ts-tags | [ts-tags.sample](tests/Fixtures/samples/ts-tags.sample) | 100.0% | 142 | 100.0% | 100.0% | ✅ Identical |
 | tsv | [tsv.sample](tests/Fixtures/samples/tsv.sample) | 100.0% | 25 | 100.0% | 100.0% | ✅ Identical |
-| tsx | [tsx.sample](tests/Fixtures/samples/tsx.sample) | 57.7% | 2528 | 99.9% | 100.0% | ✅ Identical |
+| tsx | [tsx.sample](tests/Fixtures/samples/tsx.sample) | 93.1% | 5446 | 99.7% | 100.0% | ✅ Identical |
 | turtle | [turtle.sample](tests/Fixtures/samples/turtle.sample) | 38.1% | 111 | 100.0% | 100.0% | ✅ Identical |
 | twig | [twig.sample](tests/Fixtures/samples/twig.sample) | 71.8% | 1380 | 99.7% | 99.9% | [Line 40](tests/Fixtures/samples/twig.sample#L40) |
 | txt | [txt.sample](tests/Fixtures/samples/txt.sample) | 100.0% | 26 | 100.0% | 100.0% | ✅ Identical |
-| typescript | [typescript.sample](tests/Fixtures/samples/typescript.sample) | 51.5% | 2751 | 100.0% | 100.0% | ✅ Identical |
+| typescript | [typescript.sample](tests/Fixtures/samples/typescript.sample) | 93.8% | 5429 | 99.9% | 100.0% | ✅ Identical |
 | typespec | [typespec.sample](tests/Fixtures/samples/typespec.sample) | 32.0% | 212 | 100.0% | 100.0% | ✅ Identical |
 | typst | [typst.sample](tests/Fixtures/samples/typst.sample) | 32.2% | 175 | 47.4% | 100.0% | ✅ Identical |
 | v | [v.sample](tests/Fixtures/samples/v.sample) | 69.9% | 1110 | 100.0% | 100.0% | ✅ Identical |
@@ -246,6 +246,6 @@ Generated with PHP 8.4.27, PCRE2 10.42 and Oniguruma 6.9.9.
 | wolfram | [wolfram.sample](tests/Fixtures/samples/wolfram.sample) | 29.5% | 2725 | 100.0% | 100.0% | ✅ Identical |
 | xml | [xml.sample](tests/Fixtures/samples/xml.sample) | 31.2% | 782 | 100.0% | 100.0% | ✅ Identical |
 | xsl | [xsl.sample](tests/Fixtures/samples/xsl.sample) | 71.4% | 374 | 100.0% | 100.0% | ✅ Identical |
-| yaml | [yaml.sample](tests/Fixtures/samples/yaml.sample) | 32.3% | 160 | 100.0% | 100.0% | ✅ Identical |
+| yaml | [yaml.sample](tests/Fixtures/samples/yaml.sample) | 96.8% | 438 | 100.0% | 100.0% | ✅ Identical |
 | zenscript | [zenscript.sample](tests/Fixtures/samples/zenscript.sample) | 45.8% | 230 | 100.0% | 100.0% | ✅ Identical |
 | zig | [zig.sample](tests/Fixtures/samples/zig.sample) | 35.7% | 202 | 100.0% | 100.0% | ✅ Identical |

@@ -211,3 +211,508 @@ export function Badge({ count = NaN, max = Infinity, children }) {
     </span>
   );
 }
+
+// --- Hooks and utilities ---
+
+export * from "./hooks.js";
+
+/**
+ * @typedef {{ id: number, label: string }} Option
+ */
+
+@observer
+class Store {
+  items = [];
+}
+
+function useDebounced(value, delay) {
+  const [debounced, setDebounced] = useState(value);
+  useEffect(() => {
+    const id = setTimeout(() => setDebounced(value), delay);
+    return () => clearTimeout(id);
+  }, [value, delay]);
+  return debounced;
+}
+
+const ids = items.map(item => item.id);
+const hasTitle = "title" in props;
+const packed = (r << 16) | (g << 8) | (b & 0xff) ^ ~mask;
+const unsigned = hash >>> 0 >> 1;
+let remaining = 10;
+remaining--;
+const escaped = "Line one\nLine two\t\u00e9";
+const PASSWORD = /^(?=.*\d)(?!.*\s)(?<=x)(?<!y).{8,}$/;
+const baseUrl = new URL("./assets/", import.meta.url);
+
+function legacySum() {
+  debugger;
+  return Array.from(arguments).reduce((a, b) => a + b, 0);
+}
+
+async function readAll(stream) {
+  for await (const chunk of stream) {
+    console.log(chunk);
+  }
+}
+
+loop:
+for (let i = 0; i < 3; i++) {
+  if (i === 1) continue loop;
+}
+
+// --- Control flow, operators and expressions ---
+
+const config = loadConfig?.() ?? {};
+let flags = 0, mask = 0xff,
+  shift = 2;
+flags |= 0b100;
+flags &= mask;
+flags ^= 1;
+flags <<= shift;
+flags >>= 1;
+flags >>>= 1;
+let ratio = total / count / 2;
+ratio /= 3;
+const half = (width) / 2;
+const scaled = value! / 4;
+const commented = total /* divisor */ / count;
+
+switch (config.mode) {
+  case "fast": {
+    console.log("fast mode");
+    break;
+  }
+  case "slow":
+    console.log("slow mode");
+    break;
+  default:
+    console.log("unknown");
+}
+
+if (flags > 4) {
+  console.log("big");
+} else if (flags === 0) {
+  console.log("zero");
+} else {
+  console.log("small");
+}
+
+if (input) /^\d+$/.test(input);
+
+outer: {
+  for (const [key, value] of Object.entries(config)) {
+    if (!value) continue;
+    break outer;
+  }
+}
+
+with (Math) {
+  console.log(PI);
+}
+
+const status = flags > 2 ? "on" : "off";
+const isDate = config.created instanceof Date;
+const instance = new Map([[1, "one"]]);
+const merged = { ...config, extra: true };
+const list = [...Array(3).keys()];
+const pattern = /[\x41\u0042\101\cJ]+/gu;
+const ESCAPED = /\//;
+const MAX_SIZE = 10;
+const Sizes = String.prototype.trim;
+module.exports = { MAX_SIZE };
+exports.helper = () => MAX_SIZE;
+console.log(module.filename);
+
+function check(n) {
+  switch (n) {
+    case 1: return /one/.test(String(n));
+  }
+}
+
+// Destructuring
+const { a, b: { c }, ...others } = config;
+const [first, , third = 3, ...tail] = list;
+let { 0: zero, "quoted-key": quoted } = list;
+for (const { id, ...props } of items) {
+  console.log(id, props);
+}
+function swap([x, y], { left, right: r = 1 }, ...[z]) {
+  return [y, x, left, r, z];
+}
+const pick = ({ name, 1: second, ["computed"]: comp }) => name;
+const takeArray = ([head, ...rest]) => head;
+
+// Objects with methods, getters, computed and numeric keys
+const shape = {
+  name,
+  1: "one",
+  "string key": 2,
+  [Symbol.iterator]: function* () {
+    yield* [1, 2];
+  },
+  "method"() {
+    return this.name;
+  },
+  [`dynamic`]() {},
+  0x10: "hex",
+  get area() {
+    return 42;
+  },
+  set area(value) {
+    this._area = value;
+  },
+  async load() {
+    await fetch("/shape");
+  },
+  handler: async (event) => {
+    console.log(event);
+  },
+  callback: function (err) {},
+  multiline: (
+    a,
+    b
+  ) => a + b,
+  count = 0,
+};
+
+// Generators and yield
+function* delegating() {
+  yield /* comment */ * other();
+}
+
+// Classes
+class Counter extends EventTarget {
+  #count = 0;
+  static instances = 0;
+  label = "counter";
+  onClick = () => this.increment();
+  handle = function () {};
+
+  static {
+    Counter.instances++;
+  }
+
+  constructor(start) {
+    super();
+    this.#count = start;
+  }
+
+  get value() {
+    return this.#count;
+  }
+
+  set value(v) {
+    this.#count = v;
+  }
+
+  *[Symbol.iterator]() {
+    yield this.#count;
+  }
+
+  async increment() {
+    this.#count += 1;
+  }
+}
+
+const Anon = class {
+  method() {}
+};
+
+class Widget extends React.Component {}
+
+// Template literals and tagged templates
+const html = String.raw`<div>${shape.name}</div>`;
+const greeting = `Hello, ${person.name}!`;
+
+// JSDoc
+/**
+ * @access private
+ * @author Jane Doe <jane@example.com>
+ * @borrows trstr as trim
+ * @kind function
+ * @see https://example.com/docs
+ * @see Counter#increment
+ * @template T, U
+ * @template {string} K
+ * @param {number} amount - The amount
+ * @param {string} [label="none"] - Optional label
+ * @param {Object} options.nested
+ * @property {string} name
+ * @alias counterHelper
+ * @memberof Counter
+ * @default "zero"
+ * @version 1.2.3
+ * @license MIT
+ * @deprecated
+ * @customTag
+ * See {@link Counter} and {@link https://example.com|the docs}.
+ * Also [the counter]{@link Counter}.
+ * @example <caption>Basic usage</caption>
+ * const c = new Counter(1);
+ * c.increment();
+ * @returns {Promise<void>}
+ */
+async function documented(amount, label) {}
+
+/// <reference path="./globals.d.ts" />
+
+// --- More syntax ---
+
+let [p, q] = pair;
+const [[innerA], { innerB }] = nested;
+function unpack([[x1, y1], { z1 }], { deep: { value } }) {}
+let handler = function () {};
+let onReady = () => {};
+let longValue =
+  computeSomething();
+const alpha = 1, // first
+  beta = 2;
+let gamma = 1,
+  delta = 2;
+import fallback // the default export
+  from "./fallback.js";
+function makeHandler(onDone = () => {}, onFail = function () {}) {}
+const runTask = (
+  onDone = () => {},
+  task
+) => task(onDone);
+const typedTask = (
+  task: Task
+): string => task.name;
+
+lines.forEach((line) => {
+  /^\s*(#|$)/.test(line) || process(line);
+});
+
+function Target() {
+  if (!new.target) throw new TypeError("call with new");
+  return obj instanceof Target;
+}
+
+/**
+ * @param amount
+ * @const VERSION
+ * @param {{ id: number, tags: Array<[string]> }} record
+ */
+function plain(amount, record) {}
+
+class Accessors {
+  accessor name = "x";
+  static accessor total = 0;
+  get [Symbol.toStringTag]() {
+    return "Accessors";
+  }
+}
+
+// --- JSX ---
+
+function App({ user, items }) {
+  const header = <h1 className="title" data-id='main'>Hello &amp; welcome &#169; &#x2014;</h1>;
+  const empty = <></>;
+  const ns = <svg:rect xlink:href="#a" />;
+  return (
+    <Layout.Main
+      title="Home"
+      {...props}
+      onClick={() => setOpen(!open)}
+      // a comment between attributes
+      /* another */
+      disabled
+    >
+      {user ? <Profile user={user} /> : <Login />}
+      {items.map((item) => (
+        <Item key={item.id} {...item} />
+      ))}
+      <>
+        <span>{/* inline comment */}</span>
+      </>
+    </Layout.Main>
+  );
+}
+
+// --- Flow / TypeScript-style annotations ---
+// Many .js files are type-checked with Flow, and VS Code's JavaScript grammar
+// still highlights these annotations.
+
+type Id = string | number;
+type Point = { x: number, y: number };
+type Pair<T> = [first: T, second?: T, ...rest: T[]];
+type Callback = (err: ?Error, value: any) => void;
+type Ctor = new (value: string) => Object;
+type GenericCtor = new <T>(value: T) => T;
+type Keys = keyof Point;
+type Mapped = { readonly [K in Keys as `get${K}`]+?: () => Point[K] };
+type Unwrap<T> = T extends Promise<infer U extends object> ? U : never;
+type Fn = <T>(arg: T) => T;
+type Readonly = readonly string[];
+type Nested = Map<string, Array<number>>;
+type Qualified = React.Node;
+type QualifiedGeneric = React.Element<typeof Widget>;
+type Lazy = import("./module.js");
+type Obj = {
+  name: string,
+  [key: string]: mixed,
+  method(): void,
+  ...Point,
+};
+type Union =
+  | { kind: "a" }
+  | { kind: "b" };
+type Template = `prefix-${string}`;
+type Intrinsic = intrinsic;
+type Literals = true | null | undefined | this | object | bigint | symbol | unknown | boolean;
+type Placeholder = Array<_>;
+
+interface Shape extends Base.Item {
+  area(): number;
+}
+
+export declare enum Color {
+  Red,
+  Green = "green",
+  ["Blue"] = 3,
+}
+
+declare namespace Lib {
+  export const version: string;
+}
+
+declare module "virtual" {}
+export as namespace MyLib;
+
+import type { Node } from "react";
+import json from "./data.json" with { type: "json" };
+import legacy = require("legacy");
+import Alias = Lib.version;
+export { default } from "./module.js";
+export { add as default } from "./module.js";
+declare var DEBUG: boolean;
+
+function sum(a: number, b: number = 0): number {
+  return a + b;
+}
+
+function first<T extends Array<unknown>, const U = T>(items: T, extra?: U): T[0] {
+  return items[0];
+}
+
+function isString(value: mixed): value is string {
+  return typeof value === "string";
+}
+
+function assertDefined(value: any): asserts value {}
+function assertIs(value: any): asserts value is number {}
+function assertThis(this: Foo): asserts this {}
+
+function multi(
+  a: number,
+  b: string
+): {
+  ok: boolean,
+} {
+  return { ok: true };
+}
+
+function noReturn(): 
+  void {}
+
+const typedArrow = async (x: number): Promise<number> => x * 2;
+const objReturn = (): { a: number } => ({ a: 1 });
+const genericArrow = <T,>(value: T): T => value;
+const asConst = ["a", "b"] as const;
+const casted = value as unknown as string;
+const satisfied = { port: 80 } satisfies Config;
+const nonNull = maybe!.value;
+const call = maybe!();
+const typedCall = identity<string>("x");
+const tagged = sql<Row>`select 1`;
+const multilineGeneric = useState<
+  string
+>("");
+const pointObj = { x: 1 } as Point;
+const holder = {
+  value: 1 as const,
+  other: 2 satisfies number,
+  method<T>(arg: T) {},
+  generic: <T,>(arg: T) => arg,
+  open: async (
+    a: number
+  ) => a,
+  typed: async <
+    T,
+  >(arg: T) => arg,
+};
+
+let explicit: Array<string> = [];
+let definite!: number;
+let tuple: [string, number] = ["a", 1];
+let fnType: (a: number, b?: string) => void;
+let objType: {
+  a: number
+};
+let unionType:
+  string;
+let maybeFn: ((value: string) => void) | null = null;
+let mappedFn: () => { a: number };
+
+abstract class Repository<T> implements Store<T>, Base.Iterable {
+  private readonly items: T[] = [];
+  protected static count?: number;
+  declare name: string;
+  public optional?: string;
+  definite!: number;
+  override accessor size = 0;
+  abstract find(id: Id): T;
+  get?(): void;
+
+  constructor(private readonly db: Database, public override name: string) {
+    super();
+  }
+
+  public async save<K extends keyof T>(item: T, key: K): Promise<void> {}
+  [key: string]: any;
+}
+
+const Klass = abstract class {};
+class Impl implements Repository.Base<T> {}
+const ref = new Map<string, number>();
+const viaParens = (value: number) => value;
+const withThis = function (this: Window, ev: Event) {};
+
+interface Callable {
+  (value: number): string;
+  <T>(value: T): T;
+  new (value: string): Callable;
+  method?(): void;
+  optional?: string;
+}
+
+class Fields {
+  optional?: string;
+  definite!: number;
+  label:
+    string;
+}
+
+type Ref = React.RefObject<HTMLElement>;
+type Later = (a: number) =>
+  void;
+type Factory = () => { a: number };
+type Wrapped = (callback: (err: Error) => void, self: (this: Window) => void) => void;
+const [state, setState] = useState<{
+  open: boolean;
+}>({ open: false });
+const fnCall = obj.method!();
+const genericArrowMulti = async <T,>(
+  value: T
+) => value;
+const members = {
+  generic: <T,>(arg: T) => arg,
+};
+
+// Explicit resource management (keep last)
+async function useResource() {
+  using file = openFile("data.txt");
+  await using conn = await connect(),
+    other = await connect();
+}

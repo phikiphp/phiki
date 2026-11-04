@@ -249,4 +249,200 @@ func add(a, b int) int { return a + b }
 <config enabled="true"/>
 ```
 
+More languages
+--------------
+
+```abap
+WRITE / 'Hello, World!'.
+```
+```bibtex
+@article{knuth1984, author = {Donald Knuth}, year = 1984}
+```
+```c
+#include <stdio.h>
+int main(void) { printf("%d\n", 42); return 0; }
+```
+```clojure
+(defn greet [name] (str "Hello, " name))
+```
+```coffee
+square = (x) -> x * x
+```
+```cpp
+std::vector<int> v{1, 2, 3};
+```
+```csharp
+Console.WriteLine($"Hello {name}");
+```
+```dart
+void main() => print('Hello, Dart');
+```
+```dockerfile
+FROM php:8.3-cli
+RUN composer install --no-dev
+```
+```bat
+@echo off
+set NAME=phiki
+```
+```elixir
+Enum.map([1, 2, 3], fn x -> x * 2 end)
+```
+```erlang
+-module(hello).
+hello() -> io:format("hi~n").
+```
+```fsharp
+let square x = x * x
+```
+```COMMIT_EDITMSG
+Fix tokenizer crash on empty lines
+
+# Please enter the commit message
+```
+```git-rebase-todo
+pick 1a2b3c4 Add grammar
+squash 5d6e7f8 Fix typo
+```
+```groovy
+def name = "Groovy"
+println "Hello $name"
+```
+```handlebars
+<p>{{#if user}}Hello {{user.name}}{{/if}}</p>
+```
+```gitignore
+/vendor/
+node_modules/
+*.log
+```
+```ini
+[database]
+host = localhost ; comment
+```
+```java
+public class Main { public static void main(String[] args) {} }
+```
+```regexp
+^(?<year>\d{4})-(\d{2})$
+```
+```jsonc
+{ "editor.tabSize": 4 } // settings
+```
+```jsonl
+{"id": 1}
+{"id": 2}
+```
+```julia
+f(x) = x^2 + 1
+```
+```latex
+\section{Intro} $E = mc^2$
+```
+```less
+@color: #333;
+.box { color: @color; }
+```
+```log
+2026-11-03 10:00:00 ERROR Something failed
+```
+```lua
+local t = { 1, 2, 3 }
+print(#t)
+```
+```makefile
+build:
+	composer install
+```
+```markdown
+# Nested heading
+
+Some *markdown* inside markdown.
+```
+```objc
+@interface Foo : NSObject
+@end
+```
+```perl
+my $name = "Perl";
+print "Hello, $name\n";
+```
+```perl6
+say "Hello, Raku";
+```
+```powershell
+Get-ChildItem -Path . | Where-Object { $_.Length -gt 1kb }
+```
+```pug
+div.container
+  p Hello
+```
+```r
+x <- c(1, 2, 3)
+mean(x)
+```
+```re
+(?P<name>\w+)\s*=\s*(\d+)
+```
+```rst
+Title
+=====
+
+*emphasis* and ``code``
+```
+```ruby
+puts [1, 2, 3].map { |x| x * 2 }.inspect
+```
+```scala
+object Main extends App { println("Hi") }
+```
+```scss
+$primary: blue;
+.btn { &:hover { color: $primary; } }
+```
+```swift
+let greeting = "Hello, \(name)"
+```
+```tsx
+const App = () => <div className="app">Hello</div>;
+```
+```twig
+{% for item in items %}{{ item|upper }}{% endfor %}
+```
+```vb
+Dim message As String = "Hello"
+```
+```xsl
+<xsl:template match="/"><xsl:value-of select="title"/></xsl:template>
+```
+```yang
+module example { namespace "urn:example"; prefix ex; }
+```
+
+Reference-style links and images
+--------------------------------
+
+See [the docs][docs], the [FAQ][] and [another] [ref]. An image ![Logo] [logo]
+and ![Banner][banner-img] work too.
+
+[docs]: https://example.com/docs "Documentation"
+[logo]: https://example.com/logo.png
+[banner-img]: https://example.com/banner.png
+
+Formatting with HTML inside: **bold <span>html</span> text**, *italic <em>html</em> text*,
+and ~~struck <s>html</s> text~~. Also __underscored bold__ and _underscored italic_.
+
+Comparison: 1 < 2 and a <= b, love <3.
+
+1. A list item
+
+   With a continuation paragraph
+   spanning two lines.
+
+2. Another item
+
+<b>
+Bold block of raw HTML
+</b>
+
 <!--- From http://www.unexpected-vortices.com/sw/rippledoc/quick-markdown-example.html -->
