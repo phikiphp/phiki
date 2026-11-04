@@ -21,12 +21,16 @@ readonly class Highlighter
     {
         $highlightedTokens = [];
 
+        // Tokens repeat the same scope stacks heavily, so each distinct stack is matched once
+        // and its settings are shared by every token on it. The cache is local to this call.
+        $matched = [];
+
         foreach ($tokens as $i => $line) {
             foreach ($line as $token) {
                 if ($token instanceof AnsiToken) {
                     $settings = $this->buildAnsiSettings($token);
                 } else {
-                    $settings = $this->matchScopes($token);
+                    $settings = $matched[implode("\0", $token->scopes)] ??= $this->matchScopes($token);
                 }
 
                 $highlightedTokens[$i][] = new HighlightedToken($token, $settings);

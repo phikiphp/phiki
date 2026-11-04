@@ -7,6 +7,7 @@ use Phiki\Exceptions\FailedToInitializePatternSearchException;
 use Phiki\Exceptions\FailedToSetSearchPositionException;
 use Phiki\Exceptions\UnsupportedRegexEngineException;
 use Phiki\Grammar\MatchedPattern;
+use Phiki\TextMate\SearchResultCache;
 
 /**
  * Matches patterns with Oniguruma through the `mb_ereg_search_*` functions, provided by
@@ -31,48 +32,63 @@ class OnigurumaEngine implements RegexEngineInterface
         return function_exists('mb_ereg_search_init');
     }
 
-    public function findNextMatch(array $patterns, string $lineText, int $linePos): ?MatchedPattern
+    public function findNextMatch(array $patterns, string $lineText, int $linePos, ?SearchResultCache $cache = null): ?MatchedPattern
     {
         $bestLocation = null;
         $bestMatches = null;
         $bestPattern = null;
+        $bestRegex = null;
 
-        if (! mb_ereg_search_init($lineText)) {
+        // Initializing the search copies the whole line, which adds up on long lines, so it's
+        // skipped when the cache says the line is already the one being searched.
+        if (($cache?->useLine($lineText) ?? true) && ! mb_ereg_search_init($lineText)) {
             throw new FailedToInitializePatternSearchException;
         }
 
         foreach ($patterns as [$pattern, $regex]) {
-            if (! mb_ereg_search_setpos($linePos)) {
-                throw new FailedToSetSearchPositionException;
+            $cached = $cache?->get($regex, $linePos);
+            $searched = $cached === null;
+
+            if ($searched) {
+                if (! mb_ereg_search_setpos($linePos)) {
+                    throw new FailedToSetSearchPositionException;
+                }
+
+                $result = @mb_ereg_search_pos($regex);
+                $start = $result === false ? false : $result[0];
+
+                $cache?->put($regex, $linePos, $start);
+            } else {
+                $start = $cached === false ? false : $cached[0];
             }
 
-            $result = @mb_ereg_search_pos($regex);
-
-            if ($result === false) {
+            if ($start === false) {
                 continue;
             }
 
-            [$start] = $result;
-
-            if ($start === $linePos) {
+            if ($start === $linePos || $start < $bestLocation || $bestLocation === null) {
                 $bestLocation = $start;
-                $bestMatches = mb_ereg_search_getregs();
+                // Only the captures of the search that just ran can be read, so a cached result is searched again below.
+                $bestMatches = $searched ? mb_ereg_search_getregs() : null;
                 $bestPattern = $pattern;
+                $bestRegex = $regex;
 
-                break;
-            }
-
-            if ($start < $bestLocation || $bestLocation === null) {
-                $bestLocation = $start;
-                $bestMatches = mb_ereg_search_getregs();
-                $bestPattern = $pattern;
-
-                continue;
+                if ($start === $linePos) {
+                    break;
+                }
             }
         }
 
         if ($bestPattern === null) {
             return null;
+        }
+
+        if ($bestMatches === null) {
+            if (! mb_ereg_search_setpos($bestLocation)) {
+                throw new FailedToSetSearchPositionException;
+            }
+
+            $bestMatches = @mb_ereg_search_pos($bestRegex) !== false ? mb_ereg_search_getregs() : false;
         }
 
         // mbregex reports byte offsets but not where each capture group starts, so we search for the

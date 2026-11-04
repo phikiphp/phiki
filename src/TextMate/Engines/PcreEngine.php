@@ -4,6 +4,7 @@ namespace Phiki\TextMate\Engines;
 
 use Phiki\Contracts\RegexEngineInterface;
 use Phiki\Grammar\MatchedPattern;
+use Phiki\TextMate\SearchResultCache;
 
 /**
  * Matches patterns with PCRE, which every PHP build includes. The bundled grammars for this
@@ -33,14 +34,27 @@ class PcreEngine implements RegexEngineInterface
         return Engine::Pcre;
     }
 
-    public function findNextMatch(array $patterns, string $lineText, int $linePos): ?MatchedPattern
+    public function findNextMatch(array $patterns, string $lineText, int $linePos, ?SearchResultCache $cache = null): ?MatchedPattern
     {
         $bestMatches = null;
         $bestPattern = null;
 
+        $cache?->useLine($lineText);
+
         foreach ($patterns as [$pattern, $regex]) {
-            // Patterns that fail to compile are skipped, the same as a pattern that does not match.
-            if (@preg_match(self::DELIMITER.$regex.self::DELIMITER.self::FLAGS, $lineText, $matches, PREG_OFFSET_CAPTURE | PREG_UNMATCHED_AS_NULL, $linePos) !== 1) {
+            $cached = $cache?->get($regex, $linePos);
+
+            if ($cached === null) {
+                // Patterns that fail to compile are skipped, the same as a pattern that does not match.
+                $matched = @preg_match(self::DELIMITER.$regex.self::DELIMITER.self::FLAGS, $lineText, $matches, PREG_OFFSET_CAPTURE | PREG_UNMATCHED_AS_NULL, $linePos) === 1;
+
+                $cache?->put($regex, $linePos, $matched ? $matches[0][1] : false, $matched ? $matches : null);
+            } else {
+                $matched = $cached !== false;
+                $matches = $matched ? $cached[1] : [];
+            }
+
+            if (! $matched) {
                 continue;
             }
 
