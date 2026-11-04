@@ -1,3 +1,4 @@
+#!/usr/bin/env lua
 ball = {
   xpos = 60,
   ypos = 60,
@@ -155,3 +156,48 @@ repeat
 until line == nil or line == ""
 
 return Inventory
+
+---- Equipment ----------------------------------------------------------
+
+---@class Weapon : Item, Equippable
+---@field damage integer
+---@field [integer] Item
+---@field ["display-name"] string
+---@version >5.2, JIT
+---@see Inventory#add
+
+---@alias DamageKind
+---| "slash" # Swords and axes
+---| "pierce" # Spears and arrows
+---|+ "blunt"
+
+---@generic K: string, V
+---@param map table<K, V>
+---@param cb async fun(...: any): V
+---@vararg string
+---@return K[]
+local function keys(map, cb, ...)
+  local out = {}
+  for k in pairs(map) do out[#out + 1] = k end
+  return out
+end
+
+---@diagnostic disable-next-line: unused-local, undefined-global
+local maybe = find_weapon()
+---@cast maybe -nil
+---@cast maybe +Weapon
+
+--- Deal damage to a target.
+-- @param target the entity being hit
+-- @usage weapon:hit(enemy)
+local QUARTER = 0x.4p+0
+
+local async = require("plenary.async")
+async.run(function()
+  print(keys({ sword = true }, nil))
+end)
+
+-- Luau (Roblox) adds type annotations and interpolated strings
+local function greet(name: string, level: number)
+  return `Hello {name}, you are level {level}`
+end

@@ -1,6 +1,7 @@
 #!/usr/bin/env -S scala-cli shebang
 //> using scala 3.3.1
 //> using dep com.lihaoyi::os-lib:0.9.1
+//> using test.dep org.scalameta::munit:1.0.0
 
 package com.example.shop
 
@@ -9,6 +10,8 @@ import scala.concurrent.{Future, ExecutionContext}
 import scala.util.{Try, Success as Ok, Failure}
 import java.time.*
 import given ExecutionContext
+import java.util.Random as JRandom
+import scala.math.{Ordering => Ord, given}
 
 /**/
 
@@ -151,3 +154,64 @@ class Date(y: Int, m: Int, d: Int) extends Ord:
 end Date
 
 // From https://docs.scala-lang.org/tutorials/scala-for-java-programmers.html
+
+package object util {
+  type Id[A] = A
+}
+
+object Registry:
+  given Ordering[Int] = Ordering.Int
+
+object Prelude:
+  export Registry.given
+  export Color.{Red => Crimson, given}
+
+object Algebra:
+  def combine[A](xs: List[A], ys: List[A]): List[A] = xs ::: ys
+  def widen[A, B >: A](a: A): B = a
+  def coerce[A, B](a: A)(using ev: A =:= B): B = ev(a)
+  def maxOf[T: Ordering as ord](xs: Seq[T]): T = xs.max(ord)
+  def spread(xs: Seq[Int]): Int = math.max(xs: _*)
+
+class Builder:
+  private var parts = List.empty[String]
+  def add(p: String): this.type =
+    parts = p :: parts
+    this
+
+object Macros:
+  import scala.quoted.*
+  inline def twice(inline x: Int): Int = ${ twiceImpl('x) }
+  def twiceImpl(x: Expr[Int])(using Quotes): Expr[Int] = '{ $x + $x }
+  def typeName[T: Type](using Quotes): Expr[String] = Expr(Type.show[T])
+  def isList(using Quotes)(t: Type[?]): Boolean = t match
+    case '[List[?]] => true
+    case _          => false
+  val legacy = 'oldSymbol
+
+object Strings:
+  val price = 42
+  val multi = s"""Price: $$$price \u00e9 ${price + 1}"""
+  val windowsPath = raw"""C:\temp\$price $$ and "quotes""""
+  val dollars = raw"cost $$5 for $price"
+  val tabbed = s"name:\t$price\n"
+  val emptyTag = <p></p>
+  val link = <a href='https://scala-lang.org' title='Scala'>docs</a>
+  val c = 'q'
+  val nl = '\n'
+
+def fetch(): Int =
+  val attempt =
+    try 1
+    catch case _: Exception => 0
+    end try
+  attempt
+end fetch
+
+val lookup =
+  Map("a" -> 1)
+end val
+
+var counter =
+  0
+end var

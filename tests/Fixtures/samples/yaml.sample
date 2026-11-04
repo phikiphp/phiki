@@ -48,3 +48,39 @@ jobs:
           path: dist/
 
 # From https://github.com/actions/add-to-project/blob/main/.github/workflows/check-dist.yml
+%YAML 1.2
+%TAG !e! tag:example.com,2000:app/
+%FOO bar baz
+%RESERVED some-thing
+---
+# Anchors, aliases and tags
+defaults: &defaults !!map
+  adapter: postgres
+  host: localhost
+  timeout: !!int 30
+  url: !<tag:yaml.org,2002:str> "postgres://db\x41\u0041\t\"local\"\
+    host"
+development:
+  <<: *defaults
+  database: dev_db
+  pool: !e!custom 5
+custom: !local value
+invalid: !bad,tag value
+
+# Flow collections
+matrix: { os: [ubuntu-latest, macos-latest], node: [16, 18, 20] }
+flags: [true, false, null, ~, 1.5, 0x1F, .inf, 2001-12-14]
+mixed: { "quoted": 'it''s here', plain value: yes, ? explicit: key, ref: *defaults }
+keys: [ ? complex key : complex value, "json": style, simple: pair ]
+nested: [ { a: 1 }, [ b, c ], *defaults ]
+
+# Explicit block keys
+? |
+  multi-line key
+: value for the complex key
+? [ list, as, key ]
+: another value
+...
+---
+second: document
+...

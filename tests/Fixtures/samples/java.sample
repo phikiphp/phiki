@@ -230,3 +230,50 @@ class ShapeCatalogue {
         System.out.printf("%s %d %b %s%n", byArea, big, ok, lock);
     }
 }
+
+/**
+ * Loads shapes from a backing store.
+ *
+ * @param <S> the shape type
+ * @throws IllegalStateException if the store is closed
+ * @see {@link ShapeLoader#load(String, int) load}
+ */
+class ShapeLoader<S extends Shape> extends AbstractLoader implements AutoCloseable {
+    private static final java.util.Map<String, Integer>
+        staticDefaults = java.util.Map.of("circle", 1);
+    private final java.lang.String[] names = {"circle", "square"};
+    private java.util.List<java.lang.String> cache = Collections.<java.lang.String>emptyList();
+
+    ShapeLoader(final int capacity) {
+        super(capacity);
+        java.util.Map counts = new java.util.HashMap();
+        ShapeLoader<S>.Entry entry = this.new Entry("first");
+    }
+
+    public S load(final String name, int retries) throws IOException, InterruptedException {
+        return super.load(name, retries);
+    }
+
+    @Override
+    public void close() {}
+
+    class Entry {
+        Entry(String key) {}
+    }
+}
+
+enum Direction implements Supplier<String>, Comparable<Direction> {
+    NORTH, SOUTH;
+
+    public String get() { return name().toLowerCase(); }
+}
+
+/** Module descriptor (normally lives in module-info.java). */
+open module shapes {
+    requires transitive java.desktop;
+    requires static lombok;
+    exports com.example.shapes to com.example.app;
+    opens com.example.shapes.internal;
+    uses com.example.shapes.ShapeFactory;
+    provides com.example.shapes.ShapeFactory with com.example.shapes.DefaultFactory;
+}

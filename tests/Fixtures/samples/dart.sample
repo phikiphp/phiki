@@ -1,3 +1,4 @@
+#!/usr/bin/env dart
 import 'package:flutter/material.dart';
 import 'package:flutter_workshop/screens/about_screen.dart';
 import 'package:flutter_workshop/screens/home_demo_screen.dart';
@@ -10,6 +11,7 @@ import 'package:device_simulator/device_simulator.dart';
 import 'dart:async';
 import 'dart:convert' show jsonDecode, jsonEncode;
 import 'dart:math' as math hide Random;
+export 'src/storage_stub.dart' if (dart.library.io) 'src/storage_io.dart';
 
 void main() => runApp(MyApp());
 
@@ -188,3 +190,41 @@ Flags: $flags
   if (ratio is! int) throw StateError('unreachable');
 }
 
+/**/
+
+/**
+ * A bounded cache keyed by [int] ids, using `LinkedHashMap` internally.
+ *
+ *     final cache = BoundedCache<Product>(capacity: 10);
+ *
+ * ```
+ * cache.put(1, product);
+ * ```
+ */
+class BoundedCache<T extends Comparable<T>> {
+  BoundedCache({this.capacity = 16});
+
+  final int capacity;
+  final _entries = new Map<int, T>();
+  int _evictions = 0;
+
+  void put(int key, T value) {
+    if (_entries.length >= capacity) {
+      _entries.remove(_entries.keys.first);
+      _evictions += 1;
+    }
+    _entries[key] = value;
+  }
+
+  String get report => '''
+Cache report
+  size: ${_entries.length}
+  evictions: $_evictions
+''';
+}
+
+const rawTriple = r"""Raw text with $dollars and \n escapes""";
+const rawTripleSingle = r'''Another raw block
+spanning lines with $signs''';
+const greeting = "Hello, ${'world'.toUpperCase()}!";
+const windowsPath = r"C:\Users\dart";

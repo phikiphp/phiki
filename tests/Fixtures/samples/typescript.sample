@@ -1,3 +1,4 @@
+#!/usr/bin/env -S npx tsx
 // Using 'typeof' to infer types
 const person = { name: "Alice", age: 30 };
 type PersonType = typeof person;  // { name: string; age: number }
@@ -257,3 +258,272 @@ const unsubscribe = inventory.on(async (e) => {
 
 export default inventory;
 export { greeting, tagged, lazy, isFragile, shifted, unsubscribe, discount };
+
+// ---------------------------------------------------------------------------
+// Assorted language features: modules, declarations and expressions
+// ---------------------------------------------------------------------------
+/// <reference path="./globals.d.ts" />
+/// <reference types="node" />
+import config = require("./config");
+import Shapes = Geometry.Shapes;
+import seed from "./seed.json" with { type: "json" };
+import { default as defaultsDeep } from "lodash";
+export as namespace InventoryLib;
+
+/* Plain block comment */
+/* @internal */ const INTERNAL_FLAG = true;
+
+/**
+ * A documented helper.
+ *
+ * @access private
+ * @author Jane Doe <jane@example.com>
+ * @borrows trstr as trim
+ * @kind function
+ * @see https://example.com/docs
+ * @see {@link Inventory} and [the docs]{@link https://example.com|Docs}
+ * @template {string} K
+ * @typedef {Object} Options
+ * @param options
+ * @param {number} [options.retries=3] - How often to retry.
+ * @memberof Inventory
+ * @default "fast"
+ * @version 1.2.0
+ * @deprecated
+ * @customTag something
+ * @example <caption>Basic usage</caption>
+ * const value = helper({ retries: 2 });
+ * @returns {Promise<void>}
+ */
+async function helper(options: { retries?: number } = {}): Promise<void> {
+  debugger;
+}
+
+enum Http {
+  "Not-Found" = 404,
+  ["Teapot"] = 418,
+}
+
+declare function assertIsDefined<T>(val: T): asserts val;
+declare function assertThis(this: Inventory): asserts this;
+type Upper = intrinsic;
+type Mod = typeof import("./plugins");
+type PluginApi = import("./plugins").Api;
+type Ns = Units.Size;
+type Gen = Units.Box<string>;
+type RO = readonly string[];
+type Rest = [string, ...number[]];
+type Make = new <T>(value: T) => T;
+type Fn = (a: number, b?: string) => { ok: boolean };
+type Union = (string | number)[];
+type Getters<T> = { [K in keyof T as `get${Capitalize<string & K>}`]: () => T[K] };
+type Deep<T> = T extends object
+  ? { [K in keyof T]: Deep<T[K]> }
+  : T;
+type Callback = (
+  err: Error | null,
+  data?: Buffer,
+) => void;
+
+interface Constructable {
+  new (name: string): Inventory;
+  (input: string): number;
+  readonly [index: number]: string;
+  [key: string]: unknown;
+  optional?(): void;
+}
+
+function parse([head, ...tail]: string[], { strict = false }: { strict?: boolean }): string {
+  return head + tail.join("") + String(strict);
+}
+
+function point(): { x: number; y: number } {
+  return { x: 0, y: 0 };
+}
+
+function* counter(start = 0) {
+  while (true) yield /* next */ * [start++];
+}
+
+class Base {
+  greet() { return "hi"; }
+}
+
+class Derived extends Base implements Units.Shape {
+  accessor count = 0;
+  name!: string;
+  onClick = () => this.count++;
+  handler = async function (this: Derived) {};
+  constructor() {
+    super();
+    console.log(new.target, arguments.length, import.meta.url);
+  }
+  override greet(): string {
+    return super.greet() + "!";
+  }
+}
+
+const Anon = class extends Base {};
+const AbstractAnon = abstract class {};
+const { a, b: renamed, ["c"]: computed, 0: zero, ...others } = seed;
+const { deep: { inner } } = seed;
+let { x, y = 1 } = point();
+let [p, q, ...more] = [1, 2, 3];
+let [[nested]] = [[1]];
+let counterFn = () => 1, MAX_RETRIES = 3;
+let declared,
+  another = 2;
+var legacy = function () { return arguments; };
+
+const casted = <string>someValue;
+const tuple = <const>["a", "b"];
+function cast(value: unknown) {
+  return <number>value;
+}
+<any>window;
+
+const square = n => n * n;
+const asyncSquare = async n => n * n;
+const typedArrow = (n: number): string => String(n);
+const objArrow = (): { ok: true } => ({ ok: true });
+const multiLine = async (
+  first: number,
+  second: string,
+) => first + second;
+const generic = <T,>(
+  value: T,
+) => value;
+const narrow = flag ? { kind: "a" } : { kind: "b" };
+const frozen = { level: 1, tags: ["a"] } as const;
+const literal = {
+  "quoted-key": 1,
+  42: "answer",
+  [Symbol.toStringTag]: "Literal",
+  ...defaults,
+  method() { return this; },
+  async load() {},
+  get value() { return 1; },
+  set value(v) {},
+  *items() {},
+  "string method"() {},
+  [computedKey]() {},
+  fn: function () {},
+  arrow: (v: number) => v,
+  later: async (
+    v: number,
+  ) => v,
+  typed: <T>(v: T) => v,
+  size: 3 as number,
+  checked: config satisfies object,
+  mode: "dark" as const,
+};
+let shorthand = 0;
+;({ shorthand = 5 } = literal);
+
+value &= 1; value |= 2; value ^= 3; value <<= 1; value >>= 1; value >>>= 1;
+delete literal.mode;
+const half = total! / 2;
+const ratio = total /* comment */ / 2;
+const spread = [...sizes, ...more];
+const nil = null, undef = undefined, nan = NaN, inf = -Infinity;
+const isBase = derived instanceof Base;
+const maybe = handlerFn?.(1) ?? fallback!();
+const UPPER = Units.KG + MAX_RETRIES;
+const ctor = new Derived();
+module.exports = { ctor };
+exports.ready = true;
+
+if (ready) /ab+c/.test(input);
+const re = /(?<year>\d{4})-(?:\d{2})|(?=x)(?!y)(?<=z)(?<!w)\k<year>\1[\x41\u0041\101\cA\.]/gu;
+function matcher(kind: string) {
+  switch (kind) {
+    case "digits":
+      return /\d+/;
+  }
+  return /x/;
+}
+
+outer: {
+  for await (const chunk of stream) {
+    if (!chunk) break outer;
+  }
+}
+
+with (Math) { max(1, 2); }
+
+const state = useState<{
+  open: boolean;
+}>({ open: false });
+const query = sql<User>`SELECT * FROM users`;
+
+// ---------------------------------------------------------------------------
+// Multi-line signatures, as formatted by Prettier
+// ---------------------------------------------------------------------------
+export { default } from "./inventory";
+
+/**
+ * @param {{ id: number, tags: string[] }} payload - The raw payload.
+ */
+function configure(
+  options:
+    | { mode: "fast" }
+    | { mode: "safe"; retries: number },
+): Promise<Record<string, number>> {
+  return Promise.resolve({});
+}
+
+function longReturn(input: string):
+  Promise<string> {
+  return Promise.resolve(input);
+}
+
+type Reducer<S, A> = (state: S, action: A) =>
+  S;
+
+type Boxed = Units.Box<string>;
+
+const fetchAll = async (
+  urls: string[],
+  onProgress: (done: number) => void,
+): Promise<string[]> => {
+  return Promise.all(urls.map((u) => fetch(u).then((r) => r.text())));
+};
+
+const pick = <
+  T,
+>(items: T[]) => items[0];
+
+const factories = {
+  create: async <T,>(
+    value: T,
+  ) => value,
+  wrap: <
+    T,
+  >(
+    value: T,
+  ) => [value],
+};
+
+function nested({ user: { id, roles: [primary] } }: { user: { id: number; roles: string[] } }, [[row]]: number[][]) {
+  return id + row + primary;
+}
+
+let { "x-y": dashed, 0: firstItem, ...restOfIt } = seed;
+
+const width = 10, // the default width
+  height = 20;
+const doubled = (n: number) =>
+  n * 2;
+const nestedGroups = /(a(b|c))+/;
+/^\d+$/.test(String(width)) && console.log(width);
+
+function guard(err: unknown) {
+  if (err instanceof TypeError) return new RangeError("wrapped");
+  const instance = new Inventory("spare");
+  return instance;
+}
+
+async function withResources() {
+  await using res = getResource();
+  using handle = open();
+}

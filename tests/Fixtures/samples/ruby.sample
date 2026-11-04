@@ -203,3 +203,126 @@ QUOTED = [%q{curly 'quote'}, %Q[square #{ZIP.source}], %(paren #{1}), %<angle>]
 NAMES = %w(alpha beta), %W{#{VERSION_TAG = "v1"} gamma}, %i<one two>, %I(sym#{2})
 sym = %s(plain_symbol)
 puts :'single quoted', sym, $0, $!, $~, __dir__, self.inspect
+
+# --- Singleton classes, endless conditions and augmented assignment ---------
+class Counter
+  class << self
+    attr_accessor :instances
+
+    def track name, step = 1
+      @@registry ||= {}
+      @@registry[name] = step
+    end
+  end
+
+  def initialize
+    @value = 100
+    @label = "counter"
+  end
+
+  def drain
+    count = 0
+    while (count += 1) < 10
+      @value /= 2
+    end
+    until (count -= 1) <= 0
+      @value *= 3
+    end
+    if cached ||= compute_cache
+      cached
+    else if @value.zero?
+        nil
+      end
+    end
+  end
+
+  def to_s
+    "#@label: #@value (#@@registry) on #$PROGRAM_NAME"
+  end
+end
+
+square = -> x { x * x }
+noop = -> {}
+square.call(4) && noop.()
+[1, 2, 3].each { |n| puts n }
+{ a: 1 }.each_pair do |key, value| puts key, value end
+pairs = [[1, [2, 3]]].map { |a, (b, c), *rest, **opts, &blk| a + b + c }
+:'it\'s a symbol'
+
+# --- Percent literals with every delimiter -----------------------------------
+tag = "v2"
+WORDS = [
+  %w<alpha \> beta>, %w{gamma \} delta}, %w|epsilon \| zeta|, %w[eta \] [theta]], %w(iota \) (kappa)),
+  %W[#{tag} [nested]], %W(#{tag} (nested)), %W<#{tag} <nested>>, %W{#{tag} {nested}}, %W|#{tag} plain|,
+  %i[one \] two], %i(three \) four), %i<five \> six>, %i{seven \} eight}, %i|nine \| ten|,
+  %I[#{tag}_a [b]], %I<#{tag}_c <d>>, %I{#{tag}_e {f}}, %I|#{tag}_g h|, %I(#{tag}_i (j)),
+]
+STRINGS = [
+  %q<less \> than <nested>>, %q[square \] [nested]], %q(paren \) (nested)), %q{curly \} {nested}}, %q|pipe \| bar|,
+  %s<sym \>>, %s[sym \]], %s{sym \}}, %s|sym \||, %s(sym \) (x)),
+  %{curly #{tag} {nested}}, %Q{curly #{tag}}, %x{ls -la}, %Q|pipe #{tag}|, %x!echo #{tag}!, %^caret #{tag}^,
+  %Q(paren (nested)), %Q[square [nested]], %Q<angle <nested>>,
+]
+PATTERNS = [
+  %r(\d+ (group)), %r<\w+ <angle>>i, %r!^/usr/(local)?/bin!m, %r[(?<w>[a-z]) [nested]]x, %r{\d{2,4} {curly}}o,
+]
+PHONE = %r{
+  (?<area>\d{3})   # area code
+  (?#separator)[-.\s]?
+  (?<line>\d{4})   # line number
+}x
+
+# --- Heredocs with embedded languages ----------------------------------------
+template = <<-HAML
+  %ul.orders
+    %li= order.id
+HAML
+feed = <<~XML
+  <?xml version="1.0"?>
+  <orders count="2"/>
+XML
+query = <<~GRAPHQL
+  query { orders(first: 10) { id total } }
+GRAPHQL
+fragment = <<~GQL
+  fragment OrderFields on Order { id }
+GQL
+native = <<~CPP
+  std::vector<int> orders{1, 2, 3};
+CPP
+legacy = <<~C
+  int total = compute(orders, 2);
+C
+widget = <<~JQUERY
+  $(".orders").fadeIn();
+JQUERY
+script = <<~LUA
+  local total = redis.call("GET", KEYS[1])
+LUA
+snippet = <<~RUBY
+  orders.each { |o| puts o }
+RUBY
+view = <<~SLIM
+  ul.orders
+    li = order.id
+SLIM
+plain =<<EOS
+Indented heredoc terminators are not required here: #{tag}
+<<-QUOTED
+EOS
+
+# Exports reports.
+#
+# @!group Exporting
+#   Methods related to exporting reports
+#   to various formats.
+# @!visibility public
+def export(format = :csv)
+  "exported as #{format}"
+end
+# @!endgroup
+
+__END__
+<html>
+  <body>Embedded template data</body>
+</html>

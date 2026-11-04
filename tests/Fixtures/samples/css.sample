@@ -174,3 +174,62 @@ svg|circle {
 @-moz-document url-prefix() {
   .thumb { object-fit: fill; }
 }
+
+/* ---------------------------------------------------------------
+ * Modern selectors, media queries and at-rules
+ * ------------------------------------------------------------- */
+
+@import /* base styles */ url("base.css") only screen;
+@layer reset, base, components;
+@custom-media --small-viewport (max-width: 30em);
+
+@document url-prefix(http://www.example.com/), domain(example.org), regexp("https:.*") {
+  body { color: purple; }
+}
+
+@media only screen and (400px <= width <= 700px), not print and (aspect-ratio: 16 / 9) {
+  .card { width: calc(100% - 2rem); }
+}
+
+@media (min-width: 30em) and (orientation > 0) {
+  .card { display: -webkit-box; -webkit-box-orient: vertical; }
+}
+
+my-element,
+x-foo-bar:defined {
+  display: block;
+}
+
+:host >>> .inner,
+:host /deep/ .legacy-inner {
+  color: ButtonText;
+  background: Canvas;
+  border-color: ActiveBorder;
+}
+
+p:dir(rtl),
+blockquote:lang(en, fr-CA),
+q:lang("de-*"),
+q:lang('pt') {
+  quotes: "\201C" "\201D";
+}
+
+.sm\:flex,
+.w-1\/2 {
+  display: flex;
+}
+
+input[type=text],
+a[xlink|href],
+[*|title],
+svg|a[svg|title="Link"] {
+  border: 1px solid GrayText;
+}
+
+.hero {
+  background-image: image-set("hero.png" 1x, "hero-2x.png" 2x);
+  shape-outside: circle(50% at center);
+  mask-image: radial-gradient(circle at top left, black, transparent);
+  content: "multi-line \
+string continues here";
+}

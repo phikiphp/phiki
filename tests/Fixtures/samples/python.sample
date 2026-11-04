@@ -203,3 +203,145 @@ DOC = f"""
 """
 BLOB = b"""multi
 line"""
+
+
+# --- Regular expressions: raw strings get regexp highlighting ---------------
+EMAIL = re.compile(r"(?:[\w.+-]+)@(?=[a-z])(?![0-9])(?<=@)(?<!\.)([a-z0-9-]+\.)+[a-z]{2,}")
+QUOTED = re.compile(r"(?P<q>['\"])(?(q)\w+|\d+)(?#closing)[]\]][^]a]\012.")
+SPLIT = re.compile(r'(?:\s*,\s*)|(?=;)(?!;;)(?<=\w)(?<!\\)(?P<sep>[|\t]+)(?(sep)x|y)(?#done)')
+SET = re.compile(r'[]]+[^]x]\0\n.')
+VERBOSE = re.compile(r"""
+    (?:https?://)          # scheme
+    (?=[a-z])(?!www\.)     # lookarounds
+    (?<=//)(?<!\\)
+    (?P<host>[^/:]+)       # host
+    (?(host)/|$)
+    ([]a-z]+)[^]/]
+""", re.X)
+LOG_LINE = re.compile(r'''
+    ^(?P<date>\d{4}-\d{2}-\d{2})   # ISO date
+    \s+(?:[A-Z]+)(?=:)(?!::)
+    (?<=:)(?<!\\)(?#level)
+    (?(date)\s|$)([]\w]+)[^]\n]
+    (\d+\.?)
+''', re.VERBOSE)
+ESCAPED = r"\"quoted\" and \\backslash", r'it\'s'
+
+
+# --- Formatting --------------------------------------------------------------
+def report(amount: float, width: int, precision: int, name: str) -> list[str]:
+    "Render a few lines of a report."
+    return [
+        f"{amount:+#0{width},.{precision}f}",
+        f"{name:_^{width}}|{amount:{width}.{precision}e}|{width:{precision}b}",
+        f"{name!r:>{width}}",
+        "{0:>{1}}".format(name, width),
+        "{:,}".format(amount),
+        rf"\d{{{width}}}-{name}",
+        rf"""{name}\n{amount=}
+{width!r} {precision=!s} {amount:+#0{width},.{precision}%} {name:_<{width}}
+""",
+        f"""{amount=} {name!a} {width:{precision}x}""",
+    ]
+
+
+JINJA = """{% for item in items %}{{ item }}{% endfor %}"""
+JINJA_RAW = R"""{% if user %}hello{% endif %} {not a field} \d"""
+FIELD = "{%s}" % "name"
+BAD_FIELD = "{ name } {%raw%}"
+RAW_FIELD = R"{ name } {%raw%}"
+RAW_TRIPLE_BYTES = Rb"""\x00 raw
+bytes"""
+RAW_UPPER = R"""C:\temp
+\new"""
+
+
+# --- Classes ---------------------------------------------------------------
+from collections import namedtuple
+import enum
+
+class Point(namedtuple("Point", ["x", "y"])):
+    """A 2D point.
+
+    >>> Point(1, 2).norm()
+    2.23606797749979
+    ... # continuation prompt
+    """
+
+    def norm(self):
+        r"""Return the Euclidean norm, sqrt(x\*\*2 + y\*\*2)."""
+        return (self.x ** 2 + self.y ** 2) ** 0.5
+
+    def describe(self):
+        r'Raw single-quoted docstring with \n escapes'
+        return "Point"
+
+    def quick(self):
+        'Short docstring.'
+        return self
+
+
+class Color(enum.Enum, boundary=enum.STRICT):
+    RED = 1
+
+
+mixins = (object,)
+
+class Combined(*mixins):
+    pass
+
+
+# NOTE: TODO and FIXME are highlighted in comments, as are XXX, HACK and BUG.
+handlers = [print, repr]
+handlers[0]("odd call")
+(lambda x: x)(1)
+callback = make_callback(handlers)(timeout=5)(retries=3)
+scale = lambda value, /, factor=2, *, offset=0: value * factor + offset
+
+total = 1 + \
+    2 + \
+    3
+message = "first part " \
+    "second part"
+
+
+def compute(values):
+    # Positional-only marker and keyword arguments in calls
+    return sorted(values, key=lambda v: -v, reverse=True)
+
+
+@buttons[0].clicked.connect
+def on_click():
+    pass
+
+
+# --- Python 2 compatibility shims (legacy builtins) ------------------------
+try:
+    text_type = unicode
+    string_types = basestring
+    range_ = xrange
+    input_ = raw_input
+except NameError:
+    text_type = string_types = str
+    range_, input_ = range, input
+from functools import reduce
+product = reduce(lambda a, b: a * b, [1, 2, 3])
+
+# Deliberately invalid snippets below: legacy Python 2 / non-Python syntax that the
+# grammar flags as deprecated or illegal.
+legacy_repr = `product`
+legacy_long = 10L
+bad_number = 123abc
+statement = 1;
+if a && b || !c: pass
+cost = $price
+x++
+x--
+x = \ junk after continuation
+def True(): pass
+call(lambda, 1)
+fn = lambda
+handler.lambda
+f"{ }" f"} " f"{unclosed"
+bf"bytes fstring {x}" Uf"""unicode fstring {x}"""
+-> int

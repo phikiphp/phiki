@@ -1,7 +1,12 @@
+/**
+ * Squad configuration (JSONC)
+ */
 {
+  /* Basic info */
   "squadName": "Super hero squad",
   "homeTown": "Metro City",
-  "formed": 2016,
+  "formed": 2016, // year founded
+  "motto": "Protect \"Metro\" \\ serve\n\u00e9\t\/ \q",
   "secretBase": "Super tower",
   "active": true,
   "members": [
@@ -35,4 +40,11 @@
     }
   ],
   "from": "https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON"
+}
+
+// Invalid tokens
+{
+  "values": [1, 2, oops],
+  "key": true !,
+  bad
 }

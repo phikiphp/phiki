@@ -1,6 +1,7 @@
 package com.example.kotlin
 
 import java.util.Random as Rand
+import kotlin.math.*
 import android.support.v7.app.AppCompatActivity
 import org.amshove.kluent.`should equal` as Type
 
@@ -147,3 +148,42 @@ class Outer {
 }
 
 // From: https://github.com/nishtahir/language-kotlin/blob/master/snapshots/corpus.kt
+/**
+ * A small inventory that tracks [Item]s.
+ *
+ * @param T the item type
+ * @property capacity maximum number of items
+ * @param[name] display name
+ * @throws IllegalStateException when the inventory is full
+ * @return nothing useful
+ * @see {@link Inventory#add(Item) add}
+ */
+class Inventory<T : Item>(val capacity: Int) : Collection<T> by mutableListOf() where T : Comparable<T> {
+    @set:[Inject Named("count")]
+    var count: Int = 0
+        get() = field
+        private set(value) { field = value }
+
+    val lazyName: String by lazy { "inventory" }
+
+    fun add(item: T): Boolean {
+        if (count==capacity) return false
+        count += 1
+        count++
+        --count
+        this@Inventory.count *= 1
+        super.toString()
+        return true
+    }
+}
+
+fun ranges() {
+    val enabled = true && !false
+    val separator = '\t'
+    val letter = 'k'
+    for (i in 1..10) println(i)
+    val square: (Int) -> Int = { n -> n * n }
+    val doc = """
+        |Multi-line string with \$ and ${square(3)}
+        """.trimMargin()
+}
