@@ -1,0 +1,101 @@
+---
+title: Upgrading from 2.x to 3.0
+sidebarTitle: Upgrade guide
+---
+
+Phiki 3.0 introduces a small number of breaking changes from the 2.x series. This guide will help you upgrade your code to be compatible with the new version.
+
+To upgrade from Phiki 2.x to 3.0, run the following command:
+
+```sh
+composer require phiki/phiki:^3.0
+```
+
+Most applications only need to check the PHP version requirement. The rest of the changes affect the tokens and HTML that Phiki produces, or code that reaches into Phiki's internals.
+
+Please consult the sections below to understand the changes and how they might affect your code before opening an issue on the repository.
+
+<Note>
+For information about new features and improvements in Phiki 3.0, such as the new [regex engines](/regex-engines), please refer to the rest of the documentation.
+</Note>
+
+## High impact changes
+
+### PHP 8.3 is now required
+
+Phiki 3.0 requires PHP 8.3 or newer. Support for PHP 8.2 has been dropped.
+
+## Medium impact changes
+
+### Tokenization output changed
+
+The tokenizer and grammar parser now follow vscode-textmate's rules much more closely. Many grammars now produce different, more accurate scopes, so the classes and styles in Phiki's HTML output can change for the same code.
+
+If you have snapshot tests or stored HTML that contains Phiki's output, you should expect to regenerate it after upgrading.
+
+The [compatibility report](https://github.com/phikiphp/phiki/blob/3.x/COMPATIBILITY.md) shows how closely Phiki now matches vscode-textmate for every bundled grammar.
+
+### Phiki falls back to the PCRE engine
+
+Phiki now has two [regex engines](/regex-engines): Oniguruma and PCRE. Oniguruma is still used by default, but when the `mb_ereg_search_*` functions are not available, Phiki now uses the PCRE engine instead.
+
+The engines are not 100% compatible with each other, so code can be tokenized slightly differently depending on the engine. If you want the same output on every server, choose an engine explicitly:
+
+```php
+use Phiki\Phiki;
+use Phiki\TextMate\Engines\OnigurumaEngine;
+
+$phiki = (new Phiki)
+    ->engine(new OnigurumaEngine);
+```
+
+Creating an `OnigurumaEngine` throws a `Phiki\Exceptions\UnsupportedRegexEngineException` when the `mb_ereg_search_*` functions are not available.
+
+### Custom grammars and the PCRE engine
+
+Custom grammars registered with `Phiki::grammar()` are used as they are. If your application uses the PCRE engine, their patterns need to use PCRE syntax. You can translate a grammar written in Oniguruma syntax ahead of time with `Phiki\Support\OnigurumaToPcre::translateGrammar()`, and register the translated file:
+
+```php
+use Phiki\Support\OnigurumaToPcre;
+
+// Decode the grammar into objects so that empty objects survive being encoded again.
+$grammar = json_decode(file_get_contents('/path/to/grammar.json'));
+
+file_put_contents(
+    '/path/to/grammar.pcre.json',
+    json_encode(OnigurumaToPcre::translateGrammar($grammar), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)
+);
+```
+
+```php
+use Phiki\Phiki;
+use Phiki\TextMate\Engines\PcreEngine;
+
+$phiki = (new Phiki)
+    ->engine(new PcreEngine)
+    ->grammar('my-custom-grammar', '/path/to/grammar.pcre.json');
+```
+
+### Clear your cache after upgrading
+
+The cache key for highlighted HTML doesn't include the Phiki version or the regex engine. If you use [caching](/caching), clear your cache after upgrading, and again whenever you switch engines, so that previously cached output isn't served.
+
+## Low impact changes
+
+### `begin` rules without an `end` pattern
+
+A grammar rule with a `begin` pattern but no `end` pattern used to be treated as a `match` rule. It is now a region that never closes, as in vscode-textmate. Of the bundled grammars, only `xml` and `blade` have such rules. Custom grammars that rely on the old behaviour should add an `end` pattern or use `match` instead.
+
+### Bundled grammar files moved
+
+The bundled grammar files have moved from `resources/grammars/{name}.json` to `resources/grammars/{engine}/{name}.json`, where `{engine}` is `oniguruma` or `pcre`.
+
+If you were reading these files directly, use `Grammar::path()` instead. It now accepts an optional `Phiki\TextMate\Engines\Engine` argument and returns the Oniguruma copy by default.
+
+### Reversed line ranges are ignored
+
+In the CommonMark extension, reversed line ranges in the code fence meta string, such as `{5-2}`, are now ignored instead of being expanded.
+
+### Internal classes changed
+
+The `Tokenizer`, `PatternSearcher` and `ScopeStack` classes in the `Phiki\TextMate` namespace have changed to support the regex engines and the new performance improvements. This will only affect you if you were extending or constructing these classes yourself.
