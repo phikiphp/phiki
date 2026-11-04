@@ -130,6 +130,30 @@ it('passes meta to transformers', function () {
     expect($transformer->meta())->toBe($meta);
 });
 
+it('renders the same html with and without transformers', function (bool $withGutter) {
+    $code = <<<'PHP'
+    function add(int $a, int $b): int {
+        return $a + $b;
+    }
+
+    echo add(1, 2);
+    PHP;
+
+    $render = function (bool $withTransformer) use ($code, $withGutter) {
+        $output = (new Phiki)
+            ->codeToHtml($code, Grammar::Php, ['light' => Theme::GithubLight, 'dark' => Theme::GithubDark])
+            ->withGutter($withGutter);
+
+        if ($withTransformer) {
+            $output->transformer(new UselessTransformer);
+        }
+
+        return $output->toString();
+    };
+
+    expect($render(false))->toBe($render(true));
+})->with(['without gutter' => false, 'with gutter' => true]);
+
 describe('style attributes', function () {
     it('does not emit doubled separators or glued declarations with multiple themes', function () {
         $output = (string) (new Phiki)->codeToHtml('echo "Hello, world!";', Grammar::Php, [

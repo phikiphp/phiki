@@ -9,6 +9,7 @@ use Phiki\Contracts\TransformerInterface;
 use Phiki\Grammar\ParsedGrammar;
 use Phiki\Phast\ClassList;
 use Phiki\Phast\Element;
+use Phiki\Phast\Literal;
 use Phiki\Phast\Properties;
 use Phiki\Phast\Root;
 use Phiki\Phast\Text;
@@ -266,7 +267,9 @@ class PendingHtmlOutput implements Stringable
 
             [$line] = $this->callTransformerMethod('line', $line, $lineTokens, $index);
 
-            $code->children[] = $line;
+            // Without transformers nothing reads or changes the tree after this, so each line is
+            // rendered now rather than keeping the nodes for every token alive until the end.
+            $code->children[] = $this->transformers === [] ? new Literal($line->__toString()) : $line;
         }
 
         [$code] = $this->callTransformerMethod('code', $code);

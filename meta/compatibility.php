@@ -22,6 +22,7 @@ use Phiki\Support\Regex;
 use Phiki\TextMate\Engines\Engine;
 use Phiki\TextMate\Engines\OnigurumaEngine;
 use Phiki\TextMate\Engines\PcreEngine;
+use Phiki\TextMate\SearchResultCache;
 use Phiki\Token\Token;
 
 require_once __DIR__.'/../vendor/autoload.php';
@@ -45,9 +46,9 @@ final class RecordingEngine implements RegexEngineInterface
         return $this->engine->identifier();
     }
 
-    public function findNextMatch(array $patterns, string $lineText, int $linePos): ?MatchedPattern
+    public function findNextMatch(array $patterns, string $lineText, int $linePos, ?SearchResultCache $cache = null): ?MatchedPattern
     {
-        $matched = $this->engine->findNextMatch($patterns, $lineText, $linePos);
+        $matched = $this->engine->findNextMatch($patterns, $lineText, $linePos, $cache);
         $pattern = $matched?->pattern;
 
         $regex = match (true) {
