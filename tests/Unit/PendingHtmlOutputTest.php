@@ -1,10 +1,17 @@
 <?php
 
+use Phiki\Adapters\CommonMark\Transformers\AnnotationsTransformer;
+use Phiki\Adapters\CommonMark\Transformers\MetaTransformer;
 use Phiki\Grammar\Grammar;
+use Phiki\Output\Html\PendingHtmlOutput;
+use Phiki\Phast\Element;
 use Phiki\Phiki;
 use Phiki\Tests\Fixtures\FakeCache;
 use Phiki\Tests\Fixtures\UselessTransformer;
 use Phiki\Theme\Theme;
+use Phiki\Transformers\AbstractTransformer;
+use Phiki\Transformers\AddClassesTransformer;
+use Phiki\Transformers\Decorations\LineDecoration;
 use Phiki\Transformers\Meta;
 
 it('calls transformer methods', function () {
@@ -104,6 +111,67 @@ it('can read from cache', function () {
         ->cache($cache);
 
     expect($pending2->toString())->toBe($pending->toString());
+});
+
+it('does not share cached HTML between outputs with different options', function (Closure $first, Closure $second) {
+    $phiki = (new Phiki)->cache(new FakeCache);
+    $render = fn (Closure $configure) => $configure($phiki->codeToHtml("echo 1;\necho 2;", Grammar::Php, Theme::GithubLight))->toString();
+
+    $uncached = $second((new Phiki)->codeToHtml("echo 1;\necho 2;", Grammar::Php, Theme::GithubLight))->toString();
+
+    expect($render($first))->not->toBe($uncached);
+    expect($render($second))->toBe($uncached);
+})->with([
+    'meta' => [
+        fn (PendingHtmlOutput $output) => $output->withMeta(new Meta(markdownInfo: '{1}'))->transformer(new MetaTransformer),
+        fn (PendingHtmlOutput $output) => $output->withMeta(new Meta(markdownInfo: '{2}'))->transformer(new MetaTransformer),
+    ],
+    'transformer options' => [
+        fn (PendingHtmlOutput $output) => $output->transformer(new AddClassesTransformer),
+        fn (PendingHtmlOutput $output) => $output->transformer(new AddClassesTransformer(styles: false)),
+    ],
+    'decorations' => [
+        fn (PendingHtmlOutput $output) => $output->decoration(LineDecoration::forLine(0)->class('one')),
+        fn (PendingHtmlOutput $output) => $output->decoration(LineDecoration::forLine(0)->class('two')),
+    ],
+]);
+
+it('reads from cache when transformers store state while rendering', function () {
+    $cache = new FakeCache;
+    $code = "echo 1; // [code! highlight]\necho 2;";
+
+    $pending = fn () => (new Phiki)->codeToHtml($code, Grammar::Php, Theme::GithubLight)->transformer(new AnnotationsTransformer)->cache($cache);
+
+    $first = $pending();
+    $key = $first->cacheKey();
+
+    expect($first->toString())->toContain('highlight');
+    expect($first->cacheKey())->toBe($key);
+
+    $cache->set($key, 'cached');
+
+    expect($pending()->toString())->toBe('cached');
+});
+
+it('does not cache HTML from transformers that cannot be serialized', function () {
+    $cache = new FakeCache;
+
+    $transformer = new class(fn () => 'one') extends AbstractTransformer
+    {
+        public function __construct(private Closure $class) {}
+
+        public function pre(Element $pre): Element
+        {
+            $pre->properties->get('class')->add(($this->class)());
+
+            return $pre;
+        }
+    };
+
+    $pending = (new Phiki)->codeToHtml('echo 1;', Grammar::Php, Theme::GithubLight)->transformer($transformer)->cache($cache);
+    $pending->toString();
+
+    expect($cache->has($pending->cacheKey()))->toBeFalse();
 });
 
 it('passes meta to transformers', function () {

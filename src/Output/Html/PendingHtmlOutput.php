@@ -26,6 +26,7 @@ use Phiki\Transformers\Decorations\PreDecoration;
 use Phiki\Transformers\Meta;
 use Psr\SimpleCache\CacheInterface;
 use Stringable;
+use Throwable;
 
 class PendingHtmlOutput implements Stringable
 {
@@ -38,6 +39,13 @@ class PendingHtmlOutput implements Stringable
     protected ?CacheInterface $cache = null;
 
     protected array $transformers = [];
+
+    /**
+     * A hash of each transformer's serialized state when it was registered, or null when it can't be serialized.
+     *
+     * @var array<int, string|null>
+     */
+    protected array $transformerStates = [];
 
     protected array $decorations = [];
 
@@ -92,13 +100,22 @@ class PendingHtmlOutput implements Stringable
     {
         $this->transformers[] = $transformer;
 
+        // The state is captured now, before rendering gives the transformer the meta, grammar, and themes
+        // or it stores state derived from the code (e.g. parsed annotations), so the cache key stays the same
+        // before and after rendering. Options that change the HTML, such as constructor arguments, are included.
+        try {
+            $this->transformerStates[] = md5(serialize($transformer));
+        } catch (Throwable) {
+            $this->transformerStates[] = null;
+        }
+
         return $this;
     }
 
     public function decoration(LineDecoration|PreDecoration|CodeDecoration|GutterDecoration ...$decorations): self
     {
         if (! Arr::any($this->transformers, fn (TransformerInterface $transformer) => $transformer instanceof DecorationTransformer)) {
-            $this->transformers[] = new DecorationTransformer($this->decorations);
+            $this->transformer(new DecorationTransformer($this->decorations));
         }
 
         $this->decorations = array_merge($this->decorations, $decorations);
@@ -134,8 +151,19 @@ class PendingHtmlOutput implements Stringable
             ...array_map(fn (ParsedTheme $theme) => $theme->name, $this->themes),
             $this->withGutter,
             $this->startingLineNumber,
-            ...array_map(fn (TransformerInterface $transformer) => get_class($transformer), $this->transformers),
+            $this->meta ?? new Meta,
+            $this->decorations,
+            $this->transformerStates,
         ]));
+    }
+
+    /**
+     * Whether the cache key captures every transformer's state. A transformer that can't be serialized,
+     * such as one holding a closure, could change the HTML in ways the key can't see.
+     */
+    protected function isCacheable(): bool
+    {
+        return isset($this->cache) && ! in_array(null, $this->transformerStates, true);
     }
 
     protected function callTransformerMethod(string $method, mixed ...$args): mixed
@@ -165,9 +193,10 @@ class PendingHtmlOutput implements Stringable
 
     public function __toString(): string
     {
-        $cacheKey = $this->cacheKey();
+        $cacheable = $this->isCacheable();
+        $cacheKey = $cacheable ? $this->cacheKey() : null;
 
-        if (isset($this->cache) && $this->cache->has($cacheKey)) {
+        if ($cacheable && $this->cache->has($cacheKey)) {
             return $this->cache->get($cacheKey);
         }
 
@@ -280,7 +309,7 @@ class PendingHtmlOutput implements Stringable
         [$root] = $this->callTransformerMethod('root', new Root([$pre]));
         [$html] = $this->callTransformerMethod('postprocess', $root->__toString());
 
-        if (isset($this->cache)) {
+        if ($cacheable) {
             $this->cache->set($cacheKey, $html);
         }
 
