@@ -36,6 +36,19 @@ class ScopeStack implements Stringable
     }
 
     /**
+     * Forget the stacks pushed onto this one, and onto those. Each refers to its parent, so otherwise the
+     * tree can only be freed by PHP's cycle collector, which is slow with large grammars in memory.
+     */
+    public function release(): void
+    {
+        foreach ($this->children as $child) {
+            $child->release();
+        }
+
+        $this->children = [];
+    }
+
+    /**
      * Get the scope name segments in the stack.
      *
      * @return list<string>

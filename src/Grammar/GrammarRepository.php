@@ -3,8 +3,10 @@
 namespace Phiki\Grammar;
 
 use Phiki\Contracts\GrammarRepositoryInterface;
+use Phiki\Contracts\PatternInterface;
 use Phiki\Exceptions\UnrecognisedGrammarException;
 use Phiki\TextMate\Engines\Engine;
+use WeakMap;
 
 class GrammarRepository implements GrammarRepositoryInterface
 {
@@ -29,8 +31,21 @@ class GrammarRepository implements GrammarRepositoryInterface
 
     protected array $aliases = [];
 
+    /**
+     * The pattern lists the tokenizer has compiled for each grammar, keyed by rule and anchor flags, so
+     * each is compiled once rather than for every tokenize() call. Rules are included through this
+     * repository, so the lists are dropped whenever the grammars it resolves change.
+     *
+     * @internal
+     *
+     * @var WeakMap<ParsedGrammar, array<string, array{ 0: PatternInterface, 1: array<array{ 0: PatternInterface, 1: string }> }>>
+     */
+    public WeakMap $compiled;
+
     public function __construct()
     {
+        $this->compiled = new WeakMap;
+
         foreach (Grammar::cases() as $grammar) {
             $this->grammars[$grammar->value] = $grammar;
             $this->scopesToGrammar[$grammar->scopeName()] = $grammar->value;
@@ -68,6 +83,7 @@ class GrammarRepository implements GrammarRepositoryInterface
     public function engine(Engine $engine): void
     {
         $this->engine = $engine;
+        $this->compiled = new WeakMap;
     }
 
     public function getFromScope(string $scope): ParsedGrammar
@@ -87,12 +103,14 @@ class GrammarRepository implements GrammarRepositoryInterface
     public function alias(string $alias, string $target): void
     {
         $this->aliases[$alias] = $target;
+        $this->compiled = new WeakMap;
     }
 
     public function register(string $name, string|ParsedGrammar $pathOrGrammar): void
     {
         $this->grammars[$name] = $pathOrGrammar;
         unset($this->parsed[$name]);
+        $this->compiled = new WeakMap;
     }
 
     public function resolve(string|Grammar|ParsedGrammar $grammar): ParsedGrammar

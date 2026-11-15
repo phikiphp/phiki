@@ -656,6 +656,18 @@ describe('scopes', function () {
     });
 });
 
+describe('includes', function () {
+    it('includes a grammar registered after tokenizing with the old one', function () {
+        $phiki = new Phiki;
+        $grammar = ParsedGrammar::fromArray(['scopeName' => 'source.test', 'patterns' => [['include' => 'source.css']]]);
+
+        $phiki->codeToTokens('zzz', $grammar);
+        $phiki->grammar('css', ParsedGrammar::fromArray(['scopeName' => 'source.css', 'patterns' => [['match' => 'zzz', 'name' => 'custom.test']]]));
+
+        expect($phiki->codeToTokens('zzz', $grammar)[0][0]->scopes)->toBe(['source.test', 'custom.test']);
+    });
+});
+
 describe('while', function () {
     it('correctly processes while patterns', function () {
         $tokens = tokenize(

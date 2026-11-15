@@ -97,7 +97,26 @@ class Scope
 
         // We can now get rid of any scopes that come after the matching scope,
         // skipping over the one we just matched since we don't need to check that again.
-        $ancestralScopesReversed = array_slice($reversed, $matchingScopeIndex + 1);
+        if (! $this->matchesAncestors(array_slice($reversed, $matchingScopeIndex + 1))) {
+            return false;
+        }
+
+        // If we've not returned false by this point, it means we've matched all of the scopes in the object
+        // against the ancestral scopes of the token and we can therefore return a match result.
+        //
+        // The specificity of this match is slightly different because we've checked against ancestral scopes,
+        // so we need to include that in the result so we can use it to sort matches later.
+        return new ScopeMatchResult(length: $matchingScopeLength, depth: $matchingScopeDepth, ancestral: count($this->names) - 1);
+    }
+
+    /**
+     * Check every selector but the last against the ancestors of the token scope the last one matched,
+     * given from the closest ancestor to the root.
+     *
+     * @param  array<string>  $ancestralScopesReversed
+     */
+    public function matchesAncestors(array $ancestralScopesReversed): bool
+    {
         $remainingScopeSelectorsReversed = array_reverse(array_slice($this->names, 0, -1));
 
         // Now we need to check the remaining scopes in the object against the ancestral scopes.
@@ -126,11 +145,6 @@ class Scope
             $ancestralScopesReversed = array_slice($ancestralScopesReversed, $matchedAncestralScopeIndex);
         }
 
-        // If we've not returned false by this point, it means we've matched all of the scopes in the object
-        // against the ancestral scopes of the token and we can therefore return a match result.
-        //
-        // The specificity of this match is slightly different because we've checked against ancestral scopes,
-        // so we need to include that in the result so we can use it to sort matches later.
-        return new ScopeMatchResult(length: $matchingScopeLength, depth: $matchingScopeDepth, ancestral: count($this->names) - 1);
+        return true;
     }
 }
