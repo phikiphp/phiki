@@ -19,17 +19,16 @@ use Phiki\Token\Token;
 class Tokenizer
 {
     /**
-     * Compiled patterns for the current tokenize() call, keyed by pattern, base grammar and anchor flags.
-     * Each entry holds its pattern so the object ID in the key can't be reused while the cache is alive.
-     *
-     * @var array<string, array{ 0: PatternInterface, 1: array<array{ 0: PatternInterface, 1: string }> }>
-     */
-    protected array $compiled = [];
-
-    /**
      * Results of earlier regex searches on the line being tokenized, for the current tokenize() call.
      */
     protected ?SearchResultCache $searches = null;
+
+    /**
+     * The injections that apply to each scope stack, for the current tokenize() call.
+     *
+     * @var array<string, array{ 0: ScopeStack, 1: list<array{ 0: Injection, 1: ?Prefix }> }>
+     */
+    protected array $injections = [];
 
     /**
      * Create a new instance.
@@ -61,7 +60,7 @@ class Tokenizer
 
         $lines = array_values(preg_split("/\R/u", $text));
         $tokens = [];
-        $this->compiled = [];
+        $this->injections = [];
         $this->searches = new SearchResultCache;
 
         foreach ($lines as $index => $line) {
@@ -78,8 +77,11 @@ class Tokenizer
             $tokens[] = $lineTokens->getResult($stateStack, $lineLength);
         }
 
-        $this->compiled = [];
+        $this->injections = [];
         $this->searches = null;
+
+        // The tokens only keep their lists of scope names, so the scope stacks can go now.
+        $scopeList->scopePath->release();
 
         return $tokens;
     }
@@ -111,7 +113,8 @@ class Tokenizer
             }
 
             // We need to check to see if we've advanced so that we don't end up in an infinite loop.
-            $hasAdvanced = count($rule->matches) > 0 ? $rule->end() > $linePos : false;
+            $ruleEnd = $rule->end();
+            $hasAdvanced = count($rule->matches) > 0 ? $ruleEnd > $linePos : false;
 
             // If the pattern we matched was an `end` pattern, we need to change how we process it.
             if ($rule->pattern instanceof EndPattern) {
@@ -126,7 +129,7 @@ class Tokenizer
                 $this->handleCaptures($grammar, $lineText, $isFirstLine, $stack, $lineTokens, $rule->pattern->captures(), $rule->matches);
 
                 // We now need to make sure we produce tokens for the remaining text in the match.
-                $lineTokens->produce($stack, $rule->end());
+                $lineTokens->produce($stack, $ruleEnd);
 
                 // To prevent infinite loops, we need to see whether or not we've advanced between the last match
                 // and this one. We can do this by comparing the enter position of the stack and parent stack.
@@ -158,14 +161,14 @@ class Tokenizer
                 $nameScopesList = $stack->contentNameScopesList->push($scopeName);
 
                 // And push that onto the stack.
-                $stack = $stack->push($rule->pattern, $linePos, $anchorPosition, $rule->end() === $lineLength, null, $nameScopesList, $nameScopesList);
+                $stack = $stack->push($rule->pattern, $linePos, $anchorPosition, $ruleEnd === $lineLength, null, $nameScopesList, $nameScopesList);
 
                 // If we matched a `begin` `end` pattern, we need to handle the captures for that.
                 if ($rule->pattern instanceof BeginEndPattern) {
                     $this->handleCaptures($grammar, $lineText, $isFirstLine, $stack, $lineTokens, $rule->pattern->captures(), $rule->matches);
 
-                    $lineTokens->produce($stack, $rule->end());
-                    $anchorPosition = $rule->end();
+                    $lineTokens->produce($stack, $ruleEnd);
+                    $anchorPosition = $ruleEnd;
 
                     $contentName = $rule->pattern->getContentName($rule->matches);
                     $contentNameScopesList = $nameScopesList->push($contentName);
@@ -183,8 +186,8 @@ class Tokenizer
                 } elseif ($rule->pattern instanceof BeginWhilePattern) {
                     $this->handleCaptures($grammar, $lineText, $isFirstLine, $stack, $lineTokens, $rule->pattern->captures(), $rule->matches);
 
-                    $lineTokens->produce($stack, $rule->end());
-                    $anchorPosition = $rule->end();
+                    $lineTokens->produce($stack, $ruleEnd);
+                    $anchorPosition = $ruleEnd;
 
                     $contentName = $rule->pattern->getContentName($rule->matches);
                     $contentNameScopesList = $nameScopesList->push($contentName);
@@ -202,7 +205,7 @@ class Tokenizer
                 } elseif ($rule->pattern instanceof MatchPattern) {
                     $this->handleCaptures($grammar, $lineText, $isFirstLine, $stack, $lineTokens, $rule->pattern->captures, $rule->matches);
 
-                    $lineTokens->produce($stack, $rule->end());
+                    $lineTokens->produce($stack, $ruleEnd);
 
                     // @phpstan-ignore-next-line parameterByRef.type
                     $stack = $stack->pop();
@@ -217,8 +220,8 @@ class Tokenizer
                 }
             }
 
-            if ($rule->end() > $linePos) {
-                $linePos = $rule->end();
+            if ($ruleEnd > $linePos) {
+                $linePos = $ruleEnd;
                 $isFirstLine = false;
             }
         }
@@ -330,15 +333,13 @@ class Tokenizer
      */
     protected function matchRule(ParsedGrammar $grammar, string $lineText, bool $isFirstLine, int $linePos, StateStack &$stack, int $anchorPosition): ?MatchedPattern
     {
-        $allowG = $linePos === $anchorPosition;
-        $compiled = $this->compile($stack->pattern, $grammar, $isFirstLine, $allowG);
+        $compiled = $this->compile($stack->pattern, $grammar, $isFirstLine, $linePos === $anchorPosition);
 
-        return (new PatternSearcher($stack->pattern, $grammar, $this->environment->grammars, $isFirstLine, $allowG, $this->environment->engine, $compiled, $this->searches))
-            ->findNextMatch($lineText, $linePos);
+        return $this->environment->engine->findNextMatch($compiled, $lineText, $linePos, $this->searches);
     }
 
     /**
-     * Compile a pattern, reusing the result from earlier in this tokenize() call when possible.
+     * Compile a pattern, reusing the result from an earlier search with the same grammars when possible.
      *
      * @return array<array{ 0: PatternInterface, 1: string }>
      */
@@ -349,9 +350,12 @@ class Tokenizer
         // rule and don't change, so those are cached against the begin rule instead.
         $nestedOnly = $pattern instanceof EndPattern || $pattern instanceof WhilePattern;
         $owner = $nestedOnly ? $pattern->begin->pattern : $pattern;
-        $key = ($nestedOnly ? 'nested:' : '').spl_object_id($owner).':'.spl_object_id($grammar).':'.(int) $allowA.(int) $allowG;
+        $key = ($nestedOnly ? 'nested:' : '').spl_object_id($owner).':'.(int) $allowA.(int) $allowG;
 
-        if (! isset($this->compiled[$key])) {
+        $cache = $this->environment->grammars->compiled;
+        $nested = $cache[$grammar][$key][1] ?? null;
+
+        if ($nested === null) {
             $compiled = $pattern->compile($grammar, $this->environment->grammars, $allowA, $allowG);
             $nested = $compiled;
 
@@ -360,12 +364,12 @@ class Tokenizer
                 $nested = $pattern->applyEndPatternLast ? array_slice($compiled, 0, -1) : array_slice($compiled, 1);
             }
 
-            $this->compiled[$key] = [$owner, $nested];
+            // Each entry holds its pattern, so the object ID in the key can't be reused while the entry exists.
+            $cache[$grammar] ??= [];
+            $cache[$grammar][$key] = [$owner, $nested];
 
             return $compiled;
         }
-
-        $nested = $this->compiled[$key][1];
 
         if ($pattern instanceof EndPattern) {
             $end = [$pattern, $pattern->end->get($allowA, $allowG, $pattern->begin->matches)];
@@ -386,23 +390,11 @@ class Tokenizer
         $bestMatchRating = PHP_INT_MAX;
         $bestMatchedInjection = null;
         $bestMatchedPattern = null;
+        $bestPrefix = null;
 
-        $scopes = $stack->contentNameScopesList->getScopeNames();
-        $len = count($injections);
-
-        usort($injections, fn (Injection $a, Injection $b) => ($a->getPrefix($scopes)->value ?? 0) <=> ($b->getPrefix($scopes)->value ?? 0));
-
-        for ($i = 0; $i < $len; $i++) {
-            $injection = $injections[$i];
-
-            if (! $injection->matches($scopes)) {
-                continue;
-            }
-
-            $allowG = $linePos === $anchorPosition;
-            $compiled = $this->compile($injection, $grammar, $isFirstLine, $allowG);
-            $searcher = new PatternSearcher($injection, $grammar, $this->environment->grammars, $isFirstLine, $allowG, $this->environment->engine, $compiled, $this->searches);
-            $matched = $searcher->findNextMatch($lineText, $linePos);
+        foreach ($this->injectionsFor($injections, $grammar, $stack->contentNameScopesList) as [$injection, $prefix]) {
+            $compiled = $this->compile($injection, $grammar, $isFirstLine, $linePos === $anchorPosition);
+            $matched = $this->environment->engine->findNextMatch($compiled, $lineText, $linePos, $this->searches);
 
             if (! $matched) {
                 continue;
@@ -416,6 +408,7 @@ class Tokenizer
             $bestMatchRating = $matchRating;
             $bestMatchedInjection = $injection;
             $bestMatchedPattern = $matched;
+            $bestPrefix = $prefix;
 
             if ($bestMatchRating === $linePos) {
                 break;
@@ -426,7 +419,43 @@ class Tokenizer
             return null;
         }
 
-        return new MatchedInjection($bestMatchedInjection, $bestMatchedPattern, $bestMatchedInjection->getPrefix($scopes));
+        return new MatchedInjection($bestMatchedInjection, $bestMatchedPattern, $bestPrefix);
+    }
+
+    /**
+     * Get the injections whose selectors match the scopes, with their prefixes, left injections first.
+     * Matching selectors is slow and the same scopes come up for most searches, so the result is kept
+     * for the current tokenize() call.
+     *
+     * @param  array<Injection>  $injections
+     * @return list<array{ 0: Injection, 1: ?Prefix }>
+     */
+    protected function injectionsFor(array $injections, ParsedGrammar $grammar, AttributedScopeStack $scopesList): array
+    {
+        // Pushing a scope reuses the node already pushed with that name, so a node stands for its scopes.
+        $scopePath = $scopesList->scopePath;
+        $key = spl_object_id($scopePath).':'.spl_object_id($grammar);
+
+        if (isset($this->injections[$key])) {
+            return $this->injections[$key][1];
+        }
+
+        $scopes = $scopePath->getSegments();
+
+        usort($injections, fn (Injection $a, Injection $b) => ($a->getPrefix($scopes)->value ?? 0) <=> ($b->getPrefix($scopes)->value ?? 0));
+
+        $matching = [];
+
+        foreach ($injections as $injection) {
+            if ($injection->matches($scopes)) {
+                $matching[] = [$injection, $injection->getPrefix($scopes)];
+            }
+        }
+
+        // The entry holds the node so its object ID can't be reused while the cache is alive.
+        $this->injections[$key] = [$scopePath, $matching];
+
+        return $matching;
     }
 
     /**

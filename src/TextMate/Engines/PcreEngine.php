@@ -29,9 +29,28 @@ class PcreEngine implements RegexEngineInterface
      */
     public const CALL_GROUP_PREFIX = '_phikicall';
 
+    /**
+     * Each regex wrapped in the delimiter and flags. Reusing the same string saves building it and lets
+     * PHP find the compiled regex in its cache by the hash the string already has.
+     *
+     * @var array<string, string>
+     */
+    protected array $delimited = [];
+
     public function identifier(): Engine
     {
         return Engine::Pcre;
+    }
+
+    protected function delimit(string $regex): string
+    {
+        // End and while regexes that refer to begin captures differ for each match, so this is bounded
+        // like PHP's own regex cache.
+        if (count($this->delimited) >= 4096) {
+            $this->delimited = [];
+        }
+
+        return $this->delimited[$regex] = self::DELIMITER.$regex.self::DELIMITER.self::FLAGS;
     }
 
     public function findNextMatch(array $patterns, string $lineText, int $linePos, ?SearchResultCache $cache = null): ?MatchedPattern
@@ -39,19 +58,29 @@ class PcreEngine implements RegexEngineInterface
         $bestMatches = null;
         $bestPattern = null;
 
-        $cache?->useLine($lineText);
+        // The cache is checked inline, as SearchResultCache::get() and put() would, because this loop
+        // runs for every regex in every search. Without a cache, results are only kept for this search.
+        $results = [];
+
+        if ($cache !== null) {
+            $cache->useLine($lineText);
+            $results = &$cache->results;
+        }
 
         foreach ($patterns as [$pattern, $regex]) {
-            $cached = $cache?->get($regex, $linePos);
+            $cached = $results[$regex] ?? null;
 
-            if ($cached === null) {
+            if ($cached === null || $linePos < $cached[0] || ($cached[1] !== false && $cached[1] < $linePos)) {
                 // Patterns that fail to compile are skipped, the same as a pattern that does not match.
-                $matched = @preg_match(self::DELIMITER.$regex.self::DELIMITER.self::FLAGS, $lineText, $matches, PREG_OFFSET_CAPTURE | PREG_UNMATCHED_AS_NULL, $linePos) === 1;
+                $matched = @preg_match($this->delimited[$regex] ?? $this->delimit($regex), $lineText, $matches, PREG_OFFSET_CAPTURE | PREG_UNMATCHED_AS_NULL, $linePos) === 1;
 
-                $cache?->put($regex, $linePos, $matched ? $matches[0][1] : false, $matched ? $matches : null);
+                // `\G` anchors to wherever the search starts, so its result doesn't hold for other positions.
+                if (! str_contains($regex, '\G')) {
+                    $results[$regex] = [$linePos, $matched ? $matches[0][1] : false, $matched ? $matches : null];
+                }
             } else {
-                $matched = $cached !== false;
-                $matches = $matched ? $cached[1] : [];
+                $matched = $cached[1] !== false;
+                $matches = $matched ? $cached[2] : [];
             }
 
             if (! $matched) {

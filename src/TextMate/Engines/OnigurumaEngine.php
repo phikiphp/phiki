@@ -45,9 +45,17 @@ class OnigurumaEngine implements RegexEngineInterface
             throw new FailedToInitializePatternSearchException;
         }
 
+        // The cache is checked inline, as SearchResultCache::get() and put() would, because this loop
+        // runs for every regex in every search. Without a cache, results are only kept for this search.
+        $results = [];
+
+        if ($cache !== null) {
+            $results = &$cache->results;
+        }
+
         foreach ($patterns as [$pattern, $regex]) {
-            $cached = $cache?->get($regex, $linePos);
-            $searched = $cached === null;
+            $cached = $results[$regex] ?? null;
+            $searched = $cached === null || $linePos < $cached[0] || ($cached[1] !== false && $cached[1] < $linePos);
 
             if ($searched) {
                 if (! mb_ereg_search_setpos($linePos)) {
@@ -57,9 +65,12 @@ class OnigurumaEngine implements RegexEngineInterface
                 $result = @mb_ereg_search_pos($regex);
                 $start = $result === false ? false : $result[0];
 
-                $cache?->put($regex, $linePos, $start);
+                // `\G` anchors to wherever the search starts, so its result doesn't hold for other positions.
+                if (! str_contains($regex, '\G')) {
+                    $results[$regex] = [$linePos, $start, null];
+                }
             } else {
-                $start = $cached === false ? false : $cached[0];
+                $start = $cached[1];
             }
 
             if ($start === false) {

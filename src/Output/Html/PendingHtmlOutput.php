@@ -181,6 +181,20 @@ class PendingHtmlOutput implements Stringable
         return $args;
     }
 
+    private function tokenStyle(HighlightedToken $token): string
+    {
+        $defaultThemeId = $this->getDefaultThemeId();
+        $styles = [($token->settings[$defaultThemeId] ?? null)?->toStyleString()];
+
+        foreach ($token->settings as $id => $settings) {
+            if ($id !== $defaultThemeId) {
+                $styles[] = $settings->toCssVarString($id);
+            }
+        }
+
+        return Styles::join($styles);
+    }
+
     private function getDefaultTheme(): ParsedTheme
     {
         return Arr::first($this->themes);
@@ -252,9 +266,11 @@ class PendingHtmlOutput implements Stringable
 
         $code = new Element('code', new Properties(['class' => new ClassList]));
 
+        // The style of each distinct set of token settings, for rendering without transformers.
+        $tokenStyles = [];
+
         foreach ($highlightedTokens as $index => $lineTokens) {
-            $line = new Element('span');
-            $line->properties->set('class', new ClassList(['line']));
+            $gutter = null;
 
             if ($this->withGutter) {
                 $gutter = new Element('span');
@@ -270,23 +286,41 @@ class PendingHtmlOutput implements Stringable
                 $gutter->children[] = new Text(sprintf('%2d', $this->startingLineNumber + $index));
 
                 [$gutter] = $this->callTransformerMethod('gutter', $gutter, $index);
+            }
 
+            // Without transformers nothing reads or changes the tree after this, so each line is rendered
+            // straight to the HTML its elements would give, rather than building an element for every token.
+            if ($this->transformers === []) {
+                $html = '<span class="line">'.$gutter?->__toString();
+
+                foreach ($lineTokens as $token) {
+                    // Tokens on the same scopes share their settings, so the settings objects identify the style.
+                    $key = '';
+
+                    foreach ($token->settings as $id => $settings) {
+                        $key .= $id.':'.spl_object_id($settings).' ';
+                    }
+
+                    $style = $tokenStyles[$key] ??= $this->tokenStyle($token);
+                    $html .= ($style === '' ? '<span class="token">' : '<span class="token" style="'.$style.'">').htmlspecialchars($token->token->text).'</span>';
+                }
+
+                $code->children[] = new Literal($html.'</span>');
+
+                continue;
+            }
+
+            $line = new Element('span');
+            $line->properties->set('class', new ClassList(['line']));
+
+            if ($gutter !== null) {
                 $line->children[] = $gutter;
             }
 
             foreach ($lineTokens as $j => $token) {
                 $span = new Element('span');
-
-                $tokenStyles = [($token->settings[$this->getDefaultThemeId()] ?? null)?->toStyleString()];
-
-                foreach ($token->settings as $id => $settings) {
-                    if ($id !== $this->getDefaultThemeId()) {
-                        $tokenStyles[] = $settings->toCssVarString($id);
-                    }
-                }
-
                 $span->properties->set('class', new ClassList(['token']));
-                $span->properties->set('style', Styles::join($tokenStyles));
+                $span->properties->set('style', $this->tokenStyle($token));
                 $span->children[] = new Text(htmlspecialchars($token->token->text));
 
                 [$span] = $this->callTransformerMethod('token', $span, $token, $j, $index);
@@ -296,9 +330,7 @@ class PendingHtmlOutput implements Stringable
 
             [$line] = $this->callTransformerMethod('line', $line, $lineTokens, $index);
 
-            // Without transformers nothing reads or changes the tree after this, so each line is
-            // rendered now rather than keeping the nodes for every token alive until the end.
-            $code->children[] = $this->transformers === [] ? new Literal($line->__toString()) : $line;
+            $code->children[] = $line;
         }
 
         [$code] = $this->callTransformerMethod('code', $code);

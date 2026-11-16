@@ -12,6 +12,11 @@ class Regex implements Stringable
 
     protected string $pattern;
 
+    /**
+     * Whether the pattern has a back-reference, such as `\1`, to replace with a begin capture.
+     */
+    protected ?bool $hasReferences = null;
+
     public function __construct(string $pattern)
     {
         $length = strlen($pattern);
@@ -62,7 +67,8 @@ class Regex implements Stringable
     {
         $pattern = $this->resolveAnchors($this->pattern, $allowA, $allowG);
 
-        if ($references === null) {
+        // Without a back-reference there's nothing to replace, and end and while patterns are resolved for every search.
+        if ($references === null || ! ($this->hasReferences ??= preg_match('/\\\\\d/', $this->pattern) === 1)) {
             return $pattern;
         }
 

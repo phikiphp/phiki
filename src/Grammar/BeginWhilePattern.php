@@ -11,6 +11,13 @@ use Phiki\Support\Str;
 class BeginWhilePattern implements HasContentNameInterface, PatternInterface
 {
     /**
+     * The compiled pattern for each combination of anchor flags, shared by every list it's compiled into.
+     *
+     * @var array<int, array{ 0: PatternInterface, 1: string }>
+     */
+    private array $compiled = [];
+
+    /**
      * Whether every nested pattern includes a rule or grammar that doesn't exist.
      */
     private ?bool $missing = null;
@@ -64,7 +71,7 @@ class BeginWhilePattern implements HasContentNameInterface, PatternInterface
         }
 
         return [
-            [$this, $this->begin->get($allowA, $allowG)],
+            $this->compiled[((int) $allowA << 1) | (int) $allowG] ??= [$this, $this->begin->get($allowA, $allowG)],
         ];
     }
 

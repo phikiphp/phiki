@@ -10,6 +10,13 @@ use Phiki\Support\Str;
 class MatchPattern implements PatternInterface
 {
     /**
+     * The compiled pattern for each combination of anchor flags, shared by every list it's compiled into.
+     *
+     * @var array<int, array{ 0: PatternInterface, 1: string }>
+     */
+    private array $compiled = [];
+
+    /**
      * @param  Capture[]  $captures
      */
     public function __construct(
@@ -37,7 +44,7 @@ class MatchPattern implements PatternInterface
     public function compile(ParsedGrammar $grammar, GrammarRepositoryInterface $grammars, bool $allowA, bool $allowG): array
     {
         return [
-            [$this, $this->match->get($allowA, $allowG)],
+            $this->compiled[((int) $allowA << 1) | (int) $allowG] ??= [$this, $this->match->get($allowA, $allowG)],
         ];
     }
 

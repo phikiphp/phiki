@@ -21,9 +21,14 @@ class SearchResultCache
     /**
      * The position each regex was searched from, where it matched, or false, and what the engine stored with it.
      *
+     * The bundled engines read and write this directly, the same way get() and put() do, because calling
+     * them for every regex in every search adds up.
+     *
+     * @internal
+     *
      * @var array<string, array{ 0: int, 1: int|false, 2: mixed }>
      */
-    protected array $results = [];
+    public array $results = [];
 
     /**
      * Start searching the given line, forgetting results from any other line.
